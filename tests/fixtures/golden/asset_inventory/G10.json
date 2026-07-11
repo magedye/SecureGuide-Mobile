@@ -1,0 +1,24 @@
+{
+  "id": "G10",
+  "case_type": "indirect_mapping_with_rationale",
+  "maps_to_group": "AI-08",
+  "description": "A non-DIRECT mapping (implementation of a policy) must carry a rationale.",
+  "input_raw_ids": [
+    "essential_cybersecurity_controls_ecc_2_2024::0038"
+  ],
+  "expected_decision": "EQUIVALENCE_GROUP",
+  "accepted_members": null,
+  "excluded": [],
+  "expected_classification": {
+    "type": "ART-POL",
+    "primary_domain": "SD-08",
+    "sub_domain": "SD-08.05"
+  },
+  "expected_rationale_keywords": [
+    "implementation"
+  ],
+  "expected_canonical_title": "Acceptable Use of Assets Policy",
+  "validation_rules": [
+    "mapping for ecc::0038 is INDIRECT AND has non-empty rationale"
+  ]
+}

@@ -1,0 +1,1448 @@
+{
+  "group_id": "GRP-third_party",
+  "concept": "Supplier & Third-Party",
+  "expected_sub_domain": "SD-08.03",
+  "member_count": 77,
+  "source_coverage": [
+    "Essential Cybersecurity Controls (ECC 2-2024)",
+    "MITRE ATT&CK Enterprise",
+    "NCA ECC-1:2018",
+    "NIST CSF 2.0",
+    "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+    "OWASP Application Security Verification Standard 5.0.0",
+    "The NIST Cybersecurity Framework (CSF) 2.0"
+  ],
+  "instructions": "Decide per CONSOLIDATION_POLICY.md: one of CANONICALIZE | EQUIVALENCE_GROUP | CROSSWALK_ONLY | RELATE_ONLY | KEEP_SEPARATE | DEPRECATE_DERIVED. If merging, author an English canonical per AUTHORING_POLICY.md and set mapping_strength per source. Do NOT invent USACM/SDT values. Do NOT delete raw records.",
+  "members": [
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0099",
+      "external_raw_id": "RAW-001747",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 3-1-4 (3-1)",
+      "title_draft": "3-1-4",
+      "description": "Cybersecurity requirements for business continuity management within the entity shall be periodically reviewed.",
+      "keywords": [
+        "requirements",
+        "business",
+        "continuity",
+        "management",
+        "periodically",
+        "reviewed",
+        "third-party",
+        "cloud"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0100",
+      "external_raw_id": "RAW-001748",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 4-1-1 (Third-Party Cybersecurity)",
+      "title_draft": "4-1-1: Third-Party Cybersecurity",
+      "description": "Cybersecurity requirements for the entity’s contracts and agreements with third parties shall be identified, documented, and approved.",
+      "keywords": [
+        "third-party",
+        "requirements",
+        "outsourcing",
+        "regulatory",
+        "contracts",
+        "agreements",
+        "third",
+        "parties"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0101",
+      "external_raw_id": "RAW-001749",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 4-1-2 (Third-Party Cybersecurity)",
+      "title_draft": "4-1-2: Third-Party Cybersecurity",
+      "description": "Cybersecurity requirements for contracts and agreements with third parties, e.g.",
+      "keywords": [
+        "requirements",
+        "third",
+        "regulatory",
+        "third-party",
+        "data",
+        "services",
+        "party",
+        "procedures"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0102",
+      "external_raw_id": "RAW-001750",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 4-1-3 (Third-Party Cybersecurity)",
+      "title_draft": "4-1-3: Third-Party Cybersecurity",
+      "description": "Cybersecurity requirements for contracts and agreements with third parties providing IT or cybersecurity outsourcing or managed services shall include the following as a minimum: 4.1.3.1 Conducting a cybersecurity risk assessment and ensuring the availability of risk mitigation controls before signing contracts and agreements orupon making",
+      "keywords": [
+        "requirements",
+        "outsourcing",
+        "managed",
+        "regulatory",
+        "third-party",
+        "contracts",
+        "agreements",
+        "services"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0103",
+      "external_raw_id": "RAW-001751",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 4-1-4 (Third-Party Cybersecurity)",
+      "title_draft": "4-1-4: Third-Party Cybersecurity",
+      "description": "Cybersecurity requirements for third parties shall be periodically reviewed.",
+      "keywords": [
+        "third-party",
+        "requirements",
+        "outsourcing",
+        "regulatory",
+        "third",
+        "parties",
+        "periodically",
+        "reviewed"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0015",
+      "external_raw_id": "RAW-001771",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1583",
+      "title_draft": "T1583 — Acquire Infrastructure",
+      "description": "Adversaries may buy, lease, rent, or obtain infrastructure that can be used during targeting.",
+      "keywords": [
+        "infrastructure",
+        "citation",
+        "adversaries",
+        "operations",
+        "solutions",
+        "services",
+        "rent",
+        "adversary"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0043",
+      "external_raw_id": "RAW-001799",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1006",
+      "title_draft": "T1006 — Direct Volume Access",
+      "description": "Adversaries may directly access a volume to bypass file access controls and file system monitoring.",
+      "keywords": [
+        "access",
+        "file",
+        "direct",
+        "windows",
+        "citation",
+        "volume",
+        "adversaries",
+        "directly"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0079",
+      "external_raw_id": "RAW-001835",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1584.008",
+      "title_draft": "T1584.008 — Network Devices",
+      "description": "Adversaries may compromise third-party network devices that can be used during targeting.",
+      "keywords": [
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "network",
+        "devices",
+        "techniques",
+        "compromised"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0093",
+      "external_raw_id": "RAW-001849",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1588.004",
+      "title_draft": "T1588.004 — Digital Certificates",
+      "description": "Adversaries may buy and/or steal SSL/TLS certificates that can be used during targeting.",
+      "keywords": [
+        "certificate",
+        "certificates",
+        "digital",
+        "adversaries",
+        "ssl",
+        "tls",
+        "https",
+        "attack"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0109",
+      "external_raw_id": "RAW-001865",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1587.003",
+      "title_draft": "T1587.003 — Digital Certificates",
+      "description": "Adversaries may create self-signed SSL/TLS certificates that can be used during targeting.",
+      "keywords": [
+        "certificate",
+        "digital",
+        "certificates",
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "techniques"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0143",
+      "external_raw_id": "RAW-001899",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1586.001",
+      "title_draft": "T1586.001 — Social Media Accounts",
+      "description": "Adversaries may compromise social media accounts that can be used during targeting.",
+      "keywords": [
+        "social",
+        "media",
+        "accounts",
+        "adversaries",
+        "compromised",
+        "compromise",
+        "during",
+        "persona"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0146",
+      "external_raw_id": "RAW-001902",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1562.009",
+      "title_draft": "T1562.009 — Safe Mode Boot",
+      "description": "Adversaries may abuse Windows safe mode to disable endpoint defenses.",
+      "keywords": [
+        "safe",
+        "mode",
+        "citation",
+        "boot",
+        "windows",
+        "start",
+        "adversaries",
+        "endpoint"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0178",
+      "external_raw_id": "RAW-001934",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1555.005",
+      "title_draft": "T1555.005 — Password Managers",
+      "description": "Adversaries may acquire user credentials from third-party password managers.(Citation: ise Password Manager February 2019) Password managers are applications designed to store user credentials, normally in an encrypted database.",
+      "keywords": [
+        "password",
+        "credentials",
+        "citation",
+        "managers",
+        "adversaries",
+        "user",
+        "manager",
+        "database"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0207",
+      "external_raw_id": "RAW-001963",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1590.003",
+      "title_draft": "T1590.003 — Network Trust Dependencies",
+      "description": "Adversaries may gather information about the victim's network trust dependencies that can be used during targeting.",
+      "keywords": [
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "techniques",
+        "network",
+        "adversaries",
+        "about"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0208",
+      "external_raw_id": "RAW-001964",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1498.002",
+      "title_draft": "T1498.002 — Reflection Amplification",
+      "description": "Adversaries may attempt to cause a denial of service (DoS) by reflecting a high-volume of network traffic to a target.",
+      "keywords": [
+        "attack",
+        "reflection",
+        "amplification",
+        "network",
+        "citation",
+        "traffic",
+        "cloudflare",
+        "dos"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0217",
+      "external_raw_id": "RAW-001973",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1070.007",
+      "title_draft": "T1070.007 — Clear Network Connection History and Configurations",
+      "description": "Adversaries may clear or remove evidence of malicious network connections in order to clean up traces of their operations.",
+      "keywords": [
+        "network",
+        "code",
+        "connection",
+        "history",
+        "connections",
+        "citation",
+        "https",
+        "attack"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0220",
+      "external_raw_id": "RAW-001976",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1584.003",
+      "title_draft": "T1584.003 — Virtual Private Server",
+      "description": "Adversaries may compromise third-party Virtual Private Servers (VPSs) that can be used during targeting.",
+      "keywords": [
+        "adversaries",
+        "virtual",
+        "third-party",
+        "service",
+        "private",
+        "compromise",
+        "vpss",
+        "cloud"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0232",
+      "external_raw_id": "RAW-001988",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1586.003",
+      "title_draft": "T1586.003 — Cloud Accounts",
+      "description": "Adversaries may compromise cloud accounts that can be used during targeting.",
+      "keywords": [
+        "cloud",
+        "accounts",
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "techniques",
+        "adversaries"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0233",
+      "external_raw_id": "RAW-001989",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1586.002",
+      "title_draft": "T1586.002 — Email Accounts",
+      "description": "Adversaries may compromise email accounts that can be used during targeting.",
+      "keywords": [
+        "email",
+        "accounts",
+        "adversaries",
+        "compromised",
+        "https",
+        "attack",
+        "mitre",
+        "org"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0235",
+      "external_raw_id": "RAW-001991",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1608.001",
+      "title_draft": "T1608.001 — Upload Malware",
+      "description": "Adversaries may upload malware to third-party or adversary controlled infrastructure to make it accessible during targeting.",
+      "keywords": [
+        "malware",
+        "infrastructure",
+        "citation",
+        "upload",
+        "malicious",
+        "software",
+        "https",
+        "attack"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0289",
+      "external_raw_id": "RAW-002045",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1608.002",
+      "title_draft": "T1608.002 — Upload Tool",
+      "description": "Adversaries may upload tools to third-party or adversary controlled infrastructure to make it accessible during targeting.",
+      "keywords": [
+        "tool",
+        "tools",
+        "upload",
+        "adversary",
+        "infrastructure",
+        "https",
+        "attack",
+        "mitre"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0295",
+      "external_raw_id": "RAW-002051",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1076",
+      "title_draft": "T1076 — Remote Desktop Protocol",
+      "description": "Remote desktop is a common feature in operating systems.",
+      "keywords": [
+        "remote",
+        "session",
+        "rdp",
+        "desktop",
+        "user",
+        "citation",
+        "services",
+        "access"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0319",
+      "external_raw_id": "RAW-002075",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1107",
+      "title_draft": "T1107 — File Deletion",
+      "description": "Adversaries may delete files left behind by the actions of their intrusion activity.",
+      "keywords": [
+        "tools",
+        "deletion",
+        "files",
+        "file",
+        "adversaries",
+        "intrusion",
+        "adversary",
+        "attack"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0338",
+      "external_raw_id": "RAW-002094",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1583.004",
+      "title_draft": "T1583.004 — Server",
+      "description": "Adversaries may buy, lease, rent, or obtain physical servers that can be used during targeting.",
+      "keywords": [
+        "servers",
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "adversaries",
+        "techniques",
+        "server"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0391",
+      "external_raw_id": "RAW-002147",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1591.002",
+      "title_draft": "T1591.002 — Business Relationships",
+      "description": "Adversaries may gather information about the victim's business relationships that can be used during targeting.",
+      "keywords": [
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "techniques",
+        "business",
+        "relationships",
+        "adversaries"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0399",
+      "external_raw_id": "RAW-002155",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1593.003",
+      "title_draft": "T1593.003 — Code Repositories",
+      "description": "Adversaries may search public code repositories for information about victims that can be used during targeting.",
+      "keywords": [
+        "code",
+        "repositories",
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "techniques",
+        "various"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0423",
+      "external_raw_id": "RAW-002179",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1588.001",
+      "title_draft": "T1588.001 — Malware",
+      "description": "Adversaries may buy, steal, or download malware that can be used during targeting.",
+      "keywords": [
+        "malware",
+        "adversaries",
+        "third-party",
+        "entities",
+        "steal",
+        "post-compromise",
+        "addition",
+        "development"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0449",
+      "external_raw_id": "RAW-002205",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1584",
+      "title_draft": "T1584 — Compromise Infrastructure",
+      "description": "Adversaries may compromise third-party infrastructure that can be used during targeting.",
+      "keywords": [
+        "infrastructure",
+        "adversaries",
+        "citation",
+        "compromise",
+        "https",
+        "attack",
+        "mitre",
+        "org"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0458",
+      "external_raw_id": "RAW-002214",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1586",
+      "title_draft": "T1586 — Compromise Accounts",
+      "description": "Adversaries may compromise accounts with services that can be used during targeting.",
+      "keywords": [
+        "accounts",
+        "compromise",
+        "adversaries",
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "techniques"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0460",
+      "external_raw_id": "RAW-002216",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1584.005",
+      "title_draft": "T1584.005 — Botnet",
+      "description": "Adversaries may compromise numerous third-party systems to form a botnet that can be used during targeting.",
+      "keywords": [
+        "botnet",
+        "adversaries",
+        "citation",
+        "numerous",
+        "third-party",
+        "perform",
+        "service",
+        "ddos"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0464",
+      "external_raw_id": "RAW-002220",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1559.003",
+      "title_draft": "T1559.003 — XPC Services",
+      "description": "Adversaries can provide malicious content to an XPC service daemon for local code execution.",
+      "keywords": [
+        "xpc",
+        "services",
+        "code",
+        "service",
+        "daemon",
+        "citation",
+        "malicious",
+        "execution"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0485",
+      "external_raw_id": "RAW-002241",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1528",
+      "title_draft": "T1528 — Steal Application Access Token",
+      "description": "Adversaries can steal application access tokens as a means of acquiring credentials to access remote systems and resources.",
+      "keywords": [
+        "access",
+        "tokens",
+        "citation",
+        "oauth",
+        "token",
+        "user",
+        "azure",
+        "steal"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0496",
+      "external_raw_id": "RAW-002252",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1683.002",
+      "title_draft": "T1683.002 — Audio-Visual Content",
+      "description": "Adversaries may create or manipulate audio, image, and video content to support targeting and malicious operations.",
+      "keywords": [
+        "techniques",
+        "content",
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "adversaries",
+        "video"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0507",
+      "external_raw_id": "RAW-002263",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1072",
+      "title_draft": "T1072 — Software Deployment Tools",
+      "description": "Adversaries may gain access to and use centralized software suites installed within an enterprise to execute commands and move laterally through the network.",
+      "keywords": [
+        "access",
+        "configuration",
+        "software",
+        "network",
+        "management",
+        "deployment",
+        "also",
+        "manager"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0536",
+      "external_raw_id": "RAW-002292",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1199",
+      "title_draft": "T1199 — Trusted Relationship",
+      "description": "Adversaries may breach or otherwise leverage organizations who have access to intended victims.",
+      "keywords": [
+        "access",
+        "delegated",
+        "organizations",
+        "network",
+        "providers",
+        "office",
+        "administrator",
+        "trusted"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0550",
+      "external_raw_id": "RAW-002306",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1588.002",
+      "title_draft": "T1588.002 — Tool",
+      "description": "Adversaries may buy, steal, or download software tools that can be used during targeting.",
+      "keywords": [
+        "software",
+        "tools",
+        "adversaries",
+        "tool",
+        "commercial",
+        "citation",
+        "steal",
+        "purposes"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0555",
+      "external_raw_id": "RAW-002311",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1566",
+      "title_draft": "T1566 — Phishing",
+      "description": "Adversaries may send phishing messages to gain access to victim systems.",
+      "keywords": [
+        "phishing",
+        "citation",
+        "techniques",
+        "malicious",
+        "adversaries",
+        "send",
+        "messages",
+        "social"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0572",
+      "external_raw_id": "RAW-002328",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1584.006",
+      "title_draft": "T1584.006 — Web Services",
+      "description": "Adversaries may compromise access to third-party web services that can be used during targeting.",
+      "keywords": [
+        "web",
+        "services",
+        "adversaries",
+        "service",
+        "legitimate",
+        "access",
+        "during",
+        "https"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0606",
+      "external_raw_id": "RAW-002362",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1488",
+      "title_draft": "T1488 — Disk Content Wipe",
+      "description": "Adversaries may erase the contents of storage devices on specific systems as well as large numbers of systems in a network to interrupt availability to system and network resources.",
+      "keywords": [
+        "disk",
+        "citation",
+        "novetta",
+        "blockbuster",
+        "content",
+        "adversaries",
+        "destructive",
+        "malware"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0631",
+      "external_raw_id": "RAW-002387",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1203",
+      "title_draft": "T1203 — Exploitation for Client Execution",
+      "description": "Adversaries may exploit software vulnerabilities in client applications to execute code.",
+      "keywords": [
+        "exploit",
+        "through",
+        "exploitation",
+        "execution",
+        "software",
+        "targeted",
+        "common",
+        "office"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0652",
+      "external_raw_id": "RAW-002408",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1584.002",
+      "title_draft": "T1584.002 — DNS Server",
+      "description": "Adversaries may compromise third-party DNS servers that can be used during targeting.",
+      "keywords": [
+        "dns",
+        "citation",
+        "adversaries",
+        "servers",
+        "traffic",
+        "https",
+        "attack",
+        "mitre"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0668",
+      "external_raw_id": "RAW-002424",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1688",
+      "title_draft": "T1688 — Safe Mode Boot",
+      "description": "Adversaries may abuse Windows safe mode to disable endpoint defenses.",
+      "keywords": [
+        "safe",
+        "mode",
+        "boot",
+        "citation",
+        "windows",
+        "start",
+        "adversaries",
+        "endpoint"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0674",
+      "external_raw_id": "RAW-002430",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1656",
+      "title_draft": "T1656 — Impersonation",
+      "description": "Adversaries may impersonate a trusted person or organization in order to persuade and trick a target into performing some action on their behalf.",
+      "keywords": [
+        "techniques",
+        "org",
+        "https",
+        "attack",
+        "mitre",
+        "impersonation",
+        "adversaries",
+        "victims"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0692",
+      "external_raw_id": "RAW-002448",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1684.001",
+      "title_draft": "T1684.001 — Impersonation",
+      "description": "Adversaries may impersonate a trusted person or organization in order to persuade and trick a target into performing some action on their behalf.",
+      "keywords": [
+        "techniques",
+        "org",
+        "https",
+        "attack",
+        "mitre",
+        "impersonation",
+        "adversaries",
+        "victims"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0694",
+      "external_raw_id": "RAW-002450",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1588",
+      "title_draft": "T1588 — Obtain Capabilities",
+      "description": "Adversaries may buy and/or steal capabilities that can be used during targeting.",
+      "keywords": [
+        "capabilities",
+        "adversaries",
+        "malware",
+        "exploits",
+        "steal",
+        "software",
+        "third-party",
+        "entities"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0748",
+      "external_raw_id": "RAW-002504",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1059.005",
+      "title_draft": "T1059.005 — Visual Basic",
+      "description": "Adversaries may abuse Visual Basic (VB) for execution.",
+      "keywords": [
+        "citation",
+        "vba",
+        "execution",
+        "microsoft",
+        "https",
+        "attack",
+        "mitre",
+        "org"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0755",
+      "external_raw_id": "RAW-002511",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1584.004",
+      "title_draft": "T1584.004 — Server",
+      "description": "Adversaries may compromise third-party servers that can be used during targeting.",
+      "keywords": [
+        "servers",
+        "adversaries",
+        "compromise",
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "techniques"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0762",
+      "external_raw_id": "RAW-002518",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1590.001",
+      "title_draft": "T1590.001 — Domain Properties",
+      "description": "Adversaries may gather information about the victim's network domain(s) that can be used during targeting.",
+      "keywords": [
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "techniques",
+        "citation",
+        "domain",
+        "properties"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0776",
+      "external_raw_id": "RAW-002532",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1588.003",
+      "title_draft": "T1588.003 — Code Signing Certificates",
+      "description": "Adversaries may buy and/or steal code signing certificates that can be used during targeting.",
+      "keywords": [
+        "code",
+        "signing",
+        "certificates",
+        "adversaries",
+        "steal",
+        "author",
+        "guarantee",
+        "program"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0821",
+      "external_raw_id": "RAW-002577",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1588.005",
+      "title_draft": "T1588.005 — Exploits",
+      "description": "Adversaries may buy, steal, or download exploits that can be used during targeting.",
+      "keywords": [
+        "exploits",
+        "exploit",
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "techniques",
+        "citation"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0828",
+      "external_raw_id": "RAW-002584",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1566.003",
+      "title_draft": "T1566.003 — Spearphishing via Service",
+      "description": "Adversaries may send spearphishing messages via third-party services in an attempt to gain access to victim systems.",
+      "keywords": [
+        "spearphishing",
+        "services",
+        "target",
+        "via",
+        "send",
+        "social",
+        "service",
+        "adversaries"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0835",
+      "external_raw_id": "RAW-002591",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1598.001",
+      "title_draft": "T1598.001 — Spearphishing Service",
+      "description": "Adversaries may send spearphishing messages via third-party services to elicit sensitive information that can be used during targeting.",
+      "keywords": [
+        "spearphishing",
+        "social",
+        "services",
+        "techniques",
+        "adversaries",
+        "https",
+        "attack",
+        "mitre"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0842",
+      "external_raw_id": "RAW-002598",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1561.001",
+      "title_draft": "T1561.001 — Disk Content Wipe",
+      "description": "Adversaries may erase the contents of storage devices on specific systems or in large numbers in a network to interrupt availability to system and network resources.",
+      "keywords": [
+        "disk",
+        "citation",
+        "novetta",
+        "blockbuster",
+        "content",
+        "adversaries",
+        "destructive",
+        "malware"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0850",
+      "external_raw_id": "RAW-002606",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1669",
+      "title_draft": "T1669 — Wi-Fi Networks",
+      "description": "Adversaries may gain initial access to target systems by connecting to wireless networks.",
+      "keywords": [
+        "network",
+        "wi-fi",
+        "access",
+        "adversaries",
+        "https",
+        "attack",
+        "mitre",
+        "org"
+      ]
+    },
+    {
+      "raw_id": "nca_ecc_1_2018::0016",
+      "external_raw_id": "RAW-BATCH-5524C9DE",
+      "source_document": "NCA ECC-1:2018",
+      "source_version": "Unknown",
+      "source_section": "4-1-1",
+      "title_draft": "4-1-1",
+      "description": "Establishing a process to identify, assess, and manage cybersecurity risks associated with third parties prior to engagement.",
+      "keywords": [
+        "Third-party Risk",
+        "Risk Assessment",
+        "Vendor Management"
+      ]
+    },
+    {
+      "raw_id": "nca_ecc_1_2018::0017",
+      "external_raw_id": "RAW-BATCH-28821DCA",
+      "source_document": "NCA ECC-1:2018",
+      "source_version": "Unknown",
+      "source_section": "4-1-2",
+      "title_draft": "4-1-2",
+      "description": "Ensuring that cybersecurity requirements are explicitly included in contracts and agreements with third parties.",
+      "keywords": [
+        "Contracts",
+        "Agreements",
+        "Cybersecurity Requirements"
+      ]
+    },
+    {
+      "raw_id": "nca_ecc_1_2018::0018",
+      "external_raw_id": "RAW-BATCH-475BC98D",
+      "source_document": "NCA ECC-1:2018",
+      "source_version": "Unknown",
+      "source_section": "4-1-3",
+      "title_draft": "4-1-3",
+      "description": "Conducting periodic cybersecurity audits and assessments on third parties to ensure compliance with agreed-upon requirements.",
+      "keywords": [
+        "Third-party Audit",
+        "Compliance Assessment"
+      ]
+    },
+    {
+      "raw_id": "nca_ecc_1_2018::0019",
+      "external_raw_id": "RAW-BATCH-2F437747",
+      "source_document": "NCA ECC-1:2018",
+      "source_version": "Unknown",
+      "source_section": "4-2-1",
+      "title_draft": "4-2-1",
+      "description": "Evaluating and selecting cloud service providers based on their ability to meet the organization's cybersecurity requirements and applicable national regulations.",
+      "keywords": [
+        "Cloud Providers",
+        "Selection Criteria",
+        "National Regulations"
+      ]
+    },
+    {
+      "raw_id": "nca_ecc_1_2018::0020",
+      "external_raw_id": "RAW-BATCH-7F976A12",
+      "source_document": "NCA ECC-1:2018",
+      "source_version": "Unknown",
+      "source_section": "4-2-2",
+      "title_draft": "4-2-2",
+      "description": "Ensuring data sovereignty requirements are met when hosting data in cloud environments.",
+      "keywords": [
+        "Data Sovereignty",
+        "Cloud Hosting"
+      ]
+    },
+    {
+      "raw_id": "nist_csf_2_0::0009",
+      "external_raw_id": "RAW-BATCH-05E2B8F4",
+      "source_document": "NIST CSF 2.0",
+      "source_version": "Unknown",
+      "source_section": "GV.RM-05",
+      "title_draft": "GV.RM-05",
+      "description": "Lines of communication across the organization are established for cybersecurity risks, including risks from suppliers and other third parties.",
+      "keywords": [
+        "Communication Lines",
+        "Third-party Risk"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0309",
+      "external_raw_id": "RAW-000416",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CM-8 (Configuration Management)",
+      "title_draft": "CM-8: System Component Inventory",
+      "description": "a.",
+      "keywords": [
+        "components",
+        "component",
+        "inventory",
+        "software",
+        "duplicate",
+        "accounting",
+        "accountability",
+        "cm-8"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0679",
+      "external_raw_id": "RAW-001286",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SR-4(3) (Supply Chain Risk Management)",
+      "title_draft": "SR-4(3): Validate as Genuine and Not Altered",
+      "description": "Employ the following controls to validate that the system or system component received is genuine and has not been altered: {{ insert: param, sr-4.3_prm_1 }}.",
+      "keywords": [
+        "altered",
+        "component",
+        "genuine",
+        "sr-4",
+        "validate",
+        "determine",
+        "visible",
+        "labels"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0682",
+      "external_raw_id": "RAW-001289",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SR-5(1) (Supply Chain Risk Management)",
+      "title_draft": "SR-5(1): Adequate Supply",
+      "description": "Employ the following controls to ensure an adequate supply of {{ insert: param, sr-05.01_odp.02 }}: {{ insert: param, sr-05.01_odp.01 }}.",
+      "keywords": [
+        "components",
+        "supply",
+        "adequate",
+        "ensure",
+        "critical",
+        "insert",
+        "param",
+        "sr-05"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0684",
+      "external_raw_id": "RAW-001291",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SR-6 (Supply Chain Risk Management)",
+      "title_draft": "SR-6: Supplier Assessments and Reviews",
+      "description": "Assess and review the supply chain-related risks associated with suppliers or contractors and the system, system component, or system service they provide {{ insert: param, sr-06_odp }}.",
+      "keywords": [
+        "supplier",
+        "reviews",
+        "review",
+        "assess",
+        "supply",
+        "suppliers",
+        "contractors",
+        "assessment"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0686",
+      "external_raw_id": "RAW-001293",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SR-7 (Supply Chain Risk Management)",
+      "title_draft": "SR-7: Supply Chain Operations Security",
+      "description": "Employ the following Operations Security (OPSEC) controls to protect supply chain-related information for the system, system component, or system service: {{ insert: param, sr-07_odp }}.",
+      "keywords": [
+        "supply",
+        "chain",
+        "opsec",
+        "operations",
+        "suppliers",
+        "potential",
+        "component",
+        "includes"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0786",
+      "external_raw_id": "RAW-000591",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-4(14) (Incident Response)",
+      "title_draft": "IR-4(14): Security Operations Center",
+      "description": "Establish and maintain a security operations center.",
+      "keywords": [
+        "soc",
+        "operations",
+        "organizations",
+        "center",
+        "capability",
+        "network",
+        "monitor",
+        "technical"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0937",
+      "external_raw_id": "RAW-000742",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control PL-8(2) (Planning)",
+      "title_draft": "PL-8(2): Supplier Diversity",
+      "description": "Require that {{ insert: param, pl-08.02_odp.01 }} allocated to {{ insert: param, pl-08.02_odp.02 }} are obtained from different suppliers.",
+      "keywords": [
+        "products",
+        "different",
+        "insert",
+        "param",
+        "pl-08",
+        "odp",
+        "vendors",
+        "malicious"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0975",
+      "external_raw_id": "RAW-000780",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control PM-30(1) (Program Management)",
+      "title_draft": "PM-30(1): Suppliers of Critical or Mission-essential Items",
+      "description": "Identify, prioritize, and assess suppliers of critical or mission-essential technologies, products, and services.",
+      "keywords": [
+        "suppliers",
+        "critical",
+        "mission-essential",
+        "supply",
+        "chain",
+        "risk",
+        "identify",
+        "technologies"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1133",
+      "external_raw_id": "RAW-000938",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SA-12(2) (System and Services Acquisition)",
+      "title_draft": "SA-12(2): Supplier Reviews",
+      "description": "SA-12(2): Supplier Reviews",
+      "keywords": [
+        "sa-12",
+        "supplier",
+        "reviews",
+        "family",
+        "services",
+        "acquisition"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0073",
+      "external_raw_id": "RAW-001574",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V13.3.1 (V13.3 Secret Management)",
+      "title_draft": "V13.3.1 — Secret Management",
+      "description": "Verify that a secrets management solution, such as a key vault, is used to securely create, store, control access to, and destroy backend secrets.",
+      "keywords": [
+        "secrets",
+        "v13",
+        "management",
+        "solution",
+        "key",
+        "keys",
+        "included",
+        "secret"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0098",
+      "external_raw_id": "RAW-001599",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V15.1.2 (V15.1 Secure Coding and Architecture Documentation)",
+      "title_draft": "V15.1.2 — Secure Coding and Architecture Documentation",
+      "description": "Verify that an inventory catalog, such as software bill of materials (SBOM), is maintained of all third-party libraries in use, including verifying that components come from pre-defined, trusted, and continually maintained repositories.",
+      "keywords": [
+        "v15",
+        "secure",
+        "coding",
+        "architecture",
+        "maintained",
+        "documentation",
+        "inventory",
+        "catalog"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0100",
+      "external_raw_id": "RAW-001601",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V15.1.4 (V15.1 Secure Coding and Architecture Documentation)",
+      "title_draft": "V15.1.4 — Secure Coding and Architecture Documentation",
+      "description": "Verify that application documentation highlights third-party libraries which are considered to be \"risky components\".",
+      "keywords": [
+        "v15",
+        "secure",
+        "coding",
+        "architecture",
+        "documentation",
+        "highlights",
+        "third-party",
+        "libraries"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0105",
+      "external_raw_id": "RAW-001606",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V15.2.4 (V15.2 Security Architecture and Dependencies)",
+      "title_draft": "V15.2.4 — Security Architecture and Dependencies",
+      "description": "Verify that third-party components and all of their transitive dependencies are included from the expected repository, whether internally owned or an external source, and that there is no risk of a dependency confusion attack.",
+      "keywords": [
+        "v15",
+        "architecture",
+        "dependencies",
+        "third-party",
+        "components",
+        "all",
+        "transitive",
+        "included"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0106",
+      "external_raw_id": "RAW-001607",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V15.2.5 (V15.2 Security Architecture and Dependencies)",
+      "title_draft": "V15.2.5 — Security Architecture and Dependencies",
+      "description": "Verify that the application implements additional protections around parts of the application which are documented as containing \"dangerous functionality\" or using third-party libraries considered to be \"risky components\".",
+      "keywords": [
+        "v15",
+        "architecture",
+        "dependencies",
+        "implements",
+        "additional",
+        "protections",
+        "around",
+        "parts"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0203",
+      "external_raw_id": "RAW-001359",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V3.4.5 (V3.4 Browser Security Mechanism Headers)",
+      "title_draft": "V3.4.5 — Browser Security Mechanism Headers",
+      "description": "Verify that the application sets a referrer policy to prevent leakage of technically sensitive data to third-party services via the 'Referer' HTTP request header field.",
+      "keywords": [
+        "data",
+        "sensitive",
+        "via",
+        "http",
+        "header",
+        "field",
+        "browser",
+        "mechanism"
+      ]
+    },
+    {
+      "raw_id": "the_nist_cybersecurity_framework_csf_2_0::0026",
+      "external_raw_id": "RAW-000027",
+      "source_document": "The NIST Cybersecurity Framework (CSF) 2.0",
+      "source_version": "2.0",
+      "source_section": "Subcategory GV.SC-06",
+      "title_draft": "GV.SC-06 — Planning and due diligence are performed to reduce risks before entering into formal supplier or other third-party relationships",
+      "description": "Planning and due diligence are performed to reduce risks before entering into formal supplier or other third-party relationships",
+      "keywords": [
+        "risk",
+        "management",
+        "planning",
+        "due",
+        "diligence",
+        "performed",
+        "reduce",
+        "risks"
+      ]
+    },
+    {
+      "raw_id": "the_nist_cybersecurity_framework_csf_2_0::0027",
+      "external_raw_id": "RAW-000028",
+      "source_document": "The NIST Cybersecurity Framework (CSF) 2.0",
+      "source_version": "2.0",
+      "source_section": "Subcategory GV.SC-07",
+      "title_draft": "GV.SC-07 — The risks posed by a supplier, their products and services, and other third parties are understood, recorded, prioritized, assessed, responded to, and monitored over the course of the relationship",
+      "description": "The risks posed by a supplier, their products and services, and other third parties are understood, recorded, prioritized, assessed, responded to, and monitored over the course of the relationship",
+      "keywords": [
+        "monitored",
+        "risk",
+        "management",
+        "risks",
+        "posed",
+        "supplier",
+        "products",
+        "services"
+      ]
+    }
+  ],
+  "decision": null,
+  "canonical": null
+}

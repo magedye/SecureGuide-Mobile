@@ -1,0 +1,75 @@
+{
+  "candidate_group_id": "AI-07",
+  "concept_name": "Asset Classification & Labeling",
+  "expected_sub_domain": "SD-02.03",
+  "member_raw_ids": [
+    "nca_ecc_1_2018::0006",
+    "essential_cybersecurity_controls_ecc_2_2024::0039"
+  ],
+  "excluded_raw_ids": [
+    "cis_controls_v8::0000"
+  ],
+  "member_reasons": {
+    "nca_ecc_1_2018::0006": "NCA 2-1-2 — classify information assets by criticality and sensitivity per an approved policy.",
+    "essential_cybersecurity_controls_ecc_2_2024::0039": "ECC 2-1-5 — assets shall be classified, labeled, and handled per requirements."
+  },
+  "exclusion_reasons": {
+    "cis_controls_v8::0000": "CIS 1.1 = inventory (AI-01); classification is a distinct concept and MUST NOT be merged with inventory."
+  },
+  "differences": "Classifying and labeling assets by sensitivity is a distinct requirement (SD-02.03), separate from inventorying them (SD-02.01).",
+  "decision": "CANONICALIZE",
+  "decision_confidence": 0.82,
+  "requires_human_review": 0,
+  "decision_rationale": "Two sources express the same classify-and-label requirement; unified in SD-02.03, kept separate from inventory.",
+  "canonical_artifact": {
+    "title_en": "Asset Classification & Labeling",
+    "definition_short_en": "This requirement classifies and labels information and technology assets by criticality and sensitivity according to an approved classification scheme.",
+    "definition_full_en": "This artifact requires assets to be classified by criticality and sensitivity and labeled accordingly, so that protection is applied proportionate to value. It applies to all information and technology assets. The minimum expected outcome is a classified, labeled asset set governed by an approved scheme. Verification is by sampling assets for correct classification and labels.",
+    "objective_en": "Apply protection proportionate to each asset's sensitivity and criticality.",
+    "type": "ART-REQ",
+    "abstraction_level": "ABS-POL",
+    "primary_domain": "SD-02",
+    "sub_domain": "SD-02.03",
+    "obligation_level": "OBL-MND",
+    "classification_confidence": 0.82,
+    "classification_rationale": "NCA 2-1-2 and ECC 2-1-5 both require asset classification/labeling; SDT SD-02.03 (Data Classification & Ownership).",
+    "verification_method_note": "Sample assets for correct classification and labels.",
+    "missing_fields": [
+      "requirement_type"
+    ]
+  },
+  "source_mappings": [
+    {
+      "raw_id": "nca_ecc_1_2018::0006",
+      "source_document": "NCA ECC-1:2018",
+      "source_version": "Unknown",
+      "source_section": "2-1-2",
+      "source_file": "nca_ecc_1_2018.json",
+      "mapping_strength": "DIRECT",
+      "rationale": null
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0039",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 2-1-5 (Asset Management)",
+      "source_file": "essential_cybersecurity_controls_ecc_2_2024.json",
+      "mapping_strength": "DIRECT",
+      "rationale": null
+    }
+  ],
+  "validation": "OK",
+  "review": {
+    "review_status": "APPROVED_WITH_CHANGES",
+    "reviewer_notes": "Classification/labeling correctly separated into SD-02.03. ECC 2-1-5 adds \"handling\" beyond classify/label — a scope difference that should not be silently dropped.",
+    "validation_findings": [
+      "SD-02.03 correct",
+      "both DIRECT but ECC includes handling scope"
+    ],
+    "required_changes": [
+      "Either widen canonical to include handling, or record a separate handling artifact and mark ECC 2-1-5 PARTIAL with rationale."
+    ],
+    "final_confidence": 0.8,
+    "ready_for_promotion": false
+  }
+}

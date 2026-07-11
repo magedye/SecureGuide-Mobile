@@ -1,0 +1,148 @@
+{
+  "extraction_metadata": {
+    "source_document": "NIST SP 800-115 Security Testing",
+    "total_artifacts": 6
+  },
+  "artifacts": [
+    {
+      "raw_artifact_id": "RAW-TEST-44DBDD4F",
+      "source_metadata": {
+        "source_document": "NIST SP 800-115 Security Testing",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "Section 4.1"
+      },
+      "original_content": {
+        "raw_text_en": "Conduct automated vulnerability scanning on networks, servers, and systems periodically to identify known weaknesses and misconfigurations.",
+        "original_heading": "Vulnerability Scanning",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Vulnerability Scanning",
+        "description_draft": "Conduct automated vulnerability scanning on networks, servers, and systems periodically to identify known weaknesses and misconfigurations.",
+        "keywords": [
+          "vulnerability scanning",
+          "networks",
+          "systems",
+          "automation"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-TEST-668CCBDB",
+      "source_metadata": {
+        "source_document": "NIST SP 800-115 Security Testing",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "Section 5.1"
+      },
+      "original_content": {
+        "raw_text_en": "Perform structured penetration testing to simulate real-world attacks, validating the effectiveness of defensive controls across the infrastructure.",
+        "original_heading": "Penetration Testing (External & Internal)",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Penetration Testing (External & Internal)",
+        "description_draft": "Perform structured penetration testing to simulate real-world attacks, validating the effectiveness of defensive controls across the infrastructure.",
+        "keywords": [
+          "penetration testing",
+          "red teaming",
+          "infrastructure"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-TEST-2C871E81",
+      "source_metadata": {
+        "source_document": "NIST SP 800-115 Security Testing",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "Section 5.2"
+      },
+      "original_content": {
+        "raw_text_en": "Utilize Static and Dynamic Application Security Testing tools alongside manual code review to identify flaws in custom software and applications.",
+        "original_heading": "Web Application Security Testing (SAST/DAST)",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Web Application Security Testing (SAST/DAST)",
+        "description_draft": "Utilize Static and Dynamic Application Security Testing tools alongside manual code review to identify flaws in custom software and applications.",
+        "keywords": [
+          "SAST",
+          "DAST",
+          "appsec",
+          "code review"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-TEST-F64CE27C",
+      "source_metadata": {
+        "source_document": "NIST SP 800-115 Security Testing",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "Section 4.2"
+      },
+      "original_content": {
+        "raw_text_en": "Review system and network device configurations (e.g., firewalls, routers) against established baselines to detect unauthorized or insecure changes.",
+        "original_heading": "Security Configuration Review",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Security Configuration Review",
+        "description_draft": "Review system and network device configurations (e.g., firewalls, routers) against established baselines to detect unauthorized or insecure changes.",
+        "keywords": [
+          "configuration review",
+          "auditing",
+          "baselines"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-TEST-1152837F",
+      "source_metadata": {
+        "source_document": "NIST SP 800-115 Security Testing",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "Section 5.3"
+      },
+      "original_content": {
+        "raw_text_en": "Test human defenses and awareness through simulated phishing campaigns and physical security assessments.",
+        "original_heading": "Social Engineering Testing",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Social Engineering Testing",
+        "description_draft": "Test human defenses and awareness through simulated phishing campaigns and physical security assessments.",
+        "keywords": [
+          "social engineering",
+          "phishing",
+          "human firewall"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-TEST-968C5D7C",
+      "source_metadata": {
+        "source_document": "NIST SP 800-115 Security Testing",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "Section 6.1"
+      },
+      "original_content": {
+        "raw_text_en": "Ensure that identified vulnerabilities are remediated based on risk severity, followed by immediate re-testing to verify successful mitigation.",
+        "original_heading": "Remediation and Re-testing",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Remediation and Re-testing",
+        "description_draft": "Ensure that identified vulnerabilities are remediated based on risk severity, followed by immediate re-testing to verify successful mitigation.",
+        "keywords": [
+          "remediation",
+          "re-testing",
+          "patch management"
+        ]
+      }
+    }
+  ]
+}

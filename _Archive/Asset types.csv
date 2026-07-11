@@ -1,0 +1,79 @@
+﻿Asset types,,
+Device Type,Vendor,Examples (Model / System)
+Active Directory,Microsoft,Windows Server Active Directory (Domain Services)
+Application,Alcatel,OmniPCX Office Rich Communication (Enterprise VoIP)
+Application,FLYVPN Inc,FlyVPN Client & Server Application
+Application,Huawei,eSpace Unified Communications
+Application,IBM,WebSphere Application Server / Maximo
+Application,Kaspersky,Kaspersky Security Center
+Application,PHPIPMA,phpIPAM (IP Address Management Application)
+Application,SIAE,NMS5 (Network Management System for Microwave)
+Application,smbBind,smbBind Portal / Active Directory Integration Service
+Application,TrippLite,PowerAlert Software Suite
+Application,ZTE,NetNumen U31 (Unified Network Management System)
+Backup System,Veeam,Veeam Backup & Replication
+Billing System,WHMCS,WHMCS Billing & Automation Platform
+Database,Huawei,GaussDB
+Database,IBM,DB2 / Informix
+Database,Microsoft,"SQL Server (e.g., 2019, 2022)"
+Database,Oracle,Oracle Database 19c / 21c
+DNS,BIND,BIND 9 (Berkeley Internet Name Domain)
+Email Security,ESG,ESG (Email Security Gateway)
+Email System,Axigen,Axigen Mail Server Enterprise
+Firewall,Cisco,ASA 5500-X / Firepower 2100 Series
+Firewall,Forcepoint,Forcepoint Next-Gen Firewall (NGFW)
+Firewall,Fortinet,"FortiGate (e.g., 60F, 100F, 200E)"
+Load Balancer,F5,BIG-IP Local Traffic Manager (LTM)
+OS,Cisco,"IOS, IOS-XE, NX-OS"
+OS,Ericsson,IPOS / APOS (Asea Brown Boveri Operating System)
+OS,F5,TMOS (Traffic Management Operating System)
+OS,Forcepoint,Forcepoint Appliance Operating System (SecureOS)
+OS,Fortinet,FortiOS
+OS,HP,HP-UX / ArubaOS
+OS,Juniper,Junos OS
+OS,Linux (Various),Red Hat Enterprise Linux (RHEL) / Ubuntu Server
+OS,Microsoft,Windows Server 2022 / Windows 11
+OS,Solaris,Oracle Solaris 11
+OS,SUN,SunOS / Solaris 10
+OS,VMware,ESXi Hypervisor Operating System
+OS,ZTE,ROS (Routing Operating System)
+Proxy,Veeam,Veeam Backup Proxy
+Proxy,WHMCS,WHMCS Proxy / API Gateway Connection Module
+Router,Benu,Virtual Service Edge (VSE) / Benu Broadband Router
+Router,Cisco,ASR 1000 Series / ISR 4000 Series
+Router,Ericsson,"SmartEdge Multi-Service Edge Router (e.g., SE600, SE1200)"
+Router,Huawei,"NetEngine (NE) Series (e.g., NE40E, NE20E)"
+Router,Juniper,"MX Series (e.g., MX240, MX480) / PTX Series"
+Router,Mikrotik,CCR2004 / Cloud Core Router Series (RouterOS)
+Router,ZTE,"ZXR10 Series (e.g., ZXR10 M6000)"
+Server Hardware,Dell,"PowerEdge (e.g., R750, R760, T550)"
+Server Hardware,Fujitsu,"PRIMERGY (e.g., RX2540, TX1330)"
+Server Hardware,HP,"ProLiant (e.g., DL360 Gen10, DL380 Gen11)"
+Server Hardware,Huawei,"FusionServer (e.g., 2288H V6)"
+Server Hardware,IBM,"Power Systems (e.g., Power10) / System z Mainframes"
+Server Hardware,Lenovo,"ThinkSystem (e.g., SR650, ST550)"
+Server Hardware,Netra,"Oracle/Sun Netra Carrier-Grade Servers (e.g., Netra X5-2)"
+Server Hardware,SUN,SPARC T-Series / Sun Fire Servers
+Server Hardware,ZTE,"ZXCLOUD Server Series (e.g., R5300 G4)"
+Storage,Fujitsu,"ETERNUS (e.g., DX100, AF250)"
+Storage,QNAP,TS-h886 / TVS-EC2480 (NAS/SAN Enterprise Storage)
+Switch,Alcatel,"OmniSwitch (e.g., 6860, 6900)"
+Switch,Brocade,ICX Series Switches / VDX Fabric Switches
+Switch,Cisco,Catalyst 9300 / Nexus 9000 Series
+Switch,Dell,"PowerSwitch (e.g., N3200, S5248F-ON)"
+Switch,HP,"Aruba CX (e.g., 6300M, 8325) / ProCurve"
+System,Corero,SmartWall TDS (Threat Defense System - DDoS Protection)
+System,EasyDCIM,EasyDCIM Server Automation & Data Center Management
+System,F5,BIG-IP System Platform
+System,HAProxy,HAProxy Enterprise Load Balancer System
+System,Nextcloud,Nextcloud Hub (Self-Hosted Productivity & Cloud System)
+System,NS1,NS1 Connect (Enterprise Managed DNS System)
+System,NS2,Managed System / Custom Security Node OS
+System,Paessler,PRTG Network Monitor System
+System,SM,Supermicro IPMI / SuperDoctor Monitoring System
+System,SolarWinds,"Orion Platform (e.g., NPM, SAM)"
+System,Zabbix,Zabbix Enterprise Monitoring System
+Terminal Server,Microsoft,Remote Desktop Services (RDS) / Terminal Services
+Virtualization,VMware,vSphere / vCenter / ESXi 8.0
+Web Hosting,cPanel,cPanel & WHM Control Panel System
+Web Hosting,Plesk,Plesk Obsidian Web Hosting Control Panel

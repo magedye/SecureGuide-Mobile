@@ -1,0 +1,54 @@
+import os
+import re
+
+folder = r'D:\APP\secure-guide\New folder'
+docs_folder = os.path.join(folder, 'SecureGuide_Mobile_Docs')
+ui_file = os.path.join(docs_folder, '04_UI_UX_and_Screens_Design.md')
+
+def get_file_content(filename):
+    with open(os.path.join(folder, filename), 'r', encoding='utf-8') as f:
+        return f.read()
+
+# Extract from Information Assets
+info_assets = get_file_content('Information Assets Module.md')
+assets_screens = info_assets.split('## ??? ??????: ??????? ???????')[1].split('## ')[0].strip() if '## ??? ??????: ??????? ???????' in info_assets else ""
+
+# Extract from Profile based
+profile_based = get_file_content('profile based.md')
+profile_screens = profile_based.split('## ??? ??????: ??????? ???????')[1].split('## ?? ??????')[0].strip() if '## ??? ??????: ??????? ???????' in profile_based else ""
+
+# Extract from Threat indicators
+try:
+    pen_ind = get_file_content('pen-indicator-page.md')
+    pen_screens = pen_ind.split('## ?? ??????? ????????')[1].split('## ??')[0].strip() if '## ?? ??????? ????????' in pen_ind else pen_ind
+except:
+    pen_screens = ""
+
+# Extract from Settings
+try:
+    settings = get_file_content('setting-page.md')
+    settings_screens = settings.split('## ?? ?????: ????? ????? ????????? (Settings Menu)')[1].split('---')[0].strip() if '## ?? ?????: ????? ????? ????????? (Settings Menu)' in settings else settings
+except:
+    settings_screens = ""
+
+injection_text = f'''
+
+## 6. Advanced Operational Screens (Incorporated from Conceptual Models)
+
+### 6.1. Asset Management UI
+{assets_screens}
+
+### 6.2. Profile Management & Context UI
+{profile_screens}
+
+### 6.3. Threat Indicators (IoC) UI
+{pen_screens}
+
+### 6.4. Comprehensive Settings Menu
+{settings_screens}
+'''
+
+with open(ui_file, 'a', encoding='utf-8') as f:
+    f.write(injection_text)
+
+print('Updated 04_UI_UX_and_Screens_Design.md successfully.')

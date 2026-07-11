@@ -1,0 +1,32 @@
+{
+  "id": "G01",
+  "case_type": "CANONICALIZE_correct",
+  "maps_to_group": "AI-01",
+  "description": "Three sources expressing the same asset-inventory requirement merge into one canonical.",
+  "input_raw_ids": [
+    "cis_controls_v8::0000",
+    "nca_ecc_1_2018::0005",
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0309"
+  ],
+  "expected_decision": "CANONICALIZE",
+  "accepted_members": [
+    "cis_controls_v8::0000",
+    "nca_ecc_1_2018::0005",
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0309"
+  ],
+  "excluded": [],
+  "expected_classification": {
+    "type": "ART-REQ",
+    "primary_domain": "SD-02",
+    "sub_domain": "SD-02.01"
+  },
+  "expected_rationale_keywords": [
+    "inventory"
+  ],
+  "expected_canonical_title": "Enterprise Asset Inventory",
+  "validation_rules": [
+    "sub_domain belongs to primary_domain",
+    "all source mappings DIRECT",
+    ">=2 sources"
+  ]
+}

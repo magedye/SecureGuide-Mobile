@@ -1,0 +1,202 @@
+{
+  "extraction_metadata": {
+    "source_document": "Enterprise Infrastructure Hardening Guides",
+    "total_artifacts": 8
+  },
+  "artifacts": [
+    {
+      "raw_artifact_id": "RAW-INF-C271D0AA",
+      "source_metadata": {
+        "source_document": "Enterprise Infrastructure Hardening Guides",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "AD-01"
+      },
+      "original_content": {
+        "raw_text_en": "Configure the account lockout policy to mitigate brute force credential attacks (e.g., lockout after 5 failed attempts for 15 minutes).",
+        "original_heading": "Active Directory: Account Lockout Policy",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Active Directory: Account Lockout Policy",
+        "description_draft": "Configure the account lockout policy to mitigate brute force credential attacks (e.g., lockout after 5 failed attempts for 15 minutes).",
+        "keywords": [
+          "active directory",
+          "windows",
+          "account lockout",
+          "authentication"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-INF-FD3835DC",
+      "source_metadata": {
+        "source_document": "Enterprise Infrastructure Hardening Guides",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "AD-02"
+      },
+      "original_content": {
+        "raw_text_en": "Restrict the use of Domain Admin accounts strictly to Domain Controllers. Use Tiering models to prevent lateral movement.",
+        "original_heading": "Active Directory: Domain Admin Restrictions",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Active Directory: Domain Admin Restrictions",
+        "description_draft": "Restrict the use of Domain Admin accounts strictly to Domain Controllers. Use Tiering models to prevent lateral movement.",
+        "keywords": [
+          "active directory",
+          "domain admin",
+          "tiering",
+          "privilege escalation"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-INF-836B478F",
+      "source_metadata": {
+        "source_document": "Enterprise Infrastructure Hardening Guides",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "FW-01"
+      },
+      "original_content": {
+        "raw_text_en": "Implement a default-deny (implicit deny) rule at the end of the Access Control List (ACL) to block all traffic that is not explicitly allowed.",
+        "original_heading": "Firewall: Default Deny Rule",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Firewall: Default Deny Rule",
+        "description_draft": "Implement a default-deny (implicit deny) rule at the end of the Access Control List (ACL) to block all traffic that is not explicitly allowed.",
+        "keywords": [
+          "firewall",
+          "network",
+          "default deny",
+          "acl"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-INF-5D442FE7",
+      "source_metadata": {
+        "source_document": "Enterprise Infrastructure Hardening Guides",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "FW-02"
+      },
+      "original_content": {
+        "raw_text_en": "Enable stateful inspection on all interfaces and log all dropped packets to a centralized SIEM for threat hunting.",
+        "original_heading": "Firewall: Stateful Inspection & Logging",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Firewall: Stateful Inspection & Logging",
+        "description_draft": "Enable stateful inspection on all interfaces and log all dropped packets to a centralized SIEM for threat hunting.",
+        "keywords": [
+          "firewall",
+          "stateful inspection",
+          "logging",
+          "siem"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-INF-68B1EB81",
+      "source_metadata": {
+        "source_document": "Enterprise Infrastructure Hardening Guides",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "SW-01"
+      },
+      "original_content": {
+        "raw_text_en": "Implement IEEE 802.1X for port-based Network Access Control (NAC) and limit the number of MAC addresses allowed per switch port.",
+        "original_heading": "Switch: Port Security & 802.1X",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Switch: Port Security & 802.1X",
+        "description_draft": "Implement IEEE 802.1X for port-based Network Access Control (NAC) and limit the number of MAC addresses allowed per switch port.",
+        "keywords": [
+          "switch",
+          "network",
+          "802.1x",
+          "port security",
+          "mac"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-INF-DE41238C",
+      "source_metadata": {
+        "source_document": "Enterprise Infrastructure Hardening Guides",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "SW-02"
+      },
+      "original_content": {
+        "raw_text_en": "Segment network traffic using VLANs, place all unused ports in an isolated VLAN, and enable BPDU Guard to protect spanning-tree topology.",
+        "original_heading": "Switch: VLAN Segmentation & BPDU Guard",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Switch: VLAN Segmentation & BPDU Guard",
+        "description_draft": "Segment network traffic using VLANs, place all unused ports in an isolated VLAN, and enable BPDU Guard to protect spanning-tree topology.",
+        "keywords": [
+          "switch",
+          "vlan",
+          "segmentation",
+          "bpdu guard"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-INF-F82821E6",
+      "source_metadata": {
+        "source_document": "Enterprise Infrastructure Hardening Guides",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "WEB-01"
+      },
+      "original_content": {
+        "raw_text_en": "Disable directory browsing/listing and remove Server header signatures (e.g., Apache/2.4.41) to prevent information disclosure.",
+        "original_heading": "Web Server: Disable Directory Listing & Signatures",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Web Server: Disable Directory Listing & Signatures",
+        "description_draft": "Disable directory browsing/listing and remove Server header signatures (e.g., Apache/2.4.41) to prevent information disclosure.",
+        "keywords": [
+          "web server",
+          "apache",
+          "nginx",
+          "directory listing",
+          "header signature"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-INF-061F23BB",
+      "source_metadata": {
+        "source_document": "Enterprise Infrastructure Hardening Guides",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "WEB-02"
+      },
+      "original_content": {
+        "raw_text_en": "Disable legacy protocols (SSLv2, SSLv3, TLS 1.0, TLS 1.1) and enforce TLS 1.2 or TLS 1.3 with strong cipher suites.",
+        "original_heading": "Web Server: Transport Layer Security (TLS)",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Web Server: Transport Layer Security (TLS)",
+        "description_draft": "Disable legacy protocols (SSLv2, SSLv3, TLS 1.0, TLS 1.1) and enforce TLS 1.2 or TLS 1.3 with strong cipher suites.",
+        "keywords": [
+          "web server",
+          "https",
+          "tls",
+          "encryption"
+        ]
+      }
+    }
+  ]
+}

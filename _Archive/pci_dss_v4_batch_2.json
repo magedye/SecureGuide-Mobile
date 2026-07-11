@@ -1,0 +1,101 @@
+[
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "5.2.1",
+    "raw_text": "Anti-malware software is deployed on all system components (except for those system components identified in periodic evaluations that are not at risk for malware).",
+    "explicit_info": {
+      "requirement": "Requirement 5: Protect All Systems and Networks from Malicious Software",
+      "tags": ["Anti-malware", "Malware Defense"]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "6.2.2",
+    "raw_text": "Software-development personnel are trained in software security, including secure coding techniques, in accordance with industry best practices and organizational requirements.",
+    "explicit_info": {
+      "requirement": "Requirement 6: Develop and Maintain Secure Systems and Software",
+      "tags": ["Secure Coding", "Developer Training", "Software Security"]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "6.3.1",
+    "raw_text": "Security vulnerabilities are identified and managed to reduce the risk of exploitation.",
+    "explicit_info": {
+      "requirement": "Requirement 6: Develop and Maintain Secure Systems and Software",
+      "tags": ["Vulnerability Management"]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "7.2.1",
+    "raw_text": "An access control system(s) is in place that restricts access to system components and CDE based on a user's need to know, and is set to 'deny all' by default.",
+    "explicit_info": {
+      "requirement": "Requirement 7: Restrict Access to System Components and Cardholder Data",
+      "tags": ["Access Control", "Deny All", "Need to Know"]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "8.3.1",
+    "raw_text": "All user access to system components is authenticated via at least one of the following: password/passphrase, token, smart card, biometrics.",
+    "explicit_info": {
+      "requirement": "Requirement 8: Identify Users and Authenticate Access",
+      "tags": ["Authentication", "User Access"]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "8.4.2",
+    "raw_text": "MFA is implemented for all access into the CDE.",
+    "explicit_info": {
+      "requirement": "Requirement 8: Identify Users and Authenticate Access",
+      "tags": ["MFA", "CDE Access"]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "9.3.1",
+    "raw_text": "Physical access to sensitive areas is restricted to authorized personnel.",
+    "explicit_info": {
+      "requirement": "Requirement 9: Restrict Physical Access to Cardholder Data",
+      "tags": ["Physical Security", "Physical Access"]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "10.2.1",
+    "raw_text": "Audit logs are enabled and active for all system components and cardholder data access.",
+    "explicit_info": {
+      "requirement": "Requirement 10: Log and Monitor All Access",
+      "tags": ["Audit Logs", "Logging"]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "10.4.1",
+    "raw_text": "Audit logs are reviewed for anomalies or suspicious activity using automated mechanisms.",
+    "explicit_info": {
+      "requirement": "Requirement 10: Log and Monitor All Access",
+      "tags": ["Log Review", "Automated Mechanisms", "Suspicious Activity"]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "11.3.1",
+    "raw_text": "Internal vulnerability scans are performed at least once every three months.",
+    "explicit_info": {
+      "requirement": "Requirement 11: Test Security of Systems and Networks Regularly",
+      "tags": ["Vulnerability Scans", "Internal Scans"]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "12.1.1",
+    "raw_text": "An overall information security policy is established, published, maintained, and disseminated to all relevant personnel.",
+    "explicit_info": {
+      "requirement": "Requirement 12: Support Information Security with Organizational Policies",
+      "tags": ["Security Policy", "Governance"]
+    }
+  }
+]

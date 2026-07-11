@@ -1,0 +1,66 @@
+{
+  "candidate_group_id": "PA-04",
+  "concept_name": "Multi-Factor Authentication for Privileged Accounts",
+  "expected_sub_domain": "SD-03.04",
+  "member_raw_ids": [
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0389",
+    "nca_ecc_1_2018::0009"
+  ],
+  "excluded_raw_ids": [
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0390",
+    "cis_controls_v8::0012"
+  ],
+  "member_reasons": {
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0389": "NIST IA-2(1) — MFA for access to privileged accounts.",
+    "nca_ecc_1_2018::0009": "NCA 2-2-3 — MFA for remote access AND all privileged accounts."
+  },
+  "exclusion_reasons": {
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0390": "IA-2(2) MFA for NON-privileged accounts — SD-03.02, not PAM.",
+    "cis_controls_v8::0012": "CIS 6.5 MFA for administrative access — general authentication (SD-03.02)."
+  },
+  "differences": "MFA specifically protecting privileged accounts. Boundary with SD-03.02 (Authentication) is genuine; NCA 2-2-3 also covers remote access (partial).",
+  "decision": "CANONICALIZE",
+  "decision_confidence": 0.68,
+  "requires_human_review": 1,
+  "decision_rationale": "MFA-for-privileged is a recognized PAM control, but the mechanism is authentication (SD-03.02). Confidence 0.68 -> human review to confirm SD-03.04 vs SD-03.02 placement.",
+  "canonical_artifact": {
+    "title_en": "Multi-Factor Authentication for Privileged Access",
+    "definition_short_en": "This control requires multi-factor authentication for all access to privileged accounts.",
+    "definition_full_en": "This artifact requires that access to privileged (administrative) accounts always use multi-factor authentication, raising the assurance of elevated access. It applies to all privileged accounts and interfaces. The minimum expected outcome is enforced MFA on every privileged authentication path. Verification is by testing privileged logon paths for MFA enforcement.",
+    "objective_en": "Ensure privileged access is protected by strong authentication.",
+    "type": "ART-CTR",
+    "abstraction_level": "ABS-CTR",
+    "primary_domain": "SD-03",
+    "sub_domain": "SD-03.04",
+    "obligation_level": "OBL-MND",
+    "classification_confidence": 0.68,
+    "classification_rationale": "IA-2(1) MFA for privileged accounts; placed in SD-03.04 pending review vs SD-03.02.",
+    "verification_method_note": "Test privileged logon paths for MFA enforcement.",
+    "missing_fields": [
+      "control_nature",
+      "control_function",
+      "testability"
+    ]
+  },
+  "source_mappings": [
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0389",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IA-2(1) (Identification and Authentication)",
+      "source_file": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations.json",
+      "mapping_strength": "DIRECT",
+      "rationale": null
+    },
+    {
+      "raw_id": "nca_ecc_1_2018::0009",
+      "source_document": "NCA ECC-1:2018",
+      "source_version": "Unknown",
+      "source_section": "2-2-3",
+      "source_file": "nca_ecc_1_2018.json",
+      "mapping_strength": "PARTIAL",
+      "rationale": "NCA 2-2-3 also covers remote access; only its privileged-account clause applies here."
+    }
+  ],
+  "validation": "OK"
+}

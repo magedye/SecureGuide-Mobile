@@ -1,0 +1,110 @@
+[
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "5.1",
+    "raw_text": "Information security policy and topic-specific policies should be defined, approved by management, published, communicated to and acknowledged by relevant personnel and relevant interested parties, and reviewed at planned intervals and if significant changes occur.",
+    "explicit_info": {
+      "theme": "Clause 5: Organizational Controls",
+      "tags": ["Information Security Policy", "Governance", "Review"]
+    }
+  },
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "5.7",
+    "raw_text": "Information relating to information security threats should be collected and analysed to produce threat intelligence.",
+    "explicit_info": {
+      "theme": "Clause 5: Organizational Controls",
+      "tags": ["Threat Intelligence", "Threat Analysis"]
+    }
+  },
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "6.1",
+    "raw_text": "Background verification checks on all candidates to become personnel should be carried out prior to joining the organization and on an ongoing basis taking into consideration applicable laws, regulations and ethics and proportional to the business requirements, the classification of the information to be accessed and the perceived risks.",
+    "explicit_info": {
+      "theme": "Clause 6: People Controls",
+      "tags": ["Background Checks", "Screening", "Personnel Security"]
+    }
+  },
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "6.3",
+    "raw_text": "Personnel of the organization and relevant interested parties should receive appropriate information security awareness, education and training and regular updates of the organization's information security policy, topic-specific policies and procedures, as relevant for their job function.",
+    "explicit_info": {
+      "theme": "Clause 6: People Controls",
+      "tags": ["Security Awareness", "Training", "Education"]
+    }
+  },
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "7.1",
+    "raw_text": "Security perimeters should be defined and used to protect areas that contain information and other associated assets.",
+    "explicit_info": {
+      "theme": "Clause 7: Physical Controls",
+      "tags": ["Physical Security", "Security Perimeters"]
+    }
+  },
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "7.4",
+    "raw_text": "Premises should be continuously monitored for unauthorized physical access.",
+    "explicit_info": {
+      "theme": "Clause 7: Physical Controls",
+      "tags": ["Physical Monitoring", "Unauthorized Access"]
+    }
+  },
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "8.9",
+    "raw_text": "Configurations, including security configurations, of hardware, software, services and networks should be established, documented, implemented, monitored and reviewed.",
+    "explicit_info": {
+      "theme": "Clause 8: Technological Controls",
+      "tags": ["Configuration Management", "Secure Configuration"]
+    }
+  },
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "8.10",
+    "raw_text": "Information stored in information systems, devices or in any other storage media should be deleted when no longer required.",
+    "explicit_info": {
+      "theme": "Clause 8: Technological Controls",
+      "tags": ["Information Deletion", "Data Disposal"]
+    }
+  },
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "8.11",
+    "raw_text": "Data masking should be used in accordance with the organization's topic-specific policy on access control and other related topic-specific policies, and business requirements, taking applicable legislation into consideration.",
+    "explicit_info": {
+      "theme": "Clause 8: Technological Controls",
+      "tags": ["Data Masking", "Privacy", "Access Control"]
+    }
+  },
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "8.12",
+    "raw_text": "Data leakage prevention measures should be applied to systems, networks and any other devices that process, store or transmit sensitive information.",
+    "explicit_info": {
+      "theme": "Clause 8: Technological Controls",
+      "tags": ["Data Leakage Prevention", "DLP", "Sensitive Information"]
+    }
+  },
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "8.16",
+    "raw_text": "Networks, systems and applications should be monitored for anomalous behaviour and appropriate actions taken to evaluate potential information security incidents.",
+    "explicit_info": {
+      "theme": "Clause 8: Technological Controls",
+      "tags": ["Monitoring Activities", "Anomalous Behaviour", "Incident Detection"]
+    }
+  },
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "8.23",
+    "raw_text": "Access to external websites should be managed to reduce exposure to malicious content.",
+    "explicit_info": {
+      "theme": "Clause 8: Technological Controls",
+      "tags": ["Web Filtering", "Malicious Content", "Web Access"]
+    }
+  }
+]

@@ -1,0 +1,146 @@
+[
+  {
+    "source": "CIS Controls v8",
+    "reference": "7.1",
+    "raw_text": "Establish and maintain a vulnerability management process for enterprise assets. Review and update documentation annually, or when significant enterprise changes occur that could impact this Safeguard.",
+    "explicit_info": {
+      "control": "Control 7: Continuous Vulnerability Management",
+      "tags": ["Vulnerability Management Process", "Documentation Review"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "7.2",
+    "raw_text": "Establish and maintain a risk-based remediation strategy documented in a remediation process, with monthly, or more frequent, reviews.",
+    "explicit_info": {
+      "control": "Control 7: Continuous Vulnerability Management",
+      "tags": ["Risk-based Remediation", "Monthly Review"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "8.1",
+    "raw_text": "Establish and maintain an audit log management process that defines the enterprise’s logging requirements.",
+    "explicit_info": {
+      "control": "Control 8: Audit Log Management",
+      "tags": ["Log Management", "Audit Logging"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "8.2",
+    "raw_text": "Collect audit logs. Ensure that logging, per the enterprise's audit log management process, has been enabled across enterprise assets.",
+    "explicit_info": {
+      "control": "Control 8: Audit Log Management",
+      "tags": ["Log Collection", "Enable Logging"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "9.1",
+    "raw_text": "Ensure use of only fully supported browsers and email clients that have been approved by the enterprise.",
+    "explicit_info": {
+      "control": "Control 9: Email and Web Browser Protections",
+      "tags": ["Supported Browsers", "Supported Email Clients", "Approved Software"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "10.1",
+    "raw_text": "Deploy and maintain anti-malware software on all enterprise assets.",
+    "explicit_info": {
+      "control": "Control 10: Malware Defenses",
+      "tags": ["Anti-malware", "Endpoint Protection"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "10.2",
+    "raw_text": "Configure automatic updates for anti-malware signature files on all enterprise assets on a daily, or more frequent, basis.",
+    "explicit_info": {
+      "control": "Control 10: Malware Defenses",
+      "tags": ["Automatic Updates", "Malware Signatures", "Daily Updates"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "11.1",
+    "raw_text": "Establish and maintain a data recovery process. In the process, address the scope of data recovery activities, recovery prioritization, and the security of backup data.",
+    "explicit_info": {
+      "control": "Control 11: Data Recovery",
+      "tags": ["Data Recovery Process", "Backup Security", "Recovery Prioritization"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "11.2",
+    "raw_text": "Perform automated backups of in-scope enterprise assets. Data backups must be run weekly, or more frequently, based on the sensitivity of the data.",
+    "explicit_info": {
+      "control": "Control 11: Data Recovery",
+      "tags": ["Automated Backups", "Weekly Backups"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "12.1",
+    "raw_text": "Ensure network infrastructure is kept up-to-date. Example implementations include running the latest stable release of software and/or using currently supported Network Infrastructure-as-a-Service (NIaaS) offerings.",
+    "explicit_info": {
+      "control": "Control 12: Network Infrastructure Management",
+      "tags": ["Network Infrastructure", "Up-to-date Software"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "13.1",
+    "raw_text": "Centralize security event alerting across enterprise assets for log correlation and analysis. We recommend using a SIEM.",
+    "explicit_info": {
+      "control": "Control 13: Network Monitoring and Defense",
+      "tags": ["Centralized Alerting", "Log Correlation", "SIEM"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "14.1",
+    "raw_text": "Establish and maintain a security awareness program. The purpose of a security awareness program is to educate the enterprise's workforce on how to interact with enterprise assets and data in a secure manner.",
+    "explicit_info": {
+      "control": "Control 14: Security Awareness and Skills Training",
+      "tags": ["Security Awareness Program", "Workforce Education"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "15.1",
+    "raw_text": "Establish and maintain an inventory of service providers. The inventory is to list all known service providers, include classification(s), and designate an enterprise contact for each service provider.",
+    "explicit_info": {
+      "control": "Control 15: Service Provider Management",
+      "tags": ["Service Provider Inventory", "Vendor Management"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "16.1",
+    "raw_text": "Establish and maintain a secure software development process. Acceptance criteria, such as requiring peer code review and performing threat modeling, should be included.",
+    "explicit_info": {
+      "control": "Control 16: Application Software Security",
+      "tags": ["Secure SDLC", "Code Review", "Threat Modeling"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "17.1",
+    "raw_text": "Designate one key person, and at least one backup, who will manage the enterprise's incident handling process.",
+    "explicit_info": {
+      "control": "Control 17: Incident Response Management",
+      "tags": ["Incident Handling Management", "Personnel Designation"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "18.1",
+    "raw_text": "Establish and maintain a penetration testing program tailored to the size and complexity of the enterprise.",
+    "explicit_info": {
+      "control": "Control 18: Penetration Testing",
+      "tags": ["Penetration Testing Program", "Security Assessment"]
+    }
+  }
+]

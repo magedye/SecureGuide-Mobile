@@ -1,0 +1,268 @@
+{
+  "group_id": "GRP-awareness_training",
+  "concept": "Awareness & Training",
+  "expected_sub_domain": "SD-08.01",
+  "member_count": 14,
+  "source_coverage": [
+    "CIS Controls v8",
+    "Essential Cybersecurity Controls (ECC 2-2024)",
+    "ISO 27002:2022",
+    "MITRE ATT&CK v14",
+    "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations"
+  ],
+  "instructions": "Decide per CONSOLIDATION_POLICY.md: one of CANONICALIZE | EQUIVALENCE_GROUP | CROSSWALK_ONLY | RELATE_ONLY | KEEP_SEPARATE | DEPRECATE_DERIVED. If merging, author an English canonical per AUTHORING_POLICY.md and set mapping_strength per source. Do NOT invent USACM/SDT values. Do NOT delete raw records.",
+  "members": [
+    {
+      "raw_id": "cis_controls_v8::0024",
+      "external_raw_id": "RAW-BATCH-F90E0DE8",
+      "source_document": "CIS Controls v8",
+      "source_version": "Unknown",
+      "source_section": "14.1",
+      "title_draft": "14.1",
+      "description": "Establish and maintain a security awareness program. The purpose of a security awareness program is to educate the enterprise's workforce on how to interact with enterprise assets and data in a secure manner.",
+      "keywords": [
+        "Security Awareness Program",
+        "Workforce Education"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0030",
+      "external_raw_id": "RAW-001678",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 1-10-1 (Cybersecurity Awareness and Training Program)",
+      "title_draft": "1-10-1: Cybersecurity Awareness and Training Program",
+      "description": "A cybersecurity awareness program, delivered through multiple channels, shall be periodically developed and approved by the entity to strengthen the awareness about cybersecurity, cyber threats, and risks, and to build a positive cybersecurity awareness culture.",
+      "keywords": [
+        "awareness",
+        "training",
+        "program",
+        "required",
+        "delivered",
+        "through",
+        "multiple",
+        "channels"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0031",
+      "external_raw_id": "RAW-001679",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 1-10-2 (Cybersecurity Awareness and Training Program)",
+      "title_draft": "1-10-2: Cybersecurity Awareness and Training Program",
+      "description": "Theapproved cybersecurity awareness program shall beimplemented within the entity.",
+      "keywords": [
+        "awareness",
+        "training",
+        "program",
+        "required",
+        "theapproved",
+        "beimplemented",
+        "ensure",
+        "personnel"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0032",
+      "external_raw_id": "RAW-001680",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 1-10-3 (Cybersecurity Awareness and Training Program)",
+      "title_draft": "1-10-3: Cybersecurity Awareness and Training Program",
+      "description": "The cybersecurity awareness program shall include how to protect the entity against the most important and latest cyber risks and threats, including: 1.10.3.1 Secure handling of email services, especially phishing emails.",
+      "keywords": [
+        "secure",
+        "awareness",
+        "training",
+        "program",
+        "protect",
+        "handling",
+        "media",
+        "required"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0033",
+      "external_raw_id": "RAW-001681",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 1-10-4 (Cybersecurity Awareness and Training Program)",
+      "title_draft": "1-10-4: Cybersecurity Awareness and Training Program",
+      "description": "Specialized skills and necessary training shall be provided to personnel in positions that are linked directly to cybersecurity within the entity.",
+      "keywords": [
+        "training",
+        "personnel",
+        "skills",
+        "awareness",
+        "positions",
+        "responsibilities",
+        "working",
+        "technology"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0034",
+      "external_raw_id": "RAW-001682",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 1-10-5 (Cybersecurity Awareness and Training Program)",
+      "title_draft": "1-10-5: Cybersecurity Awareness and Training Program",
+      "description": "The implementation of cybersecurity awareness program within the entity shall be periodically reviewed.",
+      "keywords": [
+        "awareness",
+        "training",
+        "program",
+        "required",
+        "implementation",
+        "periodically",
+        "reviewed",
+        "essential"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0059",
+      "external_raw_id": "RAW-001707",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 2-6-3 (Mobile Devices Security)",
+      "title_draft": "2-6-3: Mobile Devices Security",
+      "description": "Cybersecurity requirements for mobile devices and BYOD security of the entity shall include the following as a minimum: Essential Cybersecurity Controls ‫ﻣﻘﻴﺪ‬ 2.6.3.1 Separation and encryption of the entity’s data and information stored on mobile devices and BYODs.",
+      "keywords": [
+        "devices",
+        "mobile",
+        "byod",
+        "requirements",
+        "data",
+        "stored",
+        "business",
+        "device"
+      ]
+    },
+    {
+      "raw_id": "iso_27002_2022::0003",
+      "external_raw_id": "RAW-BATCH-9B9F6DBA",
+      "source_document": "ISO 27002:2022",
+      "source_version": "Unknown",
+      "source_section": "6.3",
+      "title_draft": "6.3",
+      "description": "Personnel of the organization and relevant interested parties should receive appropriate information security awareness, education and training and regular updates of the organization's information security policy, topic-specific policies and procedures, as relevant for their job function.",
+      "keywords": [
+        "Security Awareness",
+        "Training",
+        "Education"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_v14::0001",
+      "external_raw_id": "RAW-BATCH-6A0A9C35",
+      "source_document": "MITRE ATT&CK v14",
+      "source_version": "Unknown",
+      "source_section": "M1017",
+      "title_draft": "M1017",
+      "description": "Mitigation: User Training (M1017) | Users can be trained to identify social engineering techniques and spearphishing emails.",
+      "keywords": [
+        "Mitigation",
+        "Security Awareness",
+        "User Training"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0161",
+      "external_raw_id": "RAW-000268",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AT-4 (Awareness and Training)",
+      "title_draft": "AT-4: Training Records",
+      "description": "a.",
+      "keywords": [
+        "training",
+        "records",
+        "privacy",
+        "individual",
+        "at-4",
+        "document",
+        "monitor",
+        "activities"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0163",
+      "external_raw_id": "RAW-000270",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AT-6 (Awareness and Training)",
+      "title_draft": "AT-6: Training Feedback",
+      "description": "Provide feedback on organizational training results to the following personnel {{ insert: param, at-06_odp.01 }}: {{ insert: param, at-06_odp.02 }}.",
+      "keywords": [
+        "training",
+        "feedback",
+        "results",
+        "personnel",
+        "insert",
+        "param",
+        "at-06_odp",
+        "at-6"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0954",
+      "external_raw_id": "RAW-000759",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control PM-12 (Program Management)",
+      "title_draft": "PM-12: Insider Threat Program",
+      "description": "Implement an insider threat program that includes a cross-discipline insider threat incident handling team.",
+      "keywords": [
+        "insider",
+        "threat",
+        "programs",
+        "agency",
+        "department",
+        "program",
+        "incident",
+        "organizations"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0955",
+      "external_raw_id": "RAW-000760",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control PM-13 (Program Management)",
+      "title_draft": "PM-13: Security and Privacy Workforce",
+      "description": "Establish a security and privacy workforce development and improvement program.",
+      "keywords": [
+        "privacy",
+        "programs",
+        "workforce",
+        "development",
+        "improvement",
+        "positions",
+        "needed",
+        "developing"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1102",
+      "external_raw_id": "RAW-000907",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SA-8(32) (System and Services Acquisition)",
+      "title_draft": "SA-8(32): Sufficient Documentation",
+      "description": "Implement the security design principle of sufficient documentation in {{ insert: param, sa-08.32_odp }}.",
+      "keywords": [
+        "documentation",
+        "sufficient",
+        "personnel",
+        "design",
+        "principle",
+        "responsibilities",
+        "principles",
+        "mechanisms"
+      ]
+    }
+  ],
+  "decision": null,
+  "canonical": null
+}

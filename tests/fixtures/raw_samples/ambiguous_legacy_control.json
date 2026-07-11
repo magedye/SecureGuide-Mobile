@@ -1,0 +1,6 @@
+﻿{
+  "source": "Legacy Internal Standard",
+  "id": "SEC-004",
+  "title": "General System Hardening",
+  "description": "All systems must be hardened and patched to prevent malicious attacks."
+}

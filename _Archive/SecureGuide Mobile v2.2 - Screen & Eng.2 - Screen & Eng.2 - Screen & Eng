@@ -1,0 +1,1299 @@
+# SecureGuide Mobile v2.2 - Screen & Engine Design (Enhanced Edition)
+
+---
+
+## التصور العام المُحسَّن
+
+**التطبيق هو "منصة حوكمة أمنية استباقية"** يدمج بين:
+1. **لوحة القيادة التنفيذية** (Home) - الصورة الكاملة + الإجراء التالي
+2. **مكتبة الكيانات** (Catalog) - مع تصفية ذكية وإجراءات جماعية
+3. **مركز مؤشرات الاختراق** (Indicators) - الكشف والاستجابة ⭐ **جديد**
+4. **طابور المراجعة البشرية** (Review Queue) - حوكمة الذكاء الاصطناعي ⭐ **جديد**
+5. **مركز المعرفة** (Security Info) - مرجعية شاملة
+6. **الإعدادات** (Settings) - تخصيص السياق + التزامن
+
+**المحركات الخلفية (8 محركات):**
+
+| المحرك | الوظيفة | الحالة |
+|--------|---------|--------|
+| **Classification Engine** | تطبيق USACM v2.2.0 و SDT v2.2.0 | محسّن |
+| **Priority Engine** | تحديد الأولويات بمعادلة مخاطر متقدمة | محسّن |
+| **Recommendation Engine** | اقتراح الإجراء التالي + Quick Wins Matrix | محسّن |
+| **Progress Engine** | حساب النضج حسب CMMC/ISO levels | محسّن |
+| **Filter Engine** | تصفية ذكية + Saved Filters + Smart Filters | محسّن |
+| **Intake Engine** | استخراج الكيانات من 7 مصادر ⭐ | **جديد** |
+| **Sync Engine** | إدارة التزامن Offline-First ⭐ | **جديد** |
+| **Audit Engine** | تتبع التغييرات والنسخ ⭐ | **جديد** |
+
+---
+
+## المحركات الثمانية بالتفصيل
+
+### 1. Classification Engine (محسّن)
+
+**المدخلات:**
+- الكيان المستخرج أو المدخل يدوياً
+- قواعد USACM v2.2.0 و SDT v2.2.0
+- Tie-Breaker Rules من SDT v2.2.0
+- Context من الإعدادات المؤسسية
+
+**المخرجات:**
+- `type` (ART-*)
+- `primary_domain` و `sub_domain`
+- `abstraction_level`, `obligation_level`, `granularity_level`
+- `control_nature`, `control_function`, `testability` (شرطية)
+- `requirement_type` (لـ ART-REQ)
+- `framework_mappings` مع `mapping_strength`
+- `classification_confidence` + `classification_rationale`
+- `ai_review_status` + `requires_human_review`
+- `rejected_alternatives` (لـ confidence < 0.90)
+
+**المنطق المُحسَّن:**
+```python
+def classify_artifact(text, source, context):
+    # 1. تحديد النوع (ART-*)
+    type_result = determine_type(text)
+    type_code = type_result.type
+    type_confidence = type_result.confidence
+    
+    # 2. تحديد المجال (SDT) مع Tie-Breakers
+    domain_result = determine_domain(text, context)
+    primary_domain = domain_result.primary_domain
+    sub_domain = domain_result.sub_domain
+    tie_breaker_applied = domain_result.tie_breaker
+    rejected_alternatives = domain_result.rejected_alternatives
+    
+    # 3. تحديد مستوى التجريد
+    abstraction = determine_abstraction(text, type_code)
+    
+    # 4. تحديد الإلزام والمصدر
+    obligation = determine_obligation(text, source)
+    requirement_type = determine_requirement_type(text) if type_code == "ART-REQ" else None
+    
+    # 5. الحقول الشرطية
+    control_fields = {}
+    if type_code in ["ART-CTR", "ART-CTE"]:
+        control_fields = {
+            "control_nature": determine_control_nature(text),
+            "control_function": determine_control_function(text),
+            "testability": determine_testability(text)
+        }
+    
+    # 6. حساب الثقة الإجمالية
+    overall_confidence = calculate_overall_confidence(
+        type_confidence, 
+        domain_result.confidence,
+        len(tie_breaker_applied)
+    )
+    
+    # 7. تحديد حالة المراجعة
+    requires_human_review = overall_confidence <= 0.70
+    ai_review_status = "AIR-HUMAN-REVIEW" if requires_human_review else "AIR-AUTO-ACCEPTED"
+    
+    # 8. بناء السجل
+    classified_artifact = {
+        "type": type_code,
+        "primary_domain": primary_domain,
+        "sub_domain": sub_domain,
+        "abstraction_level": abstraction,
+        "obligation_level": obligation,
+        "requirement_type": requirement_type,
+        **control_fields,
+        "classification_confidence": overall_confidence,
+        "classification_rationale": generate_rationale(type_result, domain_result),
+        "ai_review_status": ai_review_status,
+        "requires_human_review": requires_human_review,
+        "rejected_alternatives": rejected_alternatives,
+        "tie_breaker_applied": tie_breaker_applied
+    }
+    
+    # 9. التحقق من القواعد (Validation)
+    validation_result = validate_artifact(classified_artifact)
+    if not validation_result.is_valid:
+        classified_artifact["ai_review_status"] = "AIR-HUMAN-REVIEW"
+        classified_artifact["requires_human_review"] = True
+        classified_artifact["validation_findings"] = validation_result.errors
+    
+    return classified_artifact
+```
+
+---
+
+### 2. Priority Engine (محسّن - معادلة مخاطر متقدمة)
+
+**المدخلات:**
+- `priority_weight` (1-10)
+- `obligation_level` (OBL-*)
+- المخاطر المرتبطة (`ART-RSK`) مع `likelihood_score` و `impact_score`
+- السياق المؤسسي (حجم المؤسسة، القطاع، حساسية البيانات)
+- حالة التنفيذ الحالية
+- الاعتماديات التقنية
+
+**المخرجات:**
+- الأولوية النهائية (CRITICAL, HIGH, MEDIUM, LOW)
+- `final_priority_score` (0-100)
+- `risk_score` (Likelihood × Impact)
+- `compliance_gap_score`
+- `business_context_score`
+- ترتيب الأولويات للتنفيذ
+
+**المعادلة المُحسَّنة:**
+```python
+def calculate_priority(artifact, context):
+    # 1. الوزن الأساسي (من priority_weight)
+    base_weight = artifact.priority_weight  # 1-10
+    base_score = base_weight * 10  # 10-100
+    
+    # 2. تعديل حسب الإلزام (Compliance Pressure)
+    obligation_multipliers = {
+        "OBL-MND": 1.5,   # إلزامي: +50%
+        "OBL-CON": 1.3,   # تعاقدي: +30%
+        "OBL-REC": 1.0,   # موصى به: 0%
+        "OBL-OPT": 0.7    # اختياري: -30%
+    }
+    obligation_modifier = obligation_multipliers.get(artifact.obligation_level, 1.0)
+    
+    # 3. حساب درجة المخاطر (Risk Score)
+    risk_score = 0
+    if artifact.related_risks:
+        for risk in artifact.related_risks:
+            likelihood = risk.likelihood_score or 0.5
+            impact = risk.impact_score or 0.5
+            risk_score += (likelihood * impact) * 100
+        risk_score = min(risk_score, 100)  # Cap at 100
+    
+    risk_modifier = 1 + (risk_score / 100)  # 1.0 to 2.0
+    
+    # 4. تعديل حسب السياق المؤسسي (Business Context)
+    context_modifier = 1.0
+    
+    # حساسية البيانات
+    if context.data_sensitivity == "HIGH":
+        context_modifier *= 1.3
+    elif context.data_sensitivity == "CRITICAL":
+        context_modifier *= 1.5
+    
+    # القطاع المنظم
+    if context.industry in ["FINANCIAL", "HEALTHCARE", "GOVERNMENT"]:
+        context_modifier *= 1.2
+    
+    # حجم المؤسسة
+    if context.organization_size == "LARGE":
+        context_modifier *= 1.1
+    
+    # 5. تعديل حسب حالة التنفيذ (Gap Analysis)
+    gap_modifier = 1.0
+    if artifact.implementation_status == "STS-NOT-APPLIED":
+        gap_modifier = 1.2  # فجوة كاملة: +20%
+    elif artifact.implementation_status == "STS-PARTIAL":
+        gap_modifier = 1.1  # فجوة جزئية: +10%
+    elif artifact.implementation_status == "STS-FULL":
+        gap_modifier = 0.8  # مطبق: -20% (أولوية أقل)
+    
+    # 6. تعديل حسب الاعتماديات (Dependencies)
+    dependency_modifier = 1.0
+    if artifact.has_blocking_dependencies:
+        dependency_modifier = 0.9  # يعتمد على كيانات أخرى: -10%
+    
+    # 7. حساب النتيجة النهائية
+    final_score = (
+        base_score * 
+        obligation_modifier * 
+        risk_modifier * 
+        context_modifier * 
+        gap_modifier * 
+        dependency_modifier
+    )
+    
+    # 8. تحويل إلى أولوية نهائية
+    if final_score >= 80:
+        final_priority = "PRI-CRITICAL"
+    elif final_score >= 60:
+        final_priority = "PRI-HIGH"
+    elif final_score >= 40:
+        final_priority = "PRI-MEDIUM"
+    else:
+        final_priority = "PRI-LOW"
+    
+    # 9. حساب priority_weight النهائي (1-10)
+    final_weight = max(1, min(10, round(final_score / 10)))
+    
+    return {
+        "final_priority": final_priority,
+        "final_priority_score": round(final_score, 2),
+        "final_weight": final_weight,
+        "risk_score": round(risk_score, 2),
+        "compliance_gap_score": round((gap_modifier - 1) * 100, 2),
+        "business_context_score": round((context_modifier - 1) * 100, 2),
+        "breakdown": {
+            "base_score": base_score,
+            "obligation_modifier": obligation_modifier,
+            "risk_modifier": risk_modifier,
+            "context_modifier": context_modifier,
+            "gap_modifier": gap_modifier,
+            "dependency_modifier": dependency_modifier
+        }
+    }
+```
+
+---
+
+### 3. Recommendation Engine (محسّن - Quick Wins Matrix)
+
+**المدخلات:**
+- جميع الكيانات مع حالاتها
+- الأولويات المحسوبة
+- السياق المؤسسي
+- الفجوات المكتشفة
+- الجهد المطلوب (effort_estimate)
+- أثر تقليل المخاطر (risk_reduction)
+
+**المخرجات:**
+- الإجراء التالي الموصى به
+- Quick Wins Matrix (Impact vs Effort)
+- خريطة طريق (Roadmap)
+- توصيات إضافية
+
+**Quick Wins Matrix:**
+```
+                    │ High Impact (≥70%)
+                    │
+    QUICK WINS      │ STRATEGIC INITIATIVES
+    (Do First)      │ (Plan Carefully)
+                    │
+────────────────────┼────────────────────
+                    │
+    FILL-INS        │ MONEY PIT
+    (Do If Time)    │ (Avoid)
+                    │
+                    │ Low Impact (<70%)
+    Low Effort      │      High Effort
+    (<10 days)      │      (>30 days)
+```
+
+**المنطق المُحسَّن:**
+```python
+def recommend_next_action(artifacts, context):
+    # 1. تحديد الفجوات (غير مطبق أو مطبق جزئياً)
+    gaps = [a for a in artifacts if a.implementation_status in 
+            ["STS-NOT-APPLIED", "STS-PARTIAL", "STS-NEEDS-IMPROVEMENT"]]
+    
+    # 2. حساب Quick Wins Score لكل فجوة
+    quick_wins = []
+    for gap in gaps:
+        # Impact Score (من priority_score و risk_reduction)
+        impact_score = gap.final_priority_score * 0.6 + (gap.risk_reduction or 0) * 40
+        
+        # Effort Score (عكسي: كلما قل الجهد، زادت النقاط)
+        effort_days = gap.effort_estimate or 30
+        effort_score = max(0, 100 - (effort_days * 2))  # 0-100
+        
+        # Quick Wins Score = Impact × (1 / Effort)
+        quick_wins_score = impact_score * (effort_score / 100)
+        
+        # Dependency Score (العكس: كلما قل الاعتماد، زادت النقاط)
+        dependency_score = 100 if not gap.has_blocking_dependencies else 50
+        
+        # Final Recommendation Score
+        final_score = (
+            quick_wins_score * 0.5 +  # 50% Quick Wins
+            impact_score * 0.3 +       # 30% Impact
+            dependency_score * 0.2     # 20% Independence
+        )
+        
+        quick_wins.append({
+            "artifact": gap,
+            "impact_score": impact_score,
+            "effort_score": effort_score,
+            "quick_wins_score": quick_wins_score,
+            "dependency_score": dependency_score,
+            "final_score": final_score,
+            "quadrant": determine_quadrant(impact_score, effort_score)
+        })
+    
+    # 3. ترتيب حسب Final Score
+    quick_wins.sort(key=lambda x: x["final_score"], reverse=True)
+    
+    # 4. اختيار الإجراء التالي
+    next_action = quick_wins[0] if quick_wins else None
+    
+    # 5. بناء التوصية
+    recommendation = {
+        "artifact": next_action["artifact"] if next_action else None,
+        "quadrant": next_action["quadrant"] if next_action else None,
+        "reason": generate_reason(next_action, context) if next_action else None,
+        "impact": next_action["impact_score"] if next_action else 0,
+        "effort": next_action["artifact"].effort_estimate if next_action else 0,
+        "risk_reduction": next_action["artifact"].risk_reduction if next_action else 0,
+        "dependencies": get_dependencies(next_action["artifact"]) if next_action else [],
+        "quick_wins_matrix": quick_wins
+    }
+    
+    # 6. إنشاء خريطة طريق (Roadmap)
+    roadmap = generate_roadmap(quick_wins, context.target_maturity)
+    
+    return recommendation, roadmap
+
+def determine_quadrant(impact_score, effort_score):
+    if impact_score >= 70 and effort_score >= 70:
+        return "QUICK_WINS"
+    elif impact_score >= 70 and effort_score < 70:
+        return "STRATEGIC_INITIATIVES"
+    elif impact_score < 70 and effort_score >= 70:
+        return "FILL_INS"
+    else:
+        return "MONEY_PIT"
+
+def generate_roadmap(quick_wins, target_maturity):
+    # تقسيم إلى مراحل زمنية
+    roadmap = {
+        "phase_1_immediate": [],      # 0-30 يوم: Quick Wins
+        "phase_2_short_term": [],     # 30-90 يوم: Strategic
+        "phase_3_medium_term": [],    # 90-180 يوم: Fill-ins
+        "phase_4_long_term": []       # 180+ يوم: Money Pit (avoid or defer)
+    }
+    
+    for qw in quick_wins:
+        effort_days = qw["artifact"].effort_estimate or 30
+        
+        if qw["quadrant"] == "QUICK_WINS" and effort_days <= 30:
+            roadmap["phase_1_immediate"].append(qw)
+        elif qw["quadrant"] == "STRATEGIC_INITIATIVES" or effort_days <= 90:
+            roadmap["phase_2_short_term"].append(qw)
+        elif qw["quadrant"] == "FILL_INS" or effort_days <= 180:
+            roadmap["phase_3_medium_term"].append(qw)
+        else:
+            roadmap["phase_4_long_term"].append(qw)
+    
+    return roadmap
+```
+
+---
+
+### 4. Progress Engine (محسّن - CMMC/ISO Maturity)
+
+**المدخلات:**
+- حالات التنفيذ (Implementation Status)
+- حالات التحقق (Verification Status)
+- الفعالية (Effectiveness)
+- المجالات (Domains)
+- المستوى المستهدف (Target Maturity Level)
+
+**المخرجات:**
+- نسبة التطبيق الإجمالية
+- نسبة التحقق الإجمالية
+- نسبة الفعالية الإجمالية
+- النضج لكل مجال (Domain Maturity)
+- النضج الإجمالي (Overall Maturity)
+- الفجوات
+- التقدم نحو المستوى المستهدف
+
+**مستويات النضج (CMMC/ISO Aligned):**
+```python
+MATURITY_LEVELS = {
+    "INITIAL": {
+        "level": 1,
+        "range": (0, 20),
+        "description": "Ad-hoc, unpredictable process",
+        "characteristics": [
+            "No formal policies",
+            "Reactive approach",
+            "Limited visibility"
+        ]
+    },
+    "REPEATABLE": {
+        "level": 2,
+        "range": (21, 40),
+        "description": "Some processes established",
+        "characteristics": [
+            "Basic policies in place",
+            "Some controls implemented",
+            "Limited monitoring"
+        ]
+    },
+    "DEFINED": {
+        "level": 3,
+        "range": (41, 60),
+        "description": "Well-characterized and understood",
+        "characteristics": [
+            "Formal policies and standards",
+            "Most controls implemented",
+            "Regular monitoring"
+        ]
+    },
+    "MANAGED": {
+        "level": 4,
+        "range": (61, 80),
+        "description": "Measured and controlled",
+        "characteristics": [
+            "Metrics and KPIs established",
+            "Continuous monitoring",
+            "Regular reviews"
+        ]
+    },
+    "OPTIMIZED": {
+        "level": 5,
+        "range": (81, 100),
+        "description": "Continuous improvement",
+        "characteristics": [
+            "Automated controls",
+            "Proactive threat hunting",
+            "Continuous improvement"
+        ]
+    }
+}
+```
+
+**المنطق المُحسَّن:**
+```python
+def calculate_progress(artifacts, target_level):
+    total = len(artifacts)
+    if total == 0:
+        return {"error": "No artifacts found"}
+    
+    # 1. حساب التطبيق (Implementation)
+    applied_full = count_status(artifacts, ["STS-FULL"])
+    applied_partial = count_status(artifacts, ["STS-PARTIAL"])
+    applied_planned = count_status(artifacts, ["STS-PLANNED"])
+    
+    implementation_score = (
+        (applied_full * 1.0) +
+        (applied_partial * 0.5) +
+        (applied_planned * 0.25)
+    ) / total * 100
+    
+    # 2. حساب التحقق (Verification)
+    verified = count_status(artifacts, ["VER-PASS"])
+    verification_score = (verified / total) * 100
+    
+    # 3. حساب الفعالية (Effectiveness)
+    effective_high = count_status(artifacts, ["EFF-HIGH"])
+    effective_med = count_status(artifacts, ["EFF-MED"])
+    effectiveness_score = (
+        (effective_high * 1.0) +
+        (effective_med * 0.5)
+    ) / total * 100
+    
+    # 4. حساب النضج لكل مجال (Domain Maturity)
+    maturity_by_domain = {}
+    for domain in ["SD-01", "SD-02", "SD-03", "SD-04", "SD-05", "SD-06", "SD-07", "SD-08"]:
+        domain_artifacts = filter_by_domain(artifacts, domain)
+        if domain_artifacts:
+            domain_impl = calculate_implementation_score(domain_artifacts)
+            domain_ver = calculate_verification_score(domain_artifacts)
+            domain_eff = calculate_effectiveness_score(domain_artifacts)
+            
+            # Weighted average: 50% Implementation, 30% Verification, 20% Effectiveness
+            domain_maturity = (
+                domain_impl * 0.5 +
+                domain_ver * 0.3 +
+                domain_eff * 0.2
+            )
+            
+            maturity_by_domain[domain] = {
+                "score": round(domain_maturity, 2),
+                "level": get_maturity_level(domain_maturity),
+                "implementation": round(domain_impl, 2),
+                "verification": round(domain_ver, 2),
+                "effectiveness": round(domain_eff, 2),
+                "total_artifacts": len(domain_artifacts)
+            }
+    
+    # 5. حساب النضج الإجمالي
+    overall_score = (
+        implementation_score * 0.5 +
+        verification_score * 0.3 +
+        effectiveness_score * 0.2
+    )
+    
+    overall_level = get_maturity_level(overall_score)
+    
+    # 6. تحديد الفجوات
+    gaps = identify_gaps(artifacts, target_level)
+    
+    # 7. حساب التقدم نحو الهدف
+    target_score = MATURITY_LEVELS[target_level]["range"][0]
+    progress_to_target = min(100, (overall_score / target_score) * 100)
+    
+    return {
+        "overall_maturity": {
+            "score": round(overall_score, 2),
+            "level": overall_level,
+            "level_number": MATURITY_LEVELS[overall_level]["level"]
+        },
+        "implementation": {
+            "score": round(implementation_score, 2),
+            "full": applied_full,
+            "partial": applied_partial,
+            "planned": applied_planned,
+            "not_applied": total - applied_full - applied_partial - applied_planned
+        },
+        "verification": {
+            "score": round(verification_score, 2),
+            "verified": verified,
+            "not_verified": total - verified
+        },
+        "effectiveness": {
+            "score": round(effectiveness_score, 2),
+            "high": effective_high,
+            "medium": effective_med,
+            "low": count_status(artifacts, ["EFF-LOW"]),
+            "unknown": count_status(artifacts, ["EFF-UNKNOWN"])
+        },
+        "maturity_by_domain": maturity_by_domain,
+        "gaps": gaps,
+        "progress_to_target": {
+            "current_score": round(overall_score, 2),
+            "target_score": target_score,
+            "target_level": target_level,
+            "progress_percentage": round(progress_to_target, 2)
+        }
+    }
+
+def get_maturity_level(score):
+    for level, data in MATURITY_LEVELS.items():
+        if data["range"][0] <= score <= data["range"][1]:
+            return level
+    return "INITIAL"
+```
+
+---
+
+### 5. Filter Engine (محسّن - Saved & Smart Filters)
+
+**المدخلات:**
+- جميع الكيانات
+- الفلاتر النشطة
+- Saved Filters (من المستخدم)
+- Smart Filters (AI-powered suggestions)
+
+**المخرجات:**
+- الكيانات المفلترة
+- عدد النتائج
+- Filter Suggestions
+
+**أنواع الفلاتر المُحسَّنة:**
+
+| الفلتر | الخيارات | النوع | الحالة |
+|--------|----------|-------|--------|
+| **النوع (ART-*)** | 22 نوع | Multi-select | موجود |
+| **المجال الرئيسي** | SD-01 إلى SD-08 | Multi-select | موجود |
+| **المجال الفرعي** | SD-01.01 إلى SD-08.05 | Cascading | موجود |
+| **مستوى التجريد** | ABS-GOV إلى ABS-EVM | Multi-select | موجود |
+| **الأولوية** | CRITICAL, HIGH, MEDIUM, LOW | Multi-select | موجود |
+| **حالة التطبيق** | 5 حالات | Multi-select | موجود |
+| **حالة التحقق** | 3 حالات | Multi-select | موجود |
+| **الفعالية** | 4 مستويات | Multi-select | موجود |
+| **مصدر الإلزام** | 7 مصادر | Multi-select | موجود |
+| **نوع المصدر** | 7 أنواع | Multi-select | موجود |
+| **الوسوم (Tags)** | 7 أنواع | Tag Cloud | محسّن |
+| **حزمة الحماية** | 5 حزم | Multi-select | موجود |
+| **MITRE ATT&CK** | Tactic/Technique | Cascading | ⭐ **جديد** |
+| **نطاق التطبيق** | Geographic, BU, Entity | Multi-select | ⭐ **جديد** |
+| **تاريخ المراجعة** | Date range | Date picker | ⭐ **جديد** |
+| **حالة الاستثناء** | 5 حالات | Multi-select | ⭐ **جديد** |
+| **البحث النصي** | نص حر | Full-text search | محسّن |
+
+**Saved Filters:**
+```python
+class SavedFilter:
+    def __init__(self, name, filters, is_default=False):
+        self.id = generate_id()
+        self.name = name
+        self.filters = filters  # Dictionary of filter criteria
+        self.is_default = is_default
+        self.created_at = datetime.now()
+        self.usage_count = 0
+    
+    def apply(self, artifacts):
+        self.usage_count += 1
+        return FilterEngine.apply_filters(artifacts, self.filters)
+```
+
+**Smart Filters (AI-Powered):**
+```python
+def generate_smart_filters(artifacts, user_behavior):
+    smart_filters = []
+    
+    # 1. Critical Gaps Filter
+    critical_gaps = [a for a in artifacts if 
+                     a.priority == "PRI-CRITICAL" and 
+                     a.implementation_status == "STS-NOT-APPLIED"]
+    if critical_gaps:
+        smart_filters.append({
+            "name": "Critical Gaps",
+            "icon": "🔴",
+            "filters": {
+                "priority": ["PRI-CRITICAL"],
+                "implementation_status": ["STS-NOT-APPLIED"]
+            },
+            "count": len(critical_gaps)
+        })
+    
+    # 2. Needs Review Filter
+    needs_review = [a for a in artifacts if a.requires_human_review]
+    if needs_review:
+        smart_filters.append({
+            "name": "Needs Human Review",
+            "icon": "👁️",
+            "filters": {
+                "requires_human_review": True
+            },
+            "count": len(needs_review)
+        })
+    
+    # 3. Overdue Reviews Filter
+    today = datetime.now().date()
+    overdue = [a for a in artifacts if 
+               a.next_review_date and 
+               datetime.strptime(a.next_review_date, "%Y-%m-%d").date() < today]
+    if overdue:
+        smart_filters.append({
+            "name": "Overdue Reviews",
+            "icon": "⏰",
+            "filters": {
+                "next_review_date_before": today.isoformat()
+            },
+            "count": len(overdue)
+        })
+    
+    # 4. User Behavior-Based Filters
+    if user_behavior.frequently_used_domains:
+        smart_filters.append({
+            "name": "My Domains",
+            "icon": "⭐",
+            "filters": {
+                "primary_domain": user_behavior.frequently_used_domains
+            }
+        })
+    
+    return smart_filters
+```
+
+---
+
+### 6. Intake Engine ⭐ **جديد**
+
+**المدخلات:**
+- مصدر الكيان (Document, System, Tool, Interview, Observation, Standard, Regulation)
+- النص أو الملف
+- سياق المؤسسة
+
+**المخرجات:**
+- كيانات مستخرجة (Raw Artifacts)
+- Classification Results
+- Validation Results
+- Missing Fields
+- Confidence Scores
+
+**7 طرق للإدخال:**
+
+| الطريقة | الوصف | المحرك المستخدم |
+|---------|-------|-----------------|
+| **Quick Entry** | إدخال سريع لعنوان ووصف فقط | Classification Engine |
+| **Guided Form** | نموذج كامل على 6 خطوات | Classification + Validation |
+| **Paste & Classify** | لصق نص واستخراج تلقائي | AI Extraction + Classification |
+| **Import Document** | استخراج من ملف (PDF, Word, Excel) | Document Parser + AI Extraction |
+| **Clone Existing** | نسخ كيان موجود وتعديله | Template Engine |
+| **Create from Gap** | إنشاء من نتيجة تقييم أو فجوة | Gap Analysis Engine |
+| **Create from Risk** | إنشاء ضابط/إجراء من خطر | Risk Treatment Engine |
+
+**المنطق:**
+```python
+class IntakeEngine:
+    def __init__(self):
+        self.classification_engine = ClassificationEngine()
+        self.ai_extractor = AIExtractor()
+        self.document_parser = DocumentParser()
+    
+    def process_intake(self, intake_method, input_data, context):
+        if intake_method == "QUICK_ENTRY":
+            return self._quick_entry(input_data, context)
+        elif intake_method == "GUIDED_FORM":
+            return self._guided_form(input_data, context)
+        elif intake_method == "PASTE_AND_CLASSIFY":
+            return self._paste_and_classify(input_data, context)
+        elif intake_method == "IMPORT_DOCUMENT":
+            return self._import_document(input_data, context)
+        elif intake_method == "CLONE_EXISTING":
+            return self._clone_existing(input_data, context)
+        elif intake_method == "CREATE_FROM_GAP":
+            return self._create_from_gap(input_data, context)
+        elif intake_method == "CREATE_FROM_RISK":
+            return self._create_from_risk(input_data, context)
+    
+    def _paste_and_classify(self, text, context):
+        # 1. استخراج الكيانات المرشحة باستخدام AI
+        candidates = self.ai_extractor.extract_candidates(text)
+        
+        # 2. تصنيف كل مرشح
+        classified_artifacts = []
+        for candidate in candidates:
+            classified = self.classification_engine.classify_artifact(
+                candidate.text,
+                candidate.source,
+                context
+            )
+            classified["temp_id"] = candidate.temp_id
+            classified["source_excerpt"] = candidate.text
+            classified["source_section"] = candidate.section
+            classified_artifacts.append(classified)
+        
+        # 3. التحقق من الصحة
+        validation_results = []
+        for artifact in classified_artifacts:
+            validation = self.validate_artifact(artifact)
+            validation_results.append(validation)
+        
+        # 4. تحديد الحقول الناقصة
+        missing_fields = self.identify_missing_fields(classified_artifacts)
+        
+        return {
+            "artifacts": classified_artifacts,
+            "validation_results": validation_results,
+            "missing_fields": missing_fields,
+            "total_candidates": len(candidates),
+            "high_confidence": sum(1 for a in classified_artifacts if a["classification_confidence"] >= 0.90),
+            "needs_review": sum(1 for a in classified_artifacts if a["requires_human_review"])
+        }
+    
+    def _import_document(self, file_path, context):
+        # 1. تحليل المستند
+        document = self.document_parser.parse(file_path)
+        
+        # 2. تقسيم إلى chunks
+        chunks = self.document_parser.chunk_document(document)
+        
+        # 3. استخراج الكيانات من كل chunk
+        all_artifacts = []
+        for chunk in chunks:
+            result = self._paste_and_classify(chunk.text, context)
+            all_artifacts.extend(result["artifacts"])
+        
+        # 4. إزالة التكرارات
+        deduplicated = self.deduplicate_artifacts(all_artifacts)
+        
+        return {
+            "artifacts": deduplicated,
+            "source_document": document.metadata,
+            "total_chunks": len(chunks),
+            "total_artifacts": len(deduplicated)
+        }
+```
+
+---
+
+### 7. Sync Engine ⭐ **جديد**
+
+**المدخلات:**
+- قاعدة البيانات المحلية (SQLite)
+- الخادم المركزي (GRC Platform)
+- سياسة التزامن (Manual, Auto, Background)
+
+**المخرجات:**
+- Sync Status
+- Conflict Resolution
+- Sync Log
+
+**المنطق:**
+```python
+class SyncEngine:
+    def __init__(self, local_db, remote_api):
+        self.local_db = local_db
+        self.remote_api = remote_api
+        self.sync_queue = SyncQueue()
+    
+    def sync(self, sync_mode="MANUAL"):
+        # 1. جلب التغييرات المحلية
+        local_changes = self.local_db.get_changes_since_last_sync()
+        
+        # 2. جلب التغييرات من الخادم
+        remote_changes = self.remote_api.get_changes_since_last_sync()
+        
+        # 3. كشف التعارضات
+        conflicts = self.detect_conflicts(local_changes, remote_changes)
+        
+        # 4. حل التعارضات
+        resolved_conflicts = self.resolve_conflicts(conflicts)
+        
+        # 5. رفع التغييرات المحلية
+        for change in local_changes:
+            if change.id not in [c.id for c in resolved_conflicts]:
+                self.remote_api.push_change(change)
+        
+        # 6. تنزيل التغييرات من الخادم
+        for change in remote_changes:
+            if change.id not in [c.id for c in resolved_conflicts]:
+                self.local_db.apply_change(change)
+        
+        # 7. تحديث آخر تزامن
+        self.local_db.update_last_sync_time()
+        
+        return {
+            "local_changes_pushed": len(local_changes),
+            "remote_changes_pulled": len(remote_changes),
+            "conflicts_detected": len(conflicts),
+            "conflicts_resolved": len(resolved_conflicts),
+            "sync_status": "SUCCESS"
+        }
+    
+    def detect_conflicts(self, local_changes, remote_changes):
+        conflicts = []
+        for local in local_changes:
+            for remote in remote_changes:
+                if local.id == remote.id:
+                    if local.updated_at != remote.updated_at:
+                        conflicts.append({
+                            "artifact_id": local.id,
+                            "local_version": local,
+                            "remote_version": remote
+                        })
+        return conflicts
+    
+    def resolve_conflicts(self, conflicts):
+        resolved = []
+        for conflict in conflicts:
+            # استراتيجية الحل: Last-Write-Wins أو Manual Merge
+            resolution_strategy = self.get_resolution_strategy()
+            
+            if resolution_strategy == "LAST_WRITE_WINS":
+                winner = max(conflict["local_version"], conflict["remote_version"], 
+                           key=lambda x: x.updated_at)
+                resolved.append({
+                    "artifact_id": conflict["artifact_id"],
+                    "winner": winner,
+                    "resolution": "AUTO"
+                })
+            else:
+                # Queue for manual review
+                self.sync_queue.add_conflict(conflict)
+        
+        return resolved
+```
+
+---
+
+### 8. Audit Engine ⭐ **جديد**
+
+**المدخلات:**
+- أي تغيير على الكيانات
+- معلومات المستخدم
+- Timestamp
+
+**المخرجات:**
+- Audit Log Entry
+- Version History
+
+**المنطق:**
+```python
+class AuditEngine:
+    def __init__(self, db):
+        self.db = db
+    
+    def log_change(self, artifact_id, change_type, old_value, new_value, user):
+        audit_entry = {
+            "id": generate_id(),
+            "artifact_id": artifact_id,
+            "change_type": change_type,  # CREATE, UPDATE, DELETE, STATUS_CHANGE
+            "old_value": old_value,
+            "new_value": new_value,
+            "changed_by": user,
+            "changed_at": datetime.now().isoformat(),
+            "change_summary": self.generate_summary(change_type, old_value, new_value)
+        }
+        
+        self.db.insert_audit_log(audit_entry)
+        
+        # إذا كان UPDATE، حفظ النسخة السابقة
+        if change_type == "UPDATE":
+            self.save_version(artifact_id, old_value, user)
+        
+        return audit_entry
+    
+    def save_version(self, artifact_id, artifact_data, user):
+        version_entry = {
+            "artifact_id": artifact_id,
+            "version_number": self.get_next_version(artifact_id),
+            "artifact_data": artifact_data,
+            "created_by": user,
+            "created_at": datetime.now().isoformat()
+        }
+        
+        self.db.insert_artifact_version(version_entry)
+    
+    def get_version_history(self, artifact_id):
+        return self.db.get_artifact_versions(artifact_id)
+    
+    def generate_summary(self, change_type, old_value, new_value):
+        if change_type == "CREATE":
+            return f"Created artifact {new_value['id']}"
+        elif change_type == "UPDATE":
+            changed_fields = self.compare_dicts(old_value, new_value)
+            return f"Updated fields: {', '.join(changed_fields)}"
+        elif change_type == "DELETE":
+            return f"Deleted artifact {old_value['id']}"
+        elif change_type == "STATUS_CHANGE":
+            return f"Status changed from {old_value} to {new_value}"
+```
+
+---
+
+## الشاشات السبع (7 Screens)
+
+### 1. الشاشة الرئيسية (Home / Dashboard) ⭐ **محسّنة**
+
+**الغرض:** إعطاء المستخدم الصورة الكاملة والإجراء التالي.
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│  🛡️ SecureGuide Enterprise                                [🔔 12] [⚙️]│
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  📊 مستوى النضج المؤسسي                                        │ │
+│  │  ┌─────────────────────────────────────────────────────────────┐ │ │
+│  │  │  المستوى الحالي:  ■■■■■■□□□□  DEFINED (محدد) 65%          │ │ │
+│  │  │  المستوى المستهدف: ■■■■■■■■■□  MANAGED (مراقب) 80%        │ │ │
+│  │  │  ────────────────────────────────────────────────────────── │ │ │
+│  │  │  ● التطبيق: 65% (38/58)  ● التحقق: 45% (26/58)           │ │ │
+│  │  │  ● الفعالية: 55% (32/58)  ● الفجوات: 8 حرجة              │ │ │
+│  │  └─────────────────────────────────────────────────────────────┘ │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  🎯 الإجراء التالي الموصى به (Quick Win)                       │ │
+│  │  ┌─────────────────────────────────────────────────────────────┐ │ │
+│  │  │  📌 MFA للحسابات الإدارية                                 │ │ │
+│  │  │  SD-03.02 · 🔴 حرجة (10/10) · ⚠️ إلزامي                 │ │ │
+│  │  │  ────────────────────────────────────────────────────────── │ │ │
+│  │  │  الجهد: 20 يوم · أثر: يقلل المخاطر بنسبة 70%             │ │ │
+│  │  │  السبب: Quick Win - أثر عالٍ + جهد متوسط                 │ │ │
+│  │  │  [ابدأ التنفيذ]  [اطلع على التفاصيل]  [تخطي]             │ │ │
+│  │  └─────────────────────────────────────────────────────────────┘ │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  🚨 مؤشرات الاختراق النشطة                                    │ │
+│  │  ┌─────────────────────────────────────────────────────────────┐ │ │
+│  │  │  🔴 12 مؤشر حرج  ·  🟠 8 عالٍ  ·  🟢 5 متوسط            │ │ │
+│  │  │  🛡️ جاهزية الكشف: 73%                                    │ │ │
+│  │  │  [عرض مؤشرات الاختراق]                                    │ │ │
+│  │  └─────────────────────────────────────────────────────────────┘ │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  📋 الفجوات الحرجة                                             │ │
+│  │  ┌─────────────────────────────────────────────────────────────┐ │ │
+│  │  │  ■ MFA للحسابات الإدارية          🔴 حرجة  SD-03.02      │ │ │
+│  │  │  ■ مراجعة الصلاحيات الدورية       🔴 حرجة  SD-03.03      │ │ │
+│  │  │  ■ تشفير قواعد البيانات           🟠 عالية SD-02.04      │ │ │
+│  │  └─────────────────────────────────────────────────────────────┘ │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  🚀 حزم الحماية  │  📈 تحليلات NIST CSF                       │ │
+│  │  ┌────────────────┐  ┌────────────────────────────────────────┐ │ │
+│  │  │ خط الأساس     │  │ Govern  ■■■■■■■□□□ 70%               │ │ │
+│  │  │ مقاومة الفدية │  │ Protect ■■■■■■□□□□ 60%               │ │ │
+│  │  │ حماية الهوية  │  │ Detect  ■■■■□□□□□□ 40%               │ │ │
+│  │  │ أمن السحابة   │  │ Respond ■■■□□□□□□□ 30%               │ │ │
+│  │  └────────────────┘  └────────────────────────────────────────┘ │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  [عرض كل الضوابط]  [إضافة كيان جديد]  [استيراد مستند]              │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### 2. صفحة الكتالوج (Catalog / Controls Library) ⭐ **محسّنة**
+
+**الإضافات:**
+- Bulk Actions (تحديد متعدد)
+- Quick Edit (تعديل سريع)
+- Export Filtered Results
+- Smart Filters
+- Saved Filters
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│  🔍 الكتالوج الأمني                                                  │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  [🔍 البحث...]  [🤖 Smart Filters ▼]  [💾 Saved Filters ▼]    │ │
+│  │  [فلاتر متقدمة ▼]  [عرض ▼]  [تصدير ▼]  [إجراءات جماعية ▼]   │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  الفلاتر النشطة:                                                 │ │
+│  │  ● الأولوية: حرجة  ● الحالة: غير مطبق  ● المجال: IAM  [×]     │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  📋 النتائج (24 كياناً)  [✓ تحديد الكل]                        │ │
+│  │  ┌─────────────────────────────────────────────────────────────┐ │ │
+│  │  │  ☐ 🔐 MFA للحسابات الإدارية                               │ │ │
+│  │  │  ────────────────────────────────────────────────────────── │ │ │
+│  │  │  المجال: SD-03.02 · النوع: ART-CTR · الأولوية: 🔴 حرجة   │ │ │
+│  │  │  الحالة: ⏳ غير مطبق · التحقق: ❌ غير متحقق               │ │ │
+│  │  │  🛠️ الأدوات: Entra ID, Okta · ⚠️ المخاطر: 2             │ │ │
+│  │  │  [تحديث سريع ▼]  [التفاصيل]  [تنفيذ]                     │ │ │
+│  │  └─────────────────────────────────────────────────────────────┘ │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  إجراءات جماعية (2 محددة):                                      │ │
+│  │  [تحديث الحالة]  [تصدير]  [حذف]  [تعيين مالك]                 │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### 3. صفحة مؤشرات الاختراق (Indicators) ⭐ **جديدة بالكامل**
+
+**الغرض:** عرض مؤشرات الاختراق والتهديدات والثغرات مع الضوابط الكاشفة والوقائية.
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│  🚨 مؤشرات الاختراق                               [🔄 تحديث] [⋮]   │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  📊 ملخص سريع                                                  │ │
+│  │  ┌────────────┬────────────┬────────────┬─────────────────────┐ │ │
+│  │  │ 🔴 12 مؤشر │ 🟠 8 مؤشر │ 🟢 5 مؤشر │ 🛡️ 73% جاهزية     │ │ │
+│  │  │  حرج      │  عالٍ      │  متوسط    │  للكشف             │ │ │
+│  │  └────────────┴────────────┴────────────┴─────────────────────┘ │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  [🔍 البحث في المؤشرات...]  [فلتر: الكل ▼] [الخطر ▼]         │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  🔴 مؤشرات حرجة (12)                                           │ │
+│  │  ┌─────────────────────────────────────────────────────────────┐ │ │
+│  │  │  🦠 محاولات تسجيل دخول فاشلة متكررة                      │ │ │
+│  │  │  ────────────────────────────────────────────────────────── │ │ │
+│  │  │  ● المخاطر: اختراق الحسابات، هجوم القوة العمياء         │ │ │
+│  │  │  ● الثغرات: ضعف كلمات المرور، عدم وجود MFA              │ │ │
+│  │  │  ● الضوابط الكاشفة: SIEM (60%)  ● الوقائية: MFA (0%)    │ │ │
+│  │  │  ● الأدوات: Splunk, Sentinel, Entra ID                    │ │ │
+│  │  │  ● الجاهزية: 🟡 45%  ● MITRE: T1110 (Brute Force)       │ │ │
+│  │  │  [عرض التفاصيل]  [تنفيذ الإجراءات]                       │ │ │
+│  │  └─────────────────────────────────────────────────────────────┘ │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  🗺️ تحليل MITRE ATT&CK                                       │ │
+│  │  ┌─────────────────────────────────────────────────────────────┐ │ │
+│  │  │  Initial Access: 3  ·  Execution: 1  ·  Persistence: 2    │ │ │
+│  │  │  Privilege Escalation: 2  ·  Credential Access: 3         │ │ │
+│  │  └─────────────────────────────────────────────────────────────┘ │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### 4. صفحة طابور المراجعة البشرية (Review Queue) ⭐ **جديدة بالكامل**
+
+**الغرض:** مراجعة الكيانات المصنفة بالذكاء الاصطناعي ذات الثقة المنخفضة.
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│  👁️ طابور المراجعة البشرية                          [🔄 تحديث]     │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  📊 الملخص                                                     │ │
+│  │  ┌────────────┬────────────┬────────────┬─────────────────────┐ │ │
+│  │  │ 45 للمراجعة│ 12 مقبولة  │ 3 مرفوضة   │ ⏱️ متوسط: 2 دقيقة  │ │ │
+│  │  │            │            │            │                     │ │ │
+│  │  └────────────┴────────────┴────────────┴─────────────────────┘ │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  📋 قائمة المراجعة                                             │ │
+│  │  ┌─────────────────────────────────────────────────────────────┐ │ │
+│  │  │  📄 Legacy Server Control                                 │ │ │
+│  │  │  ────────────────────────────────────────────────────────── │ │ │
+│  │  │  الثقة: 🟡 58%  ·  النوع: ART-CTR  ·  المجال: SD-04.02   │ │ │
+│  │  │  السبب: غموض بين Endpoint و Server و Configuration       │ │ │
+│  │  │  البدائل المرفوضة: SD-04.03 (45%), SD-05.05 (22%)        │ │ │
+│  │  │  [مراجعة]  [قبول]  [رفض]  [إعادة تصنيف]                  │ │ │
+│  │  └─────────────────────────────────────────────────────────────┘ │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### 5. صفحة التفاصيل (Artifact Detail) ⭐ **محسّنة**
+
+**الإضافات:**
+- Version History
+- Audit Trail
+- Stakeholders (RACI)
+- Related Artifacts Graph
+- Self-Assessment
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│  🔐 MFA للحسابات الإدارية                              [تعديل] [⋮]  │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  📋 المعلومات الأساسية                                         │ │
+│  │  المعرف: IAM-MFA-001  ·  النوع: ART-CTR  ·  المجال: SD-03.02  │ │
+│  │  الأولوية: 🔴 حرجة (10/10)  ·  الإلزام: ⚠️ إلزامي            │ │
+│  │  النضج المطلوب: MANAGED  ·  التكلفة: HIGH ($50K-$100K)         │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  📊 حالة التنفيذ                                               │ │
+│  │  التطبيق: ⏳ غير مطبق  ·  التحقق: ❌ غير متحقق                │ │
+│  │  الفعالية: ❓ غير معروفة  ·  الاستثناء: ✅ لا يوجد            │ │
+│  │  آخر مراجعة: 2026-07-10  ·  المراجعة القادمة: 2026-10-10       │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  👥 أصحاب المصلحة (RACI)                                       │ │
+│  │  ┌─────────────────────────────────────────────────────────────┐ │ │
+│  │  │  ● Owner: IAM Manager (محمد أحمد)                         │ │ │
+│  │  │  ● Reviewer: Security Architect (سارة خالد)               │ │ │
+│  │  │  ● Approver: CISO (أحمد علي)                              │ │ │
+│  │  │  ● Consulted: IT Operations                               │ │ │
+│  │  │  ● Informed: All Admin Users                              │ │ │
+│  │  └─────────────────────────────────────────────────────────────┘ │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  🔗 الكيانات المرتبطة                                          │ │
+│  │  ┌─────────────────────────────────────────────────────────────┐ │ │
+│  │  │  ● يعالج: اختراق الحسابات (ART-RSK-001)                   │ │ │
+│  │  │  ● يحقق: متطلب حماية الحسابات (ART-REQ-001)               │ │ │
+│  │  │  ● يعتمد على: نظام الهوية (ART-AST-001)                   │ │ │
+│  │  │  ● يقيسه: مؤشر تغطية MFA (ART-MET-001)                    │ │ │
+│  │  │  [عرض الرسم البياني]                                       │ │ │
+│  │  └─────────────────────────────────────────────────────────────┘ │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  📜 تاريخ النسخ والتغييرات                                     │ │
+│  │  ┌─────────────────────────────────────────────────────────────┐ │ │
+│  │  │  v3 (2026-07-10): Updated status by محمد أحمد             │ │ │
+│  │  │  v2 (2026-06-15): Added implementation steps              │ │ │
+│  │  │  v1 (2026-05-01): Initial creation by AI                  │ │ │
+│  │  │  [عرض جميع النسخ]                                          │ │ │
+│  │  └─────────────────────────────────────────────────────────────┘ │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  [ابدأ التنفيذ]  [تحديث الحالة]  [تصدير]  [عرض الرسم البياني]       │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### 6. صفحة المعلومات الأمنية (Security Info)
+
+**بدون تغييرات جوهرية** - تبقى كما هي في المقترح الأصلي.
+
+---
+
+### 7. صفحة الإعدادات (Settings) ⭐ **محسّنة**
+
+**الإضافات:**
+- Sync Settings
+- AI Settings (API Keys, Model Selection)
+- Notification Settings
+- Backup/Restore
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│  ⚙️ الإعدادات                                                       │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  🌐 اللغة والمظهر                                              │ │
+│  │  اللغة: [العربية ▼]  ·  إظهار المصطلحات الإنجليزية: [✓]     │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  🏢 السياق المؤسسي                                            │ │
+│  │  حجم المؤسسة: [كبيرة 500+]  ·  القطاع: [مالي]                 │ │
+│  │  النموذج التقني: [سحابي هجين]  ·  حساسية البيانات: [عالي]     │ │
+│  │  المستوى المستهدف: [MANAGED]  ·  الأطر: [NIST CSF, ISO 27001] │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  🔄 التزامن (Sync)                                            │ │
+│  │  وضع التزامن: [يدوي ▼]  ·  آخر تزامن: 2026-07-10 14:30       │ │
+│  │  [تزامن الآن]  [إعدادات متقدمة]                                │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  🤖 إعدادات الذكاء الاصطناعي                                   │ │
+│  │  النموذج: [GPT-4 ▼]  ·  API Key: [********]                    │ │
+│  │  Confidence Threshold: [0.70]  ·  Auto-Review: [✓]             │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  🔔 الإشعارات                                                  │ │
+│  │  ● إشعارات المراجعة البشرية    [✓]                             │ │
+│  │  ● إشعارات الفجوات الحرجة    [✓]                               │ │
+│  │  ● إشعارات التزامن            [ ]                              │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  💾 النسخ الاحتياطي                                            │ │
+│  │  [تصدير JSON]  [تصدير SQLite]  [استيراد]  [نسخ احتياطي تلقائي]│ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+│                                                                       │
+│  ┌───────────────────────────────────────────────────────────────────┐ │
+│  │  🔴 منطقة الخطر                                               │ │
+│  │  [مسح التقييم المحلي]  [إعادة ضبط التطبيق]                    │ │
+│  └───────────────────────────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## ملخص الشاشات والمحركات المُحسَّنة
+
+| الشاشة | الوظيفة | المحركات المستخدمة | الحالة |
+|--------|---------|-------------------|--------|
+| **Home** | لوحة القيادة | Progress, Recommendation, Priority | محسّنة |
+| **Catalog** | عرض وتصفية الكيانات | Filter, Classification | محسّنة |
+| **Indicators** | مؤشرات الاختراق | Priority, Classification | ⭐ **جديدة** |
+| **Review Queue** | مراجعة الذكاء الاصطناعي | Classification, Audit | ⭐ **جديدة** |
+| **Detail** | تفاصيل وإدارة الكيان | Classification, Priority, Audit | محسّنة |
+| **Security Info** | مركز المعرفة | - | كما هي |
+| **Settings** | تخصيص التطبيق | Context, Sync | محسّنة |
+
+| المحرك | الوظيفة | الشاشات المستخدمة | الحالة |
+|--------|---------|-------------------|--------|
+| Classification | تطبيق USACM/SDT | Catalog, Detail, Review Queue | محسّن |
+| Priority | حساب الأولويات بمخاطر متقدمة | Home, Catalog, Detail, Indicators | محسّن |
+| Recommendation | Quick Wins Matrix + Roadmap | Home | محسّن |
+| Progress | CMMC/ISO Maturity Levels | Home | محسّن |
+| Filter | Saved + Smart Filters | Catalog | محسّن |
+| Intake | استخراج من 7 مصادر | Home, Catalog | ⭐ **جديد** |
+| Sync | Offline-First Sync | Settings | ⭐ **جديد** |
+| Audit | Version History + Change Log | Detail | ⭐ **جديد** |
+
+---
+
+## الخلاصة التنفيذية
+
+| الجانب | v2.0 | v2.2 (المُحسَّن) | التحسن |
+|--------|------|------------------|--------|
+| **عدد الشاشات** | 5 | 7 | +2 |
+| **عدد المحركات** | 5 | 8 | +3 |
+| **Priority Engine** | بسيط | معادلة مخاطر متقدمة | ✅ |
+| **Recommendation Engine** | خطي | Quick Wins Matrix | ✅ |
+| **Progress Engine** | أساسي | CMMC/ISO Maturity | ✅ |
+| **Filter Engine** | أساسي | Saved + Smart Filters | ✅ |
+| **Indicators Page** | ❌ | ✅ | ⭐ **جديد** |
+| **Review Queue** | ❌ | ✅ | ⭐ **جديد** |
+| **Intake Pipeline** | ❌ | ✅ (7 methods) | ⭐ **جديد** |
+| **Sync Strategy** | ❌ | ✅ (Offline-First) | ⭐ **جديد** |
+| **Audit Trail** | ❌ | ✅ (Versioning) | ⭐ **جديد** |
+
+**التوصية النهائية:**
+✅ **اعتماد SecureGuide Mobile v2.2 كـ Production Baseline**
+✅ **البدء بتطوير Phase 1: Home + Catalog + Detail**
+✅ **ثم Phase 2: Indicators + Review Queue**
+✅ **ثم Phase 3: Intake Pipeline + Sync + Audit**
+
+هذا التصميم يُمثل **منصة حوكمة أمنية مؤسسية كاملة** جاهزة للإنتاج.

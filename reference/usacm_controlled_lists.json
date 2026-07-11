@@ -1,0 +1,1277 @@
+{
+  "ARTIFACT_TYPE": {
+    "section": "USACM-3",
+    "values": [
+      {
+        "code": "ART-REQ",
+        "name_en": "Requirement",
+        "name_ar": "متطلب"
+      },
+      {
+        "code": "ART-OBJ",
+        "name_en": "Security Objective",
+        "name_ar": "هدف أمني"
+      },
+      {
+        "code": "ART-PRI",
+        "name_en": "Security Principle",
+        "name_ar": "مبدأ أمني"
+      },
+      {
+        "code": "ART-POL",
+        "name_en": "Security Policy",
+        "name_ar": "سياسة أمنية"
+      },
+      {
+        "code": "ART-STD",
+        "name_en": "Security Standard",
+        "name_ar": "معيار أمني"
+      },
+      {
+        "code": "ART-CTR",
+        "name_en": "Security Control",
+        "name_ar": "ضابط أمني"
+      },
+      {
+        "code": "ART-CTE",
+        "name_en": "Control Enhancement",
+        "name_ar": "تحسين ضابط"
+      },
+      {
+        "code": "ART-PRO",
+        "name_en": "Security Process",
+        "name_ar": "عملية أمنية"
+      },
+      {
+        "code": "ART-PRC",
+        "name_en": "Security Procedure",
+        "name_ar": "إجراء أمني"
+      },
+      {
+        "code": "ART-PRG",
+        "name_en": "Security Program",
+        "name_ar": "برنامج أمني"
+      },
+      {
+        "code": "ART-PLN",
+        "name_en": "Security Plan",
+        "name_ar": "خطة أمنية"
+      },
+      {
+        "code": "ART-TSK",
+        "name_en": "Task",
+        "name_ar": "مهمة"
+      },
+      {
+        "code": "ART-CFG",
+        "name_en": "Technical Configuration",
+        "name_ar": "إعداد تقني"
+      },
+      {
+        "code": "ART-RUL",
+        "name_en": "Technical Rule",
+        "name_ar": "قاعدة فنية"
+      },
+      {
+        "code": "ART-EVD",
+        "name_en": "Evidence",
+        "name_ar": "دليل"
+      },
+      {
+        "code": "ART-MET",
+        "name_en": "Metric/KPI",
+        "name_ar": "مقياس/مؤشر أداء"
+      },
+      {
+        "code": "ART-EXC",
+        "name_en": "Security Exception",
+        "name_ar": "استثناء أمني"
+      },
+      {
+        "code": "ART-RSK",
+        "name_en": "Security Risk",
+        "name_ar": "خطر أمني"
+      },
+      {
+        "code": "ART-AST",
+        "name_en": "Information Asset",
+        "name_ar": "أصل معلوماتي"
+      },
+      {
+        "code": "ART-THR",
+        "name_en": "Threat",
+        "name_ar": "تهديد"
+      },
+      {
+        "code": "ART-VUL",
+        "name_en": "Vulnerability",
+        "name_ar": "ثغرة"
+      },
+      {
+        "code": "ART-OWN",
+        "name_en": "Owner/Role",
+        "name_ar": "مالك/دور"
+      }
+    ]
+  },
+  "ABSTRACTION_LEVEL": {
+    "section": "USACM-4.1",
+    "values": [
+      {
+        "code": "ABS-GOV",
+        "name_en": "Governance",
+        "name_ar": "حوكمة"
+      },
+      {
+        "code": "ABS-RIS",
+        "name_en": "Risk",
+        "name_ar": "مخاطر"
+      },
+      {
+        "code": "ABS-POL",
+        "name_en": "Policy",
+        "name_ar": "سياسات"
+      },
+      {
+        "code": "ABS-CTR",
+        "name_en": "Control",
+        "name_ar": "ضوابط"
+      },
+      {
+        "code": "ABS-PRO",
+        "name_en": "Procedure",
+        "name_ar": "إجراءات"
+      },
+      {
+        "code": "ABS-TEC",
+        "name_en": "Technical",
+        "name_ar": "تقني"
+      },
+      {
+        "code": "ABS-EVM",
+        "name_en": "Evidence/Measurement",
+        "name_ar": "أدلة/قياس"
+      }
+    ]
+  },
+  "OBLIGATION_SOURCE": {
+    "section": "USACM-4.2",
+    "values": [
+      {
+        "code": "SRC-REG",
+        "name_en": "Regulatory",
+        "name_ar": "تنظيمي"
+      },
+      {
+        "code": "SRC-LEG",
+        "name_en": "Legal",
+        "name_ar": "قانوني"
+      },
+      {
+        "code": "SRC-CON",
+        "name_en": "Contractual",
+        "name_ar": "تعاقدي"
+      },
+      {
+        "code": "SRC-STD",
+        "name_en": "Standard",
+        "name_ar": "معياري"
+      },
+      {
+        "code": "SRC-INT",
+        "name_en": "Internal",
+        "name_ar": "داخلي"
+      },
+      {
+        "code": "SRC-BST",
+        "name_en": "Best Practice",
+        "name_ar": "أفضل ممارسة"
+      },
+      {
+        "code": "SRC-RSK",
+        "name_en": "Risk-based",
+        "name_ar": "مبني على المخاطر"
+      }
+    ]
+  },
+  "OBLIGATION_LEVEL": {
+    "section": "USACM-4.3",
+    "values": [
+      {
+        "code": "OBL-MND",
+        "name_en": "Mandatory",
+        "name_ar": "إلزامي"
+      },
+      {
+        "code": "OBL-CON",
+        "name_en": "Conditional",
+        "name_ar": "مشروط"
+      },
+      {
+        "code": "OBL-REC",
+        "name_en": "Recommended",
+        "name_ar": "موصى به"
+      },
+      {
+        "code": "OBL-OPT",
+        "name_en": "Optional",
+        "name_ar": "اختياري"
+      }
+    ]
+  },
+  "EXCEPTION_STATUS": {
+    "section": "USACM-4.4",
+    "values": [
+      {
+        "code": "EXC-NONE",
+        "name_en": "None",
+        "name_ar": "لا يوجد"
+      },
+      {
+        "code": "EXC-NOT-APPLICABLE",
+        "name_en": "Not Applicable",
+        "name_ar": "غير منطبق"
+      },
+      {
+        "code": "EXC-RISK-ACCEPTED",
+        "name_en": "Risk Accepted",
+        "name_ar": "مقبول مع المخاطرة"
+      },
+      {
+        "code": "EXC-DEFERRED",
+        "name_en": "Deferred",
+        "name_ar": "مؤجل"
+      },
+      {
+        "code": "EXC-UNAVAILABLE",
+        "name_en": "Unavailable",
+        "name_ar": "غير متاح"
+      }
+    ]
+  },
+  "GRANULARITY_LEVEL": {
+    "section": "USACM-4.5",
+    "values": [
+      {
+        "code": "GRN-HIGH",
+        "name_en": "High-level",
+        "name_ar": null
+      },
+      {
+        "code": "GRN-MEDIUM",
+        "name_en": "Medium",
+        "name_ar": null
+      },
+      {
+        "code": "GRN-DETAILED",
+        "name_en": "Detailed",
+        "name_ar": null
+      },
+      {
+        "code": "GRN-EXECUTABLE",
+        "name_en": "Executable",
+        "name_ar": null
+      },
+      {
+        "code": "GRN-TECHNICAL",
+        "name_en": "Technical",
+        "name_ar": null
+      },
+      {
+        "code": "GRN-EVIDENTIARY",
+        "name_en": "Evidentiary",
+        "name_ar": null
+      },
+      {
+        "code": "GRN-METRIC",
+        "name_en": "Metric",
+        "name_ar": null
+      }
+    ]
+  },
+  "CONTROL_NATURE": {
+    "section": "USACM-4.6",
+    "values": [
+      {
+        "code": "NAT-ORG",
+        "name_en": "Organizational",
+        "name_ar": "تنظيمي"
+      },
+      {
+        "code": "NAT-HUM",
+        "name_en": "Human",
+        "name_ar": "بشري"
+      },
+      {
+        "code": "NAT-PHY",
+        "name_en": "Physical",
+        "name_ar": "مادي"
+      },
+      {
+        "code": "NAT-TEC",
+        "name_en": "Technical",
+        "name_ar": "تقني"
+      }
+    ]
+  },
+  "CONTROL_FUNCTION": {
+    "section": "USACM-4.7",
+    "values": [
+      {
+        "code": "FUN-PRE",
+        "name_en": "Preventive",
+        "name_ar": "وقائي"
+      },
+      {
+        "code": "FUN-DET",
+        "name_en": "Detective",
+        "name_ar": "كشفي"
+      },
+      {
+        "code": "FUN-COR",
+        "name_en": "Corrective",
+        "name_ar": "تصحيحي"
+      },
+      {
+        "code": "FUN-REC",
+        "name_en": "Recovery",
+        "name_ar": "استرداد"
+      },
+      {
+        "code": "FUN-DRR",
+        "name_en": "Deterrent",
+        "name_ar": "ردعي"
+      },
+      {
+        "code": "FUN-COM",
+        "name_en": "Compensating",
+        "name_ar": "تعويضي"
+      }
+    ]
+  },
+  "TESTABILITY": {
+    "section": "USACM-4.8",
+    "values": [
+      {
+        "code": "TST-AUTO",
+        "name_en": "Automated",
+        "name_ar": "آلي"
+      },
+      {
+        "code": "TST-MAN",
+        "name_en": "Manual",
+        "name_ar": "يدوي"
+      },
+      {
+        "code": "TST-DOC",
+        "name_en": "Documentary",
+        "name_ar": "مستندي"
+      },
+      {
+        "code": "TST-INT",
+        "name_en": "Interview",
+        "name_ar": "مقابلة"
+      },
+      {
+        "code": "TST-NA",
+        "name_en": "Not Testable",
+        "name_ar": "غير قابل للفحص"
+      }
+    ]
+  },
+  "IMPLEMENTATION_STATUS": {
+    "section": "USACM-4.9",
+    "values": [
+      {
+        "code": "STS-NOT-APPLIED",
+        "name_en": "Not Applied",
+        "name_ar": "غير مطبّق"
+      },
+      {
+        "code": "STS-PARTIAL",
+        "name_en": "Partial",
+        "name_ar": "مطبّق جزئياً"
+      },
+      {
+        "code": "STS-FULL",
+        "name_en": "Full",
+        "name_ar": "مطبّق كلياً"
+      },
+      {
+        "code": "STS-PLANNED",
+        "name_en": "Planned",
+        "name_ar": "مخطّط له"
+      },
+      {
+        "code": "STS-NEEDS-IMPROVEMENT",
+        "name_en": "Needs Improvement",
+        "name_ar": "يحتاج تحسيناً"
+      }
+    ]
+  },
+  "VERIFICATION_STATUS": {
+    "section": "USACM-4.10",
+    "values": [
+      {
+        "code": "VER-NOT-VERIFIED",
+        "name_en": "Not Verified",
+        "name_ar": "لم يُتحقق"
+      },
+      {
+        "code": "VER-PASS",
+        "name_en": "Pass",
+        "name_ar": "نجح"
+      },
+      {
+        "code": "VER-FAIL",
+        "name_en": "Fail",
+        "name_ar": "فشل"
+      }
+    ]
+  },
+  "EFFECTIVENESS": {
+    "section": "USACM-4.11",
+    "values": [
+      {
+        "code": "EFF-LOW",
+        "name_en": "Low",
+        "name_ar": "ضعيفة"
+      },
+      {
+        "code": "EFF-MEDIUM",
+        "name_en": "Medium",
+        "name_ar": "متوسطة"
+      },
+      {
+        "code": "EFF-HIGH",
+        "name_en": "High",
+        "name_ar": "عالية"
+      },
+      {
+        "code": "EFF-UNKNOWN",
+        "name_en": "Unknown",
+        "name_ar": "غير معروفة"
+      }
+    ]
+  },
+  "PRIORITY": {
+    "section": "USACM-4.12",
+    "values": [
+      {
+        "code": "PRI-CRITICAL",
+        "name_en": "Critical",
+        "name_ar": "حرجة"
+      },
+      {
+        "code": "PRI-HIGH",
+        "name_en": "High",
+        "name_ar": "عالية"
+      },
+      {
+        "code": "PRI-MEDIUM",
+        "name_en": "Medium",
+        "name_ar": "متوسطة"
+      },
+      {
+        "code": "PRI-LOW",
+        "name_en": "Low",
+        "name_ar": "منخفضة"
+      }
+    ]
+  },
+  "RELATIONSHIP_TYPE": {
+    "section": "USACM-4.13",
+    "values": [
+      {
+        "code": "REL-DER",
+        "name_en": "Derives From",
+        "name_ar": "مشتق من"
+      },
+      {
+        "code": "REL-SAT",
+        "name_en": "Satisfies",
+        "name_ar": "يحقق"
+      },
+      {
+        "code": "REL-SUP",
+        "name_en": "Supports",
+        "name_ar": "يدعم"
+      },
+      {
+        "code": "REL-SPL",
+        "name_en": "Specifies",
+        "name_ar": "يحدد"
+      },
+      {
+        "code": "REL-IMP",
+        "name_en": "Implements",
+        "name_ar": "يطبّق"
+      },
+      {
+        "code": "REL-VER",
+        "name_en": "Verifies",
+        "name_ar": "يتحقق من"
+      },
+      {
+        "code": "REL-MEA",
+        "name_en": "Measures",
+        "name_ar": "يقيس"
+      },
+      {
+        "code": "REL-MIT",
+        "name_en": "Mitigates",
+        "name_ar": "يخفف"
+      },
+      {
+        "code": "REL-AFF",
+        "name_en": "Affects",
+        "name_ar": "يؤثر على"
+      },
+      {
+        "code": "REL-EXC",
+        "name_en": "Exempts",
+        "name_ar": "يعفي"
+      },
+      {
+        "code": "REL-DEP",
+        "name_en": "Depends On",
+        "name_ar": "يعتمد على"
+      },
+      {
+        "code": "REL-CNF",
+        "name_en": "Conflicts With",
+        "name_ar": "يتعارض مع"
+      }
+    ]
+  },
+  "AI_REVIEW_STATUS": {
+    "section": "USACM-4.14",
+    "values": [
+      {
+        "code": "AIR-AUTO-ACCEPTED",
+        "name_en": "Auto Accepted",
+        "name_ar": "مقبول آلياً"
+      },
+      {
+        "code": "AIR-HUMAN-REVIEW",
+        "name_en": "Human Review",
+        "name_ar": "مراجعة بشرية"
+      },
+      {
+        "code": "AIR-HUMAN-APPROVED",
+        "name_en": "Human Approved",
+        "name_ar": "معتمد بشرياً"
+      },
+      {
+        "code": "AIR-HUMAN-REJECTED",
+        "name_en": "Human Rejected",
+        "name_ar": "مرفوض بشرياً"
+      }
+    ]
+  },
+  "REQUIREMENT_TYPE": {
+    "section": "USACM-4.15",
+    "values": [
+      {
+        "code": "RQT-GOV",
+        "name_en": "Governance",
+        "name_ar": "حوكمة"
+      },
+      {
+        "code": "RQT-REG",
+        "name_en": "Regulatory",
+        "name_ar": "تنظيمي"
+      },
+      {
+        "code": "RQT-LEG",
+        "name_en": "Legal",
+        "name_ar": "قانوني"
+      },
+      {
+        "code": "RQT-CON",
+        "name_en": "Contractual",
+        "name_ar": "تعاقدي"
+      },
+      {
+        "code": "RQT-STD",
+        "name_en": "Standard",
+        "name_ar": "معياري"
+      },
+      {
+        "code": "RQT-INT",
+        "name_en": "Internal",
+        "name_ar": "داخلي"
+      },
+      {
+        "code": "RQT-RSK",
+        "name_en": "Risk-based",
+        "name_ar": "مبني على المخاطر"
+      }
+    ]
+  },
+  "MAPPING_STRENGTH": {
+    "section": "USACM-4.16",
+    "values": [
+      {
+        "code": "DIRECT",
+        "name_en": "Direct",
+        "name_ar": "مباشر"
+      },
+      {
+        "code": "INDIRECT",
+        "name_en": "Indirect",
+        "name_ar": "غير مباشر"
+      },
+      {
+        "code": "PARTIAL",
+        "name_en": "Partial",
+        "name_ar": "جزئي"
+      },
+      {
+        "code": "INFORMATIVE",
+        "name_en": "Informative",
+        "name_ar": "إرشادي"
+      }
+    ]
+  },
+  "TAG_TYPE": {
+    "section": "USACM-4.17",
+    "values": [
+      {
+        "code": "Technology",
+        "name_en": "Technology",
+        "name_ar": "تقنية"
+      },
+      {
+        "code": "Framework",
+        "name_en": "Framework",
+        "name_ar": "إطار"
+      },
+      {
+        "code": "Concept",
+        "name_en": "Concept",
+        "name_ar": "مفهوم"
+      },
+      {
+        "code": "Context",
+        "name_en": "Context",
+        "name_ar": "سياق"
+      },
+      {
+        "code": "Threat",
+        "name_en": "Threat",
+        "name_ar": "تهديد"
+      },
+      {
+        "code": "Data",
+        "name_en": "Data",
+        "name_ar": "بيانات"
+      },
+      {
+        "code": "Party",
+        "name_en": "Party",
+        "name_ar": "طرف"
+      }
+    ]
+  },
+  "REVIEW_FREQUENCY": {
+    "section": "USACM-4.18",
+    "values": [
+      {
+        "code": "DAILY",
+        "name_en": "Daily",
+        "name_ar": "يومي"
+      },
+      {
+        "code": "WEEKLY",
+        "name_en": "Weekly",
+        "name_ar": "أسبوعي"
+      },
+      {
+        "code": "MONTHLY",
+        "name_en": "Monthly",
+        "name_ar": "شهري"
+      },
+      {
+        "code": "QUARTERLY",
+        "name_en": "Quarterly",
+        "name_ar": "ربع سنوي"
+      },
+      {
+        "code": "SEMI-ANNUAL",
+        "name_en": "Semi-Annual",
+        "name_ar": "نصف سنوي"
+      },
+      {
+        "code": "ANNUAL",
+        "name_en": "Annual",
+        "name_ar": "سنوي"
+      },
+      {
+        "code": "BIENNIAL",
+        "name_en": "Biennial",
+        "name_ar": "كل سنتين"
+      },
+      {
+        "code": "AD-HOC",
+        "name_en": "Ad-hoc",
+        "name_ar": "عند الحاجة"
+      },
+      {
+        "code": "CONTINUOUS",
+        "name_en": "Continuous",
+        "name_ar": "مستمر"
+      }
+    ]
+  },
+  "PUBLICATION_STATUS": {
+    "section": "USACM-4.19",
+    "values": [
+      {
+        "code": "DRAFT",
+        "name_en": "Draft",
+        "name_ar": "مسودة"
+      },
+      {
+        "code": "UNDER_REVIEW",
+        "name_en": "Under Review",
+        "name_ar": "قيد المراجعة"
+      },
+      {
+        "code": "APPROVED",
+        "name_en": "Approved",
+        "name_ar": "معتمد"
+      },
+      {
+        "code": "PUBLISHED",
+        "name_en": "Published",
+        "name_ar": "منشور"
+      },
+      {
+        "code": "DEPRECATED",
+        "name_en": "Deprecated",
+        "name_ar": "مهمَل"
+      },
+      {
+        "code": "WITHDRAWN",
+        "name_en": "Withdrawn",
+        "name_ar": "مسحوب"
+      }
+    ]
+  },
+  "SOURCE_TYPE": {
+    "section": "USACM-4.20",
+    "values": [
+      {
+        "code": "DOCUMENT",
+        "name_en": "Document",
+        "name_ar": "مستند"
+      },
+      {
+        "code": "SYSTEM",
+        "name_en": "System",
+        "name_ar": "نظام"
+      },
+      {
+        "code": "TOOL",
+        "name_en": "Tool",
+        "name_ar": "أداة"
+      },
+      {
+        "code": "INTERVIEW",
+        "name_en": "Interview",
+        "name_ar": "مقابلة"
+      },
+      {
+        "code": "OBSERVATION",
+        "name_en": "Observation",
+        "name_ar": "ملاحظة"
+      },
+      {
+        "code": "STANDARD",
+        "name_en": "Standard",
+        "name_ar": "معيار"
+      },
+      {
+        "code": "REGULATION",
+        "name_en": "Regulation",
+        "name_ar": "لائحة"
+      }
+    ]
+  },
+  "CATALOG_SOURCE_TYPE": {
+    "section": "SCHEMA-001",
+    "values": [
+      {
+        "code": "FRAMEWORK",
+        "name_en": "Framework",
+        "name_ar": "إطار"
+      },
+      {
+        "code": "STANDARD",
+        "name_en": "Standard",
+        "name_ar": "معيار"
+      },
+      {
+        "code": "THREAT_INTEL",
+        "name_en": "Threat Intelligence",
+        "name_ar": "استخبارات تهديد"
+      },
+      {
+        "code": "GUIDELINE",
+        "name_en": "Guideline",
+        "name_ar": "إرشادات"
+      },
+      {
+        "code": "POLICY_TEMPLATE",
+        "name_en": "Policy Template",
+        "name_ar": "قالب سياسة"
+      },
+      {
+        "code": "REGULATION",
+        "name_en": "Regulation",
+        "name_ar": "لائحة"
+      },
+      {
+        "code": "DOCUMENT",
+        "name_en": "Document",
+        "name_ar": "مستند"
+      },
+      {
+        "code": "SYSTEM",
+        "name_en": "System",
+        "name_ar": "نظام"
+      },
+      {
+        "code": "TOOL",
+        "name_en": "Tool",
+        "name_ar": "أداة"
+      }
+    ]
+  },
+  "ASSET_TYPE": {
+    "section": "USACM-4.21",
+    "values": [
+      {
+        "code": "HARDWARE",
+        "name_en": "Hardware",
+        "name_ar": "أجهزة"
+      },
+      {
+        "code": "SOFTWARE",
+        "name_en": "Software",
+        "name_ar": "برمجيات"
+      },
+      {
+        "code": "DATA",
+        "name_en": "Data",
+        "name_ar": "بيانات"
+      },
+      {
+        "code": "SERVICE",
+        "name_en": "Service",
+        "name_ar": "خدمة"
+      },
+      {
+        "code": "FACILITY",
+        "name_en": "Facility",
+        "name_ar": "منشأة"
+      },
+      {
+        "code": "PERSONNEL",
+        "name_en": "Personnel",
+        "name_ar": "أفراد"
+      },
+      {
+        "code": "NETWORK",
+        "name_en": "Network",
+        "name_ar": "شبكة"
+      },
+      {
+        "code": "CLOUD_INSTANCE",
+        "name_en": "Cloud Instance",
+        "name_ar": "نسخة سحابية"
+      },
+      {
+        "code": "DOCUMENT",
+        "name_en": "Document",
+        "name_ar": "وثيقة"
+      },
+      {
+        "code": "INTELLECTUAL_PROPERTY",
+        "name_en": "Intellectual Property",
+        "name_ar": "ملكية فكرية"
+      }
+    ]
+  },
+  "MATURITY_LEVEL": {
+    "section": "USACM-4.22",
+    "values": [
+      {
+        "code": "INITIAL",
+        "name_en": "Initial",
+        "name_ar": "مبدئي"
+      },
+      {
+        "code": "REPEATABLE",
+        "name_en": "Repeatable",
+        "name_ar": "قابل للتكرار"
+      },
+      {
+        "code": "DEFINED",
+        "name_en": "Defined",
+        "name_ar": "محدد"
+      },
+      {
+        "code": "MANAGED",
+        "name_en": "Managed",
+        "name_ar": "مُدار"
+      },
+      {
+        "code": "OPTIMIZED",
+        "name_en": "Optimized",
+        "name_ar": "مُحسَّن"
+      }
+    ]
+  },
+  "COST_CATEGORY": {
+    "section": "USACM-4.23",
+    "values": [
+      {
+        "code": "LOW",
+        "name_en": "Low",
+        "name_ar": "منخفضة"
+      },
+      {
+        "code": "MEDIUM",
+        "name_en": "Medium",
+        "name_ar": "متوسطة"
+      },
+      {
+        "code": "HIGH",
+        "name_en": "High",
+        "name_ar": "عالية"
+      },
+      {
+        "code": "VERY_HIGH",
+        "name_en": "Very High",
+        "name_ar": "عالية جداً"
+      }
+    ]
+  },
+  "IMPORT_STATUS": {
+    "section": "USACM-4.24",
+    "values": [
+      {
+        "code": "NEW",
+        "name_en": "New",
+        "name_ar": "جديد"
+      },
+      {
+        "code": "IMPORTED",
+        "name_en": "Imported",
+        "name_ar": "مستورد"
+      },
+      {
+        "code": "UPDATED",
+        "name_en": "Updated",
+        "name_ar": "محدّث"
+      },
+      {
+        "code": "MERGED",
+        "name_en": "Merged",
+        "name_ar": "مدموج"
+      },
+      {
+        "code": "CONFLICT",
+        "name_en": "Conflict",
+        "name_ar": "متعارض"
+      },
+      {
+        "code": "REJECTED",
+        "name_en": "Rejected",
+        "name_ar": "مرفوض"
+      }
+    ]
+  },
+  "APPLICABILITY_SCOPE_TYPE": {
+    "section": "USACM-8",
+    "values": [
+      {
+        "code": "ORGANIZATION_SIZE",
+        "name_en": "Organization Size",
+        "name_ar": "حجم المؤسسة"
+      },
+      {
+        "code": "INDUSTRY",
+        "name_en": "Industry",
+        "name_ar": "القطاع"
+      },
+      {
+        "code": "GEOGRAPHIC_REGION",
+        "name_en": "Geographic Region",
+        "name_ar": "المنطقة الجغرافية"
+      },
+      {
+        "code": "BUSINESS_UNIT",
+        "name_en": "Business Unit",
+        "name_ar": "وحدة العمل"
+      },
+      {
+        "code": "ENTITY_TYPE",
+        "name_en": "Entity Type",
+        "name_ar": "نوع الكيان"
+      },
+      {
+        "code": "REGULATORY_SCOPE",
+        "name_en": "Regulatory Scope",
+        "name_ar": "النطاق التنظيمي"
+      },
+      {
+        "code": "REGULATORY_JURISDICTION",
+        "name_en": "Regulatory Jurisdiction",
+        "name_ar": "الاختصاص التنظيمي"
+      },
+      {
+        "code": "EXCLUSION",
+        "name_en": "Exclusion",
+        "name_ar": "استثناء"
+      }
+    ]
+  },
+  "DEPENDENCY_TYPE": {
+    "section": "USACM-8",
+    "values": [
+      {
+        "code": "SYSTEM",
+        "name_en": "System",
+        "name_ar": null
+      },
+      {
+        "code": "PLATFORM",
+        "name_en": "Platform",
+        "name_ar": null
+      },
+      {
+        "code": "VENDOR",
+        "name_en": "Vendor",
+        "name_ar": null
+      },
+      {
+        "code": "SKILL",
+        "name_en": "Skill",
+        "name_ar": null
+      },
+      {
+        "code": "BUDGET",
+        "name_en": "Budget",
+        "name_ar": null
+      }
+    ]
+  },
+  "DEPENDENCY_STATUS": {
+    "section": "USACM-8",
+    "values": [
+      {
+        "code": "AVAILABLE",
+        "name_en": "Available",
+        "name_ar": null
+      },
+      {
+        "code": "NOT_AVAILABLE",
+        "name_en": "Not Available",
+        "name_ar": null
+      },
+      {
+        "code": "PARTIAL",
+        "name_en": "Partial",
+        "name_ar": null
+      },
+      {
+        "code": "PLANNED",
+        "name_en": "Planned",
+        "name_ar": null
+      }
+    ]
+  },
+  "VERIFICATION_TOOL_TYPE": {
+    "section": "USACM-8",
+    "values": [
+      {
+        "code": "SIEM",
+        "name_en": "SIEM",
+        "name_ar": null
+      },
+      {
+        "code": "EDR",
+        "name_en": "EDR",
+        "name_ar": null
+      },
+      {
+        "code": "IAM",
+        "name_en": "IAM",
+        "name_ar": null
+      },
+      {
+        "code": "VULNERABILITY",
+        "name_en": "Vulnerability",
+        "name_ar": null
+      },
+      {
+        "code": "CSPM",
+        "name_en": "CSPM",
+        "name_ar": null
+      },
+      {
+        "code": "MANUAL",
+        "name_en": "Manual",
+        "name_ar": null
+      }
+    ]
+  },
+  "VERIFICATION_METHOD": {
+    "section": "USACM-8",
+    "values": [
+      {
+        "code": "API",
+        "name_en": "API",
+        "name_ar": null
+      },
+      {
+        "code": "LOG",
+        "name_en": "Log",
+        "name_ar": null
+      },
+      {
+        "code": "REPORT",
+        "name_en": "Report",
+        "name_ar": null
+      },
+      {
+        "code": "INTERVIEW",
+        "name_en": "Interview",
+        "name_ar": null
+      },
+      {
+        "code": "OBSERVATION",
+        "name_en": "Observation",
+        "name_ar": null
+      }
+    ]
+  },
+  "STAKEHOLDER_RESPONSIBILITY": {
+    "section": "USACM-8",
+    "values": [
+      {
+        "code": "OWNER",
+        "name_en": "Owner",
+        "name_ar": "مالك"
+      },
+      {
+        "code": "REVIEWER",
+        "name_en": "Reviewer",
+        "name_ar": "مراجع"
+      },
+      {
+        "code": "APPROVER",
+        "name_en": "Approver",
+        "name_ar": "معتمِد"
+      },
+      {
+        "code": "CONSULTED",
+        "name_en": "Consulted",
+        "name_ar": "مستشار"
+      },
+      {
+        "code": "INFORMED",
+        "name_en": "Informed",
+        "name_ar": "مُبلَّغ"
+      }
+    ]
+  },
+  "EXTERNAL_REFERENCE_TYPE": {
+    "section": "USACM-8",
+    "values": [
+      {
+        "code": "ARTICLE",
+        "name_en": "Article",
+        "name_ar": null
+      },
+      {
+        "code": "BLOG",
+        "name_en": "Blog",
+        "name_ar": null
+      },
+      {
+        "code": "TOOL",
+        "name_en": "Tool",
+        "name_ar": null
+      },
+      {
+        "code": "VIDEO",
+        "name_en": "Video",
+        "name_ar": null
+      },
+      {
+        "code": "STUDY",
+        "name_en": "Study",
+        "name_ar": null
+      },
+      {
+        "code": "BENCHMARK",
+        "name_en": "Benchmark",
+        "name_ar": null
+      }
+    ]
+  },
+  "SELF_ASSESSMENT_STATUS": {
+    "section": "USACM-8",
+    "values": [
+      {
+        "code": "NOT_ASSESSED",
+        "name_en": "Not Assessed",
+        "name_ar": null
+      },
+      {
+        "code": "IN_PROGRESS",
+        "name_en": "In Progress",
+        "name_ar": null
+      },
+      {
+        "code": "COMPLETED",
+        "name_en": "Completed",
+        "name_ar": null
+      },
+      {
+        "code": "NEEDS_REVIEW",
+        "name_en": "Needs Review",
+        "name_ar": null
+      }
+    ]
+  },
+  "RESOLUTION_STATUS": {
+    "section": "USACM-8",
+    "values": [
+      {
+        "code": "PENDING",
+        "name_en": "Pending",
+        "name_ar": null
+      },
+      {
+        "code": "RESOLVED",
+        "name_en": "Resolved",
+        "name_ar": null
+      },
+      {
+        "code": "ACCEPTED",
+        "name_en": "Accepted",
+        "name_ar": null
+      },
+      {
+        "code": "REJECTED",
+        "name_en": "Rejected",
+        "name_ar": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,119 @@
+[
+  {
+    "source": "CIS Controls v8",
+    "reference": "1.1",
+    "raw_text": "Establish and maintain an accurate, detailed, and up-to-date inventory of all enterprise assets with the potential to store or process data, to include: end-user devices (including portable and mobile), network devices, non-computing/Internet of Things (IoT) devices, and servers.",
+    "explicit_info": {
+      "control": "Control 1: Inventory and Control of Enterprise Assets",
+      "tags": ["Asset Inventory", "Hardware", "Enterprise Assets"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "1.2",
+    "raw_text": "Ensure that a process exists to address unauthorized assets on a weekly basis.",
+    "explicit_info": {
+      "control": "Control 1: Inventory and Control of Enterprise Assets",
+      "tags": ["Unauthorized Assets", "Incident Management"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "2.1",
+    "raw_text": "Establish and maintain a detailed inventory of all licensed software installed on enterprise assets.",
+    "explicit_info": {
+      "control": "Control 2: Inventory and Control of Software Assets",
+      "tags": ["Software Inventory", "Licensing"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "2.2",
+    "raw_text": "Ensure that only currently supported software and software components are used in the enterprise. Software that is unsupported or out-of-date must be updated or replaced.",
+    "explicit_info": {
+      "control": "Control 2: Inventory and Control of Software Assets",
+      "tags": ["Supported Software", "Patch Management"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "3.1",
+    "raw_text": "Establish and maintain a data management process, to include data sensitivity, data owner, handling of data, data retention limits, and disposal requirements.",
+    "explicit_info": {
+      "control": "Control 3: Data Protection",
+      "tags": ["Data Management", "Data Classification", "Data Ownership"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "3.3",
+    "raw_text": "Configure data access control lists based on a user’s need to know. Apply the 'least privilege' principle.",
+    "explicit_info": {
+      "control": "Control 3: Data Protection",
+      "tags": ["Access Control Lists (ACL)", "Least Privilege", "Need to Know"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "4.1",
+    "raw_text": "Establish and maintain a secure configuration process for enterprise assets and software. Review and update documentation annually.",
+    "explicit_info": {
+      "control": "Control 4: Secure Configuration of Enterprise Assets and Software",
+      "tags": ["Secure Configuration", "Hardening"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "5.1",
+    "raw_text": "Establish and maintain an inventory of all accounts managed in the enterprise, including user, administrator, and service accounts.",
+    "explicit_info": {
+      "control": "Control 5: Account Management",
+      "tags": ["Account Inventory", "Identity Management"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "5.2",
+    "raw_text": "Use unique passwords for all enterprise assets. Do not use the same password for multiple assets.",
+    "explicit_info": {
+      "control": "Control 5: Account Management",
+      "tags": ["Unique Passwords", "Credential Management"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "5.3",
+    "raw_text": "Disable dormant accounts after 45 days of inactivity, where supported.",
+    "explicit_info": {
+      "control": "Control 5: Account Management",
+      "tags": ["Dormant Accounts", "Access Revocation"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "6.1",
+    "raw_text": "Establish and follow a process, preferably automated, for granting access to enterprise assets upon new hire, rights grant, or role change of a user.",
+    "explicit_info": {
+      "control": "Control 6: Access Control Management",
+      "tags": ["Access Provisioning", "Role-Based Access Control (RBAC)"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "6.3",
+    "raw_text": "Require all external or remote access to the enterprise network, such as VPN, to use Multi-Factor Authentication (MFA).",
+    "explicit_info": {
+      "control": "Control 6: Access Control Management",
+      "tags": ["Multi-Factor Authentication (MFA)", "Remote Access", "VPN"]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "6.5",
+    "raw_text": "Require Multi-Factor Authentication (MFA) for all administrative access to enterprise assets.",
+    "explicit_info": {
+      "control": "Control 6: Access Control Management",
+      "tags": ["Multi-Factor Authentication (MFA)", "Administrative Access", "Privileged Access"]
+    }
+  }
+]

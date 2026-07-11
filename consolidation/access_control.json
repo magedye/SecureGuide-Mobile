@@ -1,0 +1,2298 @@
+{
+  "group_id": "GRP-access_control",
+  "concept": "Authorization & Access Control",
+  "expected_sub_domain": "SD-03.03",
+  "member_count": 125,
+  "source_coverage": [
+    "CIS Controls v8",
+    "CIS Linux/Unix Security Benchmarks",
+    "Enterprise Infrastructure Hardening Guides",
+    "Essential Cybersecurity Controls (ECC 2-2024)",
+    "ISO 27002:2022",
+    "MITRE ATT&CK Enterprise",
+    "NCA ECC-1:2018",
+    "NIST CSF 2.0",
+    "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+    "OWASP Application Security Verification Standard 5.0.0",
+    "PCI DSS v4.0",
+    "SANS Security Policy Templates",
+    "The NIST Cybersecurity Framework (CSF) 2.0"
+  ],
+  "instructions": "Decide per CONSOLIDATION_POLICY.md: one of CANONICALIZE | EQUIVALENCE_GROUP | CROSSWALK_ONLY | RELATE_ONLY | KEEP_SEPARATE | DEPRECATE_DERIVED. If merging, author an English canonical per AUTHORING_POLICY.md and set mapping_strength per source. Do NOT invent USACM/SDT values. Do NOT delete raw records.",
+  "members": [
+    {
+      "raw_id": "cis_controls_v8::0005",
+      "external_raw_id": "RAW-BATCH-5681D583",
+      "source_document": "CIS Controls v8",
+      "source_version": "Unknown",
+      "source_section": "3.3",
+      "title_draft": "3.3",
+      "description": "Configure data access control lists based on a user’s need to know. Apply the 'least privilege' principle.",
+      "keywords": [
+        "Access Control Lists (ACL)",
+        "Least Privilege",
+        "Need to Know"
+      ]
+    },
+    {
+      "raw_id": "cis_controls_v8::0010",
+      "external_raw_id": "RAW-BATCH-D17290F4",
+      "source_document": "CIS Controls v8",
+      "source_version": "Unknown",
+      "source_section": "6.1",
+      "title_draft": "6.1",
+      "description": "Establish and follow a process, preferably automated, for granting access to enterprise assets upon new hire, rights grant, or role change of a user.",
+      "keywords": [
+        "Access Provisioning",
+        "Role-Based Access Control (RBAC)"
+      ]
+    },
+    {
+      "raw_id": "cis_controls_v8::0011",
+      "external_raw_id": "RAW-BATCH-D97F33FF",
+      "source_document": "CIS Controls v8",
+      "source_version": "Unknown",
+      "source_section": "6.3",
+      "title_draft": "6.3",
+      "description": "Require all external or remote access to the enterprise network, such as VPN, to use Multi-Factor Authentication (MFA).",
+      "keywords": [
+        "Multi-Factor Authentication (MFA)",
+        "Remote Access",
+        "VPN"
+      ]
+    },
+    {
+      "raw_id": "cis_controls_v8::0012",
+      "external_raw_id": "RAW-BATCH-F4AEEB4F",
+      "source_document": "CIS Controls v8",
+      "source_version": "Unknown",
+      "source_section": "6.5",
+      "title_draft": "6.5",
+      "description": "Require Multi-Factor Authentication (MFA) for all administrative access to enterprise assets.",
+      "keywords": [
+        "Multi-Factor Authentication (MFA)",
+        "Administrative Access",
+        "Privileged Access"
+      ]
+    },
+    {
+      "raw_id": "cis_linux_unix_benchmarks::0001",
+      "external_raw_id": "RAW-LNX-CC7D27E5",
+      "source_document": "CIS Linux/Unix Security Benchmarks",
+      "source_version": "Current",
+      "source_section": "Section 1.6",
+      "title_draft": "Mandatory Access Control (MAC)",
+      "description": "Ensure a Mandatory Access Control system like SELinux or AppArmor is installed, enabled, and enforcing security policies.",
+      "keywords": [
+        "selinux",
+        "apparmor",
+        "mac",
+        "access control"
+      ]
+    },
+    {
+      "raw_id": "enterprise_infrastructure_benchmarks::0002",
+      "external_raw_id": "RAW-INF-836B478F",
+      "source_document": "Enterprise Infrastructure Hardening Guides",
+      "source_version": "Current",
+      "source_section": "FW-01",
+      "title_draft": "Firewall: Default Deny Rule",
+      "description": "Implement a default-deny (implicit deny) rule at the end of the Access Control List (ACL) to block all traffic that is not explicitly allowed.",
+      "keywords": [
+        "firewall",
+        "network",
+        "default deny",
+        "acl"
+      ]
+    },
+    {
+      "raw_id": "enterprise_infrastructure_benchmarks::0004",
+      "external_raw_id": "RAW-INF-68B1EB81",
+      "source_document": "Enterprise Infrastructure Hardening Guides",
+      "source_version": "Current",
+      "source_section": "SW-01",
+      "title_draft": "Switch: Port Security & 802.1X",
+      "description": "Implement IEEE 802.1X for port-based Network Access Control (NAC) and limit the number of MAC addresses allowed per switch port.",
+      "keywords": [
+        "switch",
+        "network",
+        "802.1x",
+        "port security",
+        "mac"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0043",
+      "external_raw_id": "RAW-001691",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 2-2-3 (Identity and Access Management)",
+      "title_draft": "2-2-3: Identity and Access Management",
+      "description": "Cybersecurity requirements for identity and access management of the entity shall include the following as a minimum: 2.2.3.1 Single-factor authentication based on username and password.",
+      "keywords": [
+        "access",
+        "authentication",
+        "identity",
+        "management",
+        "based",
+        "principle",
+        "suitable",
+        "privileged"
+      ]
+    },
+    {
+      "raw_id": "iso_27002_2022::0008",
+      "external_raw_id": "RAW-BATCH-00C4637D",
+      "source_document": "ISO 27002:2022",
+      "source_version": "Unknown",
+      "source_section": "8.11",
+      "title_draft": "8.11",
+      "description": "Data masking should be used in accordance with the organization's topic-specific policy on access control and other related topic-specific policies, and business requirements, taking applicable legislation into consideration.",
+      "keywords": [
+        "Data Masking",
+        "Privacy",
+        "Access Control"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0008",
+      "external_raw_id": "RAW-001764",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1156",
+      "title_draft": "T1156 — Malicious Shell Modification",
+      "description": "Adversaries may establish persistence through executing malicious commands triggered by a user’s shell.",
+      "keywords": [
+        "code",
+        "shell",
+        "etc",
+        "user",
+        "adversaries",
+        "login",
+        "environment",
+        "malicious"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0031",
+      "external_raw_id": "RAW-001787",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1222.002",
+      "title_draft": "T1222.002 — Linux and Mac Permissions",
+      "description": "Adversaries may modify file or directory permissions/attributes to evade access control lists (ACLs) and access protected files.(Citation: Hybrid Analysis Icacls1 June 2018)(Citation: Hybrid Analysis Icacls2 May 2018) File and directory permissions are commonly managed by ACLs configured by the file or directory owner, or users",
+      "keywords": [
+        "permissions",
+        "file",
+        "directory",
+        "code",
+        "techniques",
+        "linux",
+        "acls",
+        "files"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0059",
+      "external_raw_id": "RAW-001815",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1485.001",
+      "title_draft": "T1485.001 — Lifecycle-Triggered Deletion",
+      "description": "Adversaries may modify the lifecycle policies of a cloud storage bucket to destroy all objects stored within.",
+      "keywords": [
+        "citation",
+        "storage",
+        "lifecycle",
+        "cloud",
+        "objects",
+        "policies",
+        "bucket",
+        "all"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0081",
+      "external_raw_id": "RAW-001837",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1069",
+      "title_draft": "T1069 — Permission Groups Discovery",
+      "description": "Adversaries may attempt to discover group and permission settings.",
+      "keywords": [
+        "groups",
+        "permission",
+        "adversaries",
+        "discovery",
+        "attempt",
+        "discover",
+        "group",
+        "settings"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0087",
+      "external_raw_id": "RAW-001843",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1069.003",
+      "title_draft": "T1069.003 — Cloud Groups",
+      "description": "Adversaries may attempt to find cloud groups and permission settings.",
+      "keywords": [
+        "groups",
+        "code",
+        "citation",
+        "cloud",
+        "permissions",
+        "accounts",
+        "api",
+        "adversaries"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0088",
+      "external_raw_id": "RAW-001844",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1574.011",
+      "title_draft": "T1574.011 — Services Registry Permissions Weakness",
+      "description": "Adversaries may execute their own malicious payloads by hijacking the Registry entries used by services.",
+      "keywords": [
+        "code",
+        "service",
+        "registry",
+        "dll",
+        "citation",
+        "key",
+        "adversaries",
+        "services"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0154",
+      "external_raw_id": "RAW-001910",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1069.002",
+      "title_draft": "T1069.002 — Domain Groups",
+      "description": "Adversaries may attempt to find domain-level groups and permission settings.",
+      "keywords": [
+        "code",
+        "groups",
+        "domain",
+        "adversaries",
+        "domain-level",
+        "group",
+        "permission",
+        "determine"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0195",
+      "external_raw_id": "RAW-001951",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1222.001",
+      "title_draft": "T1222.001 — Windows Permissions",
+      "description": "Adversaries may modify file or directory permissions/attributes to evade access control lists (ACLs) and access protected files.(Citation: Hybrid Analysis Icacls1 June 2018)(Citation: Hybrid Analysis Icacls2 May 2018) File and directory permissions are commonly managed by ACLs configured by the file or directory owner, or users",
+      "keywords": [
+        "access",
+        "file",
+        "directory",
+        "permissions",
+        "techniques",
+        "windows",
+        "citation",
+        "dacls"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0203",
+      "external_raw_id": "RAW-001959",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1098.006",
+      "title_draft": "T1098.006 — Additional Container Cluster Roles",
+      "description": "An adversary may add additional roles or permissions to an adversary-controlled user or service account to maintain persistent access to a container orchestration system.",
+      "keywords": [
+        "kubernetes",
+        "service",
+        "account",
+        "citation",
+        "additional",
+        "roles",
+        "permissions",
+        "attack"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0219",
+      "external_raw_id": "RAW-001975",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1058",
+      "title_draft": "T1058 — Service Registry Permissions Weakness",
+      "description": "Windows stores local service configuration information in the Registry under <code>HKLM\\SYSTEM\\CurrentControlSet\\Services</code>.",
+      "keywords": [
+        "service",
+        "registry",
+        "under",
+        "code",
+        "keys",
+        "permissions",
+        "access",
+        "citation"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0316",
+      "external_raw_id": "RAW-002072",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1207",
+      "title_draft": "T1207 — Rogue Domain Controller",
+      "description": "Adversaries may register a rogue Domain Controller to enable manipulation of Active Directory data.",
+      "keywords": [
+        "rogue",
+        "domain",
+        "dcshadow",
+        "citation",
+        "controller",
+        "objects",
+        "blog",
+        "technique"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0334",
+      "external_raw_id": "RAW-002090",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1484.001",
+      "title_draft": "T1484.001 — Group Policy Modification",
+      "description": "Adversaries may modify Group Policy Objects (GPOs) to subvert the intended discretionary access controls for a domain, usually with the intention of escalating privileges on the domain.",
+      "keywords": [
+        "citation",
+        "gpos",
+        "gpo",
+        "domain",
+        "https",
+        "attack",
+        "mitre",
+        "org"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0355",
+      "external_raw_id": "RAW-002111",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1222",
+      "title_draft": "T1222 — File and Directory Permissions Modification",
+      "description": "Adversaries may modify file or directory permissions/attributes to evade access control lists (ACLs) and access protected files.(Citation: Hybrid Analysis Icacls1 June 2018)(Citation: Hybrid Analysis Icacls2 May 2018) File and directory permissions are commonly managed by ACLs configured by the file or directory owner, or users",
+      "keywords": [
+        "file",
+        "directory",
+        "permissions",
+        "citation",
+        "techniques",
+        "access",
+        "files",
+        "https"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0368",
+      "external_raw_id": "RAW-002124",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1021.003",
+      "title_draft": "T1021.003 — Distributed Component Object Model",
+      "description": "Adversaries may use [Valid Accounts](https://attack.mitre.org/techniques/T1078) to interact with remote machines by taking advantage of Distributed Component Object Model (DCOM).",
+      "keywords": [
+        "com",
+        "dcom",
+        "citation",
+        "windows",
+        "objects",
+        "through",
+        "component",
+        "object"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0392",
+      "external_raw_id": "RAW-002148",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1548.005",
+      "title_draft": "T1548.005 — Temporary Elevated Cloud Access",
+      "description": "Adversaries may abuse permission configurations that allow them to gain temporarily elevated access to cloud resources.",
+      "keywords": [
+        "cloud",
+        "access",
+        "citation",
+        "account",
+        "service",
+        "accounts",
+        "roles",
+        "permissions"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0394",
+      "external_raw_id": "RAW-002150",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1144",
+      "title_draft": "T1144 — Gatekeeper Bypass",
+      "description": "In macOS and OS X, when applications or programs are downloaded from the internet, there is a special attribute set on the file called <code>com.apple.quarantine</code>.",
+      "keywords": [
+        "code",
+        "quarantine",
+        "gatekeeper",
+        "macos",
+        "attribute",
+        "file",
+        "apple",
+        "flag"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0412",
+      "external_raw_id": "RAW-002168",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1564.014",
+      "title_draft": "T1564.014 — Extended Attributes",
+      "description": "Adversaries may abuse extended attributes (xattrs) on macOS and Linux to hide their malicious data in order to evade detection.",
+      "keywords": [
+        "linux",
+        "extended",
+        "xattrs",
+        "macos",
+        "attributes",
+        "file",
+        "payload",
+        "xattr"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0417",
+      "external_raw_id": "RAW-002173",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1175",
+      "title_draft": "T1175 — Component Object Model and Distributed COM",
+      "description": "**This technique has been deprecated.",
+      "keywords": [
+        "com",
+        "citation",
+        "dcom",
+        "execution",
+        "component",
+        "object",
+        "microsoft",
+        "model"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0461",
+      "external_raw_id": "RAW-002217",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1059.008",
+      "title_draft": "T1059.008 — Network Device CLI",
+      "description": "Adversaries may abuse scripting or built-in command line interpreters (CLI) on network devices to execute malicious command and payloads.",
+      "keywords": [
+        "network",
+        "cli",
+        "device",
+        "scripting",
+        "command",
+        "devices",
+        "through",
+        "adversaries"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0537",
+      "external_raw_id": "RAW-002293",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1136.003",
+      "title_draft": "T1136.003 — Cloud Account",
+      "description": "Adversaries may create a cloud account to maintain access to victim systems.",
+      "keywords": [
+        "cloud",
+        "accounts",
+        "citation",
+        "access",
+        "service",
+        "resources",
+        "account",
+        "create"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0538",
+      "external_raw_id": "RAW-002294",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1069.001",
+      "title_draft": "T1069.001 — Local Groups",
+      "description": "Adversaries may attempt to find local system groups and permission settings.",
+      "keywords": [
+        "groups",
+        "code",
+        "local",
+        "adversaries",
+        "users",
+        "permission",
+        "determine",
+        "group"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0542",
+      "external_raw_id": "RAW-002298",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1098",
+      "title_draft": "T1098 — Account Manipulation",
+      "description": "Adversaries may manipulate accounts to maintain and/or elevate access to victim systems.",
+      "keywords": [
+        "account",
+        "manipulation",
+        "accounts",
+        "access",
+        "manipulate",
+        "adversary",
+        "compromised",
+        "credentials"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0549",
+      "external_raw_id": "RAW-002305",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1686.002",
+      "title_draft": "T1686.002 — Network Device Firewall",
+      "description": "Adversaries may disable network device-based firewall mechanisms entirely or add, delete, or modify particular rules in order to bypass controls limiting network usage.",
+      "keywords": [
+        "network",
+        "adversaries",
+        "access",
+        "firewall",
+        "rules",
+        "devices",
+        "device",
+        "add"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0585",
+      "external_raw_id": "RAW-002341",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1068",
+      "title_draft": "T1068 — Exploitation for Privilege Escalation",
+      "description": "Adversaries may exploit software vulnerabilities in an attempt to elevate privileges.",
+      "keywords": [
+        "software",
+        "privilege",
+        "escalation",
+        "adversaries",
+        "adversary",
+        "access",
+        "vulnerable",
+        "exploitation"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0601",
+      "external_raw_id": "RAW-002357",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1546.004",
+      "title_draft": "T1546.004 — Unix Shell Configuration Modification",
+      "description": "Adversaries may establish persistence through executing malicious commands triggered by a user’s shell.",
+      "keywords": [
+        "code",
+        "shell",
+        "citation",
+        "etc",
+        "user",
+        "adversaries",
+        "login",
+        "environment"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0679",
+      "external_raw_id": "RAW-002435",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1557.002",
+      "title_draft": "T1557.002 — ARP Cache Poisoning",
+      "description": "Adversaries may poison Address Resolution Protocol (ARP) caches to position themselves between the communication of two or more networked devices.",
+      "keywords": [
+        "arp",
+        "address",
+        "cache",
+        "device",
+        "networked",
+        "network",
+        "mac",
+        "protocol"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0700",
+      "external_raw_id": "RAW-002456",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1555.006",
+      "title_draft": "T1555.006 — Cloud Secrets Management Stores",
+      "description": "Adversaries may acquire credentials from cloud-native secret management solutions such as AWS Secrets Manager, GCP Secret Manager, Azure Key Vault, and Terraform Vault.",
+      "keywords": [
+        "secrets",
+        "cloud",
+        "manager",
+        "citation",
+        "credentials",
+        "vault",
+        "api",
+        "management"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0706",
+      "external_raw_id": "RAW-002462",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1059.003",
+      "title_draft": "T1059.003 — Windows Command Shell",
+      "description": "Adversaries may abuse the Windows command shell for execution.",
+      "keywords": [
+        "command",
+        "windows",
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "cmd",
+        "shell"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0733",
+      "external_raw_id": "RAW-002489",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1189",
+      "title_draft": "T1189 — Drive-by Compromise",
+      "description": "Adversaries may gain access to a system through a user visiting a website over the normal course of browsing.",
+      "keywords": [
+        "website",
+        "code",
+        "user",
+        "browser",
+        "compromise",
+        "exploit",
+        "attack",
+        "adversary"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0775",
+      "external_raw_id": "RAW-002531",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1098.002",
+      "title_draft": "T1098.002 — Additional Email Delegate Permissions",
+      "description": "Adversaries may grant additional permission levels to maintain persistent access to an adversary-controlled email account.",
+      "keywords": [
+        "citation",
+        "permissions",
+        "additional",
+        "techniques",
+        "accounts",
+        "email",
+        "adversaries",
+        "https"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0778",
+      "external_raw_id": "RAW-002534",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1648",
+      "title_draft": "T1648 — Serverless Execution",
+      "description": "Adversaries may abuse serverless computing, integration, and automation services to execute arbitrary code in cloud environments.",
+      "keywords": [
+        "cloud",
+        "citation",
+        "serverless",
+        "user",
+        "execution",
+        "adversaries",
+        "environments",
+        "example"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0779",
+      "external_raw_id": "RAW-002535",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1548.006",
+      "title_draft": "T1548.006 — TCC Manipulation",
+      "description": "Adversaries can manipulate or abuse the Transparency, Consent, & Control (TCC) service or database to grant malicious executables elevated permissions.",
+      "keywords": [
+        "tcc",
+        "permissions",
+        "database",
+        "malicious",
+        "access",
+        "user",
+        "adversaries",
+        "macos"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0839",
+      "external_raw_id": "RAW-002595",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1584.001",
+      "title_draft": "T1584.001 — Domains",
+      "description": "Adversaries may hijack domains and/or subdomains that can be used during targeting.",
+      "keywords": [
+        "domain",
+        "registration",
+        "citation",
+        "domains",
+        "adversaries",
+        "subdomains",
+        "dns",
+        "hijack"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0857",
+      "external_raw_id": "RAW-002613",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1574.012",
+      "title_draft": "T1574.012 — COR_PROFILER",
+      "description": "Adversaries may leverage the COR_PROFILER environment variable to hijack the execution flow of programs that load the .NET CLR.",
+      "keywords": [
+        "cor_profiler",
+        "net",
+        "citation",
+        "dll",
+        "environment",
+        "variable",
+        "clr",
+        "process"
+      ]
+    },
+    {
+      "raw_id": "nca_ecc_1_2018::0007",
+      "external_raw_id": "RAW-BATCH-F8A2D105",
+      "source_document": "NCA ECC-1:2018",
+      "source_version": "Unknown",
+      "source_section": "2-2-1",
+      "title_draft": "2-2-1",
+      "description": "Enforcing the principle of least privilege and need-to-know for granting logical access to information assets.",
+      "keywords": [
+        "Least Privilege",
+        "Need-to-Know",
+        "Logical Access"
+      ]
+    },
+    {
+      "raw_id": "nist_csf_2_0::0014",
+      "external_raw_id": "RAW-BATCH-1C3CE8DE",
+      "source_document": "NIST CSF 2.0",
+      "source_version": "Unknown",
+      "source_section": "PR.AA-01",
+      "title_draft": "PR.AA-01",
+      "description": "Identities and credentials for authorized users, services, and hardware are managed by the organization.",
+      "keywords": [
+        "Identity Management",
+        "Credentials"
+      ]
+    },
+    {
+      "raw_id": "nist_csf_2_0::0015",
+      "external_raw_id": "RAW-BATCH-884A3863",
+      "source_document": "NIST CSF 2.0",
+      "source_version": "Unknown",
+      "source_section": "PR.AA-02",
+      "title_draft": "PR.AA-02",
+      "description": "Identities are proofed and bound to credentials based on the context of interactions.",
+      "keywords": [
+        "Identity Proofing",
+        "Authentication Context"
+      ]
+    },
+    {
+      "raw_id": "nist_csf_2_0::0016",
+      "external_raw_id": "RAW-BATCH-F380FF1E",
+      "source_document": "NIST CSF 2.0",
+      "source_version": "Unknown",
+      "source_section": "PR.AA-03",
+      "title_draft": "PR.AA-03",
+      "description": "Users, services, and hardware are authenticated.",
+      "keywords": [
+        "Authentication",
+        "Access Control"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0000",
+      "external_raw_id": "RAW-000107",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-1 (Access Control)",
+      "title_draft": "AC-1: Policy and Procedures",
+      "description": "a.",
+      "keywords": [
+        "procedures",
+        "policy",
+        "access",
+        "policies",
+        "insert",
+        "param",
+        "ac-01_odp",
+        "privacy"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0001",
+      "external_raw_id": "RAW-000108",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-2 (Access Control)",
+      "title_draft": "AC-2: Account Management",
+      "description": "a.",
+      "keywords": [
+        "accounts",
+        "account",
+        "group",
+        "insert",
+        "param",
+        "ac-02_odp",
+        "access",
+        "emergency"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0007",
+      "external_raw_id": "RAW-000114",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-2(6) (Access Control)",
+      "title_draft": "AC-2(6): Dynamic Privilege Management",
+      "description": "Implement {{ insert: param, ac-02.06_odp }}.",
+      "keywords": [
+        "dynamic",
+        "privilege",
+        "user",
+        "privileges",
+        "management",
+        "access",
+        "changes",
+        "approaches"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0011",
+      "external_raw_id": "RAW-000118",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-2(10) (Access Control)",
+      "title_draft": "AC-2(10): Shared and Group Account Credential Change",
+      "description": "AC-2(10): Shared and Group Account Credential Change",
+      "keywords": [
+        "ac-2",
+        "shared",
+        "group",
+        "account",
+        "credential",
+        "change",
+        "family",
+        "access"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0015",
+      "external_raw_id": "RAW-000122",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-3 (Access Control)",
+      "title_draft": "AC-3: Access Enforcement",
+      "description": "Enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies.",
+      "keywords": [
+        "access",
+        "enforcement",
+        "logical",
+        "policies",
+        "entities",
+        "users",
+        "level",
+        "physical"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0016",
+      "external_raw_id": "RAW-000123",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-3(1) (Access Control)",
+      "title_draft": "AC-3(1): Restricted Access to Privileged Functions",
+      "description": "AC-3(1): Restricted Access to Privileged Functions",
+      "keywords": [
+        "access",
+        "ac-3",
+        "restricted",
+        "privileged",
+        "functions",
+        "family"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0018",
+      "external_raw_id": "RAW-000125",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-3(3) (Access Control)",
+      "title_draft": "AC-3(3): Mandatory Access Control",
+      "description": "Enforce {{ insert: param, ac-3.3_prm_1 }} over the set of covered subjects and objects specified in the policy, and where the policy: (a) Is uniformly enforced across the covered subjects and objects within the system; (b) Specifies that a subject that has been granted access",
+      "keywords": [
+        "access",
+        "subjects",
+        "policy",
+        "mandatory",
+        "objects",
+        "subject",
+        "ac-3",
+        "policies"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0019",
+      "external_raw_id": "RAW-000126",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-3(4) (Access Control)",
+      "title_draft": "AC-3(4): Discretionary Access Control",
+      "description": "Enforce {{ insert: param, ac-3.4_prm_1 }} over the set of covered subjects and objects specified in the policy, and where the policy specifies that a subject that has been granted access to information can do one or more of the following: (a) Pass the information",
+      "keywords": [
+        "access",
+        "ac-3",
+        "subjects",
+        "discretionary",
+        "subject",
+        "objects",
+        "policy",
+        "granted"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0020",
+      "external_raw_id": "RAW-000127",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-3(5) (Access Control)",
+      "title_draft": "AC-3(5): Security-relevant Information",
+      "description": "Prevent access to {{ insert: param, ac-03.05_odp }} except during secure, non-operable system states.",
+      "keywords": [
+        "security-relevant",
+        "access",
+        "secure",
+        "non-operable",
+        "states",
+        "services",
+        "ac-3",
+        "prevent"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0021",
+      "external_raw_id": "RAW-000128",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-3(6) (Access Control)",
+      "title_draft": "AC-3(6): Protection of User and System Information",
+      "description": "AC-3(6): Protection of User and System Information",
+      "keywords": [
+        "ac-3",
+        "protection",
+        "user",
+        "family",
+        "access"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0022",
+      "external_raw_id": "RAW-000129",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-3(7) (Access Control)",
+      "title_draft": "AC-3(7): Role-based Access Control",
+      "description": "Enforce a role-based access control policy over defined subjects and objects and control access based upon {{ insert: param, ac-3.7_prm_1 }}.",
+      "keywords": [
+        "access",
+        "rbac",
+        "ac-3",
+        "roles",
+        "role-based",
+        "policy",
+        "defined",
+        "objects"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0025",
+      "external_raw_id": "RAW-000132",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-3(10) (Access Control)",
+      "title_draft": "AC-3(10): Audited Override of Access Control Mechanisms",
+      "description": "Employ an audited override of automated access control mechanisms under {{ insert: param, ac-03.10_odp.01 }} by {{ insert: param, ac-03.10_odp.02 }}.",
+      "keywords": [
+        "override",
+        "access",
+        "mechanisms",
+        "audited",
+        "insert",
+        "param",
+        "ac-03",
+        "odp"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0026",
+      "external_raw_id": "RAW-000133",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-3(11) (Access Control)",
+      "title_draft": "AC-3(11): Restrict Access to Specific Information Types",
+      "description": "Restrict access to data repositories containing {{ insert: param, ac-03.11_odp }}.",
+      "keywords": [
+        "access",
+        "specific",
+        "restrict",
+        "types",
+        "restricting",
+        "database",
+        "ac-3",
+        "data"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0028",
+      "external_raw_id": "RAW-000135",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-3(13) (Access Control)",
+      "title_draft": "AC-3(13): Attribute-based Access Control",
+      "description": "Enforce attribute-based access control policy over defined subjects and objects and control access based upon {{ insert: param, ac-03.13_odp }}.",
+      "keywords": [
+        "access",
+        "attributes",
+        "attribute-based",
+        "ac-3",
+        "policy",
+        "based",
+        "rules",
+        "defined"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0030",
+      "external_raw_id": "RAW-000137",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-3(15) (Access Control)",
+      "title_draft": "AC-3(15): Discretionary and Mandatory Access Control",
+      "description": "(a) Enforce {{ insert: param, ac-3.15_prm_1 }} over the set of covered subjects and objects specified in the policy; and (b) Enforce {{ insert: param, ac-3.15_prm_2 }} over the set of covered subjects and objects specified in the policy.",
+      "keywords": [
+        "policy",
+        "ac-3",
+        "access",
+        "discretionary",
+        "mandatory",
+        "enforce",
+        "insert",
+        "param"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0047",
+      "external_raw_id": "RAW-000154",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-4(16) (Access Control)",
+      "title_draft": "AC-4(16): Information Transfers on Interconnected Systems",
+      "description": "AC-4(16): Information Transfers on Interconnected Systems",
+      "keywords": [
+        "ac-4",
+        "transfers",
+        "interconnected",
+        "family",
+        "access"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0049",
+      "external_raw_id": "RAW-000156",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-4(18) (Access Control)",
+      "title_draft": "AC-4(18): Security Attribute Binding",
+      "description": "AC-4(18): Security Attribute Binding",
+      "keywords": [
+        "ac-4",
+        "attribute",
+        "binding",
+        "family",
+        "access"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0064",
+      "external_raw_id": "RAW-000171",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-5 (Access Control)",
+      "title_draft": "AC-5: Separation of Duties",
+      "description": "a.",
+      "keywords": [
+        "separation",
+        "duties",
+        "functions",
+        "access",
+        "support",
+        "different",
+        "individuals",
+        "administer"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0066",
+      "external_raw_id": "RAW-000173",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-6(1) (Access Control)",
+      "title_draft": "AC-6(1): Authorize Access to Security Functions",
+      "description": "Authorize access for {{ insert: param, ac-06.01_odp.01 }} to: (a) {{ insert: param, ac-6.1_prm_2 }} ; and (b) {{ insert: param, ac-06.01_odp.05 }}.",
+      "keywords": [
+        "access",
+        "insert",
+        "param",
+        "ac-6",
+        "authorize",
+        "functions",
+        "ac-06",
+        "odp"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0067",
+      "external_raw_id": "RAW-000174",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-6(2) (Access Control)",
+      "title_draft": "AC-6(2): Non-privileged Access for Nonsecurity Functions",
+      "description": "Require that users of system accounts (or roles) with access to {{ insert: param, ac-06.02_odp }} use non-privileged accounts or roles, when accessing nonsecurity functions.",
+      "keywords": [
+        "access",
+        "non-privileged",
+        "accounts",
+        "roles",
+        "nonsecurity",
+        "functions",
+        "change",
+        "accessing"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0071",
+      "external_raw_id": "RAW-000178",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-6(6) (Access Control)",
+      "title_draft": "AC-6(6): Privileged Access by Non-organizational Users",
+      "description": "Prohibit privileged access to the system by non-organizational users.",
+      "keywords": [
+        "user",
+        "non-organizational",
+        "users",
+        "privileged",
+        "access",
+        "employee",
+        "equivalent",
+        "status"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0076",
+      "external_raw_id": "RAW-000183",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-7 (Access Control)",
+      "title_draft": "AC-7: Unsuccessful Logon Attempts",
+      "description": "a.",
+      "keywords": [
+        "logon",
+        "attempts",
+        "unsuccessful",
+        "user",
+        "number",
+        "exceeded",
+        "insert",
+        "param"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0077",
+      "external_raw_id": "RAW-000184",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-7(1) (Access Control)",
+      "title_draft": "AC-7(1): Automatic Account Lock",
+      "description": "AC-7(1): Automatic Account Lock",
+      "keywords": [
+        "ac-7",
+        "automatic",
+        "account",
+        "lock",
+        "family",
+        "access"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0094",
+      "external_raw_id": "RAW-000201",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-13 (Access Control)",
+      "title_draft": "AC-13: Supervision and Review — Access Control",
+      "description": "AC-13: Supervision and Review — Access Control",
+      "keywords": [
+        "access",
+        "ac-13",
+        "supervision",
+        "review",
+        "family"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0096",
+      "external_raw_id": "RAW-000203",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-14(1) (Access Control)",
+      "title_draft": "AC-14(1): Necessary Uses",
+      "description": "AC-14(1): Necessary Uses",
+      "keywords": [
+        "ac-14",
+        "necessary",
+        "uses",
+        "family",
+        "access"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0097",
+      "external_raw_id": "RAW-000204",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-15 (Access Control)",
+      "title_draft": "AC-15: Automated Marking",
+      "description": "AC-15: Automated Marking",
+      "keywords": [
+        "ac-15",
+        "automated",
+        "marking",
+        "family",
+        "access"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0098",
+      "external_raw_id": "RAW-000205",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-16 (Access Control)",
+      "title_draft": "AC-16: Security and Privacy Attributes",
+      "description": "a.",
+      "keywords": [
+        "attributes",
+        "data",
+        "attribute",
+        "privacy",
+        "insert",
+        "param",
+        "entities",
+        "objects"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0101",
+      "external_raw_id": "RAW-000208",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-16(3) (Access Control)",
+      "title_draft": "AC-16(3): Maintenance of Attribute Associations by System",
+      "description": "Maintain the association and integrity of {{ insert: param, ac-16.3_prm_1 }} to {{ insert: param, ac-16.3_prm_2 }}.",
+      "keywords": [
+        "integrity",
+        "ac-16",
+        "decisions",
+        "attribute",
+        "associations",
+        "association",
+        "insert",
+        "param"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0112",
+      "external_raw_id": "RAW-000219",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-17(3) (Access Control)",
+      "title_draft": "AC-17(3): Managed Access Control Points",
+      "description": "Route remote accesses through authorized and managed network access control points.",
+      "keywords": [
+        "access",
+        "points",
+        "managed",
+        "remote",
+        "network",
+        "connections",
+        "tic",
+        "ac-17"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0114",
+      "external_raw_id": "RAW-000221",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-17(5) (Access Control)",
+      "title_draft": "AC-17(5): Monitoring for Unauthorized Connections",
+      "description": "AC-17(5): Monitoring for Unauthorized Connections",
+      "keywords": [
+        "ac-17",
+        "monitoring",
+        "unauthorized",
+        "connections",
+        "family",
+        "access"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0116",
+      "external_raw_id": "RAW-000223",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-17(7) (Access Control)",
+      "title_draft": "AC-17(7): Additional Protection for Security Function Access",
+      "description": "AC-17(7): Additional Protection for Security Function Access",
+      "keywords": [
+        "access",
+        "ac-17",
+        "additional",
+        "protection",
+        "function",
+        "family"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0117",
+      "external_raw_id": "RAW-000224",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-17(8) (Access Control)",
+      "title_draft": "AC-17(8): Disable Nonsecure Network Protocols",
+      "description": "AC-17(8): Disable Nonsecure Network Protocols",
+      "keywords": [
+        "ac-17",
+        "disable",
+        "nonsecure",
+        "network",
+        "protocols",
+        "family",
+        "access"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0122",
+      "external_raw_id": "RAW-000229",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-18(2) (Access Control)",
+      "title_draft": "AC-18(2): Monitoring Unauthorized Connections",
+      "description": "AC-18(2): Monitoring Unauthorized Connections",
+      "keywords": [
+        "ac-18",
+        "monitoring",
+        "unauthorized",
+        "connections",
+        "family",
+        "access"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0126",
+      "external_raw_id": "RAW-000233",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-19 (Access Control)",
+      "title_draft": "AC-19: Access Control for Mobile Devices",
+      "description": "a.",
+      "keywords": [
+        "mobile",
+        "devices",
+        "device",
+        "connection",
+        "restrictions",
+        "requirements",
+        "usage",
+        "software"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0127",
+      "external_raw_id": "RAW-000234",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-19(1) (Access Control)",
+      "title_draft": "AC-19(1): Use of Writable and Portable Storage Devices",
+      "description": "AC-19(1): Use of Writable and Portable Storage Devices",
+      "keywords": [
+        "ac-19",
+        "writable",
+        "portable",
+        "storage",
+        "devices",
+        "family",
+        "access"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0128",
+      "external_raw_id": "RAW-000235",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-19(2) (Access Control)",
+      "title_draft": "AC-19(2): Use of Personally Owned Portable Storage Devices",
+      "description": "AC-19(2): Use of Personally Owned Portable Storage Devices",
+      "keywords": [
+        "ac-19",
+        "personally",
+        "owned",
+        "portable",
+        "storage",
+        "devices",
+        "family",
+        "access"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0129",
+      "external_raw_id": "RAW-000236",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-19(3) (Access Control)",
+      "title_draft": "AC-19(3): Use of Portable Storage Devices with No Identifiable Owner",
+      "description": "AC-19(3): Use of Portable Storage Devices with No Identifiable Owner",
+      "keywords": [
+        "ac-19",
+        "portable",
+        "storage",
+        "devices",
+        "identifiable",
+        "owner",
+        "family",
+        "access"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0143",
+      "external_raw_id": "RAW-000250",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-24 (Access Control)",
+      "title_draft": "AC-24: Access Control Decisions",
+      "description": "{{ insert: param, ac-24_odp.01 }} to ensure {{ insert: param, ac-24_odp.02 }} are applied to each access request prior to access enforcement.",
+      "keywords": [
+        "access",
+        "decisions",
+        "enforcement",
+        "insert",
+        "param",
+        "ac-24_odp",
+        "applied",
+        "authorization"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0144",
+      "external_raw_id": "RAW-000251",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-24(1) (Access Control)",
+      "title_draft": "AC-24(1): Transmit Access Authorization Information",
+      "description": "Transmit {{ insert: param, ac-24.01_odp.01 }} using {{ insert: param, ac-24.01_odp.02 }} to {{ insert: param, ac-24.01_odp.03 }} that enforce access control decisions.",
+      "keywords": [
+        "access",
+        "decisions",
+        "authorization",
+        "ac-24",
+        "transmit",
+        "insert",
+        "param",
+        "odp"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0145",
+      "external_raw_id": "RAW-000252",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-24(2) (Access Control)",
+      "title_draft": "AC-24(2): No User or Process Identity",
+      "description": "Enforce access control decisions based on {{ insert: param, ac-24.2_prm_1 }} that do not include the identity of the user or process acting on behalf of the user.",
+      "keywords": [
+        "user",
+        "identity",
+        "access",
+        "decisions",
+        "ac-24",
+        "process",
+        "situations",
+        "needed"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0146",
+      "external_raw_id": "RAW-000253",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-25 (Access Control)",
+      "title_draft": "AC-25: Reference Monitor",
+      "description": "Implement a reference monitor for {{ insert: param, ac-25_odp }} that is tamperproof, always invoked, and small enough to be subject to analysis and testing, the completeness of which can be assured.",
+      "keywords": [
+        "reference",
+        "mechanism",
+        "policy",
+        "monitor",
+        "access",
+        "subjects",
+        "always",
+        "invoked"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0157",
+      "external_raw_id": "RAW-000264",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AT-3(2) (Awareness and Training)",
+      "title_draft": "AT-3(2): Physical Security Controls",
+      "description": "Provide {{ insert: param, at-03.02_odp.01 }} with initial and {{ insert: param, at-03.02_odp.02 }} training in the employment and operation of physical security controls.",
+      "keywords": [
+        "physical",
+        "insert",
+        "param",
+        "at-03",
+        "odp",
+        "at-3",
+        "provide",
+        "initial"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0171",
+      "external_raw_id": "RAW-000278",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-3(1) (Audit and Accountability)",
+      "title_draft": "AU-3(1): Additional Audit Information",
+      "description": "Generate audit records containing the following additional information: {{ insert: param, au-03.01_odp }}.",
+      "keywords": [
+        "audit",
+        "additional",
+        "records",
+        "record",
+        "organizations",
+        "consider",
+        "au-3",
+        "generate"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0196",
+      "external_raw_id": "RAW-000303",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-8 (Audit and Accountability)",
+      "title_draft": "AU-8: Time Stamps",
+      "description": "a.",
+      "keywords": [
+        "time",
+        "stamps",
+        "clocks",
+        "coordinated",
+        "universal",
+        "local",
+        "offset",
+        "audit"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0294",
+      "external_raw_id": "RAW-000401",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CM-6 (Configuration Management)",
+      "title_draft": "CM-6: Configuration Settings",
+      "description": "a.",
+      "keywords": [
+        "settings",
+        "configuration",
+        "parameters",
+        "privacy",
+        "secure",
+        "common",
+        "level",
+        "cm-6"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0408",
+      "external_raw_id": "RAW-001015",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SC-7(2) (System and Communications Protection)",
+      "title_draft": "SC-7(2): Public Access",
+      "description": "SC-7(2): Public Access",
+      "keywords": [
+        "sc-7",
+        "public",
+        "access",
+        "family",
+        "communications",
+        "protection"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0417",
+      "external_raw_id": "RAW-001024",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SC-7(11) (System and Communications Protection)",
+      "title_draft": "SC-7(11): Restrict Incoming Communications Traffic",
+      "description": "Only allow incoming communications from {{ insert: param, sc-07.11_odp.01 }} to be routed to {{ insert: param, sc-07.11_odp.02 }}.",
+      "keywords": [
+        "communications",
+        "source",
+        "pairs",
+        "incoming",
+        "address",
+        "addresses",
+        "traffic",
+        "authorized"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0421",
+      "external_raw_id": "RAW-001028",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SC-7(15) (System and Communications Protection)",
+      "title_draft": "SC-7(15): Networked Privileged Accesses",
+      "description": "Route networked, privileged accesses through a dedicated, managed interface for purposes of access control and auditing.",
+      "keywords": [
+        "access",
+        "privileged",
+        "networked",
+        "through",
+        "accesses",
+        "dedicated",
+        "managed",
+        "interface"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0464",
+      "external_raw_id": "RAW-001071",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SC-16 (System and Communications Protection)",
+      "title_draft": "SC-16: Transmission of Security and Privacy Attributes",
+      "description": "Associate {{ insert: param, sc-16_prm_1 }} with information exchanged between systems and between system components.",
+      "keywords": [
+        "attributes",
+        "privacy",
+        "between",
+        "components",
+        "associated",
+        "management",
+        "personally",
+        "identifiable"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0540",
+      "external_raw_id": "RAW-001147",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SC-45 (System and Communications Protection)",
+      "title_draft": "SC-45: System Time Synchronization",
+      "description": "Synchronize system clocks within and between systems and system components.",
+      "keywords": [
+        "time",
+        "clocks",
+        "synchronization",
+        "between",
+        "components",
+        "identification",
+        "authentication",
+        "access"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0573",
+      "external_raw_id": "RAW-001180",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SI-4(3) (System and Information Integrity)",
+      "title_draft": "SI-4(3): Automated Tool and Mechanism Integration",
+      "description": "Employ automated tools and mechanisms to integrate intrusion detection tools and mechanisms into access control and flow control mechanisms.",
+      "keywords": [
+        "mechanisms",
+        "tools",
+        "automated",
+        "integrate",
+        "intrusion",
+        "detection",
+        "access",
+        "flow"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0702",
+      "external_raw_id": "RAW-000507",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IA-2(12) (Identification and Authentication)",
+      "title_draft": "IA-2(12): Acceptance of PIV Credentials",
+      "description": "Accept and electronically verify Personal Identity Verification-compliant credentials.",
+      "keywords": [
+        "credentials",
+        "piv",
+        "acceptance",
+        "access",
+        "personal",
+        "identity",
+        "piv-compliant",
+        "card"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0704",
+      "external_raw_id": "RAW-000509",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IA-3 (Identification and Authentication)",
+      "title_draft": "IA-3: Device Identification and Authentication",
+      "description": "Uniquely identify and authenticate {{ insert: param, ia-03_odp.01 }} before establishing a {{ insert: param, ia-03_odp.02 }} connection.",
+      "keywords": [
+        "authentication",
+        "device",
+        "devices",
+        "identification",
+        "type",
+        "protocol",
+        "identify",
+        "authenticate"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0709",
+      "external_raw_id": "RAW-000514",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IA-4 (Identification and Authentication)",
+      "title_draft": "IA-4: Identifier Management",
+      "description": "Manage system identifiers by: a.",
+      "keywords": [
+        "identifiers",
+        "individual",
+        "identifier",
+        "device",
+        "management",
+        "group",
+        "role",
+        "service"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0741",
+      "external_raw_id": "RAW-000546",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IA-8(1) (Identification and Authentication)",
+      "title_draft": "IA-8(1): Acceptance of PIV Credentials from Other Agencies",
+      "description": "Accept and electronically verify Personal Identity Verification-compliant credentials from other federal agencies.",
+      "keywords": [
+        "credentials",
+        "piv",
+        "agencies",
+        "federal",
+        "acceptance",
+        "personal",
+        "identity",
+        "ia-8"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0745",
+      "external_raw_id": "RAW-000550",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IA-8(5) (Identification and Authentication)",
+      "title_draft": "IA-8(5): Acceptance of PIV-I Credentials",
+      "description": "Accept and verify federated or PKI credentials that meet {{ insert: param, ia-08.05_odp }}.",
+      "keywords": [
+        "piv-i",
+        "credentials",
+        "acceptance",
+        "certificate",
+        "policy",
+        "piv",
+        "federal",
+        "bridge"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0774",
+      "external_raw_id": "RAW-000579",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-4(2) (Incident Response)",
+      "title_draft": "IR-4(2): Dynamic Reconfiguration",
+      "description": "Include the following types of dynamic reconfiguration for {{ insert: param, ir-04.02_odp.02 }} as part of the incident response capability: {{ insert: param, ir-04.02_odp.01 }}.",
+      "keywords": [
+        "reconfiguration",
+        "dynamic",
+        "insert",
+        "param",
+        "ir-04",
+        "odp",
+        "response",
+        "capability"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0837",
+      "external_raw_id": "RAW-000642",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control MP-2(1) (Media Protection)",
+      "title_draft": "MP-2(1): Automated Restricted Access",
+      "description": "MP-2(1): Automated Restricted Access",
+      "keywords": [
+        "mp-2",
+        "automated",
+        "restricted",
+        "access",
+        "family",
+        "media",
+        "protection"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0870",
+      "external_raw_id": "RAW-000675",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control PE-3 (Physical and Environmental Protection)",
+      "title_draft": "PE-3: Physical Access Control",
+      "description": "a.",
+      "keywords": [
+        "access",
+        "physical",
+        "insert",
+        "param",
+        "pe-03_odp",
+        "areas",
+        "keys",
+        "combinations"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0878",
+      "external_raw_id": "RAW-000683",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control PE-3(8) (Physical and Environmental Protection)",
+      "title_draft": "PE-3(8): Access Control Vestibules",
+      "description": "Employ access control vestibules at {{ insert: param, pe-03.08_odp }}.",
+      "keywords": [
+        "access",
+        "individuals",
+        "vestibules",
+        "interlocking",
+        "physical",
+        "doors",
+        "unauthorized",
+        "controlled"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0879",
+      "external_raw_id": "RAW-000684",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control PE-4 (Physical and Environmental Protection)",
+      "title_draft": "PE-4: Access Control for Transmission",
+      "description": "Control physical access to {{ insert: param, pe-04_odp.01 }} within organizational facilities using {{ insert: param, pe-04_odp.02 }}.",
+      "keywords": [
+        "access",
+        "transmission",
+        "physical",
+        "insert",
+        "param",
+        "pe-04_odp",
+        "distribution",
+        "lines"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0880",
+      "external_raw_id": "RAW-000685",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control PE-5 (Physical and Environmental Protection)",
+      "title_draft": "PE-5: Access Control for Output Devices",
+      "description": "Control physical access to output from {{ insert: param, pe-05_odp }} to prevent unauthorized individuals from obtaining the output.",
+      "keywords": [
+        "output",
+        "devices",
+        "access",
+        "physical",
+        "individuals",
+        "placing",
+        "pe-5",
+        "insert"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0885",
+      "external_raw_id": "RAW-000690",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control PE-6(1) (Physical and Environmental Protection)",
+      "title_draft": "PE-6(1): Intrusion Alarms and Surveillance Equipment",
+      "description": "Monitor physical access to the facility where the system resides using physical intrusion alarms and surveillance equipment.",
+      "keywords": [
+        "physical",
+        "intrusion",
+        "alarms",
+        "surveillance",
+        "equipment",
+        "access",
+        "facility",
+        "sensors"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1085",
+      "external_raw_id": "RAW-000890",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SA-8(15) (System and Services Acquisition)",
+      "title_draft": "SA-8(15): Predicate Permission",
+      "description": "Implement the security design principle of predicate permission in {{ insert: param, sa-08.15_odp }}.",
+      "keywords": [
+        "action",
+        "predicate",
+        "permission",
+        "design",
+        "principle",
+        "multiple",
+        "authorized",
+        "highly"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1093",
+      "external_raw_id": "RAW-000898",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SA-8(23) (System and Services Acquisition)",
+      "title_draft": "SA-8(23): Secure Defaults",
+      "description": "Implement the security design principle of secure defaults in {{ insert: param, sa-08.23_odp }}.",
+      "keywords": [
+        "secure",
+        "defaults",
+        "principle",
+        "configuration",
+        "policy",
+        "default",
+        "request",
+        "initial"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1125",
+      "external_raw_id": "RAW-000930",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SA-11(4) (System and Services Acquisition)",
+      "title_draft": "SA-11(4): Manual Code Reviews",
+      "description": "Require the developer of the system, system component, or system service to perform a manual code review of {{ insert: param, sa-11.04_odp.01 }} using the following processes, procedures, and/or techniques: {{ insert: param, sa-11.04_odp.02 }}.",
+      "keywords": [
+        "manual",
+        "code",
+        "sa-11",
+        "reviews",
+        "review",
+        "require",
+        "insert",
+        "param"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1166",
+      "external_raw_id": "RAW-000971",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SA-17(1) (System and Services Acquisition)",
+      "title_draft": "SA-17(1): Formal Policy Model",
+      "description": "Require the developer of the system, system component, or system service to: (a) Produce, as an integral part of the development process, a formal policy model describing the {{ insert: param, sa-17.1_prm_1 }} to be enforced; and (b) Prove that the formal policy model is",
+      "keywords": [
+        "formal",
+        "policies",
+        "policy",
+        "behaviors",
+        "model",
+        "sa-17",
+        "privacy",
+        "require"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1194",
+      "external_raw_id": "RAW-000999",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SC-3 (System and Communications Protection)",
+      "title_draft": "SC-3: Security Function Isolation",
+      "description": "Isolate security functions from nonsecurity functions.",
+      "keywords": [
+        "sa-8",
+        "functions",
+        "isolation",
+        "code",
+        "nonsecurity",
+        "function",
+        "boundary",
+        "access"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0326",
+      "external_raw_id": "RAW-001482",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V8.3.3 (V8.3 Operation Level Authorization)",
+      "title_draft": "V8.3.3 — Operation Level Authorization",
+      "description": "Verify that access to an object is based on the originating subject's (e.g.",
+      "keywords": [
+        "service",
+        "consumer",
+        "token",
+        "authorization",
+        "permissions",
+        "operation",
+        "level",
+        "access"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0343",
+      "external_raw_id": "RAW-001499",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V10.3.3 (V10.3 OAuth Resource Server)",
+      "title_draft": "V10.3.3 — OAuth Resource Server",
+      "description": "Verify that if an access control decision requires identifying a unique user from an access token (JWT or related token introspection response), the resource server identifies the user from claims that cannot be reassigned to other users.",
+      "keywords": [
+        "v10",
+        "oauth",
+        "resource",
+        "server",
+        "access",
+        "user",
+        "token",
+        "claims"
+      ]
+    },
+    {
+      "raw_id": "pci_dss_v4_0::0015",
+      "external_raw_id": "RAW-BATCH-EBB2EF98",
+      "source_document": "PCI DSS v4.0",
+      "source_version": "Unknown",
+      "source_section": "7.2.1",
+      "title_draft": "7.2.1",
+      "description": "An access control system(s) is in place that restricts access to system components and CDE based on a user's need to know, and is set to 'deny all' by default.",
+      "keywords": [
+        "Access Control",
+        "Deny All",
+        "Need to Know"
+      ]
+    },
+    {
+      "raw_id": "sans_security_policy_templates::0005",
+      "external_raw_id": "RAW-POL-2C340C99",
+      "source_document": "SANS Security Policy Templates",
+      "source_version": "Current",
+      "source_section": "AC-01",
+      "title_draft": "Access Control Policy",
+      "description": "Defines the rules for granting access to corporate systems and data on a least-privilege basis, including regular access reviews and revocation upon termination.",
+      "keywords": [
+        "access control",
+        "least privilege",
+        "IAM"
+      ]
+    },
+    {
+      "raw_id": "the_nist_cybersecurity_framework_csf_2_0::0052",
+      "external_raw_id": "RAW-000053",
+      "source_document": "The NIST Cybersecurity Framework (CSF) 2.0",
+      "source_version": "2.0",
+      "source_section": "Subcategory PR.AA-01",
+      "title_draft": "PR.AA-01 — Identities and credentials for authorized users, services, and hardware are managed by the organization",
+      "description": "Identities and credentials for authorized users, services, and hardware are managed by the organization",
+      "keywords": [
+        "authorized",
+        "users",
+        "services",
+        "hardware",
+        "managed",
+        "access",
+        "identities",
+        "credentials"
+      ]
+    },
+    {
+      "raw_id": "the_nist_cybersecurity_framework_csf_2_0::0053",
+      "external_raw_id": "RAW-000054",
+      "source_document": "The NIST Cybersecurity Framework (CSF) 2.0",
+      "source_version": "2.0",
+      "source_section": "Subcategory PR.AA-02",
+      "title_draft": "PR.AA-02 — Identities are proofed and bound to credentials based on the context of interactions",
+      "description": "Identities are proofed and bound to credentials based on the context of interactions",
+      "keywords": [
+        "access",
+        "identities",
+        "proofed",
+        "bound",
+        "credentials",
+        "based",
+        "context",
+        "interactions"
+      ]
+    },
+    {
+      "raw_id": "the_nist_cybersecurity_framework_csf_2_0::0054",
+      "external_raw_id": "RAW-000055",
+      "source_document": "The NIST Cybersecurity Framework (CSF) 2.0",
+      "source_version": "2.0",
+      "source_section": "Subcategory PR.AA-03",
+      "title_draft": "PR.AA-03 — Users, services, and hardware are authenticated",
+      "description": "Users, services, and hardware are authenticated",
+      "keywords": [
+        "users",
+        "services",
+        "hardware",
+        "access",
+        "authenticated",
+        "aa-03",
+        "protect",
+        "safeguards"
+      ]
+    },
+    {
+      "raw_id": "the_nist_cybersecurity_framework_csf_2_0::0055",
+      "external_raw_id": "RAW-000056",
+      "source_document": "The NIST Cybersecurity Framework (CSF) 2.0",
+      "source_version": "2.0",
+      "source_section": "Subcategory PR.AA-04",
+      "title_draft": "PR.AA-04 — Identity assertions are protected, conveyed, and verified",
+      "description": "Identity assertions are protected, conveyed, and verified",
+      "keywords": [
+        "identity",
+        "access",
+        "assertions",
+        "protected",
+        "conveyed",
+        "verified",
+        "aa-04",
+        "protect"
+      ]
+    },
+    {
+      "raw_id": "the_nist_cybersecurity_framework_csf_2_0::0056",
+      "external_raw_id": "RAW-000057",
+      "source_document": "The NIST Cybersecurity Framework (CSF) 2.0",
+      "source_version": "2.0",
+      "source_section": "Subcategory PR.AA-05",
+      "title_draft": "PR.AA-05 — Access permissions, entitlements, and authorizations are defined in a policy, managed, enforced, and reviewed, and incorporate the principles of least privilege and separation of duties",
+      "description": "Access permissions, entitlements, and authorizations are defined in a policy, managed, enforced, and reviewed, and incorporate the principles of least privilege and separation of duties",
+      "keywords": [
+        "access",
+        "managed",
+        "permissions",
+        "entitlements",
+        "authorizations",
+        "defined",
+        "policy",
+        "enforced"
+      ]
+    },
+    {
+      "raw_id": "the_nist_cybersecurity_framework_csf_2_0::0057",
+      "external_raw_id": "RAW-000058",
+      "source_document": "The NIST Cybersecurity Framework (CSF) 2.0",
+      "source_version": "2.0",
+      "source_section": "Subcategory PR.AA-06",
+      "title_draft": "PR.AA-06 — Physical access to assets is managed, monitored, and enforced commensurate with risk",
+      "description": "Physical access to assets is managed, monitored, and enforced commensurate with risk",
+      "keywords": [
+        "access",
+        "physical",
+        "assets",
+        "managed",
+        "commensurate",
+        "risk",
+        "monitored",
+        "enforced"
+      ]
+    }
+  ],
+  "decision": null,
+  "canonical": null
+}

@@ -1,0 +1,53 @@
+{
+  "candidate_group_id": "PA-05",
+  "concept_name": "Monitor Privileged Activity",
+  "expected_sub_domain": "SD-03.04",
+  "member_raw_ids": [
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0590"
+  ],
+  "excluded_raw_ids": [
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0203"
+  ],
+  "member_reasons": {
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0590": "NIST SI-4(20) — additional monitoring of privileged users."
+  },
+  "exclusion_reasons": {
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0203": "AU-9(4) protects audit-log management access — audit protection (SD-06.01), not privileged-user monitoring."
+  },
+  "differences": "Monitoring the activity of privileged users specifically. Boundary with SD-06.01 (Logging & Monitoring) is genuine.",
+  "decision": "CANONICALIZE",
+  "decision_confidence": 0.7,
+  "requires_human_review": 1,
+  "decision_rationale": "Privileged-user activity monitoring; single source. Confidence 0.7 -> review (SD-03.04 vs SD-06.01 boundary).",
+  "canonical_artifact": {
+    "title_en": "Privileged Activity Monitoring",
+    "definition_short_en": "This control requires additional monitoring of the activities performed by privileged users.",
+    "definition_full_en": "This artifact requires enhanced monitoring of privileged-user activity so that misuse of elevated access can be detected. It applies to all privileged users and sessions. The minimum expected outcome is recorded, reviewable privileged-activity monitoring. Verification is by reviewing privileged-activity monitoring records.",
+    "objective_en": "Detect misuse of privileged access.",
+    "type": "ART-CTR",
+    "abstraction_level": "ABS-CTR",
+    "primary_domain": "SD-03",
+    "sub_domain": "SD-03.04",
+    "obligation_level": "OBL-MND",
+    "classification_confidence": 0.7,
+    "classification_rationale": "SI-4(20) privileged-user monitoring; SD-03.04 pending review vs SD-06.01.",
+    "verification_method_note": "Review privileged-activity monitoring records.",
+    "missing_fields": [
+      "control_nature",
+      "control_function",
+      "testability"
+    ]
+  },
+  "source_mappings": [
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0590",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SI-4(20) (System and Information Integrity)",
+      "source_file": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations.json",
+      "mapping_strength": "DIRECT",
+      "rationale": null
+    }
+  ],
+  "validation": "OK"
+}

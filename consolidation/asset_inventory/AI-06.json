@@ -1,0 +1,64 @@
+{
+  "candidate_group_id": "AI-06",
+  "concept_name": "Software Inventory",
+  "expected_sub_domain": "SD-02.02",
+  "member_raw_ids": [
+    "cis_controls_v8::0002"
+  ],
+  "excluded_raw_ids": [
+    "cis_controls_v8::0003",
+    "nca_ecc_1_2018::0005"
+  ],
+  "member_reasons": {
+    "cis_controls_v8::0002": "CIS 2.1 — establish & maintain a detailed inventory of all licensed software on enterprise assets."
+  },
+  "exclusion_reasons": {
+    "cis_controls_v8::0003": "CIS 2.2 = only supported software may be used — a software-currency control, not the inventory (relate, not merge).",
+    "nca_ecc_1_2018::0005": "NCA 2-1-1 folds software into the information-asset inventory (AI-01); the dedicated software inventory is kept separate per SDT SD-02.02."
+  },
+  "differences": "Software (licensed applications) inventory is a distinct SDT sub-domain (SD-02.02) and MUST NOT be merged with general/hardware asset inventory (SD-02.01).",
+  "decision": "CANONICALIZE",
+  "decision_confidence": 0.88,
+  "requires_human_review": 0,
+  "decision_rationale": "Distinct, well-scoped software-inventory requirement; kept separate from hardware/asset inventory as required.",
+  "canonical_artifact": {
+    "title_en": "Software Inventory",
+    "definition_short_en": "This requirement establishes and maintains a detailed inventory of all licensed software installed on enterprise assets.",
+    "definition_full_en": "This artifact requires the organization to maintain an accurate, current inventory of licensed software installed across enterprise assets, including title, version, and license coverage. It applies to all managed endpoints and servers. The minimum expected outcome is a documented software inventory reconciled against installed software. Verification is by comparing the inventory with automated software discovery.",
+    "objective_en": "Know all software present so it can be licensed, supported, and secured.",
+    "type": "ART-REQ",
+    "abstraction_level": "ABS-CTR",
+    "primary_domain": "SD-02",
+    "sub_domain": "SD-02.02",
+    "obligation_level": "OBL-MND",
+    "classification_confidence": 0.88,
+    "classification_rationale": "CIS 2.1 software inventory; SDT SD-02.02 (Software & License Management), distinct from SD-02.01.",
+    "verification_method_note": "Compare inventory with automated software discovery.",
+    "missing_fields": [
+      "requirement_type"
+    ]
+  },
+  "source_mappings": [
+    {
+      "raw_id": "cis_controls_v8::0002",
+      "source_document": "CIS Controls v8",
+      "source_version": "Unknown",
+      "source_section": "2.1",
+      "source_file": "cis_controls_v8.json",
+      "mapping_strength": "DIRECT",
+      "rationale": null
+    }
+  ],
+  "validation": "OK",
+  "review": {
+    "review_status": "APPROVED",
+    "reviewer_notes": "Software inventory correctly separated into SD-02.02, not merged with hardware/asset inventory. CIS 2.2 (supported software) correctly excluded.",
+    "validation_findings": [
+      "SD-02.02 correct (not SD-02.01)",
+      "DIRECT source genuinely software inventory"
+    ],
+    "required_changes": [],
+    "final_confidence": 0.88,
+    "ready_for_promotion": true
+  }
+}

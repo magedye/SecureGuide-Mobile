@@ -1,0 +1,187 @@
+{
+  "extraction_metadata": {
+    "source_document": "Microsoft Security Best Practices",
+    "total_artifacts": 8
+  },
+  "artifacts": [
+    {
+      "raw_artifact_id": "RAW-BATCH-BCF8F293",
+      "source_metadata": {
+        "source_document": "Microsoft Security Best Practices",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "Password Policy"
+      },
+      "original_content": {
+        "raw_text_en": "Enforce password history: 24 passwords remembered.",
+        "original_heading": "Password Policy",
+        "context_paragraph": "{\"category\": \"Account Policies\", \"target\": \"Domain Controller / Windows Server\", \"tags\": [\"Password History\", \"Configuration Setting\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "Password Policy",
+        "description_draft": "Enforce password history: 24 passwords remembered.",
+        "keywords": [
+          "Password History",
+          "Configuration Setting"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-E244F931",
+      "source_metadata": {
+        "source_document": "Microsoft Security Best Practices",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "Password Policy"
+      },
+      "original_content": {
+        "raw_text_en": "Maximum password age: 60 days.",
+        "original_heading": "Password Policy",
+        "context_paragraph": "{\"category\": \"Account Policies\", \"target\": \"Domain Controller / Windows Server\", \"tags\": [\"Password Expiration\", \"Configuration Setting\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "Password Policy",
+        "description_draft": "Maximum password age: 60 days.",
+        "keywords": [
+          "Password Expiration",
+          "Configuration Setting"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-8059C415",
+      "source_metadata": {
+        "source_document": "Microsoft Security Best Practices",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "Password Policy"
+      },
+      "original_content": {
+        "raw_text_en": "Minimum password length: 14 characters.",
+        "original_heading": "Password Policy",
+        "context_paragraph": "{\"category\": \"Account Policies\", \"target\": \"Domain Controller / Windows Server\", \"tags\": [\"Password Length\", \"Configuration Setting\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "Password Policy",
+        "description_draft": "Minimum password length: 14 characters.",
+        "keywords": [
+          "Password Length",
+          "Configuration Setting"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-E3BDA707",
+      "source_metadata": {
+        "source_document": "Microsoft Security Best Practices",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "Account Lockout Policy"
+      },
+      "original_content": {
+        "raw_text_en": "Account lockout threshold: 10 invalid logon attempts.",
+        "original_heading": "Account Lockout Policy",
+        "context_paragraph": "{\"category\": \"Account Policies\", \"target\": \"Domain Controller / Windows Server\", \"tags\": [\"Account Lockout\", \"Brute Force Protection\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "Account Lockout Policy",
+        "description_draft": "Account lockout threshold: 10 invalid logon attempts.",
+        "keywords": [
+          "Account Lockout",
+          "Brute Force Protection"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-3E1A4433",
+      "source_metadata": {
+        "source_document": "Microsoft Security Best Practices",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "Security Options"
+      },
+      "original_content": {
+        "raw_text_en": "Network security: Restrict NTLM: Outgoing NTLM traffic to remote servers: Deny all.",
+        "original_heading": "Security Options",
+        "context_paragraph": "{\"category\": \"Local Policies / Security Options\", \"target\": \"Domain Controller / Windows Server\", \"tags\": [\"NTLM Restriction\", \"Network Security\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "Security Options",
+        "description_draft": "Network security: Restrict NTLM: Outgoing NTLM traffic to remote servers: Deny all.",
+        "keywords": [
+          "NTLM Restriction",
+          "Network Security"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-1D35E72F",
+      "source_metadata": {
+        "source_document": "Microsoft Security Best Practices",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "Security Options"
+      },
+      "original_content": {
+        "raw_text_en": "Network access: Restrict clients allowed to make remote calls to SAM: O:BAG:BAD:(A;;RC;;;BA).",
+        "original_heading": "Security Options",
+        "context_paragraph": "{\"category\": \"Local Policies / Security Options\", \"target\": \"Domain Controller / Windows Server\", \"tags\": [\"SAM Access\", \"Remote Calls\", \"Privilege Restriction\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "Security Options",
+        "description_draft": "Network access: Restrict clients allowed to make remote calls to SAM: O:BAG:BAD:(A;;RC;;;BA).",
+        "keywords": [
+          "SAM Access",
+          "Remote Calls",
+          "Privilege Restriction"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-61968199",
+      "source_metadata": {
+        "source_document": "Microsoft Security Best Practices",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "LAPS Deployment"
+      },
+      "original_content": {
+        "raw_text_en": "Deploy Windows Local Administrator Password Solution (LAPS) to automatically manage and randomize local administrator passwords on domain-joined endpoints.",
+        "original_heading": "LAPS Deployment",
+        "context_paragraph": "{\"category\": \"Identity and Access Management\", \"target\": \"Active Directory / Endpoints\", \"tags\": [\"LAPS\", \"Local Admin\", \"Password Management\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "LAPS Deployment",
+        "description_draft": "Deploy Windows Local Administrator Password Solution (LAPS) to automatically manage and randomize local administrator passwords on domain-joined endpoints.",
+        "keywords": [
+          "LAPS",
+          "Local Admin",
+          "Password Management"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-B307E033",
+      "source_metadata": {
+        "source_document": "Microsoft Security Best Practices",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "Tiered Administration"
+      },
+      "original_content": {
+        "raw_text_en": "Implement the Enterprise Access Model (Tiered Administration Model) to separate high-privilege identities (Tier 0) from standard endpoints (Tier 2).",
+        "original_heading": "Tiered Administration",
+        "context_paragraph": "{\"category\": \"Architecture and Design\", \"target\": \"Active Directory\", \"tags\": [\"Tiered Administration\", \"Tier 0\", \"Privileged Access\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "Tiered Administration",
+        "description_draft": "Implement the Enterprise Access Model (Tiered Administration Model) to separate high-privilege identities (Tier 0) from standard endpoints (Tier 2).",
+        "keywords": [
+          "Tiered Administration",
+          "Tier 0",
+          "Privileged Access"
+        ]
+      }
+    }
+  ]
+}

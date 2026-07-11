@@ -1,0 +1,210 @@
+﻿[
+    {
+        "code":  "SD-01",
+        "name":  "Governance, Risk \u0026 Compliance",
+        "sub_domains":  [
+                            {
+                                "code":  "SD-01.01",
+                                "name":  "Cybersecurity Strategy \u0026 Governance"
+                            },
+                            {
+                                "code":  "SD-01.02",
+                                "name":  "Policies, Standards \u0026 Exceptions"
+                            },
+                            {
+                                "code":  "SD-01.03",
+                                "name":  "Security Risk Management"
+                            },
+                            {
+                                "code":  "SD-01.04",
+                                "name":  "Compliance, Audit \u0026 Assurance"
+                            },
+                            {
+                                "code":  "SD-01.05",
+                                "name":  "Security Program Management \u0026 Metrics"
+                            }
+                        ]
+    },
+    {
+        "code":  "SD-02",
+        "name":  "Assets, Data \u0026 Privacy",
+        "sub_domains":  [
+                            {
+                                "code":  "SD-02.01",
+                                "name":  "Asset Inventory \u0026 Management"
+                            },
+                            {
+                                "code":  "SD-02.02",
+                                "name":  "Software \u0026 License Management"
+                            },
+                            {
+                                "code":  "SD-02.03",
+                                "name":  "Data Classification \u0026 Ownership"
+                            },
+                            {
+                                "code":  "SD-02.04",
+                                "name":  "Data Protection \u0026 Encryption"
+                            },
+                            {
+                                "code":  "SD-02.05",
+                                "name":  "Privacy, Retention \u0026 Disposal"
+                            }
+                        ]
+    },
+    {
+        "code":  "SD-03",
+        "name":  "Identity, Access \u0026 Privilege",
+        "sub_domains":  [
+                            {
+                                "code":  "SD-03.01",
+                                "name":  "Identity Lifecycle Management"
+                            },
+                            {
+                                "code":  "SD-03.02",
+                                "name":  "Authentication \u0026 Credential Management"
+                            },
+                            {
+                                "code":  "SD-03.03",
+                                "name":  "Authorization \u0026 Access Management"
+                            },
+                            {
+                                "code":  "SD-03.04",
+                                "name":  "Privileged Access Management"
+                            },
+                            {
+                                "code":  "SD-03.05",
+                                "name":  "Remote \u0026 External Access"
+                            }
+                        ]
+    },
+    {
+        "code":  "SD-04",
+        "name":  "Infrastructure, Network \u0026 Cloud",
+        "sub_domains":  [
+                            {
+                                "code":  "SD-04.01",
+                                "name":  "Network \u0026 Communications Security"
+                            },
+                            {
+                                "code":  "SD-04.02",
+                                "name":  "Systems, Servers \u0026 Endpoint Security"
+                            },
+                            {
+                                "code":  "SD-04.03",
+                                "name":  "Configuration \u0026 Security Hardening"
+                            },
+                            {
+                                "code":  "SD-04.04",
+                                "name":  "Cloud \u0026 Virtual Platform Security"
+                            },
+                            {
+                                "code":  "SD-04.05",
+                                "name":  "Email, Web \u0026 Digital Communications"
+                            }
+                        ]
+    },
+    {
+        "code":  "SD-05",
+        "name":  "Applications, Development \u0026 Change",
+        "sub_domains":  [
+                            {
+                                "code":  "SD-05.01",
+                                "name":  "Application Security Governance \u0026 SDLC"
+                            },
+                            {
+                                "code":  "SD-05.02",
+                                "name":  "Application \u0026 API Security Testing"
+                            },
+                            {
+                                "code":  "SD-05.03",
+                                "name":  "Code, Components \u0026 Software Supply Chain"
+                            },
+                            {
+                                "code":  "SD-05.04",
+                                "name":  "Change \u0026 Release Management"
+                            },
+                            {
+                                "code":  "SD-05.05",
+                                "name":  "Database \u0026 Critical Application Security"
+                            }
+                        ]
+    },
+    {
+        "code":  "SD-06",
+        "name":  "Detection, Monitoring \u0026 Vulnerability",
+        "sub_domains":  [
+                            {
+                                "code":  "SD-06.01",
+                                "name":  "Logging \u0026 Security Monitoring"
+                            },
+                            {
+                                "code":  "SD-06.02",
+                                "name":  "Threat Detection \u0026 Alerts"
+                            },
+                            {
+                                "code":  "SD-06.03",
+                                "name":  "Vulnerability \u0026 Patch Management"
+                            },
+                            {
+                                "code":  "SD-06.04",
+                                "name":  "Security Testing \u0026 Assessments"
+                            },
+                            {
+                                "code":  "SD-06.05",
+                                "name":  "Threat Intelligence \u0026 IoCs"
+                            }
+                        ]
+    },
+    {
+        "code":  "SD-07",
+        "name":  "Response, Recovery \u0026 Resilience",
+        "sub_domains":  [
+                            {
+                                "code":  "SD-07.01",
+                                "name":  "Incident Management"
+                            },
+                            {
+                                "code":  "SD-07.02",
+                                "name":  "Digital Forensics \u0026 Evidence"
+                            },
+                            {
+                                "code":  "SD-07.03",
+                                "name":  "Backup \u0026 Restore"
+                            },
+                            {
+                                "code":  "SD-07.04",
+                                "name":  "Business Continuity \u0026 Disaster Recovery"
+                            },
+                            {
+                                "code":  "SD-07.05",
+                                "name":  "Crisis Management \u0026 Communication"
+                            }
+                        ]
+    },
+    {
+        "code":  "SD-08",
+        "name":  "People, Third Parties \u0026 Physical",
+        "sub_domains":  [
+                            {
+                                "code":  "SD-08.01",
+                                "name":  "Awareness, Training \u0026 Security Culture"
+                            },
+                            {
+                                "code":  "SD-08.02",
+                                "name":  "HR Security \u0026 Employee Lifecycle"
+                            },
+                            {
+                                "code":  "SD-08.03",
+                                "name":  "Supplier \u0026 Third-Party Management"
+                            },
+                            {
+                                "code":  "SD-08.04",
+                                "name":  "Physical \u0026 Environmental Security"
+                            },
+                            {
+                                "code":  "SD-08.05",
+                                "name":  "Acceptable Use \u0026 Professional Conduct"
+                            }
+                        ]
+    }
+]

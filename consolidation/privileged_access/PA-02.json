@@ -1,0 +1,66 @@
+{
+  "candidate_group_id": "PA-02",
+  "concept_name": "Restrict Privileged Access Scope",
+  "expected_sub_domain": "SD-03.04",
+  "member_raw_ids": [
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0070",
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0071"
+  ],
+  "excluded_raw_ids": [
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0065",
+    "enterprise_infrastructure_benchmarks::0001"
+  ],
+  "member_reasons": {
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0070": "NIST AC-6(5) — restrict privileged accounts to authorized personnel only.",
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0071": "NIST AC-6(6) — prohibit privileged access by non-organizational users."
+  },
+  "exclusion_reasons": {
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0065": "AC-6 general least privilege belongs to SD-03.03 (Authorization), not PAM.",
+    "enterprise_infrastructure_benchmarks::0001": "AD-02 is a Domain-Admin tiering CONFIG (ART-CFG) — must not merge control with configuration (PA-07)."
+  },
+  "differences": "Both restrict WHO may hold/use privileged accounts; same atomic idea (minimize the privileged population). Distinct from general least privilege (SD-03.03).",
+  "decision": "CANONICALIZE",
+  "decision_confidence": 0.85,
+  "requires_human_review": 0,
+  "decision_rationale": "AC-6(5) and AC-6(6) both restrict the privileged-account population; merged as one PAM control.",
+  "canonical_artifact": {
+    "title_en": "Privileged Access Restriction",
+    "definition_short_en": "This control restricts privileged accounts to explicitly authorized personnel and prohibits privileged access by non-organizational users.",
+    "definition_full_en": "This artifact requires that privileged access be granted only to explicitly authorized personnel and denied to non-organizational users, minimizing the privileged-account population. It applies to all systems with privileged accounts. The minimum expected outcome is a documented, enforced restriction of privileged access. Verification is by reviewing privileged-account holders against authorization records.",
+    "objective_en": "Minimize who can exercise privileged access.",
+    "type": "ART-CTR",
+    "abstraction_level": "ABS-CTR",
+    "primary_domain": "SD-03",
+    "sub_domain": "SD-03.04",
+    "obligation_level": "OBL-MND",
+    "classification_confidence": 0.85,
+    "classification_rationale": "AC-6(5)/AC-6(6) restrict the privileged population; SD-03.04.",
+    "verification_method_note": "Review privileged-account holders vs authorization records.",
+    "missing_fields": [
+      "control_nature",
+      "control_function",
+      "testability"
+    ]
+  },
+  "source_mappings": [
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0070",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-6(5) (Access Control)",
+      "source_file": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations.json",
+      "mapping_strength": "DIRECT",
+      "rationale": null
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0071",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-6(6) (Access Control)",
+      "source_file": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations.json",
+      "mapping_strength": "DIRECT",
+      "rationale": null
+    }
+  ],
+  "validation": "OK"
+}

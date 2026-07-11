@@ -1,0 +1,945 @@
+{
+  "group_id": "GRP-data_encryption",
+  "concept": "Data Protection & Encryption",
+  "expected_sub_domain": "SD-02.04",
+  "member_count": 50,
+  "source_coverage": [
+    "MITRE ATT&CK Enterprise",
+    "NCA ECC-1:2018",
+    "NIST CSF 2.0",
+    "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+    "OWASP Application Security Verification Standard 5.0.0",
+    "PCI DSS v4.0"
+  ],
+  "instructions": "Decide per CONSOLIDATION_POLICY.md: one of CANONICALIZE | EQUIVALENCE_GROUP | CROSSWALK_ONLY | RELATE_ONLY | KEEP_SEPARATE | DEPRECATE_DERIVED. If merging, author an English canonical per AUTHORING_POLICY.md and set mapping_strength per source. Do NOT invent USACM/SDT values. Do NOT delete raw records.",
+  "members": [
+    {
+      "raw_id": "mitre_att_ck_enterprise::0004",
+      "external_raw_id": "RAW-001760",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1560.001",
+      "title_draft": "T1560.001 — Archive via Utility",
+      "description": "Adversaries may use utilities to compress and/or encrypt collected data prior to exfiltration.",
+      "keywords": [
+        "code",
+        "utilities",
+        "data",
+        "adversaries",
+        "compress",
+        "windows",
+        "citation",
+        "encrypt"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0010",
+      "external_raw_id": "RAW-001766",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1027.011",
+      "title_draft": "T1027.011 — Fileless Storage",
+      "description": "Adversaries may store data in \"fileless\" formats to conceal malicious activity from defenses.",
+      "keywords": [
+        "fileless",
+        "storage",
+        "citation",
+        "data",
+        "adversaries",
+        "file",
+        "https",
+        "attack"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0040",
+      "external_raw_id": "RAW-001796",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1492",
+      "title_draft": "T1492 — Stored Data Manipulation",
+      "description": "Adversaries may insert, delete, or manipulate data at rest in order to manipulate external outcomes or hide activity.(Citation: FireEye APT38 Oct 2018)(Citation: DOJ Lazarus Sony 2018) By manipulating stored data, adversaries may attempt to affect a business process, organizational understanding, and decision making.",
+      "keywords": [
+        "data",
+        "stored",
+        "impact",
+        "adversaries",
+        "manipulate",
+        "order",
+        "citation",
+        "file"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0049",
+      "external_raw_id": "RAW-001805",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1027.013",
+      "title_draft": "T1027.013 — Encrypted/Encoded File",
+      "description": "Adversaries may encrypt or encode files to obfuscate strings, bytes, and other specific patterns to impede detection.",
+      "keywords": [
+        "file",
+        "techniques",
+        "files",
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "encoding"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0077",
+      "external_raw_id": "RAW-001833",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1560.003",
+      "title_draft": "T1560.003 — Archive via Custom Method",
+      "description": "An adversary may compress or encrypt data that is collected prior to exfiltration using a custom method.",
+      "keywords": [
+        "custom",
+        "method",
+        "t1560",
+        "archive",
+        "via",
+        "adversary",
+        "compress",
+        "encrypt"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0093",
+      "external_raw_id": "RAW-001849",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1588.004",
+      "title_draft": "T1588.004 — Digital Certificates",
+      "description": "Adversaries may buy and/or steal SSL/TLS certificates that can be used during targeting.",
+      "keywords": [
+        "certificate",
+        "certificates",
+        "digital",
+        "adversaries",
+        "ssl",
+        "tls",
+        "https",
+        "attack"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0098",
+      "external_raw_id": "RAW-001854",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1555.002",
+      "title_draft": "T1555.002 — Securityd Memory",
+      "description": "An adversary with root access may gather credentials by reading `securityd`’s memory.",
+      "keywords": [
+        "securityd",
+        "citation",
+        "keychain",
+        "memory",
+        "adversary",
+        "apple",
+        "users",
+        "access"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0110",
+      "external_raw_id": "RAW-001866",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1565.001",
+      "title_draft": "T1565.001 — Stored Data Manipulation",
+      "description": "Adversaries may insert, delete, or manipulate data at rest in order to influence external outcomes or hide activity, thus threatening the integrity of the data.(Citation: FireEye APT38 Oct 2018)(Citation: DOJ Lazarus Sony 2018) By manipulating stored data, adversaries may attempt to affect a business process,",
+      "keywords": [
+        "data",
+        "stored",
+        "impact",
+        "adversaries",
+        "order",
+        "citation",
+        "file",
+        "formats"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0118",
+      "external_raw_id": "RAW-001874",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1600",
+      "title_draft": "T1600 — Weaken Encryption",
+      "description": "Adversaries may compromise a network device’s encryption capability in order to bypass encryption that would otherwise protect data communications.(Citation: Cisco Synful Knock Evolution) Encryption can be used to protect transmitted network traffic to maintain its confidentiality (protect against unauthorized disclosure) and integrity (protect against unauthorized",
+      "keywords": [
+        "encryption",
+        "network",
+        "protect",
+        "t1600",
+        "device",
+        "traffic",
+        "unauthorized",
+        "key"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0142",
+      "external_raw_id": "RAW-001898",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1167",
+      "title_draft": "T1167 — Securityd Memory",
+      "description": "In OS X prior to El Capitan, users with root access can read plaintext keychain passwords of logged-in users because Apple’s keychain implementation allows these credentials to be cached so that users are not repeatedly prompted for passwords.",
+      "keywords": [
+        "keychain",
+        "citation",
+        "memory",
+        "users",
+        "securityd",
+        "access",
+        "passwords",
+        "apple"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0184",
+      "external_raw_id": "RAW-001940",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1040",
+      "title_draft": "T1040 — Network Sniffing",
+      "description": "Adversaries may passively sniff network traffic to capture information about an environment, including authentication material passed over the network.",
+      "keywords": [
+        "network",
+        "traffic",
+        "mirroring",
+        "citation",
+        "capture",
+        "techniques",
+        "https",
+        "attack"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0197",
+      "external_raw_id": "RAW-001953",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1685.002",
+      "title_draft": "T1685.002 — Disable or Modify Cloud Log",
+      "description": "An adversary may disable or modify cloud logging capabilities and integrations to limit what data is collected on their activities and avoid detection.",
+      "keywords": [
+        "disable",
+        "logging",
+        "cloud",
+        "adversary",
+        "activities",
+        "modify",
+        "detection",
+        "user"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0243",
+      "external_raw_id": "RAW-001999",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1560.002",
+      "title_draft": "T1560.002 — Archive via Library",
+      "description": "An adversary may compress or encrypt data that is collected prior to exfiltration using 3rd party libraries.",
+      "keywords": [
+        "libraries",
+        "data",
+        "citation",
+        "archive",
+        "compress",
+        "encrypt",
+        "libzip",
+        "zlib"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0303",
+      "external_raw_id": "RAW-002059",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1560",
+      "title_draft": "T1560 — Archive Collected Data",
+      "description": "An adversary may compress and/or encrypt data that is collected prior to exfiltration.",
+      "keywords": [
+        "data",
+        "collected",
+        "exfiltration",
+        "prior",
+        "encryption",
+        "t1560",
+        "archive",
+        "adversary"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0427",
+      "external_raw_id": "RAW-002183",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1048.001",
+      "title_draft": "T1048.001 — Exfiltration Over Symmetric Encrypted Non-C2 Protocol",
+      "description": "Adversaries may steal data by exfiltrating it over a symmetrically encrypted network protocol other than that of the existing command and control channel.",
+      "keywords": [
+        "encryption",
+        "symmetric",
+        "encrypted",
+        "protocol",
+        "data",
+        "network",
+        "keys",
+        "protocols"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0446",
+      "external_raw_id": "RAW-002202",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1649",
+      "title_draft": "T1649 — Steal or Forge Authentication Certificates",
+      "description": "Adversaries may steal or forge certificates used for authentication to access remote systems or resources.",
+      "keywords": [
+        "certificates",
+        "certificate",
+        "citation",
+        "authentication",
+        "also",
+        "https",
+        "attack",
+        "mitre"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0471",
+      "external_raw_id": "RAW-002227",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1608",
+      "title_draft": "T1608 — Stage Capabilities",
+      "description": "Adversaries may upload, install, or otherwise set up capabilities that can be used during targeting.",
+      "keywords": [
+        "citation",
+        "capabilities",
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "techniques",
+        "infrastructure"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0494",
+      "external_raw_id": "RAW-002250",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1048.002",
+      "title_draft": "T1048.002 — Exfiltration Over Asymmetric Encrypted Non-C2 Protocol",
+      "description": "Adversaries may steal data by exfiltrating it over an asymmetrically encrypted network protocol other than that of the existing command and control channel.",
+      "keywords": [
+        "encrypted",
+        "keys",
+        "asymmetric",
+        "protocol",
+        "data",
+        "network",
+        "encryption",
+        "each"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0544",
+      "external_raw_id": "RAW-002300",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1048",
+      "title_draft": "T1048 — Exfiltration Over Alternative Protocol",
+      "description": "Adversaries may steal data by exfiltrating it over a different protocol than that of the existing command and control channel.",
+      "keywords": [
+        "protocol",
+        "exfiltration",
+        "over",
+        "data",
+        "command",
+        "alternate",
+        "network",
+        "ftp"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0605",
+      "external_raw_id": "RAW-002361",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1486",
+      "title_draft": "T1486 — Data Encrypted for Impact",
+      "description": "Adversaries may encrypt data on target systems or on large numbers of systems in a network to interrupt availability to system and network resources.",
+      "keywords": [
+        "citation",
+        "data",
+        "attack",
+        "techniques",
+        "https",
+        "mitre",
+        "org",
+        "adversaries"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0680",
+      "external_raw_id": "RAW-002436",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1562.008",
+      "title_draft": "T1562.008 — Disable or Modify Cloud Logs",
+      "description": "An adversary may disable or modify cloud logging capabilities and integrations to limit what data is collected on their activities and avoid detection.",
+      "keywords": [
+        "disable",
+        "logging",
+        "adversary",
+        "activities",
+        "citation",
+        "modify",
+        "cloud",
+        "detection"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0731",
+      "external_raw_id": "RAW-002487",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1022",
+      "title_draft": "T1022 — Data Encrypted",
+      "description": "Data is encrypted before being exfiltrated in order to hide the information that is being exfiltrated from detection or to make the exfiltration less conspicuous upon inspection by a defender.",
+      "keywords": [
+        "exfiltration",
+        "data",
+        "techniques",
+        "encrypted",
+        "being",
+        "exfiltrated",
+        "encryption",
+        "performed"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0826",
+      "external_raw_id": "RAW-002582",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1490",
+      "title_draft": "T1490 — Inhibit System Recovery",
+      "description": "Adversaries may delete or remove built-in data and turn off services designed to aid in the recovery of a corrupted system to prevent recovery.(Citation: Talos Olympic Destroyer 2018)(Citation: FireEye WannaCry 2017) This may deny access to available backups and recovery options.",
+      "keywords": [
+        "code",
+        "delete",
+        "recovery",
+        "citation",
+        "adversaries",
+        "exe",
+        "attack",
+        "backups"
+      ]
+    },
+    {
+      "raw_id": "nca_ecc_1_2018::0026",
+      "external_raw_id": "RAW-BATCH-B0A34155",
+      "source_document": "NCA ECC-1:2018",
+      "source_version": "Unknown",
+      "source_section": "2-7-3",
+      "title_draft": "2-7-3",
+      "description": "Ensuring sensitive data processed by business applications (e.g., financial data, PII) is encrypted in transit and at rest.",
+      "keywords": [
+        "Encryption",
+        "Financial Data",
+        "PII",
+        "Data in Transit",
+        "Data at Rest"
+      ]
+    },
+    {
+      "raw_id": "nist_csf_2_0::0017",
+      "external_raw_id": "RAW-BATCH-F9A4D174",
+      "source_document": "NIST CSF 2.0",
+      "source_version": "Unknown",
+      "source_section": "PR.DS-01",
+      "title_draft": "PR.DS-01",
+      "description": "The confidentiality, integrity, and availability of data-at-rest are protected.",
+      "keywords": [
+        "Data at Rest",
+        "Encryption",
+        "CIA Triad"
+      ]
+    },
+    {
+      "raw_id": "nist_csf_2_0::0018",
+      "external_raw_id": "RAW-BATCH-66B9B40B",
+      "source_document": "NIST CSF 2.0",
+      "source_version": "Unknown",
+      "source_section": "PR.DS-02",
+      "title_draft": "PR.DS-02",
+      "description": "The confidentiality, integrity, and availability of data-in-transit are protected.",
+      "keywords": [
+        "Data in Transit",
+        "Network Security"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0008",
+      "external_raw_id": "RAW-000115",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-2(7) (Access Control)",
+      "title_draft": "AC-2(7): Privileged User Accounts",
+      "description": "(a) Establish and administer privileged user accounts in accordance with {{ insert: param, ac-02.07_odp }}; (b) Monitor privileged role or attribute assignments; (c) Monitor changes to roles or attributes; and (d) Revoke access when privileged role or attribute assignments are no longer appropriate.",
+      "keywords": [
+        "privileged",
+        "roles",
+        "access",
+        "administration",
+        "user",
+        "accounts",
+        "monitor",
+        "role"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0020",
+      "external_raw_id": "RAW-000127",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-3(5) (Access Control)",
+      "title_draft": "AC-3(5): Security-relevant Information",
+      "description": "Prevent access to {{ insert: param, ac-03.05_odp }} except during secure, non-operable system states.",
+      "keywords": [
+        "security-relevant",
+        "access",
+        "secure",
+        "non-operable",
+        "states",
+        "services",
+        "ac-3",
+        "prevent"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0066",
+      "external_raw_id": "RAW-000173",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-6(1) (Access Control)",
+      "title_draft": "AC-6(1): Authorize Access to Security Functions",
+      "description": "Authorize access for {{ insert: param, ac-06.01_odp.01 }} to: (a) {{ insert: param, ac-6.1_prm_2 }} ; and (b) {{ insert: param, ac-06.01_odp.05 }}.",
+      "keywords": [
+        "access",
+        "insert",
+        "param",
+        "ac-6",
+        "authorize",
+        "functions",
+        "ac-06",
+        "odp"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0075",
+      "external_raw_id": "RAW-000182",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-6(10) (Access Control)",
+      "title_draft": "AC-6(10): Prohibit Non-privileged Users from Executing Privileged Functions",
+      "description": "Prevent non-privileged users from executing privileged functions.",
+      "keywords": [
+        "non-privileged",
+        "users",
+        "privileged",
+        "functions",
+        "executing",
+        "circumventing",
+        "protection",
+        "mechanisms"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0342",
+      "external_raw_id": "RAW-000449",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CP-3(1) (Contingency Planning)",
+      "title_draft": "CP-3(1): Simulated Events",
+      "description": "Incorporate simulated events into contingency training to facilitate effective response by personnel in crisis situations.",
+      "keywords": [
+        "events",
+        "simulated",
+        "personnel",
+        "cp-3",
+        "incorporate",
+        "contingency",
+        "training",
+        "facilitate"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0371",
+      "external_raw_id": "RAW-000478",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CP-9(3) (Contingency Planning)",
+      "title_draft": "CP-9(3): Separate Storage for Critical Information",
+      "description": "Store backup copies of {{ insert: param, cp-09.03_odp }} in a separate facility or in a fire rated container that is not collocated with the operational system.",
+      "keywords": [
+        "storage",
+        "separate",
+        "critical",
+        "backup",
+        "fire",
+        "rated",
+        "software",
+        "includes"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0376",
+      "external_raw_id": "RAW-000483",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CP-9(8) (Contingency Planning)",
+      "title_draft": "CP-9(8): Cryptographic Protection",
+      "description": "Implement cryptographic mechanisms to prevent unauthorized disclosure and modification of {{ insert: param, cp-09.08_odp }}.",
+      "keywords": [
+        "cryptographic",
+        "mechanisms",
+        "protection",
+        "implement",
+        "protect",
+        "backup",
+        "cp-9",
+        "prevent"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0446",
+      "external_raw_id": "RAW-001053",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SC-12 (System and Communications Protection)",
+      "title_draft": "SC-12: Cryptographic Key Establishment and Management",
+      "description": "Establish and manage cryptographic keys when cryptography is employed within the system in accordance with the following key management requirements: {{ insert: param, sc-12_odp }}.",
+      "keywords": [
+        "cryptographic",
+        "key",
+        "management",
+        "establishment",
+        "trust",
+        "manage",
+        "accordance",
+        "requirements"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0448",
+      "external_raw_id": "RAW-001055",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SC-12(2) (System and Communications Protection)",
+      "title_draft": "SC-12(2): Symmetric Keys",
+      "description": "Produce, control, and distribute symmetric cryptographic keys using {{ insert: param, sc-12.02_odp }} key management technology and processes.",
+      "keywords": [
+        "key",
+        "cryptographic",
+        "sc-12",
+        "symmetric",
+        "keys",
+        "management",
+        "provide",
+        "guidance"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0449",
+      "external_raw_id": "RAW-001056",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SC-12(3) (System and Communications Protection)",
+      "title_draft": "SC-12(3): Asymmetric Keys",
+      "description": "Produce, control, and distribute asymmetric cryptographic keys using {{ insert: param, sc-12.03_odp }}.",
+      "keywords": [
+        "cryptographic",
+        "key",
+        "sc-12",
+        "asymmetric",
+        "keys",
+        "provide",
+        "guidance",
+        "produce"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0494",
+      "external_raw_id": "RAW-001101",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SC-28(1) (System and Communications Protection)",
+      "title_draft": "SC-28(1): Cryptographic Protection",
+      "description": "Implement cryptographic mechanisms to prevent unauthorized disclosure and modification of the following information at rest on {{ insert: param, sc-28.01_odp.02 }}: {{ insert: param, sc-28.01_odp.01 }}.",
+      "keywords": [
+        "sc-28",
+        "cryptographic",
+        "mechanisms",
+        "insert",
+        "param",
+        "odp",
+        "encrypt",
+        "protection"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0520",
+      "external_raw_id": "RAW-001127",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SC-37 (System and Communications Protection)",
+      "title_draft": "SC-37: Out-of-band Channels",
+      "description": "Employ the following out-of-band channels for the physical delivery or electronic transmission of {{ insert: param, sc-37_odp.02 }} to {{ insert: param, sc-37_odp.03 }}: {{ insert: param, sc-37_odp.01 }}.",
+      "keywords": [
+        "channels",
+        "out-of-band",
+        "insert",
+        "param",
+        "sc-37_odp",
+        "paths",
+        "in-band",
+        "employ"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0580",
+      "external_raw_id": "RAW-001187",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SI-4(10) (System and Information Integrity)",
+      "title_draft": "SI-4(10): Visibility of Encrypted Communications",
+      "description": "Make provisions so that {{ insert: param, si-04.10_odp.01 }} is visible to {{ insert: param, si-04.10_odp.02 }}.",
+      "keywords": [
+        "traffic",
+        "visibility",
+        "encrypted",
+        "communications",
+        "insert",
+        "param",
+        "si-04",
+        "odp"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0608",
+      "external_raw_id": "RAW-001215",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SI-7(6) (System and Information Integrity)",
+      "title_draft": "SI-7(6): Cryptographic Protection",
+      "description": "Implement cryptographic mechanisms to detect unauthorized changes to software, firmware, and information.",
+      "keywords": [
+        "cryptographic",
+        "mechanisms",
+        "key",
+        "hash",
+        "si-7",
+        "protection",
+        "implement",
+        "detect"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0617",
+      "external_raw_id": "RAW-001224",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SI-7(15) (System and Information Integrity)",
+      "title_draft": "SI-7(15): Code Authentication",
+      "description": "Implement cryptographic mechanisms to authenticate the following software or firmware components prior to installation: {{ insert: param, si-07.15_odp }}.",
+      "keywords": [
+        "cryptographic",
+        "code",
+        "authentication",
+        "mechanisms",
+        "software",
+        "firmware",
+        "components",
+        "organizations"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0660",
+      "external_raw_id": "RAW-001267",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SI-19(4) (System and Information Integrity)",
+      "title_draft": "SI-19(4): Removal, Masking, Encryption, Hashing, or Replacement of Direct Identifiers",
+      "description": "Remove, mask, encrypt, hash, or replace direct identifiers in a dataset.",
+      "keywords": [
+        "identifiers",
+        "direct",
+        "identifier",
+        "key",
+        "encryption",
+        "dataset",
+        "masking",
+        "hashing"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1055",
+      "external_raw_id": "RAW-000860",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SA-4(6) (System and Services Acquisition)",
+      "title_draft": "SA-4(6): Use of Information Assurance Products",
+      "description": "(a) Employ only government off-the-shelf or commercial off-the-shelf information assurance and information assurance-enabled information technology products that compose an NSA-approved solution to protect classified information when the networks used to transmit the information are at a lower classification level than the information being transmitted; and",
+      "keywords": [
+        "products",
+        "off-the-shelf",
+        "nsa-approved",
+        "assurance",
+        "commercial",
+        "technology",
+        "protect",
+        "classified"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1096",
+      "external_raw_id": "RAW-000901",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SA-8(26) (System and Services Acquisition)",
+      "title_draft": "SA-8(26): Performance Security",
+      "description": "Implement the security design principle of performance security in {{ insert: param, sa-08.26_odp }}.",
+      "keywords": [
+        "performance",
+        "mechanisms",
+        "design",
+        "principle",
+        "requirements",
+        "capability",
+        "services",
+        "they"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1105",
+      "external_raw_id": "RAW-000910",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SA-9(1) (System and Services Acquisition)",
+      "title_draft": "SA-9(1): Risk Assessments and Organizational Approvals",
+      "description": "(a) Conduct an organizational assessment of risk prior to the acquisition or outsourcing of information security services; and (b) Verify that the acquisition or outsourcing of dedicated information security services is approved by {{ insert: param, sa-09.01_odp }}.",
+      "keywords": [
+        "services",
+        "risk",
+        "acquisition",
+        "outsourcing",
+        "risks",
+        "sa-9",
+        "assessments",
+        "approvals"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0027",
+      "external_raw_id": "RAW-001528",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V11.1.1 (V11.1 Cryptographic Inventory and Documentation)",
+      "title_draft": "V11.1.1 — Cryptographic Inventory and Documentation",
+      "description": "Verify that there is a documented policy for management of cryptographic keys and a cryptographic key lifecycle that follows a key management standard such as NIST SP 800-57.",
+      "keywords": [
+        "v11",
+        "cryptographic",
+        "keys",
+        "management",
+        "key",
+        "more",
+        "than",
+        "inventory"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0032",
+      "external_raw_id": "RAW-001533",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V11.2.2 (V11.2 Secure Cryptography Implementation)",
+      "title_draft": "V11.2.2 — Secure Cryptography Implementation",
+      "description": "Verify that the application is designed with crypto agility such that random number, authenticated encryption, MAC, or hashing algorithms, key lengths, rounds, ciphers and modes can be reconfigured, upgraded, or swapped at any time, to protect against cryptographic breaks.",
+      "keywords": [
+        "v11",
+        "cryptography",
+        "pqc",
+        "secure",
+        "implementation",
+        "designed",
+        "crypto",
+        "agility"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0040",
+      "external_raw_id": "RAW-001541",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V11.3.5 (V11.3 Encryption Algorithms)",
+      "title_draft": "V11.3.5 — Encryption Algorithms",
+      "description": "Verify that any combination of an encryption algorithm and a MAC algorithm is operating in encrypt-then-MAC mode.",
+      "keywords": [
+        "v11",
+        "encryption",
+        "algorithm",
+        "algorithms",
+        "any",
+        "combination",
+        "mac",
+        "operating"
+      ]
+    },
+    {
+      "raw_id": "pci_dss_v4_0::0010",
+      "external_raw_id": "RAW-BATCH-5D299F9E",
+      "source_document": "PCI DSS v4.0",
+      "source_version": "Unknown",
+      "source_section": "4.2.1",
+      "title_draft": "4.2.1",
+      "description": "Strong cryptography and security protocols are implemented to safeguard PAN during transmission over open, public networks.",
+      "keywords": [
+        "Data in Transit",
+        "Strong Cryptography",
+        "Public Networks"
+      ]
+    },
+    {
+      "raw_id": "pci_dss_v4_0::0011",
+      "external_raw_id": "RAW-BATCH-C21AFCE7",
+      "source_document": "PCI DSS v4.0",
+      "source_version": "Unknown",
+      "source_section": "4.2.2",
+      "title_draft": "4.2.2",
+      "description": "PAN is secured with strong cryptography whenever it is sent via end-user messaging technologies (for example, email, instant messaging, SMS, chat).",
+      "keywords": [
+        "End-user Messaging",
+        "Email Security",
+        "PAN Protection"
+      ]
+    }
+  ],
+  "decision": null,
+  "canonical": null
+}

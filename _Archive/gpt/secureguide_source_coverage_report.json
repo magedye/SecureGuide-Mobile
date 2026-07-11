@@ -1,0 +1,120 @@
+{
+  "report_date": "2026-07-10",
+  "delivered_artifacts": 2613,
+  "fully_or_partially_covered_sources": 5,
+  "requested_sources": 15,
+  "coverage": [
+    {
+      "source": "NIST Cybersecurity Framework (CSF) 2.0",
+      "status": "EXTRACTED",
+      "version_used": "2.0",
+      "artifacts": 106,
+      "note": "All 106 active subcategories extracted; 79 withdrawn compatibility rows in the export were not treated as current CSF 2.0 subcategories."
+    },
+    {
+      "source": "ISO/IEC 27002:2022",
+      "status": "BLOCKED_BY_COPYRIGHT",
+      "version_used": null,
+      "artifacts": 0,
+      "note": "ISO states that reproduction requires written permission. A licensed copy and redistribution authorization are required for verbatim bulk extraction."
+    },
+    {
+      "source": "CIS Controls v8.1",
+      "status": "ACCESS_AND_LICENSE_REVIEW_REQUIRED",
+      "version_used": "8.1",
+      "artifacts": 0,
+      "note": "Official bulk download is form-gated. Verbatim redistribution rights were not established in this run."
+    },
+    {
+      "source": "PCI DSS",
+      "status": "LICENSE_REVIEW_REQUIRED",
+      "version_used": "4.0.1",
+      "artifacts": 0,
+      "note": "The current official version is 4.0.1. The standard is publicly downloadable but copyrighted; bulk republication rights were not established."
+    },
+    {
+      "source": "NIST SP 800-53 Rev.5",
+      "status": "EXTRACTED",
+      "version_used": "Release 5.2.0",
+      "artifacts": 1196,
+      "note": "All control and control-enhancement records in the official OSCAL catalog were retained, including withdrawn records."
+    },
+    {
+      "source": "NCA ECC",
+      "status": "EXTRACTED_UPDATED_VERSION",
+      "version_used": "ECC 2-2024",
+      "artifacts": 108,
+      "note": "The current ECC 2-2024 replaced the requested ECC-1:2018 source."
+    },
+    {
+      "source": "MITRE ATT&CK",
+      "status": "EXTRACTED_UPDATED_VERSION",
+      "version_used": "Enterprise 19.1",
+      "artifacts": 858,
+      "note": "All attack-pattern records were retained, including revoked and deprecated records; requested v14 is obsolete."
+    },
+    {
+      "source": "OWASP Top 10 + ASVS",
+      "status": "PARTIALLY_EXTRACTED",
+      "version_used": "ASVS 5.0.0",
+      "artifacts": 345,
+      "note": "All ASVS 5.0.0 requirements were extracted. OWASP Top 10 was not separately ingested in this run."
+    },
+    {
+      "source": "COBIT 2019",
+      "status": "PROPRIETARY_SOURCE_REQUIRED",
+      "version_used": null,
+      "artifacts": 0,
+      "note": "A licensed ISACA source and redistribution authorization are required for verbatim bulk extraction."
+    },
+    {
+      "source": "ITIL 4",
+      "status": "PROPRIETARY_SOURCE_REQUIRED",
+      "version_used": null,
+      "artifacts": 0,
+      "note": "A licensed official source and redistribution authorization are required for verbatim bulk extraction."
+    },
+    {
+      "source": "CIS Benchmarks",
+      "status": "ACCESS_AND_LICENSE_REVIEW_REQUIRED",
+      "version_used": null,
+      "artifacts": 0,
+      "note": "Benchmark downloads and reuse are governed by CIS access and license terms."
+    },
+    {
+      "source": "Microsoft Security Baselines",
+      "status": "NOT_INGESTED",
+      "version_used": null,
+      "artifacts": 0,
+      "note": "Requires a dedicated parser for the current Security Compliance Toolkit packages."
+    },
+    {
+      "source": "NIST SP 800-171",
+      "status": "REQUESTED_VERSION_SUPERSEDED",
+      "version_used": "Rev.3 identified",
+      "artifacts": 0,
+      "note": "Rev.3 superseded the requested Rev.2 in May 2024. It should be ingested as a separate current-source batch."
+    },
+    {
+      "source": "GDPR",
+      "status": "NOT_INGESTED",
+      "version_used": null,
+      "artifacts": 0,
+      "note": "Requires a dedicated EUR-Lex article/paragraph parser and legal consolidation-date capture."
+    },
+    {
+      "source": "HIPAA Security Rule",
+      "status": "NOT_INGESTED",
+      "version_used": null,
+      "artifacts": 0,
+      "note": "Requires a dedicated eCFR subsection parser and effective-date capture."
+    }
+  ],
+  "success_criteria": {
+    "minimum_2000_artifacts": true,
+    "all_15_sources_covered": false,
+    "all_records_source_traced": true,
+    "all_records_complete": true,
+    "no_usacm_or_sdt_classification": true
+  }
+}

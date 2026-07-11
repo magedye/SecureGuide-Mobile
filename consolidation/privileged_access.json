@@ -1,0 +1,761 @@
+{
+  "group_id": "GRP-privileged_access",
+  "concept": "Privileged Access",
+  "expected_sub_domain": "SD-03.04",
+  "member_count": 40,
+  "source_coverage": [
+    "CIS Controls v8",
+    "Essential Cybersecurity Controls (ECC 2-2024)",
+    "MITRE ATT&CK Enterprise",
+    "Microsoft Security Best Practices",
+    "NCA ECC-1:2018",
+    "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+    "OWASP Application Security Verification Standard 5.0.0",
+    "The NIST Cybersecurity Framework (CSF) 2.0"
+  ],
+  "instructions": "Decide per CONSOLIDATION_POLICY.md: one of CANONICALIZE | EQUIVALENCE_GROUP | CROSSWALK_ONLY | RELATE_ONLY | KEEP_SEPARATE | DEPRECATE_DERIVED. If merging, author an English canonical per AUTHORING_POLICY.md and set mapping_strength per source. Do NOT invent USACM/SDT values. Do NOT delete raw records.",
+  "members": [
+    {
+      "raw_id": "cis_controls_v8::0005",
+      "external_raw_id": "RAW-BATCH-5681D583",
+      "source_document": "CIS Controls v8",
+      "source_version": "Unknown",
+      "source_section": "3.3",
+      "title_draft": "3.3",
+      "description": "Configure data access control lists based on a user’s need to know. Apply the 'least privilege' principle.",
+      "keywords": [
+        "Access Control Lists (ACL)",
+        "Least Privilege",
+        "Need to Know"
+      ]
+    },
+    {
+      "raw_id": "cis_controls_v8::0012",
+      "external_raw_id": "RAW-BATCH-F4AEEB4F",
+      "source_document": "CIS Controls v8",
+      "source_version": "Unknown",
+      "source_section": "6.5",
+      "title_draft": "6.5",
+      "description": "Require Multi-Factor Authentication (MFA) for all administrative access to enterprise assets.",
+      "keywords": [
+        "Multi-Factor Authentication (MFA)",
+        "Administrative Access",
+        "Privileged Access"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0043",
+      "external_raw_id": "RAW-001691",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 2-2-3 (Identity and Access Management)",
+      "title_draft": "2-2-3: Identity and Access Management",
+      "description": "Cybersecurity requirements for identity and access management of the entity shall include the following as a minimum: 2.2.3.1 Single-factor authentication based on username and password.",
+      "keywords": [
+        "access",
+        "authentication",
+        "identity",
+        "management",
+        "based",
+        "principle",
+        "suitable",
+        "privileged"
+      ]
+    },
+    {
+      "raw_id": "microsoft_security_best_practices::0007",
+      "external_raw_id": "RAW-BATCH-B307E033",
+      "source_document": "Microsoft Security Best Practices",
+      "source_version": "Unknown",
+      "source_section": "Tiered Administration",
+      "title_draft": "Tiered Administration",
+      "description": "Implement the Enterprise Access Model (Tiered Administration Model) to separate high-privilege identities (Tier 0) from standard endpoints (Tier 2).",
+      "keywords": [
+        "Tiered Administration",
+        "Tier 0",
+        "Privileged Access"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0074",
+      "external_raw_id": "RAW-001830",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1548.003",
+      "title_draft": "T1548.003 — Sudo and Sudo Caching",
+      "description": "Adversaries may perform sudo caching and/or use the sudoers file to elevate privileges.",
+      "keywords": [
+        "code",
+        "sudo",
+        "users",
+        "commands",
+        "sudoers",
+        "file",
+        "privileges",
+        "password"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0119",
+      "external_raw_id": "RAW-001875",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1606.002",
+      "title_draft": "T1606.002 — SAML Tokens",
+      "description": "An adversary may forge SAML tokens with any permissions claims and lifetimes if they possess a valid SAML token-signing certificate.(Citation: Microsoft SolarWinds Steps) The default lifetime of a SAML token is one hour, but the validity period can be specified in the <code>NotOnOrAfter</code> value of",
+      "keywords": [
+        "saml",
+        "code",
+        "tokens",
+        "adversary",
+        "citation",
+        "token",
+        "microsoft",
+        "forged"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0176",
+      "external_raw_id": "RAW-001932",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1003.007",
+      "title_draft": "T1003.007 — Proc Filesystem",
+      "description": "Adversaries may gather credentials from the proc filesystem or `/proc`.",
+      "keywords": [
+        "proc",
+        "memory",
+        "process",
+        "citation",
+        "credentials",
+        "linux",
+        "virtual",
+        "filesystem"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0199",
+      "external_raw_id": "RAW-001955",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1082",
+      "title_draft": "T1082 — System Information Discovery",
+      "description": "An adversary may attempt to get detailed information about the operating system and hardware, including version, patches, hotfixes, service packs, and architecture.",
+      "keywords": [
+        "citation",
+        "discovery",
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "techniques",
+        "code"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0258",
+      "external_raw_id": "RAW-002014",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1021.008",
+      "title_draft": "T1021.008 — Direct Cloud VM Connections",
+      "description": "Adversaries may leverage [Valid Accounts](https://attack.mitre.org/techniques/T1078) to log directly into accessible cloud hosted compute infrastructure through cloud native methods.",
+      "keywords": [
+        "cloud",
+        "citation",
+        "access",
+        "connections",
+        "methods",
+        "console",
+        "https",
+        "attack"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0295",
+      "external_raw_id": "RAW-002051",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1076",
+      "title_draft": "T1076 — Remote Desktop Protocol",
+      "description": "Remote desktop is a common feature in operating systems.",
+      "keywords": [
+        "remote",
+        "session",
+        "rdp",
+        "desktop",
+        "user",
+        "citation",
+        "services",
+        "access"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0310",
+      "external_raw_id": "RAW-002066",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1556.007",
+      "title_draft": "T1556.007 — Hybrid Identity",
+      "description": "Adversaries may patch, modify, or otherwise backdoor cloud authentication processes that are tied to on-premises user identities in order to bypass typical authentication mechanisms, access credentials, and enable persistent access to accounts.",
+      "keywords": [
+        "authentication",
+        "entra",
+        "hybrid",
+        "cloud",
+        "user",
+        "identity",
+        "on-premises",
+        "active"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0341",
+      "external_raw_id": "RAW-002097",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1078.001",
+      "title_draft": "T1078.001 — Default Accounts",
+      "description": "Adversaries may obtain and abuse credentials of a default account as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion.",
+      "keywords": [
+        "default",
+        "accounts",
+        "account",
+        "esxi",
+        "citation",
+        "access",
+        "threat",
+        "they"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0392",
+      "external_raw_id": "RAW-002148",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1548.005",
+      "title_draft": "T1548.005 — Temporary Elevated Cloud Access",
+      "description": "Adversaries may abuse permission configurations that allow them to gain temporarily elevated access to cloud resources.",
+      "keywords": [
+        "cloud",
+        "access",
+        "citation",
+        "account",
+        "service",
+        "accounts",
+        "roles",
+        "permissions"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0416",
+      "external_raw_id": "RAW-002172",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1558.001",
+      "title_draft": "T1558.001 — Golden Ticket",
+      "description": "Adversaries who have the KRBTGT account password hash may forge Kerberos ticket-granting tickets (TGT), also known as a golden ticket.(Citation: AdSecurity Kerberos GT Aug 2015) Golden tickets enable adversaries to generate authentication material for any account in Active Directory.(Citation: CERT-EU Golden Ticket Protection) Using a",
+      "keywords": [
+        "golden",
+        "tickets",
+        "ticket",
+        "kerberos",
+        "adversaries",
+        "krbtgt",
+        "citation",
+        "account"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0533",
+      "external_raw_id": "RAW-002289",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1169",
+      "title_draft": "T1169 — Sudo",
+      "description": "The sudoers file, <code>/etc/sudoers</code>, describes which users can run which commands and from which terminals.",
+      "keywords": [
+        "users",
+        "code",
+        "sudoers",
+        "file",
+        "commands",
+        "all",
+        "describes",
+        "run"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0752",
+      "external_raw_id": "RAW-002508",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1563.002",
+      "title_draft": "T1563.002 — RDP Hijacking",
+      "description": "Adversaries may hijack a legitimate user’s remote desktop session to move laterally within an environment.",
+      "keywords": [
+        "remote",
+        "session",
+        "user",
+        "desktop",
+        "rdp",
+        "hijacking",
+        "citation",
+        "services"
+      ]
+    },
+    {
+      "raw_id": "nca_ecc_1_2018::0007",
+      "external_raw_id": "RAW-BATCH-F8A2D105",
+      "source_document": "NCA ECC-1:2018",
+      "source_version": "Unknown",
+      "source_section": "2-2-1",
+      "title_draft": "2-2-1",
+      "description": "Enforcing the principle of least privilege and need-to-know for granting logical access to information assets.",
+      "keywords": [
+        "Least Privilege",
+        "Need-to-Know",
+        "Logical Access"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0001",
+      "external_raw_id": "RAW-000108",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-2 (Access Control)",
+      "title_draft": "AC-2: Account Management",
+      "description": "a.",
+      "keywords": [
+        "accounts",
+        "account",
+        "group",
+        "insert",
+        "param",
+        "ac-02_odp",
+        "access",
+        "emergency"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0004",
+      "external_raw_id": "RAW-000111",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-2(3) (Access Control)",
+      "title_draft": "AC-2(3): Disable Accounts",
+      "description": "Disable accounts within {{ insert: param, ac-02.03_odp.01 }} when the accounts: (a) Have expired; (b) Are no longer associated with a user or individual; (c) Are in violation of organizational policy; or (d) Have been inactive for {{ insert: param, ac-02.03_odp.02 }}.",
+      "keywords": [
+        "accounts",
+        "disable",
+        "insert",
+        "param",
+        "ac-02",
+        "odp",
+        "expired",
+        "inactive"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0012",
+      "external_raw_id": "RAW-000119",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-2(11) (Access Control)",
+      "title_draft": "AC-2(11): Usage Conditions",
+      "description": "Enforce {{ insert: param, ac-02.11_odp.01 }} for {{ insert: param, ac-02.11_odp.02 }}.",
+      "keywords": [
+        "usage",
+        "conditions",
+        "account",
+        "enforce",
+        "insert",
+        "param",
+        "ac-02",
+        "odp"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0018",
+      "external_raw_id": "RAW-000125",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-3(3) (Access Control)",
+      "title_draft": "AC-3(3): Mandatory Access Control",
+      "description": "Enforce {{ insert: param, ac-3.3_prm_1 }} over the set of covered subjects and objects specified in the policy, and where the policy: (a) Is uniformly enforced across the covered subjects and objects within the system; (b) Specifies that a subject that has been granted access",
+      "keywords": [
+        "access",
+        "subjects",
+        "policy",
+        "mandatory",
+        "objects",
+        "subject",
+        "ac-3",
+        "policies"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0065",
+      "external_raw_id": "RAW-000172",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-6 (Access Control)",
+      "title_draft": "AC-6: Least Privilege",
+      "description": "Employ the principle of least privilege, allowing only authorized accesses for users (or processes acting on behalf of users) that are necessary to accomplish assigned organizational tasks.",
+      "keywords": [
+        "privilege",
+        "least",
+        "processes",
+        "necessary",
+        "organizations",
+        "employ",
+        "principle",
+        "users"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0067",
+      "external_raw_id": "RAW-000174",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-6(2) (Access Control)",
+      "title_draft": "AC-6(2): Non-privileged Access for Nonsecurity Functions",
+      "description": "Require that users of system accounts (or roles) with access to {{ insert: param, ac-06.02_odp }} use non-privileged accounts or roles, when accessing nonsecurity functions.",
+      "keywords": [
+        "access",
+        "non-privileged",
+        "accounts",
+        "roles",
+        "nonsecurity",
+        "functions",
+        "change",
+        "accessing"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0071",
+      "external_raw_id": "RAW-000178",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-6(6) (Access Control)",
+      "title_draft": "AC-6(6): Privileged Access by Non-organizational Users",
+      "description": "Prohibit privileged access to the system by non-organizational users.",
+      "keywords": [
+        "user",
+        "non-organizational",
+        "users",
+        "privileged",
+        "access",
+        "employee",
+        "equivalent",
+        "status"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0165",
+      "external_raw_id": "RAW-000272",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-2 (Audit and Accountability)",
+      "title_draft": "AU-2: Event Logging",
+      "description": "a.",
+      "keywords": [
+        "event",
+        "logging",
+        "types",
+        "events",
+        "organizations",
+        "logged",
+        "monitoring",
+        "auditing"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0189",
+      "external_raw_id": "RAW-000296",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-6(7) (Audit and Accountability)",
+      "title_draft": "AU-6(7): Permitted Actions",
+      "description": "Specify the permitted actions for each {{ insert: param, au-06.07_odp }} associated with the review, analysis, and reporting of audit record information.",
+      "keywords": [
+        "permitted",
+        "actions",
+        "audit",
+        "specify",
+        "associated",
+        "review",
+        "analysis",
+        "reporting"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0203",
+      "external_raw_id": "RAW-000310",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-9(4) (Audit and Accountability)",
+      "title_draft": "AU-9(4): Access by Subset of Privileged Users",
+      "description": "Authorize access to management of audit logging functionality to only {{ insert: param, au-09.04_odp }}.",
+      "keywords": [
+        "audit",
+        "access",
+        "privileged",
+        "privileges",
+        "users",
+        "roles",
+        "audit-related",
+        "au-9"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0421",
+      "external_raw_id": "RAW-001028",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SC-7(15) (System and Communications Protection)",
+      "title_draft": "SC-7(15): Networked Privileged Accesses",
+      "description": "Route networked, privileged accesses through a dedicated, managed interface for purposes of access control and auditing.",
+      "keywords": [
+        "access",
+        "privileged",
+        "networked",
+        "through",
+        "accesses",
+        "dedicated",
+        "managed",
+        "interface"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0824",
+      "external_raw_id": "RAW-000629",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control MA-5 (Maintenance)",
+      "title_draft": "MA-5: Maintenance Personnel",
+      "description": "a.",
+      "keywords": [
+        "maintenance",
+        "personnel",
+        "access",
+        "required",
+        "individuals",
+        "authorizations",
+        "authorized",
+        "organizations"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1031",
+      "external_raw_id": "RAW-000836",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control RA-5(5) (Risk Assessment)",
+      "title_draft": "RA-5(5): Privileged Access",
+      "description": "Implement privileged access authorization to {{ insert: param, ra-05.05_odp.01 }} for {{ insert: param, ra-05.05_odp.02 }}.",
+      "keywords": [
+        "scanning",
+        "privileged",
+        "access",
+        "authorization",
+        "insert",
+        "param",
+        "ra-05",
+        "odp"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1062",
+      "external_raw_id": "RAW-000867",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SA-5 (System and Services Acquisition)",
+      "title_draft": "SA-5: System Documentation",
+      "description": "a.",
+      "keywords": [
+        "documentation",
+        "component",
+        "service",
+        "operation",
+        "functions",
+        "obtain",
+        "secure",
+        "privacy"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1084",
+      "external_raw_id": "RAW-000889",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SA-8(14) (System and Services Acquisition)",
+      "title_draft": "SA-8(14): Least Privilege",
+      "description": "Implement the security design principle of least privilege in {{ insert: param, sa-08.14_odp }}.",
+      "keywords": [
+        "privilege",
+        "least",
+        "component",
+        "audit",
+        "module",
+        "principle",
+        "elements",
+        "interface"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1092",
+      "external_raw_id": "RAW-000897",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SA-8(22) (System and Services Acquisition)",
+      "title_draft": "SA-8(22): Accountability and Traceability",
+      "description": "Implement the security design principle of accountability and traceability in {{ insert: param, sa-8.22_prm_1 }}.",
+      "keywords": [
+        "accountability",
+        "actions",
+        "traceability",
+        "audit",
+        "principle",
+        "policy",
+        "action",
+        "record"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1155",
+      "external_raw_id": "RAW-000960",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SA-15(5) (System and Services Acquisition)",
+      "title_draft": "SA-15(5): Attack Surface Reduction",
+      "description": "Require the developer of the system, system component, or system service to reduce attack surfaces to {{ insert: param, sa-15.05_odp }}.",
+      "keywords": [
+        "attack",
+        "surface",
+        "reduction",
+        "reducing",
+        "sa-15",
+        "applying",
+        "least",
+        "require"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1165",
+      "external_raw_id": "RAW-000970",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SA-17 (System and Services Acquisition)",
+      "title_draft": "SA-17: Developer Security and Privacy Architecture and Design",
+      "description": "Require the developer of the system, system component, or system service to produce a design specification and security and privacy architecture that: a.",
+      "keywords": [
+        "architecture",
+        "privacy",
+        "design",
+        "pl-8",
+        "developer",
+        "enterprise",
+        "components",
+        "sa-17"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1172",
+      "external_raw_id": "RAW-000977",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SA-17(7) (System and Services Acquisition)",
+      "title_draft": "SA-17(7): Structure for Least Privilege",
+      "description": "Require the developer of the system, system component, or system service to structure security-relevant hardware, software, and firmware to facilitate controlling access with least privilege.",
+      "keywords": [
+        "privilege",
+        "least",
+        "component",
+        "audit",
+        "module",
+        "elements",
+        "principle",
+        "interface"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1194",
+      "external_raw_id": "RAW-000999",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SC-3 (System and Communications Protection)",
+      "title_draft": "SC-3: Security Function Isolation",
+      "description": "Isolate security functions from nonsecurity functions.",
+      "keywords": [
+        "sa-8",
+        "functions",
+        "isolation",
+        "code",
+        "nonsecurity",
+        "function",
+        "boundary",
+        "access"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0067",
+      "external_raw_id": "RAW-001568",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V13.2.1 (V13.2 Backend Communication Configuration)",
+      "title_draft": "V13.2.1 — Backend Communication Configuration",
+      "description": "Verify that communications between backend application components that don't support the application's standard user session mechanism, including APIs, middleware, and data layers, are authenticated.",
+      "keywords": [
+        "v13",
+        "backend",
+        "configuration",
+        "authentication",
+        "accounts",
+        "communication",
+        "communications",
+        "between"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0074",
+      "external_raw_id": "RAW-001575",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V13.3.2 (V13.3 Secret Management)",
+      "title_draft": "V13.3.2 — Secret Management",
+      "description": "Verify that access to secret assets adheres to the principle of least privilege.",
+      "keywords": [
+        "v13",
+        "secret",
+        "management",
+        "access",
+        "assets",
+        "adheres",
+        "principle",
+        "least"
+      ]
+    },
+    {
+      "raw_id": "the_nist_cybersecurity_framework_csf_2_0::0056",
+      "external_raw_id": "RAW-000057",
+      "source_document": "The NIST Cybersecurity Framework (CSF) 2.0",
+      "source_version": "2.0",
+      "source_section": "Subcategory PR.AA-05",
+      "title_draft": "PR.AA-05 — Access permissions, entitlements, and authorizations are defined in a policy, managed, enforced, and reviewed, and incorporate the principles of least privilege and separation of duties",
+      "description": "Access permissions, entitlements, and authorizations are defined in a policy, managed, enforced, and reviewed, and incorporate the principles of least privilege and separation of duties",
+      "keywords": [
+        "access",
+        "managed",
+        "permissions",
+        "entitlements",
+        "authorizations",
+        "defined",
+        "policy",
+        "enforced"
+      ]
+    }
+  ],
+  "decision": null,
+  "canonical": null
+}

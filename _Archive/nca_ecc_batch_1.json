@@ -1,0 +1,162 @@
+[
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "1-1-1",
+    "raw_text": "Developing, approving and implementing a cybersecurity strategy for the organization.",
+    "explicit_info": {
+      "domain": "1. Cybersecurity Governance",
+      "subdomain": "1.1 Cybersecurity Strategy",
+      "tags": ["Cybersecurity Strategy", "Governance"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "1-2-1",
+    "raw_text": "Appointing a head of the cybersecurity function (e.g., CISO) with sufficient qualifications, independence and authority.",
+    "explicit_info": {
+      "domain": "1. Cybersecurity Governance",
+      "subdomain": "1.2 Cybersecurity Management",
+      "tags": ["CISO", "Independence", "Authority"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "1-3-1",
+    "raw_text": "Developing, approving, and publishing comprehensive cybersecurity policies and procedures.",
+    "explicit_info": {
+      "domain": "1. Cybersecurity Governance",
+      "subdomain": "1.3 Cybersecurity Policies and Procedures",
+      "tags": ["Policies", "Procedures", "Publishing"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "1-3-2",
+    "raw_text": "Reviewing and updating cybersecurity policies and procedures periodically (at least annually) or upon significant changes.",
+    "explicit_info": {
+      "domain": "1. Cybersecurity Governance",
+      "subdomain": "1.3 Cybersecurity Policies and Procedures",
+      "tags": ["Policy Review", "Annual Update"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "1-5-1",
+    "raw_text": "Establishing a comprehensive methodology for cybersecurity risk management in alignment with the organization's enterprise risk management.",
+    "explicit_info": {
+      "domain": "1. Cybersecurity Governance",
+      "subdomain": "1.5 Cybersecurity Risk Management",
+      "tags": ["Risk Management Methodology", "Enterprise Alignment"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-1-1",
+    "raw_text": "Developing and maintaining an accurate and up-to-date inventory of all information assets, including hardware, software, and data.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.1 Asset Management",
+      "tags": ["Asset Inventory", "Hardware", "Software", "Data"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-1-2",
+    "raw_text": "Classifying information assets based on their criticality and sensitivity according to an approved classification policy.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.1 Asset Management",
+      "tags": ["Data Classification", "Criticality", "Sensitivity"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-2-1",
+    "raw_text": "Enforcing the principle of least privilege and need-to-know for granting logical access to information assets.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.2 Identity and Access Management",
+      "tags": ["Least Privilege", "Need-to-Know", "Logical Access"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-2-2",
+    "raw_text": "Reviewing access rights and privileges periodically (at least every six months) for all accounts.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.2 Identity and Access Management",
+      "tags": ["Access Review", "Periodic Review", "Six Months"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-2-3",
+    "raw_text": "Implementing Multi-Factor Authentication (MFA) for remote access and for all privileged accounts.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.2 Identity and Access Management",
+      "tags": ["MFA", "Remote Access", "Privileged Accounts"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-3-1",
+    "raw_text": "Implementing technical protection mechanisms (e.g., Endpoint Detection and Response - EDR, Antivirus) on all endpoints and servers.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.3 Information System Protection",
+      "tags": ["EDR", "Antivirus", "Endpoint Protection"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-5-1",
+    "raw_text": "Segmenting the network based on the classification of systems and data, isolating critical systems from public or non-critical networks.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.5 Network Security Management",
+      "tags": ["Network Segmentation", "Isolation", "Critical Systems"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-8-1",
+    "raw_text": "Performing periodic vulnerability assessments (at least quarterly) and addressing identified vulnerabilities according to their severity.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.8 Vulnerability Management",
+      "tags": ["Vulnerability Assessment", "Quarterly Scans", "Severity"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-9-1",
+    "raw_text": "Conducting penetration testing periodically (at least annually) or upon major changes to critical systems.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.9 Penetration Testing",
+      "tags": ["Penetration Testing", "Annual Test", "Major Changes"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "3-2-1",
+    "raw_text": "Developing, approving, and testing a comprehensive cybersecurity incident response plan.",
+    "explicit_info": {
+      "domain": "3. Cybersecurity Resilience",
+      "subdomain": "3.2 Incident Management",
+      "tags": ["Incident Response Plan", "Testing"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "3-3-1",
+    "raw_text": "Implementing a secure backup solution with periodic testing of data restoration capabilities.",
+    "explicit_info": {
+      "domain": "3. Cybersecurity Resilience",
+      "subdomain": "3.3 Backup and Recovery",
+      "tags": ["Backup Solution", "Restoration Testing"]
+    }
+  }
+]

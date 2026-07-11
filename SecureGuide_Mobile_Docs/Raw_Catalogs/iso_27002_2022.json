@@ -1,0 +1,279 @@
+{
+  "extraction_metadata": {
+    "source_document": "ISO 27002:2022",
+    "total_artifacts": 12
+  },
+  "artifacts": [
+    {
+      "raw_artifact_id": "RAW-BATCH-A01AA620",
+      "source_metadata": {
+        "source_document": "ISO 27002:2022",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "5.1"
+      },
+      "original_content": {
+        "raw_text_en": "Information security policy and topic-specific policies should be defined, approved by management, published, communicated to and acknowledged by relevant personnel and relevant interested parties, and reviewed at planned intervals and if significant changes occur.",
+        "original_heading": "5.1",
+        "context_paragraph": "{\"theme\": \"Clause 5: Organizational Controls\", \"tags\": [\"Information Security Policy\", \"Governance\", \"Review\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "5.1",
+        "description_draft": "Information security policy and topic-specific policies should be defined, approved by management, published, communicated to and acknowledged by relevant personnel and relevant interested parties, and reviewed at planned intervals and if significant changes occur.",
+        "keywords": [
+          "Information Security Policy",
+          "Governance",
+          "Review"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-16409FE8",
+      "source_metadata": {
+        "source_document": "ISO 27002:2022",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "5.7"
+      },
+      "original_content": {
+        "raw_text_en": "Information relating to information security threats should be collected and analysed to produce threat intelligence.",
+        "original_heading": "5.7",
+        "context_paragraph": "{\"theme\": \"Clause 5: Organizational Controls\", \"tags\": [\"Threat Intelligence\", \"Threat Analysis\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "5.7",
+        "description_draft": "Information relating to information security threats should be collected and analysed to produce threat intelligence.",
+        "keywords": [
+          "Threat Intelligence",
+          "Threat Analysis"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-A3B2B535",
+      "source_metadata": {
+        "source_document": "ISO 27002:2022",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "6.1"
+      },
+      "original_content": {
+        "raw_text_en": "Background verification checks on all candidates to become personnel should be carried out prior to joining the organization and on an ongoing basis taking into consideration applicable laws, regulations and ethics and proportional to the business requirements, the classification of the information to be accessed and the perceived risks.",
+        "original_heading": "6.1",
+        "context_paragraph": "{\"theme\": \"Clause 6: People Controls\", \"tags\": [\"Background Checks\", \"Screening\", \"Personnel Security\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "6.1",
+        "description_draft": "Background verification checks on all candidates to become personnel should be carried out prior to joining the organization and on an ongoing basis taking into consideration applicable laws, regulations and ethics and proportional to the business requirements, the classification of the information to be accessed and the perceived risks.",
+        "keywords": [
+          "Background Checks",
+          "Screening",
+          "Personnel Security"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-9B9F6DBA",
+      "source_metadata": {
+        "source_document": "ISO 27002:2022",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "6.3"
+      },
+      "original_content": {
+        "raw_text_en": "Personnel of the organization and relevant interested parties should receive appropriate information security awareness, education and training and regular updates of the organization's information security policy, topic-specific policies and procedures, as relevant for their job function.",
+        "original_heading": "6.3",
+        "context_paragraph": "{\"theme\": \"Clause 6: People Controls\", \"tags\": [\"Security Awareness\", \"Training\", \"Education\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "6.3",
+        "description_draft": "Personnel of the organization and relevant interested parties should receive appropriate information security awareness, education and training and regular updates of the organization's information security policy, topic-specific policies and procedures, as relevant for their job function.",
+        "keywords": [
+          "Security Awareness",
+          "Training",
+          "Education"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-D3B454A7",
+      "source_metadata": {
+        "source_document": "ISO 27002:2022",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "7.1"
+      },
+      "original_content": {
+        "raw_text_en": "Security perimeters should be defined and used to protect areas that contain information and other associated assets.",
+        "original_heading": "7.1",
+        "context_paragraph": "{\"theme\": \"Clause 7: Physical Controls\", \"tags\": [\"Physical Security\", \"Security Perimeters\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "7.1",
+        "description_draft": "Security perimeters should be defined and used to protect areas that contain information and other associated assets.",
+        "keywords": [
+          "Physical Security",
+          "Security Perimeters"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-8B0EB05B",
+      "source_metadata": {
+        "source_document": "ISO 27002:2022",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "7.4"
+      },
+      "original_content": {
+        "raw_text_en": "Premises should be continuously monitored for unauthorized physical access.",
+        "original_heading": "7.4",
+        "context_paragraph": "{\"theme\": \"Clause 7: Physical Controls\", \"tags\": [\"Physical Monitoring\", \"Unauthorized Access\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "7.4",
+        "description_draft": "Premises should be continuously monitored for unauthorized physical access.",
+        "keywords": [
+          "Physical Monitoring",
+          "Unauthorized Access"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-47354433",
+      "source_metadata": {
+        "source_document": "ISO 27002:2022",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "8.9"
+      },
+      "original_content": {
+        "raw_text_en": "Configurations, including security configurations, of hardware, software, services and networks should be established, documented, implemented, monitored and reviewed.",
+        "original_heading": "8.9",
+        "context_paragraph": "{\"theme\": \"Clause 8: Technological Controls\", \"tags\": [\"Configuration Management\", \"Secure Configuration\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "8.9",
+        "description_draft": "Configurations, including security configurations, of hardware, software, services and networks should be established, documented, implemented, monitored and reviewed.",
+        "keywords": [
+          "Configuration Management",
+          "Secure Configuration"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-773078CD",
+      "source_metadata": {
+        "source_document": "ISO 27002:2022",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "8.10"
+      },
+      "original_content": {
+        "raw_text_en": "Information stored in information systems, devices or in any other storage media should be deleted when no longer required.",
+        "original_heading": "8.10",
+        "context_paragraph": "{\"theme\": \"Clause 8: Technological Controls\", \"tags\": [\"Information Deletion\", \"Data Disposal\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "8.10",
+        "description_draft": "Information stored in information systems, devices or in any other storage media should be deleted when no longer required.",
+        "keywords": [
+          "Information Deletion",
+          "Data Disposal"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-00C4637D",
+      "source_metadata": {
+        "source_document": "ISO 27002:2022",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "8.11"
+      },
+      "original_content": {
+        "raw_text_en": "Data masking should be used in accordance with the organization's topic-specific policy on access control and other related topic-specific policies, and business requirements, taking applicable legislation into consideration.",
+        "original_heading": "8.11",
+        "context_paragraph": "{\"theme\": \"Clause 8: Technological Controls\", \"tags\": [\"Data Masking\", \"Privacy\", \"Access Control\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "8.11",
+        "description_draft": "Data masking should be used in accordance with the organization's topic-specific policy on access control and other related topic-specific policies, and business requirements, taking applicable legislation into consideration.",
+        "keywords": [
+          "Data Masking",
+          "Privacy",
+          "Access Control"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-3367997B",
+      "source_metadata": {
+        "source_document": "ISO 27002:2022",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "8.12"
+      },
+      "original_content": {
+        "raw_text_en": "Data leakage prevention measures should be applied to systems, networks and any other devices that process, store or transmit sensitive information.",
+        "original_heading": "8.12",
+        "context_paragraph": "{\"theme\": \"Clause 8: Technological Controls\", \"tags\": [\"Data Leakage Prevention\", \"DLP\", \"Sensitive Information\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "8.12",
+        "description_draft": "Data leakage prevention measures should be applied to systems, networks and any other devices that process, store or transmit sensitive information.",
+        "keywords": [
+          "Data Leakage Prevention",
+          "DLP",
+          "Sensitive Information"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-3B50D132",
+      "source_metadata": {
+        "source_document": "ISO 27002:2022",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "8.16"
+      },
+      "original_content": {
+        "raw_text_en": "Networks, systems and applications should be monitored for anomalous behaviour and appropriate actions taken to evaluate potential information security incidents.",
+        "original_heading": "8.16",
+        "context_paragraph": "{\"theme\": \"Clause 8: Technological Controls\", \"tags\": [\"Monitoring Activities\", \"Anomalous Behaviour\", \"Incident Detection\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "8.16",
+        "description_draft": "Networks, systems and applications should be monitored for anomalous behaviour and appropriate actions taken to evaluate potential information security incidents.",
+        "keywords": [
+          "Monitoring Activities",
+          "Anomalous Behaviour",
+          "Incident Detection"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-4AF5F9D7",
+      "source_metadata": {
+        "source_document": "ISO 27002:2022",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "8.23"
+      },
+      "original_content": {
+        "raw_text_en": "Access to external websites should be managed to reduce exposure to malicious content.",
+        "original_heading": "8.23",
+        "context_paragraph": "{\"theme\": \"Clause 8: Technological Controls\", \"tags\": [\"Web Filtering\", \"Malicious Content\", \"Web Access\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "8.23",
+        "description_draft": "Access to external websites should be managed to reduce exposure to malicious content.",
+        "keywords": [
+          "Web Filtering",
+          "Malicious Content",
+          "Web Access"
+        ]
+      }
+    }
+  ]
+}

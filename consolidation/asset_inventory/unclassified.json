@@ -1,0 +1,27 @@
+[
+  {
+    "raw_id": "cis_controls_v8::0007",
+    "label": "Account inventory (CIS 5.1)",
+    "reason": "Belongs to SD-03.01 Identity Lifecycle, not asset inventory."
+  },
+  {
+    "raw_id": "cis_controls_v8::0025",
+    "label": "Service provider inventory (CIS 15.1)",
+    "reason": "Belongs to SD-08.03 Supplier & Third-Party."
+  },
+  {
+    "raw_id": "cis_controls_v8::0004",
+    "label": "Data management process (CIS 3.1)",
+    "reason": "Data classification/retention → SD-02.03/05, not asset inventory."
+  },
+  {
+    "raw_id": "cis_controls_v8::0003",
+    "label": "Only supported software (CIS 2.2)",
+    "reason": "Software currency/support → relate to AI-06 Software Inventory, not merge."
+  },
+  {
+    "raw_id": "~250 items",
+    "label": "Controls mentioning \"enterprise assets\" only as scope",
+    "reason": "e.g. MFA/anti-malware/backup \"on enterprise assets\" — the asset noun is scope, not the subject; excluded from asset-inventory grouping."
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "id": "G01",
+    "case_type": "CANONICALIZE_correct",
+    "maps_to_group": "AI-01"
+  },
+  {
+    "id": "G02",
+    "case_type": "EQUIVALENCE_GROUP_correct",
+    "maps_to_group": "AI-08"
+  },
+  {
+    "id": "G03",
+    "case_type": "RELATE_ONLY_correct",
+    "maps_to_group": "AI-04"
+  },
+  {
+    "id": "G04",
+    "case_type": "verbal_similarity_reject",
+    "maps_to_group": "AI-01"
+  },
+  {
+    "id": "G05",
+    "case_type": "requirement_vs_procedure",
+    "maps_to_group": "AI-09"
+  },
+  {
+    "id": "G06",
+    "case_type": "inventory_vs_classification",
+    "maps_to_group": "AI-07"
+  },
+  {
+    "id": "G07",
+    "case_type": "inventory_vs_acceptable_use",
+    "maps_to_group": "AI-08"
+  },
+  {
+    "id": "G08",
+    "case_type": "low_confidence",
+    "maps_to_group": "AI-09"
+  },
+  {
+    "id": "G09",
+    "case_type": "needs_split",
+    "maps_to_group": "AI-04"
+  },
+  {
+    "id": "G10",
+    "case_type": "indirect_mapping_with_rationale",
+    "maps_to_group": "AI-08"
+  }
+]

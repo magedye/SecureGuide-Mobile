@@ -1,0 +1,26 @@
+{
+  "id": "G03",
+  "case_type": "RELATE_ONLY_correct",
+  "maps_to_group": "AI-04",
+  "description": "CM-8 content/repository enhancements relate to the base inventory, not merged.",
+  "input_raw_ids": [
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0315",
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0316"
+  ],
+  "expected_decision": "RELATE_ONLY",
+  "accepted_members": [
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0315",
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0316"
+  ],
+  "excluded": [],
+  "expected_classification": null,
+  "expected_rationale_keywords": [
+    "relate",
+    "enhancement"
+  ],
+  "expected_canonical_title": null,
+  "validation_rules": [
+    "no canonical produced",
+    "mappings INDIRECT with rationale"
+  ]
+}

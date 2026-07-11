@@ -1,0 +1,31 @@
+{
+  "id": "G02",
+  "case_type": "EQUIVALENCE_GROUP_correct",
+  "maps_to_group": "AI-08",
+  "description": "Acceptable-use policy define+implement grouped as equivalence, canonical=policy.",
+  "input_raw_ids": [
+    "essential_cybersecurity_controls_ecc_2_2024::0037",
+    "essential_cybersecurity_controls_ecc_2_2024::0038"
+  ],
+  "expected_decision": "EQUIVALENCE_GROUP",
+  "accepted_members": [
+    "essential_cybersecurity_controls_ecc_2_2024::0037",
+    "essential_cybersecurity_controls_ecc_2_2024::0038"
+  ],
+  "excluded": [
+    "cis_controls_v8::0000"
+  ],
+  "expected_classification": {
+    "type": "ART-POL",
+    "primary_domain": "SD-08",
+    "sub_domain": "SD-08.05"
+  },
+  "expected_rationale_keywords": [
+    "acceptable use"
+  ],
+  "expected_canonical_title": "Acceptable Use of Assets Policy",
+  "validation_rules": [
+    "acceptable-use in SD-08.05 not SD-02.01",
+    "implementation mapped INDIRECT with rationale"
+  ]
+}

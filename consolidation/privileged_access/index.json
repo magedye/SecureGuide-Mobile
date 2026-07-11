@@ -1,0 +1,72 @@
+[
+  {
+    "id": "PA-01",
+    "concept": "Manage Privileged Accounts",
+    "sub_domain": "SD-03.04",
+    "members": 1,
+    "excluded": 1,
+    "decision": "CANONICALIZE",
+    "confidence": 0.85,
+    "requires_human_review": 0
+  },
+  {
+    "id": "PA-02",
+    "concept": "Restrict Privileged Access Scope",
+    "sub_domain": "SD-03.04",
+    "members": 2,
+    "excluded": 2,
+    "decision": "CANONICALIZE",
+    "confidence": 0.85,
+    "requires_human_review": 0
+  },
+  {
+    "id": "PA-03",
+    "concept": "Separate Administrative and Regular Accounts",
+    "sub_domain": "SD-03.04",
+    "members": 2,
+    "excluded": 0,
+    "decision": "EQUIVALENCE_GROUP",
+    "confidence": 0.78,
+    "requires_human_review": 1
+  },
+  {
+    "id": "PA-04",
+    "concept": "Multi-Factor Authentication for Privileged Accounts",
+    "sub_domain": "SD-03.04",
+    "members": 2,
+    "excluded": 2,
+    "decision": "CANONICALIZE",
+    "confidence": 0.68,
+    "requires_human_review": 1
+  },
+  {
+    "id": "PA-05",
+    "concept": "Monitor Privileged Activity",
+    "sub_domain": "SD-03.04",
+    "members": 1,
+    "excluded": 1,
+    "decision": "CANONICALIZE",
+    "confidence": 0.7,
+    "requires_human_review": 1
+  },
+  {
+    "id": "PA-06",
+    "concept": "Dedicated Privileged Access Interface",
+    "sub_domain": "SD-03.04",
+    "members": 1,
+    "excluded": 0,
+    "decision": "CANONICALIZE",
+    "confidence": 0.72,
+    "requires_human_review": 1
+  },
+  {
+    "id": "PA-07",
+    "concept": "Domain Admin Tiering (Configuration)",
+    "sub_domain": "SD-03.04",
+    "members": 1,
+    "excluded": 1,
+    "decision": "CANONICALIZE",
+    "confidence": 0.75,
+    "requires_human_review": 1
+  }
+]

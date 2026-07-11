@@ -1,0 +1,119 @@
+{
+  "extraction_metadata": {
+    "source_document": "OWASP Top 10 for LLMs v1.1",
+    "total_artifacts": 5
+  },
+  "artifacts": [
+    {
+      "raw_artifact_id": "RAW-AI-FE52802E",
+      "source_metadata": {
+        "source_document": "OWASP Top 10 for LLMs v1.1",
+        "source_type": "FRAMEWORK",
+        "source_version": "1.0",
+        "source_section": "LLM01"
+      },
+      "original_content": {
+        "raw_text_en": "Crafted prompts can trick the LLM into executing unintended instructions or revealing sensitive data.",
+        "original_heading": "LLM01: Prompt Injection",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "LLM01: Prompt Injection",
+        "description_draft": "Crafted prompts can trick the LLM into executing unintended instructions or revealing sensitive data.",
+        "keywords": [
+          "prompt injection",
+          "security",
+          "LLM"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-AI-D9DF3DE4",
+      "source_metadata": {
+        "source_document": "OWASP Top 10 for LLMs v1.1",
+        "source_type": "FRAMEWORK",
+        "source_version": "1.0",
+        "source_section": "LLM02"
+      },
+      "original_content": {
+        "raw_text_en": "Occurs when an LLM output is accepted without scrutiny, leading to XSS, SSRF, or privilege escalation.",
+        "original_heading": "LLM02: Insecure Output Handling",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "LLM02: Insecure Output Handling",
+        "description_draft": "Occurs when an LLM output is accepted without scrutiny, leading to XSS, SSRF, or privilege escalation.",
+        "keywords": [
+          "output handling",
+          "validation"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-AI-7639A9A4",
+      "source_metadata": {
+        "source_document": "OWASP Top 10 for LLMs v1.1",
+        "source_type": "FRAMEWORK",
+        "source_version": "1.0",
+        "source_section": "LLM03"
+      },
+      "original_content": {
+        "raw_text_en": "Tampering with the training data to introduce vulnerabilities or biases into the LLM.",
+        "original_heading": "LLM03: Training Data Poisoning",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "LLM03: Training Data Poisoning",
+        "description_draft": "Tampering with the training data to introduce vulnerabilities or biases into the LLM.",
+        "keywords": [
+          "data poisoning",
+          "training data"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-AI-8E742302",
+      "source_metadata": {
+        "source_document": "OWASP Top 10 for LLMs v1.1",
+        "source_type": "FRAMEWORK",
+        "source_version": "1.0",
+        "source_section": "LLM04"
+      },
+      "original_content": {
+        "raw_text_en": "Attackers cause resource-heavy operations on LLMs, leading to service degradation or high costs.",
+        "original_heading": "LLM04: Model Denial of Service",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "LLM04: Model Denial of Service",
+        "description_draft": "Attackers cause resource-heavy operations on LLMs, leading to service degradation or high costs.",
+        "keywords": [
+          "DoS",
+          "resource exhaustion"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-AI-6DF7DF45",
+      "source_metadata": {
+        "source_document": "OWASP Top 10 for LLMs v1.1",
+        "source_type": "FRAMEWORK",
+        "source_version": "1.0",
+        "source_section": "LLM06"
+      },
+      "original_content": {
+        "raw_text_en": "LLMs may inadvertently reveal confidential data in their responses if not properly filtered.",
+        "original_heading": "LLM06: Sensitive Information Disclosure",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "LLM06: Sensitive Information Disclosure",
+        "description_draft": "LLMs may inadvertently reveal confidential data in their responses if not properly filtered.",
+        "keywords": [
+          "data leak",
+          "confidentiality"
+        ]
+      }
+    }
+  ]
+}

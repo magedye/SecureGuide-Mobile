@@ -1,0 +1,123 @@
+{
+  "extraction_metadata": {
+    "source_document": "OWASP MASVS 2.0",
+    "total_artifacts": 5
+  },
+  "artifacts": [
+    {
+      "raw_artifact_id": "RAW-MOB-13A1982E",
+      "source_metadata": {
+        "source_document": "OWASP MASVS 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "MASVS-STORAGE-1"
+      },
+      "original_content": {
+        "raw_text_en": "The app securely stores sensitive data using the mechanisms provided by the mobile operating system (e.g., Keychain, Keystore).",
+        "original_heading": "MASVS-STORAGE-1",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "MASVS-STORAGE-1",
+        "description_draft": "The app securely stores sensitive data using the mechanisms provided by the mobile operating system (e.g., Keychain, Keystore).",
+        "keywords": [
+          "data storage",
+          "sensitive data",
+          "keychain",
+          "keystore"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-MOB-2BF3928D",
+      "source_metadata": {
+        "source_document": "OWASP MASVS 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "MASVS-CRYPTO-1"
+      },
+      "original_content": {
+        "raw_text_en": "The app uses proven implementations of cryptographic primitives, and does not implement custom cryptographic algorithms.",
+        "original_heading": "MASVS-CRYPTO-1",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "MASVS-CRYPTO-1",
+        "description_draft": "The app uses proven implementations of cryptographic primitives, and does not implement custom cryptographic algorithms.",
+        "keywords": [
+          "cryptography",
+          "encryption"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-MOB-1970F3BE",
+      "source_metadata": {
+        "source_document": "OWASP MASVS 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "MASVS-AUTH-1"
+      },
+      "original_content": {
+        "raw_text_en": "The app performs local authentication (e.g., Biometrics, PIN) securely and validates credentials on a remote endpoint when applicable.",
+        "original_heading": "MASVS-AUTH-1",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "MASVS-AUTH-1",
+        "description_draft": "The app performs local authentication (e.g., Biometrics, PIN) securely and validates credentials on a remote endpoint when applicable.",
+        "keywords": [
+          "authentication",
+          "biometrics",
+          "pin"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-MOB-0931B554",
+      "source_metadata": {
+        "source_document": "OWASP MASVS 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "MASVS-NETWORK-1"
+      },
+      "original_content": {
+        "raw_text_en": "The app verifies the X.509 certificate of the remote endpoint and enforces Transport Layer Security (TLS) for all network communications.",
+        "original_heading": "MASVS-NETWORK-1",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "MASVS-NETWORK-1",
+        "description_draft": "The app verifies the X.509 certificate of the remote endpoint and enforces Transport Layer Security (TLS) for all network communications.",
+        "keywords": [
+          "network security",
+          "tls",
+          "certificate pinning"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-MOB-A0F30396",
+      "source_metadata": {
+        "source_document": "OWASP MASVS 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "MASVS-RESILIENCE-1"
+      },
+      "original_content": {
+        "raw_text_en": "The app detects if it is running on a rooted or jailbroken device and responds appropriately.",
+        "original_heading": "MASVS-RESILIENCE-1",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "MASVS-RESILIENCE-1",
+        "description_draft": "The app detects if it is running on a rooted or jailbroken device and responds appropriately.",
+        "keywords": [
+          "jailbreak detection",
+          "root detection",
+          "resilience"
+        ]
+      }
+    }
+  ]
+}

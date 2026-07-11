@@ -1,0 +1,1382 @@
+{
+  "group_id": "GRP-incident_response",
+  "concept": "Incident Response",
+  "expected_sub_domain": "SD-07.01",
+  "member_count": 73,
+  "source_coverage": [
+    "CIS Controls v8",
+    "Essential Cybersecurity Controls (ECC 2-2024)",
+    "MITRE ATT&CK Enterprise",
+    "NCA ECC-1:2018",
+    "NIST CSF 2.0",
+    "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+    "SANS Security Policy Templates",
+    "The NIST Cybersecurity Framework (CSF) 2.0"
+  ],
+  "instructions": "Decide per CONSOLIDATION_POLICY.md: one of CANONICALIZE | EQUIVALENCE_GROUP | CROSSWALK_ONLY | RELATE_ONLY | KEEP_SEPARATE | DEPRECATE_DERIVED. If merging, author an English canonical per AUTHORING_POLICY.md and set mapping_strength per source. Do NOT invent USACM/SDT values. Do NOT delete raw records.",
+  "members": [
+    {
+      "raw_id": "cis_controls_v8::0027",
+      "external_raw_id": "RAW-BATCH-C9003E17",
+      "source_document": "CIS Controls v8",
+      "source_version": "Unknown",
+      "source_section": "17.1",
+      "title_draft": "17.1",
+      "description": "Designate one key person, and at least one backup, who will manage the enterprise's incident handling process.",
+      "keywords": [
+        "Incident Handling Management",
+        "Personnel Designation"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0086",
+      "external_raw_id": "RAW-001734",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 2-13-3 (Cybersecurity Incident and Threat Management)",
+      "title_draft": "2-13-3: Cybersecurity Incident and Threat Management",
+      "description": "Requirements for cybersecurity incident and threat management shall include the following as a minimum: 2.13.3.1 Cybersecurity incident response plans and escalation procedures.",
+      "keywords": [
+        "incident",
+        "threat",
+        "management",
+        "response",
+        "incidents",
+        "nca",
+        "intelligence",
+        "requirements"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0047",
+      "external_raw_id": "RAW-001803",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1564.008",
+      "title_draft": "T1564.008 — Email Hiding Rules",
+      "description": "Adversaries may use email rules to hide inbound emails in a compromised user's mailbox.",
+      "keywords": [
+        "rules",
+        "code",
+        "email",
+        "emails",
+        "citation",
+        "microsoft",
+        "adversaries",
+        "user"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0082",
+      "external_raw_id": "RAW-001838",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1114",
+      "title_draft": "T1114 — Email Collection",
+      "description": "Adversaries may target user email to collect sensitive information.",
+      "keywords": [
+        "adversaries",
+        "email",
+        "collection",
+        "collect",
+        "sensitive",
+        "emails",
+        "contain",
+        "citation"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0478",
+      "external_raw_id": "RAW-002234",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1654",
+      "title_draft": "T1654 — Log Enumeration",
+      "description": "Adversaries may enumerate system and service logs to find useful data.",
+      "keywords": [
+        "logs",
+        "techniques",
+        "adversaries",
+        "discovery",
+        "https",
+        "attack",
+        "mitre",
+        "org"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0587",
+      "external_raw_id": "RAW-002343",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1531",
+      "title_draft": "T1531 — Account Access Removal",
+      "description": "Adversaries may interrupt availability of system and network resources by inhibiting access to accounts utilized by legitimate users.",
+      "keywords": [
+        "accounts",
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "code",
+        "techniques",
+        "adversaries"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0634",
+      "external_raw_id": "RAW-002390",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1562.011",
+      "title_draft": "T1562.011 — Spoof Security Alerting",
+      "description": "Adversaries may spoof security alerting from tools, presenting false evidence to impair defenders’ awareness of malicious activity.(Citation: BlackBasta) Messages produced by defensive tools contain information about potential security events as well as the functioning status of security software and the system.",
+      "keywords": [
+        "tools",
+        "t1562",
+        "spoof",
+        "status",
+        "after",
+        "windows",
+        "alerting",
+        "adversaries"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0809",
+      "external_raw_id": "RAW-002565",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1480.001",
+      "title_draft": "T1480.001 — Environmental Keying",
+      "description": "Adversaries may environmentally key payloads or other features of malware to evade defenses and constraint execution to a specific target environment.",
+      "keywords": [
+        "environmental",
+        "citation",
+        "keying",
+        "values",
+        "execution",
+        "techniques",
+        "target-specific",
+        "payload"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0843",
+      "external_raw_id": "RAW-002599",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1213.005",
+      "title_draft": "T1213.005 — Messaging Applications",
+      "description": "Adversaries may leverage chat and messaging applications, such as Microsoft Teams, Google Chat, and Slack, to mine valuable information.",
+      "keywords": [
+        "citation",
+        "messaging",
+        "chat",
+        "data",
+        "adversaries",
+        "leverage",
+        "microsoft",
+        "example"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0853",
+      "external_raw_id": "RAW-002609",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1529",
+      "title_draft": "T1529 — System Shutdown/Reboot",
+      "description": "Adversaries may shutdown/reboot systems to interrupt access to, or aid in the destruction of, those systems.",
+      "keywords": [
+        "citation",
+        "shutdown",
+        "reboot",
+        "network",
+        "also",
+        "https",
+        "attack",
+        "mitre"
+      ]
+    },
+    {
+      "raw_id": "nca_ecc_1_2018::0014",
+      "external_raw_id": "RAW-BATCH-3E7B9230",
+      "source_document": "NCA ECC-1:2018",
+      "source_version": "Unknown",
+      "source_section": "3-2-1",
+      "title_draft": "3-2-1",
+      "description": "Developing, approving, and testing a comprehensive cybersecurity incident response plan.",
+      "keywords": [
+        "Incident Response Plan",
+        "Testing"
+      ]
+    },
+    {
+      "raw_id": "nist_csf_2_0::0022",
+      "external_raw_id": "RAW-BATCH-46987C95",
+      "source_document": "NIST CSF 2.0",
+      "source_version": "Unknown",
+      "source_section": "RS.MA-01",
+      "title_draft": "RS.MA-01",
+      "description": "The cybersecurity incident response plan is executed once an incident is declared.",
+      "keywords": [
+        "Incident Response Plan",
+        "Execution"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0130",
+      "external_raw_id": "RAW-000237",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-19(4) (Access Control)",
+      "title_draft": "AC-19(4): Restrictions for Classified Information",
+      "description": "(a) Prohibit the use of unclassified mobile devices in facilities containing systems processing, storing, or transmitting classified information unless specifically permitted by the authorizing official; and (b) Enforce the following restrictions on individuals permitted by the authorizing official to use unclassified mobile devices in facilities",
+      "keywords": [
+        "devices",
+        "classified",
+        "unclassified",
+        "mobile",
+        "ac-19",
+        "authorizing",
+        "official",
+        "connection"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0155",
+      "external_raw_id": "RAW-000262",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AT-3 (Awareness and Training)",
+      "title_draft": "AT-3: Role-based Training",
+      "description": "a.",
+      "keywords": [
+        "training",
+        "role-based",
+        "personnel",
+        "privacy",
+        "management",
+        "roles",
+        "responsibilities",
+        "insert"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0182",
+      "external_raw_id": "RAW-000289",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-6 (Audit and Accountability)",
+      "title_draft": "AU-6: Audit Record Review, Analysis, and Reporting",
+      "description": "a.",
+      "keywords": [
+        "audit",
+        "review",
+        "analysis",
+        "record",
+        "reporting",
+        "insert",
+        "param",
+        "au-06_odp"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0183",
+      "external_raw_id": "RAW-000290",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-6(1) (Audit and Accountability)",
+      "title_draft": "AU-6(1): Automated Process Integration",
+      "description": "Integrate audit record review, analysis, and reporting processes using {{ insert: param, au-06.01_odp }}.",
+      "keywords": [
+        "audit",
+        "record",
+        "review",
+        "analysis",
+        "reporting",
+        "processes",
+        "response",
+        "au-6"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0332",
+      "external_raw_id": "RAW-000439",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CP-2 (Contingency Planning)",
+      "title_draft": "CP-2: Contingency Plan",
+      "description": "a.",
+      "keywords": [
+        "contingency",
+        "plan",
+        "planning",
+        "incident",
+        "addresses",
+        "activities",
+        "mission",
+        "business"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0333",
+      "external_raw_id": "RAW-000440",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CP-2(1) (Contingency Planning)",
+      "title_draft": "CP-2(1): Coordinate with Related Plans",
+      "description": "Coordinate contingency plan development with organizational elements responsible for related plans.",
+      "keywords": [
+        "plans",
+        "related",
+        "response",
+        "coordinate",
+        "contingency",
+        "continuity",
+        "breach",
+        "cp-2"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0345",
+      "external_raw_id": "RAW-000452",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CP-4(1) (Contingency Planning)",
+      "title_draft": "CP-4(1): Coordinate with Related Plans",
+      "description": "Coordinate contingency plan testing with organizational elements responsible for related plans.",
+      "keywords": [
+        "plans",
+        "related",
+        "elements",
+        "coordinate",
+        "contingency",
+        "plan",
+        "testing",
+        "responsible"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0551",
+      "external_raw_id": "RAW-001158",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SI-2 (System and Information Integrity)",
+      "title_draft": "SI-2: Flaw Remediation",
+      "description": "a.",
+      "keywords": [
+        "remediation",
+        "updates",
+        "organizations",
+        "flaw",
+        "software",
+        "firmware",
+        "flaws",
+        "testing"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0569",
+      "external_raw_id": "RAW-001176",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SI-3(10) (System and Information Integrity)",
+      "title_draft": "SI-3(10): Malicious Code Analysis",
+      "description": "(a) Employ the following tools and techniques to analyze the characteristics and behavior of malicious code: {{ insert: param, si-03.10_odp }} ; and (b) Incorporate the results from malicious code analysis into organizational incident response and flaw remediation processes.",
+      "keywords": [
+        "code",
+        "malicious",
+        "analysis",
+        "techniques",
+        "tools",
+        "characteristics",
+        "behavior",
+        "organizations"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0570",
+      "external_raw_id": "RAW-001177",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SI-4 (System and Information Integrity)",
+      "title_draft": "SI-4: System Monitoring",
+      "description": "a.",
+      "keywords": [
+        "monitoring",
+        "au-13",
+        "insert",
+        "param",
+        "si-04_odp",
+        "devices",
+        "objectives",
+        "network"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0594",
+      "external_raw_id": "RAW-001201",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SI-4(24) (System and Information Integrity)",
+      "title_draft": "SI-4(24): Indicators of Compromise",
+      "description": "Discover, collect, and distribute to {{ insert: param, si-04.24_odp.02 }} , indicators of compromise provided by {{ insert: param, si-04.24_odp.01 }}.",
+      "keywords": [
+        "indicators",
+        "compromise",
+        "iocs",
+        "insert",
+        "param",
+        "si-04",
+        "odp",
+        "network"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0609",
+      "external_raw_id": "RAW-001216",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SI-7(7) (System and Information Integrity)",
+      "title_draft": "SI-7(7): Integration of Detection and Response",
+      "description": "Incorporate the detection of the following unauthorized changes into the organizational incident response capability: {{ insert: param, si-07.07_odp }}.",
+      "keywords": [
+        "detection",
+        "response",
+        "unauthorized",
+        "changes",
+        "historical",
+        "actions",
+        "si-7",
+        "integration"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0763",
+      "external_raw_id": "RAW-000568",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-1 (Incident Response)",
+      "title_draft": "IR-1: Policy and Procedures",
+      "description": "a.",
+      "keywords": [
+        "procedures",
+        "policy",
+        "incident",
+        "response",
+        "policies",
+        "insert",
+        "param",
+        "ir-01_odp"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0764",
+      "external_raw_id": "RAW-000569",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-2 (Incident Response)",
+      "title_draft": "IR-2: Incident Response Training",
+      "description": "a.",
+      "keywords": [
+        "incident",
+        "training",
+        "response",
+        "insert",
+        "param",
+        "ir-02_odp",
+        "users",
+        "content"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0765",
+      "external_raw_id": "RAW-000570",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-2(1) (Incident Response)",
+      "title_draft": "IR-2(1): Simulated Events",
+      "description": "Incorporate simulated events into incident response training to facilitate the required response by personnel in crisis situations.",
+      "keywords": [
+        "response",
+        "simulated",
+        "events",
+        "incident",
+        "training",
+        "personnel",
+        "crisis",
+        "situations"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0766",
+      "external_raw_id": "RAW-000571",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-2(2) (Incident Response)",
+      "title_draft": "IR-2(2): Automated Training Environments",
+      "description": "Provide an incident response training environment using {{ insert: param, ir-02.02_odp }}.",
+      "keywords": [
+        "training",
+        "response",
+        "incident",
+        "more",
+        "automated",
+        "environments",
+        "provide",
+        "environment"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0767",
+      "external_raw_id": "RAW-000572",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-2(3) (Incident Response)",
+      "title_draft": "IR-2(3): Breach",
+      "description": "Provide incident response training on how to identify and respond to a breach, including the organization’s process for reporting a breach.",
+      "keywords": [
+        "breach",
+        "incident",
+        "accesses",
+        "ir-2",
+        "response",
+        "training",
+        "authorized",
+        "personally"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0768",
+      "external_raw_id": "RAW-000573",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-3 (Incident Response)",
+      "title_draft": "IR-3: Incident Response Testing",
+      "description": "Test the effectiveness of the incident response capability for the system {{ insert: param, ir-03_odp.01 }} using the following tests: {{ insert: param, ir-03_odp.02 }}.",
+      "keywords": [
+        "incident",
+        "response",
+        "testing",
+        "effectiveness",
+        "test",
+        "insert",
+        "param",
+        "ir-03_odp"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0769",
+      "external_raw_id": "RAW-000574",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-3(1) (Incident Response)",
+      "title_draft": "IR-3(1): Automated Testing",
+      "description": "Test the incident response capability using {{ insert: param, ir-03.01_odp }}.",
+      "keywords": [
+        "response",
+        "test",
+        "incident",
+        "automated",
+        "capability",
+        "more",
+        "ir-3",
+        "testing"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0770",
+      "external_raw_id": "RAW-000575",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-3(2) (Incident Response)",
+      "title_draft": "IR-3(2): Coordination with Related Plans",
+      "description": "Coordinate incident response testing with organizational elements responsible for related plans.",
+      "keywords": [
+        "plans",
+        "related",
+        "incident",
+        "response",
+        "testing",
+        "continuity",
+        "ir-3",
+        "coordination"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0771",
+      "external_raw_id": "RAW-000576",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-3(3) (Incident Response)",
+      "title_draft": "IR-3(3): Continuous Improvement",
+      "description": "Use qualitative and quantitative data from testing to: (a) Determine the effectiveness of incident response processes; (b) Continuously improve incident response processes; and (c) Provide incident response measures and metrics that are accurate, consistent, and in a reproducible format.",
+      "keywords": [
+        "response",
+        "incident",
+        "improvement",
+        "processes",
+        "improve",
+        "metrics",
+        "ir-3",
+        "continuous"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0772",
+      "external_raw_id": "RAW-000577",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-4 (Incident Response)",
+      "title_draft": "IR-4: Incident Handling",
+      "description": "a.",
+      "keywords": [
+        "incident",
+        "handling",
+        "response",
+        "activities",
+        "offices",
+        "accesses",
+        "incidents",
+        "mission"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0773",
+      "external_raw_id": "RAW-000578",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-4(1) (Incident Response)",
+      "title_draft": "IR-4(1): Automated Incident Handling Processes",
+      "description": "Support the incident handling process using {{ insert: param, ir-04.01_odp }}.",
+      "keywords": [
+        "incident",
+        "handling",
+        "support",
+        "automated",
+        "processes",
+        "ir-4",
+        "process",
+        "insert"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0774",
+      "external_raw_id": "RAW-000579",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-4(2) (Incident Response)",
+      "title_draft": "IR-4(2): Dynamic Reconfiguration",
+      "description": "Include the following types of dynamic reconfiguration for {{ insert: param, ir-04.02_odp.02 }} as part of the incident response capability: {{ insert: param, ir-04.02_odp.01 }}.",
+      "keywords": [
+        "reconfiguration",
+        "dynamic",
+        "insert",
+        "param",
+        "ir-04",
+        "odp",
+        "response",
+        "capability"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0775",
+      "external_raw_id": "RAW-000580",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-4(3) (Incident Response)",
+      "title_draft": "IR-4(3): Continuity of Operations",
+      "description": "Identify {{ insert: param, ir-04.03_odp.01 }} and take the following actions in response to those incidents to ensure continuation of organizational mission and business functions: {{ insert: param, ir-04.03_odp.02 }}.",
+      "keywords": [
+        "ir-4",
+        "continuity",
+        "operations",
+        "insert",
+        "param",
+        "ir-04",
+        "odp",
+        "actions"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0778",
+      "external_raw_id": "RAW-000583",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-4(6) (Incident Response)",
+      "title_draft": "IR-4(6): Insider Threats",
+      "description": "Implement an incident handling capability for incidents involving insider threats.",
+      "keywords": [
+        "insider",
+        "threats",
+        "handling",
+        "incident",
+        "incidents",
+        "involving",
+        "ir-4",
+        "implement"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0779",
+      "external_raw_id": "RAW-000584",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-4(7) (Incident Response)",
+      "title_draft": "IR-4(7): Insider Threats — Intra-organization Coordination",
+      "description": "Coordinate an incident handling capability for insider threats that includes the following organizational entities {{ insert: param, ir-04.07_odp }}.",
+      "keywords": [
+        "offices",
+        "insider",
+        "threats",
+        "coordination",
+        "incident",
+        "handling",
+        "entities",
+        "owners"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0782",
+      "external_raw_id": "RAW-000587",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-4(10) (Incident Response)",
+      "title_draft": "IR-4(10): Supply Chain Coordination",
+      "description": "Coordinate incident handling activities involving supply chain events with other organizations involved in the supply chain.",
+      "keywords": [
+        "supply",
+        "chain",
+        "organizations",
+        "processes",
+        "incident",
+        "activities",
+        "involved",
+        "incidents"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0783",
+      "external_raw_id": "RAW-000588",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-4(11) (Incident Response)",
+      "title_draft": "IR-4(11): Integrated Incident Response Team",
+      "description": "Establish and maintain an integrated incident response team that can be deployed to any location identified by the organization in {{ insert: param, ir-04.11_odp }}.",
+      "keywords": [
+        "incident",
+        "response",
+        "team",
+        "integrated",
+        "intrusions",
+        "implement",
+        "personnel",
+        "organizations"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0784",
+      "external_raw_id": "RAW-000589",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-4(12) (Incident Response)",
+      "title_draft": "IR-4(12): Malicious Code and Forensic Analysis",
+      "description": "Analyze malicious code and/or other residual artifacts remaining in the system after the incident.",
+      "keywords": [
+        "malicious",
+        "code",
+        "analysis",
+        "residual",
+        "artifacts",
+        "incident",
+        "adversary",
+        "ir-4"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0786",
+      "external_raw_id": "RAW-000591",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-4(14) (Incident Response)",
+      "title_draft": "IR-4(14): Security Operations Center",
+      "description": "Establish and maintain a security operations center.",
+      "keywords": [
+        "soc",
+        "operations",
+        "organizations",
+        "center",
+        "capability",
+        "network",
+        "monitor",
+        "technical"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0788",
+      "external_raw_id": "RAW-000593",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-5 (Incident Response)",
+      "title_draft": "IR-5: Incident Monitoring",
+      "description": "Track and document incidents.",
+      "keywords": [
+        "incident",
+        "monitoring",
+        "incidents",
+        "reports",
+        "user",
+        "ir-4",
+        "ir-5",
+        "track"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0789",
+      "external_raw_id": "RAW-000594",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-5(1) (Incident Response)",
+      "title_draft": "IR-5(1): Automated Tracking, Data Collection, and Analysis",
+      "description": "Track incidents and collect and analyze incident information using {{ insert: param, ir-5.1_prm_1 }}.",
+      "keywords": [
+        "incidents",
+        "incident",
+        "ir-5",
+        "automated",
+        "tracking",
+        "data",
+        "collection",
+        "analysis"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0790",
+      "external_raw_id": "RAW-000595",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-6 (Incident Response)",
+      "title_draft": "IR-6: Incident Reporting",
+      "description": "a.",
+      "keywords": [
+        "incident",
+        "reporting",
+        "report",
+        "incidents",
+        "insert",
+        "param",
+        "ir-06_odp",
+        "assessments"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0791",
+      "external_raw_id": "RAW-000596",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-6(1) (Incident Response)",
+      "title_draft": "IR-6(1): Automated Reporting",
+      "description": "Report incidents using {{ insert: param, ir-06.01_odp }}.",
+      "keywords": [
+        "automated",
+        "reporting",
+        "incident",
+        "ir-6",
+        "report",
+        "incidents",
+        "insert",
+        "param"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0794",
+      "external_raw_id": "RAW-000599",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-7 (Incident Response)",
+      "title_draft": "IR-7: Incident Response Assistance",
+      "description": "Provide an incident response support resource, integral to the organizational incident response capability, that offers advice and assistance to users of the system for the handling and reporting of incidents.",
+      "keywords": [
+        "incident",
+        "response",
+        "assistance",
+        "support",
+        "services",
+        "ir-7",
+        "provide",
+        "resource"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0795",
+      "external_raw_id": "RAW-000600",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-7(1) (Incident Response)",
+      "title_draft": "IR-7(1): Automation Support for Availability of Information and Support",
+      "description": "Increase the availability of incident response information and support using {{ insert: param, ir-07.01_odp }}.",
+      "keywords": [
+        "support",
+        "response",
+        "incident",
+        "capability",
+        "assistance",
+        "availability",
+        "users",
+        "ir-7"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0796",
+      "external_raw_id": "RAW-000601",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-7(2) (Incident Response)",
+      "title_draft": "IR-7(2): Coordination with External Providers",
+      "description": "(a) Establish a direct, cooperative relationship between its incident response capability and external providers of system protection capability; and (b) Identify organizational incident response team members to the external providers.",
+      "keywords": [
+        "external",
+        "providers",
+        "incident",
+        "capability",
+        "response",
+        "protection",
+        "defense",
+        "ir-7"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0797",
+      "external_raw_id": "RAW-000602",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-8 (Incident Response)",
+      "title_draft": "IR-8: Incident Response Plan",
+      "description": "a.",
+      "keywords": [
+        "incident",
+        "response",
+        "plan",
+        "capability",
+        "insert",
+        "param",
+        "organizations",
+        "ir-08_odp"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0798",
+      "external_raw_id": "RAW-000603",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-8(1) (Incident Response)",
+      "title_draft": "IR-8(1): Breaches",
+      "description": "Include the following in the Incident Response Plan for breaches involving personally identifiable information: (a) A process to determine if notice to individuals or other organizations, including oversight organizations, is needed; (b) An assessment process to determine the extent of the harm, embarrassment, inconvenience, or",
+      "keywords": [
+        "organizations",
+        "breaches",
+        "individuals",
+        "process",
+        "determine",
+        "notice",
+        "oversight",
+        "harm"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0800",
+      "external_raw_id": "RAW-000605",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-9(1) (Incident Response)",
+      "title_draft": "IR-9(1): Responsible Personnel",
+      "description": "IR-9(1): Responsible Personnel",
+      "keywords": [
+        "ir-9",
+        "responsible",
+        "personnel",
+        "family",
+        "incident",
+        "response"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0801",
+      "external_raw_id": "RAW-000606",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-9(2) (Incident Response)",
+      "title_draft": "IR-9(2): Training",
+      "description": "Provide information spillage response training {{ insert: param, ir-09.02_odp }}.",
+      "keywords": [
+        "training",
+        "spillage",
+        "response",
+        "incidents",
+        "incident",
+        "ir-9",
+        "provide",
+        "insert"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0804",
+      "external_raw_id": "RAW-000609",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control IR-10 (Incident Response)",
+      "title_draft": "IR-10: Integrated Information Security Analysis Team",
+      "description": "IR-10: Integrated Information Security Analysis Team",
+      "keywords": [
+        "ir-10",
+        "integrated",
+        "analysis",
+        "team",
+        "family",
+        "incident",
+        "response"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0810",
+      "external_raw_id": "RAW-000615",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control MA-3(1) (Maintenance)",
+      "title_draft": "MA-3(1): Inspect Tools",
+      "description": "Inspect the maintenance tools used by maintenance personnel for improper or unauthorized modifications.",
+      "keywords": [
+        "tools",
+        "maintenance",
+        "inspect",
+        "personnel",
+        "improper",
+        "incident",
+        "ma-3",
+        "unauthorized"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0811",
+      "external_raw_id": "RAW-000616",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control MA-3(2) (Maintenance)",
+      "title_draft": "MA-3(2): Inspect Media",
+      "description": "Check media containing diagnostic and test programs for malicious code before the media are used in the system.",
+      "keywords": [
+        "media",
+        "containing",
+        "diagnostic",
+        "test",
+        "programs",
+        "malicious",
+        "code",
+        "incident"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0884",
+      "external_raw_id": "RAW-000689",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control PE-6 (Physical and Environmental Protection)",
+      "title_draft": "PE-6: Monitoring Physical Access",
+      "description": "a.",
+      "keywords": [
+        "physical",
+        "access",
+        "incidents",
+        "accesses",
+        "monitoring",
+        "logs",
+        "suspicious",
+        "insert"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0911",
+      "external_raw_id": "RAW-000716",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control PE-14(2) (Physical and Environmental Protection)",
+      "title_draft": "PE-14(2): Monitoring with Alarms and Notifications",
+      "description": "Employ environmental control monitoring that provides an alarm or notification of changes potentially harmful to personnel or equipment to {{ insert: param, pe-14.02_odp }}.",
+      "keywords": [
+        "alarm",
+        "pe-14",
+        "monitoring",
+        "alarms",
+        "notifications",
+        "notification",
+        "personnel",
+        "employ"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0925",
+      "external_raw_id": "RAW-000730",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control PL-2 (Planning)",
+      "title_draft": "PL-2: System Security and Privacy Plans",
+      "description": "a.",
+      "keywords": [
+        "plans",
+        "privacy",
+        "requirements",
+        "plan",
+        "describe",
+        "design",
+        "documents",
+        "provide"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0954",
+      "external_raw_id": "RAW-000759",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control PM-12 (Program Management)",
+      "title_draft": "PM-12: Insider Threat Program",
+      "description": "Implement an insider threat program that includes a cross-discipline insider threat incident handling team.",
+      "keywords": [
+        "insider",
+        "threat",
+        "programs",
+        "agency",
+        "department",
+        "program",
+        "incident",
+        "organizations"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1024",
+      "external_raw_id": "RAW-000829",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control RA-3(4) (Risk Assessment)",
+      "title_draft": "RA-3(4): Predictive Cyber Analytics",
+      "description": "Employ the following advanced automation and analytics capabilities to predict and identify risks to {{ insert: param, ra-03.04_odp.02 }}: {{ insert: param, ra-3.4_prm_2 }}.",
+      "keywords": [
+        "analytics",
+        "machine",
+        "advanced",
+        "automation",
+        "capabilities",
+        "response",
+        "learning",
+        "ra-3"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1062",
+      "external_raw_id": "RAW-000867",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SA-5 (System and Services Acquisition)",
+      "title_draft": "SA-5: System Documentation",
+      "description": "a.",
+      "keywords": [
+        "documentation",
+        "component",
+        "service",
+        "operation",
+        "functions",
+        "obtain",
+        "secure",
+        "privacy"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1107",
+      "external_raw_id": "RAW-000912",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SA-9(3) (System and Services Acquisition)",
+      "title_draft": "SA-9(3): Establish and Maintain Trust Relationship with Providers",
+      "description": "Establish, document, and maintain trust relationships with external service providers based on the following requirements, properties, factors, or conditions: {{ insert: param, sa-9.3_prm_1 }}.",
+      "keywords": [
+        "trust",
+        "providers",
+        "relationships",
+        "service",
+        "external",
+        "organizations",
+        "level",
+        "sa-9"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1109",
+      "external_raw_id": "RAW-000914",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SA-9(5) (System and Services Acquisition)",
+      "title_draft": "SA-9(5): Processing, Storage, and Service Location",
+      "description": "Restrict the location of {{ insert: param, sa-09.05_odp.01 }} to {{ insert: param, sa-09.05_odp.02 }} based on {{ insert: param, sa-09.05_odp.03 }}.",
+      "keywords": [
+        "storage",
+        "processing",
+        "locations",
+        "location",
+        "insert",
+        "param",
+        "sa-09",
+        "odp"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1160",
+      "external_raw_id": "RAW-000965",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SA-15(10) (System and Services Acquisition)",
+      "title_draft": "SA-15(10): Incident Response Plan",
+      "description": "Require the developer of the system, system component, or system service to provide, implement, and test an incident response plan.",
+      "keywords": [
+        "incident",
+        "response",
+        "plan",
+        "developer",
+        "provide",
+        "organizations",
+        "sa-15",
+        "require"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1163",
+      "external_raw_id": "RAW-000968",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SA-15(13) (System and Services Acquisition)",
+      "title_draft": "SA-15(13): Logging Syntax",
+      "description": "Require the developer of the system or system component to minimize the use of personally identifiable information in development and test environments.",
+      "keywords": [
+        "event",
+        "logging",
+        "ability",
+        "types",
+        "sa-15",
+        "syntax",
+        "require",
+        "developer"
+      ]
+    },
+    {
+      "raw_id": "sans_security_policy_templates::0002",
+      "external_raw_id": "RAW-POL-4ACB48BC",
+      "source_document": "SANS Security Policy Templates",
+      "source_version": "Current",
+      "source_section": "IR-01",
+      "title_draft": "Incident Response Policy",
+      "description": "Establishes the requirement for an Incident Response Plan and establishes the Incident Response Team to ensure rapid and effective handling of security incidents.",
+      "keywords": [
+        "incident response",
+        "breach",
+        "IR"
+      ]
+    },
+    {
+      "raw_id": "the_nist_cybersecurity_framework_csf_2_0::0051",
+      "external_raw_id": "RAW-000052",
+      "source_document": "The NIST Cybersecurity Framework (CSF) 2.0",
+      "source_version": "2.0",
+      "source_section": "Subcategory ID.IM-04",
+      "title_draft": "ID.IM-04 — Incident response plans and other cybersecurity plans that affect operations are established, communicated, maintained, and improved",
+      "description": "Incident response plans and other cybersecurity plans that affect operations are established, communicated, maintained, and improved",
+      "keywords": [
+        "plans",
+        "incident",
+        "response",
+        "affect",
+        "operations",
+        "established",
+        "communicated",
+        "maintained"
+      ]
+    },
+    {
+      "raw_id": "the_nist_cybersecurity_framework_csf_2_0::0085",
+      "external_raw_id": "RAW-000086",
+      "source_document": "The NIST Cybersecurity Framework (CSF) 2.0",
+      "source_version": "2.0",
+      "source_section": "Subcategory RS.MA-01",
+      "title_draft": "RS.MA-01 — The incident response plan is executed in coordination with relevant third parties once an incident is declared",
+      "description": "The incident response plan is executed in coordination with relevant third parties once an incident is declared",
+      "keywords": [
+        "incident",
+        "response",
+        "plan",
+        "executed",
+        "coordination",
+        "relevant",
+        "third",
+        "parties"
+      ]
+    },
+    {
+      "raw_id": "the_nist_cybersecurity_framework_csf_2_0::0094",
+      "external_raw_id": "RAW-000095",
+      "source_document": "The NIST Cybersecurity Framework (CSF) 2.0",
+      "source_version": "2.0",
+      "source_section": "Subcategory RS.CO-02",
+      "title_draft": "RS.CO-02 — Internal and external stakeholders are notified of incidents",
+      "description": "Internal and external stakeholders are notified of incidents",
+      "keywords": [
+        "internal",
+        "external",
+        "stakeholders",
+        "notified",
+        "incidents",
+        "incident",
+        "response",
+        "co-02"
+      ]
+    },
+    {
+      "raw_id": "the_nist_cybersecurity_framework_csf_2_0::0095",
+      "external_raw_id": "RAW-000096",
+      "source_document": "The NIST Cybersecurity Framework (CSF) 2.0",
+      "source_version": "2.0",
+      "source_section": "Subcategory RS.CO-03",
+      "title_draft": "RS.CO-03 — Information is shared with designated internal and external stakeholders",
+      "description": "Information is shared with designated internal and external stakeholders",
+      "keywords": [
+        "internal",
+        "external",
+        "stakeholders",
+        "shared",
+        "designated",
+        "incident",
+        "response",
+        "co-03"
+      ]
+    },
+    {
+      "raw_id": "the_nist_cybersecurity_framework_csf_2_0::0098",
+      "external_raw_id": "RAW-000099",
+      "source_document": "The NIST Cybersecurity Framework (CSF) 2.0",
+      "source_version": "2.0",
+      "source_section": "Subcategory RC.RP-01",
+      "title_draft": "RC.RP-01 — The recovery portion of the incident response plan is executed once initiated from the incident response process",
+      "description": "The recovery portion of the incident response plan is executed once initiated from the incident response process",
+      "keywords": [
+        "incident",
+        "response",
+        "recovery",
+        "plan",
+        "portion",
+        "executed",
+        "once",
+        "initiated"
+      ]
+    }
+  ],
+  "decision": null,
+  "canonical": null
+}

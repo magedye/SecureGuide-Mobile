@@ -1,0 +1,258 @@
+[
+  {
+    "code": "SD-01",
+    "name_en": "Governance, Risk & Compliance",
+    "name_ar": "الحوكمة والمخاطر والامتثال",
+    "sub_domains": [
+      {
+        "code": "SD-01.01",
+        "name_en": "Cybersecurity Strategy & Governance",
+        "name_ar": "استراتيجية وحوكمة الأمن السيبراني"
+      },
+      {
+        "code": "SD-01.02",
+        "name_en": "Policies, Standards & Exceptions",
+        "name_ar": "السياسات والمعايير والاستثناءات"
+      },
+      {
+        "code": "SD-01.03",
+        "name_en": "Security Risk Management",
+        "name_ar": "إدارة المخاطر الأمنية"
+      },
+      {
+        "code": "SD-01.04",
+        "name_en": "Compliance, Audit & Assurance",
+        "name_ar": "الامتثال والتدقيق والضمان"
+      },
+      {
+        "code": "SD-01.05",
+        "name_en": "Security Program Management & Metrics",
+        "name_ar": "إدارة البرنامج الأمني والمقاييس"
+      }
+    ]
+  },
+  {
+    "code": "SD-02",
+    "name_en": "Assets, Data & Privacy",
+    "name_ar": "الأصول والبيانات والخصوصية",
+    "sub_domains": [
+      {
+        "code": "SD-02.01",
+        "name_en": "Asset Inventory & Management",
+        "name_ar": "جرد وإدارة الأصول"
+      },
+      {
+        "code": "SD-02.02",
+        "name_en": "Software & License Management",
+        "name_ar": "إدارة البرمجيات والتراخيص"
+      },
+      {
+        "code": "SD-02.03",
+        "name_en": "Data Classification & Ownership",
+        "name_ar": "تصنيف وملكية البيانات"
+      },
+      {
+        "code": "SD-02.04",
+        "name_en": "Data Protection & Encryption",
+        "name_ar": "حماية البيانات والتشفير"
+      },
+      {
+        "code": "SD-02.05",
+        "name_en": "Privacy, Retention & Disposal",
+        "name_ar": "الخصوصية والاحتفاظ والإتلاف"
+      }
+    ]
+  },
+  {
+    "code": "SD-03",
+    "name_en": "Identity, Access & Privilege",
+    "name_ar": "الهوية والوصول والامتياز",
+    "sub_domains": [
+      {
+        "code": "SD-03.01",
+        "name_en": "Identity Lifecycle Management",
+        "name_ar": "إدارة دورة حياة الهوية"
+      },
+      {
+        "code": "SD-03.02",
+        "name_en": "Authentication & Credential Management",
+        "name_ar": "المصادقة وإدارة بيانات الاعتماد"
+      },
+      {
+        "code": "SD-03.03",
+        "name_en": "Authorization & Access Management",
+        "name_ar": "التخويل وإدارة الوصول"
+      },
+      {
+        "code": "SD-03.04",
+        "name_en": "Privileged Access Management",
+        "name_ar": "إدارة الوصول المتميز"
+      },
+      {
+        "code": "SD-03.05",
+        "name_en": "Remote & External Access",
+        "name_ar": "الوصول عن بُعد والخارجي"
+      }
+    ]
+  },
+  {
+    "code": "SD-04",
+    "name_en": "Infrastructure, Network & Cloud",
+    "name_ar": "البنية التحتية والشبكة والسحابة",
+    "sub_domains": [
+      {
+        "code": "SD-04.01",
+        "name_en": "Network & Communications Security",
+        "name_ar": "أمن الشبكات والاتصالات"
+      },
+      {
+        "code": "SD-04.02",
+        "name_en": "Systems, Servers & Endpoint Security",
+        "name_ar": "أمن الأنظمة والخوادم والأجهزة الطرفية"
+      },
+      {
+        "code": "SD-04.03",
+        "name_en": "Configuration & Security Hardening",
+        "name_ar": "الإعداد والتحصين الأمني"
+      },
+      {
+        "code": "SD-04.04",
+        "name_en": "Cloud & Virtual Platform Security",
+        "name_ar": "أمن المنصات السحابية والافتراضية"
+      },
+      {
+        "code": "SD-04.05",
+        "name_en": "Email, Web & Digital Communications",
+        "name_ar": "البريد والويب والاتصالات الرقمية"
+      }
+    ]
+  },
+  {
+    "code": "SD-05",
+    "name_en": "Applications, Development & Change",
+    "name_ar": "التطبيقات والتطوير والتغيير",
+    "sub_domains": [
+      {
+        "code": "SD-05.01",
+        "name_en": "Application Security Governance & SDLC",
+        "name_ar": "حوكمة أمن التطبيقات ودورة حياة التطوير"
+      },
+      {
+        "code": "SD-05.02",
+        "name_en": "Application & API Security Testing",
+        "name_ar": "اختبار أمن التطبيقات وواجهات API"
+      },
+      {
+        "code": "SD-05.03",
+        "name_en": "Code, Components & Software Supply Chain",
+        "name_ar": "الشيفرة والمكونات وسلسلة توريد البرمجيات"
+      },
+      {
+        "code": "SD-05.04",
+        "name_en": "Change & Release Management",
+        "name_ar": "إدارة التغيير والإصدار"
+      },
+      {
+        "code": "SD-05.05",
+        "name_en": "Database & Critical Application Security",
+        "name_ar": "أمن قواعد البيانات والتطبيقات الحرجة"
+      }
+    ]
+  },
+  {
+    "code": "SD-06",
+    "name_en": "Detection, Monitoring & Vulnerability",
+    "name_ar": "الكشف والمراقبة والثغرات",
+    "sub_domains": [
+      {
+        "code": "SD-06.01",
+        "name_en": "Logging & Security Monitoring",
+        "name_ar": "التسجيل والمراقبة الأمنية"
+      },
+      {
+        "code": "SD-06.02",
+        "name_en": "Threat Detection & Alerts",
+        "name_ar": "كشف التهديدات والتنبيهات"
+      },
+      {
+        "code": "SD-06.03",
+        "name_en": "Vulnerability & Patch Management",
+        "name_ar": "إدارة الثغرات والتحديثات"
+      },
+      {
+        "code": "SD-06.04",
+        "name_en": "Security Testing & Assessments",
+        "name_ar": "الاختبار والتقييم الأمني"
+      },
+      {
+        "code": "SD-06.05",
+        "name_en": "Threat Intelligence & IoCs",
+        "name_ar": "استخبارات التهديدات ومؤشرات الاختراق"
+      }
+    ]
+  },
+  {
+    "code": "SD-07",
+    "name_en": "Response, Recovery & Resilience",
+    "name_ar": "الاستجابة والتعافي والصمود",
+    "sub_domains": [
+      {
+        "code": "SD-07.01",
+        "name_en": "Incident Management",
+        "name_ar": "إدارة الحوادث"
+      },
+      {
+        "code": "SD-07.02",
+        "name_en": "Digital Forensics & Evidence",
+        "name_ar": "التحليل الجنائي الرقمي والأدلة"
+      },
+      {
+        "code": "SD-07.03",
+        "name_en": "Backup & Restore",
+        "name_ar": "النسخ الاحتياطي والاستعادة"
+      },
+      {
+        "code": "SD-07.04",
+        "name_en": "Business Continuity & Disaster Recovery",
+        "name_ar": "استمرارية الأعمال والتعافي من الكوارث"
+      },
+      {
+        "code": "SD-07.05",
+        "name_en": "Crisis Management & Communication",
+        "name_ar": "إدارة الأزمات والتواصل"
+      }
+    ]
+  },
+  {
+    "code": "SD-08",
+    "name_en": "People, Third Parties & Physical",
+    "name_ar": "الأشخاص والأطراف الثالثة والأمن المادي",
+    "sub_domains": [
+      {
+        "code": "SD-08.01",
+        "name_en": "Awareness, Training & Security Culture",
+        "name_ar": "التوعية والتدريب وثقافة الأمن"
+      },
+      {
+        "code": "SD-08.02",
+        "name_en": "HR Security & Employee Lifecycle",
+        "name_ar": "أمن الموارد البشرية ودورة حياة الموظف"
+      },
+      {
+        "code": "SD-08.03",
+        "name_en": "Supplier & Third-Party Management",
+        "name_ar": "إدارة الموردين والأطراف الثالثة"
+      },
+      {
+        "code": "SD-08.04",
+        "name_en": "Physical & Environmental Security",
+        "name_ar": "الأمن المادي والبيئي"
+      },
+      {
+        "code": "SD-08.05",
+        "name_en": "Acceptable Use & Professional Conduct",
+        "name_ar": "الاستخدام المقبول والسلوك المهني"
+      }
+    ]
+  }
+]

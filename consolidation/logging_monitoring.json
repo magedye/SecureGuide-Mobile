@@ -1,0 +1,1655 @@
+{
+  "group_id": "GRP-logging_monitoring",
+  "concept": "Logging & Security Monitoring",
+  "expected_sub_domain": "SD-06.01",
+  "member_count": 88,
+  "source_coverage": [
+    "CIS Controls v8",
+    "CIS Linux/Unix Security Benchmarks",
+    "Enterprise Infrastructure Hardening Guides",
+    "Essential Cybersecurity Controls (ECC 2-2024)",
+    "MITRE ATT&CK Enterprise",
+    "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+    "OWASP Application Security Verification Standard 5.0.0",
+    "PCI DSS v4.0"
+  ],
+  "instructions": "Decide per CONSOLIDATION_POLICY.md: one of CANONICALIZE | EQUIVALENCE_GROUP | CROSSWALK_ONLY | RELATE_ONLY | KEEP_SEPARATE | DEPRECATE_DERIVED. If merging, author an English canonical per AUTHORING_POLICY.md and set mapping_strength per source. Do NOT invent USACM/SDT values. Do NOT delete raw records.",
+  "members": [
+    {
+      "raw_id": "cis_controls_v8::0015",
+      "external_raw_id": "RAW-BATCH-58C2012B",
+      "source_document": "CIS Controls v8",
+      "source_version": "Unknown",
+      "source_section": "8.1",
+      "title_draft": "8.1",
+      "description": "Establish and maintain an audit log management process that defines the enterprise’s logging requirements.",
+      "keywords": [
+        "Log Management",
+        "Audit Logging"
+      ]
+    },
+    {
+      "raw_id": "cis_controls_v8::0016",
+      "external_raw_id": "RAW-BATCH-E385C685",
+      "source_document": "CIS Controls v8",
+      "source_version": "Unknown",
+      "source_section": "8.2",
+      "title_draft": "8.2",
+      "description": "Collect audit logs. Ensure that logging, per the enterprise's audit log management process, has been enabled across enterprise assets.",
+      "keywords": [
+        "Log Collection",
+        "Enable Logging"
+      ]
+    },
+    {
+      "raw_id": "cis_controls_v8::0023",
+      "external_raw_id": "RAW-BATCH-091F149B",
+      "source_document": "CIS Controls v8",
+      "source_version": "Unknown",
+      "source_section": "13.1",
+      "title_draft": "13.1",
+      "description": "Centralize security event alerting across enterprise assets for log correlation and analysis. We recommend using a SIEM.",
+      "keywords": [
+        "Centralized Alerting",
+        "Log Correlation",
+        "SIEM"
+      ]
+    },
+    {
+      "raw_id": "cis_linux_unix_benchmarks::0002",
+      "external_raw_id": "RAW-LNX-394A109A",
+      "source_document": "CIS Linux/Unix Security Benchmarks",
+      "source_version": "Current",
+      "source_section": "Section 4.1",
+      "title_draft": "Audit Logging (auditd)",
+      "description": "Ensure the auditd service is installed and enabled, and rules are configured to record events that modify date and time information, user/group information, and network environment.",
+      "keywords": [
+        "auditd",
+        "logging",
+        "system events"
+      ]
+    },
+    {
+      "raw_id": "enterprise_infrastructure_benchmarks::0003",
+      "external_raw_id": "RAW-INF-5D442FE7",
+      "source_document": "Enterprise Infrastructure Hardening Guides",
+      "source_version": "Current",
+      "source_section": "FW-02",
+      "title_draft": "Firewall: Stateful Inspection & Logging",
+      "description": "Enable stateful inspection on all interfaces and log all dropped packets to a centralized SIEM for threat hunting.",
+      "keywords": [
+        "firewall",
+        "stateful inspection",
+        "logging",
+        "siem"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0082",
+      "external_raw_id": "RAW-001730",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 2-12-3 (Cybersecurity Event Logs and Monitoring Management)",
+      "title_draft": "2-12-3: Cybersecurity Event Logs and Monitoring Management",
+      "description": "Cybersecurity requirements for cybersecurity event logs and monitoring management shall include the following as a minimum: 2.12.3.1 Activation of cybersecurity event logs for critical information assets within the entity.",
+      "keywords": [
+        "event",
+        "logs",
+        "monitoring",
+        "management",
+        "activation",
+        "critical",
+        "assets",
+        "collection"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0012",
+      "external_raw_id": "RAW-001768",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1037",
+      "title_draft": "T1037 — Boot or Logon Initialization Scripts",
+      "description": "Adversaries may use scripts automatically executed at boot or logon initialization to establish persistence.(Citation: Mandiant APT29 Eye Spy Email Nov 22)(Citation: Anomali Rocke March 2019) Initialization scripts can be used to perform administrative functions, which may often execute other programs or send information to an",
+      "keywords": [
+        "scripts",
+        "logon",
+        "initialization",
+        "boot",
+        "persistence",
+        "adversaries",
+        "citation",
+        "privileges"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0056",
+      "external_raw_id": "RAW-001812",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1685.003",
+      "title_draft": "T1685.003 — Modify or Spoof Tool UI",
+      "description": "Adversaries may spoof or manipulate security tool user interfaces (UIs) to falsely indicate tools are functioning normally and delay detection and response.",
+      "keywords": [
+        "adversaries",
+        "tools",
+        "tool",
+        "interfaces",
+        "windows",
+        "modify",
+        "spoof",
+        "uis"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0075",
+      "external_raw_id": "RAW-001831",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1685.001",
+      "title_draft": "T1685.001 — Disable or Modify Windows Event Log",
+      "description": "Adversaries may disable or modify the Windows Event Log to limit data that can be leveraged for detections and audits.",
+      "keywords": [
+        "audit",
+        "eventlog",
+        "policy",
+        "disable",
+        "citation",
+        "adversaries",
+        "service",
+        "auditpol"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0133",
+      "external_raw_id": "RAW-001889",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1685.004",
+      "title_draft": "T1685.004 — Disable or Modify Linux Audit System Log",
+      "description": "Adversaries may disable or modify the Linux Audit system to hide malicious activity and avoid detection.",
+      "keywords": [
+        "audit",
+        "linux",
+        "disable",
+        "rules",
+        "adversaries",
+        "activity",
+        "modify",
+        "file"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0158",
+      "external_raw_id": "RAW-001914",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1070.002",
+      "title_draft": "T1070.002 — Clear Linux or Mac System Logs",
+      "description": "Adversaries may clear system logs to hide evidence of an intrusion.",
+      "keywords": [
+        "code",
+        "log",
+        "logs",
+        "var",
+        "linux",
+        "clear",
+        "macos",
+        "directory"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0166",
+      "external_raw_id": "RAW-001922",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1089",
+      "title_draft": "T1089 — Disabling Security Tools",
+      "description": "Adversaries may disable security tools to avoid possible detection of their tools and activities.",
+      "keywords": [
+        "tools",
+        "event",
+        "t1089",
+        "disabling",
+        "adversaries",
+        "disable",
+        "avoid",
+        "possible"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0174",
+      "external_raw_id": "RAW-001930",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1689",
+      "title_draft": "T1689 — Downgrade Attack",
+      "description": "Adversaries may downgrade or use a version of system features that may be outdated, vulnerable, and/or does not support updated security controls.",
+      "keywords": [
+        "downgrade",
+        "attack",
+        "citation",
+        "adversaries",
+        "https",
+        "mitre",
+        "org",
+        "techniques"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0197",
+      "external_raw_id": "RAW-001953",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1685.002",
+      "title_draft": "T1685.002 — Disable or Modify Cloud Log",
+      "description": "An adversary may disable or modify cloud logging capabilities and integrations to limit what data is collected on their activities and avoid detection.",
+      "keywords": [
+        "disable",
+        "logging",
+        "cloud",
+        "adversary",
+        "activities",
+        "modify",
+        "detection",
+        "user"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0223",
+      "external_raw_id": "RAW-001979",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1070.003",
+      "title_draft": "T1070.003 — Clear Command History",
+      "description": "In addition to clearing system logs, an adversary may clear the command history of a compromised account to conceal the actions undertaken during an intrusion.",
+      "keywords": [
+        "code",
+        "history",
+        "command",
+        "file",
+        "powershell",
+        "commands",
+        "clear",
+        "citation"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0231",
+      "external_raw_id": "RAW-001987",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1562",
+      "title_draft": "T1562 — Impair Defenses",
+      "description": "Adversaries may maliciously modify components of a victim environment in order to hinder or disable defensive mechanisms.",
+      "keywords": [
+        "also",
+        "defenses",
+        "adversaries",
+        "impair",
+        "components",
+        "defensive",
+        "mechanisms",
+        "capabilities"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0265",
+      "external_raw_id": "RAW-002021",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1557.004",
+      "title_draft": "T1557.004 — Evil Twin",
+      "description": "Adversaries may host seemingly genuine Wi-Fi access points to deceive users into connecting to malicious networks as a way of supporting follow-on behaviors such as [Network Sniffing](https://attack.mitre.org/techniques/T1040), [Transmitted Data Manipulation](https://attack.mitre.org/techniques/T1565/002), or [Input Capture](https://attack.mitre.org/techniques/T1056).(Citation: Australia ‘Evil Twin’) By using a Serv…",
+      "keywords": [
+        "wi-fi",
+        "access",
+        "network",
+        "evil",
+        "twin",
+        "adversaries",
+        "malicious",
+        "citation"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0269",
+      "external_raw_id": "RAW-002025",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1564.011",
+      "title_draft": "T1564.011 — Ignore Process Interrupts",
+      "description": "Adversaries may evade defensive mechanisms by executing commands that hide from process interrupt signals.",
+      "keywords": [
+        "process",
+        "commands",
+        "signals",
+        "interrupt",
+        "citation",
+        "linux",
+        "https",
+        "attack"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0282",
+      "external_raw_id": "RAW-002038",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1562.002",
+      "title_draft": "T1562.002 — Disable Windows Event Logging",
+      "description": "Adversaries may disable Windows event logging to limit data that can be leveraged for detections and audits.",
+      "keywords": [
+        "code",
+        "citation",
+        "eventlog",
+        "audit",
+        "disable",
+        "policy",
+        "adversaries",
+        "windows"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0315",
+      "external_raw_id": "RAW-002071",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1562.012",
+      "title_draft": "T1562.012 — Disable or Modify Linux Audit System",
+      "description": "Adversaries may disable or modify the Linux audit system to hide malicious activity and avoid detection.",
+      "keywords": [
+        "audit",
+        "linux",
+        "rules",
+        "disable",
+        "adversaries",
+        "activity",
+        "citation",
+        "modify"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0316",
+      "external_raw_id": "RAW-002072",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1207",
+      "title_draft": "T1207 — Rogue Domain Controller",
+      "description": "Adversaries may register a rogue Domain Controller to enable manipulation of Active Directory data.",
+      "keywords": [
+        "rogue",
+        "domain",
+        "dcshadow",
+        "citation",
+        "controller",
+        "objects",
+        "blog",
+        "technique"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0335",
+      "external_raw_id": "RAW-002091",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1685.006",
+      "title_draft": "T1685.006 — Clear Linux or Mac System Logs",
+      "description": "Adversaries may clear system logs to hide evidence of an intrusion.",
+      "keywords": [
+        "log",
+        "logs",
+        "var",
+        "linux",
+        "clear",
+        "macos",
+        "directory",
+        "messages"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0352",
+      "external_raw_id": "RAW-002108",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1070.001",
+      "title_draft": "T1070.001 — Clear Windows Event Logs",
+      "description": "Adversaries may clear Windows Event Logs to hide the activity of an intrusion.",
+      "keywords": [
+        "code",
+        "logs",
+        "event",
+        "windows",
+        "clear",
+        "adversaries",
+        "wevtutil",
+        "events"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0373",
+      "external_raw_id": "RAW-002129",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1056.003",
+      "title_draft": "T1056.003 — Web Portal Capture",
+      "description": "Adversaries may install code on externally facing portals, such as a VPN login page, to capture and transmit credentials of users who attempt to log into the service.",
+      "keywords": [
+        "capture",
+        "service",
+        "access",
+        "web",
+        "externally",
+        "facing",
+        "login",
+        "page"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0376",
+      "external_raw_id": "RAW-002132",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1054",
+      "title_draft": "T1054 — Indicator Blocking",
+      "description": "An adversary may attempt to block indicators or events typically captured by sensors from being gathered and analyzed.",
+      "keywords": [
+        "event",
+        "block",
+        "citation",
+        "tracing",
+        "windows",
+        "adversary",
+        "indicators",
+        "events"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0382",
+      "external_raw_id": "RAW-002138",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1098.004",
+      "title_draft": "T1098.004 — SSH Authorized Keys",
+      "description": "Adversaries may modify the SSH <code>authorized_keys</code> file to maintain persistence on a victim host.",
+      "keywords": [
+        "ssh",
+        "code",
+        "authorized_keys",
+        "file",
+        "citation",
+        "keys",
+        "user",
+        "modify"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0401",
+      "external_raw_id": "RAW-002157",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1546.008",
+      "title_draft": "T1546.008 — Accessibility Features",
+      "description": "Adversaries may establish persistence and/or elevate privileges by executing malicious content triggered by accessibility features.",
+      "keywords": [
+        "code",
+        "windows",
+        "exe",
+        "accessibility",
+        "system32",
+        "features",
+        "citation",
+        "launched"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0409",
+      "external_raw_id": "RAW-002165",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1562.006",
+      "title_draft": "T1562.006 — Indicator Blocking",
+      "description": "An adversary may attempt to block indicators or events typically captured by sensors from being gathered and analyzed.",
+      "keywords": [
+        "citation",
+        "event",
+        "syslog",
+        "code",
+        "esxi",
+        "block",
+        "tracing",
+        "windows"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0410",
+      "external_raw_id": "RAW-002166",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1685.005",
+      "title_draft": "T1685.005 — Clear Windows Event Logs",
+      "description": "Adversaries may clear Windows Event Logs to hide the activity of an intrusion.",
+      "keywords": [
+        "logs",
+        "event",
+        "windows",
+        "clear",
+        "adversaries",
+        "wevtutil",
+        "events",
+        "audit"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0461",
+      "external_raw_id": "RAW-002217",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1059.008",
+      "title_draft": "T1059.008 — Network Device CLI",
+      "description": "Adversaries may abuse scripting or built-in command line interpreters (CLI) on network devices to execute malicious command and payloads.",
+      "keywords": [
+        "network",
+        "cli",
+        "device",
+        "scripting",
+        "command",
+        "devices",
+        "through",
+        "adversaries"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0463",
+      "external_raw_id": "RAW-002219",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1562.010",
+      "title_draft": "T1562.010 — Downgrade Attack",
+      "description": "Adversaries may downgrade or use a version of system features that may be outdated, vulnerable, and/or does not support updated security controls.",
+      "keywords": [
+        "downgrade",
+        "attack",
+        "citation",
+        "https",
+        "adversaries",
+        "mitre",
+        "org",
+        "techniques"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0478",
+      "external_raw_id": "RAW-002234",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1654",
+      "title_draft": "T1654 — Log Enumeration",
+      "description": "Adversaries may enumerate system and service logs to find useful data.",
+      "keywords": [
+        "logs",
+        "techniques",
+        "adversaries",
+        "discovery",
+        "https",
+        "attack",
+        "mitre",
+        "org"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0498",
+      "external_raw_id": "RAW-002254",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1562.003",
+      "title_draft": "T1562.003 — Impair Command History Logging",
+      "description": "Adversaries may impair command history logging to hide commands they run on a compromised system.",
+      "keywords": [
+        "code",
+        "command",
+        "history",
+        "commands",
+        "logging",
+        "file",
+        "powershell",
+        "adversaries"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0524",
+      "external_raw_id": "RAW-002280",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1015",
+      "title_draft": "T1015 — Accessibility Features",
+      "description": "Windows contains accessibility features that may be launched with a key combination before a user has logged in (for example, when the user is on the Windows logon screen).",
+      "keywords": [
+        "windows",
+        "code",
+        "exe",
+        "system32",
+        "accessibility",
+        "key",
+        "program",
+        "citation"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0567",
+      "external_raw_id": "RAW-002323",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1562.001",
+      "title_draft": "T1562.001 — Disable or Modify Tools",
+      "description": "Adversaries may modify and/or disable security tools to avoid possible detection of their malware/tools and activities.",
+      "keywords": [
+        "citation",
+        "tools",
+        "adversaries",
+        "processes",
+        "edr",
+        "disable",
+        "process",
+        "modify"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0607",
+      "external_raw_id": "RAW-002363",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1690",
+      "title_draft": "T1690 — Prevent Command History Logging",
+      "description": "Adversaries may impair command history logging to hide commands they run on a compromised system.",
+      "keywords": [
+        "command",
+        "history",
+        "commands",
+        "logging",
+        "file",
+        "adversaries",
+        "environment",
+        "variable"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0623",
+      "external_raw_id": "RAW-002379",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1685",
+      "title_draft": "T1685 — Disable or Modify Tools",
+      "description": "Adversaries may disable, degrade, or tamper with security tools or applications (e.g., endpoint detection and response (EDR) tools, intrusion detection systems (IDS), antivirus, logging agents, sensors, etc.) to impair or reduce visibility of defensive capabilities.",
+      "keywords": [
+        "tools",
+        "detection",
+        "mechanisms",
+        "citation",
+        "adversaries",
+        "logging",
+        "event",
+        "disable"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0680",
+      "external_raw_id": "RAW-002436",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1562.008",
+      "title_draft": "T1562.008 — Disable or Modify Cloud Logs",
+      "description": "An adversary may disable or modify cloud logging capabilities and integrations to limit what data is collected on their activities and avoid detection.",
+      "keywords": [
+        "disable",
+        "logging",
+        "adversary",
+        "activities",
+        "citation",
+        "modify",
+        "cloud",
+        "detection"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0757",
+      "external_raw_id": "RAW-002513",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1526",
+      "title_draft": "T1526 — Cloud Service Discovery",
+      "description": "An adversary may attempt to enumerate the cloud services running on a system after gaining access.",
+      "keywords": [
+        "services",
+        "cloud",
+        "azure",
+        "api",
+        "citation",
+        "aws",
+        "graph",
+        "resources"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0768",
+      "external_raw_id": "RAW-002524",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1547.007",
+      "title_draft": "T1547.007 — Re-opened Applications",
+      "description": "Adversaries may modify plist files to automatically run an application when a user logs in.",
+      "keywords": [
+        "user",
+        "code",
+        "persistence",
+        "plist",
+        "logs",
+        "citation",
+        "file",
+        "adversaries"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0773",
+      "external_raw_id": "RAW-002529",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1105",
+      "title_draft": "T1105 — Ingress Tool Transfer",
+      "description": "Adversaries may transfer tools or other files from an external system into a compromised environment.",
+      "keywords": [
+        "tools",
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "adversaries",
+        "victim",
+        "also"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0851",
+      "external_raw_id": "RAW-002607",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1211",
+      "title_draft": "T1211 — Exploitation for Stealth",
+      "description": "Adversaries may exploit vulnerabilities to evade detection by hiding activity, suppressing logging, or operating within trusted or unmonitored components.",
+      "keywords": [
+        "adversaries",
+        "logging",
+        "exploitation",
+        "vulnerabilities",
+        "evade",
+        "activity",
+        "stealth",
+        "exploit"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0074",
+      "external_raw_id": "RAW-000181",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-6(9) (Access Control)",
+      "title_draft": "AC-6(9): Log Use of Privileged Functions",
+      "description": "Log the execution of privileged functions.",
+      "keywords": [
+        "privileged",
+        "functions",
+        "log",
+        "misuse",
+        "ac-6",
+        "execution",
+        "either",
+        "intentionally"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0088",
+      "external_raw_id": "RAW-000195",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-11 (Access Control)",
+      "title_draft": "AC-11: Device Lock",
+      "description": "a.",
+      "keywords": [
+        "device",
+        "lock",
+        "access",
+        "locks",
+        "users",
+        "out",
+        "prevent",
+        "temporary"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0110",
+      "external_raw_id": "RAW-000217",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-17(1) (Access Control)",
+      "title_draft": "AC-17(1): Monitoring and Control",
+      "description": "Employ automated mechanisms to monitor and control remote access methods.",
+      "keywords": [
+        "remote",
+        "access",
+        "monitoring",
+        "methods",
+        "audit",
+        "au-2",
+        "ac-17",
+        "employ"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0165",
+      "external_raw_id": "RAW-000272",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-2 (Audit and Accountability)",
+      "title_draft": "AU-2: Event Logging",
+      "description": "a.",
+      "keywords": [
+        "event",
+        "logging",
+        "types",
+        "events",
+        "organizations",
+        "logged",
+        "monitoring",
+        "auditing"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0174",
+      "external_raw_id": "RAW-000281",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-4 (Audit and Accountability)",
+      "title_draft": "AU-4: Audit Log Storage Capacity",
+      "description": "Allocate audit log storage capacity to accommodate {{ insert: param, au-04_odp }}.",
+      "keywords": [
+        "audit",
+        "log",
+        "capacity",
+        "storage",
+        "logging",
+        "allocating",
+        "au-4",
+        "allocate"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0175",
+      "external_raw_id": "RAW-000282",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-4(1) (Audit and Accountability)",
+      "title_draft": "AU-4(1): Transfer to Alternate Storage",
+      "description": "Transfer audit logs {{ insert: param, au-04.01_odp }} to a different system, system component, or media other than the system or system component conducting the logging.",
+      "keywords": [
+        "audit",
+        "storage",
+        "logs",
+        "log",
+        "au-9",
+        "transfer",
+        "alternate",
+        "different"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0176",
+      "external_raw_id": "RAW-000283",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-5 (Audit and Accountability)",
+      "title_draft": "AU-5: Response to Audit Logging Process Failures",
+      "description": "a.",
+      "keywords": [
+        "audit",
+        "logging",
+        "process",
+        "failure",
+        "log",
+        "storage",
+        "failures",
+        "actions"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0177",
+      "external_raw_id": "RAW-000284",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-5(1) (Audit and Accountability)",
+      "title_draft": "AU-5(1): Storage Capacity Warning",
+      "description": "Provide a warning to {{ insert: param, au-05.01_odp.01 }} within {{ insert: param, au-05.01_odp.02 }} when allocated audit log storage volume reaches {{ insert: param, au-05.01_odp.03 }} of repository maximum audit log storage capacity.",
+      "keywords": [
+        "storage",
+        "insert",
+        "param",
+        "au-05",
+        "odp",
+        "audit",
+        "log",
+        "capacity"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0179",
+      "external_raw_id": "RAW-000286",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-5(3) (Audit and Accountability)",
+      "title_draft": "AU-5(3): Configurable Traffic Volume Thresholds",
+      "description": "Enforce configurable network communications traffic volume thresholds reflecting limits on audit log storage capacity and {{ insert: param, au-05.03_odp }} network traffic above those thresholds.",
+      "keywords": [
+        "traffic",
+        "thresholds",
+        "audit",
+        "volume",
+        "network",
+        "storage",
+        "capacity",
+        "configurable"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0180",
+      "external_raw_id": "RAW-000287",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-5(4) (Audit and Accountability)",
+      "title_draft": "AU-5(4): Shutdown on Failure",
+      "description": "Invoke a {{ insert: param, au-05.04_odp.01 }} in the event of {{ insert: param, au-05.04_odp.02 }} , unless an alternate audit logging capability exists.",
+      "keywords": [
+        "audit",
+        "logging",
+        "shutdown",
+        "failure",
+        "insert",
+        "param",
+        "au-05",
+        "odp"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0181",
+      "external_raw_id": "RAW-000288",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-5(5) (Audit and Accountability)",
+      "title_draft": "AU-5(5): Alternate Audit Logging Capability",
+      "description": "Provide an alternate audit logging capability in the event of a failure in primary audit logging capability that implements {{ insert: param, au-05.05_odp }}.",
+      "keywords": [
+        "audit",
+        "logging",
+        "capability",
+        "alternate",
+        "failure",
+        "primary",
+        "provide",
+        "au-5"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0182",
+      "external_raw_id": "RAW-000289",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-6 (Audit and Accountability)",
+      "title_draft": "AU-6: Audit Record Review, Analysis, and Reporting",
+      "description": "a.",
+      "keywords": [
+        "audit",
+        "review",
+        "analysis",
+        "record",
+        "reporting",
+        "insert",
+        "param",
+        "au-06_odp"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0193",
+      "external_raw_id": "RAW-000300",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-7 (Audit and Accountability)",
+      "title_draft": "AU-7: Audit Record Reduction and Report Generation",
+      "description": "Provide and implement an audit record reduction and report generation capability that: a.",
+      "keywords": [
+        "audit",
+        "record",
+        "reduction",
+        "report",
+        "generation",
+        "capability",
+        "records",
+        "time"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0199",
+      "external_raw_id": "RAW-000306",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-9 (Audit and Accountability)",
+      "title_draft": "AU-9: Protection of Audit Information",
+      "description": "a.",
+      "keywords": [
+        "audit",
+        "protection",
+        "logging",
+        "tools",
+        "access",
+        "unauthorized",
+        "modification",
+        "deletion"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0203",
+      "external_raw_id": "RAW-000310",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-9(4) (Audit and Accountability)",
+      "title_draft": "AU-9(4): Access by Subset of Privileged Users",
+      "description": "Authorize access to management of audit logging functionality to only {{ insert: param, au-09.04_odp }}.",
+      "keywords": [
+        "audit",
+        "access",
+        "privileged",
+        "privileges",
+        "users",
+        "roles",
+        "audit-related",
+        "au-9"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0217",
+      "external_raw_id": "RAW-000324",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-12(2) (Audit and Accountability)",
+      "title_draft": "AU-12(2): Standardized Formats",
+      "description": "Produce a system-wide (logical or physical) audit trail composed of audit records in a standardized format.",
+      "keywords": [
+        "audit",
+        "standardized",
+        "formats",
+        "records",
+        "system-wide",
+        "interoperability",
+        "exchange",
+        "au-12"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0218",
+      "external_raw_id": "RAW-000325",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-12(3) (Audit and Accountability)",
+      "title_draft": "AU-12(3): Changes by Authorized Individuals",
+      "description": "Provide and implement the capability for {{ insert: param, au-12.03_odp.01 }} to change the logging to be performed on {{ insert: param, au-12.03_odp.02 }} based on {{ insert: param, au-12.03_odp.03 }} within {{ insert: param, au-12.03_odp.04 }}.",
+      "keywords": [
+        "logging",
+        "au-12",
+        "insert",
+        "param",
+        "odp",
+        "changes",
+        "authorized",
+        "individuals"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0224",
+      "external_raw_id": "RAW-000331",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-14 (Audit and Accountability)",
+      "title_draft": "AU-14: Session Audit",
+      "description": "a.",
+      "keywords": [
+        "session",
+        "capability",
+        "insert",
+        "param",
+        "au-14_odp",
+        "auditing",
+        "legal",
+        "organizations"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0228",
+      "external_raw_id": "RAW-000335",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-15 (Audit and Accountability)",
+      "title_draft": "AU-15: Alternate Audit Logging Capability",
+      "description": "AU-15: Alternate Audit Logging Capability",
+      "keywords": [
+        "audit",
+        "au-15",
+        "alternate",
+        "logging",
+        "capability",
+        "family",
+        "accountability"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0229",
+      "external_raw_id": "RAW-000336",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-16 (Audit and Accountability)",
+      "title_draft": "AU-16: Cross-organizational Audit Logging",
+      "description": "Employ {{ insert: param, au-16_odp.01 }} for coordinating {{ insert: param, au-16_odp.02 }} among external organizations when audit information is transmitted across organizational boundaries.",
+      "keywords": [
+        "audit",
+        "organizations",
+        "logging",
+        "individuals",
+        "cross-organizational",
+        "insert",
+        "param",
+        "au-16_odp"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0414",
+      "external_raw_id": "RAW-001021",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SC-7(8) (System and Communications Protection)",
+      "title_draft": "SC-7(8): Route Traffic to Authenticated Proxy Servers",
+      "description": "Route {{ insert: param, sc-07.08_odp.01 }} to {{ insert: param, sc-07.08_odp.02 }} through authenticated proxy servers at managed interfaces.",
+      "keywords": [
+        "proxy",
+        "servers",
+        "networks",
+        "server",
+        "web",
+        "route",
+        "authenticated",
+        "insert"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0572",
+      "external_raw_id": "RAW-001179",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SI-4(2) (System and Information Integrity)",
+      "title_draft": "SI-4(2): Automated Tools and Mechanisms for Real-time Analysis",
+      "description": "Employ automated tools and mechanisms to support near real-time analysis of events.",
+      "keywords": [
+        "automated",
+        "tools",
+        "mechanisms",
+        "real-time",
+        "analysis",
+        "privacy",
+        "event",
+        "monitoring"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0817",
+      "external_raw_id": "RAW-000622",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control MA-4(1) (Maintenance)",
+      "title_draft": "MA-4(1): Logging and Review",
+      "description": "(a) Log {{ insert: param, ma-4.1_prm_1 }} for nonlocal maintenance and diagnostic sessions; and (b) Review the audit records of the maintenance and diagnostic sessions to detect anomalous behavior.",
+      "keywords": [
+        "maintenance",
+        "audit",
+        "ma-4",
+        "logging",
+        "review",
+        "nonlocal",
+        "diagnostic",
+        "sessions"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0884",
+      "external_raw_id": "RAW-000689",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control PE-6 (Physical and Environmental Protection)",
+      "title_draft": "PE-6: Monitoring Physical Access",
+      "description": "a.",
+      "keywords": [
+        "physical",
+        "access",
+        "incidents",
+        "accesses",
+        "monitoring",
+        "logs",
+        "suspicious",
+        "insert"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0997",
+      "external_raw_id": "RAW-000802",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control PT-2 (Personally Identifiable Information Processing and Transparency)",
+      "title_draft": "PT-2: Authority to Process Personally Identifiable Information",
+      "description": "a.",
+      "keywords": [
+        "personally",
+        "identifiable",
+        "processing",
+        "authority",
+        "privacy",
+        "authorized",
+        "organizations",
+        "policies"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1163",
+      "external_raw_id": "RAW-000968",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SA-15(13) (System and Services Acquisition)",
+      "title_draft": "SA-15(13): Logging Syntax",
+      "description": "Require the developer of the system or system component to minimize the use of personally identifiable information in development and test environments.",
+      "keywords": [
+        "event",
+        "logging",
+        "ability",
+        "types",
+        "sa-15",
+        "syntax",
+        "require",
+        "developer"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0110",
+      "external_raw_id": "RAW-001611",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V15.3.4 (V15.3 Defensive Coding)",
+      "title_draft": "V15.3.4 — Defensive Coding",
+      "description": "Verify that all proxying and middleware components transfer the user's original IP address correctly using trusted data fields that cannot be manipulated by the end user, and the application and web server use this correct value for logging and security decisions such as rate limiting,",
+      "keywords": [
+        "v15",
+        "coding",
+        "user",
+        "original",
+        "address",
+        "defensive",
+        "all",
+        "proxying"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0118",
+      "external_raw_id": "RAW-001619",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V16.1.1 (V16.1 Security Logging Documentation)",
+      "title_draft": "V16.1.1 — Security Logging Documentation",
+      "description": "Verify that an inventory exists documenting the logging performed at each layer of the application's technology stack, what events are being logged, log formats, where that logging is stored, how it is used, how access to it is controlled, and for how long logs are",
+      "keywords": [
+        "logging",
+        "v16",
+        "how",
+        "documentation",
+        "inventory",
+        "exists",
+        "documenting",
+        "performed"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0119",
+      "external_raw_id": "RAW-001620",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V16.2.1 (V16.2 General Logging)",
+      "title_draft": "V16.2.1 — General Logging",
+      "description": "Verify that each log entry includes necessary metadata (such as when, where, who, what) that would allow for a detailed investigation of the timeline when an event happens.",
+      "keywords": [
+        "v16",
+        "logging",
+        "general",
+        "each",
+        "log",
+        "entry",
+        "includes",
+        "necessary"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0120",
+      "external_raw_id": "RAW-001621",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V16.2.2 (V16.2 General Logging)",
+      "title_draft": "V16.2.2 — General Logging",
+      "description": "Verify that time sources for all logging components are synchronized, and that timestamps in security event metadata use UTC or include an explicit time zone offset.",
+      "keywords": [
+        "v16",
+        "logging",
+        "time",
+        "utc",
+        "general",
+        "sources",
+        "all",
+        "components"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0121",
+      "external_raw_id": "RAW-001622",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V16.2.3 (V16.2 General Logging)",
+      "title_draft": "V16.2.3 — General Logging",
+      "description": "Verify that the application only stores or broadcasts logs to the files and services that are documented in the log inventory.",
+      "keywords": [
+        "v16",
+        "logging",
+        "general",
+        "stores",
+        "broadcasts",
+        "logs",
+        "files",
+        "services"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0122",
+      "external_raw_id": "RAW-001623",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V16.2.4 (V16.2 General Logging)",
+      "title_draft": "V16.2.4 — General Logging",
+      "description": "Verify that logs can be read and correlated by the log processor that is in use, preferably by using a common logging format.",
+      "keywords": [
+        "v16",
+        "logging",
+        "general",
+        "logs",
+        "read",
+        "correlated",
+        "log",
+        "processor"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0123",
+      "external_raw_id": "RAW-001624",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V16.2.5 (V16.2 General Logging)",
+      "title_draft": "V16.2.5 — General Logging",
+      "description": "Verify that when logging sensitive data, the application enforces logging based on the data's protection level.",
+      "keywords": [
+        "logging",
+        "data",
+        "v16",
+        "general",
+        "sensitive",
+        "enforces",
+        "based",
+        "protection"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0124",
+      "external_raw_id": "RAW-001625",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V16.3.1 (V16.3 Security Events)",
+      "title_draft": "V16.3.1 — Security Events",
+      "description": "Verify that all authentication operations are logged, including successful and unsuccessful attempts.",
+      "keywords": [
+        "v16",
+        "authentication",
+        "events",
+        "all",
+        "operations",
+        "logged",
+        "successful",
+        "unsuccessful"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0125",
+      "external_raw_id": "RAW-001626",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V16.3.2 (V16.3 Security Events)",
+      "title_draft": "V16.3.2 — Security Events",
+      "description": "Verify that failed authorization attempts are logged.",
+      "keywords": [
+        "logging",
+        "v16",
+        "authorization",
+        "sensitive",
+        "data",
+        "events",
+        "failed",
+        "attempts"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0126",
+      "external_raw_id": "RAW-001627",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V16.3.3 (V16.3 Security Events)",
+      "title_draft": "V16.3.3 — Security Events",
+      "description": "Verify that the application logs the security events that are defined in the documentation and also logs attempts to bypass the security controls, such as input validation, business logic, and anti-automation.",
+      "keywords": [
+        "v16",
+        "events",
+        "logs",
+        "defined",
+        "documentation",
+        "also",
+        "attempts",
+        "bypass"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0127",
+      "external_raw_id": "RAW-001628",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V16.3.4 (V16.3 Security Events)",
+      "title_draft": "V16.3.4 — Security Events",
+      "description": "Verify that the application logs unexpected errors and security control failures such as backend TLS failures.",
+      "keywords": [
+        "v16",
+        "failures",
+        "events",
+        "logs",
+        "unexpected",
+        "errors",
+        "backend",
+        "tls"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0128",
+      "external_raw_id": "RAW-001629",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V16.4.1 (V16.4 Log Protection)",
+      "title_draft": "V16.4.1 — Log Protection",
+      "description": "Verify that all logging components appropriately encode data to prevent log injection.",
+      "keywords": [
+        "v16",
+        "log",
+        "logging",
+        "protection",
+        "all",
+        "components",
+        "appropriately",
+        "encode"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0129",
+      "external_raw_id": "RAW-001630",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V16.4.2 (V16.4 Log Protection)",
+      "title_draft": "V16.4.2 — Log Protection",
+      "description": "Verify that logs are protected from unauthorized access and cannot be modified.",
+      "keywords": [
+        "v16",
+        "log",
+        "protection",
+        "logs",
+        "protected",
+        "unauthorized",
+        "access",
+        "cannot"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0130",
+      "external_raw_id": "RAW-001631",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V16.4.3 (V16.4 Log Protection)",
+      "title_draft": "V16.4.3 — Log Protection",
+      "description": "Verify that logs are securely transmitted to a logically separate system for analysis, detection, alerting, and escalation.",
+      "keywords": [
+        "v16",
+        "logs",
+        "log",
+        "protection",
+        "securely",
+        "transmitted",
+        "logically",
+        "separate"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0131",
+      "external_raw_id": "RAW-001632",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V16.5.1 (V16.5 Error Handling)",
+      "title_draft": "V16.5.1 — Error Handling",
+      "description": "Verify that a generic message is returned to the consumer when an unexpected or security-sensitive error occurs, ensuring no exposure of sensitive internal system data such as stack traces, queries, secret keys, and tokens.",
+      "keywords": [
+        "v16",
+        "error",
+        "handling",
+        "generic",
+        "message",
+        "returned",
+        "consumer",
+        "unexpected"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0132",
+      "external_raw_id": "RAW-001633",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V16.5.2 (V16.5 Error Handling)",
+      "title_draft": "V16.5.2 — Error Handling",
+      "description": "Verify that the application continues to operate securely when external resource access fails, for example, by using patterns such as circuit breakers or graceful degradation.",
+      "keywords": [
+        "v16",
+        "error",
+        "handling",
+        "continues",
+        "operate",
+        "securely",
+        "external",
+        "resource"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0133",
+      "external_raw_id": "RAW-001634",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V16.5.3 (V16.5 Error Handling)",
+      "title_draft": "V16.5.3 — Error Handling",
+      "description": "Verify that the application fails gracefully and securely, including when an exception occurs, preventing fail-open conditions such as processing a transaction despite errors resulting from validation logic.",
+      "keywords": [
+        "v16",
+        "error",
+        "handling",
+        "fails",
+        "gracefully",
+        "securely",
+        "exception",
+        "occurs"
+      ]
+    },
+    {
+      "raw_id": "owasp_application_security_verification_standard_5_0_0::0134",
+      "external_raw_id": "RAW-001635",
+      "source_document": "OWASP Application Security Verification Standard 5.0.0",
+      "source_version": "5.0.0",
+      "source_section": "Requirement V16.5.4 (V16.5 Error Handling)",
+      "title_draft": "V16.5.4 — Error Handling",
+      "description": "Verify that a \"last resort\" error handler is defined which will catch all unhandled exceptions.",
+      "keywords": [
+        "error",
+        "v16",
+        "handling",
+        "last",
+        "resort",
+        "handler",
+        "defined",
+        "will"
+      ]
+    },
+    {
+      "raw_id": "pci_dss_v4_0::0019",
+      "external_raw_id": "RAW-BATCH-E0DC9CA5",
+      "source_document": "PCI DSS v4.0",
+      "source_version": "Unknown",
+      "source_section": "10.2.1",
+      "title_draft": "10.2.1",
+      "description": "Audit logs are enabled and active for all system components and cardholder data access.",
+      "keywords": [
+        "Audit Logs",
+        "Logging"
+      ]
+    },
+    {
+      "raw_id": "pci_dss_v4_0::0020",
+      "external_raw_id": "RAW-BATCH-3FDC11F1",
+      "source_document": "PCI DSS v4.0",
+      "source_version": "Unknown",
+      "source_section": "10.4.1",
+      "title_draft": "10.4.1",
+      "description": "Audit logs are reviewed for anomalies or suspicious activity using automated mechanisms.",
+      "keywords": [
+        "Log Review",
+        "Automated Mechanisms",
+        "Suspicious Activity"
+      ]
+    }
+  ],
+  "decision": null,
+  "canonical": null
+}

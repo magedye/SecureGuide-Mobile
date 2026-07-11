@@ -1,0 +1,299 @@
+{
+  "group_id": "GRP-cloud_security",
+  "concept": "Cloud & Virtual Platform",
+  "expected_sub_domain": "SD-04.04",
+  "member_count": 15,
+  "source_coverage": [
+    "MITRE ATT&CK Enterprise"
+  ],
+  "instructions": "Decide per CONSOLIDATION_POLICY.md: one of CANONICALIZE | EQUIVALENCE_GROUP | CROSSWALK_ONLY | RELATE_ONLY | KEEP_SEPARATE | DEPRECATE_DERIVED. If merging, author an English canonical per AUTHORING_POLICY.md and set mapping_strength per source. Do NOT invent USACM/SDT values. Do NOT delete raw records.",
+  "members": [
+    {
+      "raw_id": "mitre_att_ck_enterprise::0017",
+      "external_raw_id": "RAW-001773",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1613",
+      "title_draft": "T1613 — Container and Resource Discovery",
+      "description": "Adversaries may attempt to discover containers and other resources that are available within a containers environment.",
+      "keywords": [
+        "resources",
+        "environment",
+        "discovery",
+        "containers",
+        "kubernetes",
+        "docker",
+        "available",
+        "citation"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0063",
+      "external_raw_id": "RAW-001819",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1133",
+      "title_draft": "T1133 — External Remote Services",
+      "description": "Adversaries may leverage external-facing remote services to initially access and/or persist within a network.",
+      "keywords": [
+        "remote",
+        "access",
+        "services",
+        "service",
+        "citation",
+        "adversaries",
+        "network",
+        "tor"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0067",
+      "external_raw_id": "RAW-001823",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1053.007",
+      "title_draft": "T1053.007 — Container Orchestration Job",
+      "description": "Adversaries may abuse task scheduling functionality provided by container orchestration tools such as Kubernetes to schedule deployment of containers configured to execute malicious code.",
+      "keywords": [
+        "kubernetes",
+        "containers",
+        "container",
+        "orchestration",
+        "job",
+        "schedule",
+        "jobs",
+        "cronjob"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0107",
+      "external_raw_id": "RAW-001863",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1036.005",
+      "title_draft": "T1036.005 — Match Legitimate Resource Name or Location",
+      "description": "Adversaries may match or approximate the name or location of legitimate files, Registry keys, or other resources when naming/placing them.",
+      "keywords": [
+        "legitimate",
+        "name",
+        "trusted",
+        "match",
+        "resource",
+        "location",
+        "registry",
+        "naming"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0203",
+      "external_raw_id": "RAW-001959",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1098.006",
+      "title_draft": "T1098.006 — Additional Container Cluster Roles",
+      "description": "An adversary may add additional roles or permissions to an adversary-controlled user or service account to maintain persistent access to a container orchestration system.",
+      "keywords": [
+        "kubernetes",
+        "service",
+        "account",
+        "citation",
+        "additional",
+        "roles",
+        "permissions",
+        "attack"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0270",
+      "external_raw_id": "RAW-002026",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1611",
+      "title_draft": "T1611 — Escape to Host",
+      "description": "Adversaries may break out of a container or virtualized environment to gain access to the underlying host.",
+      "keywords": [
+        "host",
+        "container",
+        "citation",
+        "escape",
+        "adversary",
+        "environment",
+        "access",
+        "virtualized"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0318",
+      "external_raw_id": "RAW-002074",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1610",
+      "title_draft": "T1610 — Deploy Container",
+      "description": "Adversaries may deploy a container into an environment to facilitate execution or evade defenses.",
+      "keywords": [
+        "deploy",
+        "container",
+        "kubernetes",
+        "containers",
+        "citation",
+        "code",
+        "adversaries",
+        "execute"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0341",
+      "external_raw_id": "RAW-002097",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1078.001",
+      "title_draft": "T1078.001 — Default Accounts",
+      "description": "Adversaries may obtain and abuse credentials of a default account as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion.",
+      "keywords": [
+        "default",
+        "accounts",
+        "account",
+        "esxi",
+        "citation",
+        "access",
+        "threat",
+        "they"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0348",
+      "external_raw_id": "RAW-002104",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1136.001",
+      "title_draft": "T1136.001 — Local Account",
+      "description": "Adversaries may create a local account to maintain access to victim systems.",
+      "keywords": [
+        "local",
+        "accounts",
+        "code",
+        "access",
+        "network",
+        "account",
+        "create",
+        "command"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0432",
+      "external_raw_id": "RAW-002188",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1609",
+      "title_draft": "T1609 — Container Administration Command",
+      "description": "Adversaries may abuse a container administration service to execute commands within a container.",
+      "keywords": [
+        "container",
+        "docker",
+        "citation",
+        "command",
+        "kubernetes",
+        "code",
+        "exec",
+        "administration"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0485",
+      "external_raw_id": "RAW-002241",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1528",
+      "title_draft": "T1528 — Steal Application Access Token",
+      "description": "Adversaries can steal application access tokens as a means of acquiring credentials to access remote systems and resources.",
+      "keywords": [
+        "access",
+        "tokens",
+        "citation",
+        "oauth",
+        "token",
+        "user",
+        "azure",
+        "steal"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0579",
+      "external_raw_id": "RAW-002335",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1543.005",
+      "title_draft": "T1543.005 — Container Service",
+      "description": "Adversaries may create or modify container or container cluster management tools that run as daemons, agents, or services on individual hosts.",
+      "keywords": [
+        "citation",
+        "container",
+        "docker",
+        "kubernetes",
+        "run",
+        "cluster",
+        "containers",
+        "podman"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0650",
+      "external_raw_id": "RAW-002406",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1059.013",
+      "title_draft": "T1059.013 — Container CLI/API",
+      "description": "Adversaries may abuse built-in CLI tools or API calls to execute malicious commands in containerized environments.",
+      "keywords": [
+        "docker",
+        "cli",
+        "api",
+        "containers",
+        "citation",
+        "https",
+        "attack",
+        "mitre"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0717",
+      "external_raw_id": "RAW-002473",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1036.010",
+      "title_draft": "T1036.010 — Masquerade Account Name",
+      "description": "Adversaries may match or approximate the names of legitimate accounts to make newly created ones appear benign.",
+      "keywords": [
+        "account",
+        "attack",
+        "names",
+        "accounts",
+        "https",
+        "mitre",
+        "org",
+        "techniques"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0838",
+      "external_raw_id": "RAW-002594",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1552.007",
+      "title_draft": "T1552.007 — Container API",
+      "description": "Adversaries may gather credentials via APIs within a containers environment.",
+      "keywords": [
+        "api",
+        "docker",
+        "kubernetes",
+        "credentials",
+        "container",
+        "apis",
+        "citation",
+        "via"
+      ]
+    }
+  ],
+  "decision": null,
+  "canonical": null
+}

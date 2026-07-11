@@ -1,0 +1,49 @@
+{
+  "candidate_group_id": "PA-07",
+  "concept_name": "Domain Admin Tiering (Configuration)",
+  "expected_sub_domain": "SD-03.04",
+  "member_raw_ids": [
+    "enterprise_infrastructure_benchmarks::0001"
+  ],
+  "excluded_raw_ids": [
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0070"
+  ],
+  "member_reasons": {
+    "enterprise_infrastructure_benchmarks::0001": "AD-02 — restrict Domain Admin accounts to Domain Controllers; use tiering to prevent lateral movement."
+  },
+  "exclusion_reasons": {
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0070": "AC-6(5) is a general privileged-restriction CONTROL (PA-02); AD-02 is a concrete AD CONFIG — must not merge control with config."
+  },
+  "differences": "A concrete technical configuration (AD tiering), type ART-CFG — kept separate from the control PA-02 per the forbidden control/config merge.",
+  "decision": "CANONICALIZE",
+  "decision_confidence": 0.75,
+  "requires_human_review": 1,
+  "decision_rationale": "Concrete AD tiering configuration (ART-CFG); single source. Confidence 0.75 -> review. Relates to PA-02 but is not merged (config vs control).",
+  "canonical_artifact": {
+    "title_en": "Domain Admin Account Tiering",
+    "definition_short_en": "This configuration restricts Domain Admin accounts to Domain Controllers and applies an administrative tiering model to prevent lateral movement.",
+    "definition_full_en": "This artifact requires configuring Active Directory so that Domain Admin accounts are usable only on Domain Controllers, with an administrative tier model that prevents high-tier credentials from being exposed on lower-tier systems. It applies to AD environments. The minimum expected outcome is enforced tier isolation for Domain Admin accounts. Verification is by testing that Domain Admin credentials cannot authenticate to lower-tier systems.",
+    "objective_en": "Prevent exposure and lateral movement of Domain Admin credentials.",
+    "type": "ART-CFG",
+    "abstraction_level": "ABS-TEC",
+    "primary_domain": "SD-03",
+    "sub_domain": "SD-03.04",
+    "obligation_level": "OBL-REC",
+    "classification_confidence": 0.75,
+    "classification_rationale": "AD-02 Domain Admin tiering configuration; SD-03.04; ART-CFG (config), related to PA-02.",
+    "verification_method_note": "Test that Domain Admin credentials cannot authenticate to lower-tier systems.",
+    "missing_fields": []
+  },
+  "source_mappings": [
+    {
+      "raw_id": "enterprise_infrastructure_benchmarks::0001",
+      "source_document": "Enterprise Infrastructure Hardening Guides",
+      "source_version": "Current",
+      "source_section": "AD-02",
+      "source_file": "enterprise_infrastructure_benchmarks.json",
+      "mapping_strength": "DIRECT",
+      "rationale": null
+    }
+  ],
+  "validation": "OK"
+}

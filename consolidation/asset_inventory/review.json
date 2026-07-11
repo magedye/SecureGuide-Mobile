@@ -1,0 +1,137 @@
+{
+  "AI-01": {
+    "review_status": "APPROVED_WITH_CHANGES",
+    "reviewer_notes": "Correct atomic inventory requirement merged from 3 sources. But the title/definition say \"establish AND maintain\", overlapping AI-02 (currency). NCA 2-1-1 is broader (explicitly includes software and data), while CIS 1.1 is device-centric.",
+    "validation_findings": [
+      "type/abstraction/SDT valid",
+      "sub-domain belongs to primary",
+      "lineage complete (3 DIRECT)"
+    ],
+    "required_changes": [
+      "Scope AI-01 to \"establish and hold\" the inventory; let AI-02 own \"keep current\".",
+      "Note NCA breadth (software/data) so software items are not double-counted vs AI-06."
+    ],
+    "final_confidence": 0.85,
+    "ready_for_promotion": false
+  },
+  "AI-02": {
+    "review_status": "APPROVED",
+    "reviewer_notes": "Atomic \"keep inventory current/accurate\" control from two CM-8 enhancements; clean scope, correctly related to AI-01.",
+    "validation_findings": [
+      "ART-CTR valid",
+      "both sources DIRECT and genuinely about currency",
+      "SD-02.01 correct"
+    ],
+    "required_changes": [
+      "On promotion fill control_nature/function/testability (already in missing_fields)."
+    ],
+    "final_confidence": 0.85,
+    "ready_for_promotion": true
+  },
+  "AI-03": {
+    "review_status": "REJECTED",
+    "reviewer_notes": "CM-8(4) owner accountability is an ATTRIBUTE of the inventory (AI-01), not a standalone atomic requirement. Promoting it as a separate canonical would fragment the model.",
+    "validation_findings": [
+      "single source",
+      "semantically an attribute of AI-01"
+    ],
+    "required_changes": [
+      "Do NOT promote as standalone. Convert to RELATE_ONLY / fold \"record accountable owner\" as an attribute requirement of AI-01."
+    ],
+    "final_confidence": 0.5,
+    "ready_for_promotion": false
+  },
+  "AI-04": {
+    "review_status": "SPLIT_REQUIRED",
+    "reviewer_notes": "CM-8(6) (record configuration content) and CM-8(7) (central repository) are two DISTINCT enhancement ideas grouped together. RELATE_ONLY is right, but they must be split into two separate relationships to AI-01.",
+    "validation_findings": [
+      "correctly not merged",
+      "but group is not itself atomic (two ideas)"
+    ],
+    "required_changes": [
+      "Split into AI-04a (inventory content/config) and AI-04b (central repository); relate each to AI-01 separately."
+    ],
+    "final_confidence": 0.7,
+    "ready_for_promotion": false
+  },
+  "AI-05": {
+    "review_status": "APPROVED",
+    "reviewer_notes": "Distinct detective/corrective control for unauthorized assets; correctly separated from maintaining the inventory list.",
+    "validation_findings": [
+      "ART-CTR valid",
+      "DIRECT source genuinely about detection",
+      "SD-02.01 correct"
+    ],
+    "required_changes": [
+      "On promotion fill control fields."
+    ],
+    "final_confidence": 0.85,
+    "ready_for_promotion": true
+  },
+  "AI-06": {
+    "review_status": "APPROVED",
+    "reviewer_notes": "Software inventory correctly separated into SD-02.02, not merged with hardware/asset inventory. CIS 2.2 (supported software) correctly excluded.",
+    "validation_findings": [
+      "SD-02.02 correct (not SD-02.01)",
+      "DIRECT source genuinely software inventory"
+    ],
+    "required_changes": [],
+    "final_confidence": 0.88,
+    "ready_for_promotion": true
+  },
+  "AI-07": {
+    "review_status": "APPROVED_WITH_CHANGES",
+    "reviewer_notes": "Classification/labeling correctly separated into SD-02.03. ECC 2-1-5 adds \"handling\" beyond classify/label — a scope difference that should not be silently dropped.",
+    "validation_findings": [
+      "SD-02.03 correct",
+      "both DIRECT but ECC includes handling scope"
+    ],
+    "required_changes": [
+      "Either widen canonical to include handling, or record a separate handling artifact and mark ECC 2-1-5 PARTIAL with rationale."
+    ],
+    "final_confidence": 0.8,
+    "ready_for_promotion": false
+  },
+  "AI-08": {
+    "review_status": "APPROVED",
+    "reviewer_notes": "Acceptable-use correctly placed in SD-08.05 (not asset inventory). Requirement/policy (2-1-3) vs implementation (2-1-4) correctly kept separate via EQUIVALENCE_GROUP with INDIRECT+rationale on the implementation.",
+    "validation_findings": [
+      "ART-POL valid",
+      "SD-08.05 correct",
+      "req/impl not merged",
+      "INDIRECT mapping has rationale"
+    ],
+    "required_changes": [
+      "On promotion set effective_date (in missing_fields)."
+    ],
+    "final_confidence": 0.85,
+    "ready_for_promotion": true
+  },
+  "AI-09": {
+    "review_status": "APPROVED_WITH_CHANGES",
+    "reviewer_notes": "Governance lifecycle correctly kept separate from the concrete inventory control (different abstraction). Open question: SD-02.01 vs SD-01.02 (Policies/Standards) for a governance requirement.",
+    "validation_findings": [
+      "EQUIVALENCE_GROUP appropriate",
+      "INDIRECT stages have rationale",
+      "confidence 0.75 <= 0.80 -> human review"
+    ],
+    "required_changes": [
+      "Confirm SD-02.01 vs SD-01.02 for asset-management governance before promotion."
+    ],
+    "final_confidence": 0.72,
+    "ready_for_promotion": false
+  },
+  "AI-10": {
+    "review_status": "APPROVED_WITH_CHANGES",
+    "reviewer_notes": "ISO 8.10 is information/media DELETION (data end-of-life). SD-02.05 (Privacy, Retention & Disposal) is correct, but the title \"Secure Information Disposal\" should make clear it is information/media deletion, not physical asset disposal.",
+    "validation_findings": [
+      "SD-02.05 correct",
+      "single DIRECT source"
+    ],
+    "required_changes": [
+      "Clarify scope: information/media deletion; consider a separate physical media sanitization artifact if sources appear."
+    ],
+    "final_confidence": 0.78,
+    "ready_for_promotion": false
+  }
+}

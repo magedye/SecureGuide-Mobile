@@ -1,0 +1,21 @@
+{
+  "id": "G09",
+  "case_type": "needs_split",
+  "maps_to_group": "AI-04",
+  "description": "A group holding two distinct ideas (content + repository) must be flagged SPLIT_REQUIRED.",
+  "input_raw_ids": [
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0315",
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0316"
+  ],
+  "expected_decision": "RELATE_ONLY",
+  "accepted_members": null,
+  "excluded": [],
+  "expected_classification": null,
+  "expected_rationale_keywords": [
+    "split"
+  ],
+  "expected_canonical_title": null,
+  "validation_rules": [
+    "review_status == SPLIT_REQUIRED"
+  ]
+}

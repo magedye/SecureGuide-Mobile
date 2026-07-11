@@ -1,0 +1,1716 @@
+[
+  {
+    "source": "CIS Controls v8",
+    "reference": "1.1",
+    "raw_text": "Establish and maintain an accurate, detailed, and up-to-date inventory of all enterprise assets with the potential to store or process data, to include: end-user devices (including portable and mobile), network devices, non-computing/Internet of Things (IoT) devices, and servers.",
+    "explicit_info": {
+      "control": "Control 1: Inventory and Control of Enterprise Assets",
+      "tags": [
+        "Asset Inventory",
+        "Hardware",
+        "Enterprise Assets"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "1.2",
+    "raw_text": "Ensure that a process exists to address unauthorized assets on a weekly basis.",
+    "explicit_info": {
+      "control": "Control 1: Inventory and Control of Enterprise Assets",
+      "tags": [
+        "Unauthorized Assets",
+        "Incident Management"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "2.1",
+    "raw_text": "Establish and maintain a detailed inventory of all licensed software installed on enterprise assets.",
+    "explicit_info": {
+      "control": "Control 2: Inventory and Control of Software Assets",
+      "tags": [
+        "Software Inventory",
+        "Licensing"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "2.2",
+    "raw_text": "Ensure that only currently supported software and software components are used in the enterprise. Software that is unsupported or out-of-date must be updated or replaced.",
+    "explicit_info": {
+      "control": "Control 2: Inventory and Control of Software Assets",
+      "tags": [
+        "Supported Software",
+        "Patch Management"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "3.1",
+    "raw_text": "Establish and maintain a data management process, to include data sensitivity, data owner, handling of data, data retention limits, and disposal requirements.",
+    "explicit_info": {
+      "control": "Control 3: Data Protection",
+      "tags": [
+        "Data Management",
+        "Data Classification",
+        "Data Ownership"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "3.3",
+    "raw_text": "Configure data access control lists based on a user’s need to know. Apply the 'least privilege' principle.",
+    "explicit_info": {
+      "control": "Control 3: Data Protection",
+      "tags": [
+        "Access Control Lists (ACL)",
+        "Least Privilege",
+        "Need to Know"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "4.1",
+    "raw_text": "Establish and maintain a secure configuration process for enterprise assets and software. Review and update documentation annually.",
+    "explicit_info": {
+      "control": "Control 4: Secure Configuration of Enterprise Assets and Software",
+      "tags": [
+        "Secure Configuration",
+        "Hardening"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "5.1",
+    "raw_text": "Establish and maintain an inventory of all accounts managed in the enterprise, including user, administrator, and service accounts.",
+    "explicit_info": {
+      "control": "Control 5: Account Management",
+      "tags": [
+        "Account Inventory",
+        "Identity Management"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "5.2",
+    "raw_text": "Use unique passwords for all enterprise assets. Do not use the same password for multiple assets.",
+    "explicit_info": {
+      "control": "Control 5: Account Management",
+      "tags": [
+        "Unique Passwords",
+        "Credential Management"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "5.3",
+    "raw_text": "Disable dormant accounts after 45 days of inactivity, where supported.",
+    "explicit_info": {
+      "control": "Control 5: Account Management",
+      "tags": [
+        "Dormant Accounts",
+        "Access Revocation"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "6.1",
+    "raw_text": "Establish and follow a process, preferably automated, for granting access to enterprise assets upon new hire, rights grant, or role change of a user.",
+    "explicit_info": {
+      "control": "Control 6: Access Control Management",
+      "tags": [
+        "Access Provisioning",
+        "Role-Based Access Control (RBAC)"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "6.3",
+    "raw_text": "Require all external or remote access to the enterprise network, such as VPN, to use Multi-Factor Authentication (MFA).",
+    "explicit_info": {
+      "control": "Control 6: Access Control Management",
+      "tags": [
+        "Multi-Factor Authentication (MFA)",
+        "Remote Access",
+        "VPN"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "6.5",
+    "raw_text": "Require Multi-Factor Authentication (MFA) for all administrative access to enterprise assets.",
+    "explicit_info": {
+      "control": "Control 6: Access Control Management",
+      "tags": [
+        "Multi-Factor Authentication (MFA)",
+        "Administrative Access",
+        "Privileged Access"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "7.1",
+    "raw_text": "Establish and maintain a vulnerability management process for enterprise assets. Review and update documentation annually, or when significant enterprise changes occur that could impact this Safeguard.",
+    "explicit_info": {
+      "control": "Control 7: Continuous Vulnerability Management",
+      "tags": [
+        "Vulnerability Management Process",
+        "Documentation Review"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "7.2",
+    "raw_text": "Establish and maintain a risk-based remediation strategy documented in a remediation process, with monthly, or more frequent, reviews.",
+    "explicit_info": {
+      "control": "Control 7: Continuous Vulnerability Management",
+      "tags": [
+        "Risk-based Remediation",
+        "Monthly Review"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "8.1",
+    "raw_text": "Establish and maintain an audit log management process that defines the enterprise’s logging requirements.",
+    "explicit_info": {
+      "control": "Control 8: Audit Log Management",
+      "tags": [
+        "Log Management",
+        "Audit Logging"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "8.2",
+    "raw_text": "Collect audit logs. Ensure that logging, per the enterprise's audit log management process, has been enabled across enterprise assets.",
+    "explicit_info": {
+      "control": "Control 8: Audit Log Management",
+      "tags": [
+        "Log Collection",
+        "Enable Logging"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "9.1",
+    "raw_text": "Ensure use of only fully supported browsers and email clients that have been approved by the enterprise.",
+    "explicit_info": {
+      "control": "Control 9: Email and Web Browser Protections",
+      "tags": [
+        "Supported Browsers",
+        "Supported Email Clients",
+        "Approved Software"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "10.1",
+    "raw_text": "Deploy and maintain anti-malware software on all enterprise assets.",
+    "explicit_info": {
+      "control": "Control 10: Malware Defenses",
+      "tags": [
+        "Anti-malware",
+        "Endpoint Protection"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "10.2",
+    "raw_text": "Configure automatic updates for anti-malware signature files on all enterprise assets on a daily, or more frequent, basis.",
+    "explicit_info": {
+      "control": "Control 10: Malware Defenses",
+      "tags": [
+        "Automatic Updates",
+        "Malware Signatures",
+        "Daily Updates"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "11.1",
+    "raw_text": "Establish and maintain a data recovery process. In the process, address the scope of data recovery activities, recovery prioritization, and the security of backup data.",
+    "explicit_info": {
+      "control": "Control 11: Data Recovery",
+      "tags": [
+        "Data Recovery Process",
+        "Backup Security",
+        "Recovery Prioritization"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "11.2",
+    "raw_text": "Perform automated backups of in-scope enterprise assets. Data backups must be run weekly, or more frequently, based on the sensitivity of the data.",
+    "explicit_info": {
+      "control": "Control 11: Data Recovery",
+      "tags": [
+        "Automated Backups",
+        "Weekly Backups"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "12.1",
+    "raw_text": "Ensure network infrastructure is kept up-to-date. Example implementations include running the latest stable release of software and/or using currently supported Network Infrastructure-as-a-Service (NIaaS) offerings.",
+    "explicit_info": {
+      "control": "Control 12: Network Infrastructure Management",
+      "tags": [
+        "Network Infrastructure",
+        "Up-to-date Software"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "13.1",
+    "raw_text": "Centralize security event alerting across enterprise assets for log correlation and analysis. We recommend using a SIEM.",
+    "explicit_info": {
+      "control": "Control 13: Network Monitoring and Defense",
+      "tags": [
+        "Centralized Alerting",
+        "Log Correlation",
+        "SIEM"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "14.1",
+    "raw_text": "Establish and maintain a security awareness program. The purpose of a security awareness program is to educate the enterprise's workforce on how to interact with enterprise assets and data in a secure manner.",
+    "explicit_info": {
+      "control": "Control 14: Security Awareness and Skills Training",
+      "tags": [
+        "Security Awareness Program",
+        "Workforce Education"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "15.1",
+    "raw_text": "Establish and maintain an inventory of service providers. The inventory is to list all known service providers, include classification(s), and designate an enterprise contact for each service provider.",
+    "explicit_info": {
+      "control": "Control 15: Service Provider Management",
+      "tags": [
+        "Service Provider Inventory",
+        "Vendor Management"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "16.1",
+    "raw_text": "Establish and maintain a secure software development process. Acceptance criteria, such as requiring peer code review and performing threat modeling, should be included.",
+    "explicit_info": {
+      "control": "Control 16: Application Software Security",
+      "tags": [
+        "Secure SDLC",
+        "Code Review",
+        "Threat Modeling"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "17.1",
+    "raw_text": "Designate one key person, and at least one backup, who will manage the enterprise's incident handling process.",
+    "explicit_info": {
+      "control": "Control 17: Incident Response Management",
+      "tags": [
+        "Incident Handling Management",
+        "Personnel Designation"
+      ]
+    }
+  },
+  {
+    "source": "CIS Controls v8",
+    "reference": "18.1",
+    "raw_text": "Establish and maintain a penetration testing program tailored to the size and complexity of the enterprise.",
+    "explicit_info": {
+      "control": "Control 18: Penetration Testing",
+      "tags": [
+        "Penetration Testing Program",
+        "Security Assessment"
+      ]
+    }
+  },
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "5.1",
+    "raw_text": "Information security policy and topic-specific policies should be defined, approved by management, published, communicated to and acknowledged by relevant personnel and relevant interested parties, and reviewed at planned intervals and if significant changes occur.",
+    "explicit_info": {
+      "theme": "Clause 5: Organizational Controls",
+      "tags": [
+        "Information Security Policy",
+        "Governance",
+        "Review"
+      ]
+    }
+  },
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "5.7",
+    "raw_text": "Information relating to information security threats should be collected and analysed to produce threat intelligence.",
+    "explicit_info": {
+      "theme": "Clause 5: Organizational Controls",
+      "tags": [
+        "Threat Intelligence",
+        "Threat Analysis"
+      ]
+    }
+  },
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "6.1",
+    "raw_text": "Background verification checks on all candidates to become personnel should be carried out prior to joining the organization and on an ongoing basis taking into consideration applicable laws, regulations and ethics and proportional to the business requirements, the classification of the information to be accessed and the perceived risks.",
+    "explicit_info": {
+      "theme": "Clause 6: People Controls",
+      "tags": [
+        "Background Checks",
+        "Screening",
+        "Personnel Security"
+      ]
+    }
+  },
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "6.3",
+    "raw_text": "Personnel of the organization and relevant interested parties should receive appropriate information security awareness, education and training and regular updates of the organization's information security policy, topic-specific policies and procedures, as relevant for their job function.",
+    "explicit_info": {
+      "theme": "Clause 6: People Controls",
+      "tags": [
+        "Security Awareness",
+        "Training",
+        "Education"
+      ]
+    }
+  },
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "7.1",
+    "raw_text": "Security perimeters should be defined and used to protect areas that contain information and other associated assets.",
+    "explicit_info": {
+      "theme": "Clause 7: Physical Controls",
+      "tags": [
+        "Physical Security",
+        "Security Perimeters"
+      ]
+    }
+  },
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "7.4",
+    "raw_text": "Premises should be continuously monitored for unauthorized physical access.",
+    "explicit_info": {
+      "theme": "Clause 7: Physical Controls",
+      "tags": [
+        "Physical Monitoring",
+        "Unauthorized Access"
+      ]
+    }
+  },
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "8.9",
+    "raw_text": "Configurations, including security configurations, of hardware, software, services and networks should be established, documented, implemented, monitored and reviewed.",
+    "explicit_info": {
+      "theme": "Clause 8: Technological Controls",
+      "tags": [
+        "Configuration Management",
+        "Secure Configuration"
+      ]
+    }
+  },
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "8.10",
+    "raw_text": "Information stored in information systems, devices or in any other storage media should be deleted when no longer required.",
+    "explicit_info": {
+      "theme": "Clause 8: Technological Controls",
+      "tags": [
+        "Information Deletion",
+        "Data Disposal"
+      ]
+    }
+  },
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "8.11",
+    "raw_text": "Data masking should be used in accordance with the organization's topic-specific policy on access control and other related topic-specific policies, and business requirements, taking applicable legislation into consideration.",
+    "explicit_info": {
+      "theme": "Clause 8: Technological Controls",
+      "tags": [
+        "Data Masking",
+        "Privacy",
+        "Access Control"
+      ]
+    }
+  },
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "8.12",
+    "raw_text": "Data leakage prevention measures should be applied to systems, networks and any other devices that process, store or transmit sensitive information.",
+    "explicit_info": {
+      "theme": "Clause 8: Technological Controls",
+      "tags": [
+        "Data Leakage Prevention",
+        "DLP",
+        "Sensitive Information"
+      ]
+    }
+  },
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "8.16",
+    "raw_text": "Networks, systems and applications should be monitored for anomalous behaviour and appropriate actions taken to evaluate potential information security incidents.",
+    "explicit_info": {
+      "theme": "Clause 8: Technological Controls",
+      "tags": [
+        "Monitoring Activities",
+        "Anomalous Behaviour",
+        "Incident Detection"
+      ]
+    }
+  },
+  {
+    "source": "ISO/IEC 27002:2022",
+    "reference": "8.23",
+    "raw_text": "Access to external websites should be managed to reduce exposure to malicious content.",
+    "explicit_info": {
+      "theme": "Clause 8: Technological Controls",
+      "tags": [
+        "Web Filtering",
+        "Malicious Content",
+        "Web Access"
+      ]
+    }
+  },
+  {
+    "source": "Microsoft Windows Security Baseline",
+    "reference": "Password Policy",
+    "raw_text": "Enforce password history: 24 passwords remembered.",
+    "explicit_info": {
+      "category": "Account Policies",
+      "target": "Domain Controller / Windows Server",
+      "tags": [
+        "Password History",
+        "Configuration Setting"
+      ]
+    }
+  },
+  {
+    "source": "Microsoft Windows Security Baseline",
+    "reference": "Account Lockout Policy",
+    "raw_text": "Account lockout threshold: 10 invalid logon attempts.",
+    "explicit_info": {
+      "category": "Account Policies",
+      "target": "Domain Controller / Windows Server",
+      "tags": [
+        "Account Lockout",
+        "Brute Force Protection"
+      ]
+    }
+  },
+  {
+    "source": "Microsoft Windows Security Baseline",
+    "reference": "Security Options",
+    "raw_text": "Network security: Restrict NTLM: Outgoing NTLM traffic to remote servers: Deny all.",
+    "explicit_info": {
+      "category": "Local Policies / Security Options",
+      "target": "Domain Controller / Windows Server",
+      "tags": [
+        "NTLM Restriction",
+        "Network Security"
+      ]
+    }
+  },
+  {
+    "source": "Microsoft Security Best Practices",
+    "reference": "LAPS Deployment",
+    "raw_text": "Deploy Windows Local Administrator Password Solution (LAPS) to automatically manage and randomize local administrator passwords on domain-joined endpoints.",
+    "explicit_info": {
+      "category": "Identity and Access Management",
+      "target": "Active Directory / Endpoints",
+      "tags": [
+        "LAPS",
+        "Local Admin",
+        "Password Management"
+      ]
+    }
+  },
+  {
+    "source": "Microsoft Security Best Practices",
+    "reference": "Tiered Administration",
+    "raw_text": "Implement the Enterprise Access Model (Tiered Administration Model) to separate high-privilege identities (Tier 0) from standard endpoints (Tier 2).",
+    "explicit_info": {
+      "category": "Architecture and Design",
+      "target": "Active Directory",
+      "tags": [
+        "Tiered Administration",
+        "Tier 0",
+        "Privileged Access"
+      ]
+    }
+  },
+  {
+    "source": "MITRE ATT&CK v14",
+    "reference": "TA0001 / T1566",
+    "raw_text": "Tactic: Initial Access (TA0001) | Technique: Phishing (T1566) | Description: Adversaries may send phishing messages to gain access to victim systems. All forms of phishing are electronically delivered social engineering.",
+    "explicit_info": {
+      "tactic": "Initial Access",
+      "technique": "Phishing",
+      "tags": [
+        "Threat",
+        "Social Engineering",
+        "Phishing"
+      ]
+    }
+  },
+  {
+    "source": "MITRE ATT&CK v14",
+    "reference": "M1017",
+    "raw_text": "Mitigation: User Training (M1017) | Users can be trained to identify social engineering techniques and spearphishing emails.",
+    "explicit_info": {
+      "mitigates_technique": "T1566 (Phishing)",
+      "tags": [
+        "Mitigation",
+        "Security Awareness",
+        "User Training"
+      ]
+    }
+  },
+  {
+    "source": "MITRE ATT&CK v14",
+    "reference": "TA0006 / T1003",
+    "raw_text": "Tactic: Credential Access (TA0006) | Technique: OS Credential Dumping (T1003) | Description: Adversaries may attempt to dump credentials to obtain account login and credential material, normally in the form of a hash or a clear text password, from the operating system and software.",
+    "explicit_info": {
+      "tactic": "Credential Access",
+      "technique": "OS Credential Dumping",
+      "tags": [
+        "Threat",
+        "Credential Dumping",
+        "LSASS"
+      ]
+    }
+  },
+  {
+    "source": "MITRE ATT&CK v14",
+    "reference": "M1027",
+    "raw_text": "Mitigation: Password Policies (M1027) | Ensure password policies are set to enforce complexity and expiration. Use multi-factor authentication where possible.",
+    "explicit_info": {
+      "mitigates_technique": "T1003 (OS Credential Dumping)",
+      "tags": [
+        "Mitigation",
+        "Password Policy",
+        "MFA"
+      ]
+    }
+  },
+  {
+    "source": "MITRE ATT&CK v14",
+    "reference": "TA0004 / T1068",
+    "raw_text": "Tactic: Privilege Escalation (TA0004) | Technique: Exploitation for Privilege Escalation (T1068) | Description: Adversaries may exploit software vulnerabilities in an attempt to elevate privileges.",
+    "explicit_info": {
+      "tactic": "Privilege Escalation",
+      "technique": "Exploitation",
+      "tags": [
+        "Threat",
+        "Vulnerability Exploitation",
+        "Privilege Escalation"
+      ]
+    }
+  },
+  {
+    "source": "MITRE ATT&CK v14",
+    "reference": "M1051",
+    "raw_text": "Mitigation: Update Software (M1051) | Update software and firmware to the latest available versions to mitigate vulnerabilities.",
+    "explicit_info": {
+      "mitigates_technique": "T1068 (Exploitation for Privilege Escalation)",
+      "tags": [
+        "Mitigation",
+        "Patch Management",
+        "Software Updates"
+      ]
+    }
+  },
+  {
+    "source": "MITRE ATT&CK v14",
+    "reference": "TA0008 / T1021",
+    "raw_text": "Tactic: Lateral Movement (TA0008) | Technique: Remote Services (T1021) | Description: Adversaries may use valid accounts to log into a service specifically designed to accept remote connections, such as telnet, SSH, and RDP.",
+    "explicit_info": {
+      "tactic": "Lateral Movement",
+      "technique": "Remote Services",
+      "tags": [
+        "Threat",
+        "Lateral Movement",
+        "RDP",
+        "SSH"
+      ]
+    }
+  },
+  {
+    "source": "MITRE ATT&CK v14",
+    "reference": "M1030",
+    "raw_text": "Mitigation: Network Segmentation (M1030) | Architect sections of the network to isolate critical systems, functions, or resources. Use firewalls to restrict access to these segments.",
+    "explicit_info": {
+      "mitigates_technique": "T1021 (Remote Services)",
+      "tags": [
+        "Mitigation",
+        "Network Segmentation",
+        "Firewalls"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "1-1-1",
+    "raw_text": "Developing, approving and implementing a cybersecurity strategy for the organization.",
+    "explicit_info": {
+      "domain": "1. Cybersecurity Governance",
+      "subdomain": "1.1 Cybersecurity Strategy",
+      "tags": [
+        "Cybersecurity Strategy",
+        "Governance"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "1-2-1",
+    "raw_text": "Appointing a head of the cybersecurity function (e.g., CISO) with sufficient qualifications, independence and authority.",
+    "explicit_info": {
+      "domain": "1. Cybersecurity Governance",
+      "subdomain": "1.2 Cybersecurity Management",
+      "tags": [
+        "CISO",
+        "Independence",
+        "Authority"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "1-3-1",
+    "raw_text": "Developing, approving, and publishing comprehensive cybersecurity policies and procedures.",
+    "explicit_info": {
+      "domain": "1. Cybersecurity Governance",
+      "subdomain": "1.3 Cybersecurity Policies and Procedures",
+      "tags": [
+        "Policies",
+        "Procedures",
+        "Publishing"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "1-3-2",
+    "raw_text": "Reviewing and updating cybersecurity policies and procedures periodically (at least annually) or upon significant changes.",
+    "explicit_info": {
+      "domain": "1. Cybersecurity Governance",
+      "subdomain": "1.3 Cybersecurity Policies and Procedures",
+      "tags": [
+        "Policy Review",
+        "Annual Update"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "1-5-1",
+    "raw_text": "Establishing a comprehensive methodology for cybersecurity risk management in alignment with the organization's enterprise risk management.",
+    "explicit_info": {
+      "domain": "1. Cybersecurity Governance",
+      "subdomain": "1.5 Cybersecurity Risk Management",
+      "tags": [
+        "Risk Management Methodology",
+        "Enterprise Alignment"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-1-1",
+    "raw_text": "Developing and maintaining an accurate and up-to-date inventory of all information assets, including hardware, software, and data.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.1 Asset Management",
+      "tags": [
+        "Asset Inventory",
+        "Hardware",
+        "Software",
+        "Data"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-1-2",
+    "raw_text": "Classifying information assets based on their criticality and sensitivity according to an approved classification policy.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.1 Asset Management",
+      "tags": [
+        "Data Classification",
+        "Criticality",
+        "Sensitivity"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-2-1",
+    "raw_text": "Enforcing the principle of least privilege and need-to-know for granting logical access to information assets.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.2 Identity and Access Management",
+      "tags": [
+        "Least Privilege",
+        "Need-to-Know",
+        "Logical Access"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-2-2",
+    "raw_text": "Reviewing access rights and privileges periodically (at least every six months) for all accounts.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.2 Identity and Access Management",
+      "tags": [
+        "Access Review",
+        "Periodic Review",
+        "Six Months"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-2-3",
+    "raw_text": "Implementing Multi-Factor Authentication (MFA) for remote access and for all privileged accounts.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.2 Identity and Access Management",
+      "tags": [
+        "MFA",
+        "Remote Access",
+        "Privileged Accounts"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-3-1",
+    "raw_text": "Implementing technical protection mechanisms (e.g., Endpoint Detection and Response - EDR, Antivirus) on all endpoints and servers.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.3 Information System Protection",
+      "tags": [
+        "EDR",
+        "Antivirus",
+        "Endpoint Protection"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-5-1",
+    "raw_text": "Segmenting the network based on the classification of systems and data, isolating critical systems from public or non-critical networks.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.5 Network Security Management",
+      "tags": [
+        "Network Segmentation",
+        "Isolation",
+        "Critical Systems"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-8-1",
+    "raw_text": "Performing periodic vulnerability assessments (at least quarterly) and addressing identified vulnerabilities according to their severity.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.8 Vulnerability Management",
+      "tags": [
+        "Vulnerability Assessment",
+        "Quarterly Scans",
+        "Severity"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-9-1",
+    "raw_text": "Conducting penetration testing periodically (at least annually) or upon major changes to critical systems.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.9 Penetration Testing",
+      "tags": [
+        "Penetration Testing",
+        "Annual Test",
+        "Major Changes"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "3-2-1",
+    "raw_text": "Developing, approving, and testing a comprehensive cybersecurity incident response plan.",
+    "explicit_info": {
+      "domain": "3. Cybersecurity Resilience",
+      "subdomain": "3.2 Incident Management",
+      "tags": [
+        "Incident Response Plan",
+        "Testing"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "3-3-1",
+    "raw_text": "Implementing a secure backup solution with periodic testing of data restoration capabilities.",
+    "explicit_info": {
+      "domain": "3. Cybersecurity Resilience",
+      "subdomain": "3.3 Backup and Recovery",
+      "tags": [
+        "Backup Solution",
+        "Restoration Testing"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "4-1-1",
+    "raw_text": "Establishing a process to identify, assess, and manage cybersecurity risks associated with third parties prior to engagement.",
+    "explicit_info": {
+      "domain": "4. Third-party and Cloud Computing Cybersecurity",
+      "subdomain": "4.1 Third-party Cybersecurity",
+      "tags": [
+        "Third-party Risk",
+        "Risk Assessment",
+        "Vendor Management"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "4-1-2",
+    "raw_text": "Ensuring that cybersecurity requirements are explicitly included in contracts and agreements with third parties.",
+    "explicit_info": {
+      "domain": "4. Third-party and Cloud Computing Cybersecurity",
+      "subdomain": "4.1 Third-party Cybersecurity",
+      "tags": [
+        "Contracts",
+        "Agreements",
+        "Cybersecurity Requirements"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "4-1-3",
+    "raw_text": "Conducting periodic cybersecurity audits and assessments on third parties to ensure compliance with agreed-upon requirements.",
+    "explicit_info": {
+      "domain": "4. Third-party and Cloud Computing Cybersecurity",
+      "subdomain": "4.1 Third-party Cybersecurity",
+      "tags": [
+        "Third-party Audit",
+        "Compliance Assessment"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "4-2-1",
+    "raw_text": "Evaluating and selecting cloud service providers based on their ability to meet the organization's cybersecurity requirements and applicable national regulations.",
+    "explicit_info": {
+      "domain": "4. Third-party and Cloud Computing Cybersecurity",
+      "subdomain": "4.2 Cloud Computing Cybersecurity",
+      "tags": [
+        "Cloud Providers",
+        "Selection Criteria",
+        "National Regulations"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "4-2-2",
+    "raw_text": "Ensuring data sovereignty requirements are met when hosting data in cloud environments.",
+    "explicit_info": {
+      "domain": "4. Third-party and Cloud Computing Cybersecurity",
+      "subdomain": "4.2 Cloud Computing Cybersecurity",
+      "tags": [
+        "Data Sovereignty",
+        "Cloud Hosting"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "3-1-1",
+    "raw_text": "Developing, approving, and implementing a cybersecurity resilience strategy that aligns with the organization's Business Continuity Management (BCM).",
+    "explicit_info": {
+      "domain": "3. Cybersecurity Resilience",
+      "subdomain": "3.1 Business Continuity Management",
+      "tags": [
+        "Resilience Strategy",
+        "Business Continuity",
+        "BCM"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "3-1-2",
+    "raw_text": "Identifying critical business functions and determining the Maximum Tolerable Downtime (MTD) and Recovery Time Objective (RTO) for associated information systems.",
+    "explicit_info": {
+      "domain": "3. Cybersecurity Resilience",
+      "subdomain": "3.1 Business Continuity Management",
+      "tags": [
+        "Critical Business Functions",
+        "MTD",
+        "RTO"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "3-1-3",
+    "raw_text": "Testing the disaster recovery plan periodically (at least annually) to ensure critical systems and business operations can be recovered within the agreed RTO.",
+    "explicit_info": {
+      "domain": "3. Cybersecurity Resilience",
+      "subdomain": "3.1 Business Continuity Management",
+      "tags": [
+        "Disaster Recovery Test",
+        "Annual Test",
+        "RTO Validation"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-7-1",
+    "raw_text": "Implementing secure software development life cycle (SSDLC) practices for all business and web applications developed internally or externally.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.7 Web and Application Security",
+      "tags": [
+        "SSDLC",
+        "Application Security",
+        "Business Applications"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-7-2",
+    "raw_text": "Deploying Web Application Firewalls (WAF) to protect critical web and business applications from common web-based attacks.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.7 Web and Application Security",
+      "tags": [
+        "WAF",
+        "Web Application Firewall",
+        "Business Applications"
+      ]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-7-3",
+    "raw_text": "Ensuring sensitive data processed by business applications (e.g., financial data, PII) is encrypted in transit and at rest.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.7 Web and Application Security",
+      "tags": [
+        "Encryption",
+        "Financial Data",
+        "PII",
+        "Data in Transit",
+        "Data at Rest"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "GV.OC-01",
+    "raw_text": "The organizational mission is understood and informs cybersecurity risk management.",
+    "explicit_info": {
+      "function": "GOVERN (GV)",
+      "category": "Organizational Context (GV.OC)",
+      "tags": [
+        "Mission",
+        "Risk Management Alignment"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "GV.OC-02",
+    "raw_text": "Internal and external stakeholders are understood, and their needs and expectations regarding cybersecurity risk management are considered.",
+    "explicit_info": {
+      "function": "GOVERN (GV)",
+      "category": "Organizational Context (GV.OC)",
+      "tags": [
+        "Stakeholders",
+        "Expectations"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "GV.OC-03",
+    "raw_text": "Legal, regulatory, and contractual requirements regarding cybersecurity—including privacy and civil liberties obligations—are understood and managed.",
+    "explicit_info": {
+      "function": "GOVERN (GV)",
+      "category": "Organizational Context (GV.OC)",
+      "tags": [
+        "Legal",
+        "Regulatory",
+        "Compliance",
+        "Privacy"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "GV.OC-04",
+    "raw_text": "Cybersecurity objectives are established and communicated.",
+    "explicit_info": {
+      "function": "GOVERN (GV)",
+      "category": "Organizational Context (GV.OC)",
+      "tags": [
+        "Objectives",
+        "Communication"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "GV.OC-05",
+    "raw_text": "Outcomes, capabilities, and services that the organization depends on are understood and communicated.",
+    "explicit_info": {
+      "function": "GOVERN (GV)",
+      "category": "Organizational Context (GV.OC)",
+      "tags": [
+        "Dependencies",
+        "Capabilities",
+        "Services"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "GV.RM-01",
+    "raw_text": "Risk management objectives are established and agreed to by organizational stakeholders.",
+    "explicit_info": {
+      "function": "GOVERN (GV)",
+      "category": "Risk Management Strategy (GV.RM)",
+      "tags": [
+        "Risk Objectives",
+        "Stakeholder Agreement"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "GV.RM-02",
+    "raw_text": "Risk appetite and risk tolerance statements are established, communicated, and maintained.",
+    "explicit_info": {
+      "function": "GOVERN (GV)",
+      "category": "Risk Management Strategy (GV.RM)",
+      "tags": [
+        "Risk Appetite",
+        "Risk Tolerance"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "GV.RM-03",
+    "raw_text": "Cybersecurity risk management activities and outcomes are included in enterprise risk management processes.",
+    "explicit_info": {
+      "function": "GOVERN (GV)",
+      "category": "Risk Management Strategy (GV.RM)",
+      "tags": [
+        "ERM Integration",
+        "Risk Activities"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "GV.RM-04",
+    "raw_text": "Strategic direction that describes appropriate risk response options is established and communicated.",
+    "explicit_info": {
+      "function": "GOVERN (GV)",
+      "category": "Risk Management Strategy (GV.RM)",
+      "tags": [
+        "Strategic Direction",
+        "Risk Response"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "GV.RM-05",
+    "raw_text": "Lines of communication across the organization are established for cybersecurity risks, including risks from suppliers and other third parties.",
+    "explicit_info": {
+      "function": "GOVERN (GV)",
+      "category": "Risk Management Strategy (GV.RM)",
+      "tags": [
+        "Communication Lines",
+        "Third-party Risk"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "ID.AM-01",
+    "raw_text": "Inventories of hardware, software, services, and systems are maintained.",
+    "explicit_info": {
+      "function": "IDENTIFY (ID)",
+      "category": "Asset Management (ID.AM)",
+      "tags": [
+        "Asset Inventory",
+        "Hardware",
+        "Software"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "ID.AM-02",
+    "raw_text": "Inventories of data and corresponding metadata are maintained.",
+    "explicit_info": {
+      "function": "IDENTIFY (ID)",
+      "category": "Asset Management (ID.AM)",
+      "tags": [
+        "Data Inventory",
+        "Metadata"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "ID.RA-01",
+    "raw_text": "Vulnerabilities in assets are identified, validated, and recorded.",
+    "explicit_info": {
+      "function": "IDENTIFY (ID)",
+      "category": "Risk Assessment (ID.RA)",
+      "tags": [
+        "Vulnerability Management",
+        "Risk Assessment"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "ID.RA-02",
+    "raw_text": "Cyber threat intelligence is received from information sharing forums and sources.",
+    "explicit_info": {
+      "function": "IDENTIFY (ID)",
+      "category": "Risk Assessment (ID.RA)",
+      "tags": [
+        "Threat Intelligence",
+        "Information Sharing"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "PR.AA-01",
+    "raw_text": "Identities and credentials for authorized users, services, and hardware are managed by the organization.",
+    "explicit_info": {
+      "function": "PROTECT (PR)",
+      "category": "Identity Management, Authentication, and Access Control (PR.AA)",
+      "tags": [
+        "Identity Management",
+        "Credentials"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "PR.AA-02",
+    "raw_text": "Identities are proofed and bound to credentials based on the context of interactions.",
+    "explicit_info": {
+      "function": "PROTECT (PR)",
+      "category": "Identity Management, Authentication, and Access Control (PR.AA)",
+      "tags": [
+        "Identity Proofing",
+        "Authentication Context"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "PR.AA-03",
+    "raw_text": "Users, services, and hardware are authenticated.",
+    "explicit_info": {
+      "function": "PROTECT (PR)",
+      "category": "Identity Management, Authentication, and Access Control (PR.AA)",
+      "tags": [
+        "Authentication",
+        "Access Control"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "PR.DS-01",
+    "raw_text": "The confidentiality, integrity, and availability of data-at-rest are protected.",
+    "explicit_info": {
+      "function": "PROTECT (PR)",
+      "category": "Data Security (PR.DS)",
+      "tags": [
+        "Data at Rest",
+        "Encryption",
+        "CIA Triad"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "PR.DS-02",
+    "raw_text": "The confidentiality, integrity, and availability of data-in-transit are protected.",
+    "explicit_info": {
+      "function": "PROTECT (PR)",
+      "category": "Data Security (PR.DS)",
+      "tags": [
+        "Data in Transit",
+        "Network Security"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "DE.CM-01",
+    "raw_text": "Networks, systems, and services are monitored to find potentially adverse events.",
+    "explicit_info": {
+      "function": "DETECT (DE)",
+      "category": "Continuous Monitoring (DE.CM)",
+      "tags": [
+        "Network Monitoring",
+        "Adverse Events"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "DE.CM-02",
+    "raw_text": "The physical environment is monitored to find potentially adverse events.",
+    "explicit_info": {
+      "function": "DETECT (DE)",
+      "category": "Continuous Monitoring (DE.CM)",
+      "tags": [
+        "Physical Security",
+        "Monitoring"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "DE.AE-01",
+    "raw_text": "Events are analyzed to identify potential cybersecurity incidents.",
+    "explicit_info": {
+      "function": "DETECT (DE)",
+      "category": "Adverse Event Analysis (DE.AE)",
+      "tags": [
+        "Event Analysis",
+        "Incident Identification"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "RS.MA-01",
+    "raw_text": "The cybersecurity incident response plan is executed once an incident is declared.",
+    "explicit_info": {
+      "function": "RESPOND (RS)",
+      "category": "Incident Management (RS.MA)",
+      "tags": [
+        "Incident Response Plan",
+        "Execution"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "RS.AN-01",
+    "raw_text": "The impact and magnitude of the incident are determined.",
+    "explicit_info": {
+      "function": "RESPOND (RS)",
+      "category": "Incident Analysis (RS.AN)",
+      "tags": [
+        "Impact Assessment",
+        "Incident Analysis"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "RS.MI-01",
+    "raw_text": "Incidents are contained.",
+    "explicit_info": {
+      "function": "RESPOND (RS)",
+      "category": "Incident Mitigation (RS.MI)",
+      "tags": [
+        "Containment",
+        "Mitigation"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "RS.MI-02",
+    "raw_text": "Incidents are eradicated.",
+    "explicit_info": {
+      "function": "RESPOND (RS)",
+      "category": "Incident Mitigation (RS.MI)",
+      "tags": [
+        "Eradication",
+        "Mitigation"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "RC.RP-01",
+    "raw_text": "The recovery plan is executed once a cybersecurity incident is contained and eradicated.",
+    "explicit_info": {
+      "function": "RECOVER (RC)",
+      "category": "Incident Recovery Plan Execution (RC.RP)",
+      "tags": [
+        "Recovery Plan",
+        "Execution"
+      ]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "RC.RP-02",
+    "raw_text": "Recovery activities are coordinated with internal and external stakeholders.",
+    "explicit_info": {
+      "function": "RECOVER (RC)",
+      "category": "Incident Recovery Plan Execution (RC.RP)",
+      "tags": [
+        "Recovery Coordination",
+        "Stakeholders"
+      ]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "1.2.1",
+    "raw_text": "Configuration standards for network security controls are defined and implemented.",
+    "explicit_info": {
+      "requirement": "Requirement 1: Install and Maintain Network Security Controls",
+      "tags": [
+        "Network Security",
+        "Configuration Standards",
+        "Firewalls"
+      ]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "1.2.2",
+    "raw_text": "All changes to network connections and to configurations of network security controls are approved and managed.",
+    "explicit_info": {
+      "requirement": "Requirement 1: Install and Maintain Network Security Controls",
+      "tags": [
+        "Change Management",
+        "Network Connections",
+        "Approval"
+      ]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "1.3.1",
+    "raw_text": "Inbound traffic to the CDE is restricted to only traffic that is necessary for the CDE.",
+    "explicit_info": {
+      "requirement": "Requirement 1: Install and Maintain Network Security Controls",
+      "tags": [
+        "CDE",
+        "Inbound Traffic",
+        "Access Restriction"
+      ]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "2.2.1",
+    "raw_text": "System components are configured and managed securely, consistent with industry-accepted system hardening standards.",
+    "explicit_info": {
+      "requirement": "Requirement 2: Apply Secure Configurations to All System Components",
+      "tags": [
+        "System Hardening",
+        "Secure Configuration"
+      ]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "2.2.2",
+    "raw_text": "Vendor default accounts, passwords, and SNMP community strings are changed before installing a system on the network.",
+    "explicit_info": {
+      "requirement": "Requirement 2: Apply Secure Configurations to All System Components",
+      "tags": [
+        "Vendor Defaults",
+        "Default Passwords"
+      ]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "2.2.4",
+    "raw_text": "Only necessary services, protocols, daemons, and functions are enabled and all unnecessary functionality is removed or disabled.",
+    "explicit_info": {
+      "requirement": "Requirement 2: Apply Secure Configurations to All System Components",
+      "tags": [
+        "Unnecessary Services",
+        "Least Functionality"
+      ]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "3.2.1",
+    "raw_text": "Account data storage is kept to a minimum through retention and disposal policies, procedures, and processes.",
+    "explicit_info": {
+      "requirement": "Requirement 3: Protect Stored Account Data",
+      "tags": [
+        "Data Retention",
+        "Data Disposal",
+        "Account Data"
+      ]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "3.3.1",
+    "raw_text": "SAD (Sensitive Authentication Data) is not retained after authorization, even if encrypted.",
+    "explicit_info": {
+      "requirement": "Requirement 3: Protect Stored Account Data",
+      "tags": [
+        "SAD",
+        "Sensitive Authentication Data",
+        "No Retention"
+      ]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "3.4.1",
+    "raw_text": "The PAN (Primary Account Number) is masked when displayed (the maximum number of digits to be displayed are the first six and last four).",
+    "explicit_info": {
+      "requirement": "Requirement 3: Protect Stored Account Data",
+      "tags": [
+        "PAN Masking",
+        "Display Restriction"
+      ]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "3.5.1",
+    "raw_text": "PAN is rendered unreadable anywhere it is stored using strong cryptography with associated key-management processes.",
+    "explicit_info": {
+      "requirement": "Requirement 3: Protect Stored Account Data",
+      "tags": [
+        "PAN Storage",
+        "Strong Cryptography",
+        "Encryption"
+      ]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "4.2.1",
+    "raw_text": "Strong cryptography and security protocols are implemented to safeguard PAN during transmission over open, public networks.",
+    "explicit_info": {
+      "requirement": "Requirement 4: Protect Cryptography of Account Data in Transit",
+      "tags": [
+        "Data in Transit",
+        "Strong Cryptography",
+        "Public Networks"
+      ]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "4.2.2",
+    "raw_text": "PAN is secured with strong cryptography whenever it is sent via end-user messaging technologies (for example, email, instant messaging, SMS, chat).",
+    "explicit_info": {
+      "requirement": "Requirement 4: Protect Cryptography of Account Data in Transit",
+      "tags": [
+        "End-user Messaging",
+        "Email Security",
+        "PAN Protection"
+      ]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "5.2.1",
+    "raw_text": "Anti-malware software is deployed on all system components (except for those system components identified in periodic evaluations that are not at risk for malware).",
+    "explicit_info": {
+      "requirement": "Requirement 5: Protect All Systems and Networks from Malicious Software",
+      "tags": [
+        "Anti-malware",
+        "Malware Defense"
+      ]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "6.2.2",
+    "raw_text": "Software-development personnel are trained in software security, including secure coding techniques, in accordance with industry best practices and organizational requirements.",
+    "explicit_info": {
+      "requirement": "Requirement 6: Develop and Maintain Secure Systems and Software",
+      "tags": [
+        "Secure Coding",
+        "Developer Training",
+        "Software Security"
+      ]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "6.3.1",
+    "raw_text": "Security vulnerabilities are identified and managed to reduce the risk of exploitation.",
+    "explicit_info": {
+      "requirement": "Requirement 6: Develop and Maintain Secure Systems and Software",
+      "tags": [
+        "Vulnerability Management"
+      ]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "7.2.1",
+    "raw_text": "An access control system(s) is in place that restricts access to system components and CDE based on a user's need to know, and is set to 'deny all' by default.",
+    "explicit_info": {
+      "requirement": "Requirement 7: Restrict Access to System Components and Cardholder Data",
+      "tags": [
+        "Access Control",
+        "Deny All",
+        "Need to Know"
+      ]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "8.3.1",
+    "raw_text": "All user access to system components is authenticated via at least one of the following: password/passphrase, token, smart card, biometrics.",
+    "explicit_info": {
+      "requirement": "Requirement 8: Identify Users and Authenticate Access",
+      "tags": [
+        "Authentication",
+        "User Access"
+      ]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "8.4.2",
+    "raw_text": "MFA is implemented for all access into the CDE.",
+    "explicit_info": {
+      "requirement": "Requirement 8: Identify Users and Authenticate Access",
+      "tags": [
+        "MFA",
+        "CDE Access"
+      ]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "9.3.1",
+    "raw_text": "Physical access to sensitive areas is restricted to authorized personnel.",
+    "explicit_info": {
+      "requirement": "Requirement 9: Restrict Physical Access to Cardholder Data",
+      "tags": [
+        "Physical Security",
+        "Physical Access"
+      ]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "10.2.1",
+    "raw_text": "Audit logs are enabled and active for all system components and cardholder data access.",
+    "explicit_info": {
+      "requirement": "Requirement 10: Log and Monitor All Access",
+      "tags": [
+        "Audit Logs",
+        "Logging"
+      ]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "10.4.1",
+    "raw_text": "Audit logs are reviewed for anomalies or suspicious activity using automated mechanisms.",
+    "explicit_info": {
+      "requirement": "Requirement 10: Log and Monitor All Access",
+      "tags": [
+        "Log Review",
+        "Automated Mechanisms",
+        "Suspicious Activity"
+      ]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "11.3.1",
+    "raw_text": "Internal vulnerability scans are performed at least once every three months.",
+    "explicit_info": {
+      "requirement": "Requirement 11: Test Security of Systems and Networks Regularly",
+      "tags": [
+        "Vulnerability Scans",
+        "Internal Scans"
+      ]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "12.1.1",
+    "raw_text": "An overall information security policy is established, published, maintained, and disseminated to all relevant personnel.",
+    "explicit_info": {
+      "requirement": "Requirement 12: Support Information Security with Organizational Policies",
+      "tags": [
+        "Security Policy",
+        "Governance"
+      ]
+    }
+  }
+]

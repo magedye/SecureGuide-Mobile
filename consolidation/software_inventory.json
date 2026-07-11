@@ -1,0 +1,144 @@
+{
+  "group_id": "GRP-software_inventory",
+  "concept": "Software & License Inventory",
+  "expected_sub_domain": "SD-02.02",
+  "member_count": 7,
+  "source_coverage": [
+    "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+    "The NIST Cybersecurity Framework (CSF) 2.0"
+  ],
+  "instructions": "Decide per CONSOLIDATION_POLICY.md: one of CANONICALIZE | EQUIVALENCE_GROUP | CROSSWALK_ONLY | RELATE_ONLY | KEEP_SEPARATE | DEPRECATE_DERIVED. If merging, author an English canonical per AUTHORING_POLICY.md and set mapping_strength per source. Do NOT invent USACM/SDT values. Do NOT delete raw records.",
+  "members": [
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0270",
+      "external_raw_id": "RAW-000377",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CM-2(4) (Configuration Management)",
+      "title_draft": "CM-2(4): Unauthorized Software",
+      "description": "CM-2(4): Unauthorized Software",
+      "keywords": [
+        "cm-2",
+        "unauthorized",
+        "software",
+        "family",
+        "configuration",
+        "management"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0271",
+      "external_raw_id": "RAW-000378",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CM-2(5) (Configuration Management)",
+      "title_draft": "CM-2(5): Authorized Software",
+      "description": "CM-2(5): Authorized Software",
+      "keywords": [
+        "cm-2",
+        "authorized",
+        "software",
+        "family",
+        "configuration",
+        "management"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0303",
+      "external_raw_id": "RAW-000410",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CM-7(4) (Configuration Management)",
+      "title_draft": "CM-7(4): Unauthorized Software — Deny-by-exception",
+      "description": "(a) Identify {{ insert: param, cm-07.04_odp.01 }}; (b) Employ an allow-all, deny-by-exception policy to prohibit the execution of unauthorized software programs on the system; and (c) Review and update the list of unauthorized software programs {{ insert: param, cm-07.04_odp.02 }}.",
+      "keywords": [
+        "unauthorized",
+        "software",
+        "programs",
+        "deny-by-exception",
+        "insert",
+        "param",
+        "cm-07",
+        "odp"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0304",
+      "external_raw_id": "RAW-000411",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CM-7(5) (Configuration Management)",
+      "title_draft": "CM-7(5): Authorized Software — Allow-by-exception",
+      "description": "(a) Identify {{ insert: param, cm-07.05_odp.01 }}; (b) Employ a deny-all, permit-by-exception policy to allow the execution of authorized software programs on the system; and (c) Review and update the list of authorized software programs {{ insert: param, cm-07.05_odp.02 }}.",
+      "keywords": [
+        "authorized",
+        "software",
+        "programs",
+        "execution",
+        "insert",
+        "param",
+        "cm-07",
+        "odp"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0308",
+      "external_raw_id": "RAW-000415",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CM-7(9) (Configuration Management)",
+      "title_draft": "CM-7(9): Prohibiting The Use of Unauthorized Hardware",
+      "description": "(a) Identify {{ insert: param, cm-07.09_odp.01 }}; (b) Prohibit the use or connection of unauthorized hardware components; (c) Review and update the list of authorized hardware components {{ insert: param, cm-07.09_odp.02 }}.",
+      "keywords": [
+        "hardware",
+        "components",
+        "unauthorized",
+        "insert",
+        "param",
+        "cm-07",
+        "odp",
+        "authorized"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0326",
+      "external_raw_id": "RAW-000433",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CM-11(3) (Configuration Management)",
+      "title_draft": "CM-11(3): Automated Enforcement and Monitoring",
+      "description": "Enforce and monitor compliance with software installation policies using {{ insert: param, cm-11.3_prm_1 }}.",
+      "keywords": [
+        "software",
+        "installation",
+        "cm-11",
+        "automated",
+        "enforce",
+        "monitor",
+        "compliance",
+        "policies"
+      ]
+    },
+    {
+      "raw_id": "the_nist_cybersecurity_framework_csf_2_0::0068",
+      "external_raw_id": "RAW-000069",
+      "source_document": "The NIST Cybersecurity Framework (CSF) 2.0",
+      "source_version": "2.0",
+      "source_section": "Subcategory PR.PS-05",
+      "title_draft": "PR.PS-05 — Installation and execution of unauthorized software are prevented",
+      "description": "Installation and execution of unauthorized software are prevented",
+      "keywords": [
+        "software",
+        "installation",
+        "execution",
+        "unauthorized",
+        "prevented",
+        "protect",
+        "ps-05",
+        "safeguards"
+      ]
+    }
+  ],
+  "decision": null,
+  "canonical": null
+}

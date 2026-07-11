@@ -1,0 +1,78 @@
+{
+  "candidate_group_id": "AI-02",
+  "concept_name": "Maintain Asset Inventory Currency",
+  "expected_sub_domain": "SD-02.01",
+  "member_raw_ids": [
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0310",
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0311"
+  ],
+  "excluded_raw_ids": [
+    "cis_controls_v8::0000"
+  ],
+  "member_reasons": {
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0310": "CM-8(1) — update the inventory as part of component installs, removals, and updates.",
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0311": "CM-8(2) — maintain the currency, completeness, accuracy, and availability of the inventory."
+  },
+  "exclusion_reasons": {
+    "cis_controls_v8::0000": "CIS 1.1 = ESTABLISH the inventory — the base requirement (AI-01), not the currency mechanism."
+  },
+  "differences": "Both CM-8 enhancements address keeping an existing inventory up to date and accurate — a control mechanism distinct from establishing the inventory.",
+  "decision": "CANONICALIZE",
+  "decision_confidence": 0.85,
+  "requires_human_review": 0,
+  "decision_rationale": "CM-8(1) and CM-8(2) are the same atomic idea (keep the inventory current & accurate); merged and related to AI-01 (REL-SPL).",
+  "canonical_artifact": {
+    "title_en": "Asset Inventory Currency Maintenance",
+    "definition_short_en": "This control keeps the asset inventory current and accurate by updating it whenever assets are added, removed, or changed.",
+    "definition_full_en": "This artifact requires that the asset inventory be updated as part of every component installation, removal, and system change, and that its completeness, accuracy, and availability be maintained over time. It applies wherever an asset inventory is kept. The minimum expected outcome is an inventory that reflects the current asset estate with no stale or missing entries. Verification is by sampling recent asset changes and confirming corresponding inventory updates.",
+    "objective_en": "Keep the asset inventory an accurate, current reflection of the real environment.",
+    "type": "ART-CTR",
+    "abstraction_level": "ABS-CTR",
+    "primary_domain": "SD-02",
+    "sub_domain": "SD-02.01",
+    "obligation_level": "OBL-MND",
+    "classification_confidence": 0.85,
+    "classification_rationale": "Both sources are NIST CM-8 enhancements about inventory currency/accuracy; one SecureGuide control in SD-02.01, related to AI-01.",
+    "verification_method_note": "Sample recent asset changes; confirm inventory updated.",
+    "missing_fields": [
+      "control_nature",
+      "control_function",
+      "testability"
+    ]
+  },
+  "source_mappings": [
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0310",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CM-8(1) (Configuration Management)",
+      "source_file": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations.json",
+      "mapping_strength": "DIRECT",
+      "rationale": null
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0311",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CM-8(2) (Configuration Management)",
+      "source_file": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations.json",
+      "mapping_strength": "DIRECT",
+      "rationale": null
+    }
+  ],
+  "validation": "OK",
+  "review": {
+    "review_status": "APPROVED",
+    "reviewer_notes": "Atomic \"keep inventory current/accurate\" control from two CM-8 enhancements; clean scope, correctly related to AI-01.",
+    "validation_findings": [
+      "ART-CTR valid",
+      "both sources DIRECT and genuinely about currency",
+      "SD-02.01 correct"
+    ],
+    "required_changes": [
+      "On promotion fill control_nature/function/testability (already in missing_fields)."
+    ],
+    "final_confidence": 0.85,
+    "ready_for_promotion": true
+  }
+}

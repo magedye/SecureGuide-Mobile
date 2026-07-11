@@ -1,0 +1,285 @@
+{
+  "group_id": "GRP-hardening",
+  "concept": "Secure Configuration / Hardening",
+  "expected_sub_domain": "SD-04.03",
+  "member_count": 15,
+  "source_coverage": [
+    "CIS Controls v8",
+    "Essential Cybersecurity Controls (ECC 2-2024)",
+    "ISO 27002:2022",
+    "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+    "PCI DSS v4.0"
+  ],
+  "instructions": "Decide per CONSOLIDATION_POLICY.md: one of CANONICALIZE | EQUIVALENCE_GROUP | CROSSWALK_ONLY | RELATE_ONLY | KEEP_SEPARATE | DEPRECATE_DERIVED. If merging, author an English canonical per AUTHORING_POLICY.md and set mapping_strength per source. Do NOT invent USACM/SDT values. Do NOT delete raw records.",
+  "members": [
+    {
+      "raw_id": "cis_controls_v8::0006",
+      "external_raw_id": "RAW-BATCH-304FFCCD",
+      "source_document": "CIS Controls v8",
+      "source_version": "Unknown",
+      "source_section": "4.1",
+      "title_draft": "4.1",
+      "description": "Establish and maintain a secure configuration process for enterprise assets and software. Review and update documentation annually.",
+      "keywords": [
+        "Secure Configuration",
+        "Hardening"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0017",
+      "external_raw_id": "RAW-001665",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 1-6-2 (Cybersecurity in Information and Technology Project Management)",
+      "title_draft": "1-6-2: Cybersecurity in Information and Technology Project Management",
+      "description": "The cybersecurity requirements for project management and information and technology asset changes within the entity shall include the following as a minimum: 1.6.2.1 Vulnerability assessment and remediation.",
+      "keywords": [
+        "technology",
+        "project",
+        "management",
+        "requirements",
+        "changes",
+        "procedures",
+        "regulatory",
+        "asset"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0018",
+      "external_raw_id": "RAW-001666",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 1-6-3 (Cybersecurity in Information and Technology Project Management)",
+      "title_draft": "1-6-3: Cybersecurity in Information and Technology Project Management",
+      "description": "The cybersecurity requirements for software and application development projects within the entity shall include the following as a minimum: 1.6.3.1 Using the secure coding standards.",
+      "keywords": [
+        "requirements",
+        "software",
+        "secure",
+        "technology",
+        "project",
+        "management",
+        "development",
+        "procedures"
+      ]
+    },
+    {
+      "raw_id": "iso_27002_2022::0006",
+      "external_raw_id": "RAW-BATCH-47354433",
+      "source_document": "ISO 27002:2022",
+      "source_version": "Unknown",
+      "source_section": "8.9",
+      "title_draft": "8.9",
+      "description": "Configurations, including security configurations, of hardware, software, services and networks should be established, documented, implemented, monitored and reviewed.",
+      "keywords": [
+        "Configuration Management",
+        "Secure Configuration"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0263",
+      "external_raw_id": "RAW-000370",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CA-9 (Assessment, Authorization, and Monitoring)",
+      "title_draft": "CA-9: Internal System Connections",
+      "description": "a.",
+      "keywords": [
+        "internal",
+        "connections",
+        "connection",
+        "components",
+        "insert",
+        "param",
+        "ca-09_odp",
+        "each"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0264",
+      "external_raw_id": "RAW-000371",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CA-9(1) (Assessment, Authorization, and Monitoring)",
+      "title_draft": "CA-9(1): Compliance Checks",
+      "description": "Perform security and privacy compliance checks on constituent system components prior to the establishment of the internal connection.",
+      "keywords": [
+        "compliance",
+        "checks",
+        "ca-9",
+        "perform",
+        "privacy",
+        "constituent",
+        "components",
+        "prior"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0266",
+      "external_raw_id": "RAW-000373",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CM-2 (Configuration Management)",
+      "title_draft": "CM-2: Baseline Configuration",
+      "description": "a.",
+      "keywords": [
+        "baseline",
+        "configuration",
+        "configurations",
+        "components",
+        "current",
+        "insert",
+        "param",
+        "cm-02_odp"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0268",
+      "external_raw_id": "RAW-000375",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CM-2(2) (Configuration Management)",
+      "title_draft": "CM-2(2): Automation Support for Accuracy and Currency",
+      "description": "Maintain the currency, completeness, accuracy, and availability of the baseline configuration of the system using {{ insert: param, cm-02.02_odp }}.",
+      "keywords": [
+        "tools",
+        "accuracy",
+        "currency",
+        "baseline",
+        "configuration",
+        "level",
+        "automation",
+        "support"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0272",
+      "external_raw_id": "RAW-000379",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CM-2(6) (Configuration Management)",
+      "title_draft": "CM-2(6): Development and Test Environments",
+      "description": "Maintain a baseline configuration for system development and test environments that is managed separately from the operational baseline configuration.",
+      "keywords": [
+        "configurations",
+        "development",
+        "baseline",
+        "operational",
+        "test",
+        "environments",
+        "configuration",
+        "separate"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0294",
+      "external_raw_id": "RAW-000401",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CM-6 (Configuration Management)",
+      "title_draft": "CM-6: Configuration Settings",
+      "description": "a.",
+      "keywords": [
+        "settings",
+        "configuration",
+        "parameters",
+        "privacy",
+        "secure",
+        "common",
+        "level",
+        "cm-6"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0295",
+      "external_raw_id": "RAW-000402",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CM-6(1) (Configuration Management)",
+      "title_draft": "CM-6(1): Automated Management, Application, and Verification",
+      "description": "Manage, apply, and verify configuration settings for {{ insert: param, cm-06.01_odp.01 }} using {{ insert: param, cm-6.1_prm_2 }}.",
+      "keywords": [
+        "configuration",
+        "tools",
+        "cm-6",
+        "automated",
+        "settings",
+        "insert",
+        "param",
+        "data"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0311",
+      "external_raw_id": "RAW-000418",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CM-8(2) (Configuration Management)",
+      "title_draft": "CM-8(2): Automated Maintenance",
+      "description": "Maintain the currency, completeness, accuracy, and availability of the inventory of system components using {{ insert: param, cm-8.2_prm_1 }}.",
+      "keywords": [
+        "maintain",
+        "inventory",
+        "organizations",
+        "cm-8",
+        "automated",
+        "maintenance",
+        "machines",
+        "cm-2"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0935",
+      "external_raw_id": "RAW-000740",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control PL-8 (Planning)",
+      "title_draft": "PL-8: Security and Privacy Architectures",
+      "description": "a.",
+      "keywords": [
+        "architectures",
+        "privacy",
+        "architecture",
+        "requirements",
+        "pl-8",
+        "enterprise",
+        "external",
+        "describe"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1062",
+      "external_raw_id": "RAW-000867",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SA-5 (System and Services Acquisition)",
+      "title_draft": "SA-5: System Documentation",
+      "description": "a.",
+      "keywords": [
+        "documentation",
+        "component",
+        "service",
+        "operation",
+        "functions",
+        "obtain",
+        "secure",
+        "privacy"
+      ]
+    },
+    {
+      "raw_id": "pci_dss_v4_0::0003",
+      "external_raw_id": "RAW-BATCH-DED5705A",
+      "source_document": "PCI DSS v4.0",
+      "source_version": "Unknown",
+      "source_section": "2.2.1",
+      "title_draft": "2.2.1",
+      "description": "System components are configured and managed securely, consistent with industry-accepted system hardening standards.",
+      "keywords": [
+        "System Hardening",
+        "Secure Configuration"
+      ]
+    }
+  ],
+  "decision": null,
+  "canonical": null
+}

@@ -1,0 +1,119 @@
+{
+  "extraction_metadata": {
+    "source_document": "NIST AI RMF 1.0",
+    "total_artifacts": 5
+  },
+  "artifacts": [
+    {
+      "raw_artifact_id": "RAW-AI-0E2BBB28",
+      "source_metadata": {
+        "source_document": "NIST AI RMF 1.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "1.0",
+        "source_section": "Govern 1.1"
+      },
+      "original_content": {
+        "raw_text_en": "Legal and regulatory requirements involving AI are understood, managed, and documented.",
+        "original_heading": "GOVERN 1.1",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "GOVERN 1.1",
+        "description_draft": "Legal and regulatory requirements involving AI are understood, managed, and documented.",
+        "keywords": [
+          "governance",
+          "compliance",
+          "legal"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-AI-BB89258D",
+      "source_metadata": {
+        "source_document": "NIST AI RMF 1.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "1.0",
+        "source_section": "Govern 1.2"
+      },
+      "original_content": {
+        "raw_text_en": "Characteristics of trustworthy AI are integrated into organizational policies.",
+        "original_heading": "GOVERN 1.2",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "GOVERN 1.2",
+        "description_draft": "Characteristics of trustworthy AI are integrated into organizational policies.",
+        "keywords": [
+          "trustworthy AI",
+          "policies"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-AI-C4348456",
+      "source_metadata": {
+        "source_document": "NIST AI RMF 1.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "1.0",
+        "source_section": "Map 1.1"
+      },
+      "original_content": {
+        "raw_text_en": "Intended purposes, potentially beneficial uses, and context-specific laws are understood.",
+        "original_heading": "MAP 1.1",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "MAP 1.1",
+        "description_draft": "Intended purposes, potentially beneficial uses, and context-specific laws are understood.",
+        "keywords": [
+          "mapping",
+          "purpose"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-AI-F38DA295",
+      "source_metadata": {
+        "source_document": "NIST AI RMF 1.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "1.0",
+        "source_section": "Measure 1.1"
+      },
+      "original_content": {
+        "raw_text_en": "Appropriate methods and metrics are identified and applied to evaluate AI system trustworthiness.",
+        "original_heading": "MEASURE 1.1",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "MEASURE 1.1",
+        "description_draft": "Appropriate methods and metrics are identified and applied to evaluate AI system trustworthiness.",
+        "keywords": [
+          "metrics",
+          "evaluation"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-AI-CB204EF7",
+      "source_metadata": {
+        "source_document": "NIST AI RMF 1.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "1.0",
+        "source_section": "Manage 1.1"
+      },
+      "original_content": {
+        "raw_text_en": "AI risks are prioritized based on assessments from Map and Measure.",
+        "original_heading": "MANAGE 1.1",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "MANAGE 1.1",
+        "description_draft": "AI risks are prioritized based on assessments from Map and Measure.",
+        "keywords": [
+          "risk management",
+          "prioritization"
+        ]
+      }
+    }
+  ]
+}

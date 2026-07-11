@@ -1,0 +1,30 @@
+{
+  "id": "G04",
+  "case_type": "verbal_similarity_reject",
+  "maps_to_group": "AI-01",
+  "description": "Account inventory (CIS 5.1) shares the word \"inventory\" but MUST NOT merge with asset inventory.",
+  "input_raw_ids": [
+    "cis_controls_v8::0000",
+    "cis_controls_v8::0007"
+  ],
+  "expected_decision": "CANONICALIZE",
+  "accepted_members": [
+    "cis_controls_v8::0000"
+  ],
+  "excluded": [
+    "cis_controls_v8::0007"
+  ],
+  "expected_classification": {
+    "type": "ART-REQ",
+    "primary_domain": "SD-02",
+    "sub_domain": "SD-02.01"
+  },
+  "expected_rationale_keywords": [
+    "account"
+  ],
+  "expected_canonical_title": "Enterprise Asset Inventory",
+  "validation_rules": [
+    "cis::0007 must be excluded, not a member",
+    "account inventory belongs to SD-03"
+  ]
+}

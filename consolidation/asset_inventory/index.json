@@ -1,0 +1,102 @@
+[
+  {
+    "id": "AI-01",
+    "concept": "Establish & Maintain Asset Inventory",
+    "sub_domain": "SD-02.01",
+    "members": 3,
+    "excluded": 4,
+    "decision": "CANONICALIZE",
+    "confidence": 0.9,
+    "requires_human_review": 0
+  },
+  {
+    "id": "AI-02",
+    "concept": "Maintain Asset Inventory Currency",
+    "sub_domain": "SD-02.01",
+    "members": 2,
+    "excluded": 1,
+    "decision": "CANONICALIZE",
+    "confidence": 0.85,
+    "requires_human_review": 0
+  },
+  {
+    "id": "AI-03",
+    "concept": "Asset Ownership / Accountability in Inventory",
+    "sub_domain": "SD-02.01",
+    "members": 1,
+    "excluded": 1,
+    "decision": "CANONICALIZE",
+    "confidence": 0.6,
+    "requires_human_review": 1
+  },
+  {
+    "id": "AI-04",
+    "concept": "Asset Inventory Content & Central Repository",
+    "sub_domain": "SD-02.01",
+    "members": 2,
+    "excluded": 0,
+    "decision": "RELATE_ONLY",
+    "confidence": 0.7,
+    "requires_human_review": 1
+  },
+  {
+    "id": "AI-05",
+    "concept": "Detect & Remediate Unauthorized Assets",
+    "sub_domain": "SD-02.01",
+    "members": 1,
+    "excluded": 1,
+    "decision": "CANONICALIZE",
+    "confidence": 0.8,
+    "requires_human_review": 0
+  },
+  {
+    "id": "AI-06",
+    "concept": "Software Inventory",
+    "sub_domain": "SD-02.02",
+    "members": 1,
+    "excluded": 2,
+    "decision": "CANONICALIZE",
+    "confidence": 0.88,
+    "requires_human_review": 0
+  },
+  {
+    "id": "AI-07",
+    "concept": "Asset Classification & Labeling",
+    "sub_domain": "SD-02.03",
+    "members": 2,
+    "excluded": 1,
+    "decision": "CANONICALIZE",
+    "confidence": 0.82,
+    "requires_human_review": 0
+  },
+  {
+    "id": "AI-08",
+    "concept": "Acceptable Use of Assets",
+    "sub_domain": "SD-08.05",
+    "members": 2,
+    "excluded": 1,
+    "decision": "EQUIVALENCE_GROUP",
+    "confidence": 0.8,
+    "requires_human_review": 0
+  },
+  {
+    "id": "AI-09",
+    "concept": "Asset Management Governance Lifecycle",
+    "sub_domain": "SD-02.01",
+    "members": 3,
+    "excluded": 1,
+    "decision": "EQUIVALENCE_GROUP",
+    "confidence": 0.75,
+    "requires_human_review": 1
+  },
+  {
+    "id": "AI-10",
+    "concept": "Secure Disposal / Information Deletion",
+    "sub_domain": "SD-02.05",
+    "members": 1,
+    "excluded": 1,
+    "decision": "CANONICALIZE",
+    "confidence": 0.8,
+    "requires_human_review": 0
+  }
+]

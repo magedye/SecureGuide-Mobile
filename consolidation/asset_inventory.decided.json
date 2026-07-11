@@ -1,0 +1,180 @@
+{
+  "group_id": "GRP-asset_inventory",
+  "concept": "Asset Inventory",
+  "expected_sub_domain": "SD-02.01",
+  "member_count": 8,
+  "source_coverage": [
+    "CIS Controls v8",
+    "Essential Cybersecurity Controls (ECC 2-2024)",
+    "NCA ECC-1:2018"
+  ],
+  "instructions": "Decide per CONSOLIDATION_POLICY.md: one of CANONICALIZE | EQUIVALENCE_GROUP | CROSSWALK_ONLY | RELATE_ONLY | KEEP_SEPARATE | DEPRECATE_DERIVED. If merging, author an English canonical per AUTHORING_POLICY.md and set mapping_strength per source. Do NOT invent USACM/SDT values. Do NOT delete raw records.",
+  "members": [
+    {
+      "raw_id": "cis_controls_v8::0000",
+      "external_raw_id": "RAW-BATCH-95C84370",
+      "source_document": "CIS Controls v8",
+      "source_version": "Unknown",
+      "source_section": "1.1",
+      "title_draft": "1.1",
+      "description": "Establish and maintain an accurate, detailed, and up-to-date inventory of all enterprise assets with the potential to store or process data, to include: end-user devices (including portable and mobile), network devices, non-computing/Internet of Things (IoT) devices, and servers.",
+      "keywords": [
+        "Asset Inventory",
+        "Hardware",
+        "Enterprise Assets"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0035",
+      "external_raw_id": "RAW-001683",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 2-1-1 (Asset Management)",
+      "title_draft": "2-1-1: Asset Management",
+      "description": "Cybersecurity requirements for managing information and technology assets of the entity shall be identified, documented, and approved.",
+      "keywords": [
+        "assets",
+        "technology",
+        "requirements",
+        "asset",
+        "management",
+        "managing",
+        "identified",
+        "documented"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0036",
+      "external_raw_id": "RAW-001684",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 2-1-2 (Asset Management)",
+      "title_draft": "2-1-2: Asset Management",
+      "description": "Cybersecurity requirements for managing information and technology assets of the entity shall be implemented.",
+      "keywords": [
+        "assets",
+        "technology",
+        "requirements",
+        "asset",
+        "management",
+        "managing",
+        "implemented",
+        "ensure"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0037",
+      "external_raw_id": "RAW-001685",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 2-1-3 (Asset Management)",
+      "title_draft": "2-1-3: Asset Management",
+      "description": "The policy of acceptable use of information and technology assets of the entity shall be identified, documented, approved, and communicated.",
+      "keywords": [
+        "assets",
+        "technology",
+        "asset",
+        "management",
+        "policy",
+        "acceptable",
+        "identified",
+        "documented"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0038",
+      "external_raw_id": "RAW-001686",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 2-1-4 (Asset Management)",
+      "title_draft": "2-1-4: Asset Management",
+      "description": "The policy of acceptable use of information and technology assets of the entity shall be implemented.",
+      "keywords": [
+        "assets",
+        "technology",
+        "asset",
+        "management",
+        "policy",
+        "acceptable",
+        "implemented",
+        "ensure"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0039",
+      "external_raw_id": "RAW-001687",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 2-1-5 (Asset Management)",
+      "title_draft": "2-1-5: Asset Management",
+      "description": "Information and technology assets of the entity shall be classified, labeled, and handled as per the relevant legislative and regulatory requirements.",
+      "keywords": [
+        "assets",
+        "technology",
+        "requirements",
+        "asset",
+        "management",
+        "classified",
+        "labeled",
+        "handled"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0040",
+      "external_raw_id": "RAW-001688",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 2-1-6 (Asset Management)",
+      "title_draft": "2-1-6: Asset Management",
+      "description": "Cybersecurity requirements for managing information and technology assets of the entity shall be periodically reviewed.",
+      "keywords": [
+        "assets",
+        "technology",
+        "requirements",
+        "asset",
+        "management",
+        "managing",
+        "periodically",
+        "reviewed"
+      ]
+    },
+    {
+      "raw_id": "nca_ecc_1_2018::0005",
+      "external_raw_id": "RAW-BATCH-D66B234F",
+      "source_document": "NCA ECC-1:2018",
+      "source_version": "Unknown",
+      "source_section": "2-1-1",
+      "title_draft": "2-1-1",
+      "description": "Developing and maintaining an accurate and up-to-date inventory of all information assets, including hardware, software, and data.",
+      "keywords": [
+        "Asset Inventory",
+        "Hardware",
+        "Software",
+        "Data"
+      ]
+    }
+  ],
+  "decision": "CANONICALIZE",
+  "canonical": {
+    "title_en": "Enterprise Asset Inventory",
+    "definition_short_en": "This requirement establishes and maintains an accurate, current inventory of all enterprise information and technology assets that store, process, or transmit organizational data.",
+    "definition_full_en": "This artifact requires the organization to build and continuously maintain a complete inventory of information and technology assets (end-user devices, servers, network devices, and IoT), including ownership and location, so that assets can be secured, monitored, and governed. It applies across all in-scope environments. The minimum expected outcome is a reviewed, up-to-date asset register. Verification is via the register itself and periodic reconciliation.",
+    "objective_en": "Ensure every in-scope asset is known so it can be protected and governed.",
+    "type": "ART-REQ",
+    "primary_domain": "SD-02",
+    "sub_domain": "SD-02.01",
+    "obligation_level": "OBL-MND",
+    "classification_confidence": 0.9,
+    "classification_rationale": "Multiple sources (CIS 1.1, NCA/ECC 2-1-1) express the same asset-inventory requirement; unified as one SecureGuide ART-REQ in SD-02.01 with source mappings.",
+    "sources": [
+      {
+        "raw_id": "cis_controls_v8::0000",
+        "mapping_strength": "DIRECT"
+      },
+      {
+        "raw_id": "nca_ecc_1_2018::0005",
+        "mapping_strength": "DIRECT"
+      }
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+[
+  {"type": "REL-DER", "description": "Derives From — source derives from target"},
+  {"type": "REL-SAT", "description": "Satisfies — source satisfies target"},
+  {"type": "REL-SUP", "description": "Supports — source supports target"},
+  {"type": "REL-SPL", "description": "Specifies — source specifies target"},
+  {"type": "REL-IMP", "description": "Implements — source implements target"},
+  {"type": "REL-VER", "description": "Verifies — source verifies target"},
+  {"type": "REL-MEA", "description": "Measures — source measures target"},
+  {"type": "REL-MIT", "description": "Mitigates — source mitigates target"},
+  {"type": "REL-AFF", "description": "Affects — source affects target"},
+  {"type": "REL-EXC", "description": "Exempts — source exempts target"},
+  {"type": "REL-DEP", "description": "Depends On — source depends on target"},
+  {"type": "REL-CNF", "description": "Conflicts With — source conflicts with target (requires resolution_status and resolution_note)"}
+]

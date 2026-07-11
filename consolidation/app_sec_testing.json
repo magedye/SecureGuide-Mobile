@@ -1,0 +1,182 @@
+{
+  "group_id": "GRP-app_sec_testing",
+  "concept": "Application & API Security Testing",
+  "expected_sub_domain": "SD-05.02",
+  "member_count": 9,
+  "source_coverage": [
+    "MITRE ATT&CK Enterprise",
+    "NIST SP 800-115 Security Testing"
+  ],
+  "instructions": "Decide per CONSOLIDATION_POLICY.md: one of CANONICALIZE | EQUIVALENCE_GROUP | CROSSWALK_ONLY | RELATE_ONLY | KEEP_SEPARATE | DEPRECATE_DERIVED. If merging, author an English canonical per AUTHORING_POLICY.md and set mapping_strength per source. Do NOT invent USACM/SDT values. Do NOT delete raw records.",
+  "members": [
+    {
+      "raw_id": "mitre_att_ck_enterprise::0092",
+      "external_raw_id": "RAW-001848",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1195.001",
+      "title_draft": "T1195.001 — Compromise Software Dependencies and Development Tools",
+      "description": "Adversaries may manipulate software dependencies and development tools prior to receipt by a final consumer for the purpose of data or system compromise.",
+      "keywords": [
+        "citation",
+        "github",
+        "compromise",
+        "npm",
+        "packages",
+        "actions",
+        "malicious",
+        "software"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0130",
+      "external_raw_id": "RAW-001886",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1559.002",
+      "title_draft": "T1559.002 — Dynamic Data Exchange",
+      "description": "Adversaries may use Windows Dynamic Data Exchange (DDE) to execute arbitrary commands.",
+      "keywords": [
+        "dde",
+        "citation",
+        "data",
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "techniques"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0172",
+      "external_raw_id": "RAW-001928",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1574.001",
+      "title_draft": "T1574.001 — DLL",
+      "description": "Adversaries may abuse dynamic-link library files (DLLs) in order to achieve persistence, escalate privileges, and evade defenses.",
+      "keywords": [
+        "dll",
+        "dlls",
+        "citation",
+        "adversaries",
+        "hijacking",
+        "malicious",
+        "order",
+        "search"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0237",
+      "external_raw_id": "RAW-001993",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1190",
+      "title_draft": "T1190 — Exploit Public-Facing Application",
+      "description": "Adversaries may attempt to exploit a weakness in an Internet-facing host or system to initially access a network.",
+      "keywords": [
+        "citation",
+        "exploit",
+        "access",
+        "network",
+        "infrastructure",
+        "https",
+        "attack",
+        "mitre"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0262",
+      "external_raw_id": "RAW-002018",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1038",
+      "title_draft": "T1038 — DLL Search Order Hijacking",
+      "description": "Windows systems use a common method to look for required DLLs to load into a program.",
+      "keywords": [
+        "dll",
+        "program",
+        "citation",
+        "search",
+        "dlls",
+        "privilege",
+        "windows",
+        "load"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0311",
+      "external_raw_id": "RAW-002067",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1595.002",
+      "title_draft": "T1595.002 — Vulnerability Scanning",
+      "description": "Adversaries may scan victims for vulnerabilities that can be used during targeting.",
+      "keywords": [
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "techniques",
+        "scans",
+        "vulnerability",
+        "scanning"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0360",
+      "external_raw_id": "RAW-002116",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1595",
+      "title_draft": "T1595 — Active Scanning",
+      "description": "Adversaries may execute active reconnaissance scans to gather information that can be used during targeting.",
+      "keywords": [
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "techniques",
+        "active",
+        "reconnaissance",
+        "scans"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0414",
+      "external_raw_id": "RAW-002170",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1677",
+      "title_draft": "T1677 — Poisoned Pipeline Execution",
+      "description": "Adversaries may manipulate continuous integration / continuous development (CI/CD) processes by injecting malicious code into the build process.",
+      "keywords": [
+        "pipeline",
+        "citation",
+        "threat",
+        "github",
+        "malicious",
+        "actor",
+        "execution",
+        "actions"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_115_security_testing::0002",
+      "external_raw_id": "RAW-TEST-2C871E81",
+      "source_document": "NIST SP 800-115 Security Testing",
+      "source_version": "Current",
+      "source_section": "Section 5.2",
+      "title_draft": "Web Application Security Testing (SAST/DAST)",
+      "description": "Utilize Static and Dynamic Application Security Testing tools alongside manual code review to identify flaws in custom software and applications.",
+      "keywords": [
+        "SAST",
+        "DAST",
+        "appsec",
+        "code review"
+      ]
+    }
+  ],
+  "decision": null,
+  "canonical": null
+}

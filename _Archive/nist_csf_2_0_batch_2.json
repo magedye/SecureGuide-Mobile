@@ -1,0 +1,182 @@
+[
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "ID.AM-01",
+    "raw_text": "Inventories of hardware, software, services, and systems are maintained.",
+    "explicit_info": {
+      "function": "IDENTIFY (ID)",
+      "category": "Asset Management (ID.AM)",
+      "tags": ["Asset Inventory", "Hardware", "Software"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "ID.AM-02",
+    "raw_text": "Inventories of data and corresponding metadata are maintained.",
+    "explicit_info": {
+      "function": "IDENTIFY (ID)",
+      "category": "Asset Management (ID.AM)",
+      "tags": ["Data Inventory", "Metadata"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "ID.RA-01",
+    "raw_text": "Vulnerabilities in assets are identified, validated, and recorded.",
+    "explicit_info": {
+      "function": "IDENTIFY (ID)",
+      "category": "Risk Assessment (ID.RA)",
+      "tags": ["Vulnerability Management", "Risk Assessment"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "ID.RA-02",
+    "raw_text": "Cyber threat intelligence is received from information sharing forums and sources.",
+    "explicit_info": {
+      "function": "IDENTIFY (ID)",
+      "category": "Risk Assessment (ID.RA)",
+      "tags": ["Threat Intelligence", "Information Sharing"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "PR.AA-01",
+    "raw_text": "Identities and credentials for authorized users, services, and hardware are managed by the organization.",
+    "explicit_info": {
+      "function": "PROTECT (PR)",
+      "category": "Identity Management, Authentication, and Access Control (PR.AA)",
+      "tags": ["Identity Management", "Credentials"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "PR.AA-02",
+    "raw_text": "Identities are proofed and bound to credentials based on the context of interactions.",
+    "explicit_info": {
+      "function": "PROTECT (PR)",
+      "category": "Identity Management, Authentication, and Access Control (PR.AA)",
+      "tags": ["Identity Proofing", "Authentication Context"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "PR.AA-03",
+    "raw_text": "Users, services, and hardware are authenticated.",
+    "explicit_info": {
+      "function": "PROTECT (PR)",
+      "category": "Identity Management, Authentication, and Access Control (PR.AA)",
+      "tags": ["Authentication", "Access Control"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "PR.DS-01",
+    "raw_text": "The confidentiality, integrity, and availability of data-at-rest are protected.",
+    "explicit_info": {
+      "function": "PROTECT (PR)",
+      "category": "Data Security (PR.DS)",
+      "tags": ["Data at Rest", "Encryption", "CIA Triad"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "PR.DS-02",
+    "raw_text": "The confidentiality, integrity, and availability of data-in-transit are protected.",
+    "explicit_info": {
+      "function": "PROTECT (PR)",
+      "category": "Data Security (PR.DS)",
+      "tags": ["Data in Transit", "Network Security"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "DE.CM-01",
+    "raw_text": "Networks, systems, and services are monitored to find potentially adverse events.",
+    "explicit_info": {
+      "function": "DETECT (DE)",
+      "category": "Continuous Monitoring (DE.CM)",
+      "tags": ["Network Monitoring", "Adverse Events"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "DE.CM-02",
+    "raw_text": "The physical environment is monitored to find potentially adverse events.",
+    "explicit_info": {
+      "function": "DETECT (DE)",
+      "category": "Continuous Monitoring (DE.CM)",
+      "tags": ["Physical Security", "Monitoring"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "DE.AE-01",
+    "raw_text": "Events are analyzed to identify potential cybersecurity incidents.",
+    "explicit_info": {
+      "function": "DETECT (DE)",
+      "category": "Adverse Event Analysis (DE.AE)",
+      "tags": ["Event Analysis", "Incident Identification"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "RS.MA-01",
+    "raw_text": "The cybersecurity incident response plan is executed once an incident is declared.",
+    "explicit_info": {
+      "function": "RESPOND (RS)",
+      "category": "Incident Management (RS.MA)",
+      "tags": ["Incident Response Plan", "Execution"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "RS.AN-01",
+    "raw_text": "The impact and magnitude of the incident are determined.",
+    "explicit_info": {
+      "function": "RESPOND (RS)",
+      "category": "Incident Analysis (RS.AN)",
+      "tags": ["Impact Assessment", "Incident Analysis"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "RS.MI-01",
+    "raw_text": "Incidents are contained.",
+    "explicit_info": {
+      "function": "RESPOND (RS)",
+      "category": "Incident Mitigation (RS.MI)",
+      "tags": ["Containment", "Mitigation"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "RS.MI-02",
+    "raw_text": "Incidents are eradicated.",
+    "explicit_info": {
+      "function": "RESPOND (RS)",
+      "category": "Incident Mitigation (RS.MI)",
+      "tags": ["Eradication", "Mitigation"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "RC.RP-01",
+    "raw_text": "The recovery plan is executed once a cybersecurity incident is contained and eradicated.",
+    "explicit_info": {
+      "function": "RECOVER (RC)",
+      "category": "Incident Recovery Plan Execution (RC.RP)",
+      "tags": ["Recovery Plan", "Execution"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "RC.RP-02",
+    "raw_text": "Recovery activities are coordinated with internal and external stakeholders.",
+    "explicit_info": {
+      "function": "RECOVER (RC)",
+      "category": "Incident Recovery Plan Execution (RC.RP)",
+      "tags": ["Recovery Coordination", "Stakeholders"]
+    }
+  }
+]

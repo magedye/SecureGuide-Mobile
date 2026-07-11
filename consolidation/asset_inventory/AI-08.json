@@ -1,0 +1,77 @@
+{
+  "candidate_group_id": "AI-08",
+  "concept_name": "Acceptable Use of Assets",
+  "expected_sub_domain": "SD-08.05",
+  "member_raw_ids": [
+    "essential_cybersecurity_controls_ecc_2_2024::0037",
+    "essential_cybersecurity_controls_ecc_2_2024::0038"
+  ],
+  "excluded_raw_ids": [
+    "cis_controls_v8::0000"
+  ],
+  "member_reasons": {
+    "essential_cybersecurity_controls_ecc_2_2024::0037": "ECC 2-1-3 — acceptable-use policy for assets identified, documented, approved, communicated.",
+    "essential_cybersecurity_controls_ecc_2_2024::0038": "ECC 2-1-4 — the acceptable-use policy is implemented."
+  },
+  "exclusion_reasons": {
+    "cis_controls_v8::0000": "CIS 1.1 = inventory; acceptable-use policy MUST NOT be merged with an inventory requirement."
+  },
+  "differences": "2-1-3 DEFINES the acceptable-use policy (a policy artifact); 2-1-4 IMPLEMENTS it (a procedure). Requirement/policy vs implementation must not be merged.",
+  "decision": "EQUIVALENCE_GROUP",
+  "decision_confidence": 0.8,
+  "requires_human_review": 0,
+  "decision_rationale": "Same subject (acceptable use) but different lifecycle stages (define vs implement); grouped with canonical = the policy (2-1-3), implementation (2-1-4) related via REL-IMP — not merged.",
+  "canonical_artifact": {
+    "title_en": "Acceptable Use of Assets Policy",
+    "definition_short_en": "This policy defines the acceptable use of information and technology assets and is documented, approved, and communicated to users.",
+    "definition_full_en": "This artifact establishes an approved policy governing how users may use organizational information and technology assets, including prohibited actions and user responsibilities, and requires it to be communicated. It applies to all asset users. The minimum expected outcome is an approved, communicated acceptable-use policy. Verification is by confirming approval records and user acknowledgement.",
+    "objective_en": "Set clear, approved rules for how assets may be used.",
+    "type": "ART-POL",
+    "abstraction_level": "ABS-POL",
+    "primary_domain": "SD-08",
+    "sub_domain": "SD-08.05",
+    "obligation_level": "OBL-MND",
+    "classification_confidence": 0.8,
+    "classification_rationale": "Acceptable-use policy; SDT SD-08.05 (Acceptable Use & Professional Conduct), not asset inventory.",
+    "verification_method_note": "Confirm approval records and user acknowledgement.",
+    "missing_fields": [
+      "effective_date"
+    ]
+  },
+  "source_mappings": [
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0037",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 2-1-3 (Asset Management)",
+      "source_file": "essential_cybersecurity_controls_ecc_2_2024.json",
+      "mapping_strength": "DIRECT",
+      "rationale": null
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0038",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 2-1-4 (Asset Management)",
+      "source_file": "essential_cybersecurity_controls_ecc_2_2024.json",
+      "mapping_strength": "INDIRECT",
+      "rationale": "Implementation of the policy (REL-IMP), not an equivalent restatement."
+    }
+  ],
+  "validation": "OK",
+  "review": {
+    "review_status": "APPROVED",
+    "reviewer_notes": "Acceptable-use correctly placed in SD-08.05 (not asset inventory). Requirement/policy (2-1-3) vs implementation (2-1-4) correctly kept separate via EQUIVALENCE_GROUP with INDIRECT+rationale on the implementation.",
+    "validation_findings": [
+      "ART-POL valid",
+      "SD-08.05 correct",
+      "req/impl not merged",
+      "INDIRECT mapping has rationale"
+    ],
+    "required_changes": [
+      "On promotion set effective_date (in missing_fields)."
+    ],
+    "final_confidence": 0.85,
+    "ready_for_promotion": true
+  }
+}

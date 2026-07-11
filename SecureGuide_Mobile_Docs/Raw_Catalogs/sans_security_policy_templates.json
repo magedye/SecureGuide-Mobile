@@ -1,0 +1,169 @@
+{
+  "extraction_metadata": {
+    "source_document": "SANS Security Policy Templates",
+    "total_artifacts": 7
+  },
+  "artifacts": [
+    {
+      "raw_artifact_id": "RAW-POL-28C730E4",
+      "source_metadata": {
+        "source_document": "SANS Security Policy Templates",
+        "source_type": "POLICY_TEMPLATE",
+        "source_version": "Current",
+        "source_section": "AUP-01"
+      },
+      "original_content": {
+        "raw_text_en": "Defines acceptable use of equipment and computing services, and the appropriate employee security measures to protect the organization's corporate resources and proprietary information.",
+        "original_heading": "Acceptable Use Policy",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Acceptable Use Policy",
+        "description_draft": "Defines acceptable use of equipment and computing services, and the appropriate employee security measures to protect the organization's corporate resources and proprietary information.",
+        "keywords": [
+          "acceptable use",
+          "AUP",
+          "employee conduct"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-POL-DC07B79B",
+      "source_metadata": {
+        "source_document": "SANS Security Policy Templates",
+        "source_type": "POLICY_TEMPLATE",
+        "source_version": "Current",
+        "source_section": "PWD-01"
+      },
+      "original_content": {
+        "raw_text_en": "Establishes a standard for creation of strong passwords, the protection of those passwords, and the frequency of change.",
+        "original_heading": "Password Protection Policy",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Password Protection Policy",
+        "description_draft": "Establishes a standard for creation of strong passwords, the protection of those passwords, and the frequency of change.",
+        "keywords": [
+          "passwords",
+          "authentication",
+          "access control"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-POL-4ACB48BC",
+      "source_metadata": {
+        "source_document": "SANS Security Policy Templates",
+        "source_type": "POLICY_TEMPLATE",
+        "source_version": "Current",
+        "source_section": "IR-01"
+      },
+      "original_content": {
+        "raw_text_en": "Establishes the requirement for an Incident Response Plan and establishes the Incident Response Team to ensure rapid and effective handling of security incidents.",
+        "original_heading": "Incident Response Policy",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Incident Response Policy",
+        "description_draft": "Establishes the requirement for an Incident Response Plan and establishes the Incident Response Team to ensure rapid and effective handling of security incidents.",
+        "keywords": [
+          "incident response",
+          "breach",
+          "IR"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-POL-A52DF39D",
+      "source_metadata": {
+        "source_document": "SANS Security Policy Templates",
+        "source_type": "POLICY_TEMPLATE",
+        "source_version": "Current",
+        "source_section": "BYOD-01"
+      },
+      "original_content": {
+        "raw_text_en": "Outlines the requirements for employees using their personally owned devices to access corporate email, data, and systems.",
+        "original_heading": "Bring Your Own Device (BYOD) Policy",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Bring Your Own Device (BYOD) Policy",
+        "description_draft": "Outlines the requirements for employees using their personally owned devices to access corporate email, data, and systems.",
+        "keywords": [
+          "byod",
+          "mobile devices",
+          "remote access"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-POL-D5C29D75",
+      "source_metadata": {
+        "source_document": "SANS Security Policy Templates",
+        "source_type": "POLICY_TEMPLATE",
+        "source_version": "Current",
+        "source_section": "CD-01"
+      },
+      "original_content": {
+        "raw_text_en": "Ensures that all sensitive and confidential information, whether on paper or in electronic form, is secure in the workspace at the end of the day or when the user leaves their desk.",
+        "original_heading": "Clean Desk Policy",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Clean Desk Policy",
+        "description_draft": "Ensures that all sensitive and confidential information, whether on paper or in electronic form, is secure in the workspace at the end of the day or when the user leaves their desk.",
+        "keywords": [
+          "clean desk",
+          "physical security",
+          "confidentiality"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-POL-2C340C99",
+      "source_metadata": {
+        "source_document": "SANS Security Policy Templates",
+        "source_type": "POLICY_TEMPLATE",
+        "source_version": "Current",
+        "source_section": "AC-01"
+      },
+      "original_content": {
+        "raw_text_en": "Defines the rules for granting access to corporate systems and data on a least-privilege basis, including regular access reviews and revocation upon termination.",
+        "original_heading": "Access Control Policy",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Access Control Policy",
+        "description_draft": "Defines the rules for granting access to corporate systems and data on a least-privilege basis, including regular access reviews and revocation upon termination.",
+        "keywords": [
+          "access control",
+          "least privilege",
+          "IAM"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-POL-D14BA9BA",
+      "source_metadata": {
+        "source_document": "SANS Security Policy Templates",
+        "source_type": "POLICY_TEMPLATE",
+        "source_version": "Current",
+        "source_section": "DR-01"
+      },
+      "original_content": {
+        "raw_text_en": "Specifies how long different types of organizational data must be kept and how it must be securely destroyed when it is no longer needed.",
+        "original_heading": "Data Retention Policy",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Data Retention Policy",
+        "description_draft": "Specifies how long different types of organizational data must be kept and how it must be securely destroyed when it is no longer needed.",
+        "keywords": [
+          "data retention",
+          "data destruction",
+          "privacy"
+        ]
+      }
+    }
+  ]
+}

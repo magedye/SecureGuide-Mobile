@@ -1,0 +1,34 @@
+{
+  "id": "G05",
+  "case_type": "requirement_vs_procedure",
+  "maps_to_group": "AI-09",
+  "description": "ECC identify(req) / implement(procedure) must not merge into one artifact.",
+  "input_raw_ids": [
+    "essential_cybersecurity_controls_ecc_2_2024::0035",
+    "essential_cybersecurity_controls_ecc_2_2024::0036",
+    "essential_cybersecurity_controls_ecc_2_2024::0040"
+  ],
+  "expected_decision": "EQUIVALENCE_GROUP",
+  "accepted_members": [
+    "essential_cybersecurity_controls_ecc_2_2024::0035",
+    "essential_cybersecurity_controls_ecc_2_2024::0036",
+    "essential_cybersecurity_controls_ecc_2_2024::0040"
+  ],
+  "excluded": [
+    "cis_controls_v8::0000"
+  ],
+  "expected_classification": {
+    "type": "ART-REQ",
+    "primary_domain": "SD-02",
+    "sub_domain": "SD-02.01"
+  },
+  "expected_rationale_keywords": [
+    "implement",
+    "review"
+  ],
+  "expected_canonical_title": "Asset Management Program Requirements",
+  "validation_rules": [
+    "implement/review mapped INDIRECT not merged",
+    "canonical is the requirement stage"
+  ]
+}

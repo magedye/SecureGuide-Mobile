@@ -1,0 +1,625 @@
+{
+  "extraction_metadata": {
+    "source_document": "NCA ECC-1:2018",
+    "total_artifacts": 27
+  },
+  "artifacts": [
+    {
+      "raw_artifact_id": "RAW-BATCH-433737F6",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "1-1-1"
+      },
+      "original_content": {
+        "raw_text_en": "Developing, approving and implementing a cybersecurity strategy for the organization.",
+        "original_heading": "1-1-1",
+        "context_paragraph": "{\"domain\": \"1. Cybersecurity Governance\", \"subdomain\": \"1.1 Cybersecurity Strategy\", \"tags\": [\"Cybersecurity Strategy\", \"Governance\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "1-1-1",
+        "description_draft": "Developing, approving and implementing a cybersecurity strategy for the organization.",
+        "keywords": [
+          "Cybersecurity Strategy",
+          "Governance"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-1A35549A",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "1-2-1"
+      },
+      "original_content": {
+        "raw_text_en": "Appointing a head of the cybersecurity function (e.g., CISO) with sufficient qualifications, independence and authority.",
+        "original_heading": "1-2-1",
+        "context_paragraph": "{\"domain\": \"1. Cybersecurity Governance\", \"subdomain\": \"1.2 Cybersecurity Management\", \"tags\": [\"CISO\", \"Independence\", \"Authority\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "1-2-1",
+        "description_draft": "Appointing a head of the cybersecurity function (e.g., CISO) with sufficient qualifications, independence and authority.",
+        "keywords": [
+          "CISO",
+          "Independence",
+          "Authority"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-BE12EFFA",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "1-3-1"
+      },
+      "original_content": {
+        "raw_text_en": "Developing, approving, and publishing comprehensive cybersecurity policies and procedures.",
+        "original_heading": "1-3-1",
+        "context_paragraph": "{\"domain\": \"1. Cybersecurity Governance\", \"subdomain\": \"1.3 Cybersecurity Policies and Procedures\", \"tags\": [\"Policies\", \"Procedures\", \"Publishing\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "1-3-1",
+        "description_draft": "Developing, approving, and publishing comprehensive cybersecurity policies and procedures.",
+        "keywords": [
+          "Policies",
+          "Procedures",
+          "Publishing"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-E66DF487",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "1-3-2"
+      },
+      "original_content": {
+        "raw_text_en": "Reviewing and updating cybersecurity policies and procedures periodically (at least annually) or upon significant changes.",
+        "original_heading": "1-3-2",
+        "context_paragraph": "{\"domain\": \"1. Cybersecurity Governance\", \"subdomain\": \"1.3 Cybersecurity Policies and Procedures\", \"tags\": [\"Policy Review\", \"Annual Update\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "1-3-2",
+        "description_draft": "Reviewing and updating cybersecurity policies and procedures periodically (at least annually) or upon significant changes.",
+        "keywords": [
+          "Policy Review",
+          "Annual Update"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-12134B4F",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "1-5-1"
+      },
+      "original_content": {
+        "raw_text_en": "Establishing a comprehensive methodology for cybersecurity risk management in alignment with the organization's enterprise risk management.",
+        "original_heading": "1-5-1",
+        "context_paragraph": "{\"domain\": \"1. Cybersecurity Governance\", \"subdomain\": \"1.5 Cybersecurity Risk Management\", \"tags\": [\"Risk Management Methodology\", \"Enterprise Alignment\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "1-5-1",
+        "description_draft": "Establishing a comprehensive methodology for cybersecurity risk management in alignment with the organization's enterprise risk management.",
+        "keywords": [
+          "Risk Management Methodology",
+          "Enterprise Alignment"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-D66B234F",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "2-1-1"
+      },
+      "original_content": {
+        "raw_text_en": "Developing and maintaining an accurate and up-to-date inventory of all information assets, including hardware, software, and data.",
+        "original_heading": "2-1-1",
+        "context_paragraph": "{\"domain\": \"2. Cybersecurity Defense\", \"subdomain\": \"2.1 Asset Management\", \"tags\": [\"Asset Inventory\", \"Hardware\", \"Software\", \"Data\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "2-1-1",
+        "description_draft": "Developing and maintaining an accurate and up-to-date inventory of all information assets, including hardware, software, and data.",
+        "keywords": [
+          "Asset Inventory",
+          "Hardware",
+          "Software",
+          "Data"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-DB00DBC9",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "2-1-2"
+      },
+      "original_content": {
+        "raw_text_en": "Classifying information assets based on their criticality and sensitivity according to an approved classification policy.",
+        "original_heading": "2-1-2",
+        "context_paragraph": "{\"domain\": \"2. Cybersecurity Defense\", \"subdomain\": \"2.1 Asset Management\", \"tags\": [\"Data Classification\", \"Criticality\", \"Sensitivity\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "2-1-2",
+        "description_draft": "Classifying information assets based on their criticality and sensitivity according to an approved classification policy.",
+        "keywords": [
+          "Data Classification",
+          "Criticality",
+          "Sensitivity"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-F8A2D105",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "2-2-1"
+      },
+      "original_content": {
+        "raw_text_en": "Enforcing the principle of least privilege and need-to-know for granting logical access to information assets.",
+        "original_heading": "2-2-1",
+        "context_paragraph": "{\"domain\": \"2. Cybersecurity Defense\", \"subdomain\": \"2.2 Identity and Access Management\", \"tags\": [\"Least Privilege\", \"Need-to-Know\", \"Logical Access\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "2-2-1",
+        "description_draft": "Enforcing the principle of least privilege and need-to-know for granting logical access to information assets.",
+        "keywords": [
+          "Least Privilege",
+          "Need-to-Know",
+          "Logical Access"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-133AF8B5",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "2-2-2"
+      },
+      "original_content": {
+        "raw_text_en": "Reviewing access rights and privileges periodically (at least every six months) for all accounts.",
+        "original_heading": "2-2-2",
+        "context_paragraph": "{\"domain\": \"2. Cybersecurity Defense\", \"subdomain\": \"2.2 Identity and Access Management\", \"tags\": [\"Access Review\", \"Periodic Review\", \"Six Months\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "2-2-2",
+        "description_draft": "Reviewing access rights and privileges periodically (at least every six months) for all accounts.",
+        "keywords": [
+          "Access Review",
+          "Periodic Review",
+          "Six Months"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-B9267E79",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "2-2-3"
+      },
+      "original_content": {
+        "raw_text_en": "Implementing Multi-Factor Authentication (MFA) for remote access and for all privileged accounts.",
+        "original_heading": "2-2-3",
+        "context_paragraph": "{\"domain\": \"2. Cybersecurity Defense\", \"subdomain\": \"2.2 Identity and Access Management\", \"tags\": [\"MFA\", \"Remote Access\", \"Privileged Accounts\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "2-2-3",
+        "description_draft": "Implementing Multi-Factor Authentication (MFA) for remote access and for all privileged accounts.",
+        "keywords": [
+          "MFA",
+          "Remote Access",
+          "Privileged Accounts"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-A2B1BBF0",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "2-3-1"
+      },
+      "original_content": {
+        "raw_text_en": "Implementing technical protection mechanisms (e.g., Endpoint Detection and Response - EDR, Antivirus) on all endpoints and servers.",
+        "original_heading": "2-3-1",
+        "context_paragraph": "{\"domain\": \"2. Cybersecurity Defense\", \"subdomain\": \"2.3 Information System Protection\", \"tags\": [\"EDR\", \"Antivirus\", \"Endpoint Protection\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "2-3-1",
+        "description_draft": "Implementing technical protection mechanisms (e.g., Endpoint Detection and Response - EDR, Antivirus) on all endpoints and servers.",
+        "keywords": [
+          "EDR",
+          "Antivirus",
+          "Endpoint Protection"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-7367B31F",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "2-5-1"
+      },
+      "original_content": {
+        "raw_text_en": "Segmenting the network based on the classification of systems and data, isolating critical systems from public or non-critical networks.",
+        "original_heading": "2-5-1",
+        "context_paragraph": "{\"domain\": \"2. Cybersecurity Defense\", \"subdomain\": \"2.5 Network Security Management\", \"tags\": [\"Network Segmentation\", \"Isolation\", \"Critical Systems\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "2-5-1",
+        "description_draft": "Segmenting the network based on the classification of systems and data, isolating critical systems from public or non-critical networks.",
+        "keywords": [
+          "Network Segmentation",
+          "Isolation",
+          "Critical Systems"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-2A538C96",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "2-8-1"
+      },
+      "original_content": {
+        "raw_text_en": "Performing periodic vulnerability assessments (at least quarterly) and addressing identified vulnerabilities according to their severity.",
+        "original_heading": "2-8-1",
+        "context_paragraph": "{\"domain\": \"2. Cybersecurity Defense\", \"subdomain\": \"2.8 Vulnerability Management\", \"tags\": [\"Vulnerability Assessment\", \"Quarterly Scans\", \"Severity\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "2-8-1",
+        "description_draft": "Performing periodic vulnerability assessments (at least quarterly) and addressing identified vulnerabilities according to their severity.",
+        "keywords": [
+          "Vulnerability Assessment",
+          "Quarterly Scans",
+          "Severity"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-0F2DAA16",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "2-9-1"
+      },
+      "original_content": {
+        "raw_text_en": "Conducting penetration testing periodically (at least annually) or upon major changes to critical systems.",
+        "original_heading": "2-9-1",
+        "context_paragraph": "{\"domain\": \"2. Cybersecurity Defense\", \"subdomain\": \"2.9 Penetration Testing\", \"tags\": [\"Penetration Testing\", \"Annual Test\", \"Major Changes\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "2-9-1",
+        "description_draft": "Conducting penetration testing periodically (at least annually) or upon major changes to critical systems.",
+        "keywords": [
+          "Penetration Testing",
+          "Annual Test",
+          "Major Changes"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-3E7B9230",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "3-2-1"
+      },
+      "original_content": {
+        "raw_text_en": "Developing, approving, and testing a comprehensive cybersecurity incident response plan.",
+        "original_heading": "3-2-1",
+        "context_paragraph": "{\"domain\": \"3. Cybersecurity Resilience\", \"subdomain\": \"3.2 Incident Management\", \"tags\": [\"Incident Response Plan\", \"Testing\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "3-2-1",
+        "description_draft": "Developing, approving, and testing a comprehensive cybersecurity incident response plan.",
+        "keywords": [
+          "Incident Response Plan",
+          "Testing"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-CCA90FF0",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "3-3-1"
+      },
+      "original_content": {
+        "raw_text_en": "Implementing a secure backup solution with periodic testing of data restoration capabilities.",
+        "original_heading": "3-3-1",
+        "context_paragraph": "{\"domain\": \"3. Cybersecurity Resilience\", \"subdomain\": \"3.3 Backup and Recovery\", \"tags\": [\"Backup Solution\", \"Restoration Testing\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "3-3-1",
+        "description_draft": "Implementing a secure backup solution with periodic testing of data restoration capabilities.",
+        "keywords": [
+          "Backup Solution",
+          "Restoration Testing"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-5524C9DE",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "4-1-1"
+      },
+      "original_content": {
+        "raw_text_en": "Establishing a process to identify, assess, and manage cybersecurity risks associated with third parties prior to engagement.",
+        "original_heading": "4-1-1",
+        "context_paragraph": "{\"domain\": \"4. Third-party and Cloud Computing Cybersecurity\", \"subdomain\": \"4.1 Third-party Cybersecurity\", \"tags\": [\"Third-party Risk\", \"Risk Assessment\", \"Vendor Management\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "4-1-1",
+        "description_draft": "Establishing a process to identify, assess, and manage cybersecurity risks associated with third parties prior to engagement.",
+        "keywords": [
+          "Third-party Risk",
+          "Risk Assessment",
+          "Vendor Management"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-28821DCA",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "4-1-2"
+      },
+      "original_content": {
+        "raw_text_en": "Ensuring that cybersecurity requirements are explicitly included in contracts and agreements with third parties.",
+        "original_heading": "4-1-2",
+        "context_paragraph": "{\"domain\": \"4. Third-party and Cloud Computing Cybersecurity\", \"subdomain\": \"4.1 Third-party Cybersecurity\", \"tags\": [\"Contracts\", \"Agreements\", \"Cybersecurity Requirements\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "4-1-2",
+        "description_draft": "Ensuring that cybersecurity requirements are explicitly included in contracts and agreements with third parties.",
+        "keywords": [
+          "Contracts",
+          "Agreements",
+          "Cybersecurity Requirements"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-475BC98D",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "4-1-3"
+      },
+      "original_content": {
+        "raw_text_en": "Conducting periodic cybersecurity audits and assessments on third parties to ensure compliance with agreed-upon requirements.",
+        "original_heading": "4-1-3",
+        "context_paragraph": "{\"domain\": \"4. Third-party and Cloud Computing Cybersecurity\", \"subdomain\": \"4.1 Third-party Cybersecurity\", \"tags\": [\"Third-party Audit\", \"Compliance Assessment\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "4-1-3",
+        "description_draft": "Conducting periodic cybersecurity audits and assessments on third parties to ensure compliance with agreed-upon requirements.",
+        "keywords": [
+          "Third-party Audit",
+          "Compliance Assessment"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-2F437747",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "4-2-1"
+      },
+      "original_content": {
+        "raw_text_en": "Evaluating and selecting cloud service providers based on their ability to meet the organization's cybersecurity requirements and applicable national regulations.",
+        "original_heading": "4-2-1",
+        "context_paragraph": "{\"domain\": \"4. Third-party and Cloud Computing Cybersecurity\", \"subdomain\": \"4.2 Cloud Computing Cybersecurity\", \"tags\": [\"Cloud Providers\", \"Selection Criteria\", \"National Regulations\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "4-2-1",
+        "description_draft": "Evaluating and selecting cloud service providers based on their ability to meet the organization's cybersecurity requirements and applicable national regulations.",
+        "keywords": [
+          "Cloud Providers",
+          "Selection Criteria",
+          "National Regulations"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-7F976A12",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "4-2-2"
+      },
+      "original_content": {
+        "raw_text_en": "Ensuring data sovereignty requirements are met when hosting data in cloud environments.",
+        "original_heading": "4-2-2",
+        "context_paragraph": "{\"domain\": \"4. Third-party and Cloud Computing Cybersecurity\", \"subdomain\": \"4.2 Cloud Computing Cybersecurity\", \"tags\": [\"Data Sovereignty\", \"Cloud Hosting\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "4-2-2",
+        "description_draft": "Ensuring data sovereignty requirements are met when hosting data in cloud environments.",
+        "keywords": [
+          "Data Sovereignty",
+          "Cloud Hosting"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-DA96B61F",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "3-1-1"
+      },
+      "original_content": {
+        "raw_text_en": "Developing, approving, and implementing a cybersecurity resilience strategy that aligns with the organization's Business Continuity Management (BCM).",
+        "original_heading": "3-1-1",
+        "context_paragraph": "{\"domain\": \"3. Cybersecurity Resilience\", \"subdomain\": \"3.1 Business Continuity Management\", \"tags\": [\"Resilience Strategy\", \"Business Continuity\", \"BCM\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "3-1-1",
+        "description_draft": "Developing, approving, and implementing a cybersecurity resilience strategy that aligns with the organization's Business Continuity Management (BCM).",
+        "keywords": [
+          "Resilience Strategy",
+          "Business Continuity",
+          "BCM"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-56AB13C8",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "3-1-2"
+      },
+      "original_content": {
+        "raw_text_en": "Identifying critical business functions and determining the Maximum Tolerable Downtime (MTD) and Recovery Time Objective (RTO) for associated information systems.",
+        "original_heading": "3-1-2",
+        "context_paragraph": "{\"domain\": \"3. Cybersecurity Resilience\", \"subdomain\": \"3.1 Business Continuity Management\", \"tags\": [\"Critical Business Functions\", \"MTD\", \"RTO\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "3-1-2",
+        "description_draft": "Identifying critical business functions and determining the Maximum Tolerable Downtime (MTD) and Recovery Time Objective (RTO) for associated information systems.",
+        "keywords": [
+          "Critical Business Functions",
+          "MTD",
+          "RTO"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-C593807C",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "3-1-3"
+      },
+      "original_content": {
+        "raw_text_en": "Testing the disaster recovery plan periodically (at least annually) to ensure critical systems and business operations can be recovered within the agreed RTO.",
+        "original_heading": "3-1-3",
+        "context_paragraph": "{\"domain\": \"3. Cybersecurity Resilience\", \"subdomain\": \"3.1 Business Continuity Management\", \"tags\": [\"Disaster Recovery Test\", \"Annual Test\", \"RTO Validation\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "3-1-3",
+        "description_draft": "Testing the disaster recovery plan periodically (at least annually) to ensure critical systems and business operations can be recovered within the agreed RTO.",
+        "keywords": [
+          "Disaster Recovery Test",
+          "Annual Test",
+          "RTO Validation"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-1C1C0B73",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "2-7-1"
+      },
+      "original_content": {
+        "raw_text_en": "Implementing secure software development life cycle (SSDLC) practices for all business and web applications developed internally or externally.",
+        "original_heading": "2-7-1",
+        "context_paragraph": "{\"domain\": \"2. Cybersecurity Defense\", \"subdomain\": \"2.7 Web and Application Security\", \"tags\": [\"SSDLC\", \"Application Security\", \"Business Applications\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "2-7-1",
+        "description_draft": "Implementing secure software development life cycle (SSDLC) practices for all business and web applications developed internally or externally.",
+        "keywords": [
+          "SSDLC",
+          "Application Security",
+          "Business Applications"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-8D38DE66",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "2-7-2"
+      },
+      "original_content": {
+        "raw_text_en": "Deploying Web Application Firewalls (WAF) to protect critical web and business applications from common web-based attacks.",
+        "original_heading": "2-7-2",
+        "context_paragraph": "{\"domain\": \"2. Cybersecurity Defense\", \"subdomain\": \"2.7 Web and Application Security\", \"tags\": [\"WAF\", \"Web Application Firewall\", \"Business Applications\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "2-7-2",
+        "description_draft": "Deploying Web Application Firewalls (WAF) to protect critical web and business applications from common web-based attacks.",
+        "keywords": [
+          "WAF",
+          "Web Application Firewall",
+          "Business Applications"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-B0A34155",
+      "source_metadata": {
+        "source_document": "NCA ECC-1:2018",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "2-7-3"
+      },
+      "original_content": {
+        "raw_text_en": "Ensuring sensitive data processed by business applications (e.g., financial data, PII) is encrypted in transit and at rest.",
+        "original_heading": "2-7-3",
+        "context_paragraph": "{\"domain\": \"2. Cybersecurity Defense\", \"subdomain\": \"2.7 Web and Application Security\", \"tags\": [\"Encryption\", \"Financial Data\", \"PII\", \"Data in Transit\", \"Data at Rest\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "2-7-3",
+        "description_draft": "Ensuring sensitive data processed by business applications (e.g., financial data, PII) is encrypted in transit and at rest.",
+        "keywords": [
+          "Encryption",
+          "Financial Data",
+          "PII",
+          "Data in Transit",
+          "Data at Rest"
+        ]
+      }
+    }
+  ]
+}

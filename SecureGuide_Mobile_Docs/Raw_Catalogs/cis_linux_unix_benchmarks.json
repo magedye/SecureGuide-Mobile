@@ -1,0 +1,149 @@
+{
+  "extraction_metadata": {
+    "source_document": "CIS Linux/Unix Security Benchmarks",
+    "total_artifacts": 6
+  },
+  "artifacts": [
+    {
+      "raw_artifact_id": "RAW-LNX-02C45E77",
+      "source_metadata": {
+        "source_document": "CIS Linux/Unix Security Benchmarks",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "Section 1.1"
+      },
+      "original_content": {
+        "raw_text_en": "Ensure mounting of unneeded filesystems (e.g., cramfs, freevxfs, jffs2, hfs, squashfs, udf) is disabled to reduce the local attack surface.",
+        "original_heading": "Filesystem Configuration",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Filesystem Configuration",
+        "description_draft": "Ensure mounting of unneeded filesystems (e.g., cramfs, freevxfs, jffs2, hfs, squashfs, udf) is disabled to reduce the local attack surface.",
+        "keywords": [
+          "filesystem",
+          "hardening",
+          "attack surface"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-LNX-CC7D27E5",
+      "source_metadata": {
+        "source_document": "CIS Linux/Unix Security Benchmarks",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "Section 1.6"
+      },
+      "original_content": {
+        "raw_text_en": "Ensure a Mandatory Access Control system like SELinux or AppArmor is installed, enabled, and enforcing security policies.",
+        "original_heading": "Mandatory Access Control (MAC)",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Mandatory Access Control (MAC)",
+        "description_draft": "Ensure a Mandatory Access Control system like SELinux or AppArmor is installed, enabled, and enforcing security policies.",
+        "keywords": [
+          "selinux",
+          "apparmor",
+          "mac",
+          "access control"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-LNX-394A109A",
+      "source_metadata": {
+        "source_document": "CIS Linux/Unix Security Benchmarks",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "Section 4.1"
+      },
+      "original_content": {
+        "raw_text_en": "Ensure the auditd service is installed and enabled, and rules are configured to record events that modify date and time information, user/group information, and network environment.",
+        "original_heading": "Audit Logging (auditd)",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Audit Logging (auditd)",
+        "description_draft": "Ensure the auditd service is installed and enabled, and rules are configured to record events that modify date and time information, user/group information, and network environment.",
+        "keywords": [
+          "auditd",
+          "logging",
+          "system events"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-LNX-E37A8F08",
+      "source_metadata": {
+        "source_document": "CIS Linux/Unix Security Benchmarks",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "Section 5.2"
+      },
+      "original_content": {
+        "raw_text_en": "Configure the SSH daemon to enforce secure communication: disable root login (PermitRootLogin no), disable empty passwords, and use strong Ciphers and MACs.",
+        "original_heading": "SSH Server Configuration",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "SSH Server Configuration",
+        "description_draft": "Configure the SSH daemon to enforce secure communication: disable root login (PermitRootLogin no), disable empty passwords, and use strong Ciphers and MACs.",
+        "keywords": [
+          "ssh",
+          "sshd",
+          "root login",
+          "remote access"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-LNX-2C3AEF0A",
+      "source_metadata": {
+        "source_document": "CIS Linux/Unix Security Benchmarks",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "Section 5.3"
+      },
+      "original_content": {
+        "raw_text_en": "Configure PAM to enforce strong password creation requirements (complexity, minimum length) and password expiration policies.",
+        "original_heading": "Pluggable Authentication Modules (PAM)",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Pluggable Authentication Modules (PAM)",
+        "description_draft": "Configure PAM to enforce strong password creation requirements (complexity, minimum length) and password expiration policies.",
+        "keywords": [
+          "pam",
+          "password policy",
+          "authentication"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-LNX-8AA43313",
+      "source_metadata": {
+        "source_document": "CIS Linux/Unix Security Benchmarks",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "Section 6.1"
+      },
+      "original_content": {
+        "raw_text_en": "Verify that critical system files (e.g., /etc/passwd, /etc/shadow, /etc/group) have the correct ownership (root) and strict permissions (e.g., 644 for passwd, 000 or 600 for shadow) to prevent unauthorized modification.",
+        "original_heading": "System File Permissions",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "System File Permissions",
+        "description_draft": "Verify that critical system files (e.g., /etc/passwd, /etc/shadow, /etc/group) have the correct ownership (root) and strict permissions (e.g., 644 for passwd, 000 or 600 for shadow) to prevent unauthorized modification.",
+        "keywords": [
+          "file permissions",
+          "shadow",
+          "passwd",
+          "privilege escalation"
+        ]
+      }
+    }
+  ]
+}

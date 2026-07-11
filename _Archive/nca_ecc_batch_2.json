@@ -1,0 +1,112 @@
+[
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "4-1-1",
+    "raw_text": "Establishing a process to identify, assess, and manage cybersecurity risks associated with third parties prior to engagement.",
+    "explicit_info": {
+      "domain": "4. Third-party and Cloud Computing Cybersecurity",
+      "subdomain": "4.1 Third-party Cybersecurity",
+      "tags": ["Third-party Risk", "Risk Assessment", "Vendor Management"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "4-1-2",
+    "raw_text": "Ensuring that cybersecurity requirements are explicitly included in contracts and agreements with third parties.",
+    "explicit_info": {
+      "domain": "4. Third-party and Cloud Computing Cybersecurity",
+      "subdomain": "4.1 Third-party Cybersecurity",
+      "tags": ["Contracts", "Agreements", "Cybersecurity Requirements"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "4-1-3",
+    "raw_text": "Conducting periodic cybersecurity audits and assessments on third parties to ensure compliance with agreed-upon requirements.",
+    "explicit_info": {
+      "domain": "4. Third-party and Cloud Computing Cybersecurity",
+      "subdomain": "4.1 Third-party Cybersecurity",
+      "tags": ["Third-party Audit", "Compliance Assessment"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "4-2-1",
+    "raw_text": "Evaluating and selecting cloud service providers based on their ability to meet the organization's cybersecurity requirements and applicable national regulations.",
+    "explicit_info": {
+      "domain": "4. Third-party and Cloud Computing Cybersecurity",
+      "subdomain": "4.2 Cloud Computing Cybersecurity",
+      "tags": ["Cloud Providers", "Selection Criteria", "National Regulations"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "4-2-2",
+    "raw_text": "Ensuring data sovereignty requirements are met when hosting data in cloud environments.",
+    "explicit_info": {
+      "domain": "4. Third-party and Cloud Computing Cybersecurity",
+      "subdomain": "4.2 Cloud Computing Cybersecurity",
+      "tags": ["Data Sovereignty", "Cloud Hosting"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "3-1-1",
+    "raw_text": "Developing, approving, and implementing a cybersecurity resilience strategy that aligns with the organization's Business Continuity Management (BCM).",
+    "explicit_info": {
+      "domain": "3. Cybersecurity Resilience",
+      "subdomain": "3.1 Business Continuity Management",
+      "tags": ["Resilience Strategy", "Business Continuity", "BCM"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "3-1-2",
+    "raw_text": "Identifying critical business functions and determining the Maximum Tolerable Downtime (MTD) and Recovery Time Objective (RTO) for associated information systems.",
+    "explicit_info": {
+      "domain": "3. Cybersecurity Resilience",
+      "subdomain": "3.1 Business Continuity Management",
+      "tags": ["Critical Business Functions", "MTD", "RTO"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "3-1-3",
+    "raw_text": "Testing the disaster recovery plan periodically (at least annually) to ensure critical systems and business operations can be recovered within the agreed RTO.",
+    "explicit_info": {
+      "domain": "3. Cybersecurity Resilience",
+      "subdomain": "3.1 Business Continuity Management",
+      "tags": ["Disaster Recovery Test", "Annual Test", "RTO Validation"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-7-1",
+    "raw_text": "Implementing secure software development life cycle (SSDLC) practices for all business and web applications developed internally or externally.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.7 Web and Application Security",
+      "tags": ["SSDLC", "Application Security", "Business Applications"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-7-2",
+    "raw_text": "Deploying Web Application Firewalls (WAF) to protect critical web and business applications from common web-based attacks.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.7 Web and Application Security",
+      "tags": ["WAF", "Web Application Firewall", "Business Applications"]
+    }
+  },
+  {
+    "source": "NCA ECC-1:2018",
+    "reference": "2-7-3",
+    "raw_text": "Ensuring sensitive data processed by business applications (e.g., financial data, PII) is encrypted in transit and at rest.",
+    "explicit_info": {
+      "domain": "2. Cybersecurity Defense",
+      "subdomain": "2.7 Web and Application Security",
+      "tags": ["Encryption", "Financial Data", "PII", "Data in Transit", "Data at Rest"]
+    }
+  }
+]

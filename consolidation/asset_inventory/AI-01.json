@@ -1,0 +1,94 @@
+{
+  "candidate_group_id": "AI-01",
+  "concept_name": "Establish & Maintain Asset Inventory",
+  "expected_sub_domain": "SD-02.01",
+  "member_raw_ids": [
+    "cis_controls_v8::0000",
+    "nca_ecc_1_2018::0005",
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0309"
+  ],
+  "excluded_raw_ids": [
+    "cis_controls_v8::0007",
+    "cis_controls_v8::0025",
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0310",
+    "essential_cybersecurity_controls_ecc_2_2024::0035"
+  ],
+  "member_reasons": {
+    "cis_controls_v8::0000": "CIS 1.1 — establish & maintain inventory of all enterprise assets (devices, network, IoT, servers).",
+    "nca_ecc_1_2018::0005": "NCA 2-1-1 — develop & maintain inventory of all information assets (hardware, software, data).",
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0309": "NIST CM-8 — develop & document a system component inventory that accurately reflects the system."
+  },
+  "exclusion_reasons": {
+    "cis_controls_v8::0007": "CIS 5.1 = inventory of ACCOUNTS — belongs to SD-03.01, not asset inventory.",
+    "cis_controls_v8::0025": "CIS 15.1 = inventory of SERVICE PROVIDERS — belongs to SD-08.03.",
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0310": "CM-8(1) = keeping the inventory CURRENT — atomic concept \"maintain currency\" (AI-02).",
+    "essential_cybersecurity_controls_ecc_2_2024::0035": "ECC 2-1-1 = governance-level asset-management REQUIREMENT (different abstraction) — AI-09."
+  },
+  "differences": "All three require a complete, accurate, documented inventory of technology/information assets. Same purpose, USACM type (ART-REQ), and SDT sub-domain (SD-02.01).",
+  "decision": "CANONICALIZE",
+  "decision_confidence": 0.9,
+  "requires_human_review": 0,
+  "decision_rationale": "Three independent sources express the identical requirement to hold and maintain an asset inventory; unified into one SecureGuide artifact with source mappings.",
+  "canonical_artifact": {
+    "title_en": "Enterprise Asset Inventory",
+    "definition_short_en": "This requirement establishes and maintains an accurate, current inventory of all enterprise information and technology assets that can store, process, or transmit organizational data.",
+    "definition_full_en": "This artifact requires the organization to build and maintain a complete, accurate inventory of information and technology assets — including end-user devices, servers, network devices, and IoT — recording enough detail to identify and govern each asset. It applies across all in-scope environments. The minimum expected outcome is a documented, regularly reconciled asset register. Verification is by inspecting the register and reconciling it against discovered assets.",
+    "objective_en": "Ensure every in-scope asset is known so it can be secured, monitored, and governed.",
+    "type": "ART-REQ",
+    "abstraction_level": "ABS-CTR",
+    "primary_domain": "SD-02",
+    "sub_domain": "SD-02.01",
+    "obligation_level": "OBL-MND",
+    "classification_confidence": 0.9,
+    "classification_rationale": "Core asset-inventory requirement shared by CIS 1.1, NCA 2-1-1, and NIST CM-8; single SDT sub-domain SD-02.01.",
+    "verification_method_note": "Inspect the asset register; reconcile against automated discovery.",
+    "missing_fields": [
+      "requirement_type"
+    ]
+  },
+  "source_mappings": [
+    {
+      "raw_id": "cis_controls_v8::0000",
+      "source_document": "CIS Controls v8",
+      "source_version": "Unknown",
+      "source_section": "1.1",
+      "source_file": "cis_controls_v8.json",
+      "mapping_strength": "DIRECT",
+      "rationale": null
+    },
+    {
+      "raw_id": "nca_ecc_1_2018::0005",
+      "source_document": "NCA ECC-1:2018",
+      "source_version": "Unknown",
+      "source_section": "2-1-1",
+      "source_file": "nca_ecc_1_2018.json",
+      "mapping_strength": "DIRECT",
+      "rationale": null
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0309",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CM-8 (Configuration Management)",
+      "source_file": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations.json",
+      "mapping_strength": "DIRECT",
+      "rationale": null
+    }
+  ],
+  "validation": "OK",
+  "review": {
+    "review_status": "APPROVED_WITH_CHANGES",
+    "reviewer_notes": "Correct atomic inventory requirement merged from 3 sources. But the title/definition say \"establish AND maintain\", overlapping AI-02 (currency). NCA 2-1-1 is broader (explicitly includes software and data), while CIS 1.1 is device-centric.",
+    "validation_findings": [
+      "type/abstraction/SDT valid",
+      "sub-domain belongs to primary",
+      "lineage complete (3 DIRECT)"
+    ],
+    "required_changes": [
+      "Scope AI-01 to \"establish and hold\" the inventory; let AI-02 own \"keep current\".",
+      "Note NCA breadth (software/data) so software items are not double-counted vs AI-06."
+    ],
+    "final_confidence": 0.85,
+    "ready_for_promotion": false
+  }
+}

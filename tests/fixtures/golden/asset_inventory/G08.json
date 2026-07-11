@@ -1,0 +1,26 @@
+{
+  "id": "G08",
+  "case_type": "low_confidence",
+  "maps_to_group": "AI-09",
+  "description": "Governance-vs-control boundary is uncertain; confidence <= 0.80 must require human review.",
+  "input_raw_ids": [
+    "essential_cybersecurity_controls_ecc_2_2024::0035"
+  ],
+  "expected_decision": "EQUIVALENCE_GROUP",
+  "accepted_members": null,
+  "excluded": [],
+  "expected_classification": {
+    "type": "ART-REQ",
+    "primary_domain": "SD-02",
+    "sub_domain": "SD-02.01"
+  },
+  "expected_rationale_keywords": [
+    "governance"
+  ],
+  "expected_canonical_title": "Asset Management Program Requirements",
+  "validation_rules": [
+    "decision_confidence <= 0.80",
+    "requires_human_review == 1",
+    "review_status in {APPROVED_WITH_CHANGES}"
+  ]
+}

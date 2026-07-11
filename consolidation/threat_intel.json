@@ -1,0 +1,501 @@
+{
+  "group_id": "GRP-threat_intel",
+  "concept": "Threat Intelligence & IoCs",
+  "expected_sub_domain": "SD-06.05",
+  "member_count": 26,
+  "source_coverage": [
+    "Essential Cybersecurity Controls (ECC 2-2024)",
+    "ISO 27002:2022",
+    "MITRE ATT&CK Enterprise",
+    "NIST CSF 2.0",
+    "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+    "The NIST Cybersecurity Framework (CSF) 2.0"
+  ],
+  "instructions": "Decide per CONSOLIDATION_POLICY.md: one of CANONICALIZE | EQUIVALENCE_GROUP | CROSSWALK_ONLY | RELATE_ONLY | KEEP_SEPARATE | DEPRECATE_DERIVED. If merging, author an English canonical per AUTHORING_POLICY.md and set mapping_strength per source. Do NOT invent USACM/SDT values. Do NOT delete raw records.",
+  "members": [
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0086",
+      "external_raw_id": "RAW-001734",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 2-13-3 (Cybersecurity Incident and Threat Management)",
+      "title_draft": "2-13-3: Cybersecurity Incident and Threat Management",
+      "description": "Requirements for cybersecurity incident and threat management shall include the following as a minimum: 2.13.3.1 Cybersecurity incident response plans and escalation procedures.",
+      "keywords": [
+        "incident",
+        "threat",
+        "management",
+        "response",
+        "incidents",
+        "nca",
+        "intelligence",
+        "requirements"
+      ]
+    },
+    {
+      "raw_id": "iso_27002_2022::0001",
+      "external_raw_id": "RAW-BATCH-16409FE8",
+      "source_document": "ISO 27002:2022",
+      "source_version": "Unknown",
+      "source_section": "5.7",
+      "title_draft": "5.7",
+      "description": "Information relating to information security threats should be collected and analysed to produce threat intelligence.",
+      "keywords": [
+        "Threat Intelligence",
+        "Threat Analysis"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0103",
+      "external_raw_id": "RAW-001859",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1218.013",
+      "title_draft": "T1218.013 — Mavinject",
+      "description": "Adversaries may abuse mavinject.exe to proxy execution of malicious code.",
+      "keywords": [
+        "mavinject",
+        "code",
+        "exe",
+        "execution",
+        "citation",
+        "microsoft",
+        "windows",
+        "inject"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0139",
+      "external_raw_id": "RAW-001895",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1213.006",
+      "title_draft": "T1213.006 — Databases",
+      "description": "Adversaries may leverage databases to mine valuable information.",
+      "keywords": [
+        "databases",
+        "tactics",
+        "data",
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "adversaries"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0181",
+      "external_raw_id": "RAW-001937",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1675",
+      "title_draft": "T1675 — ESXi Administration Command",
+      "description": "Adversaries may abuse ESXi administration services to execute commands on guest machines hosted within an ESXi virtual environment.",
+      "keywords": [
+        "esxi",
+        "services",
+        "guest",
+        "tools",
+        "execute",
+        "commands",
+        "vms",
+        "vmware"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0296",
+      "external_raw_id": "RAW-002052",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1597.001",
+      "title_draft": "T1597.001 — Threat Intel Vendors",
+      "description": "Adversaries may search private data from threat intelligence vendors for information that can be used during targeting.",
+      "keywords": [
+        "threat",
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "techniques",
+        "vendors",
+        "search"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0341",
+      "external_raw_id": "RAW-002097",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1078.001",
+      "title_draft": "T1078.001 — Default Accounts",
+      "description": "Adversaries may obtain and abuse credentials of a default account as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion.",
+      "keywords": [
+        "default",
+        "accounts",
+        "account",
+        "esxi",
+        "citation",
+        "access",
+        "threat",
+        "they"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0349",
+      "external_raw_id": "RAW-002105",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1681",
+      "title_draft": "T1681 — Search Threat Vendor Data",
+      "description": "Threat actors may seek information/indicators from closed or open threat intelligence sources gathered about their own campaigns, as well as those conducted by other adversaries that may align with their target industries, capabilities/objectives, or other operational concerns.",
+      "keywords": [
+        "threat",
+        "adversaries",
+        "indicators",
+        "own",
+        "search",
+        "vendor",
+        "data",
+        "actors"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0409",
+      "external_raw_id": "RAW-002165",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1562.006",
+      "title_draft": "T1562.006 — Indicator Blocking",
+      "description": "An adversary may attempt to block indicators or events typically captured by sensors from being gathered and analyzed.",
+      "keywords": [
+        "citation",
+        "event",
+        "syslog",
+        "code",
+        "esxi",
+        "block",
+        "tracing",
+        "windows"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0498",
+      "external_raw_id": "RAW-002254",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1562.003",
+      "title_draft": "T1562.003 — Impair Command History Logging",
+      "description": "Adversaries may impair command history logging to hide commands they run on a compromised system.",
+      "keywords": [
+        "code",
+        "command",
+        "history",
+        "commands",
+        "logging",
+        "file",
+        "powershell",
+        "adversaries"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0553",
+      "external_raw_id": "RAW-002309",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1597",
+      "title_draft": "T1597 — Search Closed Sources",
+      "description": "Adversaries may search and gather information about victims from closed (e.g., paid, private, or otherwise not freely available) sources that can be used during targeting.",
+      "keywords": [
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "techniques",
+        "sources",
+        "search",
+        "closed"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0565",
+      "external_raw_id": "RAW-002321",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1219.003",
+      "title_draft": "T1219.003 — Remote Access Hardware",
+      "description": "An adversary may use legitimate remote access hardware to establish an interactive command and control channel to target systems within networks.",
+      "keywords": [
+        "remote",
+        "access",
+        "hardware",
+        "target",
+        "legitimate",
+        "establish",
+        "interactive",
+        "command"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0567",
+      "external_raw_id": "RAW-002323",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1562.001",
+      "title_draft": "T1562.001 — Disable or Modify Tools",
+      "description": "Adversaries may modify and/or disable security tools to avoid possible detection of their malware/tools and activities.",
+      "keywords": [
+        "citation",
+        "tools",
+        "adversaries",
+        "processes",
+        "edr",
+        "disable",
+        "process",
+        "modify"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0607",
+      "external_raw_id": "RAW-002363",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1690",
+      "title_draft": "T1690 — Prevent Command History Logging",
+      "description": "Adversaries may impair command history logging to hide commands they run on a compromised system.",
+      "keywords": [
+        "command",
+        "history",
+        "commands",
+        "logging",
+        "file",
+        "adversaries",
+        "environment",
+        "variable"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0648",
+      "external_raw_id": "RAW-002404",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1095",
+      "title_draft": "T1095 — Non-Application Layer Protocol",
+      "description": "Adversaries may use an OSI non-application layer protocol for communication between host and C2 server or among infected hosts within a network.",
+      "keywords": [
+        "esxi",
+        "protocols",
+        "layer",
+        "protocol",
+        "host",
+        "network",
+        "adversaries",
+        "communication"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0773",
+      "external_raw_id": "RAW-002529",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1105",
+      "title_draft": "T1105 — Ingress Tool Transfer",
+      "description": "Adversaries may transfer tools or other files from an external system into a compromised environment.",
+      "keywords": [
+        "tools",
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "adversaries",
+        "victim",
+        "also"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0837",
+      "external_raw_id": "RAW-002593",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1505.006",
+      "title_draft": "T1505.006 — vSphere Installation Bundles",
+      "description": "Adversaries may abuse vSphere Installation Bundles (VIBs) to establish persistent access to ESXi hypervisors.",
+      "keywords": [
+        "vibs",
+        "vib",
+        "esxi",
+        "files",
+        "vmware",
+        "file",
+        "acceptance",
+        "level"
+      ]
+    },
+    {
+      "raw_id": "nist_csf_2_0::0013",
+      "external_raw_id": "RAW-BATCH-5D2070E0",
+      "source_document": "NIST CSF 2.0",
+      "source_version": "Unknown",
+      "source_section": "ID.RA-02",
+      "title_draft": "ID.RA-02",
+      "description": "Cyber threat intelligence is received from information sharing forums and sources.",
+      "keywords": [
+        "Threat Intelligence",
+        "Information Sharing"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0222",
+      "external_raw_id": "RAW-000329",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-13(2) (Audit and Accountability)",
+      "title_draft": "AU-13(2): Review of Monitored Sites",
+      "description": "Review the list of open-source information sites being monitored {{ insert: param, au-13.02_odp }}.",
+      "keywords": [
+        "sites",
+        "monitored",
+        "review",
+        "list",
+        "open-source",
+        "au-13",
+        "being",
+        "insert"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0594",
+      "external_raw_id": "RAW-001201",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SI-4(24) (System and Information Integrity)",
+      "title_draft": "SI-4(24): Indicators of Compromise",
+      "description": "Discover, collect, and distribute to {{ insert: param, si-04.24_odp.02 }} , indicators of compromise provided by {{ insert: param, si-04.24_odp.01 }}.",
+      "keywords": [
+        "indicators",
+        "compromise",
+        "iocs",
+        "insert",
+        "param",
+        "si-04",
+        "odp",
+        "network"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0668",
+      "external_raw_id": "RAW-001275",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SI-23 (System and Information Integrity)",
+      "title_draft": "SI-23: Information Fragmentation",
+      "description": "Based on {{ insert: param, si-23_odp.01 }}: a.",
+      "keywords": [
+        "fragmentation",
+        "insert",
+        "param",
+        "si-23_odp",
+        "following",
+        "across",
+        "components",
+        "threat"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0958",
+      "external_raw_id": "RAW-000763",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control PM-16 (Program Management)",
+      "title_draft": "PM-16: Threat Awareness Program",
+      "description": "Implement a threat awareness program that includes a cross-organization information-sharing capability for threat intelligence.",
+      "keywords": [
+        "threat",
+        "organizations",
+        "includes",
+        "sharing",
+        "awareness",
+        "program",
+        "intelligence",
+        "adversaries"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0959",
+      "external_raw_id": "RAW-000764",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control PM-16(1) (Program Management)",
+      "title_draft": "PM-16(1): Automated Means for Sharing Threat Intelligence",
+      "description": "Employ automated mechanisms to maximize the effectiveness of sharing threat intelligence information.",
+      "keywords": [
+        "threat",
+        "automated",
+        "sharing",
+        "intelligence",
+        "maximize",
+        "effectiveness",
+        "monitoring",
+        "tools"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1042",
+      "external_raw_id": "RAW-000847",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control RA-10 (Risk Assessment)",
+      "title_draft": "RA-10: Threat Hunting",
+      "description": "a.",
+      "keywords": [
+        "threat",
+        "hunting",
+        "cyber",
+        "capability",
+        "compromise",
+        "track",
+        "disrupt",
+        "threats"
+      ]
+    },
+    {
+      "raw_id": "the_nist_cybersecurity_framework_csf_2_0::0039",
+      "external_raw_id": "RAW-000040",
+      "source_document": "The NIST Cybersecurity Framework (CSF) 2.0",
+      "source_version": "2.0",
+      "source_section": "Subcategory ID.RA-02",
+      "title_draft": "ID.RA-02 — Cyber threat intelligence is received from information sharing forums and sources",
+      "description": "Cyber threat intelligence is received from information sharing forums and sources",
+      "keywords": [
+        "cyber",
+        "threat",
+        "intelligence",
+        "received",
+        "sharing",
+        "forums",
+        "sources",
+        "understood"
+      ]
+    },
+    {
+      "raw_id": "the_nist_cybersecurity_framework_csf_2_0::0083",
+      "external_raw_id": "RAW-000084",
+      "source_document": "The NIST Cybersecurity Framework (CSF) 2.0",
+      "source_version": "2.0",
+      "source_section": "Subcategory DE.AE-07",
+      "title_draft": "DE.AE-07 — Cyber threat intelligence and other contextual information are integrated into the analysis",
+      "description": "Cyber threat intelligence and other contextual information are integrated into the analysis",
+      "keywords": [
+        "analysis",
+        "cyber",
+        "threat",
+        "intelligence",
+        "contextual",
+        "integrated",
+        "detect",
+        "analyzed"
+      ]
+    }
+  ],
+  "decision": null,
+  "canonical": null
+}

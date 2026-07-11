@@ -1,0 +1,67 @@
+{
+  "candidate_group_id": "AI-05",
+  "concept_name": "Detect & Remediate Unauthorized Assets",
+  "expected_sub_domain": "SD-02.01",
+  "member_raw_ids": [
+    "cis_controls_v8::0001"
+  ],
+  "excluded_raw_ids": [
+    "cis_controls_v8::0000"
+  ],
+  "member_reasons": {
+    "cis_controls_v8::0001": "CIS 1.2 — ensure a process exists to address unauthorized assets weekly."
+  },
+  "exclusion_reasons": {
+    "cis_controls_v8::0000": "CIS 1.1 = maintain the inventory (AI-01); detection of unknown assets is a distinct control."
+  },
+  "differences": "Discovering and remediating unauthorized/unknown assets is a detective/corrective control, distinct from maintaining the inventory list.",
+  "decision": "CANONICALIZE",
+  "decision_confidence": 0.8,
+  "requires_human_review": 0,
+  "decision_rationale": "Single, clearly distinct control from one source; normalized into its own SecureGuide artifact in SD-02.01.",
+  "canonical_artifact": {
+    "title_en": "Unauthorized Asset Detection",
+    "definition_short_en": "This control ensures a recurring process detects and addresses assets connected to the environment that are not in the approved inventory.",
+    "definition_full_en": "This artifact requires a regular (at least weekly) process to detect assets present in the environment but absent from the approved inventory, and to remediate them (remove, quarantine, or add with approval). It applies to all in-scope networks and environments. The minimum expected outcome is a scheduled unauthorized-asset review with recorded remediation. Verification is by reviewing detection runs and remediation records.",
+    "objective_en": "Prevent unknown or unauthorized assets from operating undetected.",
+    "type": "ART-CTR",
+    "abstraction_level": "ABS-CTR",
+    "primary_domain": "SD-02",
+    "sub_domain": "SD-02.01",
+    "obligation_level": "OBL-MND",
+    "classification_confidence": 0.8,
+    "classification_rationale": "CIS 1.2 detective/corrective control for unauthorized assets; SD-02.01.",
+    "verification_method_note": "Review detection runs and remediation records.",
+    "missing_fields": [
+      "control_nature",
+      "control_function",
+      "testability"
+    ]
+  },
+  "source_mappings": [
+    {
+      "raw_id": "cis_controls_v8::0001",
+      "source_document": "CIS Controls v8",
+      "source_version": "Unknown",
+      "source_section": "1.2",
+      "source_file": "cis_controls_v8.json",
+      "mapping_strength": "DIRECT",
+      "rationale": null
+    }
+  ],
+  "validation": "OK",
+  "review": {
+    "review_status": "APPROVED",
+    "reviewer_notes": "Distinct detective/corrective control for unauthorized assets; correctly separated from maintaining the inventory list.",
+    "validation_findings": [
+      "ART-CTR valid",
+      "DIRECT source genuinely about detection",
+      "SD-02.01 correct"
+    ],
+    "required_changes": [
+      "On promotion fill control fields."
+    ],
+    "final_confidence": 0.85,
+    "ready_for_promotion": true
+  }
+}

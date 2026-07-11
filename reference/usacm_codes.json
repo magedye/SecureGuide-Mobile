@@ -1,0 +1,90 @@
+[
+  {
+    "code": "ART-REQ",
+    "name": "Requirement"
+  },
+  {
+    "code": "ART-OBJ",
+    "name": "Security Objective"
+  },
+  {
+    "code": "ART-PRI",
+    "name": "Security Principle"
+  },
+  {
+    "code": "ART-POL",
+    "name": "Security Policy"
+  },
+  {
+    "code": "ART-STD",
+    "name": "Security Standard"
+  },
+  {
+    "code": "ART-CTR",
+    "name": "Security Control"
+  },
+  {
+    "code": "ART-CTE",
+    "name": "Control Enhancement"
+  },
+  {
+    "code": "ART-PRO",
+    "name": "Security Process"
+  },
+  {
+    "code": "ART-PRC",
+    "name": "Security Procedure"
+  },
+  {
+    "code": "ART-PRG",
+    "name": "Security Program"
+  },
+  {
+    "code": "ART-PLN",
+    "name": "Security Plan"
+  },
+  {
+    "code": "ART-TSK",
+    "name": "Task"
+  },
+  {
+    "code": "ART-CFG",
+    "name": "Technical Configuration"
+  },
+  {
+    "code": "ART-RUL",
+    "name": "Technical Rule"
+  },
+  {
+    "code": "ART-EVD",
+    "name": "Evidence"
+  },
+  {
+    "code": "ART-MET",
+    "name": "Metric/KPI"
+  },
+  {
+    "code": "ART-EXC",
+    "name": "Security Exception"
+  },
+  {
+    "code": "ART-RSK",
+    "name": "Security Risk"
+  },
+  {
+    "code": "ART-AST",
+    "name": "Information Asset"
+  },
+  {
+    "code": "ART-THR",
+    "name": "Threat"
+  },
+  {
+    "code": "ART-VUL",
+    "name": "Vulnerability"
+  },
+  {
+    "code": "ART-OWN",
+    "name": "Owner/Role"
+  }
+]

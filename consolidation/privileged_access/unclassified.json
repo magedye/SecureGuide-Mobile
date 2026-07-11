@@ -1,0 +1,37 @@
+[
+  {
+    "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0065",
+    "label": "AC-6 general least privilege",
+    "reason": "General authorization principle -> SD-03.03, not PAM."
+  },
+  {
+    "raw_id": "nca_ecc_1_2018::0007",
+    "label": "NCA 2-2-1 least privilege / need-to-know",
+    "reason": "General authorization -> SD-03.03."
+  },
+  {
+    "raw_id": "the_nist_cybersecurity_framework_csf_2_0::0056",
+    "label": "CSF PR.AA-05 least privilege & SoD",
+    "reason": "General access policy -> SD-03.03."
+  },
+  {
+    "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0389 (non-priv variants IA-2(2..9))",
+    "label": "MFA for non-privileged accounts",
+    "reason": "Authentication for non-privileged -> SD-03.02."
+  },
+  {
+    "raw_id": "mitre_att_ck_enterprise::0098 / ::0142",
+    "label": "Credential theft techniques",
+    "reason": "Threats (ART-THR) -> SD-06.05, not controls."
+  },
+  {
+    "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0203",
+    "label": "AU-9(4) audit management access",
+    "reason": "Audit-log protection -> SD-06.01."
+  },
+  {
+    "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1084 / ::1172 / ::1192",
+    "label": "SA-8/SA-17/SC-2 design-time least privilege",
+    "reason": "Secure development -> SD-05.x."
+  }
+]

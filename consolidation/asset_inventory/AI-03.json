@@ -1,0 +1,66 @@
+{
+  "candidate_group_id": "AI-03",
+  "concept_name": "Asset Ownership / Accountability in Inventory",
+  "expected_sub_domain": "SD-02.01",
+  "member_raw_ids": [
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0313"
+  ],
+  "excluded_raw_ids": [
+    "essential_cybersecurity_controls_ecc_2_2024::0039"
+  ],
+  "member_reasons": {
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0313": "CM-8(4) — record the individuals responsible/accountable for administering each component."
+  },
+  "exclusion_reasons": {
+    "essential_cybersecurity_controls_ecc_2_2024::0039": "ECC 2-1-5 = classification/labeling of assets — different concept (AI-07)."
+  },
+  "differences": "Assigning an accountable owner to each asset is distinct from merely listing assets; single source, borderline whether it is an attribute of AI-01.",
+  "decision": "CANONICALIZE",
+  "decision_confidence": 0.6,
+  "requires_human_review": 1,
+  "decision_rationale": "Single source (CM-8(4)); could be an attribute of AI-01 rather than a standalone artifact — routed to human review (confidence 0.6).",
+  "canonical_artifact": {
+    "title_en": "Asset Ownership Accountability",
+    "definition_short_en": "This control records, for each asset in the inventory, the individual responsible and accountable for administering it.",
+    "definition_full_en": "This artifact requires the asset inventory to identify, for each component, the person or role accountable for its administration, so that ownership is unambiguous. It applies to every inventoried asset. The minimum expected outcome is an owner recorded against each asset. Verification is by sampling inventory entries for a named accountable owner.",
+    "objective_en": "Ensure every asset has a clearly accountable owner.",
+    "type": "ART-CTR",
+    "abstraction_level": "ABS-CTR",
+    "primary_domain": "SD-02",
+    "sub_domain": "SD-02.01",
+    "obligation_level": "OBL-REC",
+    "classification_confidence": 0.6,
+    "classification_rationale": "CM-8(4) owner accountability; kept in SD-02.01 but low confidence on standalone-vs-attribute — human review.",
+    "verification_method_note": "Sample inventory entries for a named owner.",
+    "missing_fields": [
+      "control_nature",
+      "control_function",
+      "testability"
+    ]
+  },
+  "source_mappings": [
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0313",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CM-8(4) (Configuration Management)",
+      "source_file": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations.json",
+      "mapping_strength": "DIRECT",
+      "rationale": null
+    }
+  ],
+  "validation": "OK",
+  "review": {
+    "review_status": "REJECTED",
+    "reviewer_notes": "CM-8(4) owner accountability is an ATTRIBUTE of the inventory (AI-01), not a standalone atomic requirement. Promoting it as a separate canonical would fragment the model.",
+    "validation_findings": [
+      "single source",
+      "semantically an attribute of AI-01"
+    ],
+    "required_changes": [
+      "Do NOT promote as standalone. Convert to RELATE_ONLY / fold \"record accountable owner\" as an attribute requirement of AI-01."
+    ],
+    "final_confidence": 0.5,
+    "ready_for_promotion": false
+  }
+}

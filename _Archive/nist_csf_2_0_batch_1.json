@@ -1,0 +1,102 @@
+[
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "GV.OC-01",
+    "raw_text": "The organizational mission is understood and informs cybersecurity risk management.",
+    "explicit_info": {
+      "function": "GOVERN (GV)",
+      "category": "Organizational Context (GV.OC)",
+      "tags": ["Mission", "Risk Management Alignment"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "GV.OC-02",
+    "raw_text": "Internal and external stakeholders are understood, and their needs and expectations regarding cybersecurity risk management are considered.",
+    "explicit_info": {
+      "function": "GOVERN (GV)",
+      "category": "Organizational Context (GV.OC)",
+      "tags": ["Stakeholders", "Expectations"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "GV.OC-03",
+    "raw_text": "Legal, regulatory, and contractual requirements regarding cybersecurity—including privacy and civil liberties obligations—are understood and managed.",
+    "explicit_info": {
+      "function": "GOVERN (GV)",
+      "category": "Organizational Context (GV.OC)",
+      "tags": ["Legal", "Regulatory", "Compliance", "Privacy"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "GV.OC-04",
+    "raw_text": "Cybersecurity objectives are established and communicated.",
+    "explicit_info": {
+      "function": "GOVERN (GV)",
+      "category": "Organizational Context (GV.OC)",
+      "tags": ["Objectives", "Communication"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "GV.OC-05",
+    "raw_text": "Outcomes, capabilities, and services that the organization depends on are understood and communicated.",
+    "explicit_info": {
+      "function": "GOVERN (GV)",
+      "category": "Organizational Context (GV.OC)",
+      "tags": ["Dependencies", "Capabilities", "Services"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "GV.RM-01",
+    "raw_text": "Risk management objectives are established and agreed to by organizational stakeholders.",
+    "explicit_info": {
+      "function": "GOVERN (GV)",
+      "category": "Risk Management Strategy (GV.RM)",
+      "tags": ["Risk Objectives", "Stakeholder Agreement"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "GV.RM-02",
+    "raw_text": "Risk appetite and risk tolerance statements are established, communicated, and maintained.",
+    "explicit_info": {
+      "function": "GOVERN (GV)",
+      "category": "Risk Management Strategy (GV.RM)",
+      "tags": ["Risk Appetite", "Risk Tolerance"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "GV.RM-03",
+    "raw_text": "Cybersecurity risk management activities and outcomes are included in enterprise risk management processes.",
+    "explicit_info": {
+      "function": "GOVERN (GV)",
+      "category": "Risk Management Strategy (GV.RM)",
+      "tags": ["ERM Integration", "Risk Activities"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "GV.RM-04",
+    "raw_text": "Strategic direction that describes appropriate risk response options is established and communicated.",
+    "explicit_info": {
+      "function": "GOVERN (GV)",
+      "category": "Risk Management Strategy (GV.RM)",
+      "tags": ["Strategic Direction", "Risk Response"]
+    }
+  },
+  {
+    "source": "NIST CSF 2.0",
+    "reference": "GV.RM-05",
+    "raw_text": "Lines of communication across the organization are established for cybersecurity risks, including risks from suppliers and other third parties.",
+    "explicit_info": {
+      "function": "GOVERN (GV)",
+      "category": "Risk Management Strategy (GV.RM)",
+      "tags": ["Communication Lines", "Third-party Risk"]
+    }
+  }
+]

@@ -1,0 +1,60 @@
+{
+  "candidate_group_id": "PA-03",
+  "concept_name": "Separate Administrative and Regular Accounts",
+  "expected_sub_domain": "SD-03.04",
+  "member_raw_ids": [
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0067",
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0075"
+  ],
+  "excluded_raw_ids": [],
+  "member_reasons": {
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0067": "NIST AC-6(2) — privileged users use non-privileged accounts for non-security functions.",
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0075": "NIST AC-6(10) — prevent non-privileged users from executing privileged functions."
+  },
+  "exclusion_reasons": {},
+  "differences": "AC-6(2) mandates a separate non-privileged account for routine work; AC-6(10) enforces the privilege boundary. Grouped as separation-of-privileged-use; AC-6(10) is boundary enforcement (INDIRECT), not an equal restatement.",
+  "decision": "EQUIVALENCE_GROUP",
+  "decision_confidence": 0.78,
+  "requires_human_review": 1,
+  "decision_rationale": "Same theme (separate privileged from routine use) but two distinct mechanisms; canonical = AC-6(2), AC-6(10) related (REL-SUP). Confidence 0.78 <= 0.80 -> human review.",
+  "canonical_artifact": {
+    "title_en": "Separation of Administrative Accounts",
+    "definition_short_en": "This control requires privileged users to perform non-administrative work with separate non-privileged accounts.",
+    "definition_full_en": "This artifact requires that individuals with privileged access use distinct non-privileged accounts for routine, non-administrative activity, so that day-to-day work does not occur under elevated privilege. It applies to all privileged users. The minimum expected outcome is that each privileged user has and uses a separate standard account for routine work. Verification is by sampling privileged users for separate-account usage.",
+    "objective_en": "Keep routine activity off privileged accounts.",
+    "type": "ART-CTR",
+    "abstraction_level": "ABS-CTR",
+    "primary_domain": "SD-03",
+    "sub_domain": "SD-03.04",
+    "obligation_level": "OBL-MND",
+    "classification_confidence": 0.78,
+    "classification_rationale": "AC-6(2) separate administrative account; AC-6(10) boundary enforcement related; SD-03.04.",
+    "verification_method_note": "Sample privileged users for separate-account usage.",
+    "missing_fields": [
+      "control_nature",
+      "control_function",
+      "testability"
+    ]
+  },
+  "source_mappings": [
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0067",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-6(2) (Access Control)",
+      "source_file": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations.json",
+      "mapping_strength": "DIRECT",
+      "rationale": null
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0075",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-6(10) (Access Control)",
+      "source_file": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations.json",
+      "mapping_strength": "INDIRECT",
+      "rationale": "Privilege-boundary enforcement supports separation (REL-SUP), not an equal restatement."
+    }
+  ],
+  "validation": "OK"
+}

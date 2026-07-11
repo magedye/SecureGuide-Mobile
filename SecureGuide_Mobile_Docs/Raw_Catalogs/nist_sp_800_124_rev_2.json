@@ -1,0 +1,97 @@
+{
+  "extraction_metadata": {
+    "source_document": "NIST SP 800-124 Rev. 2",
+    "total_artifacts": 4
+  },
+  "artifacts": [
+    {
+      "raw_artifact_id": "RAW-MOB-FDAAC471",
+      "source_metadata": {
+        "source_document": "NIST SP 800-124 Rev. 2",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "Section 4.1.1"
+      },
+      "original_content": {
+        "raw_text_en": "Organizations should employ centralized mobile device management (MDM) technologies to control and configure mobile devices.",
+        "original_heading": "Mobile Device Management (MDM)",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Mobile Device Management (MDM)",
+        "description_draft": "Organizations should employ centralized mobile device management (MDM) technologies to control and configure mobile devices.",
+        "keywords": [
+          "mdm",
+          "enterprise mobility",
+          "management"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-MOB-E73176DD",
+      "source_metadata": {
+        "source_document": "NIST SP 800-124 Rev. 2",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "Section 4.1.2"
+      },
+      "original_content": {
+        "raw_text_en": "Mobile devices must require strong authentication before granting access to enterprise resources.",
+        "original_heading": "Device Authentication",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Device Authentication",
+        "description_draft": "Mobile devices must require strong authentication before granting access to enterprise resources.",
+        "keywords": [
+          "device authentication",
+          "passcodes"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-MOB-B3D1A7C8",
+      "source_metadata": {
+        "source_document": "NIST SP 800-124 Rev. 2",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "Section 4.1.3"
+      },
+      "original_content": {
+        "raw_text_en": "All enterprise data stored on the mobile device must be encrypted using FIPS-validated cryptographic modules.",
+        "original_heading": "Data Encryption at Rest",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Data Encryption at Rest",
+        "description_draft": "All enterprise data stored on the mobile device must be encrypted using FIPS-validated cryptographic modules.",
+        "keywords": [
+          "encryption at rest",
+          "fips"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-MOB-01B01A7A",
+      "source_metadata": {
+        "source_document": "NIST SP 800-124 Rev. 2",
+        "source_type": "FRAMEWORK",
+        "source_version": "Current",
+        "source_section": "Section 4.1.4"
+      },
+      "original_content": {
+        "raw_text_en": "Organizations should implement an application vetting process to evaluate mobile apps for security and privacy flaws before deployment.",
+        "original_heading": "Application Vetting",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "Application Vetting",
+        "description_draft": "Organizations should implement an application vetting process to evaluate mobile apps for security and privacy flaws before deployment.",
+        "keywords": [
+          "app vetting",
+          "application security"
+        ]
+      }
+    }
+  ]
+}

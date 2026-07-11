@@ -1,0 +1,736 @@
+{
+  "group_id": "GRP-backup_recovery",
+  "concept": "Backup & Restore",
+  "expected_sub_domain": "SD-07.03",
+  "member_count": 39,
+  "source_coverage": [
+    "CIS Controls v8",
+    "Essential Cybersecurity Controls (ECC 2-2024)",
+    "MITRE ATT&CK Enterprise",
+    "NCA ECC-1:2018",
+    "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations"
+  ],
+  "instructions": "Decide per CONSOLIDATION_POLICY.md: one of CANONICALIZE | EQUIVALENCE_GROUP | CROSSWALK_ONLY | RELATE_ONLY | KEEP_SEPARATE | DEPRECATE_DERIVED. If merging, author an English canonical per AUTHORING_POLICY.md and set mapping_strength per source. Do NOT invent USACM/SDT values. Do NOT delete raw records.",
+  "members": [
+    {
+      "raw_id": "cis_controls_v8::0020",
+      "external_raw_id": "RAW-BATCH-F082C76D",
+      "source_document": "CIS Controls v8",
+      "source_version": "Unknown",
+      "source_section": "11.1",
+      "title_draft": "11.1",
+      "description": "Establish and maintain a data recovery process. In the process, address the scope of data recovery activities, recovery prioritization, and the security of backup data.",
+      "keywords": [
+        "Data Recovery Process",
+        "Backup Security",
+        "Recovery Prioritization"
+      ]
+    },
+    {
+      "raw_id": "cis_controls_v8::0021",
+      "external_raw_id": "RAW-BATCH-2CA7BE58",
+      "source_document": "CIS Controls v8",
+      "source_version": "Unknown",
+      "source_section": "11.2",
+      "title_draft": "11.2",
+      "description": "Perform automated backups of in-scope enterprise assets. Data backups must be run weekly, or more frequently, based on the sensitivity of the data.",
+      "keywords": [
+        "Automated Backups",
+        "Weekly Backups"
+      ]
+    },
+    {
+      "raw_id": "cis_controls_v8::0027",
+      "external_raw_id": "RAW-BATCH-C9003E17",
+      "source_document": "CIS Controls v8",
+      "source_version": "Unknown",
+      "source_section": "17.1",
+      "title_draft": "17.1",
+      "description": "Designate one key person, and at least one backup, who will manage the enterprise's incident handling process.",
+      "keywords": [
+        "Incident Handling Management",
+        "Personnel Designation"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0051",
+      "external_raw_id": "RAW-001699",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 2-4-3 (Email Protection)",
+      "title_draft": "2-4-3: Email Protection",
+      "description": "Cybersecurity requirements for protection of the email serviceofthe entity shall include the following as a minimum: 2.4.3.1 Analyzing and filtering email messages (specifically phishing emails and spam emails) using modern and advanced email protection techniques and mechanisms.",
+      "keywords": [
+        "email",
+        "protection",
+        "authentication",
+        "emails",
+        "advanced",
+        "techniques",
+        "suitable",
+        "against"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0068",
+      "external_raw_id": "RAW-001716",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 2-9-1 (Backup and Recovery Management)",
+      "title_draft": "2-9-1: Backup and Recovery Management",
+      "description": "Cybersecurity requirements for backup and recovery management within the entity shall be identified, documented, and approved.",
+      "keywords": [
+        "backup",
+        "recovery",
+        "management",
+        "requirements",
+        "regulatory",
+        "identified",
+        "documented",
+        "approved"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0069",
+      "external_raw_id": "RAW-001717",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 2-9-2 (Backup and Recovery Management)",
+      "title_draft": "2-9-2: Backup and Recovery Management",
+      "description": "Cybersecurity requirements for backup and recovery management within the entity shall be implemented.",
+      "keywords": [
+        "backup",
+        "recovery",
+        "management",
+        "requirements",
+        "regulatory",
+        "implemented",
+        "ensure",
+        "protection"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0070",
+      "external_raw_id": "RAW-001718",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 2-9-3 (Backup and Recovery Management)",
+      "title_draft": "2-9-3: Backup and Recovery Management",
+      "description": "Cybersecurity requirements for backup and recovery management shall include the following as a minimum: 2.9.3.1 Scope of backups to cover critical technology and information assets.",
+      "keywords": [
+        "recovery",
+        "backup",
+        "management",
+        "requirements",
+        "data",
+        "regulatory",
+        "following",
+        "minimum"
+      ]
+    },
+    {
+      "raw_id": "essential_cybersecurity_controls_ecc_2_2024::0071",
+      "external_raw_id": "RAW-001719",
+      "source_document": "Essential Cybersecurity Controls (ECC 2-2024)",
+      "source_version": "ECC 2-2024",
+      "source_section": "Control 2-9-4 (Backup and Recovery Management)",
+      "title_draft": "2-9-4: Backup and Recovery Management",
+      "description": "The implementation of cybersecurity requirements for backup and recovery management within the entity shall be periodically reviewed.",
+      "keywords": [
+        "backup",
+        "recovery",
+        "management",
+        "requirements",
+        "regulatory",
+        "implementation",
+        "periodically",
+        "reviewed"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0025",
+      "external_raw_id": "RAW-001781",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1578.004",
+      "title_draft": "T1578.004 — Revert Cloud Instance",
+      "description": "An adversary may revert changes made to a cloud instance after they have performed malicious activities in attempt to evade detection and remove evidence of their presence.",
+      "keywords": [
+        "cloud",
+        "instance",
+        "storage",
+        "revert",
+        "snapshots",
+        "types",
+        "ephemeral",
+        "citation"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0226",
+      "external_raw_id": "RAW-001982",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1536",
+      "title_draft": "T1536 — Revert Cloud Instance",
+      "description": "An adversary may revert changes made to a cloud instance after they have performed malicious activities in attempt to evade detection and remove evidence of their presence.",
+      "keywords": [
+        "cloud",
+        "instance",
+        "storage",
+        "revert",
+        "snapshots",
+        "types",
+        "ephemeral",
+        "citation"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0271",
+      "external_raw_id": "RAW-002027",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1518.002",
+      "title_draft": "T1518.002 — Backup Software Discovery",
+      "description": "Adversaries may attempt to get a listing of backup software or configurations that are installed on a system.",
+      "keywords": [
+        "software",
+        "https",
+        "attack",
+        "mitre",
+        "org",
+        "discovery",
+        "techniques",
+        "backup"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0373",
+      "external_raw_id": "RAW-002129",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1056.003",
+      "title_draft": "T1056.003 — Web Portal Capture",
+      "description": "Adversaries may install code on externally facing portals, such as a VPN login page, to capture and transmit credentials of users who attempt to log into the service.",
+      "keywords": [
+        "capture",
+        "service",
+        "access",
+        "web",
+        "externally",
+        "facing",
+        "login",
+        "page"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0473",
+      "external_raw_id": "RAW-002229",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1104",
+      "title_draft": "T1104 — Multi-Stage Channels",
+      "description": "Adversaries may create multiple stages for command and control that are employed under different conditions or for certain functions.",
+      "keywords": [
+        "command",
+        "stages",
+        "will",
+        "first-stage",
+        "channels",
+        "multiple",
+        "different",
+        "more"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0602",
+      "external_raw_id": "RAW-002358",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1187",
+      "title_draft": "T1187 — Forced Authentication",
+      "description": "Adversaries may gather credential material by invoking or forcing a user to automatically provide authentication information through a mechanism in which they can intercept.",
+      "keywords": [
+        "citation",
+        "smb",
+        "code",
+        "authentication",
+        "access",
+        "user",
+        "file",
+        "remote"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0794",
+      "external_raw_id": "RAW-002550",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1578.001",
+      "title_draft": "T1578.001 — Create Snapshot",
+      "description": "An adversary may create a snapshot or data backup within a cloud account to evade defenses.",
+      "keywords": [
+        "snapshot",
+        "adversary",
+        "create",
+        "cloud",
+        "instance",
+        "t1578",
+        "access",
+        "evade"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0826",
+      "external_raw_id": "RAW-002582",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1490",
+      "title_draft": "T1490 — Inhibit System Recovery",
+      "description": "Adversaries may delete or remove built-in data and turn off services designed to aid in the recovery of a corrupted system to prevent recovery.(Citation: Talos Olympic Destroyer 2018)(Citation: FireEye WannaCry 2017) This may deny access to available backups and recovery options.",
+      "keywords": [
+        "code",
+        "delete",
+        "recovery",
+        "citation",
+        "adversaries",
+        "exe",
+        "attack",
+        "backups"
+      ]
+    },
+    {
+      "raw_id": "mitre_att_ck_enterprise::0854",
+      "external_raw_id": "RAW-002610",
+      "source_document": "MITRE ATT&CK Enterprise",
+      "source_version": "19.1",
+      "source_section": "Technique T1218.014",
+      "title_draft": "T1218.014 — MMC",
+      "description": "Adversaries may abuse mmc.exe to proxy execution of malicious .msc files.",
+      "keywords": [
+        "mmc",
+        "msc",
+        "code",
+        "citation",
+        "adversaries",
+        "malicious",
+        "microsoft",
+        "open"
+      ]
+    },
+    {
+      "raw_id": "nca_ecc_1_2018::0015",
+      "external_raw_id": "RAW-BATCH-CCA90FF0",
+      "source_document": "NCA ECC-1:2018",
+      "source_version": "Unknown",
+      "source_section": "3-3-1",
+      "title_draft": "3-3-1",
+      "description": "Implementing a secure backup solution with periodic testing of data restoration capabilities.",
+      "keywords": [
+        "Backup Solution",
+        "Restoration Testing"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0200",
+      "external_raw_id": "RAW-000307",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-9(1) (Audit and Accountability)",
+      "title_draft": "AU-9(1): Hardware Write-once Media",
+      "description": "Write audit trails to hardware-enforced, write-once media.",
+      "keywords": [
+        "audit",
+        "media",
+        "write-once",
+        "trails",
+        "hardware-enforced",
+        "write",
+        "writing",
+        "initial"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0201",
+      "external_raw_id": "RAW-000308",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AU-9(2) (Audit and Accountability)",
+      "title_draft": "AU-9(2): Store on Separate Physical Systems or Components",
+      "description": "Store audit records {{ insert: param, au-09.02_odp }} in a repository that is part of a physically different system or system component than the system or component being audited.",
+      "keywords": [
+        "audit",
+        "records",
+        "separate",
+        "components",
+        "component",
+        "audited",
+        "storing",
+        "store"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0332",
+      "external_raw_id": "RAW-000439",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CP-2 (Contingency Planning)",
+      "title_draft": "CP-2: Contingency Plan",
+      "description": "a.",
+      "keywords": [
+        "contingency",
+        "plan",
+        "planning",
+        "incident",
+        "addresses",
+        "activities",
+        "mission",
+        "business"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0348",
+      "external_raw_id": "RAW-000455",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CP-4(4) (Contingency Planning)",
+      "title_draft": "CP-4(4): Full Recovery and Reconstitution",
+      "description": "Include a full recovery and reconstitution of the system to a known state as part of contingency plan testing.",
+      "keywords": [
+        "recovery",
+        "state",
+        "reconstitution",
+        "full",
+        "known",
+        "contingency",
+        "plan",
+        "activities"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0351",
+      "external_raw_id": "RAW-000458",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CP-6 (Contingency Planning)",
+      "title_draft": "CP-6: Alternate Storage Site",
+      "description": "a.",
+      "keywords": [
+        "storage",
+        "alternate",
+        "site",
+        "sites",
+        "primary",
+        "processing",
+        "requirements",
+        "agreements"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0353",
+      "external_raw_id": "RAW-000460",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CP-6(2) (Contingency Planning)",
+      "title_draft": "CP-6(2): Recovery Time and Recovery Point Objectives",
+      "description": "Configure the alternate storage site to facilitate recovery operations in accordance with recovery time and recovery point objectives.",
+      "keywords": [
+        "recovery",
+        "time",
+        "point",
+        "objectives",
+        "alternate",
+        "storage",
+        "site",
+        "operations"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0354",
+      "external_raw_id": "RAW-000461",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CP-6(3) (Contingency Planning)",
+      "title_draft": "CP-6(3): Accessibility",
+      "description": "Identify potential accessibility problems to the alternate storage site in the event of an area-wide disruption or disaster and outline explicit mitigation actions.",
+      "keywords": [
+        "alternate",
+        "accessibility",
+        "problems",
+        "storage",
+        "site",
+        "area-wide",
+        "explicit",
+        "mitigation"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0368",
+      "external_raw_id": "RAW-000475",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CP-9 (Contingency Planning)",
+      "title_draft": "CP-9: System Backup",
+      "description": "a.",
+      "keywords": [
+        "backups",
+        "insert",
+        "param",
+        "cp-09_odp",
+        "requirements",
+        "backup",
+        "conduct",
+        "system-level"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0369",
+      "external_raw_id": "RAW-000476",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CP-9(1) (Contingency Planning)",
+      "title_draft": "CP-9(1): Testing for Reliability and Integrity",
+      "description": "Test backup information {{ insert: param, cp-9.1_prm_1 }} to verify media reliability and information integrity.",
+      "keywords": [
+        "backup",
+        "reliability",
+        "integrity",
+        "cp-9",
+        "assurance",
+        "retrieved",
+        "site",
+        "testing"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0370",
+      "external_raw_id": "RAW-000477",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CP-9(2) (Contingency Planning)",
+      "title_draft": "CP-9(2): Test Restoration Using Sampling",
+      "description": "Use a sample of backup information in the restoration of selected system functions as part of contingency plan testing.",
+      "keywords": [
+        "functions",
+        "sample",
+        "backup",
+        "restoration",
+        "selected",
+        "contingency",
+        "plan",
+        "testing"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0371",
+      "external_raw_id": "RAW-000478",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CP-9(3) (Contingency Planning)",
+      "title_draft": "CP-9(3): Separate Storage for Critical Information",
+      "description": "Store backup copies of {{ insert: param, cp-09.03_odp }} in a separate facility or in a fire rated container that is not collocated with the operational system.",
+      "keywords": [
+        "storage",
+        "separate",
+        "critical",
+        "backup",
+        "fire",
+        "rated",
+        "software",
+        "includes"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0373",
+      "external_raw_id": "RAW-000480",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CP-9(5) (Contingency Planning)",
+      "title_draft": "CP-9(5): Transfer to Alternate Storage Site",
+      "description": "Transfer system backup information to the alternate storage site {{ insert: param, cp-9.5_prm_1 }}.",
+      "keywords": [
+        "storage",
+        "alternate",
+        "cp-9",
+        "transfer",
+        "site",
+        "backup",
+        "insert",
+        "param"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0374",
+      "external_raw_id": "RAW-000481",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CP-9(6) (Contingency Planning)",
+      "title_draft": "CP-9(6): Redundant Secondary System",
+      "description": "Conduct system backup by maintaining a redundant secondary system that is not collocated with the primary system and that can be activated without loss of information or disruption to operations.",
+      "keywords": [
+        "secondary",
+        "redundant",
+        "backup",
+        "maintaining",
+        "primary",
+        "cp-9",
+        "conduct",
+        "collocated"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0375",
+      "external_raw_id": "RAW-000482",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CP-9(7) (Contingency Planning)",
+      "title_draft": "CP-9(7): Dual Authorization for Deletion or Destruction",
+      "description": "Enforce dual authorization for the deletion or destruction of {{ insert: param, cp-09.07_odp }}.",
+      "keywords": [
+        "dual",
+        "authorization",
+        "deletion",
+        "destruction",
+        "individuals",
+        "backup",
+        "cp-9",
+        "enforce"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0376",
+      "external_raw_id": "RAW-000483",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CP-9(8) (Contingency Planning)",
+      "title_draft": "CP-9(8): Cryptographic Protection",
+      "description": "Implement cryptographic mechanisms to prevent unauthorized disclosure and modification of {{ insert: param, cp-09.08_odp }}.",
+      "keywords": [
+        "cryptographic",
+        "mechanisms",
+        "protection",
+        "implement",
+        "protect",
+        "backup",
+        "cp-9",
+        "prevent"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0377",
+      "external_raw_id": "RAW-000484",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CP-10 (Contingency Planning)",
+      "title_draft": "CP-10: System Recovery and Reconstitution",
+      "description": "Provide for the recovery and reconstitution of the system to a known state within {{ insert: param, cp-10_prm_1 }} after a disruption, compromise, or failure.",
+      "keywords": [
+        "recovery",
+        "reconstitution",
+        "activities",
+        "contingency",
+        "includes",
+        "capabilities",
+        "plan",
+        "mission"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0381",
+      "external_raw_id": "RAW-000488",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CP-10(4) (Contingency Planning)",
+      "title_draft": "CP-10(4): Restore Within Time Period",
+      "description": "Provide the capability to restore system components within {{ insert: param, cp-10.04_odp }} from configuration-controlled and integrity-protected information representing a known, operational state for the components.",
+      "keywords": [
+        "components",
+        "cp-10",
+        "restore",
+        "known",
+        "operational",
+        "time",
+        "period",
+        "provide"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0383",
+      "external_raw_id": "RAW-000490",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control CP-10(6) (Contingency Planning)",
+      "title_draft": "CP-10(6): Component Protection",
+      "description": "Protect system components used for recovery and reconstitution.",
+      "keywords": [
+        "components",
+        "recovery",
+        "reconstitution",
+        "protection",
+        "software",
+        "cp-10",
+        "component",
+        "protect"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0831",
+      "external_raw_id": "RAW-000636",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control MA-6(1) (Maintenance)",
+      "title_draft": "MA-6(1): Preventive Maintenance",
+      "description": "Perform preventive maintenance on {{ insert: param, ma-06.01_odp.01 }} at {{ insert: param, ma-06.01_odp.02 }}.",
+      "keywords": [
+        "maintenance",
+        "preventive",
+        "equipment",
+        "they",
+        "insert",
+        "param",
+        "ma-06",
+        "odp"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0899",
+      "external_raw_id": "RAW-000704",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control PE-11 (Physical and Environmental Protection)",
+      "title_draft": "PE-11: Emergency Power",
+      "description": "Provide an uninterruptible power supply to facilitate {{ insert: param, pe-11_odp }} in the event of a primary power source loss.",
+      "keywords": [
+        "power",
+        "ups",
+        "source",
+        "emergency",
+        "provides",
+        "uninterruptible",
+        "supply",
+        "loss"
+      ]
+    },
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::1189",
+      "external_raw_id": "RAW-000994",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SA-24 (System and Services Acquisition)",
+      "title_draft": "SA-24: Design For Cyber Resiliency",
+      "description": "a.",
+      "keywords": [
+        "cyber",
+        "resiliency",
+        "design",
+        "defining",
+        "following",
+        "insert",
+        "param",
+        "sa-24_odp"
+      ]
+    }
+  ],
+  "decision": null,
+  "canonical": null
+}

@@ -1,0 +1,53 @@
+{
+  "candidate_group_id": "PA-01",
+  "concept_name": "Manage Privileged Accounts",
+  "expected_sub_domain": "SD-03.04",
+  "member_raw_ids": [
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0008"
+  ],
+  "excluded_raw_ids": [
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0389"
+  ],
+  "member_reasons": {
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0008": "NIST AC-2(7)(a) — establish and administer privileged user accounts per role-based scheme."
+  },
+  "exclusion_reasons": {
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0389": "IA-2(1) MFA for privileged accounts is authentication (PA-04), not account management."
+  },
+  "differences": "AC-2(7) has multiple clauses (establish + monitor). This atomic artifact takes only \"establish/administer privileged accounts\"; the monitoring clause is handled by PA-05.",
+  "decision": "CANONICALIZE",
+  "decision_confidence": 0.85,
+  "requires_human_review": 0,
+  "decision_rationale": "Clear privileged-account management control; single mandatory action (establish/administer). Monitoring clause split to PA-05.",
+  "canonical_artifact": {
+    "title_en": "Privileged Account Management",
+    "definition_short_en": "This control requires that privileged user accounts be established and administered under an approved, role-based scheme.",
+    "definition_full_en": "This artifact requires privileged (administrative) user accounts to be created, assigned, and administered according to an approved, role-based scheme so that elevated access is deliberate and accountable. It applies to all systems with privileged accounts. The minimum expected outcome is a governed set of privileged accounts with defined roles. Verification is by reviewing the privileged-account register and role assignments.",
+    "objective_en": "Ensure privileged accounts exist only under deliberate, accountable administration.",
+    "type": "ART-CTR",
+    "abstraction_level": "ABS-CTR",
+    "primary_domain": "SD-03",
+    "sub_domain": "SD-03.04",
+    "obligation_level": "OBL-MND",
+    "classification_confidence": 0.85,
+    "classification_rationale": "AC-2(7) privileged account administration; SD-03.04.",
+    "verification_method_note": "Review privileged-account register and role assignments.",
+    "missing_fields": [
+      "control_nature",
+      "control_function",
+      "testability"
+    ]
+  },
+  "source_mappings": [
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0008",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control AC-2(7) (Access Control)",
+      "source_file": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations.json",
+      "mapping_strength": "DIRECT",
+      "rationale": null
+    }
+  ],
+  "validation": "OK"
+}

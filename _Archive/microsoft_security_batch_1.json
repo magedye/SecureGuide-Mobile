@@ -1,0 +1,82 @@
+[
+  {
+    "source": "Microsoft Windows Security Baseline",
+    "reference": "Password Policy",
+    "raw_text": "Enforce password history: 24 passwords remembered.",
+    "explicit_info": {
+      "category": "Account Policies",
+      "target": "Domain Controller / Windows Server",
+      "tags": ["Password History", "Configuration Setting"]
+    }
+  },
+  {
+    "source": "Microsoft Windows Security Baseline",
+    "reference": "Password Policy",
+    "raw_text": "Maximum password age: 60 days.",
+    "explicit_info": {
+      "category": "Account Policies",
+      "target": "Domain Controller / Windows Server",
+      "tags": ["Password Expiration", "Configuration Setting"]
+    }
+  },
+  {
+    "source": "Microsoft Windows Security Baseline",
+    "reference": "Password Policy",
+    "raw_text": "Minimum password length: 14 characters.",
+    "explicit_info": {
+      "category": "Account Policies",
+      "target": "Domain Controller / Windows Server",
+      "tags": ["Password Length", "Configuration Setting"]
+    }
+  },
+  {
+    "source": "Microsoft Windows Security Baseline",
+    "reference": "Account Lockout Policy",
+    "raw_text": "Account lockout threshold: 10 invalid logon attempts.",
+    "explicit_info": {
+      "category": "Account Policies",
+      "target": "Domain Controller / Windows Server",
+      "tags": ["Account Lockout", "Brute Force Protection"]
+    }
+  },
+  {
+    "source": "Microsoft Windows Security Baseline",
+    "reference": "Security Options",
+    "raw_text": "Network security: Restrict NTLM: Outgoing NTLM traffic to remote servers: Deny all.",
+    "explicit_info": {
+      "category": "Local Policies / Security Options",
+      "target": "Domain Controller / Windows Server",
+      "tags": ["NTLM Restriction", "Network Security"]
+    }
+  },
+  {
+    "source": "Microsoft Windows Security Baseline",
+    "reference": "Security Options",
+    "raw_text": "Network access: Restrict clients allowed to make remote calls to SAM: O:BAG:BAD:(A;;RC;;;BA).",
+    "explicit_info": {
+      "category": "Local Policies / Security Options",
+      "target": "Domain Controller / Windows Server",
+      "tags": ["SAM Access", "Remote Calls", "Privilege Restriction"]
+    }
+  },
+  {
+    "source": "Microsoft Security Best Practices",
+    "reference": "LAPS Deployment",
+    "raw_text": "Deploy Windows Local Administrator Password Solution (LAPS) to automatically manage and randomize local administrator passwords on domain-joined endpoints.",
+    "explicit_info": {
+      "category": "Identity and Access Management",
+      "target": "Active Directory / Endpoints",
+      "tags": ["LAPS", "Local Admin", "Password Management"]
+    }
+  },
+  {
+    "source": "Microsoft Security Best Practices",
+    "reference": "Tiered Administration",
+    "raw_text": "Implement the Enterprise Access Model (Tiered Administration Model) to separate high-privilege identities (Tier 0) from standard endpoints (Tier 2).",
+    "explicit_info": {
+      "category": "Architecture and Design",
+      "target": "Active Directory",
+      "tags": ["Tiered Administration", "Tier 0", "Privileged Access"]
+    }
+  }
+]

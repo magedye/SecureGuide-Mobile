@@ -1,0 +1,31 @@
+{
+  "id": "G06",
+  "case_type": "inventory_vs_classification",
+  "maps_to_group": "AI-07",
+  "description": "Asset classification is a distinct concept in SD-02.03, not asset inventory (SD-02.01).",
+  "input_raw_ids": [
+    "nca_ecc_1_2018::0006",
+    "essential_cybersecurity_controls_ecc_2_2024::0039"
+  ],
+  "expected_decision": "CANONICALIZE",
+  "accepted_members": [
+    "nca_ecc_1_2018::0006",
+    "essential_cybersecurity_controls_ecc_2_2024::0039"
+  ],
+  "excluded": [
+    "cis_controls_v8::0000"
+  ],
+  "expected_classification": {
+    "type": "ART-REQ",
+    "primary_domain": "SD-02",
+    "sub_domain": "SD-02.03"
+  },
+  "expected_rationale_keywords": [
+    "classif"
+  ],
+  "expected_canonical_title": "Asset Classification & Labeling",
+  "validation_rules": [
+    "sub_domain == SD-02.03 (NOT SD-02.01)",
+    "inventory item excluded"
+  ]
+}

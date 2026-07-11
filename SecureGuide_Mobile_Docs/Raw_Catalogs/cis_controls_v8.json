@@ -1,0 +1,656 @@
+{
+  "extraction_metadata": {
+    "source_document": "CIS Controls v8",
+    "total_artifacts": 29
+  },
+  "artifacts": [
+    {
+      "raw_artifact_id": "RAW-BATCH-95C84370",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "1.1"
+      },
+      "original_content": {
+        "raw_text_en": "Establish and maintain an accurate, detailed, and up-to-date inventory of all enterprise assets with the potential to store or process data, to include: end-user devices (including portable and mobile), network devices, non-computing/Internet of Things (IoT) devices, and servers.",
+        "original_heading": "1.1",
+        "context_paragraph": "{\"control\": \"Control 1: Inventory and Control of Enterprise Assets\", \"tags\": [\"Asset Inventory\", \"Hardware\", \"Enterprise Assets\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "1.1",
+        "description_draft": "Establish and maintain an accurate, detailed, and up-to-date inventory of all enterprise assets with the potential to store or process data, to include: end-user devices (including portable and mobile), network devices, non-computing/Internet of Things (IoT) devices, and servers.",
+        "keywords": [
+          "Asset Inventory",
+          "Hardware",
+          "Enterprise Assets"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-D35909CF",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "1.2"
+      },
+      "original_content": {
+        "raw_text_en": "Ensure that a process exists to address unauthorized assets on a weekly basis.",
+        "original_heading": "1.2",
+        "context_paragraph": "{\"control\": \"Control 1: Inventory and Control of Enterprise Assets\", \"tags\": [\"Unauthorized Assets\", \"Incident Management\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "1.2",
+        "description_draft": "Ensure that a process exists to address unauthorized assets on a weekly basis.",
+        "keywords": [
+          "Unauthorized Assets",
+          "Incident Management"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-9D4F7229",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "2.1"
+      },
+      "original_content": {
+        "raw_text_en": "Establish and maintain a detailed inventory of all licensed software installed on enterprise assets.",
+        "original_heading": "2.1",
+        "context_paragraph": "{\"control\": \"Control 2: Inventory and Control of Software Assets\", \"tags\": [\"Software Inventory\", \"Licensing\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "2.1",
+        "description_draft": "Establish and maintain a detailed inventory of all licensed software installed on enterprise assets.",
+        "keywords": [
+          "Software Inventory",
+          "Licensing"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-02868C36",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "2.2"
+      },
+      "original_content": {
+        "raw_text_en": "Ensure that only currently supported software and software components are used in the enterprise. Software that is unsupported or out-of-date must be updated or replaced.",
+        "original_heading": "2.2",
+        "context_paragraph": "{\"control\": \"Control 2: Inventory and Control of Software Assets\", \"tags\": [\"Supported Software\", \"Patch Management\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "2.2",
+        "description_draft": "Ensure that only currently supported software and software components are used in the enterprise. Software that is unsupported or out-of-date must be updated or replaced.",
+        "keywords": [
+          "Supported Software",
+          "Patch Management"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-FA726B04",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "3.1"
+      },
+      "original_content": {
+        "raw_text_en": "Establish and maintain a data management process, to include data sensitivity, data owner, handling of data, data retention limits, and disposal requirements.",
+        "original_heading": "3.1",
+        "context_paragraph": "{\"control\": \"Control 3: Data Protection\", \"tags\": [\"Data Management\", \"Data Classification\", \"Data Ownership\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "3.1",
+        "description_draft": "Establish and maintain a data management process, to include data sensitivity, data owner, handling of data, data retention limits, and disposal requirements.",
+        "keywords": [
+          "Data Management",
+          "Data Classification",
+          "Data Ownership"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-5681D583",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "3.3"
+      },
+      "original_content": {
+        "raw_text_en": "Configure data access control lists based on a user’s need to know. Apply the 'least privilege' principle.",
+        "original_heading": "3.3",
+        "context_paragraph": "{\"control\": \"Control 3: Data Protection\", \"tags\": [\"Access Control Lists (ACL)\", \"Least Privilege\", \"Need to Know\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "3.3",
+        "description_draft": "Configure data access control lists based on a user’s need to know. Apply the 'least privilege' principle.",
+        "keywords": [
+          "Access Control Lists (ACL)",
+          "Least Privilege",
+          "Need to Know"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-304FFCCD",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "4.1"
+      },
+      "original_content": {
+        "raw_text_en": "Establish and maintain a secure configuration process for enterprise assets and software. Review and update documentation annually.",
+        "original_heading": "4.1",
+        "context_paragraph": "{\"control\": \"Control 4: Secure Configuration of Enterprise Assets and Software\", \"tags\": [\"Secure Configuration\", \"Hardening\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "4.1",
+        "description_draft": "Establish and maintain a secure configuration process for enterprise assets and software. Review and update documentation annually.",
+        "keywords": [
+          "Secure Configuration",
+          "Hardening"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-B7BE7AAD",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "5.1"
+      },
+      "original_content": {
+        "raw_text_en": "Establish and maintain an inventory of all accounts managed in the enterprise, including user, administrator, and service accounts.",
+        "original_heading": "5.1",
+        "context_paragraph": "{\"control\": \"Control 5: Account Management\", \"tags\": [\"Account Inventory\", \"Identity Management\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "5.1",
+        "description_draft": "Establish and maintain an inventory of all accounts managed in the enterprise, including user, administrator, and service accounts.",
+        "keywords": [
+          "Account Inventory",
+          "Identity Management"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-B49D7F40",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "5.2"
+      },
+      "original_content": {
+        "raw_text_en": "Use unique passwords for all enterprise assets. Do not use the same password for multiple assets.",
+        "original_heading": "5.2",
+        "context_paragraph": "{\"control\": \"Control 5: Account Management\", \"tags\": [\"Unique Passwords\", \"Credential Management\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "5.2",
+        "description_draft": "Use unique passwords for all enterprise assets. Do not use the same password for multiple assets.",
+        "keywords": [
+          "Unique Passwords",
+          "Credential Management"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-0C1412C6",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "5.3"
+      },
+      "original_content": {
+        "raw_text_en": "Disable dormant accounts after 45 days of inactivity, where supported.",
+        "original_heading": "5.3",
+        "context_paragraph": "{\"control\": \"Control 5: Account Management\", \"tags\": [\"Dormant Accounts\", \"Access Revocation\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "5.3",
+        "description_draft": "Disable dormant accounts after 45 days of inactivity, where supported.",
+        "keywords": [
+          "Dormant Accounts",
+          "Access Revocation"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-D17290F4",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "6.1"
+      },
+      "original_content": {
+        "raw_text_en": "Establish and follow a process, preferably automated, for granting access to enterprise assets upon new hire, rights grant, or role change of a user.",
+        "original_heading": "6.1",
+        "context_paragraph": "{\"control\": \"Control 6: Access Control Management\", \"tags\": [\"Access Provisioning\", \"Role-Based Access Control (RBAC)\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "6.1",
+        "description_draft": "Establish and follow a process, preferably automated, for granting access to enterprise assets upon new hire, rights grant, or role change of a user.",
+        "keywords": [
+          "Access Provisioning",
+          "Role-Based Access Control (RBAC)"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-D97F33FF",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "6.3"
+      },
+      "original_content": {
+        "raw_text_en": "Require all external or remote access to the enterprise network, such as VPN, to use Multi-Factor Authentication (MFA).",
+        "original_heading": "6.3",
+        "context_paragraph": "{\"control\": \"Control 6: Access Control Management\", \"tags\": [\"Multi-Factor Authentication (MFA)\", \"Remote Access\", \"VPN\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "6.3",
+        "description_draft": "Require all external or remote access to the enterprise network, such as VPN, to use Multi-Factor Authentication (MFA).",
+        "keywords": [
+          "Multi-Factor Authentication (MFA)",
+          "Remote Access",
+          "VPN"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-F4AEEB4F",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "6.5"
+      },
+      "original_content": {
+        "raw_text_en": "Require Multi-Factor Authentication (MFA) for all administrative access to enterprise assets.",
+        "original_heading": "6.5",
+        "context_paragraph": "{\"control\": \"Control 6: Access Control Management\", \"tags\": [\"Multi-Factor Authentication (MFA)\", \"Administrative Access\", \"Privileged Access\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "6.5",
+        "description_draft": "Require Multi-Factor Authentication (MFA) for all administrative access to enterprise assets.",
+        "keywords": [
+          "Multi-Factor Authentication (MFA)",
+          "Administrative Access",
+          "Privileged Access"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-63B6AF86",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "7.1"
+      },
+      "original_content": {
+        "raw_text_en": "Establish and maintain a vulnerability management process for enterprise assets. Review and update documentation annually, or when significant enterprise changes occur that could impact this Safeguard.",
+        "original_heading": "7.1",
+        "context_paragraph": "{\"control\": \"Control 7: Continuous Vulnerability Management\", \"tags\": [\"Vulnerability Management Process\", \"Documentation Review\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "7.1",
+        "description_draft": "Establish and maintain a vulnerability management process for enterprise assets. Review and update documentation annually, or when significant enterprise changes occur that could impact this Safeguard.",
+        "keywords": [
+          "Vulnerability Management Process",
+          "Documentation Review"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-0F272CF8",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "7.2"
+      },
+      "original_content": {
+        "raw_text_en": "Establish and maintain a risk-based remediation strategy documented in a remediation process, with monthly, or more frequent, reviews.",
+        "original_heading": "7.2",
+        "context_paragraph": "{\"control\": \"Control 7: Continuous Vulnerability Management\", \"tags\": [\"Risk-based Remediation\", \"Monthly Review\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "7.2",
+        "description_draft": "Establish and maintain a risk-based remediation strategy documented in a remediation process, with monthly, or more frequent, reviews.",
+        "keywords": [
+          "Risk-based Remediation",
+          "Monthly Review"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-58C2012B",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "8.1"
+      },
+      "original_content": {
+        "raw_text_en": "Establish and maintain an audit log management process that defines the enterprise’s logging requirements.",
+        "original_heading": "8.1",
+        "context_paragraph": "{\"control\": \"Control 8: Audit Log Management\", \"tags\": [\"Log Management\", \"Audit Logging\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "8.1",
+        "description_draft": "Establish and maintain an audit log management process that defines the enterprise’s logging requirements.",
+        "keywords": [
+          "Log Management",
+          "Audit Logging"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-E385C685",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "8.2"
+      },
+      "original_content": {
+        "raw_text_en": "Collect audit logs. Ensure that logging, per the enterprise's audit log management process, has been enabled across enterprise assets.",
+        "original_heading": "8.2",
+        "context_paragraph": "{\"control\": \"Control 8: Audit Log Management\", \"tags\": [\"Log Collection\", \"Enable Logging\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "8.2",
+        "description_draft": "Collect audit logs. Ensure that logging, per the enterprise's audit log management process, has been enabled across enterprise assets.",
+        "keywords": [
+          "Log Collection",
+          "Enable Logging"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-E99B9998",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "9.1"
+      },
+      "original_content": {
+        "raw_text_en": "Ensure use of only fully supported browsers and email clients that have been approved by the enterprise.",
+        "original_heading": "9.1",
+        "context_paragraph": "{\"control\": \"Control 9: Email and Web Browser Protections\", \"tags\": [\"Supported Browsers\", \"Supported Email Clients\", \"Approved Software\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "9.1",
+        "description_draft": "Ensure use of only fully supported browsers and email clients that have been approved by the enterprise.",
+        "keywords": [
+          "Supported Browsers",
+          "Supported Email Clients",
+          "Approved Software"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-BD791E61",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "10.1"
+      },
+      "original_content": {
+        "raw_text_en": "Deploy and maintain anti-malware software on all enterprise assets.",
+        "original_heading": "10.1",
+        "context_paragraph": "{\"control\": \"Control 10: Malware Defenses\", \"tags\": [\"Anti-malware\", \"Endpoint Protection\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "10.1",
+        "description_draft": "Deploy and maintain anti-malware software on all enterprise assets.",
+        "keywords": [
+          "Anti-malware",
+          "Endpoint Protection"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-A1187CB6",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "10.2"
+      },
+      "original_content": {
+        "raw_text_en": "Configure automatic updates for anti-malware signature files on all enterprise assets on a daily, or more frequent, basis.",
+        "original_heading": "10.2",
+        "context_paragraph": "{\"control\": \"Control 10: Malware Defenses\", \"tags\": [\"Automatic Updates\", \"Malware Signatures\", \"Daily Updates\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "10.2",
+        "description_draft": "Configure automatic updates for anti-malware signature files on all enterprise assets on a daily, or more frequent, basis.",
+        "keywords": [
+          "Automatic Updates",
+          "Malware Signatures",
+          "Daily Updates"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-F082C76D",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "11.1"
+      },
+      "original_content": {
+        "raw_text_en": "Establish and maintain a data recovery process. In the process, address the scope of data recovery activities, recovery prioritization, and the security of backup data.",
+        "original_heading": "11.1",
+        "context_paragraph": "{\"control\": \"Control 11: Data Recovery\", \"tags\": [\"Data Recovery Process\", \"Backup Security\", \"Recovery Prioritization\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "11.1",
+        "description_draft": "Establish and maintain a data recovery process. In the process, address the scope of data recovery activities, recovery prioritization, and the security of backup data.",
+        "keywords": [
+          "Data Recovery Process",
+          "Backup Security",
+          "Recovery Prioritization"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-2CA7BE58",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "11.2"
+      },
+      "original_content": {
+        "raw_text_en": "Perform automated backups of in-scope enterprise assets. Data backups must be run weekly, or more frequently, based on the sensitivity of the data.",
+        "original_heading": "11.2",
+        "context_paragraph": "{\"control\": \"Control 11: Data Recovery\", \"tags\": [\"Automated Backups\", \"Weekly Backups\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "11.2",
+        "description_draft": "Perform automated backups of in-scope enterprise assets. Data backups must be run weekly, or more frequently, based on the sensitivity of the data.",
+        "keywords": [
+          "Automated Backups",
+          "Weekly Backups"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-FFC5AC7B",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "12.1"
+      },
+      "original_content": {
+        "raw_text_en": "Ensure network infrastructure is kept up-to-date. Example implementations include running the latest stable release of software and/or using currently supported Network Infrastructure-as-a-Service (NIaaS) offerings.",
+        "original_heading": "12.1",
+        "context_paragraph": "{\"control\": \"Control 12: Network Infrastructure Management\", \"tags\": [\"Network Infrastructure\", \"Up-to-date Software\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "12.1",
+        "description_draft": "Ensure network infrastructure is kept up-to-date. Example implementations include running the latest stable release of software and/or using currently supported Network Infrastructure-as-a-Service (NIaaS) offerings.",
+        "keywords": [
+          "Network Infrastructure",
+          "Up-to-date Software"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-091F149B",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "13.1"
+      },
+      "original_content": {
+        "raw_text_en": "Centralize security event alerting across enterprise assets for log correlation and analysis. We recommend using a SIEM.",
+        "original_heading": "13.1",
+        "context_paragraph": "{\"control\": \"Control 13: Network Monitoring and Defense\", \"tags\": [\"Centralized Alerting\", \"Log Correlation\", \"SIEM\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "13.1",
+        "description_draft": "Centralize security event alerting across enterprise assets for log correlation and analysis. We recommend using a SIEM.",
+        "keywords": [
+          "Centralized Alerting",
+          "Log Correlation",
+          "SIEM"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-F90E0DE8",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "14.1"
+      },
+      "original_content": {
+        "raw_text_en": "Establish and maintain a security awareness program. The purpose of a security awareness program is to educate the enterprise's workforce on how to interact with enterprise assets and data in a secure manner.",
+        "original_heading": "14.1",
+        "context_paragraph": "{\"control\": \"Control 14: Security Awareness and Skills Training\", \"tags\": [\"Security Awareness Program\", \"Workforce Education\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "14.1",
+        "description_draft": "Establish and maintain a security awareness program. The purpose of a security awareness program is to educate the enterprise's workforce on how to interact with enterprise assets and data in a secure manner.",
+        "keywords": [
+          "Security Awareness Program",
+          "Workforce Education"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-F72EB93A",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "15.1"
+      },
+      "original_content": {
+        "raw_text_en": "Establish and maintain an inventory of service providers. The inventory is to list all known service providers, include classification(s), and designate an enterprise contact for each service provider.",
+        "original_heading": "15.1",
+        "context_paragraph": "{\"control\": \"Control 15: Service Provider Management\", \"tags\": [\"Service Provider Inventory\", \"Vendor Management\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "15.1",
+        "description_draft": "Establish and maintain an inventory of service providers. The inventory is to list all known service providers, include classification(s), and designate an enterprise contact for each service provider.",
+        "keywords": [
+          "Service Provider Inventory",
+          "Vendor Management"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-FECF25C9",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "16.1"
+      },
+      "original_content": {
+        "raw_text_en": "Establish and maintain a secure software development process. Acceptance criteria, such as requiring peer code review and performing threat modeling, should be included.",
+        "original_heading": "16.1",
+        "context_paragraph": "{\"control\": \"Control 16: Application Software Security\", \"tags\": [\"Secure SDLC\", \"Code Review\", \"Threat Modeling\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "16.1",
+        "description_draft": "Establish and maintain a secure software development process. Acceptance criteria, such as requiring peer code review and performing threat modeling, should be included.",
+        "keywords": [
+          "Secure SDLC",
+          "Code Review",
+          "Threat Modeling"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-C9003E17",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "17.1"
+      },
+      "original_content": {
+        "raw_text_en": "Designate one key person, and at least one backup, who will manage the enterprise's incident handling process.",
+        "original_heading": "17.1",
+        "context_paragraph": "{\"control\": \"Control 17: Incident Response Management\", \"tags\": [\"Incident Handling Management\", \"Personnel Designation\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "17.1",
+        "description_draft": "Designate one key person, and at least one backup, who will manage the enterprise's incident handling process.",
+        "keywords": [
+          "Incident Handling Management",
+          "Personnel Designation"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-95CDA91E",
+      "source_metadata": {
+        "source_document": "CIS Controls v8",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "18.1"
+      },
+      "original_content": {
+        "raw_text_en": "Establish and maintain a penetration testing program tailored to the size and complexity of the enterprise.",
+        "original_heading": "18.1",
+        "context_paragraph": "{\"control\": \"Control 18: Penetration Testing\", \"tags\": [\"Penetration Testing Program\", \"Security Assessment\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "18.1",
+        "description_draft": "Establish and maintain a penetration testing program tailored to the size and complexity of the enterprise.",
+        "keywords": [
+          "Penetration Testing Program",
+          "Security Assessment"
+        ]
+      }
+    }
+  ]
+}

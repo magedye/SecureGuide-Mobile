@@ -1,0 +1,49 @@
+{
+  "candidate_group_id": "PA-06",
+  "concept_name": "Dedicated Privileged Access Interface",
+  "expected_sub_domain": "SD-03.04",
+  "member_raw_ids": [
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0421"
+  ],
+  "excluded_raw_ids": [],
+  "member_reasons": {
+    "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0421": "NIST SC-7(15) — route privileged accesses through a dedicated, managed interface for access control and auditing."
+  },
+  "exclusion_reasons": {},
+  "differences": "A jump-host / dedicated interface for privileged access. Boundary with SD-04.01 (Network) is genuine but the purpose is privileged access mediation.",
+  "decision": "CANONICALIZE",
+  "decision_confidence": 0.72,
+  "requires_human_review": 1,
+  "decision_rationale": "Dedicated privileged-access interface (jump host); single source. Confidence 0.72 -> review (SD-03.04 vs SD-04.01).",
+  "canonical_artifact": {
+    "title_en": "Dedicated Privileged Access Path",
+    "definition_short_en": "This control requires privileged access to be routed through a dedicated, managed interface for access control and auditing.",
+    "definition_full_en": "This artifact requires that privileged network access pass through a dedicated, managed interface (such as a jump host or bastion) so that it can be controlled and audited centrally. It applies to networked privileged access. The minimum expected outcome is that privileged access cannot bypass the managed interface. Verification is by testing that privileged paths traverse the dedicated interface.",
+    "objective_en": "Mediate and audit all privileged access through a controlled path.",
+    "type": "ART-CTR",
+    "abstraction_level": "ABS-CTR",
+    "primary_domain": "SD-03",
+    "sub_domain": "SD-03.04",
+    "obligation_level": "OBL-MND",
+    "classification_confidence": 0.72,
+    "classification_rationale": "SC-7(15) dedicated privileged-access interface; SD-03.04 pending review vs SD-04.01.",
+    "verification_method_note": "Test that privileged paths traverse the dedicated interface.",
+    "missing_fields": [
+      "control_nature",
+      "control_function",
+      "testability"
+    ]
+  },
+  "source_mappings": [
+    {
+      "raw_id": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations::0421",
+      "source_document": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+      "source_version": "Release 5.2.0",
+      "source_section": "Control SC-7(15) (System and Communications Protection)",
+      "source_file": "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations.json",
+      "mapping_strength": "DIRECT",
+      "rationale": null
+    }
+  ],
+  "validation": "OK"
+}

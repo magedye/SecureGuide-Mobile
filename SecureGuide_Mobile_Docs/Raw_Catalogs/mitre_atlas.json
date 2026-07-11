@@ -1,0 +1,96 @@
+{
+  "extraction_metadata": {
+    "source_document": "MITRE ATLAS",
+    "total_artifacts": 4
+  },
+  "artifacts": [
+    {
+      "raw_artifact_id": "RAW-AI-B7111092",
+      "source_metadata": {
+        "source_document": "MITRE ATLAS",
+        "source_type": "FRAMEWORK",
+        "source_version": "1.0",
+        "source_section": "AML.T0015"
+      },
+      "original_content": {
+        "raw_text_en": "Adversaries craft inputs (adversarial examples) to evade detection or classification by the ML model.",
+        "original_heading": "AML.T0015: Evade ML Model",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "AML.T0015: Evade ML Model",
+        "description_draft": "Adversaries craft inputs (adversarial examples) to evade detection or classification by the ML model.",
+        "keywords": [
+          "evasion",
+          "adversarial machine learning"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-AI-9DE368F5",
+      "source_metadata": {
+        "source_document": "MITRE ATLAS",
+        "source_type": "FRAMEWORK",
+        "source_version": "1.0",
+        "source_section": "AML.T0020"
+      },
+      "original_content": {
+        "raw_text_en": "Adversaries modify the training data to cause the model to learn incorrect behavior.",
+        "original_heading": "AML.T0020: Poison Training Data",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "AML.T0020: Poison Training Data",
+        "description_draft": "Adversaries modify the training data to cause the model to learn incorrect behavior.",
+        "keywords": [
+          "data poisoning",
+          "training phase"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-AI-9379A2AB",
+      "source_metadata": {
+        "source_document": "MITRE ATLAS",
+        "source_type": "FRAMEWORK",
+        "source_version": "1.0",
+        "source_section": "AML.T0054"
+      },
+      "original_content": {
+        "raw_text_en": "Adversaries embed malicious instructions within prompts to force the LLM to execute unintended commands.",
+        "original_heading": "AML.T0054: LLM Prompt Injection",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "AML.T0054: LLM Prompt Injection",
+        "description_draft": "Adversaries embed malicious instructions within prompts to force the LLM to execute unintended commands.",
+        "keywords": [
+          "prompt injection",
+          "LLM"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-AI-CCD99665",
+      "source_metadata": {
+        "source_document": "MITRE ATLAS",
+        "source_type": "FRAMEWORK",
+        "source_version": "1.0",
+        "source_section": "AML.T0031"
+      },
+      "original_content": {
+        "raw_text_en": "Adversaries use access to a model to infer features or recover instances of the training data.",
+        "original_heading": "AML.T0031: Model Inversion",
+        "context_paragraph": ""
+      },
+      "extracted_elements": {
+        "title_draft": "AML.T0031: Model Inversion",
+        "description_draft": "Adversaries use access to a model to infer features or recover instances of the training data.",
+        "keywords": [
+          "model inversion",
+          "data privacy"
+        ]
+      }
+    }
+  ]
+}

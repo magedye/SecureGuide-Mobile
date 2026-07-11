@@ -1,0 +1,110 @@
+[
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "1.2.1",
+    "raw_text": "Configuration standards for network security controls are defined and implemented.",
+    "explicit_info": {
+      "requirement": "Requirement 1: Install and Maintain Network Security Controls",
+      "tags": ["Network Security", "Configuration Standards", "Firewalls"]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "1.2.2",
+    "raw_text": "All changes to network connections and to configurations of network security controls are approved and managed.",
+    "explicit_info": {
+      "requirement": "Requirement 1: Install and Maintain Network Security Controls",
+      "tags": ["Change Management", "Network Connections", "Approval"]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "1.3.1",
+    "raw_text": "Inbound traffic to the CDE is restricted to only traffic that is necessary for the CDE.",
+    "explicit_info": {
+      "requirement": "Requirement 1: Install and Maintain Network Security Controls",
+      "tags": ["CDE", "Inbound Traffic", "Access Restriction"]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "2.2.1",
+    "raw_text": "System components are configured and managed securely, consistent with industry-accepted system hardening standards.",
+    "explicit_info": {
+      "requirement": "Requirement 2: Apply Secure Configurations to All System Components",
+      "tags": ["System Hardening", "Secure Configuration"]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "2.2.2",
+    "raw_text": "Vendor default accounts, passwords, and SNMP community strings are changed before installing a system on the network.",
+    "explicit_info": {
+      "requirement": "Requirement 2: Apply Secure Configurations to All System Components",
+      "tags": ["Vendor Defaults", "Default Passwords"]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "2.2.4",
+    "raw_text": "Only necessary services, protocols, daemons, and functions are enabled and all unnecessary functionality is removed or disabled.",
+    "explicit_info": {
+      "requirement": "Requirement 2: Apply Secure Configurations to All System Components",
+      "tags": ["Unnecessary Services", "Least Functionality"]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "3.2.1",
+    "raw_text": "Account data storage is kept to a minimum through retention and disposal policies, procedures, and processes.",
+    "explicit_info": {
+      "requirement": "Requirement 3: Protect Stored Account Data",
+      "tags": ["Data Retention", "Data Disposal", "Account Data"]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "3.3.1",
+    "raw_text": "SAD (Sensitive Authentication Data) is not retained after authorization, even if encrypted.",
+    "explicit_info": {
+      "requirement": "Requirement 3: Protect Stored Account Data",
+      "tags": ["SAD", "Sensitive Authentication Data", "No Retention"]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "3.4.1",
+    "raw_text": "The PAN (Primary Account Number) is masked when displayed (the maximum number of digits to be displayed are the first six and last four).",
+    "explicit_info": {
+      "requirement": "Requirement 3: Protect Stored Account Data",
+      "tags": ["PAN Masking", "Display Restriction"]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "3.5.1",
+    "raw_text": "PAN is rendered unreadable anywhere it is stored using strong cryptography with associated key-management processes.",
+    "explicit_info": {
+      "requirement": "Requirement 3: Protect Stored Account Data",
+      "tags": ["PAN Storage", "Strong Cryptography", "Encryption"]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "4.2.1",
+    "raw_text": "Strong cryptography and security protocols are implemented to safeguard PAN during transmission over open, public networks.",
+    "explicit_info": {
+      "requirement": "Requirement 4: Protect Cryptography of Account Data in Transit",
+      "tags": ["Data in Transit", "Strong Cryptography", "Public Networks"]
+    }
+  },
+  {
+    "source": "PCI DSS v4.0",
+    "reference": "4.2.2",
+    "raw_text": "PAN is secured with strong cryptography whenever it is sent via end-user messaging technologies (for example, email, instant messaging, SMS, chat).",
+    "explicit_info": {
+      "requirement": "Requirement 4: Protect Cryptography of Account Data in Transit",
+      "tags": ["End-user Messaging", "Email Security", "PAN Protection"]
+    }
+  }
+]

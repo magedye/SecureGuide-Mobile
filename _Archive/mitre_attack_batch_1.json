@@ -1,0 +1,78 @@
+[
+  {
+    "source": "MITRE ATT&CK v14",
+    "reference": "TA0001 / T1566",
+    "raw_text": "Tactic: Initial Access (TA0001) | Technique: Phishing (T1566) | Description: Adversaries may send phishing messages to gain access to victim systems. All forms of phishing are electronically delivered social engineering.",
+    "explicit_info": {
+      "tactic": "Initial Access",
+      "technique": "Phishing",
+      "tags": ["Threat", "Social Engineering", "Phishing"]
+    }
+  },
+  {
+    "source": "MITRE ATT&CK v14",
+    "reference": "M1017",
+    "raw_text": "Mitigation: User Training (M1017) | Users can be trained to identify social engineering techniques and spearphishing emails.",
+    "explicit_info": {
+      "mitigates_technique": "T1566 (Phishing)",
+      "tags": ["Mitigation", "Security Awareness", "User Training"]
+    }
+  },
+  {
+    "source": "MITRE ATT&CK v14",
+    "reference": "TA0006 / T1003",
+    "raw_text": "Tactic: Credential Access (TA0006) | Technique: OS Credential Dumping (T1003) | Description: Adversaries may attempt to dump credentials to obtain account login and credential material, normally in the form of a hash or a clear text password, from the operating system and software.",
+    "explicit_info": {
+      "tactic": "Credential Access",
+      "technique": "OS Credential Dumping",
+      "tags": ["Threat", "Credential Dumping", "LSASS"]
+    }
+  },
+  {
+    "source": "MITRE ATT&CK v14",
+    "reference": "M1027",
+    "raw_text": "Mitigation: Password Policies (M1027) | Ensure password policies are set to enforce complexity and expiration. Use multi-factor authentication where possible.",
+    "explicit_info": {
+      "mitigates_technique": "T1003 (OS Credential Dumping)",
+      "tags": ["Mitigation", "Password Policy", "MFA"]
+    }
+  },
+  {
+    "source": "MITRE ATT&CK v14",
+    "reference": "TA0004 / T1068",
+    "raw_text": "Tactic: Privilege Escalation (TA0004) | Technique: Exploitation for Privilege Escalation (T1068) | Description: Adversaries may exploit software vulnerabilities in an attempt to elevate privileges.",
+    "explicit_info": {
+      "tactic": "Privilege Escalation",
+      "technique": "Exploitation",
+      "tags": ["Threat", "Vulnerability Exploitation", "Privilege Escalation"]
+    }
+  },
+  {
+    "source": "MITRE ATT&CK v14",
+    "reference": "M1051",
+    "raw_text": "Mitigation: Update Software (M1051) | Update software and firmware to the latest available versions to mitigate vulnerabilities.",
+    "explicit_info": {
+      "mitigates_technique": "T1068 (Exploitation for Privilege Escalation)",
+      "tags": ["Mitigation", "Patch Management", "Software Updates"]
+    }
+  },
+  {
+    "source": "MITRE ATT&CK v14",
+    "reference": "TA0008 / T1021",
+    "raw_text": "Tactic: Lateral Movement (TA0008) | Technique: Remote Services (T1021) | Description: Adversaries may use valid accounts to log into a service specifically designed to accept remote connections, such as telnet, SSH, and RDP.",
+    "explicit_info": {
+      "tactic": "Lateral Movement",
+      "technique": "Remote Services",
+      "tags": ["Threat", "Lateral Movement", "RDP", "SSH"]
+    }
+  },
+  {
+    "source": "MITRE ATT&CK v14",
+    "reference": "M1030",
+    "raw_text": "Mitigation: Network Segmentation (M1030) | Architect sections of the network to isolate critical systems, functions, or resources. Use firewalls to restrict access to these segments.",
+    "explicit_info": {
+      "mitigates_technique": "T1021 (Remote Services)",
+      "tags": ["Mitigation", "Network Segmentation", "Firewalls"]
+    }
+  }
+]

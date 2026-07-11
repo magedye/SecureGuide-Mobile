@@ -1,0 +1,193 @@
+{
+  "extraction_metadata": {
+    "source_document": "MITRE ATT&CK v14",
+    "total_artifacts": 8
+  },
+  "artifacts": [
+    {
+      "raw_artifact_id": "RAW-BATCH-19A427DF",
+      "source_metadata": {
+        "source_document": "MITRE ATT&CK v14",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "TA0001 / T1566"
+      },
+      "original_content": {
+        "raw_text_en": "Tactic: Initial Access (TA0001) | Technique: Phishing (T1566) | Description: Adversaries may send phishing messages to gain access to victim systems. All forms of phishing are electronically delivered social engineering.",
+        "original_heading": "TA0001 / T1566",
+        "context_paragraph": "{\"tactic\": \"Initial Access\", \"technique\": \"Phishing\", \"tags\": [\"Threat\", \"Social Engineering\", \"Phishing\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "TA0001 / T1566",
+        "description_draft": "Tactic: Initial Access (TA0001) | Technique: Phishing (T1566) | Description: Adversaries may send phishing messages to gain access to victim systems. All forms of phishing are electronically delivered social engineering.",
+        "keywords": [
+          "Threat",
+          "Social Engineering",
+          "Phishing"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-6A0A9C35",
+      "source_metadata": {
+        "source_document": "MITRE ATT&CK v14",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "M1017"
+      },
+      "original_content": {
+        "raw_text_en": "Mitigation: User Training (M1017) | Users can be trained to identify social engineering techniques and spearphishing emails.",
+        "original_heading": "M1017",
+        "context_paragraph": "{\"mitigates_technique\": \"T1566 (Phishing)\", \"tags\": [\"Mitigation\", \"Security Awareness\", \"User Training\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "M1017",
+        "description_draft": "Mitigation: User Training (M1017) | Users can be trained to identify social engineering techniques and spearphishing emails.",
+        "keywords": [
+          "Mitigation",
+          "Security Awareness",
+          "User Training"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-869C005F",
+      "source_metadata": {
+        "source_document": "MITRE ATT&CK v14",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "TA0006 / T1003"
+      },
+      "original_content": {
+        "raw_text_en": "Tactic: Credential Access (TA0006) | Technique: OS Credential Dumping (T1003) | Description: Adversaries may attempt to dump credentials to obtain account login and credential material, normally in the form of a hash or a clear text password, from the operating system and software.",
+        "original_heading": "TA0006 / T1003",
+        "context_paragraph": "{\"tactic\": \"Credential Access\", \"technique\": \"OS Credential Dumping\", \"tags\": [\"Threat\", \"Credential Dumping\", \"LSASS\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "TA0006 / T1003",
+        "description_draft": "Tactic: Credential Access (TA0006) | Technique: OS Credential Dumping (T1003) | Description: Adversaries may attempt to dump credentials to obtain account login and credential material, normally in the form of a hash or a clear text password, from the operating system and software.",
+        "keywords": [
+          "Threat",
+          "Credential Dumping",
+          "LSASS"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-FB282534",
+      "source_metadata": {
+        "source_document": "MITRE ATT&CK v14",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "M1027"
+      },
+      "original_content": {
+        "raw_text_en": "Mitigation: Password Policies (M1027) | Ensure password policies are set to enforce complexity and expiration. Use multi-factor authentication where possible.",
+        "original_heading": "M1027",
+        "context_paragraph": "{\"mitigates_technique\": \"T1003 (OS Credential Dumping)\", \"tags\": [\"Mitigation\", \"Password Policy\", \"MFA\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "M1027",
+        "description_draft": "Mitigation: Password Policies (M1027) | Ensure password policies are set to enforce complexity and expiration. Use multi-factor authentication where possible.",
+        "keywords": [
+          "Mitigation",
+          "Password Policy",
+          "MFA"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-FCA7E8BB",
+      "source_metadata": {
+        "source_document": "MITRE ATT&CK v14",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "TA0004 / T1068"
+      },
+      "original_content": {
+        "raw_text_en": "Tactic: Privilege Escalation (TA0004) | Technique: Exploitation for Privilege Escalation (T1068) | Description: Adversaries may exploit software vulnerabilities in an attempt to elevate privileges.",
+        "original_heading": "TA0004 / T1068",
+        "context_paragraph": "{\"tactic\": \"Privilege Escalation\", \"technique\": \"Exploitation\", \"tags\": [\"Threat\", \"Vulnerability Exploitation\", \"Privilege Escalation\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "TA0004 / T1068",
+        "description_draft": "Tactic: Privilege Escalation (TA0004) | Technique: Exploitation for Privilege Escalation (T1068) | Description: Adversaries may exploit software vulnerabilities in an attempt to elevate privileges.",
+        "keywords": [
+          "Threat",
+          "Vulnerability Exploitation",
+          "Privilege Escalation"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-D8ABDC47",
+      "source_metadata": {
+        "source_document": "MITRE ATT&CK v14",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "M1051"
+      },
+      "original_content": {
+        "raw_text_en": "Mitigation: Update Software (M1051) | Update software and firmware to the latest available versions to mitigate vulnerabilities.",
+        "original_heading": "M1051",
+        "context_paragraph": "{\"mitigates_technique\": \"T1068 (Exploitation for Privilege Escalation)\", \"tags\": [\"Mitigation\", \"Patch Management\", \"Software Updates\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "M1051",
+        "description_draft": "Mitigation: Update Software (M1051) | Update software and firmware to the latest available versions to mitigate vulnerabilities.",
+        "keywords": [
+          "Mitigation",
+          "Patch Management",
+          "Software Updates"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-85AE5EBB",
+      "source_metadata": {
+        "source_document": "MITRE ATT&CK v14",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "TA0008 / T1021"
+      },
+      "original_content": {
+        "raw_text_en": "Tactic: Lateral Movement (TA0008) | Technique: Remote Services (T1021) | Description: Adversaries may use valid accounts to log into a service specifically designed to accept remote connections, such as telnet, SSH, and RDP.",
+        "original_heading": "TA0008 / T1021",
+        "context_paragraph": "{\"tactic\": \"Lateral Movement\", \"technique\": \"Remote Services\", \"tags\": [\"Threat\", \"Lateral Movement\", \"RDP\", \"SSH\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "TA0008 / T1021",
+        "description_draft": "Tactic: Lateral Movement (TA0008) | Technique: Remote Services (T1021) | Description: Adversaries may use valid accounts to log into a service specifically designed to accept remote connections, such as telnet, SSH, and RDP.",
+        "keywords": [
+          "Threat",
+          "Lateral Movement",
+          "RDP",
+          "SSH"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-ADC47FD5",
+      "source_metadata": {
+        "source_document": "MITRE ATT&CK v14",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "M1030"
+      },
+      "original_content": {
+        "raw_text_en": "Mitigation: Network Segmentation (M1030) | Architect sections of the network to isolate critical systems, functions, or resources. Use firewalls to restrict access to these segments.",
+        "original_heading": "M1030",
+        "context_paragraph": "{\"mitigates_technique\": \"T1021 (Remote Services)\", \"tags\": [\"Mitigation\", \"Network Segmentation\", \"Firewalls\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "M1030",
+        "description_draft": "Mitigation: Network Segmentation (M1030) | Architect sections of the network to isolate critical systems, functions, or resources. Use firewalls to restrict access to these segments.",
+        "keywords": [
+          "Mitigation",
+          "Network Segmentation",
+          "Firewalls"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,629 @@
+{
+  "extraction_metadata": {
+    "source_document": "NIST CSF 2.0",
+    "total_artifacts": 28
+  },
+  "artifacts": [
+    {
+      "raw_artifact_id": "RAW-BATCH-B289FF5F",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "GV.OC-01"
+      },
+      "original_content": {
+        "raw_text_en": "The organizational mission is understood and informs cybersecurity risk management.",
+        "original_heading": "GV.OC-01",
+        "context_paragraph": "{\"function\": \"GOVERN (GV)\", \"category\": \"Organizational Context (GV.OC)\", \"tags\": [\"Mission\", \"Risk Management Alignment\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "GV.OC-01",
+        "description_draft": "The organizational mission is understood and informs cybersecurity risk management.",
+        "keywords": [
+          "Mission",
+          "Risk Management Alignment"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-72C98918",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "GV.OC-02"
+      },
+      "original_content": {
+        "raw_text_en": "Internal and external stakeholders are understood, and their needs and expectations regarding cybersecurity risk management are considered.",
+        "original_heading": "GV.OC-02",
+        "context_paragraph": "{\"function\": \"GOVERN (GV)\", \"category\": \"Organizational Context (GV.OC)\", \"tags\": [\"Stakeholders\", \"Expectations\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "GV.OC-02",
+        "description_draft": "Internal and external stakeholders are understood, and their needs and expectations regarding cybersecurity risk management are considered.",
+        "keywords": [
+          "Stakeholders",
+          "Expectations"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-36D14950",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "GV.OC-03"
+      },
+      "original_content": {
+        "raw_text_en": "Legal, regulatory, and contractual requirements regarding cybersecurity—including privacy and civil liberties obligations—are understood and managed.",
+        "original_heading": "GV.OC-03",
+        "context_paragraph": "{\"function\": \"GOVERN (GV)\", \"category\": \"Organizational Context (GV.OC)\", \"tags\": [\"Legal\", \"Regulatory\", \"Compliance\", \"Privacy\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "GV.OC-03",
+        "description_draft": "Legal, regulatory, and contractual requirements regarding cybersecurity—including privacy and civil liberties obligations—are understood and managed.",
+        "keywords": [
+          "Legal",
+          "Regulatory",
+          "Compliance",
+          "Privacy"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-9BE05004",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "GV.OC-04"
+      },
+      "original_content": {
+        "raw_text_en": "Cybersecurity objectives are established and communicated.",
+        "original_heading": "GV.OC-04",
+        "context_paragraph": "{\"function\": \"GOVERN (GV)\", \"category\": \"Organizational Context (GV.OC)\", \"tags\": [\"Objectives\", \"Communication\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "GV.OC-04",
+        "description_draft": "Cybersecurity objectives are established and communicated.",
+        "keywords": [
+          "Objectives",
+          "Communication"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-6783852A",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "GV.OC-05"
+      },
+      "original_content": {
+        "raw_text_en": "Outcomes, capabilities, and services that the organization depends on are understood and communicated.",
+        "original_heading": "GV.OC-05",
+        "context_paragraph": "{\"function\": \"GOVERN (GV)\", \"category\": \"Organizational Context (GV.OC)\", \"tags\": [\"Dependencies\", \"Capabilities\", \"Services\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "GV.OC-05",
+        "description_draft": "Outcomes, capabilities, and services that the organization depends on are understood and communicated.",
+        "keywords": [
+          "Dependencies",
+          "Capabilities",
+          "Services"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-6AAB4396",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "GV.RM-01"
+      },
+      "original_content": {
+        "raw_text_en": "Risk management objectives are established and agreed to by organizational stakeholders.",
+        "original_heading": "GV.RM-01",
+        "context_paragraph": "{\"function\": \"GOVERN (GV)\", \"category\": \"Risk Management Strategy (GV.RM)\", \"tags\": [\"Risk Objectives\", \"Stakeholder Agreement\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "GV.RM-01",
+        "description_draft": "Risk management objectives are established and agreed to by organizational stakeholders.",
+        "keywords": [
+          "Risk Objectives",
+          "Stakeholder Agreement"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-92FB29DD",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "GV.RM-02"
+      },
+      "original_content": {
+        "raw_text_en": "Risk appetite and risk tolerance statements are established, communicated, and maintained.",
+        "original_heading": "GV.RM-02",
+        "context_paragraph": "{\"function\": \"GOVERN (GV)\", \"category\": \"Risk Management Strategy (GV.RM)\", \"tags\": [\"Risk Appetite\", \"Risk Tolerance\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "GV.RM-02",
+        "description_draft": "Risk appetite and risk tolerance statements are established, communicated, and maintained.",
+        "keywords": [
+          "Risk Appetite",
+          "Risk Tolerance"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-2A357558",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "GV.RM-03"
+      },
+      "original_content": {
+        "raw_text_en": "Cybersecurity risk management activities and outcomes are included in enterprise risk management processes.",
+        "original_heading": "GV.RM-03",
+        "context_paragraph": "{\"function\": \"GOVERN (GV)\", \"category\": \"Risk Management Strategy (GV.RM)\", \"tags\": [\"ERM Integration\", \"Risk Activities\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "GV.RM-03",
+        "description_draft": "Cybersecurity risk management activities and outcomes are included in enterprise risk management processes.",
+        "keywords": [
+          "ERM Integration",
+          "Risk Activities"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-CC6D590B",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "GV.RM-04"
+      },
+      "original_content": {
+        "raw_text_en": "Strategic direction that describes appropriate risk response options is established and communicated.",
+        "original_heading": "GV.RM-04",
+        "context_paragraph": "{\"function\": \"GOVERN (GV)\", \"category\": \"Risk Management Strategy (GV.RM)\", \"tags\": [\"Strategic Direction\", \"Risk Response\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "GV.RM-04",
+        "description_draft": "Strategic direction that describes appropriate risk response options is established and communicated.",
+        "keywords": [
+          "Strategic Direction",
+          "Risk Response"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-05E2B8F4",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "GV.RM-05"
+      },
+      "original_content": {
+        "raw_text_en": "Lines of communication across the organization are established for cybersecurity risks, including risks from suppliers and other third parties.",
+        "original_heading": "GV.RM-05",
+        "context_paragraph": "{\"function\": \"GOVERN (GV)\", \"category\": \"Risk Management Strategy (GV.RM)\", \"tags\": [\"Communication Lines\", \"Third-party Risk\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "GV.RM-05",
+        "description_draft": "Lines of communication across the organization are established for cybersecurity risks, including risks from suppliers and other third parties.",
+        "keywords": [
+          "Communication Lines",
+          "Third-party Risk"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-7F3D7E2E",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "ID.AM-01"
+      },
+      "original_content": {
+        "raw_text_en": "Inventories of hardware, software, services, and systems are maintained.",
+        "original_heading": "ID.AM-01",
+        "context_paragraph": "{\"function\": \"IDENTIFY (ID)\", \"category\": \"Asset Management (ID.AM)\", \"tags\": [\"Asset Inventory\", \"Hardware\", \"Software\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "ID.AM-01",
+        "description_draft": "Inventories of hardware, software, services, and systems are maintained.",
+        "keywords": [
+          "Asset Inventory",
+          "Hardware",
+          "Software"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-60F039DA",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "ID.AM-02"
+      },
+      "original_content": {
+        "raw_text_en": "Inventories of data and corresponding metadata are maintained.",
+        "original_heading": "ID.AM-02",
+        "context_paragraph": "{\"function\": \"IDENTIFY (ID)\", \"category\": \"Asset Management (ID.AM)\", \"tags\": [\"Data Inventory\", \"Metadata\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "ID.AM-02",
+        "description_draft": "Inventories of data and corresponding metadata are maintained.",
+        "keywords": [
+          "Data Inventory",
+          "Metadata"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-7C01828C",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "ID.RA-01"
+      },
+      "original_content": {
+        "raw_text_en": "Vulnerabilities in assets are identified, validated, and recorded.",
+        "original_heading": "ID.RA-01",
+        "context_paragraph": "{\"function\": \"IDENTIFY (ID)\", \"category\": \"Risk Assessment (ID.RA)\", \"tags\": [\"Vulnerability Management\", \"Risk Assessment\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "ID.RA-01",
+        "description_draft": "Vulnerabilities in assets are identified, validated, and recorded.",
+        "keywords": [
+          "Vulnerability Management",
+          "Risk Assessment"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-5D2070E0",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "ID.RA-02"
+      },
+      "original_content": {
+        "raw_text_en": "Cyber threat intelligence is received from information sharing forums and sources.",
+        "original_heading": "ID.RA-02",
+        "context_paragraph": "{\"function\": \"IDENTIFY (ID)\", \"category\": \"Risk Assessment (ID.RA)\", \"tags\": [\"Threat Intelligence\", \"Information Sharing\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "ID.RA-02",
+        "description_draft": "Cyber threat intelligence is received from information sharing forums and sources.",
+        "keywords": [
+          "Threat Intelligence",
+          "Information Sharing"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-1C3CE8DE",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "PR.AA-01"
+      },
+      "original_content": {
+        "raw_text_en": "Identities and credentials for authorized users, services, and hardware are managed by the organization.",
+        "original_heading": "PR.AA-01",
+        "context_paragraph": "{\"function\": \"PROTECT (PR)\", \"category\": \"Identity Management, Authentication, and Access Control (PR.AA)\", \"tags\": [\"Identity Management\", \"Credentials\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "PR.AA-01",
+        "description_draft": "Identities and credentials for authorized users, services, and hardware are managed by the organization.",
+        "keywords": [
+          "Identity Management",
+          "Credentials"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-884A3863",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "PR.AA-02"
+      },
+      "original_content": {
+        "raw_text_en": "Identities are proofed and bound to credentials based on the context of interactions.",
+        "original_heading": "PR.AA-02",
+        "context_paragraph": "{\"function\": \"PROTECT (PR)\", \"category\": \"Identity Management, Authentication, and Access Control (PR.AA)\", \"tags\": [\"Identity Proofing\", \"Authentication Context\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "PR.AA-02",
+        "description_draft": "Identities are proofed and bound to credentials based on the context of interactions.",
+        "keywords": [
+          "Identity Proofing",
+          "Authentication Context"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-F380FF1E",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "PR.AA-03"
+      },
+      "original_content": {
+        "raw_text_en": "Users, services, and hardware are authenticated.",
+        "original_heading": "PR.AA-03",
+        "context_paragraph": "{\"function\": \"PROTECT (PR)\", \"category\": \"Identity Management, Authentication, and Access Control (PR.AA)\", \"tags\": [\"Authentication\", \"Access Control\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "PR.AA-03",
+        "description_draft": "Users, services, and hardware are authenticated.",
+        "keywords": [
+          "Authentication",
+          "Access Control"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-F9A4D174",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "PR.DS-01"
+      },
+      "original_content": {
+        "raw_text_en": "The confidentiality, integrity, and availability of data-at-rest are protected.",
+        "original_heading": "PR.DS-01",
+        "context_paragraph": "{\"function\": \"PROTECT (PR)\", \"category\": \"Data Security (PR.DS)\", \"tags\": [\"Data at Rest\", \"Encryption\", \"CIA Triad\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "PR.DS-01",
+        "description_draft": "The confidentiality, integrity, and availability of data-at-rest are protected.",
+        "keywords": [
+          "Data at Rest",
+          "Encryption",
+          "CIA Triad"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-66B9B40B",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "PR.DS-02"
+      },
+      "original_content": {
+        "raw_text_en": "The confidentiality, integrity, and availability of data-in-transit are protected.",
+        "original_heading": "PR.DS-02",
+        "context_paragraph": "{\"function\": \"PROTECT (PR)\", \"category\": \"Data Security (PR.DS)\", \"tags\": [\"Data in Transit\", \"Network Security\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "PR.DS-02",
+        "description_draft": "The confidentiality, integrity, and availability of data-in-transit are protected.",
+        "keywords": [
+          "Data in Transit",
+          "Network Security"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-9B605190",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "DE.CM-01"
+      },
+      "original_content": {
+        "raw_text_en": "Networks, systems, and services are monitored to find potentially adverse events.",
+        "original_heading": "DE.CM-01",
+        "context_paragraph": "{\"function\": \"DETECT (DE)\", \"category\": \"Continuous Monitoring (DE.CM)\", \"tags\": [\"Network Monitoring\", \"Adverse Events\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "DE.CM-01",
+        "description_draft": "Networks, systems, and services are monitored to find potentially adverse events.",
+        "keywords": [
+          "Network Monitoring",
+          "Adverse Events"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-D376AD69",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "DE.CM-02"
+      },
+      "original_content": {
+        "raw_text_en": "The physical environment is monitored to find potentially adverse events.",
+        "original_heading": "DE.CM-02",
+        "context_paragraph": "{\"function\": \"DETECT (DE)\", \"category\": \"Continuous Monitoring (DE.CM)\", \"tags\": [\"Physical Security\", \"Monitoring\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "DE.CM-02",
+        "description_draft": "The physical environment is monitored to find potentially adverse events.",
+        "keywords": [
+          "Physical Security",
+          "Monitoring"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-B4B79FE5",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "DE.AE-01"
+      },
+      "original_content": {
+        "raw_text_en": "Events are analyzed to identify potential cybersecurity incidents.",
+        "original_heading": "DE.AE-01",
+        "context_paragraph": "{\"function\": \"DETECT (DE)\", \"category\": \"Adverse Event Analysis (DE.AE)\", \"tags\": [\"Event Analysis\", \"Incident Identification\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "DE.AE-01",
+        "description_draft": "Events are analyzed to identify potential cybersecurity incidents.",
+        "keywords": [
+          "Event Analysis",
+          "Incident Identification"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-46987C95",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "RS.MA-01"
+      },
+      "original_content": {
+        "raw_text_en": "The cybersecurity incident response plan is executed once an incident is declared.",
+        "original_heading": "RS.MA-01",
+        "context_paragraph": "{\"function\": \"RESPOND (RS)\", \"category\": \"Incident Management (RS.MA)\", \"tags\": [\"Incident Response Plan\", \"Execution\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "RS.MA-01",
+        "description_draft": "The cybersecurity incident response plan is executed once an incident is declared.",
+        "keywords": [
+          "Incident Response Plan",
+          "Execution"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-C29F5E32",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "RS.AN-01"
+      },
+      "original_content": {
+        "raw_text_en": "The impact and magnitude of the incident are determined.",
+        "original_heading": "RS.AN-01",
+        "context_paragraph": "{\"function\": \"RESPOND (RS)\", \"category\": \"Incident Analysis (RS.AN)\", \"tags\": [\"Impact Assessment\", \"Incident Analysis\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "RS.AN-01",
+        "description_draft": "The impact and magnitude of the incident are determined.",
+        "keywords": [
+          "Impact Assessment",
+          "Incident Analysis"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-76971F67",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "RS.MI-01"
+      },
+      "original_content": {
+        "raw_text_en": "Incidents are contained.",
+        "original_heading": "RS.MI-01",
+        "context_paragraph": "{\"function\": \"RESPOND (RS)\", \"category\": \"Incident Mitigation (RS.MI)\", \"tags\": [\"Containment\", \"Mitigation\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "RS.MI-01",
+        "description_draft": "Incidents are contained.",
+        "keywords": [
+          "Containment",
+          "Mitigation"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-A564A729",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "RS.MI-02"
+      },
+      "original_content": {
+        "raw_text_en": "Incidents are eradicated.",
+        "original_heading": "RS.MI-02",
+        "context_paragraph": "{\"function\": \"RESPOND (RS)\", \"category\": \"Incident Mitigation (RS.MI)\", \"tags\": [\"Eradication\", \"Mitigation\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "RS.MI-02",
+        "description_draft": "Incidents are eradicated.",
+        "keywords": [
+          "Eradication",
+          "Mitigation"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-98ECF4DE",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "RC.RP-01"
+      },
+      "original_content": {
+        "raw_text_en": "The recovery plan is executed once a cybersecurity incident is contained and eradicated.",
+        "original_heading": "RC.RP-01",
+        "context_paragraph": "{\"function\": \"RECOVER (RC)\", \"category\": \"Incident Recovery Plan Execution (RC.RP)\", \"tags\": [\"Recovery Plan\", \"Execution\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "RC.RP-01",
+        "description_draft": "The recovery plan is executed once a cybersecurity incident is contained and eradicated.",
+        "keywords": [
+          "Recovery Plan",
+          "Execution"
+        ]
+      }
+    },
+    {
+      "raw_artifact_id": "RAW-BATCH-99BF7FBD",
+      "source_metadata": {
+        "source_document": "NIST CSF 2.0",
+        "source_type": "FRAMEWORK",
+        "source_version": "Unknown",
+        "source_section": "RC.RP-02"
+      },
+      "original_content": {
+        "raw_text_en": "Recovery activities are coordinated with internal and external stakeholders.",
+        "original_heading": "RC.RP-02",
+        "context_paragraph": "{\"function\": \"RECOVER (RC)\", \"category\": \"Incident Recovery Plan Execution (RC.RP)\", \"tags\": [\"Recovery Coordination\", \"Stakeholders\"]}"
+      },
+      "extracted_elements": {
+        "title_draft": "RC.RP-02",
+        "description_draft": "Recovery activities are coordinated with internal and external stakeholders.",
+        "keywords": [
+          "Recovery Coordination",
+          "Stakeholders"
+        ]
+      }
+    }
+  ]
+}

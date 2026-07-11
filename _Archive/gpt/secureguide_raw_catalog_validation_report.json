@@ -1,0 +1,70 @@
+{
+  "total_artifacts": 2613,
+  "unique_ids": 2613,
+  "unique_source_locators": 2613,
+  "duplicate_source_locators": 0,
+  "ids_are_sequential": true,
+  "exact_top_level_schema": true,
+  "no_usacm_or_sdt_assignments": true,
+  "complete_records": 2613,
+  "source_traced_records": 2613,
+  "human_review_records": 451,
+  "ambiguous_records": 0,
+  "records_with_extracted_elements": 2613,
+  "source_counts": {
+    "The NIST Cybersecurity Framework (CSF) 2.0": 106,
+    "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations": 1196,
+    "OWASP Application Security Verification Standard 5.0.0": 345,
+    "Essential Cybersecurity Controls (ECC 2-2024)": 108,
+    "MITRE ATT&CK Enterprise": 858
+  },
+  "phase_files": [
+    {
+      "file": "secureguide_raw_catalog_phase_1.json",
+      "bytes": 1532988,
+      "sha256": "400d34519ee85cc3d0d219dea956a552c74d00436b857e2fd0258de61b94719a"
+    },
+    {
+      "file": "secureguide_raw_catalog_phase_2.json",
+      "bytes": 1623145,
+      "sha256": "9d56ef9dbe14920ee506be43d0e7017f15f9c5933898e50429094ed40fbe0d69"
+    },
+    {
+      "file": "secureguide_raw_catalog_phase_3.json",
+      "bytes": 1444900,
+      "sha256": "816ae3ca1f2f0109784910329df2028bf6e557b5ae8ee731c0919a8dce91d766"
+    },
+    {
+      "file": "secureguide_raw_catalog_phase_4.json",
+      "bytes": 4017197,
+      "sha256": "c7573a63314daf47638c5a3e4501acdf320099ed6e0578ab27185dd4a05472e7"
+    }
+  ],
+  "source_files": {
+    "csf": {
+      "path": "/tmp/CSF_2_0.xlsx",
+      "bytes": 107518,
+      "sha256": "1d31cfbfe1f639a5d5eb475cd68d78edf7e4e199676dd14454b8611471bd3070"
+    },
+    "nist53": {
+      "path": "/tmp/NIST_SP-800-53_rev5_catalog.json",
+      "bytes": 10442037,
+      "sha256": "01f37cf90ea99d92242c936cbfbdebcc338eef1f71454e2acac36cc56e9bc062"
+    },
+    "asvs": {
+      "path": "/tmp/OWASP_ASVS_5.0.0_en.csv",
+      "bytes": 105100,
+      "sha256": "98c8fe911b9edb403af8ee05d3ce8201ecac2659e313b053890a62847cdcf680"
+    },
+    "nca": {
+      "path": "/tmp/ECC_2_2024_EN_raw.txt",
+      "bytes": 92470,
+      "sha256": "109666d5e4207c408fcc5b601ff3d438cc1d888ae0cae967160ce98fe57c0ae7"
+    },
+    "mitre": {
+      "path": "/tmp/enterprise-attack.json",
+      "bytes": 53277393,
+      "sha256": "bdf1ce86a4e604214c5076d37ae4dcb322678afc528df8492e6fdc1b554f5da3"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+﻿{
+  "source": "CIS Ubuntu Linux 22.04 LTS Benchmark",
+  "id": "5.2.14",
+  "title": "Ensure SSH access is limited",
+  "description": "There are several options available to limit which users and groups can access the system via SSH. Edit the /etc/ssh/sshd_config file and configure AllowUsers."
+}
