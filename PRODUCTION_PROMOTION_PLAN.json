@@ -1,0 +1,136 @@
+{
+  "batch_id": "AI-INV-PROD-20260711",
+  "items": [
+    {
+      "staging_id": "STG-CANON-AI-02",
+      "final_artifact_id": "SG-CTR-AI-02",
+      "action": "INSERT",
+      "source_staging_hash": "758da6773e927de702e2ad1658df6371ca2bffa612016d7f748647e074ab942c",
+      "type": "ART-CTR",
+      "sub_domain": "SD-02.01",
+      "equivalence_group": "EG-AI-AI-02",
+      "mappings": [
+        {
+          "framework": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+          "version": "Release 5.2.0",
+          "reference": "Control CM-8(1) (Configuration Management)",
+          "mapping_strength": "DIRECT",
+          "rationale": null
+        },
+        {
+          "framework": "NIST SP 800-53 Rev. 5 — Security and Privacy Controls for Information Systems and Organizations",
+          "version": "Release 5.2.0",
+          "reference": "Control CM-8(2) (Configuration Management)",
+          "mapping_strength": "DIRECT",
+          "rationale": null
+        }
+      ],
+      "tags": [],
+      "relationships": []
+    },
+    {
+      "staging_id": "STG-CANON-AI-05",
+      "final_artifact_id": "SG-CTR-AI-05",
+      "action": "INSERT",
+      "source_staging_hash": "67405f891d6ac97190042450f3e1ac04bf9c52b069deba59d5a5f14909ea68e6",
+      "type": "ART-CTR",
+      "sub_domain": "SD-02.01",
+      "equivalence_group": "EG-AI-AI-05",
+      "mappings": [
+        {
+          "framework": "CIS Controls v8",
+          "version": "Unknown",
+          "reference": "1.2",
+          "mapping_strength": "DIRECT",
+          "rationale": null
+        }
+      ],
+      "tags": [],
+      "relationships": []
+    },
+    {
+      "staging_id": "STG-CANON-AI-06",
+      "final_artifact_id": "SG-REQ-AI-06",
+      "action": "INSERT",
+      "source_staging_hash": "af6e0193f6bdcd9bcedf66e98c8a27ab6c265d8538081bc7b4937eb7c5fcd5c8",
+      "type": "ART-REQ",
+      "sub_domain": "SD-02.02",
+      "equivalence_group": "EG-AI-AI-06",
+      "mappings": [
+        {
+          "framework": "CIS Controls v8",
+          "version": "Unknown",
+          "reference": "2.1",
+          "mapping_strength": "DIRECT",
+          "rationale": null
+        }
+      ],
+      "tags": [],
+      "relationships": []
+    },
+    {
+      "staging_id": "STG-CANON-AI-08",
+      "final_artifact_id": "SG-POL-AI-08",
+      "action": "INSERT",
+      "source_staging_hash": "616d4cda6b1543725b316196efdd6bb6e692bc78e9bc94d4f3d9b224e8684715",
+      "type": "ART-POL",
+      "sub_domain": "SD-08.05",
+      "equivalence_group": "EG-AI-AI-08",
+      "mappings": [
+        {
+          "framework": "Essential Cybersecurity Controls (ECC 2-2024)",
+          "version": "ECC 2-2024",
+          "reference": "Control 2-1-3 (Asset Management)",
+          "mapping_strength": "DIRECT",
+          "rationale": null
+        },
+        {
+          "framework": "Essential Cybersecurity Controls (ECC 2-2024)",
+          "version": "ECC 2-2024",
+          "reference": "Control 2-1-4 (Asset Management)",
+          "mapping_strength": "INDIRECT",
+          "rationale": "Implementation of the policy (REL-IMP), not an equivalent restatement."
+        }
+      ],
+      "tags": [],
+      "relationships": []
+    }
+  ],
+  "excluded": [
+    {
+      "staging_id": "STG-CANON-AI-01",
+      "reason": "not ready (DEFERRED)"
+    },
+    {
+      "staging_id": "STG-CANON-AI-03",
+      "reason": "not ready (REJECTED)"
+    },
+    {
+      "staging_id": "STG-CANON-AI-07",
+      "reason": "not ready (DEFERRED)"
+    },
+    {
+      "staging_id": "STG-CANON-AI-09",
+      "reason": "not ready (DEFERRED)"
+    },
+    {
+      "staging_id": "STG-CANON-AI-10",
+      "reason": "not ready (DEFERRED)"
+    },
+    {
+      "staging_id": "STG-SPLIT-AI-04a",
+      "reason": "not ready (SPLIT_AND_APPROVED)"
+    },
+    {
+      "staging_id": "STG-SPLIT-AI-04b",
+      "reason": "not ready (SPLIT_AND_APPROVED)"
+    }
+  ],
+  "conflicts": [],
+  "counts": {
+    "insert": 4,
+    "skip": 0,
+    "conflict": 0
+  },
+  "plan_checksum": "e411524714f3dab4e4e85baffc39a3abaaff6c6442e7a14dd0b22420977cfe45"
+}

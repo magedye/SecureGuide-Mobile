@@ -229,7 +229,7 @@ def cmd_apply(args):
             conn.execute("INSERT INTO promotion_audit_log (batch_id,event,detail) VALUES (?,?,?)",
                          (batch, 'APPLY', f"{it['staging_id']} -> {fid} (+{nmap} mappings)"))
             inserted += 1
-        conn.execute("UPDATE promotion_batches SET status='APPLIED', applied_at=datetime('now'), item_count=? WHERE id=?",
+        conn.execute("UPDATE promotion_batches SET status='COMPLETED', applied_at=datetime('now'), item_count=? WHERE id=?",
                      (len(plan['items']), batch))
         conn.execute("COMMIT")
     except Exception as e:

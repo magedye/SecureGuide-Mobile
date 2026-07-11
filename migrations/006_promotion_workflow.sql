@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS promotion_batches (
     applied_at     TEXT,
     rolled_back_at TEXT,
     notes          TEXT,
-    CHECK (status IN ('PLANNED','APPLIED','ROLLED_BACK','FAILED'))
+    CHECK (status IN ('PLANNED','APPLIED','COMPLETED','ROLLED_BACK','FAILED'))
 );
 
 CREATE TABLE IF NOT EXISTS promotion_batch_items (
