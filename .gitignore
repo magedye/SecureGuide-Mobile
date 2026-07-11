@@ -31,6 +31,9 @@ desktop.ini
 *.orig
 *~
 
+# ── Regenerable promotion plan outputs (a stable sample is kept at docs/sample_promotion_plan.json) ──
+consolidation/promotion/
+
 # NOTE: intentionally NOT ignored (part of the approved source baseline):
 #   migrations/**  scripts/**  docs/**  reference/*.json  reference/*.md
 #   tests/fixtures/**  consolidation/**  *_REPORT.md  *_MANIFEST.md

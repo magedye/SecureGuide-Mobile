@@ -26,8 +26,8 @@ import sys
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 MIG = os.path.join(ROOT, 'migrations')
-MIGRATIONS = ['001_initial_schema.sql', '002_assets_indicators_embeddings.sql',
-              '003_reference_data.sql', '004_curation_layer.sql', '005_views.sql']
+import glob as _glob
+MIGRATIONS = [os.path.basename(p) for p in sorted(_glob.glob(os.path.join(MIG, '*.sql')))]
 DEFAULT_DB = os.path.join(ROOT, 'secureguide.db')
 DEFAULT_CATALOGS = os.path.join(ROOT, 'SecureGuide_Mobile_Docs', 'Raw_Catalogs')
 
