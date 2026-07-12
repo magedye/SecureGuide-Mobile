@@ -1,0 +1,704 @@
+[
+  {
+    "name": "weighted_basic",
+    "settings": {
+      "view_tier": "full",
+      "platforms": []
+    },
+    "controls": [
+      {
+        "id": "A",
+        "scoring_weight": 4,
+        "risk_reduction": 4,
+        "user_status": "implemented",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      },
+      {
+        "id": "B",
+        "scoring_weight": 6,
+        "risk_reduction": 2,
+        "user_status": "not_assessed",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      }
+    ],
+    "expect": {
+      "overall": 40.0,
+      "band": "At Risk",
+      "capped": false,
+      "assessment_coverage": 50.0,
+      "risk_reduction_pct": 66.66667,
+      "total_controls": 2,
+      "domain_scores": {
+        "D1": 40.0
+      },
+      "critical_total": 0
+    }
+  },
+  {
+    "name": "critical_cap_open",
+    "settings": {
+      "view_tier": "full",
+      "platforms": []
+    },
+    "controls": [
+      {
+        "id": "A",
+        "scoring_weight": 10,
+        "risk_reduction": 5,
+        "user_status": "implemented",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      },
+      {
+        "id": "B",
+        "scoring_weight": 10,
+        "risk_reduction": 5,
+        "user_status": "implemented",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      },
+      {
+        "id": "C",
+        "scoring_weight": 1,
+        "risk_reduction": 5,
+        "user_status": "not_assessed",
+        "domain": "D2",
+        "priority": "critical",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      }
+    ],
+    "expect": {
+      "overall": 60.0,
+      "band": "At Risk",
+      "capped": true,
+      "assessment_coverage": 66.66667,
+      "risk_reduction_pct": 66.66667,
+      "domain_scores": {
+        "D1": 100.0,
+        "D2": 0.0
+      },
+      "critical_total": 1,
+      "critical_compliant": 0,
+      "remaining_critical_risk": 1
+    }
+  },
+  {
+    "name": "critical_cap_closed",
+    "settings": {
+      "view_tier": "full",
+      "platforms": []
+    },
+    "controls": [
+      {
+        "id": "A",
+        "scoring_weight": 10,
+        "risk_reduction": 3,
+        "user_status": "implemented",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      },
+      {
+        "id": "C",
+        "scoring_weight": 10,
+        "risk_reduction": 3,
+        "user_status": "implemented",
+        "domain": "D2",
+        "priority": "critical",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      }
+    ],
+    "expect": {
+      "overall": 100.0,
+      "band": "Excellent",
+      "capped": false,
+      "critical_total": 1,
+      "critical_compliant": 1,
+      "remaining_critical_risk": 0
+    }
+  },
+  {
+    "name": "dependency_clamp",
+    "settings": {
+      "view_tier": "full",
+      "platforms": []
+    },
+    "controls": [
+      {
+        "id": "DEP",
+        "scoring_weight": 10,
+        "risk_reduction": 3,
+        "user_status": "not_assessed",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      },
+      {
+        "id": "X",
+        "scoring_weight": 10,
+        "risk_reduction": 3,
+        "user_status": "implemented",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [
+          "DEP"
+        ],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      }
+    ],
+    "expect": {
+      "overall": 25.0,
+      "band": "At Risk",
+      "capped": false,
+      "assessment_coverage": 50.0
+    }
+  },
+  {
+    "name": "dependency_ready",
+    "settings": {
+      "view_tier": "full",
+      "platforms": []
+    },
+    "controls": [
+      {
+        "id": "DEP",
+        "scoring_weight": 10,
+        "risk_reduction": 3,
+        "user_status": "implemented",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      },
+      {
+        "id": "X",
+        "scoring_weight": 10,
+        "risk_reduction": 3,
+        "user_status": "implemented",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [
+          "DEP"
+        ],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      }
+    ],
+    "expect": {
+      "overall": 100.0,
+      "band": "Excellent"
+    }
+  },
+  {
+    "name": "band_61",
+    "settings": {
+      "view_tier": "full",
+      "platforms": []
+    },
+    "controls": [
+      {
+        "id": "A",
+        "scoring_weight": 61,
+        "risk_reduction": 3,
+        "user_status": "implemented",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      },
+      {
+        "id": "B",
+        "scoring_weight": 39,
+        "risk_reduction": 3,
+        "user_status": "not_assessed",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      }
+    ],
+    "expect": {
+      "overall": 61.0,
+      "band": "Fair"
+    }
+  },
+  {
+    "name": "band_75",
+    "settings": {
+      "view_tier": "full",
+      "platforms": []
+    },
+    "controls": [
+      {
+        "id": "A",
+        "scoring_weight": 75,
+        "risk_reduction": 3,
+        "user_status": "implemented",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      },
+      {
+        "id": "B",
+        "scoring_weight": 25,
+        "risk_reduction": 3,
+        "user_status": "not_assessed",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      }
+    ],
+    "expect": {
+      "overall": 75.0,
+      "band": "Strong"
+    }
+  },
+  {
+    "name": "band_90",
+    "settings": {
+      "view_tier": "full",
+      "platforms": []
+    },
+    "controls": [
+      {
+        "id": "A",
+        "scoring_weight": 90,
+        "risk_reduction": 3,
+        "user_status": "implemented",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      },
+      {
+        "id": "B",
+        "scoring_weight": 10,
+        "risk_reduction": 3,
+        "user_status": "not_assessed",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      }
+    ],
+    "expect": {
+      "overall": 90.0,
+      "band": "Excellent"
+    }
+  },
+  {
+    "name": "band_below_61",
+    "settings": {
+      "view_tier": "full",
+      "platforms": []
+    },
+    "controls": [
+      {
+        "id": "A",
+        "scoring_weight": 609,
+        "risk_reduction": 3,
+        "user_status": "implemented",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      },
+      {
+        "id": "B",
+        "scoring_weight": 391,
+        "risk_reduction": 3,
+        "user_status": "not_assessed",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      }
+    ],
+    "expect": {
+      "overall": 60.9,
+      "band": "At Risk"
+    }
+  },
+  {
+    "name": "tier_gating",
+    "settings": {
+      "view_tier": "advanced",
+      "platforms": []
+    },
+    "controls": [
+      {
+        "id": "A",
+        "scoring_weight": 10,
+        "risk_reduction": 3,
+        "user_status": "implemented",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      },
+      {
+        "id": "B",
+        "scoring_weight": 10,
+        "risk_reduction": 3,
+        "user_status": "implemented",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "very_advanced",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      }
+    ],
+    "expect": {
+      "overall": 100.0,
+      "total_controls": 1
+    }
+  },
+  {
+    "name": "platform_gating",
+    "settings": {
+      "view_tier": "full",
+      "platforms": [
+        "android"
+      ]
+    },
+    "controls": [
+      {
+        "id": "A",
+        "scoring_weight": 10,
+        "risk_reduction": 3,
+        "user_status": "implemented",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [
+          "windows"
+        ],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      },
+      {
+        "id": "B",
+        "scoring_weight": 10,
+        "risk_reduction": 3,
+        "user_status": "not_assessed",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [
+          "all"
+        ],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      }
+    ],
+    "expect": {
+      "overall": 0.0,
+      "total_controls": 1
+    }
+  },
+  {
+    "name": "excluded_control",
+    "settings": {
+      "view_tier": "full",
+      "platforms": []
+    },
+    "controls": [
+      {
+        "id": "A",
+        "scoring_weight": 10,
+        "risk_reduction": 3,
+        "user_status": "implemented",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": true,
+        "disabled": false,
+        "exception_type": null
+      },
+      {
+        "id": "B",
+        "scoring_weight": 10,
+        "risk_reduction": 3,
+        "user_status": "not_assessed",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      }
+    ],
+    "expect": {
+      "overall": 0.0,
+      "total_controls": 1
+    }
+  },
+  {
+    "name": "empty_applicable",
+    "settings": {
+      "view_tier": "essential",
+      "platforms": []
+    },
+    "controls": [
+      {
+        "id": "A",
+        "scoring_weight": 10,
+        "risk_reduction": 3,
+        "user_status": "implemented",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "very_advanced",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      }
+    ],
+    "expect": {
+      "overall": 0.0,
+      "total_controls": 0,
+      "assessment_coverage": 0.0
+    }
+  },
+  {
+    "name": "recommendations_order",
+    "settings": {
+      "view_tier": "full",
+      "platforms": []
+    },
+    "controls": [
+      {
+        "id": "IMP",
+        "scoring_weight": 1,
+        "risk_reduction": 3,
+        "user_status": "implemented",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      },
+      {
+        "id": "C1",
+        "scoring_weight": 1,
+        "risk_reduction": 3,
+        "user_status": "not_assessed",
+        "domain": "D1",
+        "priority": "critical",
+        "effort": "high",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      },
+      {
+        "id": "H1",
+        "scoring_weight": 5,
+        "risk_reduction": 3,
+        "user_status": "not_assessed",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      },
+      {
+        "id": "H2",
+        "scoring_weight": 9,
+        "risk_reduction": 3,
+        "user_status": "not_assessed",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [
+          "X_not_impl"
+        ],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      },
+      {
+        "id": "H3",
+        "scoring_weight": 8,
+        "risk_reduction": 3,
+        "user_status": "not_assessed",
+        "domain": "D1",
+        "priority": "high",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      },
+      {
+        "id": "M1",
+        "scoring_weight": 10,
+        "risk_reduction": 3,
+        "user_status": "not_assessed",
+        "domain": "D1",
+        "priority": "medium",
+        "effort": "low",
+        "dependencies": [],
+        "tier": "essential",
+        "platform_ids": [],
+        "excluded": false,
+        "disabled": false,
+        "exception_type": null
+      }
+    ],
+    "expect_recommendations": [
+      "C1",
+      "H3",
+      "H1",
+      "H2",
+      "M1"
+    ]
+  }
+]
