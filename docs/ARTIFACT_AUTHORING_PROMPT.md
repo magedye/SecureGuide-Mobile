@@ -51,7 +51,9 @@
 | `classification_rationale` | إلزامي إن وُجدت ثقة — يشرح سبب النوع/المجال. |
 | `rejected_alternatives` | JSON للبدائل المرفوضة عند الغموض. |
 | `requires_human_review` | 0/1. |
-| `proposed_tags_json` | مصفوفة `{tag_type, tag_value}`؛ tag_type ∈ Technology/Framework/Concept/Context/Threat/Data/Party. سياق ثانوي لا بديل عن المجال. |
+| `proposed_threats_json` | **(SADP §2.4 — بديل الوسوم)** مصفوفة أكواد `THR-*` (أو `[{threat_code}]`)؛ تُطبَّع إلى `artifact_threats`. إن لا تهديد ⇒ يُملأ `THR-NA` تلقائياً. **لا تُستخدم وسوم حرة إطلاقاً.** |
+| `proposed_platforms_json` | مصفوفة أكواد `lk_platform` (اختياري)؛ تُطبَّع إلى `artifact_platforms`. |
+| `proposed_priority` | `PRI-CRITICAL/HIGH/MEDIUM/LOW` (أساس جوهري؛ يُشتق منه priority_weight تلقائياً). |
 | `proposed_mappings_json` | مصفوفة `{raw_id, source_document, source_version, source_section, mapping_strength, rationale}`؛ strength ∈ DIRECT/INDIRECT/PARTIAL/INFORMATIVE؛ **أي غير DIRECT يتطلب rationale**. |
 | `merge_action` | (عند التوحيد) ∈ CANONICALIZE/EQUIVALENCE_GROUP/CROSSWALK_ONLY/RELATE_ONLY/KEEP_SEPARATE/DEPRECATE_DERIVED. |
 
@@ -121,7 +123,11 @@ HARD RULES:
   and ai_review_status="AIR-HUMAN-REVIEW"; else "AIR-AUTO-ACCEPTED".
 - Always give a non-empty classification_rationale and >=1 source mapping in
   proposed_mappings; any mapping_strength other than DIRECT needs a rationale.
-- Tags are secondary context only, never a substitute for the domain.
+- SADP v1.0: NO free-form tags. Secondary context = the Threat classification
+  (THR-*) and other normalized dimensions only. Every classification carries a
+  value; when a dimension is not applicable use its *-NA / *-UNKNOWN / *-MULTI
+  fallback (never null), except type-conditional dims (control_*/requirement_type)
+  which stay null by schema when the type does not use them.
 
 ALLOWED VALUES:
 type: ART-REQ,ART-OBJ,ART-PRI,ART-POL,ART-STD,ART-CTR,ART-CTE,ART-PRO,ART-PRC,ART-PRG,ART-PLN,ART-TSK,ART-CFG,ART-RUL,ART-EVD,ART-MET,ART-EXC,ART-RSK,ART-AST,ART-THR,ART-VUL,ART-OWN
@@ -135,7 +141,8 @@ testability: TST-AUTO,TST-MAN,TST-DOC,TST-INT,TST-NA
 asset_type: HARDWARE,SOFTWARE,DATA,SERVICE,FACILITY,PERSONNEL,NETWORK,CLOUD_INSTANCE,DOCUMENT,INTELLECTUAL_PROPERTY
 asset_criticality: CRITICAL,HIGH,MEDIUM,LOW
 mapping_strength: DIRECT,INDIRECT,PARTIAL,INFORMATIVE
-tag_type: Technology,Framework,Concept,Context,Threat,Data,Party
+threat_code (THR-*): MALWARE,RANSOMWARE,PHISHING,SOCIAL-ENGINEERING,CREDENTIAL-THEFT,ACCOUNT-TAKEOVER,DATA-BREACH,DATA-EXFILTRATION,DATA-LOSS,UNAUTHORIZED-ACCESS,NETWORK-ATTACK,INTERCEPTION,DEVICE-COMPROMISE,DEVICE-LOSS,PHYSICAL,SURVEILLANCE,VULNERABILITY-EXPLOIT,FINANCIAL-FRAUD,TARGETED-ATTACK,MISCONFIG (+ THR-NA/UNKNOWN/MULTI)
+priority: PRI-CRITICAL,PRI-HIGH,PRI-MEDIUM,PRI-LOW
 ai_review_status: AIR-AUTO-ACCEPTED,AIR-HUMAN-REVIEW,AIR-HUMAN-APPROVED,AIR-HUMAN-REJECTED
 
 RICH CONTENT (all OPTIONAL; validated fail-loud if present):
@@ -170,7 +177,9 @@ OUTPUT JSON SCHEMA (keys exactly):
   "classification_confidence": number, "classification_rationale": str,
   "rejected_alternatives": [str], "requires_human_review": 0|1,
   "ai_review_status": str,
-  "proposed_tags": [{"tag_type": str, "tag_value": str}],
+  "proposed_threats": [str],        // THR-* codes (SADP §2.4 — no tags)
+  "proposed_platforms": [str],      // lk_platform codes
+  "proposed_priority": str,         // PRI-*
   "proposed_mappings": [{"raw_id": str, "source_document": str, "source_version": str,
                          "source_section": str, "mapping_strength": str, "rationale": str|null}],
   "needs_split": bool, "split_suggestion": [str],
@@ -239,7 +248,8 @@ Produce the single JSON artifact per the schema and rules.
   "rejected_alternatives": ["ART-CTR (rejected: phrased as a required outcome, not a specific safeguard mechanism)"],
   "requires_human_review": 0,
   "ai_review_status": "AIR-AUTO-ACCEPTED",
-  "proposed_tags": [{"tag_type": "Framework", "tag_value": "CIS"}, {"tag_type": "Concept", "tag_value": "Asset Management"}],
+  "proposed_threats": ["THR-UNAUTHORIZED-ACCESS", "THR-MISCONFIG"],
+  "proposed_priority": "PRI-HIGH",
   "proposed_mappings": [{"raw_id": "cis_controls_v8::0000", "source_document": "CIS Controls v8", "source_version": "Unknown", "source_section": "1.1", "mapping_strength": "DIRECT", "rationale": null}],
   "needs_split": false,
   "split_suggestion": []
@@ -258,8 +268,9 @@ Produce the single JSON artifact per the schema and rules.
 - [ ] `classification_rationale` غير فارغ.
 - [ ] `proposed_mappings` فيه مصدر واحد على الأقل بـ`raw_id`+`source_document`+`mapping_strength` صالح؛ وأي غير DIRECT له rationale.
 - [ ] فكرة ذرّية (`needs_split=false`).
-- [ ] الوسوم لم تُستخدم بديلاً عن المجال.
+- [ ] **(SADP §2.4)** لا وسوم حرة إطلاقاً؛ السياق الثانوي عبر `proposed_threats` (THR-*) والأبعاد المُطبَّعة فقط.
+- [ ] **(SADP §2.2)** كل تصنيف يحمل قيمة (fallback بدل NULL) عدا الأبعاد المشروطة بالنوع (control_*/requirement_type) التي تبقى NULL بنيوياً.
 - [ ] **المحتوى الغني (إن وُجد):** `scoring_weight≥0` · `risk_reduction∈2..5` · `effort_level`/`tier` صالحان.
 - [ ] **الأكواد الغنية (إن وُجدت):** objective/csf/purpose/impl/tier/evidence كلها من مجموعاتها المسموحة، بلا تكرار، وكل `action`/خطوة تحقق لها `seq`≥0 و`text_en`؛ كل `variant` له `platform` فريد.
 
-> المخرجات تُكتب إلى `staging_artifacts` (الحقول `proposed_*`, `*_en`, `classification_*`, `proposed_tags_json`, `proposed_mappings_json`)، ثم تمرّ بالمراجعة النهائية والترقية وفق `PROMOTION_POLICY.md`.
+> المخرجات تُكتب إلى `staging_artifacts` (الحقول `proposed_*`, `*_en`, `classification_*`, `proposed_threats_json`, `proposed_platforms_json`, `proposed_priority`, `proposed_mappings_json`)، ثم تمرّ بالمراجعة النهائية والترقية وفق `PROMOTION_POLICY.md` و[`SADP_v1.0.md`](SADP_v1.0.md).
