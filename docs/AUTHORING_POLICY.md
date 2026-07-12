@@ -1,5 +1,7 @@
 ﻿# سياسة صياغة موحدة للعناصر والكيانات والضوابط الأمنية (SecureGuide Drafting Policy)
 
+> **الوثيقة الحاكمة الأعلى لبنية القاعدة هي [`SADP_v1.0.md`](SADP_v1.0.md)** (مطابقتها في [`SADP_CONFORMANCE.md`](SADP_CONFORMANCE.md))؛ عند أي تعارض تُقدَّم SADP. من قواعدها المُلزِمة هنا: لا وسوم حرة (التهديد = بُعد `THR-*` مُطبَّع)، وكل تصنيف إلزامي بقيمة (fallback `*-NA/*-UNKNOWN/*-MULTI` بدل NULL).
+>
 > هذه السياسة **مصدر معياري** لصياغة محتوى العناصر (AGENTS.md، المرجع 5). تُطبَّق بعد تصنيف العنصر وفق [`CLASSIFICATION_POLICY.md`](CLASSIFICATION_POLICY.md)، وتُخزَّن حقولها في `security_artifacts` كما هو موثّق في [`DATA_DICTIONARY.md`](DATA_DICTIONARY.md).
 > في الـMVP تعتمد SecureGuide صياغة إنجليزية canonical أولاً. الحقول العربية اختيارية ومؤجلة كطبقة ترجمة/إثراء لاحقة.
 

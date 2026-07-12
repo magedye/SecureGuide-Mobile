@@ -2,6 +2,8 @@
 
 > العقد الحاكم لنقل العناصر من `staging_artifacts` إلى الكتالوج المرجعي `security_artifacts`.
 > تنفّذها [`scripts/promote.py`](../scripts/promote.py) وتتحقق منها [`scripts/validate_promotion.py`](../scripts/validate_promotion.py).
+>
+> **تخضع الترقية لـ [`SADP_v1.0.md`](SADP_v1.0.md):** البوابة ترفض أي عنصر يحمل NULL في أي تصنيف (تُستخدم قيم `*-NA/*-UNKNOWN/*-MULTI`)، وترفض أي وسوم حرة (`proposed_tags_json`)؛ التهديدات/المنصات تُطبَّع في `artifact_threats`/`artifact_platforms`. المطابقة موثّقة في [`SADP_CONFORMANCE.md`](SADP_CONFORMANCE.md).
 
 ## القاعدة الذهبية
 > **إما أن تُكتب جميع مكونات العنصر (السجل + mappings + tags + relationships) بنجاح داخل transaction واحدة، أو لا يُكتب شيء.**
