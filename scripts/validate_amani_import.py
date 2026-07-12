@@ -20,7 +20,7 @@ import sys
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 SCRATCH = os.environ.get('SG_SCRATCH', ROOT)
 DB = os.path.join(SCRATCH, 'amani_validate.db')
-AMANI = os.environ.get('AMANI_JSON', r'd:/APP/amani/SecureGuide/amani_content_v4.json')
+AMANI = os.environ.get('AMANI_JSON', r'd:/APP/amani/SecureGuide/archive/amani_content_v4.json')
 PLANDIR = os.path.join(ROOT, 'consolidation', 'promotion')
 PY = sys.executable
 sys.path.insert(0, os.path.join(ROOT, 'scripts'))

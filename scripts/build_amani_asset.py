@@ -29,20 +29,6 @@ import sys
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 
-def tagmap(conn, prefix):
-    out = {}
-    for r in conn.execute("SELECT artifact_id, tag_value FROM artifact_tags WHERE tag_value LIKE ?", (prefix + '%',)):
-        out[r[0]] = r[1][len(prefix):]
-    return out
-
-
-def taglist(conn, prefix):
-    out = {}
-    for r in conn.execute("SELECT artifact_id, tag_value FROM artifact_tags WHERE tag_value LIKE ?", (prefix + '%',)):
-        out.setdefault(r[0], []).append(r[1][len(prefix):])
-    return out
-
-
 def rows_by_artifact(conn, table, cols):
     out = {}
     for r in conn.execute(f"SELECT artifact_id,{cols} FROM {table}"):
@@ -88,28 +74,18 @@ def build_enterprise(aid, objs, csf, purp, impl, mat, evid, vsteps, vnote, vnote
 
 
 def build_asset(conn):
-    # lineage: catalog id -> amani external id
-    amani_id = {}
-    for r in conn.execute("SELECT s.promoted_artifact_id, r.external_raw_id FROM staging_artifacts s "
-                          "JOIN raw_artifacts r ON r.id = s.raw_artifact_id WHERE s.promoted_artifact_id IS NOT NULL"):
-        amani_id[r[0]] = r[1]
+    # SADP: reversible lineage from typed provenance (not tags)
+    prov = {r['artifact_id']: r for r in conn.execute(
+        "SELECT artifact_id, amani_id, amani_domain, amani_sub FROM catalog_amani_provenance")}
+    threat_ids, plat_ids, asset_ids = {}, {}, {}
+    for r in conn.execute("SELECT artifact_id, threat_code FROM artifact_threats"):
+        threat_ids.setdefault(r[0], []).append(r[1])
+    for r in conn.execute("SELECT artifact_id, platform_code FROM artifact_platforms"):
+        plat_ids.setdefault(r[0], []).append(r[1])
+    for r in conn.execute("SELECT artifact_id, asset_ref FROM catalog_amani_assets"):
+        asset_ids.setdefault(r[0], []).append(r[1])
 
-    dom = tagmap(conn, 'amani_domain:')
-    sub = tagmap(conn, 'amani_sub:')
-    pri = tagmap(conn, 'amani_priority:')
-    threat_ids = {}
-    asset_ids = {}
-    plat_ids = {}
-    for r in conn.execute("SELECT artifact_id, tag_type, tag_value FROM artifact_tags"):
-        aid, tt, tv = r
-        if tt == 'Threat':
-            threat_ids.setdefault(aid, []).append(tv)
-        elif tt == 'Data':
-            asset_ids.setdefault(aid, []).append(tv)
-        elif tv.startswith('platform:'):
-            plat_ids.setdefault(aid, []).append(tv[len('platform:'):])
-
-    # amani domain alias for reverse fallback
+    # amani domain alias for reverse fallback (when a control has no provenance row)
     alias_rev = {}
     for r in conn.execute("SELECT amani_key, sdt_primary, sdt_sub FROM amani_domain_alias"):
         alias_rev[(r[1], r[2])] = r[0]
@@ -130,10 +106,10 @@ def build_asset(conn):
     controls = []
     for a in conn.execute("SELECT * FROM security_artifacts WHERE is_active=1 ORDER BY id"):
         aid = a['id']
-        ext = amani_id.get(aid, aid)
-        d = dom.get(aid)
-        if not d:  # reverse via alias
-            d = alias_rev.get((a['primary_domain'], a['sub_domain']))
+        p = prov.get(aid)
+        ext = p['amani_id'] if p else aid
+        d = p['amani_domain'] if p else alias_rev.get((a['primary_domain'], a['sub_domain']))
+        sub_val = p['amani_sub'] if p else a['sub_domain']
         base_actions = [x for x in actions.get(aid, []) if x[0] == 'ACTION']
         vsteps = {aid: [x for x in actions.get(aid, []) if x[0] == 'VERIFICATION']} if actions.get(aid) else {}
         vnote = {aid: a['verification_method_note']} if a['verification_method_note'] else {}
@@ -141,10 +117,12 @@ def build_asset(conn):
         ent = build_enterprise(aid, objs, csf, purp, impl, mat, evid, vsteps, vnote, vnote_ar)
 
         c = {
-            'id': ext, 'domain': d, 'sub_domain': sub.get(aid, a['sub_domain']),
+            'id': ext, 'domain': d, 'sub_domain': sub_val,
             'title_ar': a['title_ar'], 'title_en': a['title_en'],
             'description_ar': a['definition_short_ar'], 'description_en': a['definition_short_en'],
-            'priority': pri.get(aid, 'medium'), 'tier': a['tier'] or 'essential',
+            # reverse PRI-* -> amani priority (critical/high/medium/low)
+            'priority': (a['priority'] or 'PRI-MEDIUM').replace('PRI-', '').lower(),
+            'tier': a['tier'] or 'essential',
             'effort': a['effort_level'] or 'medium', 'risk_reduction': a['risk_reduction'] or 3,
             'scoring_weight': a['scoring_weight'] or 0,
             'threat_ids': sorted(threat_ids.get(aid, [])), 'asset_ids': sorted(asset_ids.get(aid, [])),

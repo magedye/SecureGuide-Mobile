@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.join(ROOT, 'scripts'))
 import scoring as S
 
 GOLDEN = os.path.join(ROOT, 'tests', 'fixtures', 'golden', 'scoring', 'scenarios.json')
-AMANI = os.environ.get('AMANI_JSON', r'd:/APP/amani/SecureGuide/amani_content_v4.json')
+AMANI = os.environ.get('AMANI_JSON', r'd:/APP/amani/SecureGuide/archive/amani_content_v4.json')
 EPS = 0.001
 POLICY = dict(S.DEFAULT_POLICY)
 fails = []

@@ -191,31 +191,7 @@ def build_mappings(ctrl, raw_id, registry):
     return maps
 
 
-def build_tags(ctrl):
-    # amani-specific facets that don't map losslessly to USACM are preserved as
-    # Context tags so build_amani_asset can reconstruct the asset faithfully
-    # (priority: critical vs high both -> OBL-MND, so keep the original here).
-    tags = [{'tag_type': 'Context', 'tag_value': f"amani_domain:{ctrl.get('domain')}"}]
-    if ctrl.get('sub_domain'):
-        tags.append({'tag_type': 'Context', 'tag_value': f"amani_sub:{ctrl['sub_domain']}"})
-    if ctrl.get('priority'):
-        tags.append({'tag_type': 'Context', 'tag_value': f"amani_priority:{ctrl['priority']}"})
-    for t in (ctrl.get('threat_ids') or []):
-        tags.append({'tag_type': 'Threat', 'tag_value': t})
-    for a in (ctrl.get('asset_ids') or []):
-        tags.append({'tag_type': 'Data', 'tag_value': a})
-    for p in (ctrl.get('platform_ids') or []):
-        tags.append({'tag_type': 'Concept', 'tag_value': f"platform:{p}"})
-    # dedup by (type,value)
-    seen, out = set(), []
-    for t in tags:
-        k = (t['tag_type'], t['tag_value'])
-        if k not in seen:
-            out.append(t); seen.add(k)
-    return out
-
-
-RAW_COLS = ('id', 'source_catalog_id', 'external_raw_id', 'source_document', 'source_type',
+RAW_COLS =('id', 'source_catalog_id', 'external_raw_id', 'source_document', 'source_type',
             'source_section', 'source_version', 'source_url', 'title_draft', 'description_draft',
             'raw_text_en', 'raw_text_ar', 'original_heading', 'context_paragraph',
             'keywords_json', 'entities_mentioned_json', 'usacm_type_assigned',
@@ -223,7 +199,7 @@ RAW_COLS = ('id', 'source_catalog_id', 'external_raw_id', 'source_document', 'so
             'needs_human_review', 'is_ambiguous', 'ambiguity_reason', 'raw_json', 'source_file', 'content_hash')
 
 
-def import_controls(conn, controls, alias, registry, source_file, apply):
+def import_controls(conn, controls, alias, registry, source_file, apply, threat_alias, lk_threats, lk_platforms):
     stats = {'raw_ins': 0, 'raw_upd': 0, 'raw_same': 0, 'stg': 0, 'review': 0, 'notes': 0}
     for idx, ctrl in enumerate(controls):
         raw_id = f"{CATALOG_ID}::{idx:04d}"
@@ -232,8 +208,16 @@ def import_controls(conn, controls, alias, registry, source_file, apply):
 
         enr, notes = build_enrichment(ctrl)
         maps = build_mappings(ctrl, raw_id, registry)
-        tags = build_tags(ctrl)
         is_personal = bool(ctrl.get('actions_en'))
+        # SADP: no tags. Threats -> THR-* (via alias, idempotent for canonical codes),
+        # platforms -> lk_platform, priority -> PRI-*, amani lineage -> provenance.
+        threats = dedup(t if t in lk_threats else threat_alias[t] for t in (ctrl.get('threat_ids') or []))
+        threats_json = json.dumps([{'threat_code': t} for t in threats], ensure_ascii=False) if threats else None
+        platforms = dedup(p for p in (ctrl.get('platform_ids') or []) if p in lk_platforms)
+        platforms_json = json.dumps(platforms, ensure_ascii=False) if platforms else None
+        priority = 'PRI-' + (ctrl.get('priority') or 'medium').upper()
+        provenance = {'amani_id': ctrl['id'], 'amani_domain': ctrl['domain'],
+                      'amani_sub': ctrl.get('sub_domain'), 'assets': ctrl.get('asset_ids') or []}
         # derive USACM control fields
         e = ctrl.get('enterprise') or {}
         impl_primary = None
@@ -297,7 +281,10 @@ def import_controls(conn, controls, alias, registry, source_file, apply):
                                         f"type ART-CTR ({nature}/{function}/{testability}).",
             'rejected_alternatives': None,
             'requires_human_review': 1 if review else 0,
-            'proposed_tags_json': json.dumps(tags, ensure_ascii=False),
+            'proposed_tags_json': None,  # SADP §2.4: tags retired
+            'proposed_threats_json': threats_json, 'proposed_platforms_json': platforms_json,
+            'proposed_priority': priority,
+            'proposed_amani_provenance_json': json.dumps(provenance, ensure_ascii=False),
             'proposed_mappings_json': json.dumps(maps, ensure_ascii=False),
             'proposed_relationships_json': None,
             'canonical_group_id': None, 'merge_action': None,
@@ -364,6 +351,22 @@ def main():
         print(f"IMPORT ABORTED: {len(unmapped)} unmapped amani domain key(s): {unmapped}")
         print("Add them to amani_domain_alias (migration 009) before importing."); sys.exit(1)
 
+    # SADP threat/platform vocabularies (fail-loud on unmapped threat term)
+    threat_alias = {r['amani_key']: r['threat_code'] for r in conn.execute("SELECT amani_key, threat_code FROM amani_threat_alias")}
+    lk_threats = {r[0] for r in conn.execute("SELECT code FROM lk_threat")}
+    lk_platforms = {r[0] for r in conn.execute("SELECT code FROM lk_platform")}
+    if not lk_threats:
+        print("lk_threat is empty — apply migrations 012/013 first."); sys.exit(1)
+    unmapped_thr = sorted({t for c in controls for t in (c.get('threat_ids') or [])
+                           if t not in lk_threats and t not in threat_alias})
+    if unmapped_thr:
+        print(f"IMPORT ABORTED: {len(unmapped_thr)} unmapped amani threat term(s): {unmapped_thr}")
+        print("Add them to amani_threat_alias (migration 013) before importing."); sys.exit(1)
+    unmapped_plat = sorted({p for c in controls for p in (c.get('platform_ids') or []) if p not in lk_platforms})
+    if unmapped_plat:
+        print(f"IMPORT ABORTED: {len(unmapped_plat)} platform(s) not in lk_platform: {unmapped_plat}")
+        print("Add them to lk_platform (migration 015) before importing."); sys.exit(1)
+
     if args.apply:
         conn.execute("INSERT OR IGNORE INTO source_catalogs (id, name, source_type, version) VALUES (?,?,?,?)",
                      (CATALOG_ID, 'amani SecureGuide v4', 'GUIDELINE', '4.1.0'))
@@ -372,7 +375,8 @@ def main():
                      ('AMANI-IMPORT', CATALOG_ID, 'amani v4 content import', 'PROCESSING', len(controls),
                       'imported by import_amani_content.py'))
         conn.execute("BEGIN")
-    stats = import_controls(conn, controls, alias, registry, source_file, args.apply)
+    stats = import_controls(conn, controls, alias, registry, source_file, args.apply,
+                            threat_alias, lk_threats, lk_platforms)
     if args.apply:
         conn.execute("COMMIT"); conn.commit()
 

@@ -21,7 +21,7 @@ SCRATCH = os.environ.get('SG_SCRATCH', ROOT)
 DB1 = os.path.join(SCRATCH, 'asset_src.db')
 DB2 = os.path.join(SCRATCH, 'asset_roundtrip.db')
 ASSET = os.path.join(SCRATCH, 'amani_asset.json')
-AMANI = os.environ.get('AMANI_JSON', r'd:/APP/amani/SecureGuide/amani_content_v4.json')
+AMANI = os.environ.get('AMANI_JSON', r'd:/APP/amani/SecureGuide/archive/amani_content_v4.json')
 PLANDIR = os.path.join(ROOT, 'consolidation', 'promotion')
 PY = sys.executable
 sys.path.insert(0, os.path.join(ROOT, 'scripts'))
@@ -67,9 +67,12 @@ run('scripts/promote.py', 'plan', '--db', DB1, '--batch', 'AMANI-ALL')
 ap = run('scripts/promote.py', 'apply', '--db', DB1, '--plan', os.path.join(PLANDIR, 'plan-AMANI-ALL.json'))
 promoted = conn.execute("SELECT COUNT(*) FROM security_artifacts WHERE is_active=1").fetchone()[0]
 check("apply promoted the whole set", ap.returncode == 0 and promoted == len(promotable))
-crit_src = conn.execute("SELECT COUNT(*) FROM artifact_tags WHERE tag_value='amani_priority:critical' "
-                        "AND artifact_id IN (SELECT id FROM security_artifacts)").fetchone()[0]
+crit_src = conn.execute("SELECT COUNT(*) FROM security_artifacts WHERE priority='PRI-CRITICAL'").fetchone()[0]
 ent_src = conn.execute("SELECT COUNT(DISTINCT artifact_id) FROM artifact_security_objectives").fetchone()[0]
+tags_written = conn.execute("SELECT COUNT(*) FROM artifact_tags").fetchone()[0]
+threats_rows = conn.execute("SELECT COUNT(DISTINCT artifact_id) FROM artifact_threats").fetchone()[0]
+check("SADP: no tags written by amani promotion", tags_written == 0)
+check("SADP: every promoted control has >=1 threat", threats_rows == promoted)
 conn.close()
 
 # 2. generate asset (+ its own validation)
