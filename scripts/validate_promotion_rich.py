@@ -52,7 +52,8 @@ conn.execute("""UPDATE staging_artifacts SET
     proposed_scoring_weight=?, proposed_risk_reduction=?, proposed_effort_level=?, proposed_tier=?,
     proposed_actions_json=?, proposed_variants_json=?, proposed_security_objectives_json=?,
     proposed_csf_functions_json=?, proposed_control_purposes_json=?, proposed_implementation_types_json=?,
-    proposed_maturity_requirements_json=?, proposed_verification_json=? WHERE id=?""", (
+    proposed_maturity_requirements_json=?, proposed_verification_json=?,
+    proposed_threats_json=?, proposed_platforms_json=?, proposed_priority=? WHERE id=?""", (
     'صيانة حداثة جرد الأصول', 'يحافظ على حداثة الجرد', 'inventory register', 'سجل الجرد',
     'review register', 'مراجعة السجل',
     6.9, 5, 'low', 'essential',
@@ -65,6 +66,9 @@ conn.execute("""UPDATE staging_artifacts SET
     json.dumps(['administrative', 'technical']),
     json.dumps([{'tier_code': 'advanced', 'objective_en': 'Full inventory', 'scope_en': 'all assets'}]),
     json.dumps({'evidence_types': ['LOG', 'REPORT'], 'testing_steps': [{'seq': 0, 'text_en': 'Sample register', 'text_ar': 'عيّنة'}]}),
+    json.dumps([{'threat_code': 'THR-UNAUTHORIZED-ACCESS'}, {'threat_code': 'THR-MISCONFIG'}]),
+    json.dumps(['windows', 'linux']),
+    'PRI-HIGH',
     SID))
 rehash(conn, SID)
 conn.commit()
@@ -88,6 +92,10 @@ check("control purposes (2)", cnt('artifact_control_purposes', f"WHERE artifact_
 check("impl types (2)", cnt('artifact_implementation_types', f"WHERE artifact_id='{FID}'") == 2)
 check("maturity reqs (1)", cnt('artifact_maturity_requirements', f"WHERE artifact_id='{FID}'") == 1)
 check("evidence types (2)", cnt('artifact_verification_evidence_types', f"WHERE artifact_id='{FID}'") == 2)
+check("threats normalized (2)", cnt('artifact_threats', f"WHERE artifact_id='{FID}'") == 2)
+check("platforms normalized (2)", cnt('artifact_platforms', f"WHERE artifact_id='{FID}'") == 2)
+check("baseline priority preserved (PRI-HIGH)", conn.execute("SELECT priority FROM security_artifacts WHERE id=?", (FID,)).fetchone()[0] == 'PRI-HIGH')
+check("no tags written (SADP §2.4)", cnt('artifact_tags') == 0)
 row = conn.execute("SELECT scoring_weight, tier, effort_level, risk_reduction, title_ar, evidence_required, evidence_required_ar FROM security_artifacts WHERE id=?", (FID,)).fetchone()
 check("scoring/tier scalars on catalog", row['scoring_weight'] == 6.9 and row['tier'] == 'essential' and row['effort_level'] == 'low' and row['risk_reduction'] == 5)
 check("AR + evidence content on catalog", row['title_ar'] == 'صيانة حداثة جرد الأصول' and row['evidence_required'] == 'inventory register' and row['evidence_required_ar'] == 'سجل الجرد')
@@ -98,7 +106,7 @@ run('scripts/promote.py', 'rollback', '--db', DB, '--batch', 'RICH1')
 removed = all(cnt(t, f"WHERE artifact_id='{FID}'") == 0 for t in (
     'artifact_actions', 'artifact_variants', 'artifact_security_objectives', 'artifact_csf_functions',
     'artifact_control_purposes', 'artifact_implementation_types', 'artifact_maturity_requirements',
-    'artifact_verification_evidence_types'))
+    'artifact_verification_evidence_types', 'artifact_threats', 'artifact_platforms'))
 check("all rich children removed on rollback", removed and cnt('security_artifacts', f"WHERE id='{FID}'") == 0)
 check("integrity ok after rollback", conn.execute("PRAGMA integrity_check").fetchone()[0] == 'ok')
 

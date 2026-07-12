@@ -41,6 +41,9 @@ HASH_FIELDS = [
     'proposed_actions_json', 'proposed_variants_json', 'proposed_security_objectives_json',
     'proposed_csf_functions_json', 'proposed_control_purposes_json', 'proposed_implementation_types_json',
     'proposed_maturity_requirements_json', 'proposed_verification_json',
+    # --- SADP v1.0 (threat dimension, platforms, baseline priority, provenance) ---
+    'proposed_threats_json', 'proposed_platforms_json', 'proposed_priority',
+    'proposed_amani_provenance_json',
 ]
 
 
@@ -52,6 +55,7 @@ def load_valid(conn):
         'sub': s('lk_sdt_subdomain'), 'obl': s('lk_obligation_level'), 'rqt': s('lk_requirement_type'),
         'nat': s('lk_control_nature'), 'fun': s('lk_control_function'), 'tst': s('lk_testability'),
         'asset_type': s('lk_asset_type'),
+        'threat': s('lk_threat'), 'platform': s('lk_platform'), 'priority': s('lk_priority'),
         'strength': {'DIRECT', 'INDIRECT', 'PARTIAL', 'INFORMATIVE'},
         'asset_crit': {'CRITICAL', 'HIGH', 'MEDIUM', 'LOW'},
     }
@@ -265,4 +269,57 @@ def promotion_blockers(row, valid):
         b.append(f'invalid tier {tr}')
     # authored rich collections (007) — reject bad codes fail-loud
     b.extend(enrichment_blockers(row))
+    # --- SADP v1.0 gate ---
+    b.extend(sadp_blockers(row, valid))
+    return b
+
+
+def sadp_blockers(row, valid):
+    """SADP v1.0 checks that need the DB-backed code sets (threat/platform/priority)
+    and the tag prohibition. Returns a list of blocker strings."""
+    b = []
+
+    # §2.4: free-form tags are prohibited
+    tags = _parse_json(row, 'proposed_tags_json')[0]
+    if tags:
+        b.append('SADP §2.4: free-form tags prohibited (use THR-* / normalized dimensions)')
+
+    # threat dimension (THR-*), normalized child rows
+    thr, err = _parse_json(row, 'proposed_threats_json')
+    if err:
+        b.append(err)
+    elif thr is not None:
+        if not isinstance(thr, list):
+            b.append('proposed_threats_json must be a JSON array')
+        else:
+            seen = set()
+            for t in thr:
+                code = t.get('threat_code') if isinstance(t, dict) else t
+                if code not in valid['threat']:
+                    b.append(f'invalid threat_code {code}')
+                if code in seen:
+                    b.append(f'duplicate threat_code {code}')
+                seen.add(code)
+
+    # platform applicability -> lk_platform
+    plat, err = _parse_json(row, 'proposed_platforms_json')
+    if err:
+        b.append(err)
+    elif plat is not None:
+        if not isinstance(plat, list):
+            b.append('proposed_platforms_json must be a JSON array')
+        else:
+            seen = set()
+            for p in plat:
+                code = p.get('platform_code') if isinstance(p, dict) else p
+                if code not in valid['platform']:
+                    b.append(f'invalid platform_code {code}')
+                if code in seen:
+                    b.append(f'duplicate platform_code {code}')
+                seen.add(code)
+
+    # baseline priority (PRI-*) if authored explicitly
+    pr = row['proposed_priority'] if 'proposed_priority' in row.keys() else None
+    if pr is not None and pr not in valid['priority']:
+        b.append(f'invalid priority {pr}')
     return b

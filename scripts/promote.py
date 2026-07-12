@@ -26,6 +26,9 @@ import _promote_common as C
 
 PLAN_DIR = os.path.join(ROOT, 'consolidation', 'promotion')
 
+# schema binds priority to its weight (CHECK): keep them in lock-step.
+PRIORITY_WEIGHT = {'PRI-CRITICAL': 10, 'PRI-HIGH': 7, 'PRI-MEDIUM': 4, 'PRI-LOW': 1}
+
 SOURCE_TYPE_MAP = {'FRAMEWORK': 'STANDARD', 'STANDARD': 'STANDARD', 'REGULATION': 'REGULATION',
                    'POLICY_TEMPLATE': 'DOCUMENT', 'THREAT_INTEL': 'DOCUMENT', 'GUIDELINE': 'DOCUMENT',
                    'DOCUMENT': 'DOCUMENT', 'SYSTEM': 'SYSTEM', 'TOOL': 'TOOL'}
@@ -116,7 +119,11 @@ def build_plan(conn, valid, batch_id):
                       'actions': jc('proposed_actions_json'), 'variants': jc('proposed_variants_json'),
                       'objectives': jc('proposed_security_objectives_json'), 'csf': jc('proposed_csf_functions_json'),
                       'purposes': jc('proposed_control_purposes_json'), 'impl_types': jc('proposed_implementation_types_json'),
-                      'maturity': jc('proposed_maturity_requirements_json'), 'verification': jc('proposed_verification_json')})
+                      'maturity': jc('proposed_maturity_requirements_json'), 'verification': jc('proposed_verification_json'),
+                      'threats': jc('proposed_threats_json'), 'platforms': jc('proposed_platforms_json'),
+                      'provenance': (json.loads(r['proposed_amani_provenance_json'])
+                                     if ('proposed_amani_provenance_json' in r.keys() and r['proposed_amani_provenance_json'])
+                                     else None)})
     counts = {'insert': sum(1 for i in items if i['action'] == 'INSERT'),
               'skip': sum(1 for i in items if i['action'] == 'SKIP'),
               'conflict': sum(1 for i in items if i['action'] == 'CONFLICT')}
@@ -154,6 +161,7 @@ CATALOG_COLS = ('id', 'source_catalog_id', 'title_en', 'title_ar', 'description_
                 'objective_en', 'objective_ar', 'canonical_statement', 'type', 'abstraction_level',
                 'primary_domain', 'sub_domain', 'source', 'source_type', 'obligation_level',
                 'requirement_type', 'granularity_level', 'control_nature', 'control_function', 'testability',
+                'priority', 'priority_weight', 'review_frequency',
                 'evidence_required', 'evidence_required_ar', 'verification_method_note', 'verification_method_note_ar',
                 'scoring_weight', 'risk_reduction', 'effort_level', 'tier',
                 'classification_confidence', 'classification_rationale', 'ai_review_status',
@@ -213,9 +221,17 @@ def cmd_apply(args):
                 'canonical_statement': r['canonical_statement'], 'type': r['proposed_type'],
                 'abstraction_level': r['proposed_abstraction_level'], 'primary_domain': r['proposed_primary_domain'],
                 'sub_domain': r['proposed_sub_domain'], 'source': d['source'], 'source_type': d['source_type'],
-                'obligation_level': r['proposed_obligation_level'], 'requirement_type': r['proposed_requirement_type'],
-                'granularity_level': d['granularity_level'], 'control_nature': r['proposed_control_nature'],
+                'obligation_level': r['proposed_obligation_level'],
+                'requirement_type': r['proposed_requirement_type'],  # NULL for non-ART-REQ (schema-structural N/A)
+                'granularity_level': d['granularity_level'],
+                # SADP §2.2: control_* / requirement_type are type-conditional — the frozen
+                # schema CHECKs bind them to NULL when structurally N/A (NULL == the *-NA
+                # fallback, enforced structurally). Real values still come from staging.
+                'control_nature': r['proposed_control_nature'],
                 'control_function': r['proposed_control_function'], 'testability': r['proposed_testability'],
+                'priority': (sg('proposed_priority') or 'PRI-MEDIUM'),
+                'priority_weight': PRIORITY_WEIGHT.get(sg('proposed_priority') or 'PRI-MEDIUM', 4),
+                'review_frequency': 'AD-HOC',   # intrinsic baseline (no operational schedule in the catalog)
                 'evidence_required': sg('evidence_en'), 'evidence_required_ar': sg('evidence_ar'),
                 'verification_method_note': sg('verification_method_note'),
                 'verification_method_note_ar': sg('verification_method_note_ar'),
@@ -234,10 +250,7 @@ def cmd_apply(args):
                 conn.execute("INSERT INTO framework_mappings (artifact_id,framework,version,reference,mapping_strength,rationale) VALUES (?,?,?,?,?,?)",
                              (fid, m['framework'], m['version'], m['reference'], m['mapping_strength'], m['rationale']))
                 nmap += 1
-            ntag = 0
-            for t in it['tags']:
-                conn.execute("INSERT OR IGNORE INTO artifact_tags (artifact_id,tag_type,tag_value) VALUES (?,?,?)",
-                             (fid, t.get('tag_type'), t.get('tag_value'))); ntag += 1
+            ntag = 0  # SADP §2.4: tags retired; secondary context lives in normalized dimensions
             nrel = 0
             for rel in it['relationships']:
                 conn.execute("INSERT INTO artifact_relationships (source_id,target_id,relation_type,resolution_status,resolution_note) VALUES (?,?,?,?,?)",
@@ -273,6 +286,22 @@ def cmd_apply(args):
             for st in verif.get('testing_steps', []):
                 conn.execute("INSERT INTO artifact_actions (artifact_id,kind,seq,text_en,text_ar) VALUES (?,'VERIFICATION',?,?,?)",
                              (fid, st['seq'], st['text_en'], st.get('text_ar')))
+            # ---- SADP dimensions: threats (§2.4/§3.1) + platforms + amani provenance ----
+            threats = [t.get('threat_code') if isinstance(t, dict) else t for t in it.get('threats', [])]
+            threats = [t for t in dict.fromkeys(threats) if t]     # dedup, keep order
+            if not threats:
+                threats = ['THR-NA']                               # §2.2: threat always populated
+            for tc in threats:
+                conn.execute("INSERT INTO artifact_threats (artifact_id,threat_code) VALUES (?,?)", (fid, tc))
+            for p in it.get('platforms', []):
+                pc = p.get('platform_code') if isinstance(p, dict) else p
+                conn.execute("INSERT OR IGNORE INTO artifact_platforms (artifact_id,platform_code) VALUES (?,?)", (fid, pc))
+            prov = it.get('provenance')
+            if prov:
+                conn.execute("INSERT INTO catalog_amani_provenance (artifact_id,amani_id,amani_domain,amani_sub) VALUES (?,?,?,?)",
+                             (fid, prov.get('amani_id'), prov.get('amani_domain'), prov.get('amani_sub')))
+                for a in dict.fromkeys(prov.get('assets') or []):
+                    conn.execute("INSERT OR IGNORE INTO catalog_amani_assets (artifact_id,asset_ref) VALUES (?,?)", (fid, a))
             conn.execute("UPDATE staging_artifacts SET promoted_artifact_id=? WHERE id=?", (fid, it['staging_id']))
             conn.execute("""INSERT OR REPLACE INTO promotion_batch_items
                 (batch_id,staging_id,final_artifact_id,source_staging_hash,action,mappings_created,tags_created,relationships_created)
@@ -324,7 +353,8 @@ def cmd_rollback(args):
             conn.execute("DELETE FROM artifact_relationships WHERE source_id=? OR target_id=?", (fid, fid))
             for t in ('artifact_actions', 'artifact_variants', 'artifact_security_objectives',
                       'artifact_csf_functions', 'artifact_control_purposes', 'artifact_implementation_types',
-                      'artifact_maturity_requirements', 'artifact_verification_evidence_types'):
+                      'artifact_maturity_requirements', 'artifact_verification_evidence_types',
+                      'artifact_threats', 'artifact_platforms', 'catalog_amani_provenance', 'catalog_amani_assets'):
                 conn.execute(f"DELETE FROM {t} WHERE artifact_id=?", (fid,))
             conn.execute("DELETE FROM security_artifacts WHERE id=?", (fid,))
             conn.execute("UPDATE staging_artifacts SET promoted_artifact_id=NULL WHERE id=?", (it['staging_id'],))

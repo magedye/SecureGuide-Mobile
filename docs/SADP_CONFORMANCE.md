@@ -24,7 +24,7 @@ codes. Four gaps were closed:
 
 1. **Sparse fallbacks (§2.3)** → migration 011 seeds the systematic triple.
 2. **Missing `THR-*` dimension (§2.4/§3.1)** → `lk_threat` + `artifact_threats` (migrations 012/013).
-3. **Nullable classification columns (§2.2)** → enforced-populated (with fallbacks) at the promotion gate; schema columns left as-is (additive-only principle; no rebuild of the frozen core table).
+3. **Nullable classification columns (§2.2)** → populated at the promotion gate: `review_frequency` filled with the `AD-HOC` baseline, and the threat dimension always carries ≥1 row (`THR-NA` fallback). **Type-conditional dimensions** (`control_nature`, `control_function`, `requirement_type`) are governed by the frozen schema's own CHECKs (e.g. `requirement_type` MUST be NULL unless the type is `ART-REQ`; `control_nature` allows only NULL or a real `NAT-*`). For these, **NULL is the schema-enforced structural `*-NA`** — it is deterministically bound to the artifact type, not an ambiguous emptiness, so it satisfies §2.3's intent without an illegal literal fallback. `testability` may carry `TST-NA` (allowed by its CHECK). Schema columns left as-is (additive-only; no rebuild of the frozen core table).
 4. **Tags present & used (§2.4)** → retired from the write path; amani provenance that previously rode on tags moved to typed tables (`catalog_amani_provenance`, `catalog_amani_assets`, `artifact_platforms`, `artifact_threats`); amani priority now stored losslessly in the `priority` (`PRI-*`) column.
 
 ## 3. Internal-tension resolution: §2.1 vs §3

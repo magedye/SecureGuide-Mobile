@@ -61,10 +61,12 @@ valid = C.load_valid(conn)
 raw0 = cnt(conn, 'raw_artifacts')
 stg0 = cnt(conn, 'staging_artifacts')
 
-# inject a tag on AI-06 to exercise tag normalization
-conn.execute("UPDATE staging_artifacts SET proposed_tags_json=? WHERE id='STG-CANON-AI-06'",
-             (json.dumps([{'tag_type': 'Framework', 'tag_value': 'CIS'}]),))
-# keep content_hash consistent with tag change (tags not in hash fields, so hash unaffected) -> fine
+# inject a threat on AI-06 to exercise the THR-* normalization (SADP §2.4/§3.1).
+# threats ARE in the hash fields, so recompute the content_hash to keep the plan fresh.
+conn.execute("UPDATE staging_artifacts SET proposed_threats_json=? WHERE id='STG-CANON-AI-06'",
+             (json.dumps([{'threat_code': 'THR-PHISHING'}]),))
+_r = conn.execute("SELECT * FROM staging_artifacts WHERE id='STG-CANON-AI-06'").fetchone()
+conn.execute("UPDATE staging_artifacts SET content_hash=? WHERE id='STG-CANON-AI-06'", (C.content_hash(_r),))
 conn.commit()
 
 print("# unit-level rejection tests (1-6)")
@@ -74,6 +76,9 @@ check("3. reject item missing type field (ART-REQ w/o requirement_type)", C.prom
 check("4. reject invalid SDT sub_domain", C.promotion_blockers(base_row(proposed_sub_domain='SD-09.09'), valid))
 check("5. reject invalid USACM type", C.promotion_blockers(base_row(proposed_type='ART-XXX'), valid))
 check("6. reject incomplete lineage", C.promotion_blockers(base_row(proposed_mappings_json=json.dumps([])), valid))
+check("6b. reject free-form tags (SADP §2.4)",
+      any('2.4' in b or 'tags' in b for b in C.promotion_blockers(base_row(proposed_tags_json=json.dumps([{'tag_type': 'Framework', 'tag_value': 'CIS'}])), valid)))
+check("6c. reject invalid threat_code", C.promotion_blockers(base_row(proposed_threats_json=json.dumps(['THR-BOGUS'])), valid))
 check("bonus: valid row has no blockers", not C.promotion_blockers(base_row(), valid))
 
 print("# plan/apply/idempotency (7-11)")
@@ -83,7 +88,10 @@ check("7. plan writes nothing to catalog", cnt(conn, 'security_artifacts') == be
 r1 = run('scripts/promote.py', 'apply', '--db', DB, '--plan', os.path.join(PLANDIR, 'plan-T1.json'))
 check("8. apply promotes 4 approved items", cnt(conn, 'security_artifacts') == 4)
 check("9. mappings normalized", cnt(conn, 'framework_mappings') >= 4)
-check("10. tags normalized", cnt(conn, "artifact_tags", "WHERE tag_value='CIS'") == 1)
+check("10. threats normalized (THR-PHISHING on AI-06)", cnt(conn, "artifact_threats", "WHERE threat_code='THR-PHISHING'") == 1)
+check("10b. every promoted artifact has >=1 threat (THR-NA fallback)",
+      cnt(conn, 'security_artifacts', "WHERE id NOT IN (SELECT artifact_id FROM artifact_threats)") == 0)
+check("10c. no tags written (SADP §2.4)", cnt(conn, 'artifact_tags') == 0)
 run('scripts/promote.py', 'apply', '--db', DB, '--plan', os.path.join(PLANDIR, 'plan-T1.json'))
 check("11. idempotent re-apply (still 4)", cnt(conn, 'security_artifacts') == 4)
 
