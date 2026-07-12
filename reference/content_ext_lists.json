@@ -1,0 +1,428 @@
+{
+  "lk_security_objective": [
+    {
+      "code": "confidentiality",
+      "name_en": "Confidentiality",
+      "name_ar": "السرية",
+      "usacm_map": null
+    },
+    {
+      "code": "integrity",
+      "name_en": "Integrity",
+      "name_ar": "السلامة",
+      "usacm_map": null
+    },
+    {
+      "code": "availability",
+      "name_en": "Availability",
+      "name_ar": "التوافر",
+      "usacm_map": null
+    },
+    {
+      "code": "authenticity",
+      "name_en": "Authenticity",
+      "name_ar": "الأصالة",
+      "usacm_map": null
+    },
+    {
+      "code": "accountability",
+      "name_en": "Accountability",
+      "name_ar": "المساءلة",
+      "usacm_map": null
+    },
+    {
+      "code": "non_repudiation",
+      "name_en": "Non-Repudiation",
+      "name_ar": "عدم الإنكار",
+      "usacm_map": null
+    },
+    {
+      "code": "privacy",
+      "name_en": "Privacy",
+      "name_ar": "الخصوصية",
+      "usacm_map": null
+    },
+    {
+      "code": "safety",
+      "name_en": "Safety",
+      "name_ar": "السلامة العامة",
+      "usacm_map": null
+    }
+  ],
+  "lk_objective_strength": [
+    {
+      "code": "primary",
+      "name_en": "Primary",
+      "name_ar": "أساسي",
+      "usacm_map": null
+    },
+    {
+      "code": "supporting",
+      "name_en": "Supporting",
+      "name_ar": "داعم",
+      "usacm_map": null
+    },
+    {
+      "code": "none",
+      "name_en": "None",
+      "name_ar": "لا يوجد",
+      "usacm_map": null
+    }
+  ],
+  "lk_csf_function": [
+    {
+      "code": "govern",
+      "name_en": "Govern",
+      "name_ar": "الحوكمة",
+      "usacm_map": "ABS-GOV"
+    },
+    {
+      "code": "identify",
+      "name_en": "Identify",
+      "name_ar": "التعريف",
+      "usacm_map": "ABS-RIS"
+    },
+    {
+      "code": "protect",
+      "name_en": "Protect",
+      "name_ar": "الحماية",
+      "usacm_map": "FUN-PRE"
+    },
+    {
+      "code": "detect",
+      "name_en": "Detect",
+      "name_ar": "الكشف",
+      "usacm_map": "FUN-DET"
+    },
+    {
+      "code": "respond",
+      "name_en": "Respond",
+      "name_ar": "الاستجابة",
+      "usacm_map": "FUN-COR"
+    },
+    {
+      "code": "recover",
+      "name_en": "Recover",
+      "name_ar": "التعافي",
+      "usacm_map": "FUN-REC"
+    }
+  ],
+  "lk_control_purpose": [
+    {
+      "code": "preventive",
+      "name_en": "Preventive",
+      "name_ar": "وقائي",
+      "usacm_map": "FUN-PRE"
+    },
+    {
+      "code": "deterrent",
+      "name_en": "Deterrent",
+      "name_ar": "ردعي",
+      "usacm_map": "FUN-DRR"
+    },
+    {
+      "code": "detective",
+      "name_en": "Detective",
+      "name_ar": "كشفي",
+      "usacm_map": "FUN-DET"
+    },
+    {
+      "code": "corrective",
+      "name_en": "Corrective",
+      "name_ar": "تصحيحي",
+      "usacm_map": "FUN-COR"
+    },
+    {
+      "code": "containment",
+      "name_en": "Containment",
+      "name_ar": "احتواء",
+      "usacm_map": "FUN-COR"
+    },
+    {
+      "code": "recovery",
+      "name_en": "Recovery",
+      "name_ar": "استرداد",
+      "usacm_map": "FUN-REC"
+    },
+    {
+      "code": "compensating",
+      "name_en": "Compensating",
+      "name_ar": "تعويضي",
+      "usacm_map": "FUN-COM"
+    },
+    {
+      "code": "directive",
+      "name_en": "Directive",
+      "name_ar": "توجيهي",
+      "usacm_map": "FUN-PRE"
+    },
+    {
+      "code": "monitoring",
+      "name_en": "Monitoring",
+      "name_ar": "مراقبة",
+      "usacm_map": "FUN-DET"
+    },
+    {
+      "code": "assurance",
+      "name_en": "Assurance",
+      "name_ar": "ضمان",
+      "usacm_map": "FUN-DET"
+    }
+  ],
+  "lk_implementation_type": [
+    {
+      "code": "administrative",
+      "name_en": "Administrative",
+      "name_ar": "إداري",
+      "usacm_map": "NAT-ORG"
+    },
+    {
+      "code": "technical",
+      "name_en": "Technical",
+      "name_ar": "تقني",
+      "usacm_map": "NAT-TEC"
+    },
+    {
+      "code": "operational",
+      "name_en": "Operational",
+      "name_ar": "تشغيلي",
+      "usacm_map": "NAT-ORG"
+    },
+    {
+      "code": "physical",
+      "name_en": "Physical",
+      "name_ar": "مادي",
+      "usacm_map": "NAT-PHY"
+    },
+    {
+      "code": "human",
+      "name_en": "Human",
+      "name_ar": "بشري",
+      "usacm_map": "NAT-HUM"
+    },
+    {
+      "code": "legal_contractual",
+      "name_en": "Legal/Contractual",
+      "name_ar": "قانوني/تعاقدي",
+      "usacm_map": "NAT-ORG"
+    },
+    {
+      "code": "architectural",
+      "name_en": "Architectural",
+      "name_ar": "معماري",
+      "usacm_map": "NAT-TEC"
+    }
+  ],
+  "lk_tier": [
+    {
+      "code": "essential",
+      "name_en": "Essential",
+      "name_ar": "أساسي",
+      "usacm_map": "INITIAL"
+    },
+    {
+      "code": "advanced",
+      "name_en": "Advanced",
+      "name_ar": "متقدّم",
+      "usacm_map": "DEFINED"
+    },
+    {
+      "code": "very_advanced",
+      "name_en": "Very Advanced",
+      "name_ar": "متقدّم جداً",
+      "usacm_map": "MANAGED"
+    },
+    {
+      "code": "full",
+      "name_en": "Full",
+      "name_ar": "كامل",
+      "usacm_map": "OPTIMIZED"
+    }
+  ],
+  "lk_platform": [
+    {
+      "code": "all",
+      "name_en": "All Platforms",
+      "name_ar": "كل المنصات",
+      "usacm_map": null
+    },
+    {
+      "code": "windows",
+      "name_en": "Windows",
+      "name_ar": "ويندوز",
+      "usacm_map": null
+    },
+    {
+      "code": "macos",
+      "name_en": "macOS",
+      "name_ar": "ماك",
+      "usacm_map": null
+    },
+    {
+      "code": "linux",
+      "name_en": "Linux",
+      "name_ar": "لينكس",
+      "usacm_map": null
+    },
+    {
+      "code": "ios",
+      "name_en": "iOS",
+      "name_ar": "iOS",
+      "usacm_map": null
+    },
+    {
+      "code": "android",
+      "name_en": "Android",
+      "name_ar": "أندرويد",
+      "usacm_map": null
+    },
+    {
+      "code": "web",
+      "name_en": "Web",
+      "name_ar": "ويب",
+      "usacm_map": null
+    },
+    {
+      "code": "browser",
+      "name_en": "Browser",
+      "name_ar": "المتصفح",
+      "usacm_map": null
+    },
+    {
+      "code": "router",
+      "name_en": "Router",
+      "name_ar": "راوتر",
+      "usacm_map": null
+    },
+    {
+      "code": "iot",
+      "name_en": "IoT",
+      "name_ar": "إنترنت الأشياء",
+      "usacm_map": null
+    },
+    {
+      "code": "cloud",
+      "name_en": "Cloud",
+      "name_ar": "سحابة",
+      "usacm_map": null
+    }
+  ],
+  "scoring_policy": {
+    "critical_cap": 60,
+    "dependency_clamp_ceiling": 0.5
+  },
+  "scoring_bands": [
+    {
+      "code": "at_risk",
+      "min": 0,
+      "label_en": "At Risk"
+    },
+    {
+      "code": "fair",
+      "min": 61,
+      "label_en": "Fair"
+    },
+    {
+      "code": "strong",
+      "min": 75,
+      "label_en": "Strong"
+    },
+    {
+      "code": "excellent",
+      "min": 90,
+      "label_en": "Excellent"
+    }
+  ],
+  "amani_domain_alias": {
+    "identity_accounts": {
+      "sdt_primary": "SD-03",
+      "sdt_sub": "SD-03.02",
+      "needs_review": 1
+    },
+    "devices": {
+      "sdt_primary": "SD-04",
+      "sdt_sub": "SD-04.02",
+      "needs_review": 0
+    },
+    "applications_browsing": {
+      "sdt_primary": "SD-05",
+      "sdt_sub": null,
+      "needs_review": 1
+    },
+    "communications": {
+      "sdt_primary": "SD-04",
+      "sdt_sub": "SD-04.05",
+      "needs_review": 0
+    },
+    "networks_connectivity": {
+      "sdt_primary": "SD-04",
+      "sdt_sub": "SD-04.01",
+      "needs_review": 0
+    },
+    "financial_transactions": {
+      "sdt_primary": "SD-02",
+      "sdt_sub": null,
+      "needs_review": 1
+    },
+    "data_privacy": {
+      "sdt_primary": "SD-02",
+      "sdt_sub": "SD-02.04",
+      "needs_review": 1
+    },
+    "physical_travel": {
+      "sdt_primary": "SD-08",
+      "sdt_sub": "SD-08.04",
+      "needs_review": 0
+    },
+    "human_factors": {
+      "sdt_primary": "SD-08",
+      "sdt_sub": "SD-08.01",
+      "needs_review": 0
+    },
+    "incident_recovery": {
+      "sdt_primary": "SD-07",
+      "sdt_sub": "SD-07.01",
+      "needs_review": 0
+    },
+    "smart_home_iot": {
+      "sdt_primary": "SD-04",
+      "sdt_sub": "SD-04.02",
+      "needs_review": 1
+    },
+    "GRC": {
+      "sdt_primary": "SD-01",
+      "sdt_sub": null,
+      "needs_review": 1
+    },
+    "IAM": {
+      "sdt_primary": "SD-03",
+      "sdt_sub": "SD-03.03",
+      "needs_review": 0
+    },
+    "IPS": {
+      "sdt_primary": "SD-04",
+      "sdt_sub": null,
+      "needs_review": 1
+    },
+    "DPP": {
+      "sdt_primary": "SD-02",
+      "sdt_sub": "SD-02.04",
+      "needs_review": 0
+    },
+    "DMR": {
+      "sdt_primary": "SD-06",
+      "sdt_sub": null,
+      "needs_review": 1
+    },
+    "APP": {
+      "sdt_primary": "SD-05",
+      "sdt_sub": "SD-05.01",
+      "needs_review": 0
+    },
+    "RCR": {
+      "sdt_primary": "SD-07",
+      "sdt_sub": "SD-07.04",
+      "needs_review": 0
+    }
+  }
+}
