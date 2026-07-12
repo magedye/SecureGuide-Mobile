@@ -93,8 +93,11 @@ def build_enrichment(ctrl):
     e = ctrl.get('enterprise') or {}
     f = {}
 
-    # scoring scalars (personal controls carry an explicit weight; enterprise don't)
-    f['proposed_scoring_weight'] = ctrl.get('scoring_weight')
+    # scoring scalars (personal controls carry an explicit weight; enterprise don't).
+    # coerce to float so the hashed value matches the REAL column on read-back
+    # (else an int weight hashes as "6" but reloads as 6.0 -> stale-plan mismatch).
+    sw = ctrl.get('scoring_weight')
+    f['proposed_scoring_weight'] = float(sw) if sw is not None else None
     rr = ctrl.get('risk_reduction')
     f['proposed_risk_reduction'] = rr if isinstance(rr, int) and 2 <= rr <= 5 else None
     f['proposed_effort_level'] = ctrl.get('effort') if ctrl.get('effort') in ('low', 'medium', 'high') else None
@@ -147,9 +150,12 @@ def build_enrichment(ctrl):
     vg = e.get('verification_guidance') or {}
     ev, ev_other = [], False
     for label in (vg.get('evidence_types') or []):
-        code = EVIDENCE_MAP.get(label, 'OTHER')
-        if code == 'OTHER' and label not in EVIDENCE_MAP:
-            ev_other = True
+        if label in C.EVIDENCE_TYPES:          # already canonical (e.g. a round-trip)
+            code = label
+        else:
+            code = EVIDENCE_MAP.get(label, 'OTHER')
+            if code == 'OTHER' and label not in EVIDENCE_MAP:
+                ev_other = True
         ev.append(code)
     ev = dedup(ev)
     if ev_other:
@@ -186,9 +192,14 @@ def build_mappings(ctrl, raw_id, registry):
 
 
 def build_tags(ctrl):
+    # amani-specific facets that don't map losslessly to USACM are preserved as
+    # Context tags so build_amani_asset can reconstruct the asset faithfully
+    # (priority: critical vs high both -> OBL-MND, so keep the original here).
     tags = [{'tag_type': 'Context', 'tag_value': f"amani_domain:{ctrl.get('domain')}"}]
     if ctrl.get('sub_domain'):
         tags.append({'tag_type': 'Context', 'tag_value': f"amani_sub:{ctrl['sub_domain']}"})
+    if ctrl.get('priority'):
+        tags.append({'tag_type': 'Context', 'tag_value': f"amani_priority:{ctrl['priority']}"})
     for t in (ctrl.get('threat_ids') or []):
         tags.append({'tag_type': 'Threat', 'tag_value': t})
     for a in (ctrl.get('asset_ids') or []):
