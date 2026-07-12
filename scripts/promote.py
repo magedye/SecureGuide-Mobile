@@ -105,10 +105,18 @@ def build_plan(conn, valid, batch_id):
                      'mapping_strength': m.get('mapping_strength'), 'rationale': m.get('rationale')} for m in maps]
         tags = json.loads(r['proposed_tags_json']) if r['proposed_tags_json'] else []
         rels = json.loads(r['proposed_relationships_json']) if r['proposed_relationships_json'] else []
+
+        def jc(col):  # enrichment JSON collection (col may be absent on pre-007 rows)
+            v = r[col] if col in r.keys() else None
+            return json.loads(v) if v else ([] if not col.endswith('verification_json') else {})
         items.append({'staging_id': r['id'], 'final_artifact_id': fid, 'action': action,
                       'source_staging_hash': r['content_hash'], 'type': r['proposed_type'],
                       'sub_domain': r['proposed_sub_domain'], 'equivalence_group': r['canonical_group_id'],
-                      'mappings': mappings, 'tags': tags, 'relationships': rels})
+                      'mappings': mappings, 'tags': tags, 'relationships': rels,
+                      'actions': jc('proposed_actions_json'), 'variants': jc('proposed_variants_json'),
+                      'objectives': jc('proposed_security_objectives_json'), 'csf': jc('proposed_csf_functions_json'),
+                      'purposes': jc('proposed_control_purposes_json'), 'impl_types': jc('proposed_implementation_types_json'),
+                      'maturity': jc('proposed_maturity_requirements_json'), 'verification': jc('proposed_verification_json')})
     counts = {'insert': sum(1 for i in items if i['action'] == 'INSERT'),
               'skip': sum(1 for i in items if i['action'] == 'SKIP'),
               'conflict': sum(1 for i in items if i['action'] == 'CONFLICT')}
@@ -141,10 +149,13 @@ def cmd_plan(args):
 
 
 # --------------------------------- apply -----------------------------------
-CATALOG_COLS = ('id', 'source_catalog_id', 'title_en', 'description_en', 'definition_short_en',
-                'definition_full_en', 'objective_en', 'canonical_statement', 'type', 'abstraction_level',
+CATALOG_COLS = ('id', 'source_catalog_id', 'title_en', 'title_ar', 'description_en', 'description_ar',
+                'definition_short_en', 'definition_short_ar', 'definition_full_en', 'definition_full_ar',
+                'objective_en', 'objective_ar', 'canonical_statement', 'type', 'abstraction_level',
                 'primary_domain', 'sub_domain', 'source', 'source_type', 'obligation_level',
                 'requirement_type', 'granularity_level', 'control_nature', 'control_function', 'testability',
+                'evidence_required', 'evidence_required_ar', 'verification_method_note', 'verification_method_note_ar',
+                'scoring_weight', 'risk_reduction', 'effort_level', 'tier',
                 'classification_confidence', 'classification_rationale', 'ai_review_status',
                 'requires_human_review', 'publication_status', 'source_document', 'is_active')
 
@@ -190,16 +201,26 @@ def cmd_apply(args):
                 raise RuntimeError(f"{it['staging_id']} blockers at apply: {blk}")
             maps = json.loads(r['proposed_mappings_json']) if r['proposed_mappings_json'] else []
             d = derive_catalog_fields(conn, r, maps)
+            def sg(k):  # safe staging get (enrichment cols may be absent on pre-007 rows)
+                return r[k] if k in r.keys() else None
             vals = {
                 'id': fid, 'source_catalog_id': d['source_catalog_id'], 'title_en': r['title_en'],
-                'description_en': r['definition_short_en'], 'definition_short_en': r['definition_short_en'],
-                'definition_full_en': r['definition_full_en'], 'objective_en': r['objective_en'],
+                'title_ar': sg('title_ar'),
+                'description_en': r['definition_short_en'], 'description_ar': sg('definition_short_ar'),
+                'definition_short_en': r['definition_short_en'], 'definition_short_ar': sg('definition_short_ar'),
+                'definition_full_en': r['definition_full_en'], 'definition_full_ar': sg('definition_full_ar'),
+                'objective_en': r['objective_en'], 'objective_ar': sg('objective_ar'),
                 'canonical_statement': r['canonical_statement'], 'type': r['proposed_type'],
                 'abstraction_level': r['proposed_abstraction_level'], 'primary_domain': r['proposed_primary_domain'],
                 'sub_domain': r['proposed_sub_domain'], 'source': d['source'], 'source_type': d['source_type'],
                 'obligation_level': r['proposed_obligation_level'], 'requirement_type': r['proposed_requirement_type'],
                 'granularity_level': d['granularity_level'], 'control_nature': r['proposed_control_nature'],
                 'control_function': r['proposed_control_function'], 'testability': r['proposed_testability'],
+                'evidence_required': sg('evidence_en'), 'evidence_required_ar': sg('evidence_ar'),
+                'verification_method_note': sg('verification_method_note'),
+                'verification_method_note_ar': sg('verification_method_note_ar'),
+                'scoring_weight': sg('proposed_scoring_weight'), 'risk_reduction': sg('proposed_risk_reduction'),
+                'effort_level': sg('proposed_effort_level'), 'tier': sg('proposed_tier'),
                 'classification_confidence': r['classification_confidence'],
                 'classification_rationale': r['classification_rationale'], 'ai_review_status': 'AIR-HUMAN-APPROVED',
                 'requires_human_review': 0, 'publication_status': 'APPROVED',
@@ -221,6 +242,37 @@ def cmd_apply(args):
             for rel in it['relationships']:
                 conn.execute("INSERT INTO artifact_relationships (source_id,target_id,relation_type,resolution_status,resolution_note) VALUES (?,?,?,?,?)",
                              (fid, rel['target_id'], rel['relation_type'], rel.get('resolution_status'), rel.get('resolution_note'))); nrel += 1
+            # ---- rich content-enrichment collections (007), same transaction ----
+            for a in it.get('actions', []):
+                conn.execute("INSERT INTO artifact_actions (artifact_id,kind,seq,text_en,text_ar) VALUES (?,?,?,?,?)",
+                             (fid, a.get('kind', 'ACTION'), a['seq'], a['text_en'], a.get('text_ar')))
+            for v in it.get('variants', []):
+                conn.execute("INSERT INTO artifact_variants (artifact_id,platform,title_en,title_ar,sort_order) VALUES (?,?,?,?,?)",
+                             (fid, v['platform'], v.get('title_en'), v.get('title_ar'), v.get('sort_order', 0)))
+            # plain INSERT (not OR IGNORE): bad codes are rejected upstream by
+            # promotion_blockers; any residual violation must abort the batch,
+            # never silently vanish.
+            for o in it.get('objectives', []):
+                conn.execute("INSERT INTO artifact_security_objectives (artifact_id,objective_code,strength) VALUES (?,?,?)",
+                             (fid, o['objective_code'], o['strength']))
+            for cf in it.get('csf', []):
+                conn.execute("INSERT INTO artifact_csf_functions (artifact_id,csf_code,strength) VALUES (?,?,?)",
+                             (fid, cf['csf_code'], cf['strength']))
+            for p in it.get('purposes', []):
+                conn.execute("INSERT INTO artifact_control_purposes (artifact_id,purpose_code) VALUES (?,?)",
+                             (fid, p['purpose_code'] if isinstance(p, dict) else p))
+            for im in it.get('impl_types', []):
+                conn.execute("INSERT INTO artifact_implementation_types (artifact_id,impl_type_code) VALUES (?,?)",
+                             (fid, im['impl_type_code'] if isinstance(im, dict) else im))
+            for mr in it.get('maturity', []):
+                conn.execute("INSERT INTO artifact_maturity_requirements (artifact_id,tier_code,objective_en,objective_ar,scope_en,scope_ar,verification_en,verification_ar) VALUES (?,?,?,?,?,?,?,?)",
+                             (fid, mr['tier_code'], mr.get('objective_en'), mr.get('objective_ar'), mr.get('scope_en'), mr.get('scope_ar'), mr.get('verification_en'), mr.get('verification_ar')))
+            verif = it.get('verification') or {}
+            for et in verif.get('evidence_types', []):
+                conn.execute("INSERT INTO artifact_verification_evidence_types (artifact_id,evidence_type) VALUES (?,?)", (fid, et))
+            for st in verif.get('testing_steps', []):
+                conn.execute("INSERT INTO artifact_actions (artifact_id,kind,seq,text_en,text_ar) VALUES (?,'VERIFICATION',?,?,?)",
+                             (fid, st['seq'], st['text_en'], st.get('text_ar')))
             conn.execute("UPDATE staging_artifacts SET promoted_artifact_id=? WHERE id=?", (fid, it['staging_id']))
             conn.execute("""INSERT OR REPLACE INTO promotion_batch_items
                 (batch_id,staging_id,final_artifact_id,source_staging_hash,action,mappings_created,tags_created,relationships_created)
@@ -270,6 +322,10 @@ def cmd_rollback(args):
             conn.execute("DELETE FROM framework_mappings WHERE artifact_id=?", (fid,))
             conn.execute("DELETE FROM artifact_tags WHERE artifact_id=?", (fid,))
             conn.execute("DELETE FROM artifact_relationships WHERE source_id=? OR target_id=?", (fid, fid))
+            for t in ('artifact_actions', 'artifact_variants', 'artifact_security_objectives',
+                      'artifact_csf_functions', 'artifact_control_purposes', 'artifact_implementation_types',
+                      'artifact_maturity_requirements', 'artifact_verification_evidence_types'):
+                conn.execute(f"DELETE FROM {t} WHERE artifact_id=?", (fid,))
             conn.execute("DELETE FROM security_artifacts WHERE id=?", (fid,))
             conn.execute("UPDATE staging_artifacts SET promoted_artifact_id=NULL WHERE id=?", (it['staging_id'],))
         conn.execute("UPDATE promotion_batches SET status='ROLLED_BACK', rolled_back_at=datetime('now') WHERE id=?", (batch,))

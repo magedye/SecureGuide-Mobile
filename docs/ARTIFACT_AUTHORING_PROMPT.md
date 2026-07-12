@@ -63,6 +63,39 @@
 5. خالٍ من: مناسب، جيد، كافٍ، قوي، حديث… إلا بمعيار معرّف.
 6. `sub_domain` يبدأ بكود `primary_domain`.
 
+### ب.6 المحتوى الغني (اختياري — يُطبَّع عند الترقية إلى جداول أبناء)
+> كل هذه الحقول **اختيارية** ولا تمنع الاعتماد إن غابت؛ لكن إن وُجدت فتُتحقَّق قطعياً مقابل مجموعات الأكواد أدناه (يرفضها `promotion_blockers` fail-loud قبل الترقية). تُكتب في `staging_artifacts` كـ`proposed_*_json`/scalars ثم يُطبّعها `promote.py` داخل نفس معاملة الترقية إلى الجداول الفرعية.
+
+**مقاييس التقييم (scalars على `security_artifacts`):**
+| الحقل | القيم |
+|---|---|
+| `proposed_scoring_weight` | REAL ≥ 0 (وزن الضابط في الحساب) |
+| `proposed_risk_reduction` | عدد صحيح 2–5 |
+| `proposed_effort_level` | `low` / `medium` / `high` |
+| `proposed_tier` | `essential` / `advanced` / `very_advanced` / `full` |
+
+**المجموعات (JSON مؤقت → جداول أبناء):**
+| الحقل (`proposed_*_json`) | الشكل | القيود |
+|---|---|---|
+| `actions` | `[{kind, seq, text_en, text_ar?}]` | `kind` ∈ ACTION/VERIFICATION (افتراضي ACTION)؛ `seq` عدد صحيح ≥0؛ `text_en` إلزامي |
+| `variants` | `[{platform, title_en?, title_ar?, sort_order?}]` | `platform` إلزامي وفريد لكل عنصر |
+| `security_objectives` | `[{objective_code, strength}]` | `objective_code` من الـ8 (CIA+)؛ `strength` ∈ primary/supporting/none؛ لا تكرار للكود |
+| `csf_functions` | `[{csf_code, strength}]` | `csf_code` من الـ6؛ `strength` ∈ primary/supporting؛ لا تكرار |
+| `control_purposes` | `["detective", …]` أو `[{purpose_code}]` | من الـ10؛ لا تكرار |
+| `implementation_types` | `["technical", …]` أو `[{impl_type_code}]` | من الـ7؛ لا تكرار |
+| `maturity_requirements` | `[{tier_code, objective_en?, scope_en?, verification_en?, *_ar?}]` | `tier_code` من الـ4؛ لا تكرار للطبقة |
+| `verification` | `{evidence_types:[…], testing_steps:[{seq, text_en, text_ar?}]}` | `evidence_type` من الـ8؛ خطوات التحقق تُطبَّع كـ`artifact_actions` بـ`kind=VERIFICATION` |
+
+**مجموعات الأكواد المسموحة:**
+- `objective_code` (8): confidentiality, integrity, availability, authenticity, accountability, non_repudiation, privacy, safety
+- `csf_code` (6): govern, identify, protect, detect, respond, recover
+- `purpose_code` (10): preventive, deterrent, detective, corrective, containment, recovery, compensating, directive, monitoring, assurance
+- `impl_type_code` (7): administrative, technical, operational, physical, human, legal_contractual, architectural
+- `tier_code` (4): essential, advanced, very_advanced, full
+- `evidence_type` (8): DOCUMENT, SCREENSHOT, LOG, REPORT, CONFIG, ATTESTATION, LINK, OTHER
+
+> **العربية:** `title_ar`, `definition_short_ar`, `definition_full_ar`, `objective_ar`, `evidence_ar`, `verification_method_note_ar` تُكتب مباشرة في staging وتُنقل حرفياً إلى الكتالوج (لا تمنع الاعتماد إن فارغة).
+
 ---
 
 ## ج. الطلب الجاهز (Authoring Prompt)
@@ -105,6 +138,17 @@ mapping_strength: DIRECT,INDIRECT,PARTIAL,INFORMATIVE
 tag_type: Technology,Framework,Concept,Context,Threat,Data,Party
 ai_review_status: AIR-AUTO-ACCEPTED,AIR-HUMAN-REVIEW,AIR-HUMAN-APPROVED,AIR-HUMAN-REJECTED
 
+RICH CONTENT (all OPTIONAL; validated fail-loud if present):
+scoring_weight: number>=0 ; risk_reduction: int 2..5 ; effort_level: low,medium,high
+tier: essential,advanced,very_advanced,full
+objective_code: confidentiality,integrity,availability,authenticity,accountability,non_repudiation,privacy,safety
+objective/csf strength: primary,supporting(,none for objectives)
+csf_code: govern,identify,protect,detect,respond,recover
+purpose_code: preventive,deterrent,detective,corrective,containment,recovery,compensating,directive,monitoring,assurance
+impl_type_code: administrative,technical,operational,physical,human,legal_contractual,architectural
+evidence_type: DOCUMENT,SCREENSHOT,LOG,REPORT,CONFIG,ATTESTATION,LINK,OTHER
+action.kind: ACTION,VERIFICATION ; action.seq/step.seq: int>=0 ; text_en required
+
 SDT domains: SD-01 Governance,Risk&Compliance | SD-02 Assets,Data&Privacy |
 SD-03 Identity,Access&Privilege | SD-04 Infrastructure,Network&Cloud |
 SD-05 Applications,Development&Change | SD-06 Detection,Monitoring&Vulnerability |
@@ -129,7 +173,22 @@ OUTPUT JSON SCHEMA (keys exactly):
   "proposed_tags": [{"tag_type": str, "tag_value": str}],
   "proposed_mappings": [{"raw_id": str, "source_document": str, "source_version": str,
                          "source_section": str, "mapping_strength": str, "rationale": str|null}],
-  "needs_split": bool, "split_suggestion": [str]
+  "needs_split": bool, "split_suggestion": [str],
+
+  // --- OPTIONAL rich content (omit any key you cannot author confidently) ---
+  "title_ar": str|null, "definition_short_ar": str|null, "definition_full_ar": str|null,
+  "objective_ar": str|null, "evidence_en": str|null, "evidence_ar": str|null,
+  "verification_method_note": str|null, "verification_method_note_ar": str|null,
+  "scoring_weight": number|null, "risk_reduction": int|null,
+  "effort_level": str|null, "tier": str|null,
+  "actions": [{"kind": str, "seq": int, "text_en": str, "text_ar": str|null}],
+  "variants": [{"platform": str, "title_en": str|null, "title_ar": str|null, "sort_order": int}],
+  "security_objectives": [{"objective_code": str, "strength": str}],
+  "csf_functions": [{"csf_code": str, "strength": str}],
+  "control_purposes": [str], "implementation_types": [str],
+  "maturity_requirements": [{"tier_code": str, "objective_en": str|null, "scope_en": str|null,
+                             "verification_en": str|null}],
+  "verification": {"evidence_types": [str], "testing_steps": [{"seq": int, "text_en": str, "text_ar": str|null}]}
 }
 ```
 
@@ -200,5 +259,7 @@ Produce the single JSON artifact per the schema and rules.
 - [ ] `proposed_mappings` فيه مصدر واحد على الأقل بـ`raw_id`+`source_document`+`mapping_strength` صالح؛ وأي غير DIRECT له rationale.
 - [ ] فكرة ذرّية (`needs_split=false`).
 - [ ] الوسوم لم تُستخدم بديلاً عن المجال.
+- [ ] **المحتوى الغني (إن وُجد):** `scoring_weight≥0` · `risk_reduction∈2..5` · `effort_level`/`tier` صالحان.
+- [ ] **الأكواد الغنية (إن وُجدت):** objective/csf/purpose/impl/tier/evidence كلها من مجموعاتها المسموحة، بلا تكرار، وكل `action`/خطوة تحقق لها `seq`≥0 و`text_en`؛ كل `variant` له `platform` فريد.
 
 > المخرجات تُكتب إلى `staging_artifacts` (الحقول `proposed_*`, `*_en`, `classification_*`, `proposed_tags_json`, `proposed_mappings_json`)، ثم تمرّ بالمراجعة النهائية والترقية وفق `PROMOTION_POLICY.md`.
