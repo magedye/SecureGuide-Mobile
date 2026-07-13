@@ -42,3 +42,5 @@ consolidation/promotion/
 # curated-import intermediates (regeneratable; classifications.json is the merged output)
 consolidation/curated/batches/
 consolidation/curated/results/
+consolidation/unified/blocks/
+consolidation/unified/results/

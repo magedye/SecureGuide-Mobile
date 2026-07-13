@@ -1,0 +1,1339 @@
+[
+  {
+    "members": [
+      "STG-CURATED-0001",
+      "STG-CURATED-0258",
+      "STG-CURATED-0668"
+    ],
+    "canonical": "STG-CURATED-0001",
+    "decision": "CANONICALIZE",
+    "rationale": "All three require the entity to identify, document, and approve its cybersecurity strategy (with head-of-entity sponsorship) — the same atomic requirement.",
+    "sub_domain": "SD-01.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0002",
+      "STG-CURATED-0666"
+    ],
+    "canonical": "STG-CURATED-0002",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require executing an action plan to operationalize/implement the approved cybersecurity strategy.",
+    "sub_domain": "SD-01.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0003",
+      "STG-CURATED-0669"
+    ],
+    "canonical": "STG-CURATED-0003",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require reviewing the cybersecurity strategy at planned intervals or upon legislative/regulatory change.",
+    "sub_domain": "SD-01.01"
+  },
+  {
+    "members": [
+      "STG-AMANI-0216",
+      "STG-CURATED-0013",
+      "STG-CURATED-0300"
+    ],
+    "canonical": "STG-CURATED-0013",
+    "decision": "CANONICALIZE",
+    "rationale": "All require establishing a dedicated cybersecurity department/function within the entity.",
+    "sub_domain": "SD-01.01"
+  },
+  {
+    "members": [
+      "STG-AMANI-0217",
+      "STG-CURATED-0014",
+      "STG-CURATED-0255"
+    ],
+    "canonical": "STG-CURATED-0014",
+    "decision": "CANONICALIZE",
+    "rationale": "All require filling all cybersecurity positions with full-time, qualified (Saudi/nationally eligible) professionals.",
+    "sub_domain": "SD-01.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0015",
+      "STG-CURATED-0224"
+    ],
+    "canonical": "STG-CURATED-0015",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require establishing a cybersecurity supervisory committee under the authorized official to ensure compliance, support, and monitoring.",
+    "sub_domain": "SD-01.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0020",
+      "STG-CURATED-0256"
+    ],
+    "canonical": "STG-CURATED-0020",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require the authorized official to identify, document, and approve the cybersecurity governance structure, roles, and responsibilities.",
+    "sub_domain": "SD-01.01"
+  },
+  {
+    "members": [
+      "STG-AMANI-0224",
+      "STG-CURATED-0021",
+      "STG-CURATED-0257"
+    ],
+    "canonical": "STG-CURATED-0021",
+    "decision": "CANONICALIZE",
+    "rationale": "All require reviewing and updating cybersecurity roles and responsibilities at planned intervals or upon legislative/regulatory change.",
+    "sub_domain": "SD-01.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0145",
+      "STG-CURATED-0393",
+      "STG-CURATED-0635"
+    ],
+    "canonical": "STG-CURATED-0635",
+    "decision": "CANONICALIZE",
+    "rationale": "All three require an overall/overarching information security policy to be established, published, maintained, and disseminated to all relevant personnel to direct the organization's security posture.",
+    "sub_domain": "SD-01.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0018",
+      "STG-CURATED-0346"
+    ],
+    "canonical": "STG-CURATED-0018",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require cybersecurity policies to be supported by technical security standards (e.g., firewall rule standards) to enable consistent/enforceable implementation.",
+    "sub_domain": "SD-01.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0019",
+      "STG-CURATED-0553"
+    ],
+    "canonical": "STG-CURATED-0553",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require cybersecurity policies and procedures to be reviewed and updated at planned intervals or upon changes to legislative, regulatory, or standards requirements.",
+    "sub_domain": "SD-01.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0016",
+      "STG-CURATED-0252"
+    ],
+    "canonical": "STG-CURATED-0016",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require the cybersecurity department to identify, document, and obtain approval of cybersecurity policies and procedures including controls and requirements.",
+    "sub_domain": "SD-01.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0022",
+      "STG-CURATED-0253",
+      "STG-CURATED-0593"
+    ],
+    "canonical": "STG-CURATED-0253",
+    "decision": "CANONICALIZE",
+    "rationale": "All three require the cybersecurity department to identify, document, and approve the entity's risk management methodology and procedures, differing only in incidental phrasing of purpose.",
+    "sub_domain": "SD-01.03"
+  },
+  {
+    "members": [
+      "STG-CURATED-0024",
+      "STG-CURATED-0254"
+    ],
+    "canonical": "STG-CURATED-0024",
+    "decision": "CANONICALIZE",
+    "rationale": "Both mandate applying cybersecurity risk assessment procedures at least at the early stage of technology projects to identify and treat risks before implementation.",
+    "sub_domain": "SD-01.03"
+  },
+  {
+    "members": [
+      "STG-CURATED-0030",
+      "STG-CURATED-0225"
+    ],
+    "canonical": "STG-CURATED-0225",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require the entity to identify and comply with cybersecurity requirements arising from nationally approved international agreements or commitments.",
+    "sub_domain": "SD-01.04"
+  },
+  {
+    "members": [
+      "STG-CURATED-0031",
+      "STG-CURATED-0506"
+    ],
+    "canonical": "STG-CURATED-0506",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require the cybersecurity department to periodically review implementation of cybersecurity controls to confirm their continued effectiveness.",
+    "sub_domain": "SD-01.04"
+  },
+  {
+    "members": [
+      "STG-CURATED-0032",
+      "STG-CURATED-0507"
+    ],
+    "canonical": "STG-CURATED-0032",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require cybersecurity control implementation to be reviewed and audited by parties independent of the cybersecurity department.",
+    "sub_domain": "SD-01.04"
+  },
+  {
+    "members": [
+      "STG-CURATED-0033",
+      "STG-CURATED-0508"
+    ],
+    "canonical": "STG-CURATED-0508",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require audit and review results to be documented and presented to the cybersecurity supervisory committee and the Authorized Official for oversight.",
+    "sub_domain": "SD-01.04"
+  },
+  {
+    "members": [
+      "STG-CURATED-0004",
+      "STG-CURATED-0712"
+    ],
+    "canonical": "STG-CURATED-0712",
+    "decision": "CANONICALIZE",
+    "rationale": "Both establish the same process to detect and address unauthorized assets on the network at least weekly by removing, quarantining, or authorizing them.",
+    "sub_domain": "SD-02.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0173",
+      "STG-CURATED-0332"
+    ],
+    "canonical": "STG-CURATED-0332",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require maintaining a comprehensive inventory of the same asset classes (endpoints, servers, software, cloud) each with an assigned owner and classification.",
+    "sub_domain": "SD-02.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0040",
+      "STG-CURATED-0656"
+    ],
+    "canonical": "STG-CURATED-0656",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require establishing and maintaining a detailed inventory of all licensed software installed on enterprise assets, with identical intent and scope.",
+    "sub_domain": "SD-02.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0049",
+      "STG-CURATED-0174"
+    ],
+    "canonical": "STG-CURATED-0174",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require information and technology assets to be classified, labeled, and handled per legislative and regulatory requirements, expressing the same asset-classification safeguard.",
+    "sub_domain": "SD-02.03"
+  },
+  {
+    "members": [
+      "STG-CURATED-0620",
+      "STG-CURATED-0708"
+    ],
+    "canonical": "STG-CURATED-0708",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require associating security and privacy attributes with information exchanged between systems and system components to enforce handling/protection decisions, the same attribute-binding-on-exchange control.",
+    "sub_domain": "SD-02.03"
+  },
+  {
+    "members": [
+      "STG-AMANI-0186",
+      "STG-AMANI-0608"
+    ],
+    "canonical": "STG-AMANI-0186",
+    "decision": "CANONICALIZE",
+    "rationale": "Both are CIS Control 2.1 with the identical requirement to establish and maintain a detailed inventory of all licensed software on enterprise assets.",
+    "sub_domain": "SD-02.04"
+  },
+  {
+    "members": [
+      "STG-AMANI-0326",
+      "STG-AMANI-0648"
+    ],
+    "canonical": "STG-AMANI-0326",
+    "decision": "CANONICALIZE",
+    "rationale": "Both are NIST CSF GV.RR-02 with verbatim-identical definitions on establishing, communicating, understanding, and enforcing cybersecurity roles, responsibilities, and authorities.",
+    "sub_domain": "SD-02.04"
+  },
+  {
+    "members": [
+      "STG-CURATED-0100",
+      "STG-CURATED-0247",
+      "STG-CURATED-0587"
+    ],
+    "canonical": "STG-CURATED-0100",
+    "decision": "CANONICALIZE",
+    "rationale": "All three state the same requirement that cryptography requirements must incorporate at least the provisions of the NCA National Cryptographic Standards.",
+    "sub_domain": "SD-02.04"
+  },
+  {
+    "members": [
+      "STG-AMANI-0180",
+      "STG-CURATED-0285",
+      "STG-CURATED-0329"
+    ],
+    "canonical": "STG-CURATED-0329",
+    "decision": "CANONICALIZE",
+    "rationale": "All express the same control of applying encryption to sensitive data and securely managing the associated cryptographic keys across their lifecycle.",
+    "sub_domain": "SD-02.04"
+  },
+  {
+    "members": [
+      "STG-CURATED-0095",
+      "STG-CURATED-0275"
+    ],
+    "canonical": "STG-CURATED-0095",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require identifying, documenting, and approving cybersecurity requirements for protecting and handling entity data in line with legislative/regulatory obligations.",
+    "sub_domain": "SD-02.04"
+  },
+  {
+    "members": [
+      "STG-CURATED-0096",
+      "STG-CURATED-0262"
+    ],
+    "canonical": "STG-CURATED-0096",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require implementing data-protection requirements according to each item's assigned classification level to ensure proportionate safeguards.",
+    "sub_domain": "SD-02.04"
+  },
+  {
+    "members": [
+      "STG-CURATED-0288",
+      "STG-CURATED-0294"
+    ],
+    "canonical": "STG-CURATED-0288",
+    "decision": "CANONICALIZE",
+    "rationale": "Both state the same outcome that the confidentiality, integrity, and availability of data-at-rest are protected for stored information.",
+    "sub_domain": "SD-02.04"
+  },
+  {
+    "members": [
+      "STG-CURATED-0107",
+      "STG-CURATED-0284"
+    ],
+    "canonical": "STG-CURATED-0107",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require minimizing account data storage through defined retention and disposal policies, procedures, and processes that limit how long stored data is kept.",
+    "sub_domain": "SD-02.05"
+  },
+  {
+    "members": [
+      "STG-CURATED-0119",
+      "STG-CURATED-0157"
+    ],
+    "canonical": "STG-CURATED-0157",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require establishing and maintaining an inventory of all enterprise accounts (user, administrator, service) for oversight.",
+    "sub_domain": "SD-03.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0123",
+      "STG-CURATED-0155"
+    ],
+    "canonical": "STG-CURATED-0155",
+    "decision": "CANONICALIZE",
+    "rationale": "Both define a preferably automated access-provisioning process for new hire, rights grant, or role change.",
+    "sub_domain": "SD-03.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0369",
+      "STG-CURATED-0670"
+    ],
+    "canonical": "STG-CURATED-0670",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require the account registration process to include supervisor or sponsor authorization before access is granted.",
+    "sub_domain": "SD-03.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0361",
+      "STG-CURATED-0474"
+    ],
+    "canonical": "STG-CURATED-0474",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require organizational lifecycle management of identities and credentials for authorized users, services, and hardware.",
+    "sub_domain": "SD-03.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0363",
+      "STG-CURATED-0475"
+    ],
+    "canonical": "STG-CURATED-0475",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require identities to be proofed and bound to credentials according to the risk context of the interaction.",
+    "sub_domain": "SD-03.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0134",
+      "STG-CURATED-0440"
+    ],
+    "canonical": "STG-CURATED-0134",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require multi-factor authentication for all access into the cardholder data environment.",
+    "sub_domain": "SD-03.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0125",
+      "STG-CURATED-0441"
+    ],
+    "canonical": "STG-CURATED-0125",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require MFA for all external/remote (including VPN) access into the enterprise network.",
+    "sub_domain": "SD-03.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0120",
+      "STG-CURATED-0715"
+    ],
+    "canonical": "STG-CURATED-0715",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require using unique passwords for every enterprise asset and never reusing them to contain credential compromise.",
+    "sub_domain": "SD-03.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0464",
+      "STG-CURATED-0722"
+    ],
+    "canonical": "STG-CURATED-0722",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require the OIDC relying-party client to mitigate ID token replay attacks.",
+    "sub_domain": "SD-03.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0192",
+      "STG-CURATED-0649"
+    ],
+    "canonical": "STG-CURATED-0649",
+    "decision": "CANONICALIZE",
+    "rationale": "Both enforce a limit on consecutive invalid logon attempts with lockout to deter brute-force/credential guessing.",
+    "sub_domain": "SD-03.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0133",
+      "STG-CURATED-0182"
+    ],
+    "canonical": "STG-CURATED-0182",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require authenticating all user access to system components via at least one factor (password, token, smart card, or biometrics) before granting access.",
+    "sub_domain": "SD-03.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0077",
+      "STG-CURATED-0444",
+      "STG-CURATED-0568"
+    ],
+    "canonical": "STG-CURATED-0077",
+    "decision": "CANONICALIZE",
+    "rationale": "All three express the same minimum single-factor username-and-password authentication requirement for identity and access management before granting entity system access.",
+    "sub_domain": "SD-03.02"
+  },
+  {
+    "members": [
+      "STG-AMANI-0195",
+      "STG-AMANI-0617"
+    ],
+    "canonical": "STG-AMANI-0195",
+    "decision": "CANONICALIZE",
+    "rationale": "Both are CIS Control 6.3 with identical wording requiring MFA for all external/remote (VPN) access.",
+    "sub_domain": "SD-03.03"
+  },
+  {
+    "members": [
+      "STG-AMANI-0202",
+      "STG-AMANI-0624"
+    ],
+    "canonical": "STG-AMANI-0202",
+    "decision": "CANONICALIZE",
+    "rationale": "Both are CIS Control 10.1 with identical text mandating anti-malware software on all enterprise assets.",
+    "sub_domain": "SD-03.03"
+  },
+  {
+    "members": [
+      "STG-AMANI-0350",
+      "STG-AMANI-0672"
+    ],
+    "canonical": "STG-AMANI-0350",
+    "decision": "CANONICALIZE",
+    "rationale": "Both are NIST CSF ID.AM-08 with identical text on managing systems, hardware, software, services, and data throughout their life cycles.",
+    "sub_domain": "SD-03.03"
+  },
+  {
+    "members": [
+      "STG-AMANI-0691",
+      "STG-CURATED-0362"
+    ],
+    "canonical": "STG-AMANI-0691",
+    "decision": "CANONICALIZE",
+    "rationale": "Both express NIST CSF PR.AA-05: defining, managing, enforcing, and reviewing access permissions/entitlements in policy incorporating least privilege and separation of duties.",
+    "sub_domain": "SD-03.03"
+  },
+  {
+    "members": [
+      "STG-CURATED-0108",
+      "STG-CURATED-0410"
+    ],
+    "canonical": "STG-CURATED-0108",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require configuring data access control lists on need-to-know with least privilege, near-verbatim identical wording.",
+    "sub_domain": "SD-03.03"
+  },
+  {
+    "members": [
+      "STG-CURATED-0130",
+      "STG-CURATED-0298"
+    ],
+    "canonical": "STG-CURATED-0130",
+    "decision": "CANONICALIZE",
+    "rationale": "Both state the PCI-DSS deny-by-default access control system for system components and the CDE based on need-to-know.",
+    "sub_domain": "SD-03.03"
+  },
+  {
+    "members": [
+      "STG-CURATED-0154",
+      "STG-CURATED-0409"
+    ],
+    "canonical": "STG-CURATED-0154",
+    "decision": "CANONICALIZE",
+    "rationale": "Both define the same least-privilege access control policy with periodic reviews and prompt revocation on termination, near-identical text.",
+    "sub_domain": "SD-03.03"
+  },
+  {
+    "members": [
+      "STG-AMANI-0544",
+      "STG-AMANI-0559"
+    ],
+    "canonical": "STG-AMANI-0559",
+    "decision": "CANONICALIZE",
+    "rationale": "Both describe the same ATT&CK technique 'Credentials from Web Browsers' (legacy T1503 = current T1555.003) with identical opening definition.",
+    "sub_domain": "SD-03.03"
+  },
+  {
+    "members": [
+      "STG-AMANI-0509",
+      "STG-AMANI-0549"
+    ],
+    "canonical": "STG-AMANI-0549",
+    "decision": "CANONICALIZE",
+    "rationale": "Both describe adversaries disabling Windows event logging to limit detection/audit data, near-verbatim identical technique text.",
+    "sub_domain": "SD-03.03"
+  },
+  {
+    "members": [
+      "STG-CURATED-0127",
+      "STG-CURATED-0446"
+    ],
+    "canonical": "STG-CURATED-0127",
+    "decision": "CANONICALIZE",
+    "rationale": "Both have identical title and require multi-factor authentication for all administrative access to enterprise assets, differing only in trivial phrasing of the protected-against threat.",
+    "sub_domain": "SD-03.04"
+  },
+  {
+    "members": [
+      "STG-CURATED-0006",
+      "STG-CURATED-0212"
+    ],
+    "canonical": "STG-CURATED-0006",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require all changes to network connections and network security control configurations to be formally approved and managed through a controlled change process.",
+    "sub_domain": "SD-04.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0007",
+      "STG-CURATED-0206"
+    ],
+    "canonical": "STG-CURATED-0206",
+    "decision": "CANONICALIZE",
+    "rationale": "Both restrict inbound traffic to the cardholder data environment to only what is necessary and block all other traffic.",
+    "sub_domain": "SD-04.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0005",
+      "STG-CURATED-0343"
+    ],
+    "canonical": "STG-CURATED-0005",
+    "decision": "CANONICALIZE",
+    "rationale": "Both define and implement configuration standards for network security controls (firewalls) to enforce consistent secure baselines.",
+    "sub_domain": "SD-04.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0089",
+      "STG-CURATED-0456",
+      "STG-CURATED-0461"
+    ],
+    "canonical": "STG-CURATED-0456",
+    "decision": "CANONICALIZE",
+    "rationale": "All three require logically or physically isolating and segmenting network segments using firewalls and defense-in-depth to control cybersecurity risks.",
+    "sub_domain": "SD-04.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0281",
+      "STG-CURATED-0296"
+    ],
+    "canonical": "STG-CURATED-0281",
+    "decision": "CANONICALIZE",
+    "rationale": "Both protect the confidentiality and integrity of transmitted information across communication paths against interception and tampering.",
+    "sub_domain": "SD-04.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0079",
+      "STG-CURATED-0394"
+    ],
+    "canonical": "STG-CURATED-0079",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require identifying, documenting, and formally approving cybersecurity requirements for protecting information systems and processing facilities.",
+    "sub_domain": "SD-04.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0080",
+      "STG-CURATED-0395"
+    ],
+    "canonical": "STG-CURATED-0080",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require implementing the approved information-systems-protection cybersecurity requirements to operationalize the documented safeguards.",
+    "sub_domain": "SD-04.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0091",
+      "STG-CURATED-0433"
+    ],
+    "canonical": "STG-CURATED-0091",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require identifying, documenting, and approving cybersecurity requirements for mobile/BYOD devices before they connect to the entity's network.",
+    "sub_domain": "SD-04.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0081",
+      "STG-CURATED-0323"
+    ],
+    "canonical": "STG-CURATED-0323",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require protecting workstations and servers from viruses, suspicious programs, and malware using modern endpoint anti-malware/EDR technologies.",
+    "sub_domain": "SD-04.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0137",
+      "STG-CURATED-0169"
+    ],
+    "canonical": "STG-CURATED-0137",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require deploying and maintaining anti-malware software on all enterprise assets to prevent, detect, and remediate malicious code across endpoints and servers (CIS 10.1).",
+    "sub_domain": "SD-04.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0121",
+      "STG-CURATED-0170"
+    ],
+    "canonical": "STG-CURATED-0121",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require anti-malware deployment on all system components except those identified in periodic evaluations as not at risk for malware (PCI DSS 5.2.1).",
+    "sub_domain": "SD-04.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0138",
+      "STG-CURATED-0168"
+    ],
+    "canonical": "STG-CURATED-0138",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require configuring automatic anti-malware signature updates on all enterprise assets on a daily-or-more-frequent basis (CIS 10.2).",
+    "sub_domain": "SD-04.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0116",
+      "STG-CURATED-0230",
+      "STG-CURATED-0611",
+      "STG-AMANI-0190"
+    ],
+    "canonical": "STG-CURATED-0230",
+    "decision": "CANONICALIZE",
+    "rationale": "All four state CIS Control 4.1: establish and maintain a secure configuration process for enterprise assets and software with periodic documentation review.",
+    "sub_domain": "SD-04.03"
+  },
+  {
+    "members": [
+      "STG-CURATED-0042",
+      "STG-CURATED-0685"
+    ],
+    "canonical": "STG-CURATED-0685",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require configuring/managing system components securely per industry-accepted hardening standards to reduce attack surface.",
+    "sub_domain": "SD-04.03"
+  },
+  {
+    "members": [
+      "STG-CURATED-0043",
+      "STG-CURATED-0735"
+    ],
+    "canonical": "STG-CURATED-0043",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require changing vendor default accounts, passwords, and SNMP community strings before a system is installed on the network.",
+    "sub_domain": "SD-04.03"
+  },
+  {
+    "members": [
+      "STG-CURATED-0044",
+      "STG-CURATED-0716"
+    ],
+    "canonical": "STG-CURATED-0716",
+    "decision": "CANONICALIZE",
+    "rationale": "Both enforce least functionality: enable only necessary services, protocols, daemons, and functions and remove/disable all unnecessary functionality.",
+    "sub_domain": "SD-04.03"
+  },
+  {
+    "members": [
+      "STG-AMANI-0490",
+      "STG-CURATED-0452"
+    ],
+    "canonical": "STG-CURATED-0452",
+    "decision": "CANONICALIZE",
+    "rationale": "Both set the security option to deny all outgoing NTLM authentication traffic to remote servers.",
+    "sub_domain": "SD-04.03"
+  },
+  {
+    "members": [
+      "STG-AMANI-0188",
+      "STG-AMANI-0610"
+    ],
+    "canonical": "STG-AMANI-0188",
+    "decision": "CANONICALIZE",
+    "rationale": "Identical CIS 3.1 wording establishing and maintaining a data management process; one is the enterprise-labeled duplicate.",
+    "sub_domain": "SD-04.03"
+  },
+  {
+    "members": [
+      "STG-AMANI-0189",
+      "STG-AMANI-0611"
+    ],
+    "canonical": "STG-AMANI-0189",
+    "decision": "CANONICALIZE",
+    "rationale": "Identical CIS 3.3 wording configuring data access control lists by need-to-know under least privilege; one is the enterprise-labeled duplicate.",
+    "sub_domain": "SD-04.03"
+  },
+  {
+    "members": [
+      "STG-AMANI-0313",
+      "STG-AMANI-0635"
+    ],
+    "canonical": "STG-AMANI-0313",
+    "decision": "CANONICALIZE",
+    "rationale": "Identical NIST CSF GV.OC-01 subcategory text; one is the enterprise-labeled duplicate.",
+    "sub_domain": "SD-04.03"
+  },
+  {
+    "members": [
+      "STG-AMANI-0334",
+      "STG-AMANI-0656"
+    ],
+    "canonical": "STG-AMANI-0334",
+    "decision": "CANONICALIZE",
+    "rationale": "Identical NIST CSF GV.SC-01 subcategory text; one is the enterprise-labeled duplicate.",
+    "sub_domain": "SD-04.03"
+  },
+  {
+    "members": [
+      "STG-AMANI-0346",
+      "STG-AMANI-0668"
+    ],
+    "canonical": "STG-AMANI-0346",
+    "decision": "CANONICALIZE",
+    "rationale": "Identical NIST CSF ID.AM-03 subcategory text; one is the enterprise-labeled duplicate.",
+    "sub_domain": "SD-04.03"
+  },
+  {
+    "members": [
+      "STG-AMANI-0348",
+      "STG-AMANI-0670"
+    ],
+    "canonical": "STG-AMANI-0348",
+    "decision": "CANONICALIZE",
+    "rationale": "Identical NIST CSF ID.AM-05 subcategory text; one is the enterprise-labeled duplicate.",
+    "sub_domain": "SD-04.03"
+  },
+  {
+    "members": [
+      "STG-AMANI-0353",
+      "STG-AMANI-0675"
+    ],
+    "canonical": "STG-AMANI-0353",
+    "decision": "CANONICALIZE",
+    "rationale": "Identical NIST CSF ID.RA-03 subcategory text; one is the enterprise-labeled duplicate.",
+    "sub_domain": "SD-04.03"
+  },
+  {
+    "members": [
+      "STG-AMANI-0360",
+      "STG-AMANI-0682"
+    ],
+    "canonical": "STG-AMANI-0360",
+    "decision": "CANONICALIZE",
+    "rationale": "Identical NIST CSF ID.RA-10 subcategory text; one is the enterprise-labeled duplicate.",
+    "sub_domain": "SD-04.03"
+  },
+  {
+    "members": [
+      "STG-CURATED-0085",
+      "STG-CURATED-0325"
+    ],
+    "canonical": "STG-CURATED-0325",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require analyzing and filtering inbound email with advanced mechanisms to block phishing and spam — the same anti-phishing email filtering control.",
+    "sub_domain": "SD-04.05"
+  },
+  {
+    "members": [
+      "STG-CURATED-0135",
+      "STG-CURATED-0676"
+    ],
+    "canonical": "STG-CURATED-0135",
+    "decision": "CANONICALIZE",
+    "rationale": "Both restrict usage to only fully supported, enterprise-approved web browsers and email clients — the same client-software approval control.",
+    "sub_domain": "SD-04.05"
+  },
+  {
+    "members": [
+      "STG-CURATED-0083",
+      "STG-CURATED-0326"
+    ],
+    "canonical": "STG-CURATED-0083",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require identifying, documenting, and formally approving cybersecurity requirements for protecting the email service — the same requirements-definition control.",
+    "sub_domain": "SD-04.05"
+  },
+  {
+    "members": [
+      "STG-AMANI-0305",
+      "STG-CURATED-0071",
+      "STG-CURATED-0749"
+    ],
+    "canonical": "STG-CURATED-0071",
+    "decision": "CANONICALIZE",
+    "rationale": "All three state the same ECC 2-15-1 control: cybersecurity requirements for protecting the entity's external web applications must be identified, documented, and approved.",
+    "sub_domain": "SD-05.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0124",
+      "STG-CURATED-0610"
+    ],
+    "canonical": "STG-CURATED-0610",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require software-development personnel to be trained in software security and secure coding techniques per industry best practices and organizational requirements — identical wording.",
+    "sub_domain": "SD-05.01"
+  },
+  {
+    "members": [
+      "STG-AMANI-0210",
+      "STG-CURATED-0149",
+      "STG-CURATED-0615"
+    ],
+    "canonical": "STG-CURATED-0615",
+    "decision": "CANONICALIZE",
+    "rationale": "All express CIS 16.1: establish and maintain a secure software development process whose acceptance criteria include peer code review and threat modeling.",
+    "sub_domain": "SD-05.01"
+  },
+  {
+    "members": [
+      "STG-AMANI-0382",
+      "STG-CURATED-0617"
+    ],
+    "canonical": "STG-CURATED-0617",
+    "decision": "CANONICALIZE",
+    "rationale": "Both are NIST PR.PS-06: secure software development practices are integrated into and their performance monitored throughout the software development life cycle.",
+    "sub_domain": "SD-05.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0232",
+      "STG-CURATED-0643"
+    ],
+    "canonical": "STG-CURATED-0232",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require setting the Secure attribute on cookies so they are transmitted only over encrypted HTTPS, the same atomic safeguard.",
+    "sub_domain": "SD-05.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0279",
+      "STG-CURATED-0713"
+    ],
+    "canonical": "STG-CURATED-0713",
+    "decision": "CANONICALIZE",
+    "rationale": "Both verify security controls that prevent browsers from rendering HTTP response content or functionality in an incorrect context, the same control.",
+    "sub_domain": "SD-05.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0678",
+      "STG-CURATED-0732"
+    ],
+    "canonical": "STG-CURATED-0678",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require verifying that received system components are genuine and unaltered to detect counterfeit or tampered parts in the supply chain.",
+    "sub_domain": "SD-05.03"
+  },
+  {
+    "members": [
+      "STG-CURATED-0059",
+      "STG-CURATED-0631"
+    ],
+    "canonical": "STG-CURATED-0059",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require that event logging and monitoring requirements be identified, documented, and formally approved.",
+    "sub_domain": "SD-06.01"
+  },
+  {
+    "members": [
+      "STG-AMANI-0294",
+      "STG-CURATED-0060"
+    ],
+    "canonical": "STG-CURATED-0060",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require operational implementation of the defined event logging and monitoring management requirements across the entity.",
+    "sub_domain": "SD-06.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0061",
+      "STG-CURATED-0630"
+    ],
+    "canonical": "STG-CURATED-0630",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require activating/enabling event logging specifically for the entity's critical information assets so security-relevant activity is captured.",
+    "sub_domain": "SD-06.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0131",
+      "STG-CURATED-0417"
+    ],
+    "canonical": "STG-CURATED-0417",
+    "decision": "CANONICALIZE",
+    "rationale": "Both establish and maintain an enterprise audit log management process defining logging requirements (CIS 8.1).",
+    "sub_domain": "SD-06.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0132",
+      "STG-CURATED-0416"
+    ],
+    "canonical": "STG-CURATED-0132",
+    "decision": "CANONICALIZE",
+    "rationale": "Both collect audit logs and ensure logging is enabled across all enterprise assets per the audit log management process (CIS 8.2).",
+    "sub_domain": "SD-06.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0139",
+      "STG-CURATED-0179"
+    ],
+    "canonical": "STG-CURATED-0179",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require audit logs be enabled and active for all system components and cardholder data access (PCI DSS 10.2.1).",
+    "sub_domain": "SD-06.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0140",
+      "STG-CURATED-0418"
+    ],
+    "canonical": "STG-CURATED-0140",
+    "decision": "CANONICALIZE",
+    "rationale": "Both describe reviewing audit logs for anomalies via automated mechanisms to enable timely detection of security incidents, in near-identical wording.",
+    "sub_domain": "SD-06.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0512",
+      "STG-CURATED-0522"
+    ],
+    "canonical": "STG-CURATED-0522",
+    "decision": "CANONICALIZE",
+    "rationale": "Both describe the same technique of persistence via startup folder or Registry run key executing at logon (MITRE T1547.001).",
+    "sub_domain": "SD-06.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0041",
+      "STG-CURATED-0677"
+    ],
+    "canonical": "STG-CURATED-0677",
+    "decision": "CANONICALIZE",
+    "rationale": "Both mandate that only currently vendor-supported software/components remain in use and that unsupported/end-of-life products be updated or replaced.",
+    "sub_domain": "SD-06.03"
+  },
+  {
+    "members": [
+      "STG-CURATED-0027",
+      "STG-CURATED-0616"
+    ],
+    "canonical": "STG-CURATED-0616",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require that project management and technology-asset change cybersecurity requirements include, at minimum, vulnerability assessment and remediation.",
+    "sub_domain": "SD-06.03"
+  },
+  {
+    "members": [
+      "STG-CURATED-0051",
+      "STG-CURATED-0740"
+    ],
+    "canonical": "STG-CURATED-0051",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require that cybersecurity requirements for technical vulnerability management be identified, documented, and approved by the appropriate authority.",
+    "sub_domain": "SD-06.03"
+  },
+  {
+    "members": [
+      "STG-CURATED-0143",
+      "STG-CURATED-0747"
+    ],
+    "canonical": "STG-CURATED-0143",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require internal vulnerability scans performed at least once every three months to detect weaknesses in internal systems.",
+    "sub_domain": "SD-06.03"
+  },
+  {
+    "members": [
+      "STG-CURATED-0053",
+      "STG-CURATED-0739"
+    ],
+    "canonical": "STG-CURATED-0053",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require periodic vulnerability assessment and detection to identify security weaknesses across systems on a recurring basis.",
+    "sub_domain": "SD-06.03"
+  },
+  {
+    "members": [
+      "STG-CURATED-0129",
+      "STG-CURATED-0601"
+    ],
+    "canonical": "STG-CURATED-0601",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require establishing and maintaining a documented risk-based remediation strategy/process reviewed at least monthly to prioritize fixing vulnerabilities.",
+    "sub_domain": "SD-06.03"
+  },
+  {
+    "members": [
+      "STG-CURATED-0128",
+      "STG-CURATED-0746"
+    ],
+    "canonical": "STG-CURATED-0128",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require establishing and maintaining a documented vulnerability management process for enterprise assets with documentation reviewed/updated at least annually.",
+    "sub_domain": "SD-06.03"
+  },
+  {
+    "members": [
+      "STG-CURATED-0151",
+      "STG-CURATED-0500"
+    ],
+    "canonical": "STG-CURATED-0151",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require establishing and maintaining a penetration testing program scaled to enterprise size/complexity to identify exploitable weaknesses.",
+    "sub_domain": "SD-06.04"
+  },
+  {
+    "members": [
+      "STG-CURATED-0057",
+      "STG-CURATED-0505"
+    ],
+    "canonical": "STG-CURATED-0057",
+    "decision": "CANONICALIZE",
+    "rationale": "Both define penetration testing scope to cover all externally provided internet-facing services and their components.",
+    "sub_domain": "SD-06.04"
+  },
+  {
+    "members": [
+      "STG-CURATED-0530",
+      "STG-CURATED-0531"
+    ],
+    "canonical": "STG-CURATED-0530",
+    "decision": "CANONICALIZE",
+    "rationale": "Both describe the same generic phishing technique of sending phishing messages to trick users into revealing credentials or executing content to gain initial access to victim systems.",
+    "sub_domain": "SD-06.05"
+  },
+  {
+    "members": [
+      "STG-CURATED-0063",
+      "STG-CURATED-0382"
+    ],
+    "canonical": "STG-CURATED-0063",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require incident and threat management requirements to be identified, documented, and formally approved by the relevant authority.",
+    "sub_domain": "SD-07.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0065",
+      "STG-CURATED-0251"
+    ],
+    "canonical": "STG-CURATED-0065",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require incident and threat management to define documented incident response plans and escalation procedures for structured handling of incidents.",
+    "sub_domain": "SD-07.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0150",
+      "STG-CURATED-0372"
+    ],
+    "canonical": "STG-CURATED-0150",
+    "decision": "CANONICALIZE",
+    "rationale": "Both designate a primary person plus at least one backup to own and manage the enterprise incident handling process.",
+    "sub_domain": "SD-07.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0166",
+      "STG-CURATED-0367"
+    ],
+    "canonical": "STG-CURATED-0367",
+    "decision": "CANONICALIZE",
+    "rationale": "Both determine an incident's impact and magnitude to prioritize response and allocate resources proportionate to impact.",
+    "sub_domain": "SD-07.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0377",
+      "STG-CURATED-0385"
+    ],
+    "canonical": "STG-CURATED-0385",
+    "decision": "CANONICALIZE",
+    "rationale": "Both develop and obtain management approval of a formal incident response plan to enable rapid, effective handling of cybersecurity incidents.",
+    "sub_domain": "SD-07.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0114",
+      "STG-CURATED-0202"
+    ],
+    "canonical": "STG-CURATED-0114",
+    "decision": "CANONICALIZE",
+    "rationale": "Both mandate that business continuity requirements, at a minimum, ensure the continuity of cybersecurity systems and procedures through disruptive events.",
+    "sub_domain": "SD-07.03"
+  },
+  {
+    "members": [
+      "STG-AMANI-0281",
+      "STG-CURATED-0102"
+    ],
+    "canonical": "STG-CURATED-0102",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require backup and recovery management requirements to be identified, documented, and approved.",
+    "sub_domain": "SD-07.04"
+  },
+  {
+    "members": [
+      "STG-AMANI-0284",
+      "STG-CURATED-0105"
+    ],
+    "canonical": "STG-CURATED-0105",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require periodic review of the implementation of backup and recovery management requirements.",
+    "sub_domain": "SD-07.04"
+  },
+  {
+    "members": [
+      "STG-AMANI-0283",
+      "STG-CURATED-0104",
+      "STG-CURATED-0196"
+    ],
+    "canonical": "STG-CURATED-0104",
+    "decision": "CANONICALIZE",
+    "rationale": "All three require backup scope to cover, at minimum, critical technology and information assets.",
+    "sub_domain": "SD-07.04"
+  },
+  {
+    "members": [
+      "STG-AMANI-0626",
+      "STG-CURATED-0141"
+    ],
+    "canonical": "STG-CURATED-0141",
+    "decision": "CANONICALIZE",
+    "rationale": "Both establish/maintain a data recovery process addressing scope, prioritization, and security of backup data (CIS 11.1).",
+    "sub_domain": "SD-07.04"
+  },
+  {
+    "members": [
+      "STG-CURATED-0142",
+      "STG-CURATED-0186"
+    ],
+    "canonical": "STG-CURATED-0186",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require automated backups of in-scope enterprise assets at least weekly or more frequently by data sensitivity (CIS 11.2).",
+    "sub_domain": "SD-07.04"
+  },
+  {
+    "members": [
+      "STG-AMANI-0365",
+      "STG-AMANI-0687"
+    ],
+    "canonical": "STG-AMANI-0365",
+    "decision": "CANONICALIZE",
+    "rationale": "Identical PR.AA-01 requirement to manage identities and credentials for authorized users, services, and hardware.",
+    "sub_domain": "SD-07.04"
+  },
+  {
+    "members": [
+      "STG-CURATED-0376",
+      "STG-CURATED-0379"
+    ],
+    "canonical": "STG-CURATED-0376",
+    "decision": "CANONICALIZE",
+    "rationale": "Both describe communicating incident information/notifications to designated internal teams and external parties to enable coordinated response, awareness, and regulatory reporting obligations during a security event.",
+    "sub_domain": "SD-07.05"
+  },
+  {
+    "members": [
+      "STG-CURATED-0008",
+      "STG-CURATED-0626"
+    ],
+    "canonical": "STG-CURATED-0008",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require the entity to periodically develop and approve a multi-channel cybersecurity awareness program.",
+    "sub_domain": "SD-08.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0147",
+      "STG-CURATED-0624"
+    ],
+    "canonical": "STG-CURATED-0147",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require establishing and maintaining a security awareness program to continuously educate the workforce on secure behavior.",
+    "sub_domain": "SD-08.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0011",
+      "STG-CURATED-0625"
+    ],
+    "canonical": "STG-CURATED-0625",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require providing specialized skills and training to personnel in roles directly tied to cybersecurity.",
+    "sub_domain": "SD-08.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0380",
+      "STG-CURATED-0384"
+    ],
+    "canonical": "STG-CURATED-0380",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require providing incident response training to personnel with incident handling duties.",
+    "sub_domain": "SD-08.01"
+  },
+  {
+    "members": [
+      "STG-CURATED-0034",
+      "STG-CURATED-0248"
+    ],
+    "canonical": "STG-CURATED-0034",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require personnel cybersecurity requirements to be identified, documented, and approved before, during, and upon end/termination of employment — the same define-requirements control with near-identical wording.",
+    "sub_domain": "SD-08.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0035",
+      "STG-CURATED-0249"
+    ],
+    "canonical": "STG-CURATED-0249",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require the defined personnel cybersecurity requirements to be implemented across all stages of the employment lifecycle — the same implement-requirements control.",
+    "sub_domain": "SD-08.02"
+  },
+  {
+    "members": [
+      "STG-CURATED-0148",
+      "STG-CURATED-0641"
+    ],
+    "canonical": "STG-CURATED-0148",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require establishing and maintaining an inventory of service providers; 0148 is more complete, adding classifications and a designated enterprise contact.",
+    "sub_domain": "SD-08.03"
+  },
+  {
+    "members": [
+      "STG-CURATED-0216",
+      "STG-CURATED-0694",
+      "STG-CURATED-0695"
+    ],
+    "canonical": "STG-CURATED-0695",
+    "decision": "CANONICALIZE",
+    "rationale": "All three mandate the same organizational risk assessment prior to acquiring or outsourcing information security services to evaluate third-party exposure.",
+    "sub_domain": "SD-08.03"
+  },
+  {
+    "members": [
+      "STG-CURATED-0600",
+      "STG-CURATED-0675"
+    ],
+    "canonical": "STG-CURATED-0600",
+    "decision": "CANONICALIZE",
+    "rationale": "Both establish a formal cybersecurity supply chain risk management program covering strategy, policies, and processes across the supplier lifecycle.",
+    "sub_domain": "SD-08.03"
+  },
+  {
+    "members": [
+      "STG-CURATED-0504",
+      "STG-CURATED-0690"
+    ],
+    "canonical": "STG-CURATED-0690",
+    "decision": "CANONICALIZE",
+    "rationale": "Both employ testing and analysis of supply chain elements, processes, and actors to detect weaknesses and tampering; 0690 states the broader, standalone requirement.",
+    "sub_domain": "SD-08.03"
+  },
+  {
+    "members": [
+      "STG-CURATED-0067",
+      "STG-CURATED-0545"
+    ],
+    "canonical": "STG-CURATED-0545",
+    "decision": "CANONICALIZE",
+    "rationale": "Both require that physical-security requirements protecting assets against unauthorized physical access, loss, theft, and damage be identified, documented, and approved.",
+    "sub_domain": "SD-08.04"
+  },
+  {
+    "members": [
+      "STG-CURATED-0069",
+      "STG-CURATED-0136",
+      "STG-CURATED-0550"
+    ],
+    "canonical": "STG-CURATED-0550",
+    "decision": "CANONICALIZE",
+    "rationale": "All three restrict physical access to critical/sensitive facility areas to authorized personnel only.",
+    "sub_domain": "SD-08.04"
+  },
+  {
+    "members": [
+      "STG-CURATED-0213",
+      "STG-CURATED-0533"
+    ],
+    "canonical": "STG-CURATED-0533",
+    "decision": "CANONICALIZE",
+    "rationale": "Both are the clean-desk safeguard requiring sensitive/confidential information (paper or electronic) to be secured in the workspace.",
+    "sub_domain": "SD-08.04"
+  }
+]
