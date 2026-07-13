@@ -38,3 +38,7 @@ consolidation/promotion/
 #   migrations/**  scripts/**  docs/**  reference/*.json  reference/*.md
 #   tests/fixtures/**  consolidation/**  *_REPORT.md  *_MANIFEST.md
 #   SecureGuide_Mobile_Docs/**  AGENTS.md  PROJECT_*.md
+
+# curated-import intermediates (regeneratable; classifications.json is the merged output)
+consolidation/curated/batches/
+consolidation/curated/results/
