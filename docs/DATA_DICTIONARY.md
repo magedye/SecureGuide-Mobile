@@ -105,14 +105,17 @@
 | الجدول | الغرض | حقول/قيود رئيسية |
 |---|---|---|
 | `enterprise_profiles` | سياق تشغيلي (مؤسسة/فرع/نظام/سحابة/تدقيق/مشروع) | `profile_kind`, `organization_size`, `industry`, `target_maturity_level`, `source_template_id` |
-| `profile_artifacts` | حالة العنصر داخل الملف — **الحقيقة التشغيلية** | الحالات الأربع المستقلة (`implementation_status`, `verification_status`, `effectiveness`, `exception_status`) + `active_exception_id` + `priority_override` + `current_maturity_level` + `assigned_owner` + `due_date` + `notes`؛ `UNIQUE(profile_id, artifact_id)`؛ حالة الاستثناء تُزامَن من دورة الاعتماد ولا تُكتب مباشرة |
-| `profile_assessments` | سجل تقييمات تاريخي | `assessor_name`, `score` (0-100)، ولقطة الحالات وقت التقييم |
-| `profile_evidence` | أدلة الإثبات | `evidence_type` ∈ DOCUMENT/SCREENSHOT/LOG/REPORT/CONFIG/ATTESTATION/LINK/OTHER؛ يرتبط اختيارياً بتقييم |
+| `profile_artifacts` | حالة العنصر داخل الملف — **الحقيقة التشغيلية** | الحالات الأربع المستقلة + `active_exception_id`؛ قيم القالب الافتراضية منفصلة عن `priority_override` و`review_frequency_override` الصريحتين؛ `UNIQUE(profile_id, artifact_id)`؛ حالة الاستثناء تُزامَن من دورة الاعتماد ولا تُكتب مباشرة |
+| `profile_assessments` | سجل تقييمات تاريخي | `assessor_name`, `score` (0-100)، ولقطة الحالات وقت التقييم؛ اللقطات غير قابلة للتعديل |
+| `profile_evidence` | أدلة الإثبات | نوع مضبوط، رابط/وصف، عنوان، جامع الدليل، MIME، وبصمة SHA-256 اختيارية؛ لا يرتبط إلا بتقييم العنصر التشغيلي نفسه |
 | `profile_exceptions` | قرارات استثناء ذات دورة حياة | `exception_status` (EXC غير NONE)، `workflow_status` مضبوط، `justification` إلزامي؛ الاعتماد يتطلب المعتمد وتاريخ الاعتماد والانتهاء؛ الحالات النهائية غير قابلة لإعادة الفتح |
 | `profile_exception_events` | سجل تدقيق ملحق فقط لدورة حياة الاستثناء | CREATED/SUBMITTED/APPROVED/RENEWED/EXPIRED/REVOKED/CLOSED/UPDATED |
 | `profile_review_cycles` | جلسة مراجعة مؤسسية جامعة | نوع المراجعة، الحالة، المراجع، سياسة الدرجات، البداية والإكمال |
 | `profile_review_cycle_items` | لقطة الحالات لكل عنصر عند المراجعة | الحالات الأربع مستقلة + الأولوية الفعلية + عدد الأدلة + الاستثناء النشط |
 | `profile_review_metrics` | مؤشرات لقطة المراجعة | 9 أكواد ثابتة + الوحدة + `formula_version` |
+| `application_state` | سياق التطبيق المحلي | صف وحيد يحفظ `active_profile_id` دون تحويله إلى حالة عالمية للكتالوج |
+| `profile_templates` | سجل القوالب المطبقة | الملف + القالب + نسخة القالب + الفاعل والتاريخ؛ يدعم عدة قوالب لكل ملف |
+| `profile_artifact_origins` | مصادر اختيار العنصر | MANUAL/TEMPLATE/IMPORT/RECOMMENDATION؛ صفوف متعددة دون نسخ تعريف العنصر |
 
 *قاعدة ذهبية: لا يجوز أبداً دمج حقول `profile_artifacts` التشغيلية داخل `security_artifacts`، ولا دمج الحالات الأربع في حالة واحدة.*
 
@@ -191,6 +194,20 @@
 | بيانات القرار | الاعتماد يتطلب المعتمد وتاريخ الاعتماد والانتهاء، وقبول المخاطرة يتطلب `risk_accepted_by`، والإغلاق/الإلغاء يتطلبان المنفذ والتاريخ. |
 | اتساق الحالة الحالية | يمنع تعديل `profile_artifacts.exception_status` دون استثناء نشط معتمد ومطابق للعنصر. |
 | `v_exception_governance_issues` | يكشف الحالات القديمة أو المستوردة غير المتسقة والاستثناءات المعتمدة المتجاوزة لتاريخ انتهائها. |
+
+## الترحيل 021 — المسار التشغيلي المتكامل
+
+| الكيان | الضمان البنيوي |
+|---|---|
+| `application_state` | ملف نشط واحد مستمر في التثبيت المحلي، مع إمكانية تمرير `profile_id` صراحة لكل عملية. |
+| `profile_templates` و`profile_artifact_origins` | تتبع عدة قوالب ومصادر اختيار دون استنساخ `security_artifacts`. |
+| افتراضات القالب | فصل `template_priority_default` و`template_review_frequency_default` عن تجاوزات المؤسسة. |
+| سلامة التقييم والدليل | لقطات تقييم غير قابلة للتعديل، ومنع الدليل من الإشارة إلى تقييم عنصر تشغيلي آخر. |
+| عروض القراءة | `v_active_profile_context`, `v_profile_operational_items`, `v_profile_dashboard`, `v_gap_analysis`, `v_profile_evidence_integrity_issues`. |
+
+## الترحيل 022 — نسب إصدار القالب
+
+يربط `profile_artifact_origins.profile_template_id` كل اختيار قادم من قالب بسجل التطبيق الدقيق في `profile_templates`. يسمح ذلك بإعادة تطبيق إصدار جديد من القالب مع حفظ عضوية كل إصدار، ويكشف `v_profile_origin_governance_issues` أي نسب قديم ناقص أو غير متسق.
 
 ## التغطية (35 قائمة + تصنيف SDT = 268 صفاً)
 - **أنواع العناصر** (§3): 22.

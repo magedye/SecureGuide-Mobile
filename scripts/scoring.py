@@ -254,7 +254,8 @@ def controls_from_catalog(conn, profile=None, states=None):
         raise ValueError(f'enterprise profile not found: {profile}')
     rows = conn.execute("""SELECT a.id, a.primary_domain, a.tier, a.scoring_weight,
                                   a.risk_reduction, a.effort_level,
-                                  COALESCE(pa.priority_override,a.priority) AS effective_priority,
+                                  COALESCE(pa.priority_override,pa.template_priority_default,
+                                           a.priority) AS effective_priority,
                                   pa.implementation_status, pa.verification_status,
                                   pa.effectiveness, pa.exception_status
                              FROM profile_artifacts pa
