@@ -53,7 +53,14 @@ python -m secureguide --db catalog_work.db profile-select ARTIFACT-ID --by analy
 python -m secureguide --db catalog_work.db assess ARTIFACT-ID --assessor auditor --implementation-status STS-FULL --verification-status VER-PASS --effectiveness EFF-HIGH
 python -m secureguide --db catalog_work.db dashboard
 python -m secureguide --db catalog_work.db report --output profile-report.json
+python -m secureguide --db catalog_work.db report --format html --output profile-report.html
 ```
+
+## تصدير التقرير الرسمي
+
+- `report --format json` (الافتراضي) يعيد حمولة التقرير كاملة، و`--output` يكتبها ملفًا.
+- `report --format html --output FILE.html` يصدّر مستندًا مكتفيًا ذاتيًا وقابلاً للطباعة (RTL، CSS مضمّن) عبر `SecureGuideService.report_html`. صيغة HTML تتطلب `--output`.
+- المُصيّر [`secureguide/reporting.py`](../secureguide/reporting.py) طبقة عرض نقية بلا SQL ولا قواعد أعمال: يستهلك مخرجات `report()` التي تعرض الخطط المعتمدة فقط، ويهرّب كل نص ديناميكي، ويعرض نسب إثراء الأنماط كـ«اقتراحات معيارية بناءً على التصنيف» غير سلطوية.
 
 ## نموذج القراءة للواجهة
 
@@ -64,4 +71,4 @@ python -m secureguide --db catalog_work.db report --output profile-report.json
 - `v_profile_evidence_integrity_issues`: بوابة كشف أي ربط قديم غير صحيح بين الدليل والتقييم.
 - `v_profile_origin_governance_issues`: بوابة كشف نسب قالب ناقص أو غير مطابق للملف والعنصر والإصدار.
 
-الواجهة المستقبلية يجب أن تستخدم `SecureGuideService` أو واجهة مكافئة، ولا تنفذ SQL أو قواعد الاستثناء والاحتساب داخل مكونات العرض.
+الواجهة المستقبلية يجب أن تستخدم `SecureGuideService` أو واجهة مكافئة، ولا تنفذ SQL أو قواعد الاستثناء والاحتساب داخل مكونات العرض. مُصيّر HTML في [`secureguide/reporting.py`](../secureguide/reporting.py) نموذج لهذا الفصل: دالة نقية تحوّل مخرجات الخدمة إلى عرض دون إعادة احتساب أي قاعدة.

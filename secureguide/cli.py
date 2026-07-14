@@ -10,7 +10,7 @@ from typing import Any
 
 from .database import Database
 from .blueprints import BlueprintEngine, load_rule_pack
-from .errors import SecureGuideError
+from .errors import SecureGuideError, ValidationError
 from .services import SecureGuideService
 
 
@@ -228,6 +228,7 @@ def build_parser() -> argparse.ArgumentParser:
     report = commands.add_parser("report")
     report.add_argument("--profile")
     report.add_argument("--output")
+    report.add_argument("--format", choices=["json", "html"], default="json")
     return parser
 
 
@@ -446,6 +447,13 @@ def run(args: argparse.Namespace) -> Any:
     if args.command == "dashboard":
         return service.dashboard(profile_id=args.profile, gap_limit=args.gap_limit)
     if args.command == "report":
+        if args.format == "html":
+            if not args.output:
+                raise ValidationError("--output is required for --format html")
+            document = service.report_html(profile_id=args.profile)
+            output = Path(args.output)
+            output.write_text(document, encoding="utf-8")
+            return {"output": str(output), "format": "html"}
         result = service.report(profile_id=args.profile)
         if args.output:
             output = Path(args.output)

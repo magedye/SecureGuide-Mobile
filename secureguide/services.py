@@ -15,6 +15,7 @@ from scripts import scoring
 from .blueprints import BlueprintEngine, ClassificationContext, OperationalPatternLibrary
 from .database import Database
 from .errors import ActiveProfileRequiredError, NotFoundError, ValidationError
+from .reporting import render_report_html
 from .repositories import (
     BlueprintRepository,
     CatalogRepository,
@@ -1450,6 +1451,15 @@ class SecureGuideService:
             approved_blueprints = self.approved_blueprints.list(
                 conn, resolved, workflow_status="APPROVED"
             )
+            enrichments = [
+                dict(row)
+                for row in conn.execute(
+                    """SELECT * FROM v_blueprint_pattern_enrichments
+                        WHERE profile_id=? AND workflow_status='APPROVED'
+                        ORDER BY blueprint_id,selected_at,id""",
+                    (resolved,),
+                ).fetchall()
+            ]
             tasks = self.approved_blueprints.tasks(conn, resolved)
             templates = [
                 dict(row)
@@ -1478,6 +1488,13 @@ class SecureGuideService:
                 ),
             },
             "items": items,
+            "gaps": dashboard["gaps"],
+            "review_queue": dashboard["review_queue"],
             "approved_blueprints": approved_blueprints,
+            "approved_blueprint_enrichments": enrichments,
             "tasks": tasks,
         }
+
+    def report_html(self, *, profile_id: str | None = None) -> str:
+        """Render the official approved-only report as a self-contained HTML document."""
+        return render_report_html(self.report(profile_id=profile_id))
