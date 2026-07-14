@@ -541,6 +541,46 @@ class BlueprintRepository:
     def add_evidence_rule(self, conn: sqlite3.Connection, values: dict[str, Any]) -> None:
         self._insert(conn, "approved_blueprint_evidence_rules", values)
 
+    def add_pattern_enrichment(
+        self, conn: sqlite3.Connection, values: dict[str, Any]
+    ) -> None:
+        self._insert(conn, "approved_blueprint_pattern_enrichments", values)
+
+    def pattern_enrichment(
+        self, conn: sqlite3.Connection, blueprint_id: str, enrichment_id: str
+    ) -> dict[str, Any] | None:
+        return row_dict(
+            conn.execute(
+                """SELECT * FROM approved_blueprint_pattern_enrichments
+                    WHERE id=? AND blueprint_id=?""",
+                (enrichment_id, blueprint_id),
+            ).fetchone()
+        )
+
+    def enrichment_for_pattern(
+        self, conn: sqlite3.Connection, blueprint_id: str, source_pattern_id: str
+    ) -> dict[str, Any] | None:
+        return row_dict(
+            conn.execute(
+                """SELECT * FROM approved_blueprint_pattern_enrichments
+                    WHERE blueprint_id=? AND source_pattern_id=?""",
+                (blueprint_id, source_pattern_id),
+            ).fetchone()
+        )
+
+    def remove_pattern_enrichment(
+        self, conn: sqlite3.Connection, enrichment_id: str
+    ) -> None:
+        conn.execute(
+            "DELETE FROM approved_blueprint_pattern_enrichments WHERE id=?",
+            (enrichment_id,),
+        )
+
+    def add_pattern_enrichment_event(
+        self, conn: sqlite3.Connection, values: dict[str, Any]
+    ) -> None:
+        self._insert(conn, "blueprint_pattern_enrichment_events", values)
+
     def transition(
         self, conn: sqlite3.Connection, blueprint_id: str, changes: dict[str, Any]
     ) -> None:
@@ -646,6 +686,20 @@ class BlueprintRepository:
             conn.execute(
                 """SELECT * FROM approved_blueprint_review_findings
                     WHERE blueprint_id=? ORDER BY finding_type,finding_code,id""",
+                (blueprint_id,),
+            ).fetchall()
+        )
+        blueprint["pattern_enrichments"] = rows_dict(
+            conn.execute(
+                """SELECT * FROM approved_blueprint_pattern_enrichments
+                    WHERE blueprint_id=? ORDER BY selected_at,id""",
+                (blueprint_id,),
+            ).fetchall()
+        )
+        blueprint["pattern_enrichment_events"] = rows_dict(
+            conn.execute(
+                """SELECT * FROM blueprint_pattern_enrichment_events
+                    WHERE blueprint_id=? ORDER BY event_at,id""",
                 (blueprint_id,),
             ).fetchall()
         )

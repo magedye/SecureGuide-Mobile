@@ -18,6 +18,8 @@
 | `approved_blueprint_evidence` و`approved_blueprint_evidence_rules` | متطلبات الأدلة ونسبها؛ ليست أدلة تنفيذ فعلية. |
 | `blueprint_review_events` | سجل ملحق فقط للإنشاء والإرسال والإرجاع والاعتماد والاستبدال والإلغاء وإنشاء المهام. |
 | `approved_blueprint_review_findings` | لقطة مطبعة لأسباب المراجعة وأحداث التطبيع وتعارضات التوليد التي عالجها المعتمد. |
+| `approved_blueprint_pattern_enrichments` | إثراءات المسودة من مكتبة الأنماط التشغيلية: هوية النمط ونسب المكتبة وبصمتها، والنص المنسوخ بعد تعديل المؤلف، وإقرار السلامة، وسبب الاختيار. (الترحيل `024`) |
+| `blueprint_pattern_enrichment_events` | سجل ملحق فقط لإضافة الإثراء وتراجعه (`ADDED`/`REMOVED`) يبقى بعد حذف الإثراء. |
 | `profile_tasks` | المهام الفعلية الخاصة بالملف، مرتبطة بإجراء معتمد واحد. |
 | `profile_task_events` | سجل تغير حالة المهمة. |
 
@@ -44,6 +46,19 @@ DRAFT ──AUTHOR──> UNDER_REVIEW ──APPROVER──> APPROVED ──APPR
 
 الأدوار هنا أدوار سير عمل مسجلة للتدقيق وليست نظام مصادقة. عند إضافة إدارة المستخدمين، يجب على طبقة المصادقة إثبات أن الفاعل يملك الدور قبل استدعاء الخدمة.
 
+## إثراء المسودة من الأنماط التشغيلية
+
+يستطيع المؤلف إثراء مسودة خطة بنمط تشغيلي غير سلطوي من مكتبة الأنماط دون أن يتحول النمط إلى مهمة:
+
+- الإثراء متاح فقط والخطة `DRAFT`؛ ومشغلات SQLite تمنع الإدراج والتعديل والحذف بعد مغادرة `DRAFT`.
+- تُحفظ على اللقطة هوية النمط ورقم صفه، ونسب المكتبة وإصدارها وبصمة `sha256`، والنص المنسوخ **بعد** تعديل المؤلف (لا مرجعاً حياً)، ومن اختار ومتى ولماذا.
+- نمط `safetyReviewRequired` يتطلب إقرار سلامة صريحاً وإلا يُرفض الإثراء؛ ويُحفظ نص التحذير.
+- `UNIQUE(blueprint_id,source_pattern_id)` يمنع تكرار إثراء النمط نفسه على الخطة.
+- الإثراء قابل للتراجع أثناء المسودة، مع سجل أحداث ملحق فقط يبقي `ADDED` ثم `REMOVED`.
+- عند الإرسال يتجمّد الإثراء مع باقي اللقطة ويرافق الخطة المعتمدة كنسب.
+
+بوابة الحوكمة `v_blueprint_enrichment_governance_issues` ترجع صفراً في القاعدة السليمة، وتكشف إثراءً بلا إقرار سلامة أو بنسب مكتبة ناقص أو بتعارض مجال/فرع.
+
 ## إنشاء المهام
 
 - لا تنشأ مهمة إلا من `approved_blueprint_actions.taskable=1` وخطة حالتها `APPROVED`.
@@ -60,6 +75,8 @@ DRAFT ──AUTHOR──> UNDER_REVIEW ──APPROVER──> APPROVED ──APPR
 
 ```powershell
 python -m secureguide --db catalog_work.db blueprint-draft ARTIFACT-ID --profile PROFILE-ID --by author
+python -m secureguide --db catalog_work.db blueprint-enrich BLUEPRINT-ID --pattern OPP-001 --profile PROFILE-ID --by author --reason "سبب الاختيار" --text "نص معدّل" --ack-safety
+python -m secureguide --db catalog_work.db blueprint-enrich-remove BLUEPRINT-ID --enrichment ENR-ID --profile PROFILE-ID --by author --reason "سبب التراجع"
 python -m secureguide --db catalog_work.db blueprint-submit BLUEPRINT-ID --profile PROFILE-ID --by author
 python -m secureguide --db catalog_work.db blueprint-return BLUEPRINT-ID --profile PROFILE-ID --by reviewer --note "Required changes"
 python -m secureguide --db catalog_work.db blueprint-approve BLUEPRINT-ID --profile PROFILE-ID --by approver

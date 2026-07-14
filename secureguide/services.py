@@ -473,6 +473,159 @@ class SecureGuideService:
         )
         return detail
 
+    def enrich_blueprint_from_pattern(
+        self,
+        blueprint_id: str,
+        *,
+        pattern_id: str,
+        selected_by: str,
+        selection_reason: str,
+        copied_title_ar: str | None = None,
+        copied_text_ar: str | None = None,
+        safety_acknowledged: bool = False,
+        actor_role: str = "AUTHOR",
+        profile_id: str | None = None,
+    ) -> dict[str, Any]:
+        """Attach a non-authoritative operational pattern to a DRAFT blueprint.
+
+        The enrichment is explicit, reversible, and stores a frozen copy of the
+        pattern text (after the author's edits) with the library version and
+        sha256, the source pattern identity, and the actor/time/reason. A pattern
+        is never turned into a task; it only informs the governed draft snapshot.
+        """
+        actor = self._require_actor(selected_by, actor_role, {"AUTHOR"})
+        if not selection_reason or not selection_reason.strip():
+            raise ValidationError("selection_reason is required")
+        try:
+            library = self.operational_patterns or OperationalPatternLibrary()
+            pattern = library.get(pattern_id)
+            metadata = library.metadata
+        except ValueError as exc:
+            raise ValidationError(str(exc)) from exc
+        if not pattern:
+            raise NotFoundError(f"operational pattern not found: {pattern_id}")
+        safety_required = bool(pattern["safetyReviewRequired"])
+        if safety_required and not safety_acknowledged:
+            raise ValidationError(
+                f"pattern {pattern_id} requires explicit safety acknowledgement: "
+                f"{pattern.get('safetyNoteAr')}"
+            )
+        title = (copied_title_ar if copied_title_ar is not None else pattern["titleAr"]).strip()
+        text = (copied_text_ar if copied_text_ar is not None else pattern["sourceTextAr"]).strip()
+        if not title or not text:
+            raise ValidationError("copied title and text cannot be empty")
+        enrichment_id = new_id("BPE")
+        try:
+            with self.db.transaction() as conn:
+                resolved = self._profile_id(conn, profile_id)
+                blueprint = self.approved_blueprints.get(conn, resolved, blueprint_id)
+                if not blueprint:
+                    raise NotFoundError(
+                        f"blueprint {blueprint_id} does not belong to profile {resolved}"
+                    )
+                if blueprint["workflow_status"] != "DRAFT":
+                    raise ValidationError(
+                        "pattern enrichment is allowed only while the blueprint is DRAFT"
+                    )
+                if self.approved_blueprints.enrichment_for_pattern(
+                    conn, blueprint_id, pattern_id
+                ):
+                    raise ValidationError(
+                        f"pattern {pattern_id} already enriches blueprint {blueprint_id}"
+                    )
+                self.approved_blueprints.add_pattern_enrichment(conn, {
+                    "id": enrichment_id,
+                    "blueprint_id": blueprint_id,
+                    "source_pattern_id": pattern_id,
+                    "pattern_source_row": pattern["sourceRow"],
+                    "library_id": metadata["libraryId"],
+                    "library_version": metadata["version"],
+                    "library_sha256": metadata["sha256"],
+                    "recommended_artifact_type": pattern["recommendedArtifactType"],
+                    "primary_domain": pattern["primaryDomain"],
+                    "sub_domain": pattern["subDomain"],
+                    "pattern_priority": pattern["priority"],
+                    "copied_title_ar": title,
+                    "copied_text_ar": text,
+                    "safety_review_required": int(safety_required),
+                    "safety_acknowledged": int(bool(safety_acknowledged)) if safety_required else 0,
+                    "safety_note_ar": pattern.get("safetyNoteAr") if safety_required else None,
+                    "selected_by": actor,
+                    "selection_reason": selection_reason.strip(),
+                })
+                self.approved_blueprints.add_pattern_enrichment_event(conn, {
+                    "blueprint_id": blueprint_id,
+                    "enrichment_id": enrichment_id,
+                    "source_pattern_id": pattern_id,
+                    "event_type": "ADDED",
+                    "actor": actor,
+                    "reason": selection_reason.strip(),
+                })
+                detail = self.approved_blueprints.detail(conn, resolved, blueprint_id)
+        except sqlite3.Error as exc:
+            raise self._translate_integrity(exc) from exc
+        self.events.publish(
+            "BlueprintEnrichedEvent",
+            profile_id=resolved,
+            blueprint_id=blueprint_id,
+            enrichment_id=enrichment_id,
+            source_pattern_id=pattern_id,
+        )
+        return detail
+
+    def remove_blueprint_enrichment(
+        self,
+        blueprint_id: str,
+        enrichment_id: str,
+        *,
+        removed_by: str,
+        removal_reason: str | None = None,
+        actor_role: str = "AUTHOR",
+        profile_id: str | None = None,
+    ) -> dict[str, Any]:
+        """Reverse a pattern enrichment while the blueprint is still a DRAFT."""
+        actor = self._require_actor(removed_by, actor_role, {"AUTHOR"})
+        reason = removal_reason.strip() if removal_reason and removal_reason.strip() else None
+        try:
+            with self.db.transaction() as conn:
+                resolved = self._profile_id(conn, profile_id)
+                blueprint = self.approved_blueprints.get(conn, resolved, blueprint_id)
+                if not blueprint:
+                    raise NotFoundError(
+                        f"blueprint {blueprint_id} does not belong to profile {resolved}"
+                    )
+                if blueprint["workflow_status"] != "DRAFT":
+                    raise ValidationError(
+                        "pattern enrichment can be removed only while the blueprint is DRAFT"
+                    )
+                enrichment = self.approved_blueprints.pattern_enrichment(
+                    conn, blueprint_id, enrichment_id
+                )
+                if not enrichment:
+                    raise NotFoundError(
+                        f"enrichment {enrichment_id} not found on blueprint {blueprint_id}"
+                    )
+                self.approved_blueprints.add_pattern_enrichment_event(conn, {
+                    "blueprint_id": blueprint_id,
+                    "enrichment_id": enrichment_id,
+                    "source_pattern_id": enrichment["source_pattern_id"],
+                    "event_type": "REMOVED",
+                    "actor": actor,
+                    "reason": reason,
+                })
+                self.approved_blueprints.remove_pattern_enrichment(conn, enrichment_id)
+                detail = self.approved_blueprints.detail(conn, resolved, blueprint_id)
+        except sqlite3.Error as exc:
+            raise self._translate_integrity(exc) from exc
+        self.events.publish(
+            "BlueprintEnrichmentRemovedEvent",
+            profile_id=resolved,
+            blueprint_id=blueprint_id,
+            enrichment_id=enrichment_id,
+            source_pattern_id=enrichment["source_pattern_id"],
+        )
+        return detail
+
     def list_blueprints(
         self,
         *,

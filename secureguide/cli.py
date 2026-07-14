@@ -79,6 +79,23 @@ def build_parser() -> argparse.ArgumentParser:
     bp_cancel.add_argument("--role", choices=["AUTHOR", "REVIEWER"], required=True)
     bp_cancel.add_argument("--note", required=True)
 
+    bp_enrich = commands.add_parser("blueprint-enrich")
+    bp_enrich.add_argument("blueprint_id")
+    bp_enrich.add_argument("--pattern", required=True)
+    bp_enrich.add_argument("--profile")
+    bp_enrich.add_argument("--by", required=True)
+    bp_enrich.add_argument("--reason", required=True)
+    bp_enrich.add_argument("--title")
+    bp_enrich.add_argument("--text")
+    bp_enrich.add_argument("--ack-safety", action="store_true")
+
+    bp_enrich_rm = commands.add_parser("blueprint-enrich-remove")
+    bp_enrich_rm.add_argument("blueprint_id")
+    bp_enrich_rm.add_argument("--enrichment", required=True)
+    bp_enrich_rm.add_argument("--profile")
+    bp_enrich_rm.add_argument("--by", required=True)
+    bp_enrich_rm.add_argument("--reason")
+
     bp_tasks = commands.add_parser("blueprint-tasks")
     bp_tasks.add_argument("blueprint_id")
     bp_tasks.add_argument("--profile")
@@ -274,6 +291,25 @@ def run(args: argparse.Namespace) -> Any:
             cancelled_by=args.by,
             actor_role=args.role,
             cancellation_note=args.note,
+        )
+    if args.command == "blueprint-enrich":
+        return service.enrich_blueprint_from_pattern(
+            args.blueprint_id,
+            pattern_id=args.pattern,
+            profile_id=args.profile,
+            selected_by=args.by,
+            selection_reason=args.reason,
+            copied_title_ar=args.title,
+            copied_text_ar=args.text,
+            safety_acknowledged=args.ack_safety,
+        )
+    if args.command == "blueprint-enrich-remove":
+        return service.remove_blueprint_enrichment(
+            args.blueprint_id,
+            args.enrichment,
+            profile_id=args.profile,
+            removed_by=args.by,
+            removal_reason=args.reason,
         )
     if args.command == "blueprint-tasks":
         return service.materialize_blueprint_tasks(

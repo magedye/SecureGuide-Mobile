@@ -59,16 +59,29 @@ python -m secureguide --db catalog_work.db pattern-search --safety-review --limi
 
 تدعم الخدمة المرشحات `artifact_type` و`primary_domain` و`sub_domain` و`safety_review_required`. ترفض الخدمة القيم غير المضبوطة، وعدم تطابق المجال والفرع، وحدود النتائج خارج 1–200.
 
-## الاستفادة المستقبلية داخل Blueprint
+## الإثراء داخل Blueprint (منفّذ)
 
-إذا اختار المستخدم نمطاً لإثراء مسودة خطة، فيجب أن تكون العملية صريحة وقابلة للتراجع وأن تحفظ على لقطة الخطة:
+نُفّذ مسار إثراء المسودة من الأنماط في الترحيل [`024`](../migrations/024_blueprint_pattern_enrichment.sql). إذا اختار المؤلف نمطاً لإثراء **مسودة** خطة، تكون العملية صريحة وقابلة للتراجع وتحفظ على لقطة الخطة:
 
-- `sourcePatternId`.
-- إصدار المكتبة وبصمتها `sha256`.
-- المستخدم والوقت وسبب الاختيار.
-- النص المنسوخ بعد تعديلات المستخدم، لا مرجعاً حياً يتغير بصمت.
+- `source_pattern_id` وصف المصدر `pattern_source_row`.
+- `library_id` وإصدار المكتبة وبصمتها `library_sha256`.
+- `selected_by` و`selected_at` و`selection_reason`.
+- `copied_title_ar` و`copied_text_ar`: النص المنسوخ بعد تعديلات المؤلف، لا مرجعاً حياً يتغير بصمت.
+- عند نمط `safetyReviewRequired=true` يجب إقرار صريح (`safety_acknowledged`) ويُحفظ `safety_note_ar`؛ وإلا تُرفض العملية.
 
-لا يجوز تحويل النمط مباشرة إلى مهمة. المسار يبقى: اختيار بشري → مسودة Blueprint → مراجعة → اعتماد → تحويل الإجراء المعتمد إلى مهمة بطريقة idempotent.
+الضمانات:
+
+- الإثراء متاح فقط والخطة `DRAFT`؛ ومشغلات SQLite تمنع الإدراج والتعديل والحذف بعد مغادرة `DRAFT`.
+- قابل للتراجع أثناء المسودة عبر `blueprint-enrich-remove`، مع سجل `blueprint_pattern_enrichment_events` ملحق فقط يحفظ `ADDED` ثم `REMOVED` (لا يُحذف بحذف الإثراء).
+- يتجمّد الإثراء مع باقي اللقطة عند الإرسال ويرافق الخطة المعتمدة كنسب.
+- `UNIQUE(blueprint_id,source_pattern_id)` يمنع تكرار إثراء النمط نفسه.
+
+لا يجوز تحويل النمط مباشرة إلى مهمة. المسار يبقى: اختيار بشري → إثراء المسودة → مراجعة → اعتماد → تحويل الإجراء المعتمد إلى مهمة بطريقة idempotent.
+
+```powershell
+python -m secureguide --db catalog_work.db blueprint-enrich BLUEPRINT-ID --pattern OPP-001 --profile PROFILE-ID --by author --reason "سبب الاختيار" --text "نص معدّل" [--ack-safety]
+python -m secureguide --db catalog_work.db blueprint-enrich-remove BLUEPRINT-ID --enrichment ENR-ID --profile PROFILE-ID --by author --reason "سبب التراجع"
+```
 
 ## التحقق وإعادة البناء
 
