@@ -12,6 +12,7 @@ from typing import Any, Callable, Iterable
 
 from scripts import scoring
 
+from .authorization import Authorizer, TrustingAuthorizer
 from .blueprints import BlueprintEngine, ClassificationContext, OperationalPatternLibrary
 from .database import Database
 from .errors import ActiveProfileRequiredError, NotFoundError, ValidationError
@@ -132,6 +133,7 @@ class SecureGuideService:
         event_bus: EventBus | None = None,
         blueprint_engine: BlueprintEngine | None = None,
         operational_patterns: OperationalPatternLibrary | None = None,
+        authorizer: Authorizer | None = None,
     ):
         self.db = database if isinstance(database, Database) else Database(database)
         self.events = event_bus or EventBus()
@@ -141,6 +143,7 @@ class SecureGuideService:
         self.approved_blueprints = BlueprintRepository()
         self.blueprints = blueprint_engine
         self.operational_patterns = operational_patterns
+        self.authorizer = authorizer or TrustingAuthorizer()
 
     @staticmethod
     def _translate_integrity(exc: sqlite3.Error) -> ValidationError:
@@ -280,15 +283,21 @@ class SecureGuideService:
             raise ValidationError(str(exc)) from exc
         return {**library.metadata, "results": results}
 
-    @staticmethod
-    def _require_actor(actor: str, actor_role: str, allowed_roles: set[str]) -> str:
+    def _require_actor(
+        self, actor: str, actor_role: str, allowed_roles: set[str], operation: str
+    ) -> str:
         if not actor or not actor.strip():
             raise ValidationError("actor is required")
         if actor_role not in BLUEPRINT_ACTOR_ROLES or actor_role not in allowed_roles:
             raise ValidationError(
                 f"actor_role must be one of {sorted(allowed_roles)} for this operation"
             )
-        return actor.strip()
+        clean_actor = actor.strip()
+        # Authorization seam: the workflow declares the role; the authorizer proves
+        # the actor is entitled to it. The default authorizer trusts the claim and
+        # leaves real entitlement checks to the auth layer wired with the UI.
+        self.authorizer.authorize(clean_actor, actor_role, operation)
+        return clean_actor
 
     def create_blueprint_draft(
         self,
@@ -300,7 +309,7 @@ class SecureGuideService:
         change_summary: str | None = None,
     ) -> dict[str, Any]:
         """Snapshot a transient proposal into a profile-specific human draft."""
-        actor = self._require_actor(created_by, actor_role, {"AUTHOR"})
+        actor = self._require_actor(created_by, actor_role, {"AUTHOR"}, "blueprint-draft")
         generated = self.generate_blueprint(artifact_id, profile_id=profile_id)
         stable_payload = dict(generated)
         stable_payload.pop("generatedAt", None)
@@ -494,7 +503,7 @@ class SecureGuideService:
         sha256, the source pattern identity, and the actor/time/reason. A pattern
         is never turned into a task; it only informs the governed draft snapshot.
         """
-        actor = self._require_actor(selected_by, actor_role, {"AUTHOR"})
+        actor = self._require_actor(selected_by, actor_role, {"AUTHOR"}, "blueprint-enrich")
         if not selection_reason or not selection_reason.strip():
             raise ValidationError("selection_reason is required")
         try:
@@ -585,7 +594,9 @@ class SecureGuideService:
         profile_id: str | None = None,
     ) -> dict[str, Any]:
         """Reverse a pattern enrichment while the blueprint is still a DRAFT."""
-        actor = self._require_actor(removed_by, actor_role, {"AUTHOR"})
+        actor = self._require_actor(
+            removed_by, actor_role, {"AUTHOR"}, "blueprint-enrich-remove"
+        )
         reason = removal_reason.strip() if removal_reason and removal_reason.strip() else None
         try:
             with self.db.transaction() as conn:
@@ -660,9 +671,10 @@ class SecureGuideService:
         actor: str,
         actor_role: str,
         allowed_roles: set[str],
+        operation: str,
         profile_id: str | None,
     ) -> dict[str, Any]:
-        clean_actor = self._require_actor(actor, actor_role, allowed_roles)
+        clean_actor = self._require_actor(actor, actor_role, allowed_roles, operation)
         changes = {**changes, "last_actor": clean_actor, "last_actor_role": actor_role}
         try:
             with self.db.transaction() as conn:
@@ -692,7 +704,7 @@ class SecureGuideService:
         profile_id: str | None = None,
         actor_role: str = "AUTHOR",
     ) -> dict[str, Any]:
-        actor = self._require_actor(submitted_by, actor_role, {"AUTHOR"})
+        actor = self._require_actor(submitted_by, actor_role, {"AUTHOR"}, "blueprint-submit")
         return self._transition_blueprint(
             blueprint_id,
             {
@@ -703,6 +715,7 @@ class SecureGuideService:
             actor=actor,
             actor_role=actor_role,
             allowed_roles={"AUTHOR"},
+            operation="blueprint-submit",
             profile_id=profile_id,
         )
 
@@ -723,6 +736,7 @@ class SecureGuideService:
             actor=reviewed_by,
             actor_role=actor_role,
             allowed_roles={"REVIEWER"},
+            operation="blueprint-return",
             profile_id=profile_id,
         )
 
@@ -735,7 +749,7 @@ class SecureGuideService:
         profile_id: str | None = None,
         actor_role: str = "APPROVER",
     ) -> dict[str, Any]:
-        actor = self._require_actor(approved_by, actor_role, {"APPROVER"})
+        actor = self._require_actor(approved_by, actor_role, {"APPROVER"}, "blueprint-approve")
         now = datetime.now(timezone.utc).isoformat()
         try:
             with self.db.transaction() as conn:
@@ -796,7 +810,7 @@ class SecureGuideService:
         if not cancellation_note or not cancellation_note.strip():
             raise ValidationError("cancellation_note is required")
         actor = self._require_actor(
-            cancelled_by, actor_role, {"AUTHOR", "REVIEWER"}
+            cancelled_by, actor_role, {"AUTHOR", "REVIEWER"}, "blueprint-cancel"
         )
         with self.db.read() as conn:
             resolved = self._profile_id(conn, profile_id)
@@ -815,6 +829,7 @@ class SecureGuideService:
             actor=actor,
             actor_role=actor_role,
             allowed_roles={required_role},
+            operation="blueprint-cancel",
             profile_id=resolved,
         )
 
@@ -829,7 +844,7 @@ class SecureGuideService:
         assigned_to: str | None = None,
         due_date: str | None = None,
     ) -> dict[str, Any]:
-        actor = self._require_actor(created_by, actor_role, {"APPROVER"})
+        actor = self._require_actor(created_by, actor_role, {"APPROVER"}, "blueprint-tasks")
         if priority is not None and priority not in PRIORITIES:
             raise ValidationError(f"invalid priority: {priority}")
         try:

@@ -15,3 +15,7 @@ class ValidationError(SecureGuideError):
 
 class ActiveProfileRequiredError(ValidationError):
     """An operation needs either an explicit profile or a persisted active one."""
+
+
+class AuthorizationError(SecureGuideError):
+    """The actor is not entitled to act in the workflow role it claimed."""
