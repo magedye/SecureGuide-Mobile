@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import hashlib
+import json
 import sqlite3
 import uuid
 from collections import defaultdict
@@ -13,7 +15,12 @@ from scripts import scoring
 from .blueprints import BlueprintEngine, ClassificationContext
 from .database import Database
 from .errors import ActiveProfileRequiredError, NotFoundError, ValidationError
-from .repositories import CatalogRepository, ProfileRepository, TemplateRepository
+from .repositories import (
+    BlueprintRepository,
+    CatalogRepository,
+    ProfileRepository,
+    TemplateRepository,
+)
 
 
 IMPLEMENTATION_STATUSES = {
@@ -54,6 +61,9 @@ EVIDENCE_TYPES = {
     "LINK",
     "OTHER",
 }
+BLUEPRINT_STATUSES = {"DRAFT", "UNDER_REVIEW", "APPROVED", "SUPERSEDED", "CANCELLED"}
+BLUEPRINT_ACTOR_ROLES = {"AUTHOR", "REVIEWER", "APPROVER"}
+TASK_STATUSES = {"TODO", "IN_PROGRESS", "BLOCKED", "DONE", "CANCELLED"}
 
 INCLUSION_RANK = {"OPTIONAL": 1, "CONDITIONAL": 2, "RECOMMENDED": 3, "MANDATORY": 4}
 PRIORITY_RANK = {"PRI-LOW": 1, "PRI-MEDIUM": 2, "PRI-HIGH": 3, "PRI-CRITICAL": 4}
@@ -126,6 +136,7 @@ class SecureGuideService:
         self.catalog = CatalogRepository()
         self.profiles = ProfileRepository()
         self.templates = TemplateRepository()
+        self.approved_blueprints = BlueprintRepository()
         self.blueprints = blueprint_engine
 
     @staticmethod
@@ -238,6 +249,508 @@ class SecureGuideService:
             profile_id=profile_id,
             blueprint_id=blueprint.blueprint_id,
             rule_set_hash=blueprint.rule_set_hash,
+        )
+        return result
+
+    @staticmethod
+    def _require_actor(actor: str, actor_role: str, allowed_roles: set[str]) -> str:
+        if not actor or not actor.strip():
+            raise ValidationError("actor is required")
+        if actor_role not in BLUEPRINT_ACTOR_ROLES or actor_role not in allowed_roles:
+            raise ValidationError(
+                f"actor_role must be one of {sorted(allowed_roles)} for this operation"
+            )
+        return actor.strip()
+
+    def create_blueprint_draft(
+        self,
+        artifact_id: str,
+        *,
+        created_by: str,
+        profile_id: str | None = None,
+        actor_role: str = "AUTHOR",
+        change_summary: str | None = None,
+    ) -> dict[str, Any]:
+        """Snapshot a transient proposal into a profile-specific human draft."""
+        actor = self._require_actor(created_by, actor_role, {"AUTHOR"})
+        generated = self.generate_blueprint(artifact_id, profile_id=profile_id)
+        stable_payload = dict(generated)
+        stable_payload.pop("generatedAt", None)
+        payload_hash = hashlib.sha256(
+            json.dumps(
+                stable_payload, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+            ).encode("utf-8")
+        ).hexdigest()
+        try:
+            with self.db.transaction() as conn:
+                resolved = self._profile_id(conn, profile_id)
+                pa = self.profiles.profile_artifact(conn, resolved, artifact_id=artifact_id)
+                if not pa:
+                    raise NotFoundError(
+                        f"artifact {artifact_id} is not selected in profile {resolved}"
+                    )
+                candidate = self.approved_blueprints.candidate_for_profile_artifact(conn, pa["id"])
+                if candidate:
+                    raise ValidationError(
+                        f"blueprint {candidate['id']} is already {candidate['workflow_status']}"
+                    )
+                latest = self.approved_blueprints.latest_for_profile_artifact(conn, pa["id"])
+                version = int(latest["version"]) + 1 if latest else 1
+                blueprint_id = new_id("ABP")
+                blueprint = self.approved_blueprints.create(conn, {
+                    "id": blueprint_id,
+                    "profile_id": resolved,
+                    "artifact_id": artifact_id,
+                    "profile_artifact_id": pa["id"],
+                    "version": version,
+                    "parent_blueprint_id": latest["id"] if latest else None,
+                    "source_blueprint_id": generated["blueprintId"],
+                    "source_payload_hash": payload_hash,
+                    "engine_version": generated["engineVersion"],
+                    "blueprint_version": generated["blueprintVersion"],
+                    "rule_set_id": generated["ruleSetId"],
+                    "rule_set_version": generated["ruleSetVersion"],
+                    "rule_set_hash": generated["ruleSetHash"],
+                    "action_plan_type": generated["actionPlanType"],
+                    "title": generated["title"],
+                    "generation_confidence": generated["confidence"],
+                    "generation_requires_review": int(generated["requiresHumanReview"]),
+                    "workflow_status": "DRAFT",
+                    "created_by": actor,
+                    "change_summary": change_summary,
+                    "last_actor": actor,
+                    "last_actor_role": actor_role,
+                })
+                rule_versions: dict[str, str] = {}
+                for rule in generated["appliedRules"]:
+                    rule_versions[rule["ruleId"]] = rule["ruleVersion"]
+                    self.approved_blueprints.add_rule(conn, {
+                        "blueprint_id": blueprint_id,
+                        "rule_id": rule["ruleId"],
+                        "rule_version": rule["ruleVersion"],
+                        "stage": rule["stage"],
+                        "priority": rule["priority"],
+                        "rationale": rule["rationale"],
+                        "base_confidence": rule["baseConfidence"],
+                    })
+                for action in generated["actions"]:
+                    action_id = new_id("ABA")
+                    self.approved_blueprints.add_action(conn, {
+                        "id": action_id,
+                        "blueprint_id": blueprint_id,
+                        "source_action_id": action["id"],
+                        "action_code": action["actionCode"],
+                        "semantic_key": action["semanticKey"],
+                        "title": action["title"],
+                        "description": action["description"],
+                        "category": action["category"],
+                        "phase": action["phase"],
+                        "display_order": action["order"],
+                        "rationale": action["rationale"],
+                        "confidence": action["confidence"],
+                        "taskable": int(action["taskable"]),
+                        "requires_human_review": int(action["requiresHumanReview"]),
+                        "source_artifact_id": action.get("sourceArtifactId"),
+                        "source_citation": action.get("sourceCitation"),
+                    })
+                    for rule_id in action["sourceRuleIds"]:
+                        self.approved_blueprints.add_action_rule(conn, {
+                            "action_id": action_id,
+                            "rule_id": rule_id,
+                            "rule_version": rule_versions[rule_id],
+                        })
+                for output in generated["expectedOutputs"]:
+                    output_id = new_id("ABO")
+                    self.approved_blueprints.add_output(conn, {
+                        "id": output_id,
+                        "blueprint_id": blueprint_id,
+                        "source_output_id": output["id"],
+                        "output_code": output["outputCode"],
+                        "semantic_key": output["semanticKey"],
+                        "title": output["title"],
+                        "description": output["description"],
+                        "rationale": output["rationale"],
+                    })
+                    for rule_id in output["sourceRuleIds"]:
+                        self.approved_blueprints.add_output_rule(conn, {
+                            "output_id": output_id,
+                            "rule_id": rule_id,
+                            "rule_version": rule_versions[rule_id],
+                        })
+                for evidence in generated["evidence"]:
+                    evidence_id = new_id("ABE")
+                    self.approved_blueprints.add_evidence(conn, {
+                        "id": evidence_id,
+                        "blueprint_id": blueprint_id,
+                        "source_evidence_id": evidence["id"],
+                        "evidence_code": evidence["evidenceCode"],
+                        "semantic_key": evidence["semanticKey"],
+                        "title": evidence["title"],
+                        "evidence_type": evidence["evidenceType"],
+                        "description": evidence["description"],
+                        "rationale": evidence["rationale"],
+                        "mandatory": int(evidence["mandatory"]),
+                        "confidence": evidence["confidence"],
+                        "requires_human_review": int(evidence["requiresHumanReview"]),
+                        "source_artifact_id": evidence.get("sourceArtifactId"),
+                        "source_citation": evidence.get("sourceCitation"),
+                    })
+                    for rule_id in evidence["sourceRuleIds"]:
+                        self.approved_blueprints.add_evidence_rule(conn, {
+                            "evidence_id": evidence_id,
+                            "rule_id": rule_id,
+                            "rule_version": rule_versions[rule_id],
+                        })
+                for index, reason in enumerate(generated["reviewReasons"], 1):
+                    self.approved_blueprints.add_review_finding(conn, {
+                        "id": new_id("ABF"),
+                        "blueprint_id": blueprint_id,
+                        "finding_type": "REVIEW_REASON",
+                        "finding_code": f"REVIEW-{index:03d}",
+                        "detail": reason,
+                    })
+                for event in generated["normalizationEvents"]:
+                    self.approved_blueprints.add_review_finding(conn, {
+                        "id": new_id("ABF"),
+                        "blueprint_id": blueprint_id,
+                        "finding_type": "NORMALIZATION",
+                        "finding_code": event["normalizationType"],
+                        "field_name": event["field"],
+                        "input_value": event.get("inputValue"),
+                        "canonical_value": event.get("canonicalValue"),
+                        "detail": event["reason"],
+                        "quality": event.get("quality"),
+                    })
+                for conflict in generated["conflicts"]:
+                    self.approved_blueprints.add_review_finding(conn, {
+                        "id": new_id("ABF"),
+                        "blueprint_id": blueprint_id,
+                        "finding_type": "CONFLICT",
+                        "finding_code": "SEMANTIC_EMISSION_CONFLICT",
+                        "field_name": conflict.get("field"),
+                        "input_value": conflict.get("semanticKey"),
+                        "canonical_value": conflict.get("collection"),
+                        "detail": "; ".join(
+                            str(value) for value in conflict.get("values", [])
+                        ) or "conflicting blueprint emissions",
+                    })
+                detail = self.approved_blueprints.detail(conn, resolved, blueprint_id)
+        except sqlite3.Error as exc:
+            raise self._translate_integrity(exc) from exc
+        self.events.publish(
+            "BlueprintDraftCreatedEvent",
+            profile_id=resolved,
+            artifact_id=artifact_id,
+            blueprint_id=blueprint_id,
+            version=version,
+        )
+        return detail
+
+    def list_blueprints(
+        self,
+        *,
+        profile_id: str | None = None,
+        artifact_id: str | None = None,
+        workflow_status: str | None = None,
+    ) -> list[dict[str, Any]]:
+        if workflow_status is not None and workflow_status not in BLUEPRINT_STATUSES:
+            raise ValidationError(f"invalid blueprint workflow_status: {workflow_status}")
+        with self.db.read() as conn:
+            resolved = self._profile_id(conn, profile_id)
+            return self.approved_blueprints.list(
+                conn, resolved, artifact_id=artifact_id, workflow_status=workflow_status
+            )
+
+    def blueprint_detail(
+        self, blueprint_id: str, *, profile_id: str | None = None
+    ) -> dict[str, Any]:
+        with self.db.read() as conn:
+            resolved = self._profile_id(conn, profile_id)
+            result = self.approved_blueprints.detail(conn, resolved, blueprint_id)
+        if not result:
+            raise NotFoundError(f"blueprint {blueprint_id} does not belong to profile {resolved}")
+        return result
+
+    def _transition_blueprint(
+        self,
+        blueprint_id: str,
+        changes: dict[str, Any],
+        *,
+        actor: str,
+        actor_role: str,
+        allowed_roles: set[str],
+        profile_id: str | None,
+    ) -> dict[str, Any]:
+        clean_actor = self._require_actor(actor, actor_role, allowed_roles)
+        changes = {**changes, "last_actor": clean_actor, "last_actor_role": actor_role}
+        try:
+            with self.db.transaction() as conn:
+                resolved = self._profile_id(conn, profile_id)
+                current = self.approved_blueprints.get(conn, resolved, blueprint_id)
+                if not current:
+                    raise NotFoundError(
+                        f"blueprint {blueprint_id} does not belong to profile {resolved}"
+                    )
+                self.approved_blueprints.transition(conn, blueprint_id, changes)
+                result = self.approved_blueprints.detail(conn, resolved, blueprint_id)
+        except sqlite3.Error as exc:
+            raise self._translate_integrity(exc) from exc
+        self.events.publish(
+            "BlueprintTransitionedEvent",
+            profile_id=resolved,
+            blueprint_id=blueprint_id,
+            workflow_status=result["workflow_status"],
+        )
+        return result
+
+    def submit_blueprint(
+        self,
+        blueprint_id: str,
+        *,
+        submitted_by: str,
+        profile_id: str | None = None,
+        actor_role: str = "AUTHOR",
+    ) -> dict[str, Any]:
+        actor = self._require_actor(submitted_by, actor_role, {"AUTHOR"})
+        return self._transition_blueprint(
+            blueprint_id,
+            {
+                "workflow_status": "UNDER_REVIEW",
+                "submitted_by": actor,
+                "submitted_at": datetime.now(timezone.utc).isoformat(),
+            },
+            actor=actor,
+            actor_role=actor_role,
+            allowed_roles={"AUTHOR"},
+            profile_id=profile_id,
+        )
+
+    def return_blueprint_to_draft(
+        self,
+        blueprint_id: str,
+        *,
+        reviewed_by: str,
+        review_note: str,
+        profile_id: str | None = None,
+        actor_role: str = "REVIEWER",
+    ) -> dict[str, Any]:
+        if not review_note or not review_note.strip():
+            raise ValidationError("review_note is required")
+        return self._transition_blueprint(
+            blueprint_id,
+            {"workflow_status": "DRAFT", "review_resolution_note": review_note.strip()},
+            actor=reviewed_by,
+            actor_role=actor_role,
+            allowed_roles={"REVIEWER"},
+            profile_id=profile_id,
+        )
+
+    def approve_blueprint(
+        self,
+        blueprint_id: str,
+        *,
+        approved_by: str,
+        review_resolution_note: str | None = None,
+        profile_id: str | None = None,
+        actor_role: str = "APPROVER",
+    ) -> dict[str, Any]:
+        actor = self._require_actor(approved_by, actor_role, {"APPROVER"})
+        now = datetime.now(timezone.utc).isoformat()
+        try:
+            with self.db.transaction() as conn:
+                resolved = self._profile_id(conn, profile_id)
+                current = self.approved_blueprints.get(conn, resolved, blueprint_id)
+                if not current:
+                    raise NotFoundError(
+                        f"blueprint {blueprint_id} does not belong to profile {resolved}"
+                    )
+                if current["workflow_status"] != "UNDER_REVIEW":
+                    raise ValidationError("only an UNDER_REVIEW blueprint can be approved")
+                if current["generation_requires_review"] and (
+                    not review_resolution_note or not review_resolution_note.strip()
+                ):
+                    raise ValidationError(
+                        "review_resolution_note is required for generated review flags"
+                    )
+                previous = self.approved_blueprints.approved_for_profile_artifact(
+                    conn, current["profile_artifact_id"]
+                )
+                if previous:
+                    self.approved_blueprints.transition(conn, previous["id"], {
+                        "workflow_status": "SUPERSEDED",
+                        "closed_by": actor,
+                        "closed_at": now,
+                        "last_actor": actor,
+                        "last_actor_role": actor_role,
+                    })
+                self.approved_blueprints.transition(conn, blueprint_id, {
+                    "workflow_status": "APPROVED",
+                    "approved_by": actor,
+                    "approved_at": now,
+                    "review_resolution_note": review_resolution_note.strip()
+                    if review_resolution_note else None,
+                    "last_actor": actor,
+                    "last_actor_role": actor_role,
+                })
+                result = self.approved_blueprints.detail(conn, resolved, blueprint_id)
+        except sqlite3.Error as exc:
+            raise self._translate_integrity(exc) from exc
+        self.events.publish(
+            "BlueprintApprovedEvent",
+            profile_id=resolved,
+            blueprint_id=blueprint_id,
+            superseded_blueprint_id=previous["id"] if previous else None,
+        )
+        return result
+
+    def cancel_blueprint(
+        self,
+        blueprint_id: str,
+        *,
+        cancelled_by: str,
+        cancellation_note: str,
+        profile_id: str | None = None,
+        actor_role: str = "AUTHOR",
+    ) -> dict[str, Any]:
+        if not cancellation_note or not cancellation_note.strip():
+            raise ValidationError("cancellation_note is required")
+        actor = self._require_actor(
+            cancelled_by, actor_role, {"AUTHOR", "REVIEWER"}
+        )
+        with self.db.read() as conn:
+            resolved = self._profile_id(conn, profile_id)
+            current = self.approved_blueprints.get(conn, resolved, blueprint_id)
+        if not current:
+            raise NotFoundError(f"blueprint {blueprint_id} does not belong to profile {resolved}")
+        required_role = "AUTHOR" if current["workflow_status"] == "DRAFT" else "REVIEWER"
+        return self._transition_blueprint(
+            blueprint_id,
+            {
+                "workflow_status": "CANCELLED",
+                "closed_by": actor,
+                "closed_at": datetime.now(timezone.utc).isoformat(),
+                "change_summary": cancellation_note.strip(),
+            },
+            actor=actor,
+            actor_role=actor_role,
+            allowed_roles={required_role},
+            profile_id=resolved,
+        )
+
+    def materialize_blueprint_tasks(
+        self,
+        blueprint_id: str,
+        *,
+        created_by: str,
+        profile_id: str | None = None,
+        actor_role: str = "APPROVER",
+        priority: str | None = None,
+        assigned_to: str | None = None,
+        due_date: str | None = None,
+    ) -> dict[str, Any]:
+        actor = self._require_actor(created_by, actor_role, {"APPROVER"})
+        if priority is not None and priority not in PRIORITIES:
+            raise ValidationError(f"invalid priority: {priority}")
+        try:
+            with self.db.transaction() as conn:
+                resolved = self._profile_id(conn, profile_id)
+                blueprint = self.approved_blueprints.get(conn, resolved, blueprint_id)
+                if not blueprint:
+                    raise NotFoundError(
+                        f"blueprint {blueprint_id} does not belong to profile {resolved}"
+                    )
+                if blueprint["workflow_status"] != "APPROVED":
+                    raise ValidationError("tasks can be created only from an APPROVED blueprint")
+                created, existing, task_ids = self.approved_blueprints.materialize_tasks(
+                    conn,
+                    blueprint=blueprint,
+                    created_by=actor,
+                    priority=priority,
+                    assigned_to=assigned_to,
+                    due_date=due_date,
+                    id_factory=new_id,
+                )
+                self.approved_blueprints.add_event(conn, {
+                    "blueprint_id": blueprint_id,
+                    "event_type": "TASKS_MATERIALIZED",
+                    "status_from": "APPROVED",
+                    "status_to": "APPROVED",
+                    "actor": actor,
+                    "actor_role": actor_role,
+                    "note": f"created={created}; existing={existing}",
+                })
+        except sqlite3.Error as exc:
+            raise self._translate_integrity(exc) from exc
+        self.events.publish(
+            "BlueprintTasksMaterializedEvent",
+            profile_id=resolved,
+            blueprint_id=blueprint_id,
+            created=created,
+            existing=existing,
+        )
+        return {
+            "profile_id": resolved,
+            "blueprint_id": blueprint_id,
+            "created": created,
+            "existing": existing,
+            "task_ids": task_ids,
+        }
+
+    def list_tasks(
+        self, *, profile_id: str | None = None, status: str | None = None
+    ) -> list[dict[str, Any]]:
+        if status is not None and status not in TASK_STATUSES:
+            raise ValidationError(f"invalid task status: {status}")
+        with self.db.read() as conn:
+            resolved = self._profile_id(conn, profile_id)
+            return self.approved_blueprints.tasks(conn, resolved, status)
+
+    def update_task(
+        self,
+        task_id: str,
+        *,
+        changed_by: str,
+        profile_id: str | None = None,
+        status: str | None = None,
+        priority: str | None = None,
+        assigned_to: str | None = None,
+        due_date: str | None = None,
+        note: str | None = None,
+    ) -> dict[str, Any]:
+        if not changed_by or not changed_by.strip():
+            raise ValidationError("changed_by is required")
+        if status is not None and status not in TASK_STATUSES:
+            raise ValidationError(f"invalid task status: {status}")
+        if priority is not None and priority not in PRIORITIES:
+            raise ValidationError(f"invalid priority: {priority}")
+        changes = {
+            key: value for key, value in {
+                "status": status,
+                "priority": priority,
+                "assigned_to": assigned_to,
+                "due_date": due_date,
+                "last_change_note": note,
+            }.items() if value is not None
+        }
+        changes["last_changed_by"] = changed_by.strip()
+        if status in {"DONE", "CANCELLED"}:
+            changes["closed_by"] = changed_by.strip()
+            changes["completed_at"] = datetime.now(timezone.utc).isoformat()
+        try:
+            with self.db.transaction() as conn:
+                resolved = self._profile_id(conn, profile_id)
+                current = self.approved_blueprints.task(conn, resolved, task_id)
+                if not current:
+                    raise NotFoundError(f"task {task_id} does not belong to profile {resolved}")
+                self.approved_blueprints.update_task(conn, task_id, changes)
+                result = self.approved_blueprints.task(conn, resolved, task_id)
+        except sqlite3.Error as exc:
+            raise self._translate_integrity(exc) from exc
+        self.events.publish(
+            "ProfileTaskUpdatedEvent",
+            profile_id=resolved,
+            task_id=task_id,
+            status=result["status"],
         )
         return result
 
@@ -754,6 +1267,10 @@ class SecureGuideService:
         resolved = dashboard["profile"]["id"]
         with self.db.read() as conn:
             items = self.profiles.operational_items(conn, resolved)
+            approved_blueprints = self.approved_blueprints.list(
+                conn, resolved, workflow_status="APPROVED"
+            )
+            tasks = self.approved_blueprints.tasks(conn, resolved)
             templates = [
                 dict(row)
                 for row in conn.execute(
@@ -774,6 +1291,13 @@ class SecureGuideService:
                 "score": dashboard["score"],
                 "gap_count": dashboard["counts"]["open_gaps"],
                 "review_queue_count": len(dashboard["review_queue"]),
+                "approved_blueprint_count": len(approved_blueprints),
+                "task_count": len(tasks),
+                "open_task_count": sum(
+                    task["status"] not in {"DONE", "CANCELLED"} for task in tasks
+                ),
             },
             "items": items,
+            "approved_blueprints": approved_blueprints,
+            "tasks": tasks,
         }

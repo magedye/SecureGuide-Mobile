@@ -459,3 +459,282 @@ class ProfileRepository:
                 (profile_id,),
             ).fetchall()
         )
+
+
+class BlueprintRepository:
+    """Profile-scoped persistence for approved blueprint snapshots and tasks."""
+
+    @staticmethod
+    def _insert(conn: sqlite3.Connection, table: str, values: dict[str, Any]) -> None:
+        columns = list(values)
+        conn.execute(
+            f"INSERT INTO {table}({','.join(columns)}) VALUES ({','.join('?' for _ in columns)})",
+            [values[column] for column in columns],
+        )
+
+    def get(
+        self, conn: sqlite3.Connection, profile_id: str, blueprint_id: str
+    ) -> dict[str, Any] | None:
+        return row_dict(
+            conn.execute(
+                "SELECT * FROM approved_blueprints WHERE id=? AND profile_id=?",
+                (blueprint_id, profile_id),
+            ).fetchone()
+        )
+
+    def latest_for_profile_artifact(
+        self, conn: sqlite3.Connection, profile_artifact_id: str
+    ) -> dict[str, Any] | None:
+        return row_dict(
+            conn.execute(
+                """SELECT * FROM approved_blueprints
+                    WHERE profile_artifact_id=? ORDER BY version DESC LIMIT 1""",
+                (profile_artifact_id,),
+            ).fetchone()
+        )
+
+    def candidate_for_profile_artifact(
+        self, conn: sqlite3.Connection, profile_artifact_id: str
+    ) -> dict[str, Any] | None:
+        return row_dict(
+            conn.execute(
+                """SELECT * FROM approved_blueprints
+                    WHERE profile_artifact_id=?
+                      AND workflow_status IN ('DRAFT','UNDER_REVIEW')""",
+                (profile_artifact_id,),
+            ).fetchone()
+        )
+
+    def approved_for_profile_artifact(
+        self, conn: sqlite3.Connection, profile_artifact_id: str
+    ) -> dict[str, Any] | None:
+        return row_dict(
+            conn.execute(
+                """SELECT * FROM approved_blueprints
+                    WHERE profile_artifact_id=? AND workflow_status='APPROVED'""",
+                (profile_artifact_id,),
+            ).fetchone()
+        )
+
+    def create(self, conn: sqlite3.Connection, values: dict[str, Any]) -> dict[str, Any]:
+        self._insert(conn, "approved_blueprints", values)
+        return self.get(conn, values["profile_id"], values["id"])
+
+    def add_rule(self, conn: sqlite3.Connection, values: dict[str, Any]) -> None:
+        self._insert(conn, "approved_blueprint_rules", values)
+
+    def add_action(self, conn: sqlite3.Connection, values: dict[str, Any]) -> None:
+        self._insert(conn, "approved_blueprint_actions", values)
+
+    def add_action_rule(self, conn: sqlite3.Connection, values: dict[str, Any]) -> None:
+        self._insert(conn, "approved_blueprint_action_rules", values)
+
+    def add_output(self, conn: sqlite3.Connection, values: dict[str, Any]) -> None:
+        self._insert(conn, "approved_blueprint_outputs", values)
+
+    def add_output_rule(self, conn: sqlite3.Connection, values: dict[str, Any]) -> None:
+        self._insert(conn, "approved_blueprint_output_rules", values)
+
+    def add_evidence(self, conn: sqlite3.Connection, values: dict[str, Any]) -> None:
+        self._insert(conn, "approved_blueprint_evidence", values)
+
+    def add_evidence_rule(self, conn: sqlite3.Connection, values: dict[str, Any]) -> None:
+        self._insert(conn, "approved_blueprint_evidence_rules", values)
+
+    def transition(
+        self, conn: sqlite3.Connection, blueprint_id: str, changes: dict[str, Any]
+    ) -> None:
+        columns = list(changes)
+        assignments = ",".join(f"{column}=?" for column in columns)
+        conn.execute(
+            f"""UPDATE approved_blueprints SET {assignments},
+                       updated_at=datetime('now'),row_version=row_version+1
+                 WHERE id=?""",
+            [*[changes[column] for column in columns], blueprint_id],
+        )
+
+    def list(
+        self,
+        conn: sqlite3.Connection,
+        profile_id: str,
+        *,
+        artifact_id: str | None = None,
+        workflow_status: str | None = None,
+    ) -> list[dict[str, Any]]:
+        sql = "SELECT * FROM v_profile_blueprints WHERE profile_id=?"
+        params: list[Any] = [profile_id]
+        if artifact_id:
+            sql += " AND artifact_id=?"
+            params.append(artifact_id)
+        if workflow_status:
+            sql += " AND workflow_status=?"
+            params.append(workflow_status)
+        sql += " ORDER BY artifact_id,version DESC"
+        return rows_dict(conn.execute(sql, params).fetchall())
+
+    def detail(
+        self, conn: sqlite3.Connection, profile_id: str, blueprint_id: str
+    ) -> dict[str, Any] | None:
+        blueprint = self.get(conn, profile_id, blueprint_id)
+        if not blueprint:
+            return None
+        blueprint["applied_rules"] = rows_dict(
+            conn.execute(
+                """SELECT * FROM approved_blueprint_rules WHERE blueprint_id=?
+                    ORDER BY CASE stage WHEN 'ARTIFACT_TYPE' THEN 1
+                      WHEN 'CONTROL_NATURE' THEN 2 WHEN 'CONTROL_FUNCTION' THEN 3
+                      WHEN 'SECURITY_DOMAIN' THEN 4 ELSE 5 END,priority,rule_id""",
+                (blueprint_id,),
+            ).fetchall()
+        )
+        actions = rows_dict(
+            conn.execute(
+                """SELECT * FROM approved_blueprint_actions WHERE blueprint_id=?
+                    ORDER BY display_order,id""",
+                (blueprint_id,),
+            ).fetchall()
+        )
+        for action in actions:
+            action["source_rules"] = rows_dict(
+                conn.execute(
+                    """SELECT rule_id,rule_version FROM approved_blueprint_action_rules
+                        WHERE action_id=? ORDER BY rule_id,rule_version""",
+                    (action["id"],),
+                ).fetchall()
+            )
+        blueprint["actions"] = actions
+        outputs = rows_dict(
+            conn.execute(
+                """SELECT * FROM approved_blueprint_outputs WHERE blueprint_id=?
+                    ORDER BY id""",
+                (blueprint_id,),
+            ).fetchall()
+        )
+        for output in outputs:
+            output["source_rules"] = rows_dict(
+                conn.execute(
+                    """SELECT rule_id,rule_version FROM approved_blueprint_output_rules
+                        WHERE output_id=? ORDER BY rule_id,rule_version""",
+                    (output["id"],),
+                ).fetchall()
+            )
+        blueprint["expected_outputs"] = outputs
+        evidence = rows_dict(
+            conn.execute(
+                """SELECT * FROM approved_blueprint_evidence WHERE blueprint_id=?
+                    ORDER BY mandatory DESC,evidence_type,id""",
+                (blueprint_id,),
+            ).fetchall()
+        )
+        for item in evidence:
+            item["source_rules"] = rows_dict(
+                conn.execute(
+                    """SELECT rule_id,rule_version FROM approved_blueprint_evidence_rules
+                        WHERE evidence_id=? ORDER BY rule_id,rule_version""",
+                    (item["id"],),
+                ).fetchall()
+            )
+        blueprint["evidence"] = evidence
+        blueprint["review_events"] = rows_dict(
+            conn.execute(
+                """SELECT * FROM blueprint_review_events WHERE blueprint_id=?
+                    ORDER BY event_at,id""",
+                (blueprint_id,),
+            ).fetchall()
+        )
+        blueprint["review_findings"] = rows_dict(
+            conn.execute(
+                """SELECT * FROM approved_blueprint_review_findings
+                    WHERE blueprint_id=? ORDER BY finding_type,finding_code,id""",
+                (blueprint_id,),
+            ).fetchall()
+        )
+        return blueprint
+
+    def materialize_tasks(
+        self,
+        conn: sqlite3.Connection,
+        *,
+        blueprint: dict[str, Any],
+        created_by: str,
+        priority: str | None,
+        assigned_to: str | None,
+        due_date: str | None,
+        id_factory: Any,
+    ) -> tuple[int, int, list[str]]:
+        actions = rows_dict(
+            conn.execute(
+                """SELECT * FROM approved_blueprint_actions
+                    WHERE blueprint_id=? AND taskable=1 ORDER BY display_order,id""",
+                (blueprint["id"],),
+            ).fetchall()
+        )
+        created = existing = 0
+        task_ids: list[str] = []
+        for action in actions:
+            current = conn.execute(
+                "SELECT id FROM profile_tasks WHERE blueprint_action_id=?",
+                (action["id"],),
+            ).fetchone()
+            if current:
+                existing += 1
+                task_ids.append(current["id"])
+                continue
+            task_id = id_factory("TSK")
+            self._insert(conn, "profile_tasks", {
+                "id": task_id,
+                "profile_id": blueprint["profile_id"],
+                "profile_artifact_id": blueprint["profile_artifact_id"],
+                "blueprint_id": blueprint["id"],
+                "blueprint_action_id": action["id"],
+                "source_semantic_key": action["semantic_key"],
+                "title": action["title"],
+                "description": action["description"],
+                "priority": priority,
+                "assigned_to": assigned_to,
+                "due_date": due_date,
+                "created_by": created_by,
+                "last_changed_by": created_by,
+            })
+            created += 1
+            task_ids.append(task_id)
+        return created, existing, task_ids
+
+    def add_event(self, conn: sqlite3.Connection, values: dict[str, Any]) -> None:
+        self._insert(conn, "blueprint_review_events", values)
+
+    def add_review_finding(
+        self, conn: sqlite3.Connection, values: dict[str, Any]
+    ) -> None:
+        self._insert(conn, "approved_blueprint_review_findings", values)
+
+    def task(
+        self, conn: sqlite3.Connection, profile_id: str, task_id: str
+    ) -> dict[str, Any] | None:
+        return row_dict(
+            conn.execute(
+                "SELECT * FROM profile_tasks WHERE id=? AND profile_id=?",
+                (task_id, profile_id),
+            ).fetchone()
+        )
+
+    def update_task(
+        self, conn: sqlite3.Connection, task_id: str, changes: dict[str, Any]
+    ) -> None:
+        columns = list(changes)
+        assignments = ",".join(f"{column}=?" for column in columns)
+        conn.execute(
+            f"UPDATE profile_tasks SET {assignments},updated_at=datetime('now') WHERE id=?",
+            [*[changes[column] for column in columns], task_id],
+        )
+
+    def tasks(
+        self, conn: sqlite3.Connection, profile_id: str, status: str | None = None
+    ) -> list[dict[str, Any]]:
+        sql = "SELECT * FROM v_profile_task_queue WHERE profile_id=?"
+        params: list[Any] = [profile_id]
+        if status:
+            sql += " AND status=?"
+            params.append(status)
+        sql += " ORDER BY due_date IS NULL,due_date,priority,id"
+        return rows_dict(conn.execute(sql, params).fetchall())

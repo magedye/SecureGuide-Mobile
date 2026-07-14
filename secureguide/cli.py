@@ -32,6 +32,67 @@ def build_parser() -> argparse.ArgumentParser:
     blueprint.add_argument("--profile")
     blueprint.add_argument("--rule-pack")
 
+    bp_draft = commands.add_parser("blueprint-draft")
+    bp_draft.add_argument("artifact_id")
+    bp_draft.add_argument("--profile")
+    bp_draft.add_argument("--by", required=True)
+    bp_draft.add_argument("--summary")
+
+    bp_list = commands.add_parser("blueprint-list")
+    bp_list.add_argument("--profile")
+    bp_list.add_argument("--artifact")
+    bp_list.add_argument("--status")
+
+    bp_show = commands.add_parser("blueprint-show")
+    bp_show.add_argument("blueprint_id")
+    bp_show.add_argument("--profile")
+
+    bp_submit = commands.add_parser("blueprint-submit")
+    bp_submit.add_argument("blueprint_id")
+    bp_submit.add_argument("--profile")
+    bp_submit.add_argument("--by", required=True)
+
+    bp_return = commands.add_parser("blueprint-return")
+    bp_return.add_argument("blueprint_id")
+    bp_return.add_argument("--profile")
+    bp_return.add_argument("--by", required=True)
+    bp_return.add_argument("--note", required=True)
+
+    bp_approve = commands.add_parser("blueprint-approve")
+    bp_approve.add_argument("blueprint_id")
+    bp_approve.add_argument("--profile")
+    bp_approve.add_argument("--by", required=True)
+    bp_approve.add_argument("--resolution-note")
+
+    bp_cancel = commands.add_parser("blueprint-cancel")
+    bp_cancel.add_argument("blueprint_id")
+    bp_cancel.add_argument("--profile")
+    bp_cancel.add_argument("--by", required=True)
+    bp_cancel.add_argument("--role", choices=["AUTHOR", "REVIEWER"], required=True)
+    bp_cancel.add_argument("--note", required=True)
+
+    bp_tasks = commands.add_parser("blueprint-tasks")
+    bp_tasks.add_argument("blueprint_id")
+    bp_tasks.add_argument("--profile")
+    bp_tasks.add_argument("--by", required=True)
+    bp_tasks.add_argument("--priority")
+    bp_tasks.add_argument("--assigned-to")
+    bp_tasks.add_argument("--due-date")
+
+    task_list = commands.add_parser("task-list")
+    task_list.add_argument("--profile")
+    task_list.add_argument("--status")
+
+    task_update = commands.add_parser("task-update")
+    task_update.add_argument("task_id")
+    task_update.add_argument("--profile")
+    task_update.add_argument("--by", required=True)
+    task_update.add_argument("--status")
+    task_update.add_argument("--priority")
+    task_update.add_argument("--assigned-to")
+    task_update.add_argument("--due-date")
+    task_update.add_argument("--note")
+
     create = commands.add_parser("profile-create")
     create.add_argument("--id")
     create.add_argument("--name", required=True)
@@ -156,6 +217,69 @@ def run(args: argparse.Namespace) -> Any:
     service = SecureGuideService(database, blueprint_engine=blueprint_engine)
     if args.command == "blueprint-generate":
         return service.generate_blueprint(args.artifact_id, profile_id=args.profile)
+    if args.command == "blueprint-draft":
+        return service.create_blueprint_draft(
+            args.artifact_id,
+            profile_id=args.profile,
+            created_by=args.by,
+            change_summary=args.summary,
+        )
+    if args.command == "blueprint-list":
+        return service.list_blueprints(
+            profile_id=args.profile,
+            artifact_id=args.artifact,
+            workflow_status=args.status,
+        )
+    if args.command == "blueprint-show":
+        return service.blueprint_detail(args.blueprint_id, profile_id=args.profile)
+    if args.command == "blueprint-submit":
+        return service.submit_blueprint(
+            args.blueprint_id, profile_id=args.profile, submitted_by=args.by
+        )
+    if args.command == "blueprint-return":
+        return service.return_blueprint_to_draft(
+            args.blueprint_id,
+            profile_id=args.profile,
+            reviewed_by=args.by,
+            review_note=args.note,
+        )
+    if args.command == "blueprint-approve":
+        return service.approve_blueprint(
+            args.blueprint_id,
+            profile_id=args.profile,
+            approved_by=args.by,
+            review_resolution_note=args.resolution_note,
+        )
+    if args.command == "blueprint-cancel":
+        return service.cancel_blueprint(
+            args.blueprint_id,
+            profile_id=args.profile,
+            cancelled_by=args.by,
+            actor_role=args.role,
+            cancellation_note=args.note,
+        )
+    if args.command == "blueprint-tasks":
+        return service.materialize_blueprint_tasks(
+            args.blueprint_id,
+            profile_id=args.profile,
+            created_by=args.by,
+            priority=args.priority,
+            assigned_to=args.assigned_to,
+            due_date=args.due_date,
+        )
+    if args.command == "task-list":
+        return service.list_tasks(profile_id=args.profile, status=args.status)
+    if args.command == "task-update":
+        return service.update_task(
+            args.task_id,
+            profile_id=args.profile,
+            changed_by=args.by,
+            status=args.status,
+            priority=args.priority,
+            assigned_to=args.assigned_to,
+            due_date=args.due_date,
+            note=args.note,
+        )
     if args.command == "profile-create":
         return service.create_profile(
             profile_id=args.id,

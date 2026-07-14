@@ -10,7 +10,7 @@
 | Service & State | `secureguide/services.py` | الملف النشط، المعاملات، قواعد القالب والتقييم والاستثناء، والأحداث. |
 | Core Engine | `scripts/scoring.py` | احتساب `profile-score-v1` والتوصيات القابلة للتفسير. |
 | Data Access | `secureguide/repositories.py` | استعلامات الكتالوج والملفات والقوالب؛ كل استعلام تشغيلي يحمل `profile_id`. |
-| Storage | SQLite + migration 021 | قيود المفاتيح، مصادر الاختيار، سلامة الأدلة، وعروض القراءة. |
+| Storage | SQLite + migrations 021-023 | قيود المفاتيح، مصادر الاختيار، سلامة الأدلة، اعتماد Blueprint، المهام، وعروض القراءة. |
 
 ## ضمانات المسار
 
@@ -22,6 +22,8 @@
 - حالة الاستثناء لا تُكتب مباشرة؛ تتغير فقط بعد اعتماد `profile_exceptions` وفق آلة الحالات.
 - `EXC-NOT-APPLICABLE` و`EXC-UNAVAILABLE` يخرجان من المقام، بينما `EXC-DEFERRED` و`EXC-RISK-ACCEPTED` يبقيان فجوة مفتوحة.
 - عمليات الكتابة تنفذ داخل `BEGIN IMMEDIATE` مع `PRAGMA foreign_keys=ON`، وتنشر الأحداث بعد نجاح الالتزام فقط.
+- `GeneratedBlueprint` يبقى مؤقتًا؛ المسودة المعتمدة ونسخها ترتبط بعنصر الملف، ولا تتحول إجراءاتها إلى مهام قبل الاعتماد.
+- تحويل الخطة المعتمدة متكرر بأمان لأن كل إجراء ينشئ مهمة واحدة فقط.
 
 ## دورة الاستخدام
 
@@ -35,6 +37,10 @@ assess → evidence-add
 exception-create → exception-submit → exception-approve
       ↓
 dashboard → report
+      ↓
+blueprint-draft → blueprint-submit → blueprint-approve → blueprint-tasks
+      ↓
+task-list → task-update → report
 ```
 
 ## أمثلة

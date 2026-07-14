@@ -16,7 +16,7 @@
 
 > الأصول والمخاطر والتهديدات والثغرات تُنمذَج كأنواع `ART-AST` / `ART-RSK` / `ART-THR` / `ART-VUL` داخل `security_artifacts`، وتُربط عبر `artifact_relationships` (REL-MIT, REL-AFF) — لا جداول منفصلة.
 
-> **حدّ Blueprint في MVP:** `GeneratedBlueprint` كائن خدمة مؤقت مشتق من التصنيف وحزمة قواعد ذات إصدار، وليس جدولًا ولا حقيقة مرجعية أو تشغيلية. لا تُضاف له أعمدة في `security_artifacts` ولا يظهر في تقارير الامتثال الرسمية. ستُنمذج الخطة المعتمدة بشريًا في ترحيل مستقل عند تنفيذ مرحلة الاعتماد والمهام.
+> **حدّ Blueprint:** `GeneratedBlueprint` كائن خدمة مؤقت مشتق من التصنيف وحزمة قواعد ذات إصدار، وليس جدولًا ولا حقيقة مرجعية أو تشغيلية. الترحيل 023 يحفظ فقط مسودة أنشأها مستخدم داخل ملف مؤسسي، ويمنع ظهورها في التقرير الرسمي حتى تصبح `APPROVED`.
 
 ---
 
@@ -118,6 +118,15 @@
 | `application_state` | سياق التطبيق المحلي | صف وحيد يحفظ `active_profile_id` دون تحويله إلى حالة عالمية للكتالوج |
 | `profile_templates` | سجل القوالب المطبقة | الملف + القالب + نسخة القالب + الفاعل والتاريخ؛ يدعم عدة قوالب لكل ملف |
 | `profile_artifact_origins` | مصادر اختيار العنصر | MANUAL/TEMPLATE/IMPORT/RECOMMENDATION؛ صفوف متعددة دون نسخ تعريف العنصر |
+| `approved_blueprints` | خطط Blueprint التشغيلية ذات الإصدارات | مرتبطة بالملف والعنصر التشغيلي؛ DRAFT/UNDER_REVIEW/APPROVED/SUPERSEDED/CANCELLED؛ بصمات المصدر والقواعد؛ خطة معتمدة واحدة لكل عنصر ملف |
+| `approved_blueprint_rules` | لقطة القواعد المطبقة | rule id/version/stage/rationale/confidence مطبعة لكل خطة |
+| `approved_blueprint_actions` / `_action_rules` | إجراءات الخطة ونسب القواعد | مفتاح دلالي فريد داخل الخطة؛ `taskable`؛ لا تعديل بعد الإرسال |
+| `approved_blueprint_outputs` / `_output_rules` | المخرجات المتوقعة ونسبها | صفوف مطبعة، لا JSON متكرر |
+| `approved_blueprint_evidence` / `_evidence_rules` | متطلبات الدليل ونسبها | نوع الدليل مضبوط؛ ليست `profile_evidence` الفعلية |
+| `blueprint_review_events` | سجل تدقيق الخطة | CREATED/SUBMITTED/RETURNED/APPROVED/SUPERSEDED/CANCELLED/EDITED/TASKS_MATERIALIZED |
+| `approved_blueprint_review_findings` | أسباب المراجعة والتطبيع والتعارض | REVIEW_REASON/NORMALIZATION/CONFLICT؛ لقطة لا تعتمد على إعادة التوليد لاحقًا |
+| `profile_tasks` | مهام فعلية مشتقة من إجراءات معتمدة | خاصة بالملف؛ فريدة لكل blueprint action؛ حالات مستقلة ومواعيد ومسند إليه |
+| `profile_task_events` | سجل تغير المهمة | إنشاء وبدء وحظر واستئناف وإكمال وإلغاء |
 
 *قاعدة ذهبية: لا يجوز أبداً دمج حقول `profile_artifacts` التشغيلية داخل `security_artifacts`، ولا دمج الحالات الأربع في حالة واحدة.*
 
