@@ -20,6 +20,11 @@ The primary architectural guides are:
 The normative policy for writing and formatting artifact content is:
 5. `D:\APP\secure-guide\New folder\docs\AUTHORING_POLICY.md`
 
+The normative project policy for selecting and distinguishing artifact types is:
+6. `D:\APP\secure-guide\New folder\docs\ARTIFACT_TYPE_POLICY.md`
+
+This policy is subordinate to USACM v2.2.1 and must not introduce additional `ART-*` values.
+
 Use other project documents only as supporting material. If any document, screen idea, schema draft, or implementation detail conflicts with USACM v2.2.1 or SDT v2.2.1, USACM and SDT win.
 
 Before making schema, classification, import, assessment, or reporting changes, read the relevant parts of the primary documents.
