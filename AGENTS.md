@@ -538,6 +538,30 @@ Reject or revise any implementation that:
 11. Dashboard and reports
 12. Assets, risks, threats, and recommendations
 
+## Recommendation And Decision Presentation Standard
+
+When presenting recommendations, alternative implementations, architectural decisions, or next-step choices, provide **three feasible options**.
+
+1. **Option 1 must be the recommended option.** Label it clearly as `Recommended` / `موصى به` and place it first.
+2. Options 2 and 3 must be credible alternatives with materially different tradeoffs. Do not create artificial, unsafe, or non-compliant alternatives merely to reach three options.
+3. For every option, include:
+   - a concise description of the proposed action
+   - the main justification and expected benefit
+   - the principal cost, limitation, or tradeoff
+   - a confidence score as a percentage and a qualitative label
+4. After the three options, explain briefly why Option 1 is preferred over Options 2 and 3 for the current project state and user objective.
+5. Confidence measures how strongly the available evidence supports the option as a suitable choice for the stated objective. It is not a guarantee of success.
+
+Use these confidence labels consistently:
+
+- **High confidence:** 85-100%
+- **Medium confidence:** 60-84%
+- **Low confidence:** below 60%
+
+Base confidence on repository evidence, completed validation, authoritative project documents, known constraints, and unresolved assumptions. State the assumption or missing evidence when confidence is below 85%.
+
+If fewer than three valid options genuinely exist because of safety, compliance, data-integrity, or authorization constraints, present the valid options only and explicitly explain why additional options would be invalid. Never weaken USACM, SDT, lineage, profile isolation, or SQLite integrity rules to manufacture another choice.
+
 ## Final Principle
 
 SecureGuide should be extensible because the model is disciplined, not because the code accepts anything.

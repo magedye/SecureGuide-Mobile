@@ -1,0 +1,1500 @@
+{
+  "ruleSetId": "secureguide-blueprint-mvp",
+  "ruleSetVersion": "1.0.0",
+  "engineCompatibility": "1.0.0",
+  "status": "ACTIVE",
+  "rules": [
+    {
+      "ruleId": "BR-ART-POL",
+      "ruleVersion": "1.0.0",
+      "stage": "ARTIFACT_TYPE",
+      "priority": 1,
+      "when": {
+        "artifactTypes": [
+          "ART-POL"
+        ]
+      },
+      "then": {
+        "actionPlanType": "POLICY_LIFECYCLE",
+        "titleTemplate": "خطة سياسة معيارية",
+        "actions": [
+          {
+            "actionCode": "ACT-POL-DRAFT",
+            "semanticKey": "policy.draft",
+            "title": "صياغة السياسة",
+            "description": "تحديد الغرض والنطاق والأدوار والأحكام",
+            "category": "IMPLEMENTATION",
+            "phase": "IMPLEMENT",
+            "taskable": true
+          },
+          {
+            "actionCode": "ACT-POL-APPROVE",
+            "semanticKey": "governance.approval",
+            "title": "اعتماد السياسة",
+            "description": "مراجعة السياسة واعتمادها من الصلاحية المناسبة",
+            "category": "IMPLEMENTATION",
+            "phase": "GOVERN",
+            "taskable": true
+          }
+        ],
+        "expectedOutputs": [
+          {
+            "outputCode": "OUT-POL",
+            "semanticKey": "policy.document",
+            "title": "وثيقة سياسة معتمدة",
+            "description": "نسخة مضبوطة وقابلة للتتبع"
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-POL-APPROVAL",
+            "semanticKey": "approval.record",
+            "title": "سجل الاعتماد",
+            "evidenceType": "ATTESTATION",
+            "description": "إثبات المراجعة والاعتماد",
+            "mandatory": false
+          }
+        ],
+        "effortProfiles": [
+          {
+            "semanticKey": "effort.art-pol",
+            "effortTypes": [
+              "ANALYSIS",
+              "IMPLEMENTATION",
+              "REVIEW"
+            ],
+            "effortLevel": "MEDIUM",
+            "skillRequirements": [
+              "DOMAIN_KNOWLEDGE"
+            ],
+            "estimatedComplexity": "MEDIUM",
+            "implementationMode": "INTERNAL"
+          }
+        ],
+        "supportingAssets": [
+          {
+            "semanticKey": "template.art-pol",
+            "assetType": "CHECKLIST",
+            "title": "قائمة تحقق تنفيذية",
+            "usage": "تهيئة ومراجعة التنفيذ",
+            "availability": "SUGGESTED"
+          }
+        ],
+        "suggestedSolutions": [
+          {
+            "semanticKey": "solution.art-pol",
+            "solutionType": "PROCESS",
+            "title": "مسار عمل معياري",
+            "description": "مسار محايد تقنيًا لتنظيم التنفيذ والمراجعة",
+            "recommendationLevel": "OPTIONAL",
+            "vendorNeutral": true,
+            "requiresHumanValidation": true,
+            "prerequisites": [],
+            "risks": [
+              "يلزم تكييفه مع سياق المؤسسة"
+            ]
+          }
+        ]
+      },
+      "rationale": "نوع العنصر ART-POL يحدد الهيكل الأساسي للخطة",
+      "baseConfidence": 0.9
+    },
+    {
+      "ruleId": "BR-ART-STD",
+      "ruleVersion": "1.0.0",
+      "stage": "ARTIFACT_TYPE",
+      "priority": 2,
+      "when": {
+        "artifactTypes": [
+          "ART-STD"
+        ]
+      },
+      "then": {
+        "actionPlanType": "STANDARD_BASELINE",
+        "titleTemplate": "خطة معيار معيارية",
+        "actions": [
+          {
+            "actionCode": "ACT-STD-DEFINE",
+            "semanticKey": "standard.define",
+            "title": "تعريف خط الأساس",
+            "description": "تحديد القواعد والقيم القابلة للقياس",
+            "category": "IMPLEMENTATION",
+            "phase": "IMPLEMENT",
+            "taskable": true
+          },
+          {
+            "actionCode": "ACT-STD-EXCEPTION",
+            "semanticKey": "exception.process",
+            "title": "تحديد مسار الاستثناء",
+            "description": "تعريف الموافقة والمدة والمعالجة للاستثناءات",
+            "category": "IMPLEMENTATION",
+            "phase": "GOVERN",
+            "taskable": true
+          }
+        ],
+        "expectedOutputs": [
+          {
+            "outputCode": "OUT-STD",
+            "semanticKey": "standard.baseline",
+            "title": "خط أساس معياري",
+            "description": "معيار مضبوط وقابل للاختبار"
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-STD-TEST",
+            "semanticKey": "standard.test.result",
+            "title": "نتائج اختبار المعيار",
+            "evidenceType": "REPORT",
+            "description": "نتائج موثقة للتحقق من الالتزام",
+            "mandatory": false
+          }
+        ],
+        "effortProfiles": [
+          {
+            "semanticKey": "effort.art-std",
+            "effortTypes": [
+              "ANALYSIS",
+              "IMPLEMENTATION",
+              "REVIEW"
+            ],
+            "effortLevel": "MEDIUM",
+            "skillRequirements": [
+              "DOMAIN_KNOWLEDGE"
+            ],
+            "estimatedComplexity": "MEDIUM",
+            "implementationMode": "INTERNAL"
+          }
+        ],
+        "supportingAssets": [
+          {
+            "semanticKey": "template.art-std",
+            "assetType": "CHECKLIST",
+            "title": "قائمة تحقق تنفيذية",
+            "usage": "تهيئة ومراجعة التنفيذ",
+            "availability": "SUGGESTED"
+          }
+        ],
+        "suggestedSolutions": [
+          {
+            "semanticKey": "solution.art-std",
+            "solutionType": "PROCESS",
+            "title": "مسار عمل معياري",
+            "description": "مسار محايد تقنيًا لتنظيم التنفيذ والمراجعة",
+            "recommendationLevel": "OPTIONAL",
+            "vendorNeutral": true,
+            "requiresHumanValidation": true,
+            "prerequisites": [],
+            "risks": [
+              "يلزم تكييفه مع سياق المؤسسة"
+            ]
+          }
+        ]
+      },
+      "rationale": "نوع العنصر ART-STD يحدد الهيكل الأساسي للخطة",
+      "baseConfidence": 0.9
+    },
+    {
+      "ruleId": "BR-ART-PRC",
+      "ruleVersion": "1.0.0",
+      "stage": "ARTIFACT_TYPE",
+      "priority": 3,
+      "when": {
+        "artifactTypes": [
+          "ART-PRC"
+        ]
+      },
+      "then": {
+        "actionPlanType": "PROCEDURE_EXECUTION",
+        "titleTemplate": "خطة إجراء معيارية",
+        "actions": [
+          {
+            "actionCode": "ACT-PRC-STEPS",
+            "semanticKey": "procedure.steps",
+            "title": "تفصيل خطوات الإجراء",
+            "description": "تحديد التسلسل والمسؤوليات والمدخلات والمخرجات",
+            "category": "IMPLEMENTATION",
+            "phase": "IMPLEMENT",
+            "taskable": true
+          },
+          {
+            "actionCode": "ACT-PRC-EXERCISE",
+            "semanticKey": "procedure.exercise",
+            "title": "اختبار قابلية التنفيذ",
+            "description": "تنفيذ تجربة موثقة والتحقق من نقاط التسليم",
+            "category": "IMPLEMENTATION",
+            "phase": "VERIFY",
+            "taskable": true
+          }
+        ],
+        "expectedOutputs": [
+          {
+            "outputCode": "OUT-PRC",
+            "semanticKey": "procedure.runbook",
+            "title": "دليل إجراء تشغيلي",
+            "description": "خطوات قابلة للتنفيذ وإعادة الإنتاج"
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-PRC-RUN",
+            "semanticKey": "execution.record",
+            "title": "سجل تنفيذ",
+            "evidenceType": "LOG",
+            "description": "سجل زمني لتنفيذ الإجراء",
+            "mandatory": false
+          }
+        ],
+        "effortProfiles": [
+          {
+            "semanticKey": "effort.art-prc",
+            "effortTypes": [
+              "ANALYSIS",
+              "IMPLEMENTATION",
+              "REVIEW"
+            ],
+            "effortLevel": "MEDIUM",
+            "skillRequirements": [
+              "DOMAIN_KNOWLEDGE"
+            ],
+            "estimatedComplexity": "MEDIUM",
+            "implementationMode": "INTERNAL"
+          }
+        ],
+        "supportingAssets": [
+          {
+            "semanticKey": "template.art-prc",
+            "assetType": "CHECKLIST",
+            "title": "قائمة تحقق تنفيذية",
+            "usage": "تهيئة ومراجعة التنفيذ",
+            "availability": "SUGGESTED"
+          }
+        ],
+        "suggestedSolutions": [
+          {
+            "semanticKey": "solution.art-prc",
+            "solutionType": "PROCESS",
+            "title": "مسار عمل معياري",
+            "description": "مسار محايد تقنيًا لتنظيم التنفيذ والمراجعة",
+            "recommendationLevel": "OPTIONAL",
+            "vendorNeutral": true,
+            "requiresHumanValidation": true,
+            "prerequisites": [],
+            "risks": [
+              "يلزم تكييفه مع سياق المؤسسة"
+            ]
+          }
+        ]
+      },
+      "rationale": "نوع العنصر ART-PRC يحدد الهيكل الأساسي للخطة",
+      "baseConfidence": 0.9
+    },
+    {
+      "ruleId": "BR-ART-CTR",
+      "ruleVersion": "1.0.0",
+      "stage": "ARTIFACT_TYPE",
+      "priority": 4,
+      "when": {
+        "artifactTypes": [
+          "ART-CTR"
+        ]
+      },
+      "then": {
+        "actionPlanType": "CONTROL_IMPLEMENTATION",
+        "titleTemplate": "خطة ضابط معيارية",
+        "actions": [
+          {
+            "actionCode": "ACT-CTR-DESIGN",
+            "semanticKey": "control.design",
+            "title": "تصميم الضابط",
+            "description": "تحديد النطاق والمالك وآلية العمل",
+            "category": "IMPLEMENTATION",
+            "phase": "IMPLEMENT",
+            "taskable": true
+          },
+          {
+            "actionCode": "ACT-CTR-OPERATE",
+            "semanticKey": "control.operate",
+            "title": "تشغيل الضابط",
+            "description": "تطبيق الضابط ومراقبة انتظام التشغيل",
+            "category": "IMPLEMENTATION",
+            "phase": "IMPLEMENT",
+            "taskable": true
+          }
+        ],
+        "expectedOutputs": [
+          {
+            "outputCode": "OUT-CTR",
+            "semanticKey": "control.implementation",
+            "title": "تنفيذ ضابط موثق",
+            "description": "وصف تنفيذي وحدود ومسؤوليات"
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-CTR-TEST",
+            "semanticKey": "control.test.result",
+            "title": "نتيجة اختبار الضابط",
+            "evidenceType": "REPORT",
+            "description": "اختبار تصميم وتشغيل الضابط",
+            "mandatory": false
+          }
+        ],
+        "effortProfiles": [
+          {
+            "semanticKey": "effort.art-ctr",
+            "effortTypes": [
+              "ANALYSIS",
+              "IMPLEMENTATION",
+              "REVIEW"
+            ],
+            "effortLevel": "MEDIUM",
+            "skillRequirements": [
+              "DOMAIN_KNOWLEDGE"
+            ],
+            "estimatedComplexity": "MEDIUM",
+            "implementationMode": "INTERNAL"
+          }
+        ],
+        "supportingAssets": [
+          {
+            "semanticKey": "template.art-ctr",
+            "assetType": "CHECKLIST",
+            "title": "قائمة تحقق تنفيذية",
+            "usage": "تهيئة ومراجعة التنفيذ",
+            "availability": "SUGGESTED"
+          }
+        ],
+        "suggestedSolutions": [
+          {
+            "semanticKey": "solution.art-ctr",
+            "solutionType": "PROCESS",
+            "title": "مسار عمل معياري",
+            "description": "مسار محايد تقنيًا لتنظيم التنفيذ والمراجعة",
+            "recommendationLevel": "OPTIONAL",
+            "vendorNeutral": true,
+            "requiresHumanValidation": true,
+            "prerequisites": [],
+            "risks": [
+              "يلزم تكييفه مع سياق المؤسسة"
+            ]
+          }
+        ]
+      },
+      "rationale": "نوع العنصر ART-CTR يحدد الهيكل الأساسي للخطة",
+      "baseConfidence": 0.9
+    },
+    {
+      "ruleId": "BR-ART-REQ",
+      "ruleVersion": "1.0.0",
+      "stage": "ARTIFACT_TYPE",
+      "priority": 5,
+      "when": {
+        "artifactTypes": [
+          "ART-REQ"
+        ]
+      },
+      "then": {
+        "actionPlanType": "REQUIREMENT_SATISFACTION",
+        "titleTemplate": "خطة متطلب معيارية",
+        "actions": [
+          {
+            "actionCode": "ACT-REQ-INTERPRET",
+            "semanticKey": "requirement.interpret",
+            "title": "تفسير المتطلب",
+            "description": "تحديد النطاق ومعيار القبول والالتزامات",
+            "category": "IMPLEMENTATION",
+            "phase": "IMPLEMENT",
+            "taskable": true
+          },
+          {
+            "actionCode": "ACT-REQ-TRACE",
+            "semanticKey": "requirement.trace",
+            "title": "ربط وسائل الاستيفاء",
+            "description": "تتبع المتطلب إلى السياسات والضوابط والأدلة",
+            "category": "IMPLEMENTATION",
+            "phase": "GOVERN",
+            "taskable": true
+          }
+        ],
+        "expectedOutputs": [
+          {
+            "outputCode": "OUT-REQ",
+            "semanticKey": "requirement.traceability",
+            "title": "مصفوفة استيفاء",
+            "description": "ربط المتطلب بوسائل الاستيفاء"
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-REQ-MAP",
+            "semanticKey": "requirement.mapping",
+            "title": "سجل التتبع",
+            "evidenceType": "DOCUMENT",
+            "description": "مصفوفة ربط مع المبررات",
+            "mandatory": false
+          }
+        ],
+        "effortProfiles": [
+          {
+            "semanticKey": "effort.art-req",
+            "effortTypes": [
+              "ANALYSIS",
+              "IMPLEMENTATION",
+              "REVIEW"
+            ],
+            "effortLevel": "MEDIUM",
+            "skillRequirements": [
+              "DOMAIN_KNOWLEDGE"
+            ],
+            "estimatedComplexity": "MEDIUM",
+            "implementationMode": "INTERNAL"
+          }
+        ],
+        "supportingAssets": [
+          {
+            "semanticKey": "template.art-req",
+            "assetType": "CHECKLIST",
+            "title": "قائمة تحقق تنفيذية",
+            "usage": "تهيئة ومراجعة التنفيذ",
+            "availability": "SUGGESTED"
+          }
+        ],
+        "suggestedSolutions": [
+          {
+            "semanticKey": "solution.art-req",
+            "solutionType": "PROCESS",
+            "title": "مسار عمل معياري",
+            "description": "مسار محايد تقنيًا لتنظيم التنفيذ والمراجعة",
+            "recommendationLevel": "OPTIONAL",
+            "vendorNeutral": true,
+            "requiresHumanValidation": true,
+            "prerequisites": [],
+            "risks": [
+              "يلزم تكييفه مع سياق المؤسسة"
+            ]
+          }
+        ]
+      },
+      "rationale": "نوع العنصر ART-REQ يحدد الهيكل الأساسي للخطة",
+      "baseConfidence": 0.9
+    },
+    {
+      "ruleId": "BR-ART-EVD",
+      "ruleVersion": "1.0.0",
+      "stage": "ARTIFACT_TYPE",
+      "priority": 6,
+      "when": {
+        "artifactTypes": [
+          "ART-EVD"
+        ]
+      },
+      "then": {
+        "actionPlanType": "EVIDENCE_MANAGEMENT",
+        "titleTemplate": "خطة دليل معيارية",
+        "actions": [
+          {
+            "actionCode": "ACT-EVD-SPEC",
+            "semanticKey": "evidence.specify",
+            "title": "تعريف مواصفات الدليل",
+            "description": "تحديد المصدر والمالك والفترة ومعايير القبول",
+            "category": "IMPLEMENTATION",
+            "phase": "IMPLEMENT",
+            "taskable": true
+          },
+          {
+            "actionCode": "ACT-EVD-PRESERVE",
+            "semanticKey": "evidence.preserve",
+            "title": "حفظ سلامة الدليل",
+            "description": "حماية الدليل وتسجيل المصدر والتوقيت والتغييرات",
+            "category": "IMPLEMENTATION",
+            "phase": "IMPLEMENT",
+            "taskable": true
+          }
+        ],
+        "expectedOutputs": [
+          {
+            "outputCode": "OUT-EVD",
+            "semanticKey": "evidence.package",
+            "title": "حزمة أدلة",
+            "description": "أدلة مفهرسة ومؤرخة وقابلة للمراجعة"
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-EVD-INTEGRITY",
+            "semanticKey": "evidence.integrity",
+            "title": "سجل سلامة الدليل",
+            "evidenceType": "ATTESTATION",
+            "description": "إثبات المنشأ والسلامة",
+            "mandatory": false
+          }
+        ],
+        "effortProfiles": [
+          {
+            "semanticKey": "effort.art-evd",
+            "effortTypes": [
+              "ANALYSIS",
+              "IMPLEMENTATION",
+              "REVIEW"
+            ],
+            "effortLevel": "MEDIUM",
+            "skillRequirements": [
+              "DOMAIN_KNOWLEDGE"
+            ],
+            "estimatedComplexity": "MEDIUM",
+            "implementationMode": "INTERNAL"
+          }
+        ],
+        "supportingAssets": [
+          {
+            "semanticKey": "template.art-evd",
+            "assetType": "CHECKLIST",
+            "title": "قائمة تحقق تنفيذية",
+            "usage": "تهيئة ومراجعة التنفيذ",
+            "availability": "SUGGESTED"
+          }
+        ],
+        "suggestedSolutions": [
+          {
+            "semanticKey": "solution.art-evd",
+            "solutionType": "PROCESS",
+            "title": "مسار عمل معياري",
+            "description": "مسار محايد تقنيًا لتنظيم التنفيذ والمراجعة",
+            "recommendationLevel": "OPTIONAL",
+            "vendorNeutral": true,
+            "requiresHumanValidation": true,
+            "prerequisites": [],
+            "risks": [
+              "يلزم تكييفه مع سياق المؤسسة"
+            ]
+          }
+        ]
+      },
+      "rationale": "نوع العنصر ART-EVD يحدد الهيكل الأساسي للخطة",
+      "baseConfidence": 0.9
+    },
+    {
+      "ruleId": "BR-ART-MET",
+      "ruleVersion": "1.0.0",
+      "stage": "ARTIFACT_TYPE",
+      "priority": 7,
+      "when": {
+        "artifactTypes": [
+          "ART-MET"
+        ]
+      },
+      "then": {
+        "actionPlanType": "METRIC_LIFECYCLE",
+        "titleTemplate": "خطة مقياس معيارية",
+        "actions": [
+          {
+            "actionCode": "ACT-MET-DEFINE",
+            "semanticKey": "metric.define",
+            "title": "تعريف المقياس",
+            "description": "تحديد الصيغة والمدخلات والحدود والمالك",
+            "category": "IMPLEMENTATION",
+            "phase": "IMPLEMENT",
+            "taskable": true
+          },
+          {
+            "actionCode": "ACT-MET-REVIEW",
+            "semanticKey": "metric.review",
+            "title": "مراجعة نتائج المقياس",
+            "description": "تحليل الاتجاه واتخاذ إجراء عند تجاوز الحدود",
+            "category": "IMPLEMENTATION",
+            "phase": "VERIFY",
+            "taskable": true
+          }
+        ],
+        "expectedOutputs": [
+          {
+            "outputCode": "OUT-MET",
+            "semanticKey": "metric.definition",
+            "title": "تعريف مقياس قابل للحساب",
+            "description": "صيغة ومصدر بيانات ودورية وحدود"
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-MET-RESULT",
+            "semanticKey": "metric.result",
+            "title": "سجل نتائج المقياس",
+            "evidenceType": "REPORT",
+            "description": "نتائج دورية قابلة لإعادة الحساب",
+            "mandatory": false
+          }
+        ],
+        "effortProfiles": [
+          {
+            "semanticKey": "effort.art-met",
+            "effortTypes": [
+              "ANALYSIS",
+              "IMPLEMENTATION",
+              "REVIEW"
+            ],
+            "effortLevel": "MEDIUM",
+            "skillRequirements": [
+              "DOMAIN_KNOWLEDGE"
+            ],
+            "estimatedComplexity": "MEDIUM",
+            "implementationMode": "INTERNAL"
+          }
+        ],
+        "supportingAssets": [
+          {
+            "semanticKey": "template.art-met",
+            "assetType": "CHECKLIST",
+            "title": "قائمة تحقق تنفيذية",
+            "usage": "تهيئة ومراجعة التنفيذ",
+            "availability": "SUGGESTED"
+          }
+        ],
+        "suggestedSolutions": [
+          {
+            "semanticKey": "solution.art-met",
+            "solutionType": "PROCESS",
+            "title": "مسار عمل معياري",
+            "description": "مسار محايد تقنيًا لتنظيم التنفيذ والمراجعة",
+            "recommendationLevel": "OPTIONAL",
+            "vendorNeutral": true,
+            "requiresHumanValidation": true,
+            "prerequisites": [],
+            "risks": [
+              "يلزم تكييفه مع سياق المؤسسة"
+            ]
+          }
+        ]
+      },
+      "rationale": "نوع العنصر ART-MET يحدد الهيكل الأساسي للخطة",
+      "baseConfidence": 0.9
+    },
+    {
+      "ruleId": "BR-ART-RSK",
+      "ruleVersion": "1.0.0",
+      "stage": "ARTIFACT_TYPE",
+      "priority": 8,
+      "when": {
+        "artifactTypes": [
+          "ART-RSK"
+        ]
+      },
+      "then": {
+        "actionPlanType": "RISK_TREATMENT",
+        "titleTemplate": "خطة مخاطر معيارية",
+        "actions": [
+          {
+            "actionCode": "ACT-RSK-ASSESS",
+            "semanticKey": "risk.assess",
+            "title": "تقييم المخاطر",
+            "description": "توثيق السيناريو والاحتمال والأثر والمدخلات",
+            "category": "IMPLEMENTATION",
+            "phase": "IMPLEMENT",
+            "taskable": true
+          },
+          {
+            "actionCode": "ACT-RSK-TREAT",
+            "semanticKey": "risk.treat",
+            "title": "اختيار معالجة المخاطر",
+            "description": "تحديد المعالجة والمالك والموعد والمخاطر المتبقية",
+            "category": "IMPLEMENTATION",
+            "phase": "IMPLEMENT",
+            "taskable": true
+          }
+        ],
+        "expectedOutputs": [
+          {
+            "outputCode": "OUT-RSK",
+            "semanticKey": "risk.treatment.plan",
+            "title": "خطة معالجة مخاطر",
+            "description": "قرار معالجة قابل للتتبع"
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-RSK-DECISION",
+            "semanticKey": "risk.decision",
+            "title": "سجل قرار المخاطر",
+            "evidenceType": "ATTESTATION",
+            "description": "موافقة موثقة على المعالجة والمخاطر المتبقية",
+            "mandatory": false
+          }
+        ],
+        "effortProfiles": [
+          {
+            "semanticKey": "effort.art-rsk",
+            "effortTypes": [
+              "ANALYSIS",
+              "IMPLEMENTATION",
+              "REVIEW"
+            ],
+            "effortLevel": "MEDIUM",
+            "skillRequirements": [
+              "DOMAIN_KNOWLEDGE"
+            ],
+            "estimatedComplexity": "MEDIUM",
+            "implementationMode": "INTERNAL"
+          }
+        ],
+        "supportingAssets": [
+          {
+            "semanticKey": "template.art-rsk",
+            "assetType": "CHECKLIST",
+            "title": "قائمة تحقق تنفيذية",
+            "usage": "تهيئة ومراجعة التنفيذ",
+            "availability": "SUGGESTED"
+          }
+        ],
+        "suggestedSolutions": [
+          {
+            "semanticKey": "solution.art-rsk",
+            "solutionType": "PROCESS",
+            "title": "مسار عمل معياري",
+            "description": "مسار محايد تقنيًا لتنظيم التنفيذ والمراجعة",
+            "recommendationLevel": "OPTIONAL",
+            "vendorNeutral": true,
+            "requiresHumanValidation": true,
+            "prerequisites": [],
+            "risks": [
+              "يلزم تكييفه مع سياق المؤسسة"
+            ]
+          }
+        ]
+      },
+      "rationale": "نوع العنصر ART-RSK يحدد الهيكل الأساسي للخطة",
+      "baseConfidence": 0.9
+    },
+    {
+      "ruleId": "BR-NAT-ORG",
+      "ruleVersion": "1.0.0",
+      "stage": "CONTROL_NATURE",
+      "priority": 1,
+      "when": {
+        "controlNatures": [
+          "NAT-ORG"
+        ]
+      },
+      "then": {
+        "actions": [
+          {
+            "actionCode": "ACT-NAT-ORG",
+            "semanticKey": "nature.organizational",
+            "title": "تحديد جهة حوكمة ومالك مسؤول",
+            "description": "تحديد جهة حوكمة ومالك مسؤول",
+            "category": "IMPLEMENTATION",
+            "phase": "IMPLEMENT",
+            "taskable": true
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-NAT-ORG",
+            "semanticKey": "nature.organizational.record",
+            "title": "إثبات تنفيذ تحديد جهة حوكمة ومالك مسؤول",
+            "evidenceType": "DOCUMENT",
+            "description": "تحديد جهة حوكمة ومالك مسؤول",
+            "mandatory": false
+          }
+        ]
+      },
+      "rationale": "طبيعة التنفيذ NAT-ORG تخصص طريقة العمل والأدلة",
+      "baseConfidence": 0.88
+    },
+    {
+      "ruleId": "BR-NAT-HUM",
+      "ruleVersion": "1.0.0",
+      "stage": "CONTROL_NATURE",
+      "priority": 2,
+      "when": {
+        "controlNatures": [
+          "NAT-HUM"
+        ]
+      },
+      "then": {
+        "actions": [
+          {
+            "actionCode": "ACT-NAT-HUM",
+            "semanticKey": "nature.human",
+            "title": "إدراج التدريب والكفاءة وفصل المهام",
+            "description": "إدراج التدريب والكفاءة وفصل المهام",
+            "category": "IMPLEMENTATION",
+            "phase": "IMPLEMENT",
+            "taskable": true
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-NAT-HUM",
+            "semanticKey": "nature.human.record",
+            "title": "إثبات تنفيذ إدراج التدريب والكفاءة وفصل المهام",
+            "evidenceType": "DOCUMENT",
+            "description": "إدراج التدريب والكفاءة وفصل المهام",
+            "mandatory": false
+          }
+        ]
+      },
+      "rationale": "طبيعة التنفيذ NAT-HUM تخصص طريقة العمل والأدلة",
+      "baseConfidence": 0.88
+    },
+    {
+      "ruleId": "BR-NAT-PHY",
+      "ruleVersion": "1.0.0",
+      "stage": "CONTROL_NATURE",
+      "priority": 3,
+      "when": {
+        "controlNatures": [
+          "NAT-PHY"
+        ]
+      },
+      "then": {
+        "actions": [
+          {
+            "actionCode": "ACT-NAT-PHY",
+            "semanticKey": "nature.physical",
+            "title": "تحديد الموقع والحماية المادية",
+            "description": "تحديد الموقع والحماية المادية",
+            "category": "IMPLEMENTATION",
+            "phase": "IMPLEMENT",
+            "taskable": true
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-NAT-PHY",
+            "semanticKey": "nature.physical.record",
+            "title": "إثبات تنفيذ تحديد الموقع والحماية المادية",
+            "evidenceType": "DOCUMENT",
+            "description": "تحديد الموقع والحماية المادية",
+            "mandatory": false
+          }
+        ]
+      },
+      "rationale": "طبيعة التنفيذ NAT-PHY تخصص طريقة العمل والأدلة",
+      "baseConfidence": 0.88
+    },
+    {
+      "ruleId": "BR-NAT-TEC",
+      "ruleVersion": "1.0.0",
+      "stage": "CONTROL_NATURE",
+      "priority": 4,
+      "when": {
+        "controlNatures": [
+          "NAT-TEC"
+        ]
+      },
+      "then": {
+        "actions": [
+          {
+            "actionCode": "ACT-NAT-TEC",
+            "semanticKey": "nature.technical",
+            "title": "تحديد الإعداد التقني والتحقق الآلي أو اليدوي",
+            "description": "تحديد الإعداد التقني والتحقق الآلي أو اليدوي",
+            "category": "IMPLEMENTATION",
+            "phase": "IMPLEMENT",
+            "taskable": true
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-NAT-TEC",
+            "semanticKey": "nature.technical.record",
+            "title": "إثبات تنفيذ تحديد الإعداد التقني والتحقق الآلي أو اليدوي",
+            "evidenceType": "DOCUMENT",
+            "description": "تحديد الإعداد التقني والتحقق الآلي أو اليدوي",
+            "mandatory": false
+          }
+        ]
+      },
+      "rationale": "طبيعة التنفيذ NAT-TEC تخصص طريقة العمل والأدلة",
+      "baseConfidence": 0.88
+    },
+    {
+      "ruleId": "BR-FUN-PRE",
+      "ruleVersion": "1.0.0",
+      "stage": "CONTROL_FUNCTION",
+      "priority": 1,
+      "when": {
+        "controlFunctions": [
+          "FUN-PRE"
+        ]
+      },
+      "then": {
+        "actions": [
+          {
+            "actionCode": "ACT-FUN-PRE",
+            "semanticKey": "function.prevent",
+            "title": "التحقق من منع الحالة قبل وقوعها",
+            "description": "التحقق من منع الحالة قبل وقوعها",
+            "category": "IMPLEMENTATION",
+            "phase": "VERIFY",
+            "taskable": true
+          }
+        ]
+      },
+      "rationale": "وظيفة الضابط FUN-PRE تخصص غرض التحقق",
+      "baseConfidence": 0.88
+    },
+    {
+      "ruleId": "BR-FUN-DET",
+      "ruleVersion": "1.0.0",
+      "stage": "CONTROL_FUNCTION",
+      "priority": 2,
+      "when": {
+        "controlFunctions": [
+          "FUN-DET"
+        ]
+      },
+      "then": {
+        "actions": [
+          {
+            "actionCode": "ACT-FUN-DET",
+            "semanticKey": "function.detect",
+            "title": "اختبار الاكتشاف والتنبيه ضمن زمن محدد",
+            "description": "اختبار الاكتشاف والتنبيه ضمن زمن محدد",
+            "category": "IMPLEMENTATION",
+            "phase": "VERIFY",
+            "taskable": true
+          }
+        ]
+      },
+      "rationale": "وظيفة الضابط FUN-DET تخصص غرض التحقق",
+      "baseConfidence": 0.88
+    },
+    {
+      "ruleId": "BR-FUN-COR",
+      "ruleVersion": "1.0.0",
+      "stage": "CONTROL_FUNCTION",
+      "priority": 3,
+      "when": {
+        "controlFunctions": [
+          "FUN-COR"
+        ]
+      },
+      "then": {
+        "actions": [
+          {
+            "actionCode": "ACT-FUN-COR",
+            "semanticKey": "function.correct",
+            "title": "توثيق التصحيح والتحقق من إزالة السبب",
+            "description": "توثيق التصحيح والتحقق من إزالة السبب",
+            "category": "IMPLEMENTATION",
+            "phase": "VERIFY",
+            "taskable": true
+          }
+        ]
+      },
+      "rationale": "وظيفة الضابط FUN-COR تخصص غرض التحقق",
+      "baseConfidence": 0.88
+    },
+    {
+      "ruleId": "BR-FUN-REC",
+      "ruleVersion": "1.0.0",
+      "stage": "CONTROL_FUNCTION",
+      "priority": 4,
+      "when": {
+        "controlFunctions": [
+          "FUN-REC"
+        ]
+      },
+      "then": {
+        "actions": [
+          {
+            "actionCode": "ACT-FUN-REC",
+            "semanticKey": "function.recover",
+            "title": "اختبار الاستعادة وقياس أهدافها",
+            "description": "اختبار الاستعادة وقياس أهدافها",
+            "category": "IMPLEMENTATION",
+            "phase": "VERIFY",
+            "taskable": true
+          }
+        ]
+      },
+      "rationale": "وظيفة الضابط FUN-REC تخصص غرض التحقق",
+      "baseConfidence": 0.88
+    },
+    {
+      "ruleId": "BR-FUN-DRR",
+      "ruleVersion": "1.0.0",
+      "stage": "CONTROL_FUNCTION",
+      "priority": 5,
+      "when": {
+        "controlFunctions": [
+          "FUN-DRR"
+        ]
+      },
+      "then": {
+        "actions": [
+          {
+            "actionCode": "ACT-FUN-DRR",
+            "semanticKey": "function.deter",
+            "title": "إظهار الردع وتوثيق الإقرار أو التحذير",
+            "description": "إظهار الردع وتوثيق الإقرار أو التحذير",
+            "category": "IMPLEMENTATION",
+            "phase": "VERIFY",
+            "taskable": true
+          }
+        ]
+      },
+      "rationale": "وظيفة الضابط FUN-DRR تخصص غرض التحقق",
+      "baseConfidence": 0.88
+    },
+    {
+      "ruleId": "BR-FUN-COM",
+      "ruleVersion": "1.0.0",
+      "stage": "CONTROL_FUNCTION",
+      "priority": 6,
+      "when": {
+        "controlFunctions": [
+          "FUN-COM"
+        ]
+      },
+      "then": {
+        "actions": [
+          {
+            "actionCode": "ACT-FUN-COM",
+            "semanticKey": "function.compensate",
+            "title": "توثيق مبرر الضابط التعويضي ومكافأته",
+            "description": "توثيق مبرر الضابط التعويضي ومكافأته",
+            "category": "IMPLEMENTATION",
+            "phase": "VERIFY",
+            "taskable": true
+          }
+        ]
+      },
+      "rationale": "وظيفة الضابط FUN-COM تخصص غرض التحقق",
+      "baseConfidence": 0.88
+    },
+    {
+      "ruleId": "BR-DOM-01",
+      "ruleVersion": "1.0.0",
+      "stage": "SECURITY_DOMAIN",
+      "priority": 1,
+      "when": {
+        "primaryDomains": [
+          "SD-01"
+        ]
+      },
+      "then": {
+        "actions": [
+          {
+            "actionCode": "ACT-DOM-01",
+            "semanticKey": "domain.sd-01.context",
+            "title": "تكييف الخطة لسياق الحوكمة والمخاطر والامتثال",
+            "description": "تحديد الأصول والأطراف والحدود ذات الصلة بالمجال",
+            "category": "IMPLEMENTATION",
+            "phase": "IMPLEMENT",
+            "taskable": true
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-DOM-01",
+            "semanticKey": "domain.sd-01.scope",
+            "title": "سجل نطاق المجال",
+            "evidenceType": "DOCUMENT",
+            "description": "تحديد نطاق المجال والعناصر المشمولة",
+            "mandatory": false
+          }
+        ]
+      },
+      "rationale": "المجال SD-01 يضيف سياقًا دون تغيير نوع الخطة",
+      "baseConfidence": 0.86
+    },
+    {
+      "ruleId": "BR-DOM-02",
+      "ruleVersion": "1.0.0",
+      "stage": "SECURITY_DOMAIN",
+      "priority": 2,
+      "when": {
+        "primaryDomains": [
+          "SD-02"
+        ]
+      },
+      "then": {
+        "actions": [
+          {
+            "actionCode": "ACT-DOM-02",
+            "semanticKey": "domain.sd-02.context",
+            "title": "تكييف الخطة لسياق الأصول والبيانات والخصوصية",
+            "description": "تحديد الأصول والأطراف والحدود ذات الصلة بالمجال",
+            "category": "IMPLEMENTATION",
+            "phase": "IMPLEMENT",
+            "taskable": true
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-DOM-02",
+            "semanticKey": "domain.sd-02.scope",
+            "title": "سجل نطاق المجال",
+            "evidenceType": "DOCUMENT",
+            "description": "تحديد نطاق المجال والعناصر المشمولة",
+            "mandatory": false
+          }
+        ]
+      },
+      "rationale": "المجال SD-02 يضيف سياقًا دون تغيير نوع الخطة",
+      "baseConfidence": 0.86
+    },
+    {
+      "ruleId": "BR-DOM-03",
+      "ruleVersion": "1.0.0",
+      "stage": "SECURITY_DOMAIN",
+      "priority": 3,
+      "when": {
+        "primaryDomains": [
+          "SD-03"
+        ]
+      },
+      "then": {
+        "actions": [
+          {
+            "actionCode": "ACT-DOM-03",
+            "semanticKey": "domain.sd-03.context",
+            "title": "تكييف الخطة لسياق الهوية والوصول والصلاحيات",
+            "description": "تحديد الأصول والأطراف والحدود ذات الصلة بالمجال",
+            "category": "IMPLEMENTATION",
+            "phase": "IMPLEMENT",
+            "taskable": true
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-DOM-03",
+            "semanticKey": "domain.sd-03.scope",
+            "title": "سجل نطاق المجال",
+            "evidenceType": "DOCUMENT",
+            "description": "تحديد نطاق المجال والعناصر المشمولة",
+            "mandatory": false
+          }
+        ]
+      },
+      "rationale": "المجال SD-03 يضيف سياقًا دون تغيير نوع الخطة",
+      "baseConfidence": 0.86
+    },
+    {
+      "ruleId": "BR-DOM-04",
+      "ruleVersion": "1.0.0",
+      "stage": "SECURITY_DOMAIN",
+      "priority": 4,
+      "when": {
+        "primaryDomains": [
+          "SD-04"
+        ]
+      },
+      "then": {
+        "actions": [
+          {
+            "actionCode": "ACT-DOM-04",
+            "semanticKey": "domain.sd-04.context",
+            "title": "تكييف الخطة لسياق البنية والشبكات والسحابة",
+            "description": "تحديد الأصول والأطراف والحدود ذات الصلة بالمجال",
+            "category": "IMPLEMENTATION",
+            "phase": "IMPLEMENT",
+            "taskable": true
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-DOM-04",
+            "semanticKey": "domain.sd-04.scope",
+            "title": "سجل نطاق المجال",
+            "evidenceType": "DOCUMENT",
+            "description": "تحديد نطاق المجال والعناصر المشمولة",
+            "mandatory": false
+          }
+        ]
+      },
+      "rationale": "المجال SD-04 يضيف سياقًا دون تغيير نوع الخطة",
+      "baseConfidence": 0.86
+    },
+    {
+      "ruleId": "BR-DOM-05",
+      "ruleVersion": "1.0.0",
+      "stage": "SECURITY_DOMAIN",
+      "priority": 5,
+      "when": {
+        "primaryDomains": [
+          "SD-05"
+        ]
+      },
+      "then": {
+        "actions": [
+          {
+            "actionCode": "ACT-DOM-05",
+            "semanticKey": "domain.sd-05.context",
+            "title": "تكييف الخطة لسياق التطبيقات والتطوير والتغيير",
+            "description": "تحديد الأصول والأطراف والحدود ذات الصلة بالمجال",
+            "category": "IMPLEMENTATION",
+            "phase": "IMPLEMENT",
+            "taskable": true
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-DOM-05",
+            "semanticKey": "domain.sd-05.scope",
+            "title": "سجل نطاق المجال",
+            "evidenceType": "DOCUMENT",
+            "description": "تحديد نطاق المجال والعناصر المشمولة",
+            "mandatory": false
+          }
+        ]
+      },
+      "rationale": "المجال SD-05 يضيف سياقًا دون تغيير نوع الخطة",
+      "baseConfidence": 0.86
+    },
+    {
+      "ruleId": "BR-DOM-06",
+      "ruleVersion": "1.0.0",
+      "stage": "SECURITY_DOMAIN",
+      "priority": 6,
+      "when": {
+        "primaryDomains": [
+          "SD-06"
+        ]
+      },
+      "then": {
+        "actions": [
+          {
+            "actionCode": "ACT-DOM-06",
+            "semanticKey": "domain.sd-06.context",
+            "title": "تكييف الخطة لسياق الكشف والمراقبة والثغرات",
+            "description": "تحديد الأصول والأطراف والحدود ذات الصلة بالمجال",
+            "category": "IMPLEMENTATION",
+            "phase": "IMPLEMENT",
+            "taskable": true
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-DOM-06",
+            "semanticKey": "domain.sd-06.scope",
+            "title": "سجل نطاق المجال",
+            "evidenceType": "DOCUMENT",
+            "description": "تحديد نطاق المجال والعناصر المشمولة",
+            "mandatory": false
+          }
+        ]
+      },
+      "rationale": "المجال SD-06 يضيف سياقًا دون تغيير نوع الخطة",
+      "baseConfidence": 0.86
+    },
+    {
+      "ruleId": "BR-DOM-07",
+      "ruleVersion": "1.0.0",
+      "stage": "SECURITY_DOMAIN",
+      "priority": 7,
+      "when": {
+        "primaryDomains": [
+          "SD-07"
+        ]
+      },
+      "then": {
+        "actions": [
+          {
+            "actionCode": "ACT-DOM-07",
+            "semanticKey": "domain.sd-07.context",
+            "title": "تكييف الخطة لسياق الاستجابة والتعافي والمرونة",
+            "description": "تحديد الأصول والأطراف والحدود ذات الصلة بالمجال",
+            "category": "IMPLEMENTATION",
+            "phase": "IMPLEMENT",
+            "taskable": true
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-DOM-07",
+            "semanticKey": "domain.sd-07.scope",
+            "title": "سجل نطاق المجال",
+            "evidenceType": "DOCUMENT",
+            "description": "تحديد نطاق المجال والعناصر المشمولة",
+            "mandatory": false
+          }
+        ]
+      },
+      "rationale": "المجال SD-07 يضيف سياقًا دون تغيير نوع الخطة",
+      "baseConfidence": 0.86
+    },
+    {
+      "ruleId": "BR-DOM-08",
+      "ruleVersion": "1.0.0",
+      "stage": "SECURITY_DOMAIN",
+      "priority": 8,
+      "when": {
+        "primaryDomains": [
+          "SD-08"
+        ]
+      },
+      "then": {
+        "actions": [
+          {
+            "actionCode": "ACT-DOM-08",
+            "semanticKey": "domain.sd-08.context",
+            "title": "تكييف الخطة لسياق الأفراد والأطراف الثالثة والأمن المادي",
+            "description": "تحديد الأصول والأطراف والحدود ذات الصلة بالمجال",
+            "category": "IMPLEMENTATION",
+            "phase": "IMPLEMENT",
+            "taskable": true
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-DOM-08",
+            "semanticKey": "domain.sd-08.scope",
+            "title": "سجل نطاق المجال",
+            "evidenceType": "DOCUMENT",
+            "description": "تحديد نطاق المجال والعناصر المشمولة",
+            "mandatory": false
+          }
+        ]
+      },
+      "rationale": "المجال SD-08 يضيف سياقًا دون تغيير نوع الخطة",
+      "baseConfidence": 0.86
+    },
+    {
+      "ruleId": "BR-OBL-MND",
+      "ruleVersion": "1.0.0",
+      "stage": "OBLIGATION_LEVEL",
+      "priority": 1,
+      "when": {
+        "obligationLevels": [
+          "OBL-MND"
+        ]
+      },
+      "then": {
+        "actions": [
+          {
+            "actionCode": "ACT-OBL-MND",
+            "semanticKey": "obligation.mandatory",
+            "title": "فرض اعتماد رسمي وتتبع كامل",
+            "description": "فرض اعتماد رسمي وتتبع كامل",
+            "category": "IMPLEMENTATION",
+            "phase": "GOVERN",
+            "taskable": true
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-OBL-MND",
+            "semanticKey": "obligation.mandatory.decision",
+            "title": "سجل قرار الإلزام",
+            "evidenceType": "ATTESTATION",
+            "description": "فرض اعتماد رسمي وتتبع كامل",
+            "mandatory": true
+          }
+        ]
+      },
+      "rationale": "مستوى الإلزام OBL-MND يحدد صرامة التوثيق",
+      "baseConfidence": 0.92
+    },
+    {
+      "ruleId": "BR-OBL-CON",
+      "ruleVersion": "1.0.0",
+      "stage": "OBLIGATION_LEVEL",
+      "priority": 2,
+      "when": {
+        "obligationLevels": [
+          "OBL-CON"
+        ]
+      },
+      "then": {
+        "actions": [
+          {
+            "actionCode": "ACT-OBL-CON",
+            "semanticKey": "obligation.conditional",
+            "title": "توثيق شرط الانطباق ونتيجته",
+            "description": "توثيق شرط الانطباق ونتيجته",
+            "category": "IMPLEMENTATION",
+            "phase": "GOVERN",
+            "taskable": true
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-OBL-CON",
+            "semanticKey": "obligation.conditional.decision",
+            "title": "سجل قرار الإلزام",
+            "evidenceType": "ATTESTATION",
+            "description": "توثيق شرط الانطباق ونتيجته",
+            "mandatory": false
+          }
+        ]
+      },
+      "rationale": "مستوى الإلزام OBL-CON يحدد صرامة التوثيق",
+      "baseConfidence": 0.92
+    },
+    {
+      "ruleId": "BR-OBL-REC",
+      "ruleVersion": "1.0.0",
+      "stage": "OBLIGATION_LEVEL",
+      "priority": 3,
+      "when": {
+        "obligationLevels": [
+          "OBL-REC"
+        ]
+      },
+      "then": {
+        "actions": [
+          {
+            "actionCode": "ACT-OBL-REC",
+            "semanticKey": "obligation.recommended",
+            "title": "توثيق قرار التطبيق أو مبرر عدم الأولوية",
+            "description": "توثيق قرار التطبيق أو مبرر عدم الأولوية",
+            "category": "IMPLEMENTATION",
+            "phase": "GOVERN",
+            "taskable": true
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-OBL-REC",
+            "semanticKey": "obligation.recommended.decision",
+            "title": "سجل قرار الإلزام",
+            "evidenceType": "ATTESTATION",
+            "description": "توثيق قرار التطبيق أو مبرر عدم الأولوية",
+            "mandatory": false
+          }
+        ]
+      },
+      "rationale": "مستوى الإلزام OBL-REC يحدد صرامة التوثيق",
+      "baseConfidence": 0.92
+    },
+    {
+      "ruleId": "BR-OBL-OPT",
+      "ruleVersion": "1.0.0",
+      "stage": "OBLIGATION_LEVEL",
+      "priority": 4,
+      "when": {
+        "obligationLevels": [
+          "OBL-OPT"
+        ]
+      },
+      "then": {
+        "actions": [
+          {
+            "actionCode": "ACT-OBL-OPT",
+            "semanticKey": "obligation.optional",
+            "title": "تسجيل قرار اختياري خفيف",
+            "description": "تسجيل قرار اختياري خفيف",
+            "category": "IMPLEMENTATION",
+            "phase": "GOVERN",
+            "taskable": true
+          }
+        ],
+        "evidence": [
+          {
+            "evidenceCode": "EVD-OBL-OPT",
+            "semanticKey": "obligation.optional.decision",
+            "title": "سجل قرار الإلزام",
+            "evidenceType": "ATTESTATION",
+            "description": "تسجيل قرار اختياري خفيف",
+            "mandatory": false
+          }
+        ]
+      },
+      "rationale": "مستوى الإلزام OBL-OPT يحدد صرامة التوثيق",
+      "baseConfidence": 0.92
+    }
+  ]
+}

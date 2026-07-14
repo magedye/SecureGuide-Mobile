@@ -1,0 +1,425 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://secureguide.local/schema/blueprint-rule-pack-v1",
+  "title": "SecureGuide Blueprint Rule Pack",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ruleSetId",
+    "ruleSetVersion",
+    "engineCompatibility",
+    "status",
+    "rules"
+  ],
+  "properties": {
+    "ruleSetId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ruleSetVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "engineCompatibility": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "const": "ACTIVE"
+    },
+    "rules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ruleId",
+          "ruleVersion",
+          "stage",
+          "priority",
+          "when",
+          "then",
+          "rationale",
+          "baseConfidence"
+        ],
+        "properties": {
+          "ruleId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "ruleVersion": {
+            "type": "string",
+            "minLength": 1
+          },
+          "stage": {
+            "enum": [
+              "ARTIFACT_TYPE",
+              "CONTROL_NATURE",
+              "CONTROL_FUNCTION",
+              "SECURITY_DOMAIN",
+              "OBLIGATION_LEVEL"
+            ]
+          },
+          "priority": {
+            "type": "integer"
+          },
+          "when": {
+            "type": "object",
+            "additionalProperties": false,
+            "minProperties": 1,
+            "properties": {
+              "artifactTypes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "controlNatures": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "controlFunctions": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "primaryDomains": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "obligationLevels": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "then": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "actionPlanType": {
+                "type": "string",
+                "minLength": 1
+              },
+              "titleTemplate": {
+                "type": "string",
+                "minLength": 1
+              },
+              "actions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "actionCode",
+                    "semanticKey",
+                    "title",
+                    "description",
+                    "category",
+                    "phase",
+                    "taskable"
+                  ],
+                  "properties": {
+                    "semanticKey": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "description": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "actionCode": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "category": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "phase": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "taskable": {
+                      "type": "boolean"
+                    },
+                    "inheritSourceCitation": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              },
+              "expectedOutputs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "outputCode",
+                    "semanticKey",
+                    "title",
+                    "description"
+                  ],
+                  "properties": {
+                    "semanticKey": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "description": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "outputCode": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                }
+              },
+              "evidence": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "evidenceCode",
+                    "semanticKey",
+                    "title",
+                    "evidenceType",
+                    "description",
+                    "mandatory"
+                  ],
+                  "properties": {
+                    "semanticKey": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "description": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "evidenceCode": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "evidenceType": {
+                      "enum": [
+                        "DOCUMENT",
+                        "SCREENSHOT",
+                        "LOG",
+                        "REPORT",
+                        "CONFIG",
+                        "ATTESTATION",
+                        "LINK",
+                        "OTHER"
+                      ]
+                    },
+                    "mandatory": {
+                      "type": "boolean"
+                    },
+                    "inheritSourceCitation": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              },
+              "effortProfiles": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "semanticKey",
+                    "effortTypes",
+                    "effortLevel",
+                    "skillRequirements",
+                    "estimatedComplexity",
+                    "implementationMode"
+                  ],
+                  "properties": {
+                    "semanticKey": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "effortTypes": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "effortLevel": {
+                      "enum": [
+                        "LOW",
+                        "MEDIUM",
+                        "HIGH"
+                      ]
+                    },
+                    "skillRequirements": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "estimatedComplexity": {
+                      "enum": [
+                        "LOW",
+                        "MEDIUM",
+                        "HIGH"
+                      ]
+                    },
+                    "implementationMode": {
+                      "enum": [
+                        "INTERNAL",
+                        "EXTERNAL",
+                        "HYBRID"
+                      ]
+                    }
+                  }
+                }
+              },
+              "supportingAssets": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "semanticKey",
+                    "assetType",
+                    "title",
+                    "usage",
+                    "availability"
+                  ],
+                  "properties": {
+                    "semanticKey": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "assetType": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "usage": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "availability": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "templateRef": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                }
+              },
+              "suggestedSolutions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "semanticKey",
+                    "solutionType",
+                    "title",
+                    "description",
+                    "recommendationLevel",
+                    "vendorNeutral",
+                    "requiresHumanValidation",
+                    "prerequisites",
+                    "risks"
+                  ],
+                  "properties": {
+                    "semanticKey": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "description": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "solutionType": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "recommendationLevel": {
+                      "enum": [
+                        "RECOMMENDED",
+                        "OPTIONAL",
+                        "CONDITIONAL"
+                      ]
+                    },
+                    "vendorNeutral": {
+                      "const": true
+                    },
+                    "requiresHumanValidation": {
+                      "type": "boolean"
+                    },
+                    "prerequisites": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "risks": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "rationale": {
+            "type": "string",
+            "minLength": 1
+          },
+          "baseConfidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    }
+  }
+}

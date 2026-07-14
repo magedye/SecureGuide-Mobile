@@ -10,6 +10,7 @@ from typing import Any, Callable, Iterable
 
 from scripts import scoring
 
+from .blueprints import BlueprintEngine, ClassificationContext
 from .database import Database
 from .errors import ActiveProfileRequiredError, NotFoundError, ValidationError
 from .repositories import CatalogRepository, ProfileRepository, TemplateRepository
@@ -114,12 +115,18 @@ class EventBus:
 class SecureGuideService:
     """Application facade implementing the complete enterprise-profile slice."""
 
-    def __init__(self, database: Database | str, event_bus: EventBus | None = None):
+    def __init__(
+        self,
+        database: Database | str,
+        event_bus: EventBus | None = None,
+        blueprint_engine: BlueprintEngine | None = None,
+    ):
         self.db = database if isinstance(database, Database) else Database(database)
         self.events = event_bus or EventBus()
         self.catalog = CatalogRepository()
         self.profiles = ProfileRepository()
         self.templates = TemplateRepository()
+        self.blueprints = blueprint_engine
 
     @staticmethod
     def _translate_integrity(exc: sqlite3.Error) -> ValidationError:
@@ -196,6 +203,43 @@ class SecureGuideService:
     def active_profile(self) -> dict[str, Any] | None:
         with self.db.read() as conn:
             return self.profiles.active(conn)
+
+    def generate_blueprint(
+        self, artifact_id: str, *, profile_id: str | None = None
+    ) -> dict[str, Any]:
+        """Generate a transient, non-authoritative blueprint without DB writes."""
+        with self.db.read() as conn:
+            if profile_id is not None:
+                self._profile_id(conn, profile_id)
+            artifact = self.catalog.get(conn, artifact_id)
+            if not artifact:
+                raise NotFoundError(f"security artifact not found: {artifact_id}")
+        citation = artifact.get("source_document")
+        if artifact.get("source_section"):
+            citation = f"{citation}, {artifact['source_section']}"
+        engine = self.blueprints or BlueprintEngine()
+        blueprint = engine.generate(ClassificationContext(
+            artifact_id=artifact["id"],
+            artifact_type=artifact["type"],
+            primary_domain=artifact["primary_domain"],
+            sub_domain=artifact.get("sub_domain"),
+            obligation_level=artifact["obligation_level"],
+            control_nature=artifact.get("control_nature"),
+            control_function=artifact.get("control_function"),
+            classification_confidence=artifact.get("classification_confidence"),
+            ai_review_status=artifact.get("ai_review_status"),
+            source_artifact_id=artifact.get("source_artifact_id") or artifact["id"],
+            source_citation=citation,
+        ))
+        result = blueprint.to_dict()
+        self.events.publish(
+            "BlueprintGeneratedEvent",
+            artifact_id=artifact_id,
+            profile_id=profile_id,
+            blueprint_id=blueprint.blueprint_id,
+            rule_set_hash=blueprint.rule_set_hash,
+        )
+        return result
 
     def search_catalog(
         self,

@@ -9,11 +9,14 @@ from pathlib import Path
 from typing import Any
 
 from .database import Database
+from .blueprints import BlueprintEngine, load_rule_pack
 from .errors import SecureGuideError
 from .services import SecureGuideService
 
 
 def emit(value: Any) -> None:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
     print(json.dumps(value, ensure_ascii=False, indent=2, default=str))
 
 
@@ -23,6 +26,11 @@ def build_parser() -> argparse.ArgumentParser:
     commands = parser.add_subparsers(dest="command", required=True)
 
     commands.add_parser("migrate", help="apply pending migrations")
+
+    blueprint = commands.add_parser("blueprint-generate")
+    blueprint.add_argument("artifact_id")
+    blueprint.add_argument("--profile")
+    blueprint.add_argument("--rule-pack")
 
     create = commands.add_parser("profile-create")
     create.add_argument("--id")
@@ -142,7 +150,12 @@ def run(args: argparse.Namespace) -> Any:
     if args.command == "migrate":
         return {"database": str(database.path), "applied_migrations": database.migrate()}
 
-    service = SecureGuideService(database)
+    blueprint_engine = None
+    if args.command == "blueprint-generate" and args.rule_pack:
+        blueprint_engine = BlueprintEngine(load_rule_pack(args.rule_pack))
+    service = SecureGuideService(database, blueprint_engine=blueprint_engine)
+    if args.command == "blueprint-generate":
+        return service.generate_blueprint(args.artifact_id, profile_id=args.profile)
     if args.command == "profile-create":
         return service.create_profile(
             profile_id=args.id,
