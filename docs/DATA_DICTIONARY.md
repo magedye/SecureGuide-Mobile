@@ -230,6 +230,7 @@
 ## ملفات JSON المرجعية (مُولّدة)
 - [`reference/usacm_controlled_lists.json`](../reference/usacm_controlled_lists.json) — كل قوائم USACM المضبوطة (يَستبدل المجموعة الجزئية القديمة `usacm_codes.json`).
 - [`reference/sdt_taxonomy.json`](../reference/sdt_taxonomy.json) — تصنيف SDT ثنائي اللغة (8 مجالات + 40 فرعياً).
+- [`reference/operational_patterns_v1.json`](../reference/operational_patterns_v1.json) — 59 مثالاً تشغيلياً غير سلطوي للبحث والإثراء؛ ليس جدول كتالوج، ولا مصدراً أصلياً، ولا ينشئ خططاً أو مهاماً. يضبطه [`operational_pattern_schema_v1.json`](../reference/operational_pattern_schema_v1.json).
 
 ---
 

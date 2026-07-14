@@ -27,6 +27,14 @@ def build_parser() -> argparse.ArgumentParser:
 
     commands.add_parser("migrate", help="apply pending migrations")
 
+    patterns = commands.add_parser("pattern-search")
+    patterns.add_argument("--query")
+    patterns.add_argument("--type")
+    patterns.add_argument("--domain")
+    patterns.add_argument("--sub-domain")
+    patterns.add_argument("--safety-review", action="store_true")
+    patterns.add_argument("--limit", type=int, default=50)
+
     blueprint = commands.add_parser("blueprint-generate")
     blueprint.add_argument("artifact_id")
     blueprint.add_argument("--profile")
@@ -215,6 +223,15 @@ def run(args: argparse.Namespace) -> Any:
     if args.command == "blueprint-generate" and args.rule_pack:
         blueprint_engine = BlueprintEngine(load_rule_pack(args.rule_pack))
     service = SecureGuideService(database, blueprint_engine=blueprint_engine)
+    if args.command == "pattern-search":
+        return service.search_operational_patterns(
+            query=args.query,
+            artifact_type=args.type,
+            primary_domain=args.domain,
+            sub_domain=args.sub_domain,
+            safety_review_required=True if args.safety_review else None,
+            limit=args.limit,
+        )
     if args.command == "blueprint-generate":
         return service.generate_blueprint(args.artifact_id, profile_id=args.profile)
     if args.command == "blueprint-draft":

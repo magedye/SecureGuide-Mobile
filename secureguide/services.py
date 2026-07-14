@@ -12,7 +12,7 @@ from typing import Any, Callable, Iterable
 
 from scripts import scoring
 
-from .blueprints import BlueprintEngine, ClassificationContext
+from .blueprints import BlueprintEngine, ClassificationContext, OperationalPatternLibrary
 from .database import Database
 from .errors import ActiveProfileRequiredError, NotFoundError, ValidationError
 from .repositories import (
@@ -130,6 +130,7 @@ class SecureGuideService:
         database: Database | str,
         event_bus: EventBus | None = None,
         blueprint_engine: BlueprintEngine | None = None,
+        operational_patterns: OperationalPatternLibrary | None = None,
     ):
         self.db = database if isinstance(database, Database) else Database(database)
         self.events = event_bus or EventBus()
@@ -138,6 +139,7 @@ class SecureGuideService:
         self.templates = TemplateRepository()
         self.approved_blueprints = BlueprintRepository()
         self.blueprints = blueprint_engine
+        self.operational_patterns = operational_patterns
 
     @staticmethod
     def _translate_integrity(exc: sqlite3.Error) -> ValidationError:
@@ -251,6 +253,31 @@ class SecureGuideService:
             rule_set_hash=blueprint.rule_set_hash,
         )
         return result
+
+    def search_operational_patterns(
+        self,
+        *,
+        query: str | None = None,
+        artifact_type: str | None = None,
+        primary_domain: str | None = None,
+        sub_domain: str | None = None,
+        safety_review_required: bool | None = None,
+        limit: int = 50,
+    ) -> dict[str, Any]:
+        """Search curated implementation examples without treating them as mandates."""
+        try:
+            library = self.operational_patterns or OperationalPatternLibrary()
+            results = library.search(
+                query=query,
+                artifact_type=artifact_type,
+                primary_domain=primary_domain,
+                sub_domain=sub_domain,
+                safety_review_required=safety_review_required,
+                limit=limit,
+            )
+        except ValueError as exc:
+            raise ValidationError(str(exc)) from exc
+        return {**library.metadata, "results": results}
 
     @staticmethod
     def _require_actor(actor: str, actor_role: str, allowed_roles: set[str]) -> str:

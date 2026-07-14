@@ -26,6 +26,7 @@
 - خدمة قراءة فقط: `SecureGuideService.generate_blueprint()`.
 - أمر تجريبي: `python -m secureguide.cli --db catalog_work.db blueprint-generate <artifact-id>`.
 - اختبارات الحوكمة والحالات العملية: `tests/test_blueprint_engine.py`.
+- مكتبة إثراء تشغيلية اختيارية غير سلطوية: `reference/operational_patterns_v1.json`، موثقة في `docs/OPERATIONAL_PATTERN_LIBRARY.md`. البحث فيها لا يضيف قواعد للمحرك ولا إجراءات للخطة تلقائياً.
 
 ---
 

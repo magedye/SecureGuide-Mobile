@@ -1,0 +1,402 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://secureguide.local/schema/operational-pattern-library-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "libraryId",
+    "version",
+    "authoritative",
+    "usageLabelAr",
+    "source",
+    "patterns"
+  ],
+  "properties": {
+    "libraryId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authoritative": {
+      "const": false
+    },
+    "usageLabelAr": {
+      "const": "اقتراحات معيارية بناءً على التصنيف"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceType",
+        "sourceBatchId",
+        "sourceSha256",
+        "isOriginalRequirementSource",
+        "usageConstraint"
+      ],
+      "properties": {
+        "sourceType": {
+          "const": "USER_SUPPLIED_OPERATIONAL_GUIDANCE"
+        },
+        "sourceBatchId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "isOriginalRequirementSource": {
+          "const": false
+        },
+        "usageConstraint": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "patterns": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "patternId",
+          "sourceRow",
+          "sectionAr",
+          "sourceTextAr",
+          "titleAr",
+          "originalClassificationAr",
+          "originalDeliveryModelAr",
+          "recommendedArtifactType",
+          "primaryDomain",
+          "subDomain",
+          "deliveryArchetype",
+          "controlNature",
+          "controlFunction",
+          "priority",
+          "effortSize",
+          "complexity",
+          "ownerRoles",
+          "implementationActions",
+          "evidenceExamples",
+          "reviewFrequencies",
+          "acceptanceCriteriaAr",
+          "requiresSplit",
+          "safetyReviewRequired",
+          "safetyNoteAr",
+          "classificationConfidence",
+          "classificationRationaleAr",
+          "requiresHumanReview",
+          "aiReviewStatus",
+          "sourcePatternId",
+          "testability",
+          "requirementType"
+        ],
+        "properties": {
+          "patternId": {
+            "type": "string",
+            "pattern": "^OPP-[0-9]{3}$"
+          },
+          "sourceRow": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "sectionAr": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sourceTextAr": {
+            "type": "string",
+            "minLength": 1
+          },
+          "titleAr": {
+            "type": "string",
+            "minLength": 1
+          },
+          "originalClassificationAr": {
+            "type": "string",
+            "minLength": 1
+          },
+          "originalDeliveryModelAr": {
+            "type": "string",
+            "minLength": 1
+          },
+          "recommendedArtifactType": {
+            "enum": [
+              "ART-CFG",
+              "ART-CTR",
+              "ART-PLN",
+              "ART-POL",
+              "ART-PRC",
+              "ART-PRG",
+              "ART-PRO",
+              "ART-REQ",
+              "ART-STD"
+            ]
+          },
+          "primaryDomain": {
+            "enum": [
+              "SD-01",
+              "SD-02",
+              "SD-03",
+              "SD-04",
+              "SD-05",
+              "SD-06",
+              "SD-07",
+              "SD-08"
+            ]
+          },
+          "subDomain": {
+            "type": "string",
+            "pattern": "^SD-0[1-8]\\.0[1-5]$"
+          },
+          "controlNature": {
+            "enum": [
+              "NAT-ORG",
+              "NAT-HUM",
+              "NAT-PHY",
+              "NAT-TEC",
+              null
+            ]
+          },
+          "controlFunction": {
+            "enum": [
+              "FUN-PRE",
+              "FUN-DET",
+              "FUN-COR",
+              "FUN-REC",
+              "FUN-DRR",
+              "FUN-COM",
+              null
+            ]
+          },
+          "testability": {
+            "enum": [
+              "TST-AUTO",
+              "TST-MAN",
+              "TST-DOC",
+              "TST-INT",
+              "TST-NA",
+              null
+            ]
+          },
+          "requirementType": {
+            "enum": [
+              "RQT-GOV",
+              "RQT-REG",
+              "RQT-LEG",
+              "RQT-CON",
+              "RQT-STD",
+              "RQT-INT",
+              "RQT-RSK",
+              null
+            ]
+          },
+          "deliveryArchetype": {
+            "enum": [
+              "URGENT_RESPONSE",
+              "MANAGED_SERVICE",
+              "PROGRAM",
+              "INITIATIVE",
+              "CONTINUOUS_OPERATION",
+              "PROJECT",
+              "CONTROLLED_CHANGE",
+              "OPERATIONAL_ACTIVITY"
+            ]
+          },
+          "effortSize": {
+            "enum": [
+              "SMALL",
+              "SMALL_MEDIUM",
+              "MEDIUM",
+              "MEDIUM_LARGE",
+              "LARGE",
+              "VERY_LARGE"
+            ]
+          },
+          "complexity": {
+            "enum": [
+              "MEDIUM",
+              "HIGH"
+            ]
+          },
+          "priority": {
+            "enum": [
+              "PRI-CRITICAL",
+              "PRI-HIGH",
+              "PRI-MEDIUM"
+            ]
+          },
+          "ownerRoles": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "implementationActions": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "evidenceExamples": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "acceptanceCriteriaAr": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reviewFrequencies": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "DAILY",
+                "WEEKLY",
+                "MONTHLY",
+                "QUARTERLY",
+                "SEMI-ANNUAL",
+                "ANNUAL",
+                "CONTINUOUS"
+              ]
+            }
+          },
+          "requiresSplit": {
+            "type": "boolean"
+          },
+          "safetyReviewRequired": {
+            "type": "boolean"
+          },
+          "safetyNoteAr": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "classificationConfidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "classificationRationaleAr": {
+            "type": "string",
+            "minLength": 1
+          },
+          "requiresHumanReview": {
+            "const": true
+          },
+          "aiReviewStatus": {
+            "const": "AIR-HUMAN-REVIEW"
+          },
+          "sourcePatternId": {
+            "type": "string",
+            "pattern": "^OPP-[0-9]{3}$"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "recommendedArtifactType": {
+                  "enum": [
+                    "ART-CTR",
+                    "ART-CTE"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "controlNature": {
+                  "type": "string"
+                },
+                "controlFunction": {
+                  "type": "string"
+                },
+                "testability": {
+                  "type": "string"
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "controlNature": {
+                  "type": "null"
+                },
+                "controlFunction": {
+                  "type": "null"
+                },
+                "testability": {
+                  "type": "null"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "recommendedArtifactType": {
+                  "const": "ART-REQ"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "requirementType": {
+                  "type": "string"
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "requirementType": {
+                  "type": "null"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "safetyReviewRequired": {
+                  "const": true
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "safetyNoteAr": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "safetyNoteAr": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        ],
+        "additionalProperties": false
+      }
+    }
+  }
+}
