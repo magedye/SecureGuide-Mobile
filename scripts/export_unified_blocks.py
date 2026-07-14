@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Block the unified candidate pool (amani + curated staging) by SDT sub_domain
-so each dedup agent only compares controls that share a sub_domain (where true
-duplicates concentrate). Emits one block file per sub_domain with >=2 controls."""
+"""Block the unified candidate pool by SDT sub-domain for semantic AI review.
+
+This is intentionally not the complete duplicate detector: the deterministic
+global exact-definition pass in rebuild_unified_equivalence.py runs afterwards
+and ignores proposed SDT classification so misclassification cannot hide exact
+duplicates. Emits one review block per sub-domain with at least two artifacts.
+"""
 import argparse
 import io
 import json

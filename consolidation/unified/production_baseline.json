@@ -1,0 +1,10 @@
+{
+  "database": "catalog.db",
+  "sha256": "3DCCE6F5A3963F1B01CE89BFC3C094D4B34849146873D27F574FE6406AE8BC73",
+  "security_artifacts": 4,
+  "artifact_tags": 0,
+  "publication_status": {
+    "APPROVED": 4
+  },
+  "purpose": "Fail-closed proof that unified staging work did not mutate production."
+}

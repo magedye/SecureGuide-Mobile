@@ -105,10 +105,14 @@
 | الجدول | الغرض | حقول/قيود رئيسية |
 |---|---|---|
 | `enterprise_profiles` | سياق تشغيلي (مؤسسة/فرع/نظام/سحابة/تدقيق/مشروع) | `profile_kind`, `organization_size`, `industry`, `target_maturity_level`, `source_template_id` |
-| `profile_artifacts` | حالة العنصر داخل الملف — **الحقيقة التشغيلية** | الحالات الأربع المستقلة (`implementation_status`, `verification_status`, `effectiveness`, `exception_status`) + `priority_override` + `current_maturity_level` + `assigned_owner` + `due_date` + `notes`؛ `UNIQUE(profile_id, artifact_id)` |
+| `profile_artifacts` | حالة العنصر داخل الملف — **الحقيقة التشغيلية** | الحالات الأربع المستقلة (`implementation_status`, `verification_status`, `effectiveness`, `exception_status`) + `active_exception_id` + `priority_override` + `current_maturity_level` + `assigned_owner` + `due_date` + `notes`؛ `UNIQUE(profile_id, artifact_id)`؛ حالة الاستثناء تُزامَن من دورة الاعتماد ولا تُكتب مباشرة |
 | `profile_assessments` | سجل تقييمات تاريخي | `assessor_name`, `score` (0-100)، ولقطة الحالات وقت التقييم |
 | `profile_evidence` | أدلة الإثبات | `evidence_type` ∈ DOCUMENT/SCREENSHOT/LOG/REPORT/CONFIG/ATTESTATION/LINK/OTHER؛ يرتبط اختيارياً بتقييم |
-| `profile_exceptions` | استثناءات معتمدة | `exception_status` (EXC غير NONE)، `justification` إلزامي، `approved_by`, `expiry_date` |
+| `profile_exceptions` | قرارات استثناء ذات دورة حياة | `exception_status` (EXC غير NONE)، `workflow_status` مضبوط، `justification` إلزامي؛ الاعتماد يتطلب المعتمد وتاريخ الاعتماد والانتهاء؛ الحالات النهائية غير قابلة لإعادة الفتح |
+| `profile_exception_events` | سجل تدقيق ملحق فقط لدورة حياة الاستثناء | CREATED/SUBMITTED/APPROVED/RENEWED/EXPIRED/REVOKED/CLOSED/UPDATED |
+| `profile_review_cycles` | جلسة مراجعة مؤسسية جامعة | نوع المراجعة، الحالة، المراجع، سياسة الدرجات، البداية والإكمال |
+| `profile_review_cycle_items` | لقطة الحالات لكل عنصر عند المراجعة | الحالات الأربع مستقلة + الأولوية الفعلية + عدد الأدلة + الاستثناء النشط |
+| `profile_review_metrics` | مؤشرات لقطة المراجعة | 9 أكواد ثابتة + الوحدة + `formula_version` |
 
 *قاعدة ذهبية: لا يجوز أبداً دمج حقول `profile_artifacts` التشغيلية داخل `security_artifacts`، ولا دمج الحالات الأربع في حالة واحدة.*
 
@@ -151,7 +155,7 @@
 
 # ملحق: الترحيل 003 — البيانات المرجعية (كل الأقسام والتصنيفات)
 
-المصدر: [`migrations/003_reference_data.sql`](../migrations/003_reference_data.sql) (مُولّد من [`scripts/build_reference_data.py`](../scripts/build_reference_data.py) — لا يُحرَّر يدوياً). يوفّر **كل قائمة تصنيف وقسم** ورد في USACM v2.2.1 (§3 الأنواع، §4 القوائم المضبوطة الـ24، §8 قيم الجداول الفرعية) و SDT v2.2.1 (§5) كـ**جدول lookup مفهرس منفصل لكل قائمة** ثنائي اللغة — لتغذية القوائم المنسدلة والفلاتر والتسميات في الواجهة، ومطابِق تماماً لقيود `CHECK` في المخطط (يتحقق منها [`scripts/validate_reference_data.py`](../scripts/validate_reference_data.py)).
+المصدر: [`migrations/003_reference_data.sql`](../migrations/003_reference_data.sql) (مُولّد من [`scripts/build_reference_data.py`](../scripts/build_reference_data.py) — لا يُحرَّر يدوياً). يوفّر قوائم USACM وSDT كجداول lookup ثنائية اللغة. أضافت الهجرة 011 مفردات fallback للمراجعة، وتحدد `classification_fallback_policy` في الهجرة 018 ما يجوز تخزينه أو نشره؛ لذلك عضوية lookup وحدها ليست بديلاً عن قيود `CHECK` أو بوابة الترقية.
 
 ## جداول الـ lookup (37 جدولاً — `lk_<اسم_القائمة>`)
 بنية موحّدة لكل جدول: `code TEXT PRIMARY KEY`، `name_en`، `name_ar`، `sort_order` (مع فهرس على `sort_order`).
@@ -163,7 +167,30 @@
 
 مثال: `SELECT code, name_ar FROM lk_priority ORDER BY sort_order;` يعيد قائمة الأولويات جاهزة للعرض العربي.
 
-> ملاحظة: القيم مطابِقة لقيود `CHECK` في المخطط (المُلزِمة)؛ هذه الجداول للعرض والفلترة والتسمية. يمكن لاحقاً تحويل القيود إلى مفاتيح خارجية على جداول الـ lookup إن رُغب بمصدر واحد للتحقق والعرض معاً.
+> ملاحظة: قيم USACM/SDT الأصلية مطابقة لقيود `CHECK`. أما قيم fallback الإضافية فقد تكون للمراجعة فقط ولا تصبح صالحة للنشر لمجرد وجودها في lookup؛ تحسم الهجرة 018 ذلك قبل الترقية.
+
+| جدول الحوكمة | الغرض |
+|---|---|
+| `classification_fallback_policy` | يسجل 28 بُعداً، ويحدد لكل `NA/UNKNOWN/MULTI` هل هو ممنوع، قابل للنشر، `NULL` بنيوي، للمراجعة فقط، أو يجب تطبيعه في صفوف متعددة. |
+| `v_nonpublishable_fallback_codes` | عرض موحد للقيم التي يجب ألا تظهر في كتالوج معتمد أو منشور. |
+
+## الترحيل 019 — التوسع التشغيلي والمحتوى
+
+| الكيان | الغرض البنيوي |
+|---|---|
+| `artifact_localizations` | محتوى متعدد اللغات ونضج محتوى مستقل عن صحة التصنيف؛ مفتاح `(artifact_id, locale)` ولغة رئيسية واحدة فقط. |
+| دورة حياة الاستثناء | أعمدة workflow على `profile_exceptions` + سجل `profile_exception_events` + مزامنة `active_exception_id`. |
+| دورات المراجعة | لقطات غير قابلة للتعديل بعد الإكمال، مع مؤشرات تحمل نسخة المعادلة. |
+| رسم الاعتماد | مشغلات تمنع self/cycle لـ`REL-DEP` وعرض يحذر من الاعتماد على عنصر غير معتمد أو غير نشط. |
+
+## الترحيل 020 — ثوابت دورة حياة الاستثناء
+
+| الكيان | الضمان البنيوي |
+|---|---|
+| آلة حالات الاستثناء | انتقالات مضبوطة من المسودة حتى الاعتماد والحالة النهائية؛ لا إعادة فتح للحالات النهائية. |
+| بيانات القرار | الاعتماد يتطلب المعتمد وتاريخ الاعتماد والانتهاء، وقبول المخاطرة يتطلب `risk_accepted_by`، والإغلاق/الإلغاء يتطلبان المنفذ والتاريخ. |
+| اتساق الحالة الحالية | يمنع تعديل `profile_artifacts.exception_status` دون استثناء نشط معتمد ومطابق للعنصر. |
+| `v_exception_governance_issues` | يكشف الحالات القديمة أو المستوردة غير المتسقة والاستثناءات المعتمدة المتجاوزة لتاريخ انتهائها. |
 
 ## التغطية (35 قائمة + تصنيف SDT = 268 صفاً)
 - **أنواع العناصر** (§3): 22.

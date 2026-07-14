@@ -3,7 +3,7 @@
 > العقد الحاكم لنقل العناصر من `staging_artifacts` إلى الكتالوج المرجعي `security_artifacts`.
 > تنفّذها [`scripts/promote.py`](../scripts/promote.py) وتتحقق منها [`scripts/validate_promotion.py`](../scripts/validate_promotion.py).
 >
-> **تخضع الترقية لـ [`SADP_v1.0.md`](SADP_v1.0.md):** البوابة ترفض أي عنصر يحمل NULL في أي تصنيف (تُستخدم قيم `*-NA/*-UNKNOWN/*-MULTI`)، وترفض أي وسوم حرة (`proposed_tags_json`)؛ التهديدات/المنصات تُطبَّع في `artifact_threats`/`artifact_platforms`. المطابقة موثّقة في [`SADP_CONFORMANCE.md`](SADP_CONFORMANCE.md).
+> **تخضع الترقية لـ [`SADP_v1.0.md`](SADP_v1.0.md):** البوابة ترفض التصنيفات الإلزامية الناقصة، وترفض `UNKNOWN/MULTI` قبل إنشاء خطة الترقية. القيم الشرطية غير المنطبقة تستخدم `NULL` البنيوي حيث يفرضه USACM، والتعدد الحقيقي يُطبّع في جداول فرعية. السياسة الآلية موجودة في `classification_fallback_policy` ومطابقتها موثّقة في [`SADP_CONFORMANCE.md`](SADP_CONFORMANCE.md).
 
 ## القاعدة الذهبية
 > **إما أن تُكتب جميع مكونات العنصر (السجل + mappings + tags + relationships) بنجاح داخل transaction واحدة، أو لا يُكتب شيء.**
@@ -17,6 +17,8 @@
 - فكرة أمنية **ذرّية واحدة** (لا يتجاوز التعريف المختصر فعلين إلزاميين).
 - صياغة إنجليزية مكتملة (`title_en` + `definition_short_en`).
 - `type` من USACM، `abstraction_level` صالح، `primary_domain`/`sub_domain` من SDT مع **انتماء** (`substr(sub,1,5)=primary`).
+- `type` و`primary_domain` و`sub_domain` لا تقبل أي fallback، وعضوية الكود في جدول lookup لا تعني أنه صالح للنشر.
+- `*-UNKNOWN` يتطلب مراجعة بشرية، و`*-MULTI` يتطلب التقسيم أو التطبيع؛ كلاهما يمنع الترقية.
 - الحقول الإلزامية حسب النوع موجودة وصالحة (القسم 3).
 - `lineage` مكتمل: `proposed_mappings_json` غير فارغ، كل مصدر له `raw_id` و`source_document` و`mapping_strength` صالح؛ وأي ربط غير `DIRECT` له `rationale`.
 

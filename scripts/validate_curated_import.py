@@ -6,6 +6,7 @@ summary to consolidation/curated/DISTRIBUTION.md."""
 import io
 import json
 import os
+import re
 import sqlite3
 import sys
 from collections import Counter
@@ -78,7 +79,11 @@ check(f"no invalid enum stored ({badenum[:3]})", not badenum)
 
 print("# classification quality (informational)")
 complete = sum(1 for r in rows if r['proposed_type'] and r['proposed_primary_domain'] and r['proposed_sub_domain'])
-fixups = sum(1 for r in rows if r['review_notes'])
+generated_group_note = re.compile(
+    r"\s*\[(?:canonical of [^\]]+|duplicate in [^\]]+|unified-group [^\]]+)\]",
+    flags=re.IGNORECASE,
+)
+fixups = sum(1 for r in rows if generated_group_note.sub('', r['review_notes'] or '').strip())
 conf = [r['classification_confidence'] for r in rows if r['classification_confidence'] is not None]
 avgconf = round(sum(conf) / len(conf), 3) if conf else 0
 check("majority fully classified (type+domain+sub)", complete >= stg_n * 0.8)

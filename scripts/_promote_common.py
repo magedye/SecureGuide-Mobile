@@ -27,6 +27,20 @@ TIER_CODES = {'essential', 'advanced', 'very_advanced', 'full'}
 EVIDENCE_TYPES = {'DOCUMENT', 'SCREENSHOT', 'LOG', 'REPORT', 'CONFIG', 'ATTESTATION', 'LINK', 'OTHER'}
 ACTION_KINDS = {'ACTION', 'VERIFICATION'}
 
+# Fail-closed fallback policy used when validating an older database that has
+# not yet received migration 018.  Migration 018 is authoritative when present.
+# A lookup code can be useful in intake/review without being publishable.
+DEFAULT_FALLBACK_DISPOSITIONS = {
+    'abstraction_level': {'ABS-NA': 'REVIEW_ONLY', 'ABS-UNKNOWN': 'REVIEW_ONLY', 'ABS-MULTI': 'REVIEW_ONLY'},
+    'obligation_level': {'OBL-NA': 'REVIEW_ONLY', 'OBL-UNKNOWN': 'REVIEW_ONLY', 'OBL-MULTI': 'REVIEW_ONLY'},
+    'requirement_type': {'RQT-NA': 'STRUCTURAL_NULL', 'RQT-UNKNOWN': 'REVIEW_ONLY', 'RQT-MULTI': 'REVIEW_ONLY'},
+    'control_nature': {'NAT-NA': 'STRUCTURAL_NULL', 'NAT-UNKNOWN': 'REVIEW_ONLY', 'NAT-MULTI': 'REVIEW_ONLY'},
+    'control_function': {'FUN-NA': 'STRUCTURAL_NULL', 'FUN-UNKNOWN': 'REVIEW_ONLY', 'FUN-MULTI': 'REVIEW_ONLY'},
+    'testability': {'TST-NA': 'PUBLISHABLE', 'TST-UNKNOWN': 'REVIEW_ONLY', 'TST-MULTI': 'REVIEW_ONLY'},
+    'priority': {'PRI-NA': 'REVIEW_ONLY', 'PRI-UNKNOWN': 'REVIEW_ONLY', 'PRI-MULTI': 'REVIEW_ONLY'},
+    'threat': {'THR-NA': 'PUBLISHABLE', 'THR-UNKNOWN': 'REVIEW_ONLY', 'THR-MULTI': 'NORMALIZE_VALUES'},
+}
+
 # The staging content that defines a promotable artifact (order-stable, hashed).
 HASH_FIELDS = [
     'title_en', 'definition_short_en', 'definition_full_en', 'objective_en', 'canonical_statement',
@@ -50,7 +64,7 @@ HASH_FIELDS = [
 def load_valid(conn):
     def s(t):
         return {r[0] for r in conn.execute(f"SELECT code FROM {t}")}
-    return {
+    valid = {
         'type': s('lk_artifact_type'), 'abs': s('lk_abstraction_level'), 'dom': s('lk_sdt_domain'),
         'sub': s('lk_sdt_subdomain'), 'obl': s('lk_obligation_level'), 'rqt': s('lk_requirement_type'),
         'nat': s('lk_control_nature'), 'fun': s('lk_control_function'), 'tst': s('lk_testability'),
@@ -59,6 +73,37 @@ def load_valid(conn):
         'strength': {'DIRECT', 'INDIRECT', 'PARTIAL', 'INFORMATIVE'},
         'asset_crit': {'CRITICAL', 'HIGH', 'MEDIUM', 'LOW'},
     }
+    fallback = {k: dict(v) for k, v in DEFAULT_FALLBACK_DISPOSITIONS.items()}
+    try:
+        rows = conn.execute("""SELECT dimension, not_applicable_code, unknown_code, multi_code,
+                                     na_disposition, unknown_disposition, multi_disposition
+                                FROM classification_fallback_policy
+                               WHERE fallback_mode='TRIPLE'""").fetchall()
+        for r in rows:
+            fallback[r[0]] = {r[1]: r[4], r[2]: r[5], r[3]: r[6]}
+    except Exception:
+        # Older databases still receive the embedded fail-closed rules above.
+        pass
+    valid['fallback'] = fallback
+    return valid
+
+
+def fallback_blocker(valid, dimension, value, field_label):
+    """Return a blocker when a valid lookup value is review-only/structural.
+
+    Lookup membership proves that a code is known; it does not prove that the
+    code may be persisted in an APPROVED catalog artifact.
+    """
+    if value is None:
+        return None
+    disposition = valid.get('fallback', {}).get(dimension, {}).get(value)
+    if not disposition or disposition == 'PUBLISHABLE':
+        return None
+    if disposition == 'STRUCTURAL_NULL':
+        return f'{field_label}={value} is structural N/A; store NULL for an inapplicable artifact type'
+    if disposition == 'NORMALIZE_VALUES':
+        return f'{field_label}={value} must be represented as normalized child rows, not a fallback marker'
+    return f'{field_label}={value} requires human review and is not publishable'
 
 
 def content_hash(row):
@@ -212,6 +257,13 @@ def promotion_blockers(row, valid):
     t = row['proposed_type']
     if t not in valid['type']:
         b.append(f"invalid type {t}")
+    av = row['proposed_abstraction_level']
+    if av not in valid['abs']:
+        b.append(f'invalid abstraction_level {av}')
+    else:
+        fb = fallback_blocker(valid, 'abstraction_level', av, 'abstraction_level')
+        if fb:
+            b.append(fb)
     if row['proposed_primary_domain'] not in valid['dom']:
         b.append('invalid primary_domain')
     sd = row['proposed_sub_domain']
@@ -219,8 +271,13 @@ def promotion_blockers(row, valid):
         b.append('invalid sub_domain')
     elif row['proposed_primary_domain'] and sd[:5] != row['proposed_primary_domain']:
         b.append('sub_domain does not belong to primary_domain')
-    if row['proposed_obligation_level'] not in valid['obl']:
+    ov = row['proposed_obligation_level']
+    if ov not in valid['obl']:
         b.append('invalid obligation_level')
+    else:
+        fb = fallback_blocker(valid, 'obligation_level', ov, 'obligation_level')
+        if fb:
+            b.append(fb)
     if not row['title_en'] or not row['definition_short_en']:
         b.append('missing English drafting (title/definition)')
     # type-specific required fields + value validity
@@ -234,6 +291,13 @@ def promotion_blockers(row, valid):
                   'proposed_asset_type': 'asset_type', 'proposed_asset_criticality': 'asset_crit'}[f]
             if v not in valid[vk]:
                 b.append(f"invalid {f}={v}")
+            else:
+                dim = {'rqt': 'requirement_type', 'nat': 'control_nature',
+                       'fun': 'control_function', 'tst': 'testability'}.get(vk)
+                if dim:
+                    fb = fallback_blocker(valid, dim, v, f)
+                    if fb:
+                        b.append(fb)
     # lineage / mappings
     try:
         maps = json.loads(row['proposed_mappings_json']) if row['proposed_mappings_json'] else []
@@ -297,6 +361,10 @@ def sadp_blockers(row, valid):
                 code = t.get('threat_code') if isinstance(t, dict) else t
                 if code not in valid['threat']:
                     b.append(f'invalid threat_code {code}')
+                else:
+                    fb = fallback_blocker(valid, 'threat', code, 'threat_code')
+                    if fb:
+                        b.append(fb)
                 if code in seen:
                     b.append(f'duplicate threat_code {code}')
                 seen.add(code)
@@ -322,4 +390,8 @@ def sadp_blockers(row, valid):
     pr = row['proposed_priority'] if 'proposed_priority' in row.keys() else None
     if pr is not None and pr not in valid['priority']:
         b.append(f'invalid priority {pr}')
+    elif pr is not None:
+        fb = fallback_blocker(valid, 'priority', pr, 'priority')
+        if fb:
+            b.append(fb)
     return b

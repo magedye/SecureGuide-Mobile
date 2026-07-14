@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """Consolidated conformance gate for SADP v1.0. Builds a fresh migrated DB, then
-asserts the policy's structural guarantees at the reference level (fallbacks,
-threat dimension, visibility) and at the promotion level (no tags, every artifact
-has a threat, no NULL classifications). See docs/SADP_v1.0.md / SADP_CONFORMANCE.md."""
+asserts the policy's structural guarantees at the reference level (fallback
+vocabulary and disposition, threat dimension, visibility) and at the promotion
+level (every mandatory classification present; review-only fallbacks rejected).
+See docs/SADP_v1.0.md / SADP_CONFORMANCE.md."""
 import io
 import json
 import os
@@ -22,7 +23,8 @@ fails = []
 
 
 def run(*a):
-    return subprocess.run([PY] + list(a), cwd=ROOT, capture_output=True, text=True, encoding='utf-8')
+    return subprocess.run([PY] + list(a), cwd=ROOT, capture_output=True, text=True,
+                          encoding='utf-8', errors='replace')
 
 
 def check(n, c):
@@ -47,6 +49,13 @@ for table, prefix, suffixes in TARGETS:
     have = codes(table)
     missing = [prefix + s for s in suffixes if (prefix + s) not in have]
     check(f"{table}: fallbacks {[prefix + s for s in suffixes]}", not missing)
+
+policy_count = conn.execute("SELECT COUNT(*) FROM classification_fallback_policy").fetchone()[0]
+check("migration 018 fallback disposition covers 28 dimensions", policy_count == 28)
+strict = {r[0] for r in conn.execute(
+    "SELECT dimension FROM classification_fallback_policy WHERE fallback_mode='NONE'")}
+check("artifact type + SDT explicitly have no fallbacks",
+      {'artifact_type', 'primary_domain', 'sub_domain'} <= strict)
 
 print("# §2.4/§3.1 threat dimension")
 thr = codes('lk_threat')
@@ -74,6 +83,12 @@ check("clean row promotable", not C.promotion_blockers(dict(base), valid))
 check("tags rejected (§2.4)", any('2.4' in b for b in C.promotion_blockers({**base, 'proposed_tags_json': json.dumps([{'tag_type': 'X', 'tag_value': 'y'}])}, valid)))
 check("bad threat rejected", any('threat' in b for b in C.promotion_blockers({**base, 'proposed_threats_json': json.dumps(['THR-BOGUS'])}, valid)))
 check("bad platform rejected", any('platform' in b for b in C.promotion_blockers({**base, 'proposed_platforms_json': json.dumps(['nope'])}, valid)))
+check("ABS-UNKNOWN rejected before SQLite", any('not publishable' in b for b in C.promotion_blockers({**base, 'proposed_abstraction_level': 'ABS-UNKNOWN'}, valid)))
+check("RQT-NA rejected as structural N/A on ART-REQ", any('structural N/A' in b for b in C.promotion_blockers({**base, 'proposed_requirement_type': 'RQT-NA'}, valid)))
+check("PRI-MULTI rejected before SQLite", any('not publishable' in b for b in C.promotion_blockers({**base, 'proposed_priority': 'PRI-MULTI'}, valid)))
+check("THR-UNKNOWN rejected before SQLite", any('not publishable' in b for b in C.promotion_blockers({**base, 'proposed_threats_json': json.dumps(['THR-UNKNOWN'])}, valid)))
+check("THR-MULTI requires normalized child rows", any('normalized child rows' in b for b in C.promotion_blockers({**base, 'proposed_threats_json': json.dumps(['THR-MULTI'])}, valid)))
+check("THR-NA remains valid", not C.promotion_blockers({**base, 'proposed_threats_json': json.dumps(['THR-NA'])}, valid))
 conn.close()
 
 print("# promotion invariants (pilot -> promote)")
@@ -88,6 +103,8 @@ check("promoted some artifacts", n > 0)
 check("§2.4 no tags written", conn.execute("SELECT COUNT(*) FROM artifact_tags").fetchone()[0] == 0)
 check("§2.2/§3.1 every artifact has >=1 threat",
       conn.execute("SELECT COUNT(*) FROM security_artifacts WHERE id NOT IN (SELECT artifact_id FROM artifact_threats)").fetchone()[0] == 0)
+check("approved threats contain no UNKNOWN/MULTI marker",
+      conn.execute("SELECT COUNT(*) FROM artifact_threats WHERE threat_code IN ('THR-UNKNOWN','THR-MULTI')").fetchone()[0] == 0)
 MANDATORY = ['primary_domain', 'sub_domain', 'type', 'abstraction_level', 'source', 'obligation_level',
              'exception_status', 'granularity_level', 'implementation_status', 'verification_status',
              'effectiveness', 'priority', 'priority_weight', 'review_frequency']

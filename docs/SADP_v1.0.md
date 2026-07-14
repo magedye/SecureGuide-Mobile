@@ -31,6 +31,24 @@ Whenever a specific classification value cannot be determined or does not fit pe
 2. `*-UNKNOWN` (غير محسوم): The dimension is relevant, but the correct value is currently unknown or undecided.
 3. `*-MULTI` (قيم متعددة): The artifact inherently spans multiple values in a way that forcing a single choice causes data loss.
 
+### 2.3.1 Storage and publication disposition
+
+The presence of a fallback in a lookup table does **not** by itself authorize that
+value in an approved catalog record. `classification_fallback_policy` is the
+machine-readable authority for each dimension:
+
+- `type`, `primary_domain`, and `sub_domain` never accept fallbacks. They require
+  one real USACM/SDT value; uncertainty is recorded through the AI review fields.
+- Type-conditional non-applicability is structural: for example, a non-control
+  stores `NULL` for `control_nature` rather than the literal `NAT-NA`.
+- `*-UNKNOWN` is a review signal and must not be promoted. It requires human
+  review and an approved real value before publication.
+- `*-MULTI` must not bypass single-value classification. Where multiplicity is
+  legitimate, use normalized child rows; otherwise split or review the artifact.
+- Native values that already express a valid state remain valid, including
+  `TST-NA`, `EFF-UNKNOWN`, `EXC-NOT-APPLICABLE`, and `THR-NA` in their governed
+  contexts.
+
 ### 2.4 Prohibition of Unstructured Tags
 The database shall not implement a free-form "Tags" array or column. All secondary context mapping must be done through formal, pre-approved primary classifications.
 The concept of "Tags" has been officially replaced by the **Threat Classification (`THR-*`)**, which is a mandatory, normalized classification dimension.
