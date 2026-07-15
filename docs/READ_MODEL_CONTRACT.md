@@ -44,6 +44,7 @@ SQL ولا قواعد الاستثناء/الاحتساب/الاعتماد.**
 | `active_profile()` | شريط التطبيق | `profile` أو `null` | [`active_profile.json`](../tests/fixtures/read_models/active_profile.json) |
 | `dashboard(profile_id)` | الرئيسية | `profile,counts,score,gaps[],recommendations[],reviewQueue[]` | [`dashboard.json`](../tests/fixtures/read_models/dashboard.json) |
 | `catalog(...)` | عارض الكتالوج | `locale,query,limit,offset,count,items[]` | [`catalog.json`](../tests/fixtures/read_models/catalog.json) |
+| `profile_artifact(artifact_id, profile_id)` | مساحة التقييم | `profileId,artifact,assessments[]` | [`profile_artifact.json`](../tests/fixtures/read_models/profile_artifact.json) |
 | `blueprints(profile_id,...)` | قائمة الخطط | `blueprints[]` (بعناوين وعدّادات) | [`blueprints.json`](../tests/fixtures/read_models/blueprints.json) |
 | `blueprint(blueprint_id,...)` | تفصيل الخطة | `blueprint` (اللقطة الكاملة + المجموعات المتداخلة) | [`blueprint_detail.json`](../tests/fixtures/read_models/blueprint_detail.json) |
 | `tasks(profile_id,status)` | المهام | `tasks[]` | [`tasks.json`](../tests/fixtures/read_models/tasks.json) |
@@ -58,6 +59,9 @@ SQL ولا قواعد الاستثناء/الاحتساب/الاعتماد.**
   `patternEnrichments`, `reviewFindings`)؛ والعدد هو طول المصفوفة.
 - **`isSelected`** في الكتالوج علمٌ عرضي بسيط = وجود `profileArtifactId` الذي حلّته
   الخدمة (ليس قاعدة أعمال).
+- **سجل التقييمات غير قابل لإعادة الكتابة.** سطح `profile_artifact` يعرض الحالة
+  الحالية من `profile_artifacts` ولقطات `profile_assessments` مرتبة من الأحدث؛
+  ولا يسمح بتغيير `exceptionStatus` لأن الاستثناء له دورة اعتماد مستقلة.
 - **`isActive`** في ملف اللوحة/التقرير قد يكون `null` لأن صف الملف لا يؤكّد النشاط؛
   استخدم `profiles()`/`active_profile()` لحالة النشاط.
 - **إثراءات الأنماط** (`patternEnrichments`) تبقى «اقتراحات معيارية بناءً على
@@ -88,6 +92,24 @@ SQL ولا قواعد الاستثناء/الاحتساب/الاعتماد.**
 `camelCase` نفسها. العيّنات الذهبية هي مرجع الأشكال والاختبار: أيّ صنف Dart يجب أن
 يُفكّك عيّنته المقابلة دون فقد مفتاح. تُعامَل هذه الطبقة كـ**السطح الوحيد** الذي
 تربط به الشاشات.
+
+## عقد الكتابة والـsidecar
+
+`WriteModel` يترجم طلبات `camelCase` فقط، وتبقى كل القيود والآلات الانتقالية في
+`SecureGuideService`. المسارات المستخدمة حالياً:
+
+| المسار | العملية | النتيجة |
+|---|---|---|
+| `POST /write/profiles` | إنشاء ملف | `profile` |
+| `POST /write/active-profile` | تفعيل ملف | `profile` |
+| `POST /write/select-artifacts` | اختيار عناصر | `selection` |
+| `POST /write/assessments` | تحديث الحالة وإضافة لقطة تقييم | `artifact,assessment` |
+
+قراءة مساحة التقييم تتم عبر
+`GET /read/profile-artifacts/{artifactId}?profileId=...`. حقول التطبيق والتحقق
+والفعالية مستقلة، وحالة الاستثناء للقراءة فقط في هذا السطح. يدعم طلب التقييم
+إزالة تجاوزات الأولوية/تكرار المراجعة وتاريخ الاستحقاق بأعلام `clear*` صريحة،
+بحيث لا تتحول قيمة القالب أو الكتالوج الفعالة إلى تجاوز مؤسسي ضمني.
 
 ## الإصدار والتغيير
 

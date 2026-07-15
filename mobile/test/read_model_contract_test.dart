@@ -93,6 +93,20 @@ void main() {
     expect(selected['A-POLICY'], isFalse); // never selected
   });
 
+  test('profile artifact surface round-trips state and assessment history', () {
+    final golden = loadGolden('profile_artifact');
+    final view = ProfileArtifactView.fromJson(golden);
+
+    expect(view.contractVersion, kContractVersion);
+    expect(canonical(view.toJson()), canonical(golden));
+    expect(view.profileId, 'P-HQ');
+    expect(view.artifact.artifactId, 'A-IDENTITY');
+    expect(view.artifact.implementationStatus, 'STS-FULL');
+    expect(view.artifact.exceptionStatus, 'EXC-NONE');
+    expect(view.assessments, hasLength(1));
+    expect(view.assessments.single.assessorName, 'auditor');
+  });
+
   test('tasks surface round-trips its golden without dropping a key', () {
     final golden = loadGolden('tasks');
     final view = TasksView.fromJson(golden);
@@ -122,25 +136,27 @@ void main() {
     expect(bp.taskCount, 6);
   });
 
-  test('blueprint detail surface round-trips its golden without dropping a key',
-      () {
-    final golden = loadGolden('blueprint_detail');
-    final view = BlueprintDetailView.fromJson(golden);
+  test(
+    'blueprint detail surface round-trips its golden without dropping a key',
+    () {
+      final golden = loadGolden('blueprint_detail');
+      final view = BlueprintDetailView.fromJson(golden);
 
-    expect(view.contractVersion, kContractVersion);
-    expect(canonical(view.toJson()), canonical(golden));
+      expect(view.contractVersion, kContractVersion);
+      expect(canonical(view.toJson()), canonical(golden));
 
-    // Every nested collection decodes, including the source-rule child objects.
-    final bp = view.blueprint;
-    expect(bp.appliedRules, hasLength(5));
-    expect(bp.actions, hasLength(6));
-    expect(bp.actions.every((a) => a.sourceRules.isNotEmpty), isTrue);
-    expect(bp.expectedOutputs, hasLength(1));
-    expect(bp.evidence, hasLength(4));
-    expect(bp.evidence.first.mandatory, isNotNull);
-    expect(bp.patternEnrichments, isEmpty);
-    expect(bp.reviewFindings, isEmpty);
-  });
+      // Every nested collection decodes, including the source-rule child objects.
+      final bp = view.blueprint;
+      expect(bp.appliedRules, hasLength(5));
+      expect(bp.actions, hasLength(6));
+      expect(bp.actions.every((a) => a.sourceRules.isNotEmpty), isTrue);
+      expect(bp.expectedOutputs, hasLength(1));
+      expect(bp.evidence, hasLength(4));
+      expect(bp.evidence.first.mandatory, isNotNull);
+      expect(bp.patternEnrichments, isEmpty);
+      expect(bp.reviewFindings, isEmpty);
+    },
+  );
 
   // The golden's patternEnrichments/reviewFindings are empty (this workflow has
   // no enrichment and a clean generation), so these self-consistency guards

@@ -1165,10 +1165,15 @@ class SecureGuideService:
         effectiveness: str | None = None,
         current_maturity_level: str | None = None,
         assigned_owner: str | None = None,
+        clear_assigned_owner: bool = False,
         due_date: str | None = None,
+        clear_due_date: bool = False,
         notes: str | None = None,
+        clear_notes: bool = False,
         priority_override: str | None = None,
         review_frequency_override: str | None = None,
+        clear_priority_override: bool = False,
+        clear_review_frequency_override: bool = False,
         score: float | None = None,
         comments: str | None = None,
     ) -> dict[str, Any]:
@@ -1201,6 +1206,16 @@ class SecureGuideService:
             }.items()
             if value is not None
         }
+        if clear_priority_override:
+            changes["priority_override"] = None
+        if clear_review_frequency_override:
+            changes["review_frequency_override"] = None
+        if clear_due_date:
+            changes["due_date"] = None
+        if clear_assigned_owner:
+            changes["assigned_owner"] = None
+        if clear_notes:
+            changes["notes"] = None
         try:
             with self.db.transaction() as conn:
                 resolved = self._profile_id(conn, profile_id)
@@ -1234,6 +1249,30 @@ class SecureGuideService:
             assessment_id=assessment["id"],
         )
         return assessment
+
+    def profile_artifact_detail(
+        self, artifact_id: str, *, profile_id: str | None = None
+    ) -> dict[str, Any]:
+        """Read one profile-scoped artifact and its immutable assessments.
+
+        The catalog definition remains reference data while the returned
+        operational state and history are restricted to the resolved profile.
+        """
+        with self.db.read() as conn:
+            resolved = self._profile_id(conn, profile_id)
+            artifact = self.profiles.operational_item(conn, resolved, artifact_id)
+            if not artifact:
+                raise NotFoundError(
+                    f"artifact {artifact_id} is not selected in profile {resolved}"
+                )
+            assessments = self.profiles.assessments(
+                conn, artifact["profile_artifact_id"]
+            )
+        return {
+            "profile_id": resolved,
+            "artifact": artifact,
+            "assessments": assessments,
+        }
 
     def add_evidence(
         self,

@@ -6,10 +6,16 @@ import '../client/secure_guide_client.dart';
 /// Loads and renders one profile's governed dashboard. It binds strictly to
 /// [DashboardView] — no scoring, exception, or approval logic runs here.
 class DashboardScreen extends StatefulWidget {
-  const DashboardScreen({super.key, required this.client, this.profileId});
+  const DashboardScreen({
+    super.key,
+    required this.client,
+    this.profileId,
+    this.onAssess,
+  });
 
   final SecureGuideClient client;
   final String? profileId;
+  final Future<void> Function(String artifactId)? onAssess;
 
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
@@ -22,6 +28,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void initState() {
     super.initState();
     _future = widget.client.dashboard(profileId: widget.profileId);
+  }
+
+  Future<void> _assess(String artifactId) async {
+    await widget.onAssess?.call(artifactId);
+    if (!mounted) return;
+    setState(() {
+      _future = widget.client.dashboard(profileId: widget.profileId);
+    });
   }
 
   @override
@@ -40,16 +54,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
           );
         }
-        return _DashboardBody(view: snapshot.data!);
+        return _DashboardBody(view: snapshot.data!, onAssess: _assess);
       },
     );
   }
 }
 
 class _DashboardBody extends StatelessWidget {
-  const _DashboardBody({required this.view});
+  const _DashboardBody({required this.view, required this.onAssess});
 
   final DashboardView view;
+  final Future<void> Function(String artifactId) onAssess;
 
   String get _overall {
     final value = view.score.overall;
@@ -79,7 +94,7 @@ class _DashboardBody extends StatelessWidget {
         if (view.gaps.isEmpty)
           const _EmptyRow('لا توجد فجوات مفتوحة.')
         else
-          ...view.gaps.map((gap) => _GapRow(gap: gap)),
+          ...view.gaps.map((gap) => _GapRow(gap: gap, onAssess: onAssess)),
         const SizedBox(height: 24),
         _SectionTitle('التوصيات', count: view.recommendations.length),
         if (view.recommendations.isEmpty)
@@ -169,16 +184,20 @@ class _SectionTitle extends StatelessWidget {
 }
 
 class _GapRow extends StatelessWidget {
-  const _GapRow({required this.gap});
+  const _GapRow({required this.gap, required this.onAssess});
 
   final GapItem gap;
+  final Future<void> Function(String artifactId) onAssess;
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
+        onTap: gap.artifactId == null ? null : () => onAssess(gap.artifactId!),
         title: Text(gap.titleEn ?? gap.artifactId ?? '—'),
-        subtitle: Text('${gap.primaryDomain ?? '—'} · ${gap.implementationStatus ?? '—'}'),
+        subtitle: Text(
+          '${gap.primaryDomain ?? '—'} · ${gap.implementationStatus ?? '—'}',
+        ),
         trailing: Text(gap.priority ?? '—'),
       ),
     );

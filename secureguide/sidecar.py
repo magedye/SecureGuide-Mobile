@@ -3,8 +3,8 @@
 A loopback-only HTTP server that exposes the `read-model-v1` surfaces of
 :class:`~secureguide.read_models.ReadModel` as JSON. The Flutter app talks to
 this over `127.0.0.1`, so the mature Python core stays the single source of
-business logic — nothing is reimplemented in Dart. Read-only for now; write
-endpoints (`POST /write/...`) land with the write contract.
+business logic — nothing is reimplemented in Dart. Governed writes are exposed
+through the symmetric write contract (`POST /write/...`).
 
 Routing is a pure function, :func:`resolve`, so it is unit-tested against the
 golden fixtures without opening a socket. Domain errors map to HTTP status
@@ -92,6 +92,10 @@ def resolve(
                 limit=_as_int(query, "limit", 100),
                 offset=_as_int(query, "offset", 0),
             )
+        if len(parts) == 3 and parts[:2] == ["read", "profile-artifacts"]:
+            return 200, read_model.profile_artifact(
+                parts[2], profile_id=_first(query, "profileId")
+            )
         if parts == ["read", "blueprints"]:
             return 200, read_model.blueprints(
                 profile_id=_first(query, "profileId"),
@@ -123,6 +127,8 @@ def resolve_write(
             return 200, write_model.activate_profile(body)
         if parts == ["write", "select-artifacts"]:
             return 200, write_model.select_artifacts(body)
+        if parts == ["write", "assessments"]:
+            return 200, write_model.assess_artifact(body)
         return 404, {"error": "NotFound", "message": f"unknown route: /{'/'.join(parts)}"}
     except Exception as exc:  # noqa: BLE001 (mapped to a JSON error body)
         return _error_response(exc)
@@ -205,7 +211,8 @@ def main() -> None:
     host, port = server.server_address
     print(f"SecureGuide sidecar on http://{host}:{port}  (db={args.db})")
     print("  GET  /health · /read/profiles · /read/dashboard?profileId=…")
-    print("  POST /write/profiles · /write/active-profile · /write/select-artifacts")
+    print("  GET  /read/profile-artifacts/{artifactId}?profileId=…")
+    print("  POST /write/profiles · /write/select-artifacts · /write/assessments")
     print("  Ctrl+C to stop")
     try:
         server.serve_forever()

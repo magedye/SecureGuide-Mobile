@@ -12,13 +12,14 @@ import 'package:secureguide_mobile/read_model_contract.dart';
 import 'support/fake_secure_guide_client.dart';
 
 FakeSecureGuideClient _client() => FakeSecureGuideClient(
-      dashboardView: DashboardView.fromJson(loadGolden('dashboard')),
-      profiles: ProfilesView.fromJson(loadGolden('profiles')).profiles,
-    );
+  dashboardView: DashboardView.fromJson(loadGolden('dashboard')),
+  profiles: ProfilesView.fromJson(loadGolden('profiles')).profiles,
+);
 
 void main() {
-  testWidgets('shell shows the active profile and renders its dashboard',
-      (tester) async {
+  testWidgets('shell shows the active profile and renders its dashboard', (
+    tester,
+  ) async {
     await tester.pumpWidget(SecureGuideApp(client: _client()));
     await tester.pumpAndSettle();
 
@@ -30,11 +31,15 @@ void main() {
     expect(find.text('33.3%'), findsOneWidget); // overall score
     expect(find.text('Security logging'), findsOneWidget); // an open gap
     expect(find.text('فجوات مفتوحة'), findsOneWidget); // a stat tile label
-    expect(find.textContaining('الفجوات المفتوحة'), findsOneWidget); // section title
+    expect(
+      find.textContaining('الفجوات المفتوحة'),
+      findsOneWidget,
+    ); // section title
   });
 
-  testWidgets('creating a profile calls the write path and surfaces it',
-      (tester) async {
+  testWidgets('creating a profile calls the write path and surfaces it', (
+    tester,
+  ) async {
     final client = _client();
     await tester.pumpWidget(SecureGuideApp(client: client));
     await tester.pumpAndSettle();

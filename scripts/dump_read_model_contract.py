@@ -156,7 +156,11 @@ def build_read_model_dataset(service: SecureGuideService) -> dict[str, str]:
     service.update_task(
         tasks["task_ids"][0], profile_id="P-HQ", changed_by="operator", status="IN_PROGRESS"
     )
-    return {"profile_id": "P-HQ", "blueprint_id": draft["id"]}
+    return {
+        "profile_id": "P-HQ",
+        "artifact_id": "A-IDENTITY",
+        "blueprint_id": draft["id"],
+    }
 
 
 # name -> render a single wire payload from the read model + workflow context.
@@ -165,6 +169,9 @@ SURFACES: dict[str, Callable[[ReadModel, dict[str, str]], Any]] = {
     "active_profile": lambda rm, ctx: rm.active_profile(),
     "dashboard": lambda rm, ctx: rm.dashboard(profile_id=ctx["profile_id"]),
     "catalog": lambda rm, ctx: rm.catalog(profile_id=ctx["profile_id"], locale="en", limit=50),
+    "profile_artifact": lambda rm, ctx: rm.profile_artifact(
+        ctx["artifact_id"], profile_id=ctx["profile_id"]
+    ),
     "blueprints": lambda rm, ctx: rm.blueprints(profile_id=ctx["profile_id"]),
     "blueprint_detail": lambda rm, ctx: rm.blueprint(ctx["blueprint_id"], profile_id=ctx["profile_id"]),
     "tasks": lambda rm, ctx: rm.tasks(profile_id=ctx["profile_id"]),

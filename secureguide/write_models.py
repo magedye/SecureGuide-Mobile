@@ -13,7 +13,12 @@ from __future__ import annotations
 from typing import Any
 
 from .errors import ValidationError
-from .read_models import CONTRACT_VERSION, ProfileSummary
+from .read_models import (
+    CONTRACT_VERSION,
+    AssessmentRecord,
+    OperationalItem,
+    ProfileSummary,
+)
 from .services import SecureGuideService
 
 __all__ = ["WriteModel"]
@@ -72,4 +77,39 @@ class WriteModel:
                 "originsAdded": result["origins_added"],
                 "profileArtifactIds": result["profile_artifact_ids"],
             }
+        )
+
+    def assess_artifact(self, payload: dict[str, Any]) -> dict[str, Any]:
+        artifact_id = payload.get("artifactId")
+        if not artifact_id or not str(artifact_id).strip():
+            raise ValidationError("artifactId is required")
+        assessment = self._service.assess_artifact(
+            str(artifact_id),
+            profile_id=payload.get("profileId"),
+            assessor_name=payload.get("assessorName"),
+            implementation_status=payload.get("implementationStatus"),
+            verification_status=payload.get("verificationStatus"),
+            effectiveness=payload.get("effectiveness"),
+            current_maturity_level=payload.get("currentMaturityLevel"),
+            assigned_owner=payload.get("assignedOwner"),
+            clear_assigned_owner=bool(payload.get("clearAssignedOwner", False)),
+            due_date=payload.get("dueDate"),
+            clear_due_date=bool(payload.get("clearDueDate", False)),
+            notes=payload.get("notes"),
+            clear_notes=bool(payload.get("clearNotes", False)),
+            priority_override=payload.get("priorityOverride"),
+            review_frequency_override=payload.get("reviewFrequencyOverride"),
+            clear_priority_override=bool(payload.get("clearPriorityOverride", False)),
+            clear_review_frequency_override=bool(
+                payload.get("clearReviewFrequencyOverride", False)
+            ),
+            score=payload.get("score"),
+            comments=payload.get("comments"),
+        )
+        detail = self._service.profile_artifact_detail(
+            str(artifact_id), profile_id=payload.get("profileId")
+        )
+        return _envelope(
+            assessment=AssessmentRecord.from_row(assessment).to_wire(),
+            artifact=OperationalItem.from_row(detail["artifact"]).to_wire(),
         )

@@ -37,6 +37,10 @@ STATIC_ROUTES = {
     "active_profile": ("/read/active-profile", {}),
     "dashboard": ("/read/dashboard", {"profileId": ["P-HQ"]}),
     "catalog": ("/read/catalog", {"profileId": ["P-HQ"], "locale": ["en"], "limit": ["50"]}),
+    "profile_artifact": (
+        "/read/profile-artifacts/A-IDENTITY",
+        {"profileId": ["P-HQ"]},
+    ),
     "blueprints": ("/read/blueprints", {"profileId": ["P-HQ"]}),
     "tasks": ("/read/tasks", {"profileId": ["P-HQ"]}),
     "report": ("/read/report", {"profileId": ["P-HQ"]}),
@@ -159,6 +163,78 @@ class SidecarContractTests(unittest.TestCase):
             self.write_model, "/write/select-artifacts", {"selectedBy": "analyst"}
         )
         self.assertEqual(status, 400)
+
+    def test_assessment_route_updates_state_and_appends_history(self) -> None:
+        status, payload = resolve_write(
+            self.write_model,
+            "/write/assessments",
+            {
+                "artifactId": "A-IDENTITY",
+                "profileId": "P-HQ",
+                "assessorName": "second-auditor",
+                "implementationStatus": "STS-PARTIAL",
+                "verificationStatus": "VER-FAIL",
+                "effectiveness": "EFF-MEDIUM",
+                "assignedOwner": "IAM Operations",
+                "dueDate": "2026-11-30",
+                "notes": "Remediation is assigned.",
+                "priorityOverride": "PRI-CRITICAL",
+                "reviewFrequencyOverride": "MONTHLY",
+                "score": 55,
+                "comments": "A remediation action remains open.",
+            },
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(payload["assessment"]["assessorName"], "second-auditor")
+        self.assertEqual(payload["artifact"]["implementationStatus"], "STS-PARTIAL")
+        self.assertEqual(payload["artifact"]["priorityOverride"], "PRI-CRITICAL")
+
+        detail = self.read_model.profile_artifact("A-IDENTITY", profile_id="P-HQ")
+        self.assertEqual(len(detail["assessments"]), 2)
+        self.assertEqual(detail["assessments"][0]["assessorName"], "second-auditor")
+        self.assertEqual(detail["artifact"]["exceptionStatus"], "EXC-NONE")
+
+        status, cleared = resolve_write(
+            self.write_model,
+            "/write/assessments",
+            {
+                "artifactId": "A-IDENTITY",
+                "profileId": "P-HQ",
+                "assessorName": "second-auditor",
+                "clearPriorityOverride": True,
+                "clearReviewFrequencyOverride": True,
+                "clearDueDate": True,
+                "clearAssignedOwner": True,
+                "clearNotes": True,
+            },
+        )
+        self.assertEqual(status, 200)
+        self.assertIsNone(cleared["artifact"]["priorityOverride"])
+        self.assertIsNone(cleared["artifact"]["reviewFrequencyOverride"])
+        self.assertIsNone(cleared["artifact"]["dueDate"])
+        self.assertIsNone(cleared["artifact"]["assignedOwner"])
+        self.assertIsNone(cleared["artifact"]["notes"])
+
+    def test_assessment_route_rejects_invalid_or_cross_profile_writes(self) -> None:
+        status, payload = resolve_write(
+            self.write_model,
+            "/write/assessments",
+            {"artifactId": "A-IDENTITY", "profileId": "P-HQ"},
+        )
+        self.assertEqual(status, 400)
+        self.assertEqual(payload["error"], "ValidationError")
+
+        status, payload = resolve_write(
+            self.write_model,
+            "/write/assessments",
+            {
+                "artifactId": "A-IDENTITY",
+                "profileId": "P-AUDIT",
+                "assessorName": "auditor",
+            },
+        )
+        self.assertEqual(status, 404)
+        self.assertEqual(payload["error"], "NotFoundError")
 
     def test_real_socket_post_creates_a_profile(self) -> None:
         server = build_server(self.db_path, port=0)

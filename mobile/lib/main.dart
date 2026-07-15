@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'read_model_contract.dart';
 import 'src/client/secure_guide_client.dart';
+import 'src/screens/assessment_screen.dart';
 import 'src/screens/catalog_screen.dart';
 import 'src/screens/dashboard_screen.dart';
 
@@ -58,7 +59,9 @@ class _HomeShellState extends State<HomeShell> {
       future: _future,
       builder: (context, snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {
-          return const Scaffold(body: Center(child: CircularProgressIndicator()));
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
         }
         if (snapshot.hasError) {
           return Scaffold(
@@ -113,6 +116,15 @@ class _HomeShellState extends State<HomeShell> {
             key: ValueKey(selected.id),
             client: widget.client,
             profileId: selected.id,
+            onAssess: (artifactId) => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => AssessmentScreen(
+                  client: widget.client,
+                  artifactId: artifactId,
+                  profileId: selected.id,
+                ),
+              ),
+            ),
           ),
         );
       },
@@ -127,15 +139,19 @@ class _HomeShellState extends State<HomeShell> {
     );
     if (name == null || name.trim().isEmpty) return;
     try {
-      final created =
-          await widget.client.createProfile(name: name.trim(), activate: true);
+      final created = await widget.client.createProfile(
+        name: name.trim(),
+        activate: true,
+      );
       if (!mounted) return;
       setState(() {
         _selectedId = created.id;
         _future = widget.client.profiles();
       });
     } catch (error) {
-      messenger.showSnackBar(SnackBar(content: Text('تعذّر إنشاء الملف: $error')));
+      messenger.showSnackBar(
+        SnackBar(content: Text('تعذّر إنشاء الملف: $error')),
+      );
     }
   }
 
@@ -149,7 +165,9 @@ class _HomeShellState extends State<HomeShell> {
         _future = widget.client.profiles();
       });
     } catch (error) {
-      messenger.showSnackBar(SnackBar(content: Text('تعذّر تفعيل الملف: $error')));
+      messenger.showSnackBar(
+        SnackBar(content: Text('تعذّر تفعيل الملف: $error')),
+      );
     }
   }
 

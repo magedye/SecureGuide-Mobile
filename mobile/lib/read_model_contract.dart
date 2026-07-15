@@ -50,28 +50,28 @@ class ProfileSummary {
   final bool? isActive;
 
   factory ProfileSummary.fromJson(Map<String, dynamic> json) => ProfileSummary(
-        id: json['id'] as String?,
-        name: json['name'] as String?,
-        description: json['description'] as String?,
-        profileKind: json['profileKind'] as String?,
-        organizationSize: json['organizationSize'] as String?,
-        industry: json['industry'] as String?,
-        country: json['country'] as String?,
-        targetMaturityLevel: json['targetMaturityLevel'] as String?,
-        isActive: json['isActive'] as bool?,
-      );
+    id: json['id'] as String?,
+    name: json['name'] as String?,
+    description: json['description'] as String?,
+    profileKind: json['profileKind'] as String?,
+    organizationSize: json['organizationSize'] as String?,
+    industry: json['industry'] as String?,
+    country: json['country'] as String?,
+    targetMaturityLevel: json['targetMaturityLevel'] as String?,
+    isActive: json['isActive'] as bool?,
+  );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'name': name,
-        'description': description,
-        'profileKind': profileKind,
-        'organizationSize': organizationSize,
-        'industry': industry,
-        'country': country,
-        'targetMaturityLevel': targetMaturityLevel,
-        'isActive': isActive,
-      };
+    'id': id,
+    'name': name,
+    'description': description,
+    'profileKind': profileKind,
+    'organizationSize': organizationSize,
+    'industry': industry,
+    'country': country,
+    'targetMaturityLevel': targetMaturityLevel,
+    'isActive': isActive,
+  };
 }
 
 /// The auditable `profile-score-v1` result, passed through unchanged.
@@ -123,52 +123,52 @@ class ScoreView {
   final Map<String, num> domainScores;
 
   factory ScoreView.fromJson(Map<String, dynamic> json) => ScoreView(
-        overall: json['overall'] as num?,
-        band: json['band'] as String?,
-        capped: json['capped'] as bool?,
-        formulaVersion: json['formulaVersion'] as String?,
-        assessmentCoverage: json['assessmentCoverage'] as num?,
-        riskReductionPct: json['riskReductionPct'] as num?,
-        implementationScoreRaw: json['implementationScoreRaw'] as num?,
-        verificationCoverage: json['verificationCoverage'] as num?,
-        verificationAssessmentCoverage:
-            json['verificationAssessmentCoverage'] as num?,
-        effectivenessKnown: json['effectivenessKnown'] as num?,
-        assessedControls: json['assessedControls'] as num?,
-        totalControls: json['totalControls'] as num?,
-        remainingCriticalRisk: json['remainingCriticalRisk'] as num?,
-        criticalTotal: json['criticalTotal'] as num?,
-        criticalCompliant: json['criticalCompliant'] as num?,
-        criticalAccepted: json['criticalAccepted'] as num?,
-        verifiedPass: json['verifiedPass'] as num?,
-        verifiedFail: json['verifiedFail'] as num?,
-        effectivenessKnownCount: json['effectivenessKnownCount'] as num?,
-        domainScores: (json['domainScores'] as Map<String, dynamic>? ?? const {})
-            .map((key, value) => MapEntry(key, value as num)),
-      );
+    overall: json['overall'] as num?,
+    band: json['band'] as String?,
+    capped: json['capped'] as bool?,
+    formulaVersion: json['formulaVersion'] as String?,
+    assessmentCoverage: json['assessmentCoverage'] as num?,
+    riskReductionPct: json['riskReductionPct'] as num?,
+    implementationScoreRaw: json['implementationScoreRaw'] as num?,
+    verificationCoverage: json['verificationCoverage'] as num?,
+    verificationAssessmentCoverage:
+        json['verificationAssessmentCoverage'] as num?,
+    effectivenessKnown: json['effectivenessKnown'] as num?,
+    assessedControls: json['assessedControls'] as num?,
+    totalControls: json['totalControls'] as num?,
+    remainingCriticalRisk: json['remainingCriticalRisk'] as num?,
+    criticalTotal: json['criticalTotal'] as num?,
+    criticalCompliant: json['criticalCompliant'] as num?,
+    criticalAccepted: json['criticalAccepted'] as num?,
+    verifiedPass: json['verifiedPass'] as num?,
+    verifiedFail: json['verifiedFail'] as num?,
+    effectivenessKnownCount: json['effectivenessKnownCount'] as num?,
+    domainScores: (json['domainScores'] as Map<String, dynamic>? ?? const {})
+        .map((key, value) => MapEntry(key, value as num)),
+  );
 
   Map<String, dynamic> toJson() => {
-        'overall': overall,
-        'band': band,
-        'capped': capped,
-        'formulaVersion': formulaVersion,
-        'assessmentCoverage': assessmentCoverage,
-        'riskReductionPct': riskReductionPct,
-        'implementationScoreRaw': implementationScoreRaw,
-        'verificationCoverage': verificationCoverage,
-        'verificationAssessmentCoverage': verificationAssessmentCoverage,
-        'effectivenessKnown': effectivenessKnown,
-        'assessedControls': assessedControls,
-        'totalControls': totalControls,
-        'remainingCriticalRisk': remainingCriticalRisk,
-        'criticalTotal': criticalTotal,
-        'criticalCompliant': criticalCompliant,
-        'criticalAccepted': criticalAccepted,
-        'verifiedPass': verifiedPass,
-        'verifiedFail': verifiedFail,
-        'effectivenessKnownCount': effectivenessKnownCount,
-        'domainScores': domainScores,
-      };
+    'overall': overall,
+    'band': band,
+    'capped': capped,
+    'formulaVersion': formulaVersion,
+    'assessmentCoverage': assessmentCoverage,
+    'riskReductionPct': riskReductionPct,
+    'implementationScoreRaw': implementationScoreRaw,
+    'verificationCoverage': verificationCoverage,
+    'verificationAssessmentCoverage': verificationAssessmentCoverage,
+    'effectivenessKnown': effectivenessKnown,
+    'assessedControls': assessedControls,
+    'totalControls': totalControls,
+    'remainingCriticalRisk': remainingCriticalRisk,
+    'criticalTotal': criticalTotal,
+    'criticalCompliant': criticalCompliant,
+    'criticalAccepted': criticalAccepted,
+    'verifiedPass': verifiedPass,
+    'verifiedFail': verifiedFail,
+    'effectivenessKnownCount': effectivenessKnownCount,
+    'domainScores': domainScores,
+  };
 }
 
 /// Rollup counts from `v_profile_dashboard`.
@@ -197,7 +197,8 @@ class DashboardCounts {
   final num? openGaps;
   final num? overdueItems;
 
-  factory DashboardCounts.fromJson(Map<String, dynamic> json) => DashboardCounts(
+  factory DashboardCounts.fromJson(Map<String, dynamic> json) =>
+      DashboardCounts(
         totalItems: json['totalItems'] as num?,
         applicableItems: json['applicableItems'] as num?,
         implementedFull: json['implementedFull'] as num?,
@@ -211,17 +212,17 @@ class DashboardCounts {
       );
 
   Map<String, dynamic> toJson() => {
-        'totalItems': totalItems,
-        'applicableItems': applicableItems,
-        'implementedFull': implementedFull,
-        'implementedPartial': implementedPartial,
-        'notApplied': notApplied,
-        'verifiedPass': verifiedPass,
-        'verifiedFail': verifiedFail,
-        'withException': withException,
-        'openGaps': openGaps,
-        'overdueItems': overdueItems,
-      };
+    'totalItems': totalItems,
+    'applicableItems': applicableItems,
+    'implementedFull': implementedFull,
+    'implementedPartial': implementedPartial,
+    'notApplied': notApplied,
+    'verifiedPass': verifiedPass,
+    'verifiedFail': verifiedFail,
+    'withException': withException,
+    'openGaps': openGaps,
+    'overdueItems': overdueItems,
+  };
 }
 
 /// One open gap from `v_gap_analysis`.
@@ -253,32 +254,32 @@ class GapItem {
   final String? dueDate;
 
   factory GapItem.fromJson(Map<String, dynamic> json) => GapItem(
-        artifactId: json['artifactId'] as String?,
-        titleEn: json['titleEn'] as String?,
-        primaryDomain: json['primaryDomain'] as String?,
-        subDomain: json['subDomain'] as String?,
-        priority: json['priority'] as String?,
-        implementationStatus: json['implementationStatus'] as String?,
-        verificationStatus: json['verificationStatus'] as String?,
-        effectiveness: json['effectiveness'] as String?,
-        exceptionStatus: json['exceptionStatus'] as String?,
-        assignedOwner: json['assignedOwner'] as String?,
-        dueDate: json['dueDate'] as String?,
-      );
+    artifactId: json['artifactId'] as String?,
+    titleEn: json['titleEn'] as String?,
+    primaryDomain: json['primaryDomain'] as String?,
+    subDomain: json['subDomain'] as String?,
+    priority: json['priority'] as String?,
+    implementationStatus: json['implementationStatus'] as String?,
+    verificationStatus: json['verificationStatus'] as String?,
+    effectiveness: json['effectiveness'] as String?,
+    exceptionStatus: json['exceptionStatus'] as String?,
+    assignedOwner: json['assignedOwner'] as String?,
+    dueDate: json['dueDate'] as String?,
+  );
 
   Map<String, dynamic> toJson() => {
-        'artifactId': artifactId,
-        'titleEn': titleEn,
-        'primaryDomain': primaryDomain,
-        'subDomain': subDomain,
-        'priority': priority,
-        'implementationStatus': implementationStatus,
-        'verificationStatus': verificationStatus,
-        'effectiveness': effectiveness,
-        'exceptionStatus': exceptionStatus,
-        'assignedOwner': assignedOwner,
-        'dueDate': dueDate,
-      };
+    'artifactId': artifactId,
+    'titleEn': titleEn,
+    'primaryDomain': primaryDomain,
+    'subDomain': subDomain,
+    'priority': priority,
+    'implementationStatus': implementationStatus,
+    'verificationStatus': verificationStatus,
+    'effectiveness': effectiveness,
+    'exceptionStatus': exceptionStatus,
+    'assignedOwner': assignedOwner,
+    'dueDate': dueDate,
+  };
 }
 
 /// One deterministic recommendation from the scoring engine.
@@ -306,11 +307,11 @@ class RecommendationItem {
       );
 
   Map<String, dynamic> toJson() => {
-        'artifactId': artifactId,
-        'priority': priority,
-        'dependencyReady': dependencyReady,
-        'reasonCodes': reasonCodes,
-      };
+    'artifactId': artifactId,
+    'priority': priority,
+    'dependencyReady': dependencyReady,
+    'reasonCodes': reasonCodes,
+  };
 }
 
 /// A selected artifact with its single-profile operational state
@@ -322,12 +323,19 @@ class OperationalItem {
     this.type,
     this.titleEn,
     this.titleAr,
+    this.definitionShortEn,
+    this.definitionShortAr,
     this.primaryDomain,
     this.subDomain,
+    this.source,
+    this.sourceDocument,
     this.obligationLevel,
+    this.testability,
     this.inclusionStatus,
     this.effectivePriority,
     this.effectiveReviewFrequency,
+    this.priorityOverride,
+    this.reviewFrequencyOverride,
     this.implementationStatus,
     this.verificationStatus,
     this.effectiveness,
@@ -335,9 +343,12 @@ class OperationalItem {
     this.currentMaturityLevel,
     this.assignedOwner,
     this.dueDate,
+    this.notes,
     this.evidenceCount,
     this.originCount,
     this.lastAssessmentAt,
+    this.selectedAt,
+    this.updatedAt,
   });
 
   final String? profileArtifactId;
@@ -345,12 +356,19 @@ class OperationalItem {
   final String? type;
   final String? titleEn;
   final String? titleAr;
+  final String? definitionShortEn;
+  final String? definitionShortAr;
   final String? primaryDomain;
   final String? subDomain;
+  final String? source;
+  final String? sourceDocument;
   final String? obligationLevel;
+  final String? testability;
   final String? inclusionStatus;
   final String? effectivePriority;
   final String? effectiveReviewFrequency;
+  final String? priorityOverride;
+  final String? reviewFrequencyOverride;
   final String? implementationStatus;
   final String? verificationStatus;
   final String? effectiveness;
@@ -358,22 +376,33 @@ class OperationalItem {
   final String? currentMaturityLevel;
   final String? assignedOwner;
   final String? dueDate;
+  final String? notes;
   final num? evidenceCount;
   final num? originCount;
   final String? lastAssessmentAt;
+  final String? selectedAt;
+  final String? updatedAt;
 
-  factory OperationalItem.fromJson(Map<String, dynamic> json) => OperationalItem(
+  factory OperationalItem.fromJson(Map<String, dynamic> json) =>
+      OperationalItem(
         profileArtifactId: json['profileArtifactId'] as String?,
         artifactId: json['artifactId'] as String?,
         type: json['type'] as String?,
         titleEn: json['titleEn'] as String?,
         titleAr: json['titleAr'] as String?,
+        definitionShortEn: json['definitionShortEn'] as String?,
+        definitionShortAr: json['definitionShortAr'] as String?,
         primaryDomain: json['primaryDomain'] as String?,
         subDomain: json['subDomain'] as String?,
+        source: json['source'] as String?,
+        sourceDocument: json['sourceDocument'] as String?,
         obligationLevel: json['obligationLevel'] as String?,
+        testability: json['testability'] as String?,
         inclusionStatus: json['inclusionStatus'] as String?,
         effectivePriority: json['effectivePriority'] as String?,
         effectiveReviewFrequency: json['effectiveReviewFrequency'] as String?,
+        priorityOverride: json['priorityOverride'] as String?,
+        reviewFrequencyOverride: json['reviewFrequencyOverride'] as String?,
         implementationStatus: json['implementationStatus'] as String?,
         verificationStatus: json['verificationStatus'] as String?,
         effectiveness: json['effectiveness'] as String?,
@@ -381,34 +410,47 @@ class OperationalItem {
         currentMaturityLevel: json['currentMaturityLevel'] as String?,
         assignedOwner: json['assignedOwner'] as String?,
         dueDate: json['dueDate'] as String?,
+        notes: json['notes'] as String?,
         evidenceCount: json['evidenceCount'] as num?,
         originCount: json['originCount'] as num?,
         lastAssessmentAt: json['lastAssessmentAt'] as String?,
+        selectedAt: json['selectedAt'] as String?,
+        updatedAt: json['updatedAt'] as String?,
       );
 
   Map<String, dynamic> toJson() => {
-        'profileArtifactId': profileArtifactId,
-        'artifactId': artifactId,
-        'type': type,
-        'titleEn': titleEn,
-        'titleAr': titleAr,
-        'primaryDomain': primaryDomain,
-        'subDomain': subDomain,
-        'obligationLevel': obligationLevel,
-        'inclusionStatus': inclusionStatus,
-        'effectivePriority': effectivePriority,
-        'effectiveReviewFrequency': effectiveReviewFrequency,
-        'implementationStatus': implementationStatus,
-        'verificationStatus': verificationStatus,
-        'effectiveness': effectiveness,
-        'exceptionStatus': exceptionStatus,
-        'currentMaturityLevel': currentMaturityLevel,
-        'assignedOwner': assignedOwner,
-        'dueDate': dueDate,
-        'evidenceCount': evidenceCount,
-        'originCount': originCount,
-        'lastAssessmentAt': lastAssessmentAt,
-      };
+    'profileArtifactId': profileArtifactId,
+    'artifactId': artifactId,
+    'type': type,
+    'titleEn': titleEn,
+    'titleAr': titleAr,
+    'definitionShortEn': definitionShortEn,
+    'definitionShortAr': definitionShortAr,
+    'primaryDomain': primaryDomain,
+    'subDomain': subDomain,
+    'source': source,
+    'sourceDocument': sourceDocument,
+    'obligationLevel': obligationLevel,
+    'testability': testability,
+    'inclusionStatus': inclusionStatus,
+    'effectivePriority': effectivePriority,
+    'effectiveReviewFrequency': effectiveReviewFrequency,
+    'priorityOverride': priorityOverride,
+    'reviewFrequencyOverride': reviewFrequencyOverride,
+    'implementationStatus': implementationStatus,
+    'verificationStatus': verificationStatus,
+    'effectiveness': effectiveness,
+    'exceptionStatus': exceptionStatus,
+    'currentMaturityLevel': currentMaturityLevel,
+    'assignedOwner': assignedOwner,
+    'dueDate': dueDate,
+    'notes': notes,
+    'evidenceCount': evidenceCount,
+    'originCount': originCount,
+    'lastAssessmentAt': lastAssessmentAt,
+    'selectedAt': selectedAt,
+    'updatedAt': updatedAt,
+  };
 }
 
 /// Envelope for the `profiles()` surface.
@@ -422,14 +464,14 @@ class ProfilesView {
   final List<ProfileSummary> profiles;
 
   factory ProfilesView.fromJson(Map<String, dynamic> json) => ProfilesView(
-        contractVersion: json['contractVersion'] as String,
-        profiles: _mapList(json['profiles'], ProfileSummary.fromJson),
-      );
+    contractVersion: json['contractVersion'] as String,
+    profiles: _mapList(json['profiles'], ProfileSummary.fromJson),
+  );
 
   Map<String, dynamic> toJson() => {
-        'contractVersion': contractVersion,
-        'profiles': profiles.map((e) => e.toJson()).toList(),
-      };
+    'contractVersion': contractVersion,
+    'profiles': profiles.map((e) => e.toJson()).toList(),
+  };
 }
 
 /// Envelope for the `dashboard()` surface.
@@ -453,27 +495,27 @@ class DashboardView {
   final List<OperationalItem> reviewQueue;
 
   factory DashboardView.fromJson(Map<String, dynamic> json) => DashboardView(
-        contractVersion: json['contractVersion'] as String,
-        profile:
-            ProfileSummary.fromJson(json['profile'] as Map<String, dynamic>),
-        counts:
-            DashboardCounts.fromJson(json['counts'] as Map<String, dynamic>),
-        score: ScoreView.fromJson(json['score'] as Map<String, dynamic>),
-        gaps: _mapList(json['gaps'], GapItem.fromJson),
-        recommendations:
-            _mapList(json['recommendations'], RecommendationItem.fromJson),
-        reviewQueue: _mapList(json['reviewQueue'], OperationalItem.fromJson),
-      );
+    contractVersion: json['contractVersion'] as String,
+    profile: ProfileSummary.fromJson(json['profile'] as Map<String, dynamic>),
+    counts: DashboardCounts.fromJson(json['counts'] as Map<String, dynamic>),
+    score: ScoreView.fromJson(json['score'] as Map<String, dynamic>),
+    gaps: _mapList(json['gaps'], GapItem.fromJson),
+    recommendations: _mapList(
+      json['recommendations'],
+      RecommendationItem.fromJson,
+    ),
+    reviewQueue: _mapList(json['reviewQueue'], OperationalItem.fromJson),
+  );
 
   Map<String, dynamic> toJson() => {
-        'contractVersion': contractVersion,
-        'profile': profile.toJson(),
-        'counts': counts.toJson(),
-        'score': score.toJson(),
-        'gaps': gaps.map((e) => e.toJson()).toList(),
-        'recommendations': recommendations.map((e) => e.toJson()).toList(),
-        'reviewQueue': reviewQueue.map((e) => e.toJson()).toList(),
-      };
+    'contractVersion': contractVersion,
+    'profile': profile.toJson(),
+    'counts': counts.toJson(),
+    'score': score.toJson(),
+    'gaps': gaps.map((e) => e.toJson()).toList(),
+    'recommendations': recommendations.map((e) => e.toJson()).toList(),
+    'reviewQueue': reviewQueue.map((e) => e.toJson()).toList(),
+  };
 }
 
 /// A Master-Catalog artifact with an optional active-profile state overlay
@@ -530,56 +572,56 @@ class CatalogItem {
   final num? evidenceCount;
 
   factory CatalogItem.fromJson(Map<String, dynamic> json) => CatalogItem(
-        id: json['id'] as String?,
-        type: json['type'] as String?,
-        title: json['title'] as String?,
-        definitionShort: json['definitionShort'] as String?,
-        primaryDomain: json['primaryDomain'] as String?,
-        subDomain: json['subDomain'] as String?,
-        source: json['source'] as String?,
-        sourceDocument: json['sourceDocument'] as String?,
-        obligationLevel: json['obligationLevel'] as String?,
-        testability: json['testability'] as String?,
-        aiReviewStatus: json['aiReviewStatus'] as String?,
-        publicationStatus: json['publicationStatus'] as String?,
-        effectivePriority: json['effectivePriority'] as String?,
-        isSelected: json['isSelected'] as bool?,
-        profileArtifactId: json['profileArtifactId'] as String?,
-        inclusionStatus: json['inclusionStatus'] as String?,
-        implementationStatus: json['implementationStatus'] as String?,
-        verificationStatus: json['verificationStatus'] as String?,
-        effectiveness: json['effectiveness'] as String?,
-        exceptionStatus: json['exceptionStatus'] as String?,
-        assignedOwner: json['assignedOwner'] as String?,
-        dueDate: json['dueDate'] as String?,
-        evidenceCount: json['evidenceCount'] as num?,
-      );
+    id: json['id'] as String?,
+    type: json['type'] as String?,
+    title: json['title'] as String?,
+    definitionShort: json['definitionShort'] as String?,
+    primaryDomain: json['primaryDomain'] as String?,
+    subDomain: json['subDomain'] as String?,
+    source: json['source'] as String?,
+    sourceDocument: json['sourceDocument'] as String?,
+    obligationLevel: json['obligationLevel'] as String?,
+    testability: json['testability'] as String?,
+    aiReviewStatus: json['aiReviewStatus'] as String?,
+    publicationStatus: json['publicationStatus'] as String?,
+    effectivePriority: json['effectivePriority'] as String?,
+    isSelected: json['isSelected'] as bool?,
+    profileArtifactId: json['profileArtifactId'] as String?,
+    inclusionStatus: json['inclusionStatus'] as String?,
+    implementationStatus: json['implementationStatus'] as String?,
+    verificationStatus: json['verificationStatus'] as String?,
+    effectiveness: json['effectiveness'] as String?,
+    exceptionStatus: json['exceptionStatus'] as String?,
+    assignedOwner: json['assignedOwner'] as String?,
+    dueDate: json['dueDate'] as String?,
+    evidenceCount: json['evidenceCount'] as num?,
+  );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'type': type,
-        'title': title,
-        'definitionShort': definitionShort,
-        'primaryDomain': primaryDomain,
-        'subDomain': subDomain,
-        'source': source,
-        'sourceDocument': sourceDocument,
-        'obligationLevel': obligationLevel,
-        'testability': testability,
-        'aiReviewStatus': aiReviewStatus,
-        'publicationStatus': publicationStatus,
-        'effectivePriority': effectivePriority,
-        'isSelected': isSelected,
-        'profileArtifactId': profileArtifactId,
-        'inclusionStatus': inclusionStatus,
-        'implementationStatus': implementationStatus,
-        'verificationStatus': verificationStatus,
-        'effectiveness': effectiveness,
-        'exceptionStatus': exceptionStatus,
-        'assignedOwner': assignedOwner,
-        'dueDate': dueDate,
-        'evidenceCount': evidenceCount,
-      };
+    'id': id,
+    'type': type,
+    'title': title,
+    'definitionShort': definitionShort,
+    'primaryDomain': primaryDomain,
+    'subDomain': subDomain,
+    'source': source,
+    'sourceDocument': sourceDocument,
+    'obligationLevel': obligationLevel,
+    'testability': testability,
+    'aiReviewStatus': aiReviewStatus,
+    'publicationStatus': publicationStatus,
+    'effectivePriority': effectivePriority,
+    'isSelected': isSelected,
+    'profileArtifactId': profileArtifactId,
+    'inclusionStatus': inclusionStatus,
+    'implementationStatus': implementationStatus,
+    'verificationStatus': verificationStatus,
+    'effectiveness': effectiveness,
+    'exceptionStatus': exceptionStatus,
+    'assignedOwner': assignedOwner,
+    'dueDate': dueDate,
+    'evidenceCount': evidenceCount,
+  };
 }
 
 /// An operational task from `v_profile_task_queue`.
@@ -627,48 +669,48 @@ class TaskItem {
   final String? updatedAt;
 
   factory TaskItem.fromJson(Map<String, dynamic> json) => TaskItem(
-        id: json['id'] as String?,
-        title: json['title'] as String?,
-        description: json['description'] as String?,
-        status: json['status'] as String?,
-        priority: json['priority'] as String?,
-        assignedTo: json['assignedTo'] as String?,
-        dueDate: json['dueDate'] as String?,
-        artifactId: json['artifactId'] as String?,
-        artifactTitleEn: json['artifactTitleEn'] as String?,
-        primaryDomain: json['primaryDomain'] as String?,
-        subDomain: json['subDomain'] as String?,
-        blueprintId: json['blueprintId'] as String?,
-        blueprintVersion: json['blueprintVersion'] as num?,
-        actionPlanType: json['actionPlanType'] as String?,
-        sourceSemanticKey: json['sourceSemanticKey'] as String?,
-        lastChangedBy: json['lastChangedBy'] as String?,
-        lastChangeNote: json['lastChangeNote'] as String?,
-        completedAt: json['completedAt'] as String?,
-        updatedAt: json['updatedAt'] as String?,
-      );
+    id: json['id'] as String?,
+    title: json['title'] as String?,
+    description: json['description'] as String?,
+    status: json['status'] as String?,
+    priority: json['priority'] as String?,
+    assignedTo: json['assignedTo'] as String?,
+    dueDate: json['dueDate'] as String?,
+    artifactId: json['artifactId'] as String?,
+    artifactTitleEn: json['artifactTitleEn'] as String?,
+    primaryDomain: json['primaryDomain'] as String?,
+    subDomain: json['subDomain'] as String?,
+    blueprintId: json['blueprintId'] as String?,
+    blueprintVersion: json['blueprintVersion'] as num?,
+    actionPlanType: json['actionPlanType'] as String?,
+    sourceSemanticKey: json['sourceSemanticKey'] as String?,
+    lastChangedBy: json['lastChangedBy'] as String?,
+    lastChangeNote: json['lastChangeNote'] as String?,
+    completedAt: json['completedAt'] as String?,
+    updatedAt: json['updatedAt'] as String?,
+  );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'title': title,
-        'description': description,
-        'status': status,
-        'priority': priority,
-        'assignedTo': assignedTo,
-        'dueDate': dueDate,
-        'artifactId': artifactId,
-        'artifactTitleEn': artifactTitleEn,
-        'primaryDomain': primaryDomain,
-        'subDomain': subDomain,
-        'blueprintId': blueprintId,
-        'blueprintVersion': blueprintVersion,
-        'actionPlanType': actionPlanType,
-        'sourceSemanticKey': sourceSemanticKey,
-        'lastChangedBy': lastChangedBy,
-        'lastChangeNote': lastChangeNote,
-        'completedAt': completedAt,
-        'updatedAt': updatedAt,
-      };
+    'id': id,
+    'title': title,
+    'description': description,
+    'status': status,
+    'priority': priority,
+    'assignedTo': assignedTo,
+    'dueDate': dueDate,
+    'artifactId': artifactId,
+    'artifactTitleEn': artifactTitleEn,
+    'primaryDomain': primaryDomain,
+    'subDomain': subDomain,
+    'blueprintId': blueprintId,
+    'blueprintVersion': blueprintVersion,
+    'actionPlanType': actionPlanType,
+    'sourceSemanticKey': sourceSemanticKey,
+    'lastChangedBy': lastChangedBy,
+    'lastChangeNote': lastChangeNote,
+    'completedAt': completedAt,
+    'updatedAt': updatedAt,
+  };
 }
 
 /// Envelope for the `catalog()` surface — one page of catalog results.
@@ -692,24 +734,24 @@ class CatalogView {
   final List<CatalogItem> items;
 
   factory CatalogView.fromJson(Map<String, dynamic> json) => CatalogView(
-        contractVersion: json['contractVersion'] as String,
-        locale: json['locale'] as String?,
-        query: json['query'] as String?,
-        limit: json['limit'] as num?,
-        offset: json['offset'] as num?,
-        count: json['count'] as num?,
-        items: _mapList(json['items'], CatalogItem.fromJson),
-      );
+    contractVersion: json['contractVersion'] as String,
+    locale: json['locale'] as String?,
+    query: json['query'] as String?,
+    limit: json['limit'] as num?,
+    offset: json['offset'] as num?,
+    count: json['count'] as num?,
+    items: _mapList(json['items'], CatalogItem.fromJson),
+  );
 
   Map<String, dynamic> toJson() => {
-        'contractVersion': contractVersion,
-        'locale': locale,
-        'query': query,
-        'limit': limit,
-        'offset': offset,
-        'count': count,
-        'items': items.map((e) => e.toJson()).toList(),
-      };
+    'contractVersion': contractVersion,
+    'locale': locale,
+    'query': query,
+    'limit': limit,
+    'offset': offset,
+    'count': count,
+    'items': items.map((e) => e.toJson()).toList(),
+  };
 }
 
 /// Envelope for the `tasks()` surface.
@@ -723,14 +765,14 @@ class TasksView {
   final List<TaskItem> tasks;
 
   factory TasksView.fromJson(Map<String, dynamic> json) => TasksView(
-        contractVersion: json['contractVersion'] as String,
-        tasks: _mapList(json['tasks'], TaskItem.fromJson),
-      );
+    contractVersion: json['contractVersion'] as String,
+    tasks: _mapList(json['tasks'], TaskItem.fromJson),
+  );
 
   Map<String, dynamic> toJson() => {
-        'contractVersion': contractVersion,
-        'tasks': tasks.map((e) => e.toJson()).toList(),
-      };
+    'contractVersion': contractVersion,
+    'tasks': tasks.map((e) => e.toJson()).toList(),
+  };
 }
 
 /// A governed blueprint row from `v_profile_blueprints`, for list views.
@@ -795,24 +837,24 @@ class BlueprintSummary {
       );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'artifactId': artifactId,
-        'artifactTitleEn': artifactTitleEn,
-        'artifactTitleAr': artifactTitleAr,
-        'title': title,
-        'version': version,
-        'workflowStatus': workflowStatus,
-        'actionPlanType': actionPlanType,
-        'generationConfidence': generationConfidence,
-        'generationRequiresReview': generationRequiresReview,
-        'actionCount': actionCount,
-        'evidenceCount': evidenceCount,
-        'taskCount': taskCount,
-        'createdBy': createdBy,
-        'approvedBy': approvedBy,
-        'approvedAt': approvedAt,
-        'updatedAt': updatedAt,
-      };
+    'id': id,
+    'artifactId': artifactId,
+    'artifactTitleEn': artifactTitleEn,
+    'artifactTitleAr': artifactTitleAr,
+    'title': title,
+    'version': version,
+    'workflowStatus': workflowStatus,
+    'actionPlanType': actionPlanType,
+    'generationConfidence': generationConfidence,
+    'generationRequiresReview': generationRequiresReview,
+    'actionCount': actionCount,
+    'evidenceCount': evidenceCount,
+    'taskCount': taskCount,
+    'createdBy': createdBy,
+    'approvedBy': approvedBy,
+    'approvedAt': approvedAt,
+    'updatedAt': updatedAt,
+  };
 }
 
 /// Envelope for the `blueprints()` surface.
@@ -826,14 +868,14 @@ class BlueprintsView {
   final List<BlueprintSummary> blueprints;
 
   factory BlueprintsView.fromJson(Map<String, dynamic> json) => BlueprintsView(
-        contractVersion: json['contractVersion'] as String,
-        blueprints: _mapList(json['blueprints'], BlueprintSummary.fromJson),
-      );
+    contractVersion: json['contractVersion'] as String,
+    blueprints: _mapList(json['blueprints'], BlueprintSummary.fromJson),
+  );
 
   Map<String, dynamic> toJson() => {
-        'contractVersion': contractVersion,
-        'blueprints': blueprints.map((e) => e.toJson()).toList(),
-      };
+    'contractVersion': contractVersion,
+    'blueprints': blueprints.map((e) => e.toJson()).toList(),
+  };
 }
 
 /// A rule (id + version) that emitted a blueprint action/output/evidence item.
@@ -844,14 +886,14 @@ class SourceRule {
   final String? ruleVersion;
 
   factory SourceRule.fromJson(Map<String, dynamic> json) => SourceRule(
-        ruleId: json['ruleId'] as String?,
-        ruleVersion: json['ruleVersion'] as String?,
-      );
+    ruleId: json['ruleId'] as String?,
+    ruleVersion: json['ruleVersion'] as String?,
+  );
 
   Map<String, dynamic> toJson() => {
-        'ruleId': ruleId,
-        'ruleVersion': ruleVersion,
-      };
+    'ruleId': ruleId,
+    'ruleVersion': ruleVersion,
+  };
 }
 
 /// A classification rule that fired during generation.
@@ -873,22 +915,22 @@ class AppliedRule {
   final num? baseConfidence;
 
   factory AppliedRule.fromJson(Map<String, dynamic> json) => AppliedRule(
-        ruleId: json['ruleId'] as String?,
-        ruleVersion: json['ruleVersion'] as String?,
-        stage: json['stage'] as String?,
-        priority: json['priority'] as num?,
-        rationale: json['rationale'] as String?,
-        baseConfidence: json['baseConfidence'] as num?,
-      );
+    ruleId: json['ruleId'] as String?,
+    ruleVersion: json['ruleVersion'] as String?,
+    stage: json['stage'] as String?,
+    priority: json['priority'] as num?,
+    rationale: json['rationale'] as String?,
+    baseConfidence: json['baseConfidence'] as num?,
+  );
 
   Map<String, dynamic> toJson() => {
-        'ruleId': ruleId,
-        'ruleVersion': ruleVersion,
-        'stage': stage,
-        'priority': priority,
-        'rationale': rationale,
-        'baseConfidence': baseConfidence,
-      };
+    'ruleId': ruleId,
+    'ruleVersion': ruleVersion,
+    'stage': stage,
+    'priority': priority,
+    'rationale': rationale,
+    'baseConfidence': baseConfidence,
+  };
 }
 
 /// A generated implementation action; `taskable` ones become tasks once approved.
@@ -925,7 +967,8 @@ class BlueprintAction {
   final String? sourceCitation;
   final List<SourceRule> sourceRules;
 
-  factory BlueprintAction.fromJson(Map<String, dynamic> json) => BlueprintAction(
+  factory BlueprintAction.fromJson(Map<String, dynamic> json) =>
+      BlueprintAction(
         id: json['id'] as String?,
         actionCode: json['actionCode'] as String?,
         semanticKey: json['semanticKey'] as String?,
@@ -943,21 +986,21 @@ class BlueprintAction {
       );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'actionCode': actionCode,
-        'semanticKey': semanticKey,
-        'title': title,
-        'description': description,
-        'category': category,
-        'phase': phase,
-        'displayOrder': displayOrder,
-        'rationale': rationale,
-        'confidence': confidence,
-        'taskable': taskable,
-        'requiresHumanReview': requiresHumanReview,
-        'sourceCitation': sourceCitation,
-        'sourceRules': sourceRules.map((e) => e.toJson()).toList(),
-      };
+    'id': id,
+    'actionCode': actionCode,
+    'semanticKey': semanticKey,
+    'title': title,
+    'description': description,
+    'category': category,
+    'phase': phase,
+    'displayOrder': displayOrder,
+    'rationale': rationale,
+    'confidence': confidence,
+    'taskable': taskable,
+    'requiresHumanReview': requiresHumanReview,
+    'sourceCitation': sourceCitation,
+    'sourceRules': sourceRules.map((e) => e.toJson()).toList(),
+  };
 }
 
 /// An expected output artifact the plan should produce.
@@ -981,24 +1024,24 @@ class ExpectedOutput {
   final List<SourceRule> sourceRules;
 
   factory ExpectedOutput.fromJson(Map<String, dynamic> json) => ExpectedOutput(
-        id: json['id'] as String?,
-        outputCode: json['outputCode'] as String?,
-        semanticKey: json['semanticKey'] as String?,
-        title: json['title'] as String?,
-        description: json['description'] as String?,
-        rationale: json['rationale'] as String?,
-        sourceRules: _mapList(json['sourceRules'], SourceRule.fromJson),
-      );
+    id: json['id'] as String?,
+    outputCode: json['outputCode'] as String?,
+    semanticKey: json['semanticKey'] as String?,
+    title: json['title'] as String?,
+    description: json['description'] as String?,
+    rationale: json['rationale'] as String?,
+    sourceRules: _mapList(json['sourceRules'], SourceRule.fromJson),
+  );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'outputCode': outputCode,
-        'semanticKey': semanticKey,
-        'title': title,
-        'description': description,
-        'rationale': rationale,
-        'sourceRules': sourceRules.map((e) => e.toJson()).toList(),
-      };
+    'id': id,
+    'outputCode': outputCode,
+    'semanticKey': semanticKey,
+    'title': title,
+    'description': description,
+    'rationale': rationale,
+    'sourceRules': sourceRules.map((e) => e.toJson()).toList(),
+  };
 }
 
 /// A required evidence item for the plan.
@@ -1048,19 +1091,19 @@ class EvidenceRequirement {
       );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'evidenceCode': evidenceCode,
-        'semanticKey': semanticKey,
-        'title': title,
-        'evidenceType': evidenceType,
-        'description': description,
-        'rationale': rationale,
-        'mandatory': mandatory,
-        'confidence': confidence,
-        'requiresHumanReview': requiresHumanReview,
-        'sourceCitation': sourceCitation,
-        'sourceRules': sourceRules.map((e) => e.toJson()).toList(),
-      };
+    'id': id,
+    'evidenceCode': evidenceCode,
+    'semanticKey': semanticKey,
+    'title': title,
+    'evidenceType': evidenceType,
+    'description': description,
+    'rationale': rationale,
+    'mandatory': mandatory,
+    'confidence': confidence,
+    'requiresHumanReview': requiresHumanReview,
+    'sourceCitation': sourceCitation,
+    'sourceRules': sourceRules.map((e) => e.toJson()).toList(),
+  };
 }
 
 /// A non-authoritative operational-pattern enrichment frozen onto a draft.
@@ -1119,22 +1162,22 @@ class PatternEnrichment {
       );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'sourcePatternId': sourcePatternId,
-        'recommendedArtifactType': recommendedArtifactType,
-        'primaryDomain': primaryDomain,
-        'subDomain': subDomain,
-        'patternPriority': patternPriority,
-        'copiedTitleAr': copiedTitleAr,
-        'copiedTextAr': copiedTextAr,
-        'safetyReviewRequired': safetyReviewRequired,
-        'safetyAcknowledged': safetyAcknowledged,
-        'safetyNoteAr': safetyNoteAr,
-        'libraryVersion': libraryVersion,
-        'selectedBy': selectedBy,
-        'selectionReason': selectionReason,
-        'selectedAt': selectedAt,
-      };
+    'id': id,
+    'sourcePatternId': sourcePatternId,
+    'recommendedArtifactType': recommendedArtifactType,
+    'primaryDomain': primaryDomain,
+    'subDomain': subDomain,
+    'patternPriority': patternPriority,
+    'copiedTitleAr': copiedTitleAr,
+    'copiedTextAr': copiedTextAr,
+    'safetyReviewRequired': safetyReviewRequired,
+    'safetyAcknowledged': safetyAcknowledged,
+    'safetyNoteAr': safetyNoteAr,
+    'libraryVersion': libraryVersion,
+    'selectedBy': selectedBy,
+    'selectionReason': selectionReason,
+    'selectedAt': selectedAt,
+  };
 }
 
 /// A generation review reason / normalization / conflict finding.
@@ -1158,24 +1201,24 @@ class ReviewFinding {
   final String? quality;
 
   factory ReviewFinding.fromJson(Map<String, dynamic> json) => ReviewFinding(
-        findingType: json['findingType'] as String?,
-        findingCode: json['findingCode'] as String?,
-        fieldName: json['fieldName'] as String?,
-        inputValue: json['inputValue'] as String?,
-        canonicalValue: json['canonicalValue'] as String?,
-        detail: json['detail'] as String?,
-        quality: json['quality'] as String?,
-      );
+    findingType: json['findingType'] as String?,
+    findingCode: json['findingCode'] as String?,
+    fieldName: json['fieldName'] as String?,
+    inputValue: json['inputValue'] as String?,
+    canonicalValue: json['canonicalValue'] as String?,
+    detail: json['detail'] as String?,
+    quality: json['quality'] as String?,
+  );
 
   Map<String, dynamic> toJson() => {
-        'findingType': findingType,
-        'findingCode': findingCode,
-        'fieldName': fieldName,
-        'inputValue': inputValue,
-        'canonicalValue': canonicalValue,
-        'detail': detail,
-        'quality': quality,
-      };
+    'findingType': findingType,
+    'findingCode': findingCode,
+    'fieldName': fieldName,
+    'inputValue': inputValue,
+    'canonicalValue': canonicalValue,
+    'detail': detail,
+    'quality': quality,
+  };
 }
 
 /// The full governed-blueprint snapshot with its nested collections. Unlike the
@@ -1244,73 +1287,74 @@ class BlueprintDetail {
   final List<PatternEnrichment> patternEnrichments;
   final List<ReviewFinding> reviewFindings;
 
-  factory BlueprintDetail.fromJson(Map<String, dynamic> json) => BlueprintDetail(
-        id: json['id'] as String?,
-        artifactId: json['artifactId'] as String?,
-        title: json['title'] as String?,
-        version: json['version'] as num?,
-        workflowStatus: json['workflowStatus'] as String?,
-        actionPlanType: json['actionPlanType'] as String?,
-        generationConfidence: json['generationConfidence'] as num?,
-        generationRequiresReview: json['generationRequiresReview'] as bool?,
-        profileId: json['profileId'] as String?,
-        profileArtifactId: json['profileArtifactId'] as String?,
-        parentBlueprintId: json['parentBlueprintId'] as String?,
-        ruleSetId: json['ruleSetId'] as String?,
-        ruleSetVersion: json['ruleSetVersion'] as String?,
-        ruleSetHash: json['ruleSetHash'] as String?,
-        engineVersion: json['engineVersion'] as String?,
-        changeSummary: json['changeSummary'] as String?,
-        reviewResolutionNote: json['reviewResolutionNote'] as String?,
-        createdBy: json['createdBy'] as String?,
-        submittedBy: json['submittedBy'] as String?,
-        submittedAt: json['submittedAt'] as String?,
-        approvedBy: json['approvedBy'] as String?,
-        approvedAt: json['approvedAt'] as String?,
-        updatedAt: json['updatedAt'] as String?,
-        appliedRules: _mapList(json['appliedRules'], AppliedRule.fromJson),
-        actions: _mapList(json['actions'], BlueprintAction.fromJson),
-        expectedOutputs:
-            _mapList(json['expectedOutputs'], ExpectedOutput.fromJson),
-        evidence: _mapList(json['evidence'], EvidenceRequirement.fromJson),
-        patternEnrichments:
-            _mapList(json['patternEnrichments'], PatternEnrichment.fromJson),
-        reviewFindings:
-            _mapList(json['reviewFindings'], ReviewFinding.fromJson),
-      );
+  factory BlueprintDetail.fromJson(
+    Map<String, dynamic> json,
+  ) => BlueprintDetail(
+    id: json['id'] as String?,
+    artifactId: json['artifactId'] as String?,
+    title: json['title'] as String?,
+    version: json['version'] as num?,
+    workflowStatus: json['workflowStatus'] as String?,
+    actionPlanType: json['actionPlanType'] as String?,
+    generationConfidence: json['generationConfidence'] as num?,
+    generationRequiresReview: json['generationRequiresReview'] as bool?,
+    profileId: json['profileId'] as String?,
+    profileArtifactId: json['profileArtifactId'] as String?,
+    parentBlueprintId: json['parentBlueprintId'] as String?,
+    ruleSetId: json['ruleSetId'] as String?,
+    ruleSetVersion: json['ruleSetVersion'] as String?,
+    ruleSetHash: json['ruleSetHash'] as String?,
+    engineVersion: json['engineVersion'] as String?,
+    changeSummary: json['changeSummary'] as String?,
+    reviewResolutionNote: json['reviewResolutionNote'] as String?,
+    createdBy: json['createdBy'] as String?,
+    submittedBy: json['submittedBy'] as String?,
+    submittedAt: json['submittedAt'] as String?,
+    approvedBy: json['approvedBy'] as String?,
+    approvedAt: json['approvedAt'] as String?,
+    updatedAt: json['updatedAt'] as String?,
+    appliedRules: _mapList(json['appliedRules'], AppliedRule.fromJson),
+    actions: _mapList(json['actions'], BlueprintAction.fromJson),
+    expectedOutputs: _mapList(json['expectedOutputs'], ExpectedOutput.fromJson),
+    evidence: _mapList(json['evidence'], EvidenceRequirement.fromJson),
+    patternEnrichments: _mapList(
+      json['patternEnrichments'],
+      PatternEnrichment.fromJson,
+    ),
+    reviewFindings: _mapList(json['reviewFindings'], ReviewFinding.fromJson),
+  );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'artifactId': artifactId,
-        'title': title,
-        'version': version,
-        'workflowStatus': workflowStatus,
-        'actionPlanType': actionPlanType,
-        'generationConfidence': generationConfidence,
-        'generationRequiresReview': generationRequiresReview,
-        'profileId': profileId,
-        'profileArtifactId': profileArtifactId,
-        'parentBlueprintId': parentBlueprintId,
-        'ruleSetId': ruleSetId,
-        'ruleSetVersion': ruleSetVersion,
-        'ruleSetHash': ruleSetHash,
-        'engineVersion': engineVersion,
-        'changeSummary': changeSummary,
-        'reviewResolutionNote': reviewResolutionNote,
-        'createdBy': createdBy,
-        'submittedBy': submittedBy,
-        'submittedAt': submittedAt,
-        'approvedBy': approvedBy,
-        'approvedAt': approvedAt,
-        'updatedAt': updatedAt,
-        'appliedRules': appliedRules.map((e) => e.toJson()).toList(),
-        'actions': actions.map((e) => e.toJson()).toList(),
-        'expectedOutputs': expectedOutputs.map((e) => e.toJson()).toList(),
-        'evidence': evidence.map((e) => e.toJson()).toList(),
-        'patternEnrichments':
-            patternEnrichments.map((e) => e.toJson()).toList(),
-        'reviewFindings': reviewFindings.map((e) => e.toJson()).toList(),
-      };
+    'id': id,
+    'artifactId': artifactId,
+    'title': title,
+    'version': version,
+    'workflowStatus': workflowStatus,
+    'actionPlanType': actionPlanType,
+    'generationConfidence': generationConfidence,
+    'generationRequiresReview': generationRequiresReview,
+    'profileId': profileId,
+    'profileArtifactId': profileArtifactId,
+    'parentBlueprintId': parentBlueprintId,
+    'ruleSetId': ruleSetId,
+    'ruleSetVersion': ruleSetVersion,
+    'ruleSetHash': ruleSetHash,
+    'engineVersion': engineVersion,
+    'changeSummary': changeSummary,
+    'reviewResolutionNote': reviewResolutionNote,
+    'createdBy': createdBy,
+    'submittedBy': submittedBy,
+    'submittedAt': submittedAt,
+    'approvedBy': approvedBy,
+    'approvedAt': approvedAt,
+    'updatedAt': updatedAt,
+    'appliedRules': appliedRules.map((e) => e.toJson()).toList(),
+    'actions': actions.map((e) => e.toJson()).toList(),
+    'expectedOutputs': expectedOutputs.map((e) => e.toJson()).toList(),
+    'evidence': evidence.map((e) => e.toJson()).toList(),
+    'patternEnrichments': patternEnrichments.map((e) => e.toJson()).toList(),
+    'reviewFindings': reviewFindings.map((e) => e.toJson()).toList(),
+  };
 }
 
 /// Envelope for the `blueprint(...)` detail surface.
@@ -1326,14 +1370,15 @@ class BlueprintDetailView {
   factory BlueprintDetailView.fromJson(Map<String, dynamic> json) =>
       BlueprintDetailView(
         contractVersion: json['contractVersion'] as String,
-        blueprint:
-            BlueprintDetail.fromJson(json['blueprint'] as Map<String, dynamic>),
+        blueprint: BlueprintDetail.fromJson(
+          json['blueprint'] as Map<String, dynamic>,
+        ),
       );
 
   Map<String, dynamic> toJson() => {
-        'contractVersion': contractVersion,
-        'blueprint': blueprint.toJson(),
-      };
+    'contractVersion': contractVersion,
+    'blueprint': blueprint.toJson(),
+  };
 }
 
 /// Result of a `selectArtifacts` write — a summary the UI uses to refresh.
@@ -1354,7 +1399,8 @@ class SelectionResult {
   final num? originsAdded;
   final List<String> profileArtifactIds;
 
-  factory SelectionResult.fromJson(Map<String, dynamic> json) => SelectionResult(
+  factory SelectionResult.fromJson(Map<String, dynamic> json) =>
+      SelectionResult(
         profileId: json['profileId'] as String?,
         requested: json['requested'] as num?,
         created: json['created'] as num?,
@@ -1367,11 +1413,127 @@ class SelectionResult {
       );
 
   Map<String, dynamic> toJson() => {
-        'profileId': profileId,
-        'requested': requested,
-        'created': created,
-        'existing': existing,
-        'originsAdded': originsAdded,
-        'profileArtifactIds': profileArtifactIds,
-      };
+    'profileId': profileId,
+    'requested': requested,
+    'created': created,
+    'existing': existing,
+    'originsAdded': originsAdded,
+    'profileArtifactIds': profileArtifactIds,
+  };
+}
+
+/// Immutable assessment snapshot recorded for one profile artifact.
+class AssessmentRecord {
+  const AssessmentRecord({
+    this.id,
+    this.profileArtifactId,
+    this.assessmentDate,
+    this.assessorName,
+    this.score,
+    this.implementationStatus,
+    this.verificationStatus,
+    this.effectiveness,
+    this.exceptionStatus,
+    this.comments,
+  });
+
+  final String? id;
+  final String? profileArtifactId;
+  final String? assessmentDate;
+  final String? assessorName;
+  final num? score;
+  final String? implementationStatus;
+  final String? verificationStatus;
+  final String? effectiveness;
+  final String? exceptionStatus;
+  final String? comments;
+
+  factory AssessmentRecord.fromJson(Map<String, dynamic> json) =>
+      AssessmentRecord(
+        id: json['id'] as String?,
+        profileArtifactId: json['profileArtifactId'] as String?,
+        assessmentDate: json['assessmentDate'] as String?,
+        assessorName: json['assessorName'] as String?,
+        score: json['score'] as num?,
+        implementationStatus: json['implementationStatus'] as String?,
+        verificationStatus: json['verificationStatus'] as String?,
+        effectiveness: json['effectiveness'] as String?,
+        exceptionStatus: json['exceptionStatus'] as String?,
+        comments: json['comments'] as String?,
+      );
+
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'profileArtifactId': profileArtifactId,
+    'assessmentDate': assessmentDate,
+    'assessorName': assessorName,
+    'score': score,
+    'implementationStatus': implementationStatus,
+    'verificationStatus': verificationStatus,
+    'effectiveness': effectiveness,
+    'exceptionStatus': exceptionStatus,
+    'comments': comments,
+  };
+}
+
+/// Read envelope for one selected artifact and its immutable assessment log.
+class ProfileArtifactView {
+  const ProfileArtifactView({
+    this.contractVersion = kContractVersion,
+    this.profileId,
+    required this.artifact,
+    this.assessments = const [],
+  });
+
+  final String contractVersion;
+  final String? profileId;
+  final OperationalItem artifact;
+  final List<AssessmentRecord> assessments;
+
+  factory ProfileArtifactView.fromJson(Map<String, dynamic> json) =>
+      ProfileArtifactView(
+        contractVersion: json['contractVersion'] as String,
+        profileId: json['profileId'] as String?,
+        artifact: OperationalItem.fromJson(
+          json['artifact'] as Map<String, dynamic>,
+        ),
+        assessments: _mapList(json['assessments'], AssessmentRecord.fromJson),
+      );
+
+  Map<String, dynamic> toJson() => {
+    'contractVersion': contractVersion,
+    'profileId': profileId,
+    'artifact': artifact.toJson(),
+    'assessments': assessments.map((e) => e.toJson()).toList(),
+  };
+}
+
+/// Write response for an assessment plus the refreshed current state.
+class AssessmentResult {
+  const AssessmentResult({
+    this.contractVersion = kContractVersion,
+    required this.assessment,
+    required this.artifact,
+  });
+
+  final String contractVersion;
+  final AssessmentRecord assessment;
+  final OperationalItem artifact;
+
+  factory AssessmentResult.fromJson(Map<String, dynamic> json) =>
+      AssessmentResult(
+        contractVersion: json['contractVersion'] as String,
+        assessment: AssessmentRecord.fromJson(
+          json['assessment'] as Map<String, dynamic>,
+        ),
+        artifact: OperationalItem.fromJson(
+          json['artifact'] as Map<String, dynamic>,
+        ),
+      );
+
+  Map<String, dynamic> toJson() => {
+    'contractVersion': contractVersion,
+    'assessment': assessment.toJson(),
+    'artifact': artifact.toJson(),
+  };
 }

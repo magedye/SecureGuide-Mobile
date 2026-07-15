@@ -22,6 +22,7 @@ from secureguide import (
     apply_migrations,
 )
 from secureguide.read_models import (
+    AssessmentRecord,
     BlueprintDetail,
     BlueprintSummary,
     CatalogItem,
@@ -33,6 +34,7 @@ from secureguide.read_models import (
     ScoreView,
     TaskItem,
 )
+from secureguide.errors import NotFoundError
 from scripts.dump_read_model_contract import (
     SURFACES,
     build_read_model_dataset,
@@ -135,6 +137,7 @@ class ReadModelContractTests(unittest.TestCase):
             GapItem,
             RecommendationItem,
             OperationalItem,
+            AssessmentRecord,
             CatalogItem,
             BlueprintSummary,
             BlueprintDetail,
@@ -153,6 +156,18 @@ class ReadModelContractTests(unittest.TestCase):
         payload = ReadModel(empty).active_profile()
         self.assertEqual(payload["contractVersion"], CONTRACT_VERSION)
         self.assertIsNone(payload["profile"])
+
+    def test_profile_artifact_history_is_profile_scoped_and_newest_first(self) -> None:
+        payload = self.read_model.profile_artifact(
+            "A-IDENTITY", profile_id=self.context["profile_id"]
+        )
+        self.assertEqual(payload["profileId"], "P-HQ")
+        self.assertEqual(payload["artifact"]["artifactId"], "A-IDENTITY")
+        self.assertEqual(len(payload["assessments"]), 1)
+        self.assertEqual(payload["assessments"][0]["assessorName"], "auditor")
+
+        with self.assertRaises(NotFoundError):
+            self.read_model.profile_artifact("A-IDENTITY", profile_id="P-AUDIT")
 
 
 if __name__ == "__main__":

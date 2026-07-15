@@ -460,6 +460,33 @@ class ProfileRepository:
             ).fetchall()
         )
 
+    def operational_item(
+        self, conn: sqlite3.Connection, profile_id: str, artifact_id: str
+    ) -> dict[str, Any] | None:
+        """Return one catalog artifact projected into exactly one profile."""
+        return row_dict(
+            conn.execute(
+                """SELECT v.*,pa.priority_override,pa.review_frequency_override
+                     FROM v_profile_operational_items v
+                     JOIN profile_artifacts pa ON pa.id=v.profile_artifact_id
+                    WHERE v.profile_id=? AND v.artifact_id=?""",
+                (profile_id, artifact_id),
+            ).fetchone()
+        )
+
+    def assessments(
+        self, conn: sqlite3.Connection, profile_artifact_id: str
+    ) -> list[dict[str, Any]]:
+        """Immutable assessment history, newest first with a stable tie-break."""
+        return rows_dict(
+            conn.execute(
+                """SELECT * FROM profile_assessments
+                    WHERE profile_artifact_id=?
+                    ORDER BY assessment_date DESC,rowid DESC""",
+                (profile_artifact_id,),
+            ).fetchall()
+        )
+
 
 class BlueprintRepository:
     """Profile-scoped persistence for approved blueprint snapshots and tasks."""

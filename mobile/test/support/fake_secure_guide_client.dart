@@ -18,7 +18,17 @@ Map<String, dynamic> loadGolden(String name) {
       return jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
     }
   }
-  throw StateError('golden fixture "$name" not found (cwd=${Directory.current.path})');
+  throw StateError(
+    'golden fixture "$name" not found (cwd=${Directory.current.path})',
+  );
+}
+
+Map<String, ProfileArtifactView> _initialArtifactViews(
+  ProfileArtifactView? view,
+) {
+  final artifactId = view?.artifact.artifactId;
+  if (view == null || artifactId == null) return {};
+  return {artifactId: view};
 }
 
 /// In-memory [SecureGuideClient] for widget tests: no sidecar, no network.
@@ -29,25 +39,31 @@ class FakeSecureGuideClient implements SecureGuideClient {
     required this.dashboardView,
     required List<ProfileSummary> profiles,
     List<Map<String, dynamic>> catalogItems = const [],
-  })  : _profiles = List.of(profiles),
-        _catalogItems =
-            catalogItems.map((m) => Map<String, dynamic>.of(m)).toList(),
-        _selected = {
-          for (final m in catalogItems)
-            if (m['isSelected'] == true) m['id'] as String,
-        };
+    ProfileArtifactView? profileArtifactView,
+  }) : _profiles = List.of(profiles),
+       _catalogItems = catalogItems
+           .map((m) => Map<String, dynamic>.of(m))
+           .toList(),
+       _selected = {
+         for (final m in catalogItems)
+           if (m['isSelected'] == true) m['id'] as String,
+       },
+       _profileArtifactViews = _initialArtifactViews(profileArtifactView);
 
   final DashboardView dashboardView;
   List<ProfileSummary> _profiles;
   final List<Map<String, dynamic>> _catalogItems;
   final Set<String> _selected;
+  final Map<String, ProfileArtifactView> _profileArtifactViews;
 
   ProfileSummary? lastCreated;
   String? lastActivated;
   List<String>? lastSelected;
+  AssessmentRecord? lastAssessment;
 
   @override
-  Future<ProfilesView> profiles() async => ProfilesView(profiles: List.of(_profiles));
+  Future<ProfilesView> profiles() async =>
+      ProfilesView(profiles: List.of(_profiles));
 
   @override
   Future<DashboardView> dashboard({String? profileId}) async => dashboardView;
@@ -65,7 +81,9 @@ class FakeSecureGuideClient implements SecureGuideClient {
     if (query != null && query.trim().isNotEmpty) {
       final needle = query.toLowerCase();
       items = items
-          .where((m) => (m['title'] as String? ?? '').toLowerCase().contains(needle))
+          .where(
+            (m) => (m['title'] as String? ?? '').toLowerCase().contains(needle),
+          )
           .toList();
     }
     final rendered = [
@@ -115,7 +133,11 @@ class FakeSecureGuideClient implements SecureGuideClient {
     String? description,
     bool activate = false,
   }) async {
-    final created = ProfileSummary(id: 'PRF-$name', name: name, isActive: activate);
+    final created = ProfileSummary(
+      id: 'PRF-$name',
+      name: name,
+      isActive: activate,
+    );
     _profiles = [..._profiles, created];
     lastCreated = created;
     return created;
@@ -128,5 +150,123 @@ class FakeSecureGuideClient implements SecureGuideClient {
       (p) => p.id == profileId,
       orElse: () => ProfileSummary(id: profileId, isActive: true),
     );
+  }
+
+  @override
+  Future<ProfileArtifactView> profileArtifact(
+    String artifactId, {
+    String? profileId,
+  }) async {
+    final existing = _profileArtifactViews[artifactId];
+    if (existing != null) return existing;
+    final source = _catalogItems.firstWhere((m) => m['id'] == artifactId);
+    final view = ProfileArtifactView(
+      profileId: profileId,
+      artifact: OperationalItem(
+        profileArtifactId: source['profileArtifactId'] as String?,
+        artifactId: artifactId,
+        type: source['type'] as String?,
+        titleEn: source['title'] as String?,
+        primaryDomain: source['primaryDomain'] as String?,
+        subDomain: source['subDomain'] as String?,
+        effectivePriority: source['effectivePriority'] as String?,
+        implementationStatus: source['implementationStatus'] as String?,
+        verificationStatus: source['verificationStatus'] as String?,
+        effectiveness: source['effectiveness'] as String?,
+        exceptionStatus: source['exceptionStatus'] as String?,
+      ),
+    );
+    _profileArtifactViews[artifactId] = view;
+    return view;
+  }
+
+  @override
+  Future<AssessmentResult> assessArtifact(
+    String artifactId, {
+    String? profileId,
+    required String assessorName,
+    String? implementationStatus,
+    String? verificationStatus,
+    String? effectiveness,
+    String? currentMaturityLevel,
+    String? assignedOwner,
+    bool clearAssignedOwner = false,
+    String? dueDate,
+    bool clearDueDate = false,
+    String? notes,
+    bool clearNotes = false,
+    String? priorityOverride,
+    String? reviewFrequencyOverride,
+    bool clearPriorityOverride = false,
+    bool clearReviewFrequencyOverride = false,
+    num? score,
+    String? comments,
+  }) async {
+    final current = await profileArtifact(artifactId, profileId: profileId);
+    final old = current.artifact;
+    final artifact = OperationalItem(
+      profileArtifactId: old.profileArtifactId,
+      artifactId: old.artifactId,
+      type: old.type,
+      titleEn: old.titleEn,
+      titleAr: old.titleAr,
+      definitionShortEn: old.definitionShortEn,
+      definitionShortAr: old.definitionShortAr,
+      primaryDomain: old.primaryDomain,
+      subDomain: old.subDomain,
+      source: old.source,
+      sourceDocument: old.sourceDocument,
+      obligationLevel: old.obligationLevel,
+      testability: old.testability,
+      inclusionStatus: old.inclusionStatus,
+      effectivePriority: priorityOverride ?? old.effectivePriority,
+      effectiveReviewFrequency:
+          reviewFrequencyOverride ?? old.effectiveReviewFrequency,
+      priorityOverride: clearPriorityOverride
+          ? null
+          : priorityOverride ?? old.priorityOverride,
+      reviewFrequencyOverride: clearReviewFrequencyOverride
+          ? null
+          : reviewFrequencyOverride ?? old.reviewFrequencyOverride,
+      implementationStatus: implementationStatus ?? old.implementationStatus,
+      verificationStatus: verificationStatus ?? old.verificationStatus,
+      effectiveness: effectiveness ?? old.effectiveness,
+      exceptionStatus: old.exceptionStatus,
+      currentMaturityLevel: currentMaturityLevel ?? old.currentMaturityLevel,
+      assignedOwner: clearAssignedOwner
+          ? null
+          : assignedOwner ?? old.assignedOwner,
+      dueDate: clearDueDate ? null : dueDate ?? old.dueDate,
+      notes: clearNotes ? null : notes ?? old.notes,
+      evidenceCount: old.evidenceCount,
+      originCount: old.originCount,
+      lastAssessmentAt: '<ts>',
+      selectedAt: old.selectedAt,
+      updatedAt: '<ts>',
+    );
+    final assessment = AssessmentRecord(
+      id: 'ASM-FAKE',
+      profileArtifactId: artifact.profileArtifactId,
+      assessmentDate: '<ts>',
+      assessorName: assessorName,
+      score: score,
+      implementationStatus: artifact.implementationStatus,
+      verificationStatus: artifact.verificationStatus,
+      effectiveness: artifact.effectiveness,
+      exceptionStatus: artifact.exceptionStatus,
+      comments: comments,
+    );
+    lastAssessment = assessment;
+    _profileArtifactViews[artifactId] = ProfileArtifactView(
+      profileId: profileId,
+      artifact: artifact,
+      assessments: [assessment, ...current.assessments],
+    );
+    for (final item in _catalogItems.where((m) => m['id'] == artifactId)) {
+      item['implementationStatus'] = artifact.implementationStatus;
+      item['verificationStatus'] = artifact.verificationStatus;
+      item['effectiveness'] = artifact.effectiveness;
+    }
+    return AssessmentResult(assessment: assessment, artifact: artifact);
   }
 }

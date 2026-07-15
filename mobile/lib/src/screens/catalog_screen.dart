@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../read_model_contract.dart';
 import '../client/secure_guide_client.dart';
+import 'assessment_screen.dart';
 
 /// Browse the master catalog for the active profile and select artifacts into
 /// it. Binds to [CatalogView]/[CatalogItem]; selection is a governed write via
@@ -80,6 +81,21 @@ class _CatalogScreenState extends State<CatalogScreen> {
     }
   }
 
+  Future<void> _openAssessment(CatalogItem item) async {
+    final id = item.id;
+    if (id == null || item.isSelected != true) return;
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => AssessmentScreen(
+          client: widget.client,
+          artifactId: id,
+          profileId: widget.profileId,
+        ),
+      ),
+    );
+    if (mounted) await _load();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,17 +148,25 @@ class _CatalogScreenState extends State<CatalogScreen> {
     }
     return ListView.builder(
       itemCount: items.length,
-      itemBuilder: (context, index) =>
-          _CatalogRow(item: items[index], onSelect: _select),
+      itemBuilder: (context, index) => _CatalogRow(
+        item: items[index],
+        onSelect: _select,
+        onOpen: _openAssessment,
+      ),
     );
   }
 }
 
 class _CatalogRow extends StatelessWidget {
-  const _CatalogRow({required this.item, required this.onSelect});
+  const _CatalogRow({
+    required this.item,
+    required this.onSelect,
+    required this.onOpen,
+  });
 
   final CatalogItem item;
   final Future<void> Function(CatalogItem) onSelect;
+  final Future<void> Function(CatalogItem) onOpen;
 
   @override
   Widget build(BuildContext context) {
@@ -150,12 +174,16 @@ class _CatalogRow extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       child: ListTile(
+        onTap: selected ? () => onOpen(item) : null,
         title: Text(item.title ?? item.id ?? '—'),
         subtitle: Text(
           '${item.primaryDomain ?? '—'} · ${item.effectivePriority ?? '—'}',
         ),
         trailing: selected
-            ? const Icon(Icons.check_circle, color: Colors.green)
+            ? const Tooltip(
+                message: 'فتح التقييم',
+                child: Icon(Icons.assignment_outlined, color: Colors.green),
+              )
             : IconButton(
                 icon: const Icon(Icons.add_circle_outline),
                 tooltip: 'إضافة إلى الملف',

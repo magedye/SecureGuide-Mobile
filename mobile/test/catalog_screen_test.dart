@@ -11,8 +11,9 @@ import 'package:secureguide_mobile/src/screens/catalog_screen.dart';
 import 'support/fake_secure_guide_client.dart';
 
 void main() {
-  testWidgets('lists catalog items and selecting an unselected one writes',
-      (tester) async {
+  testWidgets('lists catalog items and selecting an unselected one writes', (
+    tester,
+  ) async {
     final catalog = loadGolden('catalog');
     final client = FakeSecureGuideClient(
       dashboardView: DashboardView.fromJson(loadGolden('dashboard')),
@@ -21,7 +22,9 @@ void main() {
     );
 
     await tester.pumpWidget(
-      MaterialApp(home: CatalogScreen(client: client, profileId: 'P-HQ')),
+      MaterialApp(
+        home: CatalogScreen(client: client, profileId: 'P-HQ'),
+      ),
     );
     await tester.pumpAndSettle();
 
@@ -37,6 +40,11 @@ void main() {
     // The governed write ran and the row now reflects the new selection.
     expect(client.lastSelected, contains('A-POLICY'));
     expect(find.byIcon(Icons.add_circle_outline), findsNothing);
-    expect(find.byIcon(Icons.check_circle), findsWidgets);
+    expect(find.byIcon(Icons.assignment_outlined), findsWidgets);
+
+    await tester.tap(find.text('Security policy'));
+    await tester.pumpAndSettle();
+    expect(find.text('تقييم العنصر'), findsOneWidget);
+    expect(find.text('Security policy'), findsOneWidget);
   });
 }

@@ -37,6 +37,7 @@ __all__ = [
     "GapItem",
     "RecommendationItem",
     "OperationalItem",
+    "AssessmentRecord",
     "CatalogItem",
     "BlueprintSummary",
     "BlueprintDetail",
@@ -245,12 +246,19 @@ class OperationalItem:
             "type": i.get("type"),
             "titleEn": i.get("title_en"),
             "titleAr": i.get("title_ar"),
+            "definitionShortEn": i.get("definition_short_en"),
+            "definitionShortAr": i.get("definition_short_ar"),
             "primaryDomain": i.get("primary_domain"),
             "subDomain": i.get("sub_domain"),
+            "source": i.get("source"),
+            "sourceDocument": i.get("source_document"),
             "obligationLevel": i.get("obligation_level"),
+            "testability": i.get("testability"),
             "inclusionStatus": i.get("inclusion_status"),
             "effectivePriority": i.get("effective_priority"),
             "effectiveReviewFrequency": i.get("effective_review_frequency"),
+            "priorityOverride": i.get("priority_override"),
+            "reviewFrequencyOverride": i.get("review_frequency_override"),
             "implementationStatus": i.get("implementation_status"),
             "verificationStatus": i.get("verification_status"),
             "effectiveness": i.get("effectiveness"),
@@ -258,9 +266,38 @@ class OperationalItem:
             "currentMaturityLevel": i.get("current_maturity_level"),
             "assignedOwner": i.get("assigned_owner"),
             "dueDate": i.get("due_date"),
+            "notes": i.get("notes"),
             "evidenceCount": i.get("evidence_count"),
             "originCount": i.get("origin_count"),
             "lastAssessmentAt": i.get("last_assessment_at"),
+            "selectedAt": i.get("selected_at"),
+            "updatedAt": i.get("updated_at"),
+        }
+
+
+@dataclass(frozen=True)
+class AssessmentRecord:
+    """One immutable profile assessment event."""
+
+    raw: dict[str, Any]
+
+    @classmethod
+    def from_row(cls, row: dict[str, Any]) -> "AssessmentRecord":
+        return cls(raw=row or {})
+
+    def to_wire(self) -> dict[str, Any]:
+        a = self.raw
+        return {
+            "id": a.get("id"),
+            "profileArtifactId": a.get("profile_artifact_id"),
+            "assessmentDate": a.get("assessment_date"),
+            "assessorName": a.get("assessor_name"),
+            "score": a.get("score"),
+            "implementationStatus": a.get("implementation_status"),
+            "verificationStatus": a.get("verification_status"),
+            "effectiveness": a.get("effectiveness"),
+            "exceptionStatus": a.get("exception_status"),
+            "comments": a.get("comments"),
         }
 
 
@@ -590,6 +627,22 @@ class ReadModel:
             offset=offset,
             count=len(items),
             items=items,
+        )
+
+    def profile_artifact(
+        self, artifact_id: str, *, profile_id: Optional[str] = None
+    ) -> dict[str, Any]:
+        """One selected artifact with current state and assessment history."""
+        data = self._service.profile_artifact_detail(
+            artifact_id, profile_id=profile_id
+        )
+        return _envelope(
+            profileId=data.get("profile_id"),
+            artifact=OperationalItem.from_row(data.get("artifact") or {}).to_wire(),
+            assessments=[
+                AssessmentRecord.from_row(row).to_wire()
+                for row in data.get("assessments") or []
+            ],
         )
 
     # -- blueprints -------------------------------------------------------- #

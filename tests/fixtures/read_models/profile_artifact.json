@@ -1,0 +1,51 @@
+{
+  "contractVersion": "read-model-v1",
+  "profileId": "P-HQ",
+  "artifact": {
+    "profileArtifactId": "<id>",
+    "artifactId": "A-IDENTITY",
+    "type": "ART-CTR",
+    "titleEn": "Identity governance",
+    "titleAr": null,
+    "definitionShortEn": "Implement identity governance controls.",
+    "definitionShortAr": null,
+    "primaryDomain": "SD-03",
+    "subDomain": "SD-03.03",
+    "source": "SRC-STD",
+    "sourceDocument": "integration-test",
+    "obligationLevel": "OBL-MND",
+    "testability": "TST-MAN",
+    "inclusionStatus": null,
+    "effectivePriority": "PRI-CRITICAL",
+    "effectiveReviewFrequency": null,
+    "priorityOverride": null,
+    "reviewFrequencyOverride": null,
+    "implementationStatus": "STS-FULL",
+    "verificationStatus": "VER-PASS",
+    "effectiveness": "EFF-HIGH",
+    "exceptionStatus": "EXC-NONE",
+    "currentMaturityLevel": null,
+    "assignedOwner": "IAM Team",
+    "dueDate": null,
+    "notes": null,
+    "evidenceCount": 1,
+    "originCount": 1,
+    "lastAssessmentAt": "<ts>",
+    "selectedAt": "<ts>",
+    "updatedAt": "<ts>"
+  },
+  "assessments": [
+    {
+      "id": "<id>",
+      "profileArtifactId": "<id>",
+      "assessmentDate": "<ts>",
+      "assessorName": "auditor",
+      "score": 100.0,
+      "implementationStatus": "STS-FULL",
+      "verificationStatus": "VER-PASS",
+      "effectiveness": "EFF-HIGH",
+      "exceptionStatus": "EXC-NONE",
+      "comments": "Verified configuration and review records."
+    }
+  ]
+}

@@ -57,13 +57,42 @@ abstract interface class SecureGuideClient {
     String? inclusionStatus,
     String? selectionReason,
   });
+
+  /// Current profile state and immutable assessment history for one selection.
+  Future<ProfileArtifactView> profileArtifact(
+    String artifactId, {
+    String? profileId,
+  });
+
+  /// Record a governed assessment and return the refreshed current state.
+  Future<AssessmentResult> assessArtifact(
+    String artifactId, {
+    String? profileId,
+    required String assessorName,
+    String? implementationStatus,
+    String? verificationStatus,
+    String? effectiveness,
+    String? currentMaturityLevel,
+    String? assignedOwner,
+    bool clearAssignedOwner = false,
+    String? dueDate,
+    bool clearDueDate = false,
+    String? notes,
+    bool clearNotes = false,
+    String? priorityOverride,
+    String? reviewFrequencyOverride,
+    bool clearPriorityOverride = false,
+    bool clearReviewFrequencyOverride = false,
+    num? score,
+    String? comments,
+  });
 }
 
 /// Reaches the Python core through the local sidecar over loopback HTTP.
 class HttpSecureGuideClient implements SecureGuideClient {
   HttpSecureGuideClient({Uri? baseUri, http.Client? httpClient})
-      : baseUri = baseUri ?? Uri.parse('http://127.0.0.1:8765'),
-        _http = httpClient ?? http.Client();
+    : baseUri = baseUri ?? Uri.parse('http://127.0.0.1:8765'),
+      _http = httpClient ?? http.Client();
 
   final Uri baseUri;
   final http.Client _http;
@@ -125,7 +154,8 @@ class HttpSecureGuideClient implements SecureGuideClient {
       if (organizationSize != null) 'organizationSize': organizationSize,
       if (industry != null) 'industry': industry,
       if (country != null) 'country': country,
-      if (targetMaturityLevel != null) 'targetMaturityLevel': targetMaturityLevel,
+      if (targetMaturityLevel != null)
+        'targetMaturityLevel': targetMaturityLevel,
       if (description != null) 'description': description,
       'activate': activate,
     });
@@ -134,7 +164,9 @@ class HttpSecureGuideClient implements SecureGuideClient {
 
   @override
   Future<ProfileSummary> activateProfile(String profileId) async {
-    final json = await _postJson('/write/active-profile', {'profileId': profileId});
+    final json = await _postJson('/write/active-profile', {
+      'profileId': profileId,
+    });
     return ProfileSummary.fromJson(json['profile'] as Map<String, dynamic>);
   }
 
@@ -174,6 +206,65 @@ class HttpSecureGuideClient implements SecureGuideClient {
       if (selectionReason != null) 'selectionReason': selectionReason,
     });
     return SelectionResult.fromJson(json['selection'] as Map<String, dynamic>);
+  }
+
+  @override
+  Future<ProfileArtifactView> profileArtifact(
+    String artifactId, {
+    String? profileId,
+  }) async => ProfileArtifactView.fromJson(
+    await _getJson('/read/profile-artifacts/$artifactId', {
+      if (profileId != null) 'profileId': profileId,
+    }),
+  );
+
+  @override
+  Future<AssessmentResult> assessArtifact(
+    String artifactId, {
+    String? profileId,
+    required String assessorName,
+    String? implementationStatus,
+    String? verificationStatus,
+    String? effectiveness,
+    String? currentMaturityLevel,
+    String? assignedOwner,
+    bool clearAssignedOwner = false,
+    String? dueDate,
+    bool clearDueDate = false,
+    String? notes,
+    bool clearNotes = false,
+    String? priorityOverride,
+    String? reviewFrequencyOverride,
+    bool clearPriorityOverride = false,
+    bool clearReviewFrequencyOverride = false,
+    num? score,
+    String? comments,
+  }) async {
+    final json = await _postJson('/write/assessments', {
+      'artifactId': artifactId,
+      'assessorName': assessorName,
+      if (profileId != null) 'profileId': profileId,
+      if (implementationStatus != null)
+        'implementationStatus': implementationStatus,
+      if (verificationStatus != null) 'verificationStatus': verificationStatus,
+      if (effectiveness != null) 'effectiveness': effectiveness,
+      if (currentMaturityLevel != null)
+        'currentMaturityLevel': currentMaturityLevel,
+      if (assignedOwner != null) 'assignedOwner': assignedOwner,
+      if (clearAssignedOwner) 'clearAssignedOwner': true,
+      if (dueDate != null) 'dueDate': dueDate,
+      if (clearDueDate) 'clearDueDate': true,
+      if (notes != null) 'notes': notes,
+      if (clearNotes) 'clearNotes': true,
+      if (priorityOverride != null) 'priorityOverride': priorityOverride,
+      if (reviewFrequencyOverride != null)
+        'reviewFrequencyOverride': reviewFrequencyOverride,
+      if (clearPriorityOverride) 'clearPriorityOverride': true,
+      if (clearReviewFrequencyOverride) 'clearReviewFrequencyOverride': true,
+      if (score != null) 'score': score,
+      if (comments != null) 'comments': comments,
+    });
+    return AssessmentResult.fromJson(json);
   }
 
   void close() => _http.close();
