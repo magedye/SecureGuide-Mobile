@@ -1,0 +1,24 @@
+{
+  "contractVersion": "read-model-v1",
+  "blueprints": [
+    {
+      "id": "<id>",
+      "artifactId": "A-IDENTITY",
+      "artifactTitleEn": "Identity governance",
+      "artifactTitleAr": null,
+      "title": "خطة ضابط معيارية",
+      "version": 1,
+      "workflowStatus": "APPROVED",
+      "actionPlanType": "CONTROL_IMPLEMENTATION",
+      "generationConfidence": 0.9854,
+      "generationRequiresReview": false,
+      "actionCount": 6,
+      "evidenceCount": 4,
+      "taskCount": 6,
+      "createdBy": "author",
+      "approvedBy": "approver",
+      "approvedAt": "<ts>",
+      "updatedAt": "<ts>"
+    }
+  ]
+}

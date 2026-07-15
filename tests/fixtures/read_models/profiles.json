@@ -1,0 +1,27 @@
+{
+  "contractVersion": "read-model-v1",
+  "profiles": [
+    {
+      "id": "P-HQ",
+      "name": "المقر الرئيسي",
+      "description": null,
+      "profileKind": "organization",
+      "organizationSize": "LARGE",
+      "industry": "Financial services",
+      "country": "SA",
+      "targetMaturityLevel": "MANAGED",
+      "isActive": true
+    },
+    {
+      "id": "P-AUDIT",
+      "name": "Cloud Audit",
+      "description": null,
+      "profileKind": "audit",
+      "organizationSize": null,
+      "industry": null,
+      "country": null,
+      "targetMaturityLevel": null,
+      "isActive": false
+    }
+  ]
+}

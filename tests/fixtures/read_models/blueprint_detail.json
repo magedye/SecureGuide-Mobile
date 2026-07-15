@@ -1,0 +1,294 @@
+{
+  "contractVersion": "read-model-v1",
+  "blueprint": {
+    "id": "<id>",
+    "artifactId": "A-IDENTITY",
+    "title": "خطة ضابط معيارية",
+    "version": 1,
+    "workflowStatus": "APPROVED",
+    "actionPlanType": "CONTROL_IMPLEMENTATION",
+    "generationConfidence": 0.9854,
+    "generationRequiresReview": false,
+    "profileId": "P-HQ",
+    "profileArtifactId": "<id>",
+    "parentBlueprintId": null,
+    "ruleSetId": "secureguide-blueprint-mvp",
+    "ruleSetVersion": "1.0.0",
+    "ruleSetHash": "08e283fb213ddf95e649fb4ec443e3065cf8282e72609d89a30a8d82e4f3785d",
+    "engineVersion": "1.0.0",
+    "changeSummary": "Initial governed implementation plan",
+    "reviewResolutionNote": null,
+    "createdBy": "author",
+    "submittedBy": "author",
+    "submittedAt": "<ts>",
+    "approvedBy": "approver",
+    "approvedAt": "<ts>",
+    "updatedAt": "<ts>",
+    "appliedRules": [
+      {
+        "ruleId": "BR-DOM-03",
+        "ruleVersion": "1.0.0",
+        "stage": "SECURITY_DOMAIN",
+        "priority": 3,
+        "rationale": "المجال SD-03 يضيف سياقًا دون تغيير نوع الخطة",
+        "baseConfidence": 0.86
+      },
+      {
+        "ruleId": "BR-FUN-PRE",
+        "ruleVersion": "1.0.0",
+        "stage": "CONTROL_FUNCTION",
+        "priority": 1,
+        "rationale": "وظيفة الضابط FUN-PRE تخصص غرض التحقق",
+        "baseConfidence": 0.88
+      },
+      {
+        "ruleId": "BR-NAT-TEC",
+        "ruleVersion": "1.0.0",
+        "stage": "CONTROL_NATURE",
+        "priority": 4,
+        "rationale": "طبيعة التنفيذ NAT-TEC تخصص طريقة العمل والأدلة",
+        "baseConfidence": 0.88
+      },
+      {
+        "ruleId": "BR-ART-CTR",
+        "ruleVersion": "1.0.0",
+        "stage": "ARTIFACT_TYPE",
+        "priority": 4,
+        "rationale": "نوع العنصر ART-CTR يحدد الهيكل الأساسي للخطة",
+        "baseConfidence": 0.9
+      },
+      {
+        "ruleId": "BR-OBL-MND",
+        "ruleVersion": "1.0.0",
+        "stage": "OBLIGATION_LEVEL",
+        "priority": 1,
+        "rationale": "مستوى الإلزام OBL-MND يحدد صرامة التوثيق",
+        "baseConfidence": 0.92
+      }
+    ],
+    "actions": [
+      {
+        "id": "<id>",
+        "actionCode": "ACT-CTR-DESIGN",
+        "semanticKey": "control.design",
+        "title": "تصميم الضابط",
+        "description": "تحديد النطاق والمالك وآلية العمل",
+        "category": "IMPLEMENTATION",
+        "phase": "IMPLEMENT",
+        "displayOrder": 1,
+        "rationale": "نوع العنصر ART-CTR يحدد الهيكل الأساسي للخطة",
+        "confidence": 0.9,
+        "taskable": true,
+        "requiresHumanReview": false,
+        "sourceCitation": null,
+        "sourceRules": [
+          {
+            "ruleId": "BR-ART-CTR",
+            "ruleVersion": "1.0.0"
+          }
+        ]
+      },
+      {
+        "id": "<id>",
+        "actionCode": "ACT-CTR-OPERATE",
+        "semanticKey": "control.operate",
+        "title": "تشغيل الضابط",
+        "description": "تطبيق الضابط ومراقبة انتظام التشغيل",
+        "category": "IMPLEMENTATION",
+        "phase": "IMPLEMENT",
+        "displayOrder": 2,
+        "rationale": "نوع العنصر ART-CTR يحدد الهيكل الأساسي للخطة",
+        "confidence": 0.9,
+        "taskable": true,
+        "requiresHumanReview": false,
+        "sourceCitation": null,
+        "sourceRules": [
+          {
+            "ruleId": "BR-ART-CTR",
+            "ruleVersion": "1.0.0"
+          }
+        ]
+      },
+      {
+        "id": "<id>",
+        "actionCode": "ACT-DOM-03",
+        "semanticKey": "domain.sd-03.context",
+        "title": "تكييف الخطة لسياق الهوية والوصول والصلاحيات",
+        "description": "تحديد الأصول والأطراف والحدود ذات الصلة بالمجال",
+        "category": "IMPLEMENTATION",
+        "phase": "IMPLEMENT",
+        "displayOrder": 5,
+        "rationale": "المجال SD-03 يضيف سياقًا دون تغيير نوع الخطة",
+        "confidence": 0.86,
+        "taskable": true,
+        "requiresHumanReview": false,
+        "sourceCitation": null,
+        "sourceRules": [
+          {
+            "ruleId": "BR-DOM-03",
+            "ruleVersion": "1.0.0"
+          }
+        ]
+      },
+      {
+        "id": "<id>",
+        "actionCode": "ACT-FUN-PRE",
+        "semanticKey": "function.prevent",
+        "title": "التحقق من منع الحالة قبل وقوعها",
+        "description": "التحقق من منع الحالة قبل وقوعها",
+        "category": "IMPLEMENTATION",
+        "phase": "VERIFY",
+        "displayOrder": 4,
+        "rationale": "وظيفة الضابط FUN-PRE تخصص غرض التحقق",
+        "confidence": 0.88,
+        "taskable": true,
+        "requiresHumanReview": false,
+        "sourceCitation": null,
+        "sourceRules": [
+          {
+            "ruleId": "BR-FUN-PRE",
+            "ruleVersion": "1.0.0"
+          }
+        ]
+      },
+      {
+        "id": "<id>",
+        "actionCode": "ACT-NAT-TEC",
+        "semanticKey": "nature.technical",
+        "title": "تحديد الإعداد التقني والتحقق الآلي أو اليدوي",
+        "description": "تحديد الإعداد التقني والتحقق الآلي أو اليدوي",
+        "category": "IMPLEMENTATION",
+        "phase": "IMPLEMENT",
+        "displayOrder": 3,
+        "rationale": "طبيعة التنفيذ NAT-TEC تخصص طريقة العمل والأدلة",
+        "confidence": 0.88,
+        "taskable": true,
+        "requiresHumanReview": false,
+        "sourceCitation": null,
+        "sourceRules": [
+          {
+            "ruleId": "BR-NAT-TEC",
+            "ruleVersion": "1.0.0"
+          }
+        ]
+      },
+      {
+        "id": "<id>",
+        "actionCode": "ACT-OBL-MND",
+        "semanticKey": "obligation.mandatory",
+        "title": "فرض اعتماد رسمي وتتبع كامل",
+        "description": "فرض اعتماد رسمي وتتبع كامل",
+        "category": "IMPLEMENTATION",
+        "phase": "GOVERN",
+        "displayOrder": 6,
+        "rationale": "مستوى الإلزام OBL-MND يحدد صرامة التوثيق",
+        "confidence": 0.92,
+        "taskable": true,
+        "requiresHumanReview": false,
+        "sourceCitation": null,
+        "sourceRules": [
+          {
+            "ruleId": "BR-OBL-MND",
+            "ruleVersion": "1.0.0"
+          }
+        ]
+      }
+    ],
+    "expectedOutputs": [
+      {
+        "id": "<id>",
+        "outputCode": "OUT-CTR",
+        "semanticKey": "control.implementation",
+        "title": "تنفيذ ضابط موثق",
+        "description": "وصف تنفيذي وحدود ومسؤوليات",
+        "rationale": "نوع العنصر ART-CTR يحدد الهيكل الأساسي للخطة",
+        "sourceRules": [
+          {
+            "ruleId": "BR-ART-CTR",
+            "ruleVersion": "1.0.0"
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "id": "<id>",
+        "evidenceCode": "EVD-DOM-03",
+        "semanticKey": "domain.sd-03.scope",
+        "title": "سجل نطاق المجال",
+        "evidenceType": "DOCUMENT",
+        "description": "تحديد نطاق المجال والعناصر المشمولة",
+        "rationale": "المجال SD-03 يضيف سياقًا دون تغيير نوع الخطة",
+        "mandatory": false,
+        "confidence": 0.86,
+        "requiresHumanReview": false,
+        "sourceCitation": null,
+        "sourceRules": [
+          {
+            "ruleId": "BR-DOM-03",
+            "ruleVersion": "1.0.0"
+          }
+        ]
+      },
+      {
+        "id": "<id>",
+        "evidenceCode": "EVD-NAT-TEC",
+        "semanticKey": "nature.technical.record",
+        "title": "إثبات تنفيذ تحديد الإعداد التقني والتحقق الآلي أو اليدوي",
+        "evidenceType": "DOCUMENT",
+        "description": "تحديد الإعداد التقني والتحقق الآلي أو اليدوي",
+        "rationale": "طبيعة التنفيذ NAT-TEC تخصص طريقة العمل والأدلة",
+        "mandatory": false,
+        "confidence": 0.88,
+        "requiresHumanReview": false,
+        "sourceCitation": null,
+        "sourceRules": [
+          {
+            "ruleId": "BR-NAT-TEC",
+            "ruleVersion": "1.0.0"
+          }
+        ]
+      },
+      {
+        "id": "<id>",
+        "evidenceCode": "EVD-CTR-TEST",
+        "semanticKey": "control.test.result",
+        "title": "نتيجة اختبار الضابط",
+        "evidenceType": "REPORT",
+        "description": "اختبار تصميم وتشغيل الضابط",
+        "rationale": "نوع العنصر ART-CTR يحدد الهيكل الأساسي للخطة",
+        "mandatory": false,
+        "confidence": 0.9,
+        "requiresHumanReview": false,
+        "sourceCitation": null,
+        "sourceRules": [
+          {
+            "ruleId": "BR-ART-CTR",
+            "ruleVersion": "1.0.0"
+          }
+        ]
+      },
+      {
+        "id": "<id>",
+        "evidenceCode": "EVD-OBL-MND",
+        "semanticKey": "obligation.mandatory.decision",
+        "title": "سجل قرار الإلزام",
+        "evidenceType": "ATTESTATION",
+        "description": "فرض اعتماد رسمي وتتبع كامل",
+        "rationale": "مستوى الإلزام OBL-MND يحدد صرامة التوثيق",
+        "mandatory": true,
+        "confidence": 0.92,
+        "requiresHumanReview": false,
+        "sourceCitation": null,
+        "sourceRules": [
+          {
+            "ruleId": "BR-OBL-MND",
+            "ruleVersion": "1.0.0"
+          }
+        ]
+      }
+    ],
+    "patternEnrichments": [],
+    "reviewFindings": []
+  }
+}

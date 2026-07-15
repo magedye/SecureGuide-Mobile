@@ -1,0 +1,14 @@
+{
+  "contractVersion": "read-model-v1",
+  "profile": {
+    "id": "P-HQ",
+    "name": "المقر الرئيسي",
+    "description": null,
+    "profileKind": "organization",
+    "organizationSize": "LARGE",
+    "industry": "Financial services",
+    "country": "SA",
+    "targetMaturityLevel": "MANAGED",
+    "isActive": true
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "contractVersion": "read-model-v1",
+  "profile": {
+    "id": "P-HQ",
+    "name": "المقر الرئيسي",
+    "description": null,
+    "profileKind": "organization",
+    "organizationSize": "LARGE",
+    "industry": "Financial services",
+    "country": "SA",
+    "targetMaturityLevel": "MANAGED",
+    "isActive": null
+  },
+  "counts": {
+    "totalItems": 3,
+    "applicableItems": 3,
+    "implementedFull": 1,
+    "implementedPartial": 0,
+    "notApplied": 2,
+    "verifiedPass": 1,
+    "verifiedFail": 0,
+    "withException": 1,
+    "openGaps": 2,
+    "overdueItems": 0
+  },
+  "score": {
+    "overall": 33.33333333333333,
+    "band": "At Risk",
+    "capped": false,
+    "formulaVersion": "profile-score-v1",
+    "assessmentCoverage": 66.66666666666666,
+    "riskReductionPct": 33.33333333333333,
+    "implementationScoreRaw": 33.33333333333333,
+    "verificationCoverage": 33.33333333333333,
+    "verificationAssessmentCoverage": 33.33333333333333,
+    "effectivenessKnown": 33.33333333333333,
+    "assessedControls": 2,
+    "totalControls": 3,
+    "remainingCriticalRisk": 0,
+    "criticalTotal": 1,
+    "criticalCompliant": 1,
+    "criticalAccepted": 0,
+    "verifiedPass": 1,
+    "verifiedFail": 0,
+    "effectivenessKnownCount": 1,
+    "domainScores": {
+      "SD-07": 0.0,
+      "SD-03": 100.0,
+      "SD-06": 0.0
+    }
+  },
+  "gaps": [
+    {
+      "artifactId": "A-BACKUP",
+      "titleEn": "Backup restoration",
+      "primaryDomain": "SD-07",
+      "subDomain": "SD-07.03",
+      "priority": "PRI-MEDIUM",
+      "implementationStatus": "STS-NOT-APPLIED",
+      "verificationStatus": "VER-NOT-VERIFIED",
+      "effectiveness": "EFF-UNKNOWN",
+      "exceptionStatus": "EXC-NONE",
+      "assignedOwner": null,
+      "dueDate": null
+    },
+    {
+      "artifactId": "A-LOGGING",
+      "titleEn": "Security logging",
+      "primaryDomain": "SD-06",
+      "subDomain": "SD-06.01",
+      "priority": "PRI-HIGH",
+      "implementationStatus": "STS-NOT-APPLIED",
+      "verificationStatus": "VER-NOT-VERIFIED",
+      "effectiveness": "EFF-UNKNOWN",
+      "exceptionStatus": "EXC-DEFERRED",
+      "assignedOwner": null,
+      "dueDate": null
+    }
+  ],
+  "recommendations": [
+    {
+      "artifactId": "A-BACKUP",
+      "priority": "medium",
+      "dependencyReady": true,
+      "reasonCodes": [
+        "priority:medium",
+        "dependencies:ready"
+      ]
+    },
+    {
+      "artifactId": "A-LOGGING",
+      "priority": "high",
+      "dependencyReady": true,
+      "reasonCodes": [
+        "priority:high",
+        "dependencies:ready",
+        "exception:deferred"
+      ]
+    }
+  ],
+  "reviewQueue": []
+}
