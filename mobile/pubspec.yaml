@@ -1,0 +1,24 @@
+name: secureguide_mobile
+description: >-
+  SecureGuide mobile/desktop client. Binds to the read-model-v1 wire contract
+  (mirrored as Dart data classes) and reaches the Python core through a local
+  sidecar over loopback HTTP. Business rules stay in the core; widgets never
+  execute SQL or governance logic.
+publish_to: none
+version: 0.1.0
+
+environment:
+  sdk: ^3.11.0
+  flutter: ">=3.41.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true

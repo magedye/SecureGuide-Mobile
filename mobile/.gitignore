@@ -1,0 +1,4 @@
+# Dart / Flutter tool output — never commit generated package state.
+.dart_tool/
+build/
+.packages
