@@ -159,17 +159,7 @@ class CatalogRepository:
                 sql += " AND lower(tf.tag_value)=lower(?)"
                 params.append(tag_value)
             sql += ")"
-        scope_type = filters.get("applicability_scope_type")
-        scope_value = filters.get("applicability_scope_value")
-        if scope_type or scope_value:
-            sql += " AND EXISTS (SELECT 1 FROM artifact_applicability_scope aps WHERE aps.artifact_id=a.id"
-            if scope_type:
-                sql += " AND aps.scope_type=?"
-                params.append(scope_type)
-            if scope_value:
-                sql += " AND lower(aps.scope_value)=lower(?)"
-                params.append(scope_value)
-            sql += ")"
+
 
         sql += f" ORDER BY {preferred_title},a.id LIMIT ? OFFSET ?"
         params.extend([limit, offset])
@@ -466,10 +456,8 @@ class ProfileRepository:
         """Return one catalog artifact projected into exactly one profile."""
         return row_dict(
             conn.execute(
-                """SELECT v.*,pa.priority_override,pa.review_frequency_override
-                     FROM v_profile_operational_items v
-                     JOIN profile_artifacts pa ON pa.id=v.profile_artifact_id
-                    WHERE v.profile_id=? AND v.artifact_id=?""",
+                """SELECT * FROM v_profile_operational_items
+                    WHERE profile_id=? AND artifact_id=?""",
                 (profile_id, artifact_id),
             ).fetchone()
         )
@@ -817,5 +805,7 @@ class BlueprintRepository:
         if status:
             sql += " AND status=?"
             params.append(status)
-        sql += " ORDER BY due_date IS NULL,due_date,priority,id"
+        sql += (" ORDER BY due_date IS NULL,due_date,"
+                "CASE priority WHEN 'PRI-CRITICAL' THEN 1 WHEN 'PRI-HIGH' THEN 2"
+                " WHEN 'PRI-MEDIUM' THEN 3 WHEN 'PRI-LOW' THEN 4 ELSE 5 END,id")
         return rows_dict(conn.execute(sql, params).fetchall())

@@ -6,11 +6,11 @@ import hashlib
 import json
 import sqlite3
 import uuid
-from collections import defaultdict
+from collections import defaultdict, deque
 from datetime import date, datetime, timezone
 from typing import Any, Callable, Iterable
 
-from scripts import scoring
+from . import scoring
 
 from .authorization import Authorizer, TrustingAuthorizer
 from .blueprints import BlueprintEngine, ClassificationContext, OperationalPatternLibrary
@@ -107,7 +107,7 @@ class EventBus:
 
     def __init__(self) -> None:
         self._subscribers: dict[str, list[Callable[[dict[str, Any]], None]]] = defaultdict(list)
-        self.history: list[dict[str, Any]] = []
+        self.history: deque[dict[str, Any]] = deque(maxlen=500)
 
     def subscribe(self, event_name: str, callback: Callable[[dict[str, Any]], None]) -> None:
         self._subscribers[event_name].append(callback)
@@ -1189,8 +1189,13 @@ class SecureGuideService:
         for value, allowed, name in checks:
             if value is not None and value not in allowed:
                 raise ValidationError(f"invalid {name}: {value}")
-        if score is not None and not 0 <= float(score) <= 100:
-            raise ValidationError("score must be between 0 and 100")
+        if score is not None:
+            try:
+                if not 0 <= float(score) <= 100:
+                    raise ValidationError("score must be between 0 and 100")
+                score = float(score)
+            except ValueError:
+                raise ValidationError("score must be a number between 0 and 100")
         changes = {
             key: value
             for key, value in {

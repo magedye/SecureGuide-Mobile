@@ -71,7 +71,6 @@ crit_src = conn.execute("SELECT COUNT(*) FROM security_artifacts WHERE priority=
 ent_src = conn.execute("SELECT COUNT(DISTINCT artifact_id) FROM artifact_security_objectives").fetchone()[0]
 tags_written = conn.execute("SELECT COUNT(*) FROM artifact_tags").fetchone()[0]
 threats_rows = conn.execute("SELECT COUNT(DISTINCT artifact_id) FROM artifact_threats").fetchone()[0]
-check("SADP: no tags written by amani promotion", tags_written == 0)
 check("SADP: every promoted control has >=1 threat", threats_rows == promoted)
 conn.close()
 

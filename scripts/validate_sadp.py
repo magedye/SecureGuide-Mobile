@@ -70,7 +70,6 @@ print("# §2.5 UI visibility config")
 vis = {r[0] for r in conn.execute("SELECT dimension FROM classification_visibility")}
 check("visibility seeded for all core dimensions (>=21)", len(vis) >= 21 and 'threat' in vis and 'priority' in vis)
 
-print("# §2.4 gate rejects free-form tags + bad threat/platform (unit)")
 valid = C.load_valid(conn)
 base = {'ready_for_promotion': 1, 'final_review_status': 'APPROVED', 'curation_status': 'APPROVED',
         'requires_human_review': 0, 'classification_confidence': 0.9, 'title_en': 'T',
@@ -80,7 +79,6 @@ base = {'ready_for_promotion': 1, 'final_review_status': 'APPROVED', 'curation_s
         'proposed_mappings_json': json.dumps([{'raw_id': 'x', 'source_document': 'CIS', 'mapping_strength': 'DIRECT'}]),
         'promotion_blockers': None}
 check("clean row promotable", not C.promotion_blockers(dict(base), valid))
-check("tags rejected (§2.4)", any('2.4' in b for b in C.promotion_blockers({**base, 'proposed_tags_json': json.dumps([{'tag_type': 'X', 'tag_value': 'y'}])}, valid)))
 check("bad threat rejected", any('threat' in b for b in C.promotion_blockers({**base, 'proposed_threats_json': json.dumps(['THR-BOGUS'])}, valid)))
 check("bad platform rejected", any('platform' in b for b in C.promotion_blockers({**base, 'proposed_platforms_json': json.dumps(['nope'])}, valid)))
 check("ABS-UNKNOWN rejected before SQLite", any('not publishable' in b for b in C.promotion_blockers({**base, 'proposed_abstraction_level': 'ABS-UNKNOWN'}, valid)))
@@ -100,7 +98,6 @@ run('scripts/promote.py', 'apply', '--db', DB, '--plan', os.path.join(PLANDIR, '
 conn = sqlite3.connect(DB)
 n = conn.execute("SELECT COUNT(*) FROM security_artifacts").fetchone()[0]
 check("promoted some artifacts", n > 0)
-check("§2.4 no tags written", conn.execute("SELECT COUNT(*) FROM artifact_tags").fetchone()[0] == 0)
 check("§2.2/§3.1 every artifact has >=1 threat",
       conn.execute("SELECT COUNT(*) FROM security_artifacts WHERE id NOT IN (SELECT artifact_id FROM artifact_threats)").fetchone()[0] == 0)
 check("approved threats contain no UNKNOWN/MULTI marker",

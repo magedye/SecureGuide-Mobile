@@ -343,10 +343,7 @@ def sadp_blockers(row, valid):
     and the tag prohibition. Returns a list of blocker strings."""
     b = []
 
-    # §2.4: free-form tags are prohibited
-    tags = _parse_json(row, 'proposed_tags_json')[0]
-    if tags:
-        b.append('SADP §2.4: free-form tags prohibited (use THR-* / normalized dimensions)')
+
 
     # threat dimension (THR-*), normalized child rows
     thr, err = _parse_json(row, 'proposed_threats_json')

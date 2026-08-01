@@ -48,7 +48,13 @@ def apply_migrations(
                 ).fetchone()
                 if exists:
                     continue
-            conn.executescript(migration.read_text(encoding="utf-8"))
+            script = "BEGIN;\n" + migration.read_text(encoding="utf-8") + "\nCOMMIT;"
+            try:
+                conn.executescript(script)
+            except Exception:
+                if conn.in_transaction:
+                    conn.execute("ROLLBACK")
+                raise
             applied.append(version)
 
         integrity = conn.execute("PRAGMA integrity_check").fetchone()[0]

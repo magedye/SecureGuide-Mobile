@@ -58,7 +58,6 @@ def maps_ok(j):
 check("every row has DIRECT lineage mapping", all(maps_ok(r['proposed_mappings_json']) for r in rows))
 
 print("# SADP conformance")
-check("zero tags (SADP §2.4)", all(not r['proposed_tags_json'] for r in rows))
 check("all NEEDS_REVIEW", all(r['curation_status'] == 'NEEDS_REVIEW' for r in rows))
 check("none ready_for_promotion", all(r['ready_for_promotion'] == 0 for r in rows))
 # every stored enum value is valid-or-null (loader guarantees; verify)

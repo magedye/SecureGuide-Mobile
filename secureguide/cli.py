@@ -156,6 +156,9 @@ def build_parser() -> argparse.ArgumentParser:
     select.add_argument("--reason")
 
     template = commands.add_parser("template-apply")
+    
+    import_templates = commands.add_parser("import-templates")
+    import_templates.add_argument("file")
     template.add_argument("template_id")
     template.add_argument("--profile")
     template.add_argument("--by", required=True)
@@ -241,6 +244,27 @@ def run(args: argparse.Namespace) -> Any:
     if args.command == "blueprint-generate" and args.rule_pack:
         blueprint_engine = BlueprintEngine(load_rule_pack(args.rule_pack))
     service = SecureGuideService(database, blueprint_engine=blueprint_engine)
+    if args.command == "import-templates":
+        import json
+        with open(args.file, "r", encoding="utf-8") as f:
+            templates = json.load(f)
+        with database.transaction() as conn:
+            from .services import new_id
+            count = 0
+            for t in templates:
+                tid = t.get("id") or new_id("TMP")
+                conn.execute(
+                    "INSERT OR REPLACE INTO templates (id, name, version, source, description) VALUES (?, ?, ?, ?, ?)",
+                    (tid, t["name"], t.get("version", "1.0"), t.get("source", "USER"), t.get("description"))
+                )
+                for i, item in enumerate(t.get("items", [])):
+                    conn.execute(
+                        "INSERT OR REPLACE INTO template_items (id, template_id, artifact_id, inclusion_status, priority_default, review_frequency_default, sort_order) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                        (new_id("TMI"), tid, item["artifact_id"], item.get("inclusion_status", "RECOMMENDED"), item.get("priority_default"), item.get("review_frequency_default"), i)
+                    )
+                count += 1
+        return {"imported_templates": count}
+
     if args.command == "pattern-search":
         return service.search_operational_patterns(
             query=args.query,

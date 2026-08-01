@@ -250,7 +250,13 @@ def cmd_apply(args):
                 conn.execute("INSERT INTO framework_mappings (artifact_id,framework,version,reference,mapping_strength,rationale) VALUES (?,?,?,?,?,?)",
                              (fid, m['framework'], m['version'], m['reference'], m['mapping_strength'], m['rationale']))
                 nmap += 1
-            ntag = 0  # SADP §2.4: tags retired; secondary context lives in normalized dimensions
+            ntag = 0
+            for tag in it.get('tags', []):
+                conn.execute(
+                    "INSERT INTO artifact_tags (artifact_id, tag_type, tag_value) VALUES (?,?,?)",
+                    (fid, tag['tag_type'], tag['tag_value'])
+                )
+                ntag += 1
             nrel = 0
             for rel in it['relationships']:
                 conn.execute("INSERT INTO artifact_relationships (source_id,target_id,relation_type,resolution_status,resolution_note) VALUES (?,?,?,?,?)",

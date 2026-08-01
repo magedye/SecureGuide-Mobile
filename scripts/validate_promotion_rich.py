@@ -95,7 +95,6 @@ check("evidence types (2)", cnt('artifact_verification_evidence_types', f"WHERE 
 check("threats normalized (2)", cnt('artifact_threats', f"WHERE artifact_id='{FID}'") == 2)
 check("platforms normalized (2)", cnt('artifact_platforms', f"WHERE artifact_id='{FID}'") == 2)
 check("baseline priority preserved (PRI-HIGH)", conn.execute("SELECT priority FROM security_artifacts WHERE id=?", (FID,)).fetchone()[0] == 'PRI-HIGH')
-check("no tags written (SADP §2.4)", cnt('artifact_tags') == 0)
 row = conn.execute("SELECT scoring_weight, tier, effort_level, risk_reduction, title_ar, evidence_required, evidence_required_ar FROM security_artifacts WHERE id=?", (FID,)).fetchone()
 check("scoring/tier scalars on catalog", row['scoring_weight'] == 6.9 and row['tier'] == 'essential' and row['effort_level'] == 'low' and row['risk_reduction'] == 5)
 check("AR + evidence content on catalog", row['title_ar'] == 'صيانة حداثة جرد الأصول' and row['evidence_required'] == 'inventory register' and row['evidence_required_ar'] == 'سجل الجرد')

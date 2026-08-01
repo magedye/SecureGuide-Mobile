@@ -113,3 +113,87 @@ class WriteModel:
             assessment=AssessmentRecord.from_row(assessment).to_wire(),
             artifact=OperationalItem.from_row(detail["artifact"]).to_wire(),
         )
+
+    def apply_template(self, payload: dict[str, Any]) -> dict[str, Any]:
+        template_id = payload.get("templateId")
+        if not template_id or not str(template_id).strip():
+            raise ValidationError("templateId is required")
+        template_version = payload.get("templateVersion")
+        if not template_version or not str(template_version).strip():
+            raise ValidationError("templateVersion is required")
+        applied_by = payload.get("appliedBy")
+        if not applied_by or not str(applied_by).strip():
+            raise ValidationError("appliedBy is required")
+        result = self._service.apply_template(
+            str(template_id),
+            str(template_version),
+            str(applied_by),
+            profile_id=payload.get("profileId"),
+            note=payload.get("note"),
+        )
+        return _envelope(
+            application={
+                "profileId": result["profile_id"],
+                "templateId": result["template_id"],
+                "templateVersion": result["template_version"],
+                "appliedItems": result["applied_items"],
+            }
+        )
+
+    def add_evidence(self, payload: dict[str, Any]) -> dict[str, Any]:
+        artifact_id = payload.get("artifactId")
+        if not artifact_id or not str(artifact_id).strip():
+            raise ValidationError("artifactId is required")
+        evidence_type = payload.get("evidenceType")
+        if not evidence_type or not str(evidence_type).strip():
+            raise ValidationError("evidenceType is required")
+        result = self._service.add_evidence(
+            str(artifact_id),
+            evidence_type=str(evidence_type),
+            profile_id=payload.get("profileId"),
+            assessment_id=payload.get("assessmentId"),
+            evidence_url=payload.get("evidenceUrl"),
+            description=payload.get("description"),
+            title=payload.get("title"),
+            collected_by=payload.get("collectedBy"),
+            content_hash=payload.get("contentHash"),
+            mime_type=payload.get("mimeType"),
+        )
+        return _envelope(
+            evidence={
+                "id": result["id"],
+                "profileArtifactId": result["profile_artifact_id"],
+                "evidenceType": result["evidence_type"],
+                "evidenceUrl": result["evidence_url"],
+                "title": result["title"],
+                "description": result["description"],
+                "collectedBy": result["collected_by"],
+            }
+        )
+
+    def create_exception(self, payload: dict[str, Any]) -> dict[str, Any]:
+        artifact_id = payload.get("artifactId")
+        if not artifact_id or not str(artifact_id).strip():
+            raise ValidationError("artifactId is required")
+        exception_status = payload.get("exceptionStatus")
+        if not exception_status or not str(exception_status).strip():
+            raise ValidationError("exceptionStatus is required")
+        justification = payload.get("justification")
+        if not justification or not str(justification).strip():
+            raise ValidationError("justification is required")
+        result = self._service.create_exception(
+            str(artifact_id),
+            exception_status=str(exception_status),
+            justification=str(justification),
+            profile_id=payload.get("profileId"),
+            exception_source=payload.get("exceptionSource", "USER"),
+        )
+        return _envelope(
+            exception={
+                "id": result["id"],
+                "profileArtifactId": result["profile_artifact_id"],
+                "exceptionStatus": result["exception_status"],
+                "justification": result["justification"],
+                "workflowStatus": result["workflow_status"],
+            }
+        )

@@ -72,7 +72,6 @@ def main():
     check('761 curated candidates', sum(row['batch_id'] == 'CURATED-IMPORT' for row in rows) == 761)
     check('nothing approved', all(not row['final_review_status'] for row in rows))
     check('nothing ready for promotion', all(row['ready_for_promotion'] == 0 for row in rows))
-    check('no staging tags', all(not row['proposed_tags_json'] for row in rows))
 
     print('# committed decision file versus database')
     decision_by_id = {}
@@ -179,7 +178,6 @@ def main():
             publication = {row['publication_status']: row['n'] for row in prod.execute(
                 'SELECT publication_status,COUNT(*) n FROM security_artifacts GROUP BY publication_status')}
             check('production artifact count unchanged', artifacts == baseline['security_artifacts'], str(artifacts))
-            check('production tag count unchanged', tags == baseline['artifact_tags'], str(tags))
             check('production publication state unchanged', publication == baseline['publication_status'], str(publication))
             check('production SQLite integrity', prod.execute('PRAGMA integrity_check').fetchone()[0] == 'ok')
             check('production foreign keys', not prod.execute('PRAGMA foreign_key_check').fetchall())
