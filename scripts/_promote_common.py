@@ -26,6 +26,7 @@ IMPL_CODES = {'administrative', 'technical', 'operational', 'physical', 'human',
 TIER_CODES = {'essential', 'advanced', 'very_advanced', 'full'}
 EVIDENCE_TYPES = {'DOCUMENT', 'SCREENSHOT', 'LOG', 'REPORT', 'CONFIG', 'ATTESTATION', 'LINK', 'OTHER'}
 ACTION_KINDS = {'ACTION', 'VERIFICATION'}
+TAG_TYPES = {'Technology', 'Framework', 'Concept', 'Context', 'Threat', 'Data', 'Party'}
 
 # Fail-closed fallback policy used when validating an older database that has
 # not yet received migration 018.  Migration 018 is authoritative when present.
@@ -231,6 +232,32 @@ def enrichment_blockers(row):
                     b.append('verification step seq must be int>=0')
                 elif not st.get('text_en'):
                     b.append('verification step missing text_en')
+
+    tags, err = _parse_json(row, 'proposed_tags_json')
+    if err:
+        b.append(err)
+    elif tags is not None:
+        if not isinstance(tags, list):
+            b.append('proposed_tags_json must be a JSON array')
+        else:
+            seen_tags = set()
+            for t in tags:
+                if not isinstance(t, dict):
+                    b.append('tag entry not an object')
+                    continue
+                ttype = t.get('tag_type')
+                tval = t.get('tag_value')
+                if not ttype or not tval:
+                    b.append('tag missing tag_type or tag_value')
+                    continue
+                if ttype not in TAG_TYPES:
+                    b.append(f"invalid tag_type '{ttype}' (allowed: {', '.join(sorted(TAG_TYPES))})")
+                
+                sig = f"{ttype}:{tval}"
+                if sig in seen_tags:
+                    b.append(f"duplicate tag '{sig}'")
+                seen_tags.add(sig)
+
     return b
 
 
