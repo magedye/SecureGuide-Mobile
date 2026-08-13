@@ -83,7 +83,8 @@ class DatabaseHelper {
       final candidate = File(candidatePath);
       final recovery = File(recoveryPath);
       try {
-        final data = await rootBundle.load(join("assets", _databaseName));
+        // Flutter asset keys always use POSIX separators, including on Windows.
+        final data = await rootBundle.load('assets/$_databaseName');
         final bytes = data.buffer.asUint8List(
           data.offsetInBytes,
           data.lengthInBytes,

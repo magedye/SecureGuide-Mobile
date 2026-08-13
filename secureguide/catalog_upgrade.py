@@ -39,7 +39,8 @@ def _primary_key(conn: sqlite3.Connection, table: str) -> list[str]:
 def operational_snapshot(conn: sqlite3.Connection) -> dict[str, Any]:
     tables = [row[0] for row in conn.execute(
         "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name"
-    ) if row[0] == "enterprise_profiles" or row[0].startswith(OPERATIONAL_NAME_FILTERS)]
+    ) if row[0] in {"application_state", "enterprise_profiles"}
+        or row[0].startswith(OPERATIONAL_NAME_FILTERS)]
     payload: dict[str, Any] = {}
     for table in tables:
         columns = _columns(conn, table)

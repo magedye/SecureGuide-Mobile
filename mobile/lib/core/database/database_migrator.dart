@@ -83,7 +83,19 @@ final class DatabaseMigrator {
       }
 
       database.userVersion = int.parse(migrations.last.version);
-      _validateOpenDatabase(database);
+      final canonicalBundle =
+          migrations.length == embeddedMigrations.length &&
+          List.generate(
+            migrations.length,
+            (index) =>
+                migrations[index].version ==
+                    embeddedMigrations[index].version &&
+                migrations[index].sha256 == embeddedMigrations[index].sha256,
+          ).every((matches) => matches);
+      _validateOpenDatabase(
+        database,
+        requireCompleteOperationalSchema: canonicalBundle,
+      );
       return applied;
     } finally {
       database.close();
@@ -93,13 +105,16 @@ final class DatabaseMigrator {
   static void _validateSync(String databasePath) {
     final database = sqlite3.open(databasePath, mode: OpenMode.readOnly);
     try {
-      _validateOpenDatabase(database);
+      _validateOpenDatabase(database, requireCompleteOperationalSchema: true);
     } finally {
       database.close();
     }
   }
 
-  static void _validateOpenDatabase(Database database) {
+  static void _validateOpenDatabase(
+    Database database, {
+    required bool requireCompleteOperationalSchema,
+  }) {
     final integrity = database
         .select('PRAGMA integrity_check')
         .single
@@ -114,15 +129,21 @@ final class DatabaseMigrator {
         'foreign_key_check found ${foreignKeyIssues.length} issue(s)',
       );
     }
-    const requiredTables = {
+    const coreTables = {
       'schema_migrations',
       'security_artifacts',
       'enterprise_profiles',
       'profile_artifacts',
+      'application_state',
+    };
+    const completeOperationalTables = {
       'profile_assessments',
       'profile_evidence',
       'profile_exceptions',
-      'application_state',
+    };
+    final requiredTables = {
+      ...coreTables,
+      if (requireCompleteOperationalSchema) ...completeOperationalTables,
     };
     final tables = database
         .select("SELECT name FROM sqlite_master WHERE type='table'")

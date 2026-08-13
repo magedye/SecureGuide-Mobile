@@ -86,6 +86,7 @@ final class CatalogContentUpgrader {
         .map((row) => row['name'] as String)
         .where(
           (name) =>
+              name == 'application_state' ||
               name == 'enterprise_profiles' ||
               name.startsWith('profile_') ||
               name.startsWith('approved_blueprint') ||

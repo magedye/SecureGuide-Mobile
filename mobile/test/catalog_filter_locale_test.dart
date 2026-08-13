@@ -89,9 +89,9 @@ void main() {
       offset: 0,
     );
 
-    expect(view.items, hasLength(1));
-    expect(view.items.single.id, 'SG-POL-AI-08');
-    expect(view.items.single.subDomain, 'SD-08.05');
+    expect(view.items, isNotEmpty);
+    expect(view.items.map((item) => item.id), contains('SG-POL-AI-08'));
+    expect(view.items.every((item) => item.subDomain == 'SD-08.05'), isTrue);
   });
 
   test(

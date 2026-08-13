@@ -49,6 +49,15 @@ void main() {
         expect(_count(database, 'profile_assessments'), 1);
         expect(_count(database, 'profile_evidence'), 1);
         expect(_count(database, 'profile_exceptions'), 1);
+        expect(
+          database
+              .select(
+                'SELECT active_profile_id FROM application_state '
+                'WHERE singleton_id=1',
+              )
+              .single['active_profile_id'],
+          'P2',
+        );
         expect(_count(database, 'raw_artifacts'), 4265);
         expect(_count(database, 'staging_artifacts'), 0);
         expect(
@@ -106,6 +115,10 @@ void _seedOperationalData(String databasePath) {
       ..execute(
         "INSERT INTO enterprise_profiles(id,name,profile_kind) VALUES"
         "('P1','Head Office','organization'),('P2','Cloud Audit','audit')",
+      )
+      ..execute(
+        "UPDATE application_state SET active_profile_id='P2' "
+        'WHERE singleton_id=1',
       )
       ..execute(
         'INSERT INTO profile_artifacts('

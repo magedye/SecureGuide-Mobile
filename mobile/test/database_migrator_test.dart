@@ -157,6 +157,12 @@ void main() {
     );
     expect(database.select('PRAGMA integrity_check').single.values.first, 'ok');
     expect(database.select('PRAGMA foreign_key_check'), isEmpty);
+    expect(
+      database
+          .select('SELECT COUNT(*) AS n FROM security_artifacts')
+          .single['n'],
+      1227,
+    );
 
     const requiredViews = {
       'v_profile_dashboard',

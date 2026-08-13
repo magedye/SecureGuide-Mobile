@@ -35,7 +35,10 @@ class CatalogUpgradeTests(unittest.TestCase):
     def setUp(self) -> None:
         self.temp = tempfile.TemporaryDirectory()
         self.installed = Path(self.temp.name) / "installed.db"
-        shutil.copy2(ROOT / "mobile" / "assets" / "catalog.db", self.installed)
+        # The tracked root catalog is the explicit four-artifact predecessor
+        # fixture. The mobile asset is the current release candidate and must
+        # not be used as both sides of an upgrade qualification.
+        shutil.copy2(ROOT / "catalog.db", self.installed)
         apply_migrations(self.installed)
         self.service = SecureGuideService(Database(self.installed))
         self._seed_profiles()
@@ -98,6 +101,12 @@ class CatalogUpgradeTests(unittest.TestCase):
             self.assertEqual(conn.execute("SELECT COUNT(*) FROM profile_assessments").fetchone()[0], 1)
             self.assertEqual(conn.execute("SELECT COUNT(*) FROM profile_evidence").fetchone()[0], 1)
             self.assertEqual(conn.execute("SELECT COUNT(*) FROM profile_exceptions").fetchone()[0], 1)
+            self.assertEqual(
+                conn.execute(
+                    "SELECT active_profile_id FROM application_state WHERE singleton_id=1"
+                ).fetchone()[0],
+                "P2",
+            )
             self.assertEqual(conn.execute("SELECT COUNT(*) FROM raw_artifacts").fetchone()[0], 4265)
             self.assertEqual(conn.execute("SELECT COUNT(*) FROM staging_artifacts").fetchone()[0], 0)
             self.assertEqual(conn.execute("PRAGMA integrity_check").fetchone()[0], "ok")
