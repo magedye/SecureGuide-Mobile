@@ -39,10 +39,10 @@
 
 **Independent Test**: Representative `ART-REQ`, `ART-CTR`, `ART-CTE`, `ART-AST`, `ART-RSK`, `ART-EXC`, and published policy/standard/procedure cases return correct independent minimum and strict outcomes.
 
-- [ ] T012 [US1] Refactor promotion blockers into structural/minimum and strict-review gates without weakening controlled values in `scripts/_promote_common.py`
-- [ ] T013 [US1] Preserve low-confidence `MINIMUM_VALID` rows with correct review flags and publication state during promotion in `scripts/promote.py`
+- [x] T012 [US1] Refactor promotion blockers into structural/minimum and strict-review gates without weakening controlled values in `scripts/_promote_common.py`
+- [x] T013 [US1] Preserve low-confidence `MINIMUM_VALID` rows with correct review flags and publication state during promotion in `scripts/promote.py`
 - [ ] T014 [US1] Replace release human-approval equivalence with separately reported minimum, strict, and review summaries in `scripts/build_release_db.py`
-- [ ] T015 [US1] Add promotion/release regression tests for `NOT_REVIEWED`, low confidence, missing type fields, and strict/minimum divergence in `tests/test_promotion_minimum_valid.py`
+- [x] T015 [US1] Add promotion/release regression tests for `NOT_REVIEWED`, low confidence, missing type fields, and strict/minimum divergence in `tests/test_promotion_minimum_valid.py`
 
 **Checkpoint**: A valid canonical can enter the catalog without a false human-review or strict-conformance claim.
 
@@ -54,13 +54,13 @@
 
 **Independent Test**: A valid edit applies; stale DB/row edits, formulas, invalid enums, immutable-ID changes, and mid-batch failures are rejected; omission mutates nothing.
 
-- [ ] T016 [US2] Write failing schema tests for workbook runs and per-row audit records in `tests/test_catalog_workbook.py`
-- [ ] T017 [US2] Add workbook audit entities and indexes in `migrations/032_catalog_workbook_audit.sql`
-- [ ] T018 [US2] Write failing exact-nine-sheet export/validation tests including named reference lists, dropdowns, formula rejection, and validation errors in `tests/test_catalog_workbook.py`
-- [ ] T019 [US2] Implement deterministic workbook export and validation in `secureguide/catalog_workbook.py`
-- [ ] T020 [US2] Write failing plan/apply tests for stale baseline, stale rows, audited resolution, omission, deprecation, rollback, profile preservation, and release-asset guard in `tests/test_catalog_workbook_apply.py`
-- [ ] T021 [US2] Implement conflict-safe plan and transactional apply without `REPLACE` or physical deletion in `secureguide/catalog_workbook.py`
-- [ ] T022 [US2] Expose `export`, `validate`, `plan`, and `apply` through `scripts/catalog_workbook.py` and run an unchanged-workbook round trip
+- [x] T016 [US2] Write failing schema tests for workbook runs and per-row audit records in `tests/test_catalog_workbook.py`
+- [x] T017 [US2] Add workbook audit entities and indexes in `migrations/032_catalog_workbook_audit.sql`
+- [x] T018 [US2] Write failing exact-nine-sheet export/validation tests including named reference lists, dropdowns, formula rejection, and validation errors in `tests/test_catalog_workbook.py`
+- [x] T019 [US2] Implement deterministic workbook export and validation in `secureguide/catalog_workbook.py`
+- [x] T020 [US2] Write failing plan/apply tests for stale baseline, stale rows, audited resolution, omission, deprecation, rollback, profile preservation, and release-asset guard in `tests/test_catalog_workbook_apply.py`
+- [x] T021 [US2] Implement conflict-safe plan and transactional apply without `REPLACE` or physical deletion in `secureguide/catalog_workbook.py`
+- [x] T022 [US2] Expose `export`, `validate`, `plan`, and `apply` through `scripts/catalog_workbook.py` and run an unchanged-workbook round trip
 
 **Checkpoint**: The workbook is a safe human interface while SQLite remains authoritative.
 

@@ -81,7 +81,9 @@ def cmd_validate(args):
 # --------------------------------- plan ------------------------------------
 def build_plan(conn, valid, batch_id):
     items, excluded, conflicts = [], [], []
-    for r in conn.execute("SELECT * FROM staging_artifacts WHERE final_review_status IS NOT NULL ORDER BY id"):
+    for r in conn.execute(
+            "SELECT * FROM staging_artifacts "
+            "WHERE ready_for_promotion=1 OR final_review_status IS NOT NULL ORDER BY id"):
         if r['ready_for_promotion'] != 1:
             excluded.append({'staging_id': r['id'], 'reason': f"not ready ({r['final_review_status']})"})
             continue
@@ -211,6 +213,18 @@ def cmd_apply(args):
             d = derive_catalog_fields(conn, r, maps)
             def sg(k):  # safe staging get (enrichment cols may be absent on pre-007 rows)
                 return r[k] if k in r.keys() else None
+            review_evidenced = (
+                r['final_review_status'] in ('APPROVED', 'SPLIT_AND_APPROVED')
+                and bool(r['approved_by']) and bool(r['approved_at'])
+            )
+            needs_review = bool(r['requires_human_review']) or (
+                r['classification_confidence'] is not None
+                and r['classification_confidence'] <= 0.70
+            )
+            ai_review_status = (
+                'AIR-HUMAN-APPROVED' if review_evidenced
+                else ('AIR-HUMAN-REVIEW' if needs_review else 'AIR-AUTO-ACCEPTED')
+            )
             vals = {
                 'id': fid, 'source_catalog_id': d['source_catalog_id'], 'title_en': r['title_en'],
                 'title_ar': sg('title_ar'),
@@ -238,8 +252,10 @@ def cmd_apply(args):
                 'scoring_weight': sg('proposed_scoring_weight'), 'risk_reduction': sg('proposed_risk_reduction'),
                 'effort_level': sg('proposed_effort_level'), 'tier': sg('proposed_tier'),
                 'classification_confidence': r['classification_confidence'],
-                'classification_rationale': r['classification_rationale'], 'ai_review_status': 'AIR-HUMAN-APPROVED',
-                'requires_human_review': 0, 'publication_status': 'APPROVED',
+                'classification_rationale': r['classification_rationale'],
+                'ai_review_status': ai_review_status,
+                'requires_human_review': int(needs_review and not review_evidenced),
+                'publication_status': 'APPROVED',
                 'source_document': d['source_document'], 'is_active': 1,
             }
             cols = ','.join(CATALOG_COLS)
