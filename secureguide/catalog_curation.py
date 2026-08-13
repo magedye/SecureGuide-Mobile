@@ -478,6 +478,65 @@ def _legacy_lineage(conn: sqlite3.Connection) -> dict[str, list[dict[str, Any]]]
     return result
 
 
+def close_existing_catalog(conn: sqlite3.Connection) -> dict[str, int]:
+    """Backfill normalized lineage and explicit dispositions for existing canonicals."""
+    legacy = _legacy_lineage(conn)
+    linked: set[str] = set()
+    try:
+        conn.execute("BEGIN IMMEDIATE")
+        for artifact_id, mappings in legacy.items():
+            for index, mapping in enumerate(mappings):
+                raw_id = mapping.get("raw_id")
+                if not raw_id or not conn.execute(
+                    "SELECT 1 FROM raw_artifacts WHERE id=?", (raw_id,)
+                ).fetchone():
+                    continue
+                strength = mapping.get("mapping_strength") or "DIRECT"
+                rationale = mapping.get("rationale")
+                if strength != "DIRECT" and not rationale:
+                    rationale = "Legacy non-direct mapping retained during normalized lineage backfill."
+                conn.execute(
+                    """INSERT OR IGNORE INTO artifact_source_lineage(
+                           artifact_id,raw_artifact_id,lineage_role,mapping_strength,
+                           rationale,is_primary
+                       ) VALUES(?,?,'SUPPORTS_CANONICAL',?,?,?)""",
+                    (artifact_id, raw_id, strength, rationale, int(index == 0)),
+                )
+                conn.execute(
+                    "UPDATE raw_artifacts SET promoted_artifact_id=? WHERE id=?",
+                    (artifact_id, raw_id),
+                )
+                linked.add(raw_id)
+        for row in conn.execute("SELECT id FROM raw_artifacts ORDER BY id"):
+            raw_id = row[0]
+            disposition = "SUPPORTS_CANONICAL" if raw_id in linked else "DEFERRED"
+            rationale = (
+                "Supports an existing governed canonical artifact."
+                if raw_id in linked else
+                "No existing governed canonical lineage selects this raw source record."
+            )
+            conn.execute(
+                """INSERT OR IGNORE INTO raw_artifact_dispositions(
+                       raw_artifact_id,disposition,rationale,decision_method,
+                       decision_confidence,requires_human_review,decided_by,decision_batch_id
+                   ) VALUES(?,?,?,?,?,?,?,?)""",
+                (raw_id, disposition, rationale, "LEGACY_LINEAGE_BACKFILL",
+                 1.0 if raw_id in linked else 0.0, 0 if raw_id in linked else 1,
+                 "SecureGuide release builder", "LEGACY-CLOSURE-V1"),
+            )
+        conn.execute("COMMIT")
+    except Exception:
+        if conn.in_transaction:
+            conn.execute("ROLLBACK")
+        raise
+    return {
+        "rawTotal": conn.execute("SELECT COUNT(*) FROM raw_artifacts").fetchone()[0],
+        "linkedRaw": len(linked),
+        "dispositions": conn.execute("SELECT COUNT(*) FROM raw_artifact_dispositions").fetchone()[0],
+        "canonicalsWithLineage": conn.execute("SELECT COUNT(DISTINCT artifact_id) FROM artifact_source_lineage").fetchone()[0],
+    }
+
+
 def curate_complete_catalog(
     conn: sqlite3.Connection,
     candidates: dict[str, dict[str, Any]] | None = None,
@@ -570,8 +629,80 @@ def curate_complete_catalog(
         valid_threats = {row[0] for row in conn.execute("SELECT code FROM lk_threat")}
         valid_platforms = {row[0] for row in conn.execute("SELECT code FROM lk_platform")}
         valid_aliases = {row[0] for row in conn.execute("SELECT amani_key FROM amani_domain_alias")}
+        mapping_count = action_count = tag_count = relationship_count = 0
         for candidate_id, artifact_id in candidate_to_final.items():
             candidate = candidates[candidate_id]
+            seen_mappings: set[tuple[str, str, str]] = set()
+            for mapping in candidate.get("mappings") or []:
+                framework = mapping.get("source_document") or mapping.get("framework")
+                version = mapping.get("source_version") or mapping.get("version") or "UNKNOWN"
+                reference = mapping.get("source_section") or mapping.get("reference")
+                strength = mapping.get("mapping_strength") or "INFORMATIVE"
+                rationale = mapping.get("rationale")
+                if not framework or not reference or strength not in {"DIRECT", "INDIRECT", "PARTIAL", "INFORMATIVE"}:
+                    raise CurationInputError(f"invalid framework mapping on {candidate_id}")
+                if strength != "DIRECT" and not (rationale or "").strip():
+                    raise CurationInputError(f"non-direct framework mapping lacks rationale on {candidate_id}")
+                signature = (framework, version, reference)
+                if signature in seen_mappings:
+                    continue
+                seen_mappings.add(signature)
+                conn.execute(
+                    """INSERT INTO framework_mappings(
+                           artifact_id,framework,version,reference,mapping_strength,rationale
+                       ) VALUES(?,?,?,?,?,?)""",
+                    (artifact_id, framework, version, reference, strength, rationale),
+                )
+                mapping_count += 1
+            seen_actions: set[tuple[str, int]] = set()
+            for action in candidate.get("actions") or []:
+                kind = action.get("kind") or "ACTION"
+                sequence = action.get("seq")
+                text_en = action.get("text_en")
+                if kind not in {"ACTION", "VERIFICATION"} or not isinstance(sequence, int) or sequence < 0 or not text_en:
+                    raise CurationInputError(f"invalid action on {candidate_id}")
+                signature = (kind, sequence)
+                if signature in seen_actions:
+                    continue
+                seen_actions.add(signature)
+                conn.execute(
+                    """INSERT INTO artifact_actions(
+                           artifact_id,kind,seq,text_en,text_ar
+                       ) VALUES(?,?,?,?,?)""",
+                    (artifact_id, kind, sequence, text_en, action.get("text_ar")),
+                )
+                action_count += 1
+            for tag in candidate.get("tags") or []:
+                tag_type, tag_value = tag.get("tag_type"), tag.get("tag_value")
+                if tag_type not in {"Technology", "Framework", "Concept", "Context", "Threat", "Data", "Party"} or not tag_value:
+                    raise CurationInputError(f"invalid normalized tag on {candidate_id}")
+                conn.execute(
+                    "INSERT OR IGNORE INTO artifact_tags(artifact_id,tag_type,tag_value) VALUES(?,?,?)",
+                    (artifact_id, tag_type, tag_value),
+                )
+                tag_count += 1
+            # Only final canonical IDs may be persisted as relationship targets.
+            for relationship in candidate.get("relationships") or []:
+                target_candidate = relationship.get("target_id")
+                target_id = candidate_to_final.get(target_candidate, target_candidate)
+                relation_type = relationship.get("relation_type")
+                if target_id not in candidate_to_final.values() or relation_type not in {
+                    "REL-DER", "REL-SAT", "REL-SUP", "REL-SPL", "REL-IMP", "REL-VER",
+                    "REL-MEA", "REL-MIT", "REL-AFF", "REL-EXC", "REL-DEP", "REL-CNF",
+                }:
+                    raise CurationInputError(f"dangling or invalid relationship on {candidate_id}")
+                if relation_type == "REL-CNF" and not (
+                    relationship.get("resolution_status") and relationship.get("resolution_note")
+                ):
+                    raise CurationInputError(f"unresolved conflict relationship on {candidate_id}")
+                conn.execute(
+                    """INSERT INTO artifact_relationships(
+                           source_id,target_id,relation_type,resolution_status,resolution_note
+                       ) VALUES(?,?,?,?,?)""",
+                    (artifact_id, target_id, relation_type,
+                     relationship.get("resolution_status"), relationship.get("resolution_note")),
+                )
+                relationship_count += 1
             threats = []
             for threat in candidate.get("threats") or []:
                 code = threat.get("threat_code") if isinstance(threat, dict) else threat
@@ -633,6 +764,12 @@ def curate_complete_catalog(
         "canonicalTotal": conn.execute("SELECT COUNT(*) FROM security_artifacts").fetchone()[0],
         "rawTotal": conn.execute("SELECT COUNT(*) FROM raw_artifacts").fetchone()[0],
         "lineageRows": conn.execute("SELECT COUNT(*) FROM artifact_source_lineage").fetchone()[0],
+        "normalized": {
+            "frameworkMappings": mapping_count,
+            "actions": action_count,
+            "tags": tag_count,
+            "relationships": relationship_count,
+        },
         "dispositions": dispositions, "domains": domains,
         "selectionOverrides": projection["selectionOverrides"],
         "equivalenceSha256": projection["equivalenceSha256"],

@@ -8,8 +8,15 @@ import sqlite3
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
-from scripts.build_release_db import BuildError, _release_gates, build
+from scripts.build_release_db import (
+    BuildError,
+    _canonical_manifest_hash,
+    _publish_pair,
+    _release_gates,
+    build,
+)
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -114,6 +121,80 @@ class GovernedReleaseBuildTests(unittest.TestCase):
             second_manifest["reproducibleBuildTimestampUtc"],
             "2026-07-01T00:00:00Z",
         )
+
+
+class CuratedReleaseBuildTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.temp = tempfile.TemporaryDirectory()
+        cls.first = Path(cls.temp.name) / "curated-a.db"
+        cls.second = Path(cls.temp.name) / "curated-b.db"
+        cls.first_manifest = build(cls.first, mode="curated")
+        cls.second_manifest = build(cls.second, mode="curated")
+
+    @classmethod
+    def tearDownClass(cls) -> None:
+        cls.temp.cleanup()
+
+    def test_curated_database_and_manifest_are_reproducible(self) -> None:
+        self.assertEqual(self.first.read_bytes(), self.second.read_bytes())
+        self.assertEqual(self.first_manifest, self.second_manifest)
+        self.assertEqual(
+            self.first.with_suffix(".db.manifest.json").read_bytes(),
+            self.second.with_suffix(".db.manifest.json").read_bytes(),
+        )
+        self.assertEqual(
+            self.first_manifest["manifestSha256"],
+            _canonical_manifest_hash(self.first_manifest),
+        )
+
+    def test_curated_release_has_closed_minimum_catalog_and_no_unlicensed_payload(self) -> None:
+        manifest = self.first_manifest
+        self.assertEqual(manifest["releaseCounts"]["artifacts"], 1227)
+        self.assertEqual(manifest["releaseCounts"]["rawArtifacts"], 4265)
+        self.assertEqual(manifest["releaseCounts"]["quality"]["minimumValid"], 1227)
+        self.assertEqual(manifest["releaseCounts"]["closure"]["rawDisposed"], 4265)
+        self.assertEqual(manifest["rights"]["rawPayloadsIncluded"], 0)
+        self.assertEqual(manifest["rights"]["rawPayloadsExcluded"], 4265)
+        conn = sqlite3.connect(self.first)
+        try:
+            self.assertEqual(conn.execute(
+                """SELECT COUNT(*) FROM raw_artifacts
+                     WHERE raw_text_en IS NOT NULL OR raw_text_ar IS NOT NULL
+                        OR raw_json<>'{}' OR title_draft IS NOT NULL
+                        OR description_draft IS NOT NULL"""
+            ).fetchone()[0], 0)
+            self.assertEqual(conn.execute("SELECT COUNT(*) FROM staging_artifacts").fetchone()[0], 0)
+            self.assertEqual(conn.execute("PRAGMA integrity_check").fetchone()[0], "ok")
+            self.assertEqual(conn.execute("PRAGMA foreign_key_check").fetchall(), [])
+        finally:
+            conn.close()
+
+    def test_pair_promotion_rolls_back_both_files_on_second_replace_failure(self) -> None:
+        root = Path(self.temp.name)
+        output = root / "pair.db"
+        manifest = root / "pair.db.manifest.json"
+        db_temp = root / ".pair.db.building"
+        manifest_temp = root / ".pair.db.manifest.json.building"
+        output.write_bytes(b"old-db")
+        manifest.write_bytes(b"old-manifest")
+        db_temp.write_bytes(b"new-db")
+        manifest_temp.write_bytes(b"new-manifest")
+        real_replace = __import__("os").replace
+        failed = False
+
+        def replace_once(source, target):
+            nonlocal failed
+            if Path(source) == manifest_temp and not failed:
+                failed = True
+                raise OSError("simulated manifest publish failure")
+            return real_replace(source, target)
+
+        with patch("scripts.build_release_db.os.replace", side_effect=replace_once):
+            with self.assertRaisesRegex(OSError, "simulated"):
+                _publish_pair(db_temp, manifest_temp, output, manifest)
+        self.assertEqual(output.read_bytes(), b"old-db")
+        self.assertEqual(manifest.read_bytes(), b"old-manifest")
 
 
 if __name__ == "__main__":

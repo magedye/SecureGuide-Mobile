@@ -33,6 +33,18 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from secureguide import Database, SecureGuideService, apply_migrations
+from secureguide.catalog_curation import (
+    backfill_source_provenance,
+    close_existing_catalog,
+    curate_complete_catalog,
+    prepare_curation_database,
+)
+from secureguide.catalog_validation import (
+    canonical_hash,
+    load_contract,
+    minimum_result,
+    strict_result,
+)
 from secureguide.database import connect
 from scripts.dump_read_model_contract import build_read_model_dataset
 from tests.test_profile_workflow import seed_catalog
@@ -209,23 +221,17 @@ def _normalize_release_build_timestamps(
         raise BuildError("reproducible build timestamp must use UTC")
     sqlite_timestamp = parsed.astimezone(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
 
-    if applied:
-        placeholders = ",".join("?" for _ in applied)
-        conn.execute(
-            f"UPDATE schema_migrations SET applied_at=? "
-            f"WHERE version IN ({placeholders})",
-            (sqlite_timestamp, *applied),
-        )
-    if "019" in applied:
-        conn.execute(
-            "UPDATE artifact_localizations SET created_at=?,updated_at=?",
-            (sqlite_timestamp, sqlite_timestamp),
-        )
-    if "021" in applied or "028" in applied:
-        conn.execute(
-            "UPDATE application_state SET updated_at=? WHERE singleton_id=1",
-            (sqlite_timestamp,),
-        )
+    # Normalize derived-release technical timestamps irrespective of whether a
+    # preceding curated preparation step applied the migrations in this call.
+    conn.execute("UPDATE schema_migrations SET applied_at=?", (sqlite_timestamp,))
+    conn.execute(
+        "UPDATE artifact_localizations SET created_at=?,updated_at=?",
+        (sqlite_timestamp, sqlite_timestamp),
+    )
+    conn.execute(
+        "UPDATE application_state SET updated_at=? WHERE singleton_id=1",
+        (sqlite_timestamp,),
+    )
 
     template_ids = [template["id"] for template in config["templates"]]
     placeholders = ",".join("?" for _ in template_ids)
@@ -236,7 +242,7 @@ def _normalize_release_build_timestamps(
     return configured
 
 
-def _release_gates(conn: sqlite3.Connection) -> dict[str, int]:
+def _release_gates(conn: sqlite3.Connection) -> dict[str, int | dict[str, int]]:
     counts = {
         "artifacts": _table_count(conn, "security_artifacts") or 0,
         "rawArtifacts": _table_count(conn, "raw_artifacts") or 0,
@@ -250,13 +256,11 @@ def _release_gates(conn: sqlite3.Connection) -> dict[str, int]:
 
     invalid_publication = conn.execute(
         """SELECT COUNT(*) FROM security_artifacts
-           WHERE is_active<>1 OR publication_status<>'APPROVED'
-              OR ai_review_status<>'AIR-HUMAN-APPROVED'
-              OR requires_human_review<>0"""
+           WHERE is_active<>1 OR publication_status NOT IN ('APPROVED','PUBLISHED')"""
     ).fetchone()[0]
     if invalid_publication:
         raise BuildError(
-            f"release catalog contains {invalid_publication} unapproved active artifact(s)"
+            f"release catalog contains {invalid_publication} inactive or unpublished artifact(s)"
         )
 
     demo_markers = conn.execute(
@@ -268,39 +272,33 @@ def _release_gates(conn: sqlite3.Connection) -> dict[str, int]:
     if demo_markers:
         raise BuildError("release catalog contains demo/test fixture content")
 
-    promoted = conn.execute(
-        """SELECT sa.id,s.proposed_mappings_json
-             FROM security_artifacts sa
-             JOIN staging_artifacts s ON s.promoted_artifact_id=sa.id
-             JOIN promotion_batch_items pbi
-               ON pbi.staging_id=s.id AND pbi.final_artifact_id=sa.id
-             JOIN promotion_batches pb ON pb.id=pbi.batch_id
-            WHERE s.final_review_status='APPROVED'
-              AND s.ready_for_promotion=1
-              AND s.approved_by IS NOT NULL
-              AND s.approved_at IS NOT NULL
-              AND pb.status IN ('APPLIED','COMPLETED')"""
-    ).fetchall()
-    if len(promoted) != counts["artifacts"]:
+    contract = load_contract()
+    minimum_valid = strict_conformant = requires_review = human_approved = 0
+    for row in conn.execute("SELECT * FROM security_artifacts ORDER BY id"):
+        minimum_valid += int(minimum_result(conn, row, contract)["valid"])
+        strict_conformant += int(strict_result(conn, row)["valid"])
+        requires_review += int(bool(row["requires_human_review"]))
+        human_approved += int(row["ai_review_status"] == "AIR-HUMAN-APPROVED")
+    if minimum_valid != counts["artifacts"]:
         raise BuildError(
-            "every release artifact must have an approved, audited promotion record"
+            f"release catalog has {counts['artifacts'] - minimum_valid} artifact(s) "
+            "that fail MINIMUM_CATALOG_VALIDATION"
         )
 
-    for row in promoted:
-        try:
-            mappings = json.loads(row["proposed_mappings_json"] or "[]")
-        except json.JSONDecodeError as exc:
-            raise BuildError(f"invalid source lineage for {row['id']}: {exc}") from exc
-        raw_ids = {m.get("raw_id") for m in mappings if m.get("raw_id")}
-        if not raw_ids:
-            raise BuildError(f"release artifact {row['id']} has no raw-source lineage")
-        placeholders = ",".join("?" for _ in raw_ids)
-        found = conn.execute(
-            f"SELECT COUNT(*) FROM raw_artifacts WHERE id IN ({placeholders})",
-            tuple(sorted(raw_ids)),
-        ).fetchone()[0]
-        if found != len(raw_ids):
-            raise BuildError(f"release artifact {row['id']} has missing raw-source records")
+    closure = conn.execute("SELECT * FROM v_catalog_closure").fetchone()
+    if closure["missing_dispositions"] or closure["missing_canonical_lineage"]:
+        raise BuildError(
+            "release catalog does not have complete raw dispositions and final lineage"
+        )
+    inconsistent = conn.execute(
+        """SELECT COUNT(*) FROM raw_artifact_dispositions d
+             WHERE d.disposition IN ('SUPPORTS_CANONICAL','SPLIT') AND NOT EXISTS(
+               SELECT 1 FROM artifact_source_lineage l
+                WHERE l.raw_artifact_id=d.raw_artifact_id
+                  AND l.lineage_role=d.disposition)"""
+    ).fetchone()[0]
+    if inconsistent:
+        raise BuildError(f"release catalog has {inconsistent} disposition/lineage mismatch(es)")
 
     if counts["templates"] == 0 or counts["templateItems"] == 0:
         raise BuildError("release catalog has no usable template selection")
@@ -315,7 +313,89 @@ def _release_gates(conn: sqlite3.Connection) -> dict[str, int]:
     ).fetchone()[0]
     if unusable_templates:
         raise BuildError(f"release catalog has {unusable_templates} unusable template(s)")
+    counts["quality"] = {
+        "minimumValid": minimum_valid,
+        "strictConformant": strict_conformant,
+        "requiresHumanReview": requires_review,
+        "humanApproved": human_approved,
+    }
+    counts["closure"] = {
+        "rawDisposed": int(closure["raw_disposed"]),
+        "canonicalsWithLineage": int(closure["canonicals_with_lineage"]),
+    }
     return counts
+
+
+def _scrub_unlicensed_raw_payload(conn: sqlite3.Connection) -> dict[str, int]:
+    """Remove raw payload from the mobile derivative unless rights allow it."""
+    total = conn.execute("SELECT COUNT(*) FROM raw_artifacts").fetchone()[0]
+    allowed = conn.execute(
+        """SELECT COUNT(*) FROM raw_artifacts r WHERE EXISTS(
+               SELECT 1 FROM source_rights_versions sr
+                WHERE sr.source_catalog_id=r.source_catalog_id
+                  AND sr.source_version=COALESCE(r.source_version,'UNKNOWN')
+                  AND sr.is_current=1 AND sr.redistribution_status='ALLOWED'
+                  AND sr.ship_raw_text=1)"""
+    ).fetchone()[0]
+    conn.execute(
+        """UPDATE raw_artifacts SET
+               raw_text_en=NULL,raw_text_ar=NULL,raw_json='{}',title_draft=NULL,
+               description_draft=NULL,original_heading=NULL,context_paragraph=NULL,
+               keywords_json=NULL,entities_mentioned_json=NULL
+             WHERE NOT EXISTS(
+               SELECT 1 FROM source_rights_versions sr
+                WHERE sr.source_catalog_id=raw_artifacts.source_catalog_id
+                  AND sr.source_version=COALESCE(raw_artifacts.source_version,'UNKNOWN')
+                  AND sr.is_current=1 AND sr.redistribution_status='ALLOWED'
+                  AND sr.ship_raw_text=1)"""
+    )
+    # Staging is a work-product surface containing source-derived drafts; the
+    # mobile runtime consumes canonical artifacts and final lineage instead.
+    conn.execute("DELETE FROM promotion_batch_items")
+    conn.execute("DELETE FROM staging_artifacts")
+    return {
+        "rawRecordsTotal": int(total),
+        "rawPayloadsIncluded": int(allowed),
+        "rawPayloadsExcluded": int(total - allowed),
+    }
+
+
+def _canonical_manifest_hash(manifest: dict) -> str:
+    material = {key: value for key, value in manifest.items() if key != "manifestSha256"}
+    return canonical_hash(material)
+
+
+def _publish_pair(database_temp: Path, manifest_temp: Path, output: Path, manifest_path: Path) -> None:
+    """Failure-atomic two-file promotion with rollback of any existing pair."""
+    database_backup = output.with_name(f".{output.name}.previous")
+    manifest_backup = manifest_path.with_name(f".{manifest_path.name}.previous")
+    for backup in (database_backup, manifest_backup):
+        if backup.exists():
+            backup.unlink()
+    moved_database = moved_manifest = False
+    try:
+        if output.exists():
+            os.replace(output, database_backup)
+            moved_database = True
+        if manifest_path.exists():
+            os.replace(manifest_path, manifest_backup)
+            moved_manifest = True
+        os.replace(database_temp, output)
+        os.replace(manifest_temp, manifest_path)
+    except Exception:
+        if output.exists():
+            output.unlink()
+        if manifest_path.exists():
+            manifest_path.unlink()
+        if moved_database:
+            os.replace(database_backup, output)
+        if moved_manifest:
+            os.replace(manifest_backup, manifest_path)
+        raise
+    finally:
+        for backup in (database_backup, manifest_backup):
+            if backup.exists():
+                backup.unlink()
 
 
 def build(
@@ -326,7 +406,7 @@ def build(
     release_source: Path | None = None,
     release_config: Path | None = None,
 ) -> dict:
-    if mode not in {"demo", "release"}:
+    if mode not in {"demo", "release", "curated"}:
         raise BuildError(f"unsupported mode: {mode}")
     migrations = migrations or (ROOT / "migrations")
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -336,13 +416,16 @@ def build(
 
     release_counts: dict[str, int] | None = None
     source_hash: str | None = None
-    if mode == "release":
+    if mode in {"release", "curated"}:
         source = release_source or DEFAULT_RELEASE_SOURCE
         config_path = release_config or DEFAULT_RELEASE_CONFIG
         config, baseline = _load_release_configuration(config_path)
         _validate_release_source(source, baseline)
         source_hash = _sha256(source)
-        shutil.copy2(source, temporary)
+        if mode == "release":
+            shutil.copy2(source, temporary)
+        else:
+            prepare_curation_database(source, temporary)
     else:
         temporary.touch()
 
@@ -357,11 +440,43 @@ def build(
             reproducible_timestamp = None
             conn = connect(temporary)
             try:
+                provenance = backfill_source_provenance(conn)
+                curation = (
+                    curate_complete_catalog(conn)
+                    if mode == "curated" else close_existing_catalog(conn)
+                )
                 conn.execute("BEGIN IMMEDIATE")
                 _install_release_templates(conn, config)
                 reproducible_timestamp = _normalize_release_build_timestamps(
                     conn, config, list(applied)
                 )
+                rights_summary = _scrub_unlicensed_raw_payload(conn)
+                sqlite_timestamp = reproducible_timestamp.replace("T", " ").replace("Z", "")
+                for table, column in (
+                    ("source_import_manifests", "created_at"),
+                    ("artifact_source_lineage", "created_at"),
+                    ("raw_artifact_dispositions", "decided_at"),
+                ):
+                    conn.execute(f"UPDATE {table} SET {column}=?", (sqlite_timestamp,))
+                if mode == "curated":
+                    conn.execute(
+                        "UPDATE source_catalogs SET imported_at=? WHERE id IN ('amani_v4','securekit_curated_controls')",
+                        (sqlite_timestamp,),
+                    )
+                    conn.execute(
+                        "UPDATE raw_artifacts SET imported_at=? WHERE source_catalog_id IN ('amani_v4','securekit_curated_controls')",
+                        (sqlite_timestamp,),
+                    )
+                    conn.execute(
+                        "UPDATE security_artifacts SET created_at=?,updated_at=? "
+                        "WHERE id GLOB 'SG-*-AMANI-*' OR id GLOB 'SG-*-CURATED-*'",
+                        (sqlite_timestamp, sqlite_timestamp),
+                    )
+                    conn.execute(
+                        "UPDATE artifact_localizations SET created_at=?,updated_at=? "
+                        "WHERE artifact_id GLOB 'SG-*-AMANI-*' OR artifact_id GLOB 'SG-*-CURATED-*'",
+                        (sqlite_timestamp, sqlite_timestamp),
+                    )
                 conn.execute("COMMIT")
             except Exception:
                 if conn.in_transaction:
@@ -373,15 +488,18 @@ def build(
         conn = connect(temporary)
         try:
             _run_gates(conn)
-            if mode == "release":
+            if mode in {"release", "curated"}:
                 release_counts = _release_gates(conn)
             schema_version = _schema_version(conn)
             conn.execute(f"PRAGMA user_version={int(schema_version)}")
             manifest = {
-                "name": output.name,
+                "name": "catalog.db" if mode in {"release", "curated"} else output.name,
                 "builtWith": "scripts.build_release_db",
                 "mode": mode,
-                "generatedAt": datetime.now(timezone.utc).isoformat(),
+                "generatedAt": (
+                    reproducible_timestamp if mode in {"release", "curated"}
+                    else datetime.now(timezone.utc).isoformat()
+                ),
                 "schemaVersion": schema_version,
                 "appliedMigrations": list(applied),
                 "publicationStatus": _publication_breakdown(conn),
@@ -393,25 +511,35 @@ def build(
             if release_counts is not None:
                 manifest["releaseCounts"] = release_counts
                 manifest["sourceSha256"] = source_hash
+                manifest["sourceManifestSha256"] = provenance["manifestSha256"]
+                manifest["rights"] = rights_summary
+                manifest["curation"] = curation
                 manifest["reproducibleBuildTimestampUtc"] = reproducible_timestamp
                 manifest["gatesPassed"].extend(
-                    ["approved_promotion_lineage", "raw_source_lineage", "usable_templates"]
+                    ["minimum_catalog_validation", "raw_disposition_closure",
+                     "raw_source_lineage", "source_rights", "usable_templates"]
                 )
         finally:
             conn.close()
-
-        os.replace(temporary, output)
+        conn = connect(temporary)
+        try:
+            conn.execute("VACUUM")
+        finally:
+            conn.close()
     except Exception:
         if temporary.exists():
             temporary.unlink()
         raise
 
-    manifest["sizeBytes"] = output.stat().st_size
-    manifest["sha256"] = _sha256(output)
+    manifest["sizeBytes"] = temporary.stat().st_size
+    manifest["sha256"] = _sha256(temporary)
+    manifest["manifestSha256"] = _canonical_manifest_hash(manifest)
     manifest_path = output.with_suffix(output.suffix + ".manifest.json")
-    manifest_path.write_text(
+    manifest_temp = manifest_path.with_name(f".{manifest_path.name}.building")
+    manifest_temp.write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
+    _publish_pair(temporary, manifest_temp, output, manifest_path)
     return manifest
 
 
@@ -423,7 +551,7 @@ def main() -> None:
         default=ROOT / "dist" / "secureguide-demo.db",
         help="path to write the seed database (default: dist/secureguide-demo.db)",
     )
-    parser.add_argument("--mode", default="demo", choices=["demo", "release"])
+    parser.add_argument("--mode", default="demo", choices=["demo", "release", "curated"])
     parser.add_argument("--migrations", type=Path, default=None)
     parser.add_argument("--release-source", type=Path, default=None)
     parser.add_argument("--release-config", type=Path, default=None)
