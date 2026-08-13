@@ -1,7 +1,7 @@
 import os
 import re
 
-folder = r'D:\APP\secure-guide\New folder'
+folder = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 docs_folder = os.path.join(folder, 'SecureGuide_Mobile_Docs')
 ui_file = os.path.join(docs_folder, '04_UI_UX_and_Screens_Design.md')
 

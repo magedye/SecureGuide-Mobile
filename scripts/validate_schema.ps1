@@ -1,6 +1,7 @@
 $ErrorActionPreference = 'Stop'
-$dbPath = "D:\APP\secure-guide\New folder\secureguide_test.db"
-$schemaPath = "D:\APP\secure-guide\New folder\migrations\001_initial_schema.sql"
+$projectRoot = Split-Path -Parent $PSScriptRoot
+$dbPath = Join-Path $projectRoot 'secureguide_test.db'
+$schemaPath = Join-Path $projectRoot 'migrations\001_initial_schema.sql'
 
 function Invoke-Sqlite([string]$sql) {
     # Pipe SQL to sqlite3 to avoid nested-quote issues

@@ -8,8 +8,8 @@
 |---|---|
 | Batch ID | `AI-INV-PROD-20260711` |
 | plan checksum | `e411524714f3dab4e4e85baffc39a3abaaff6c6442e7a14dd0b22420977cfe45` |
-| مسار قاعدة العمل | `D:\APP\secure-guide\New folder\catalog.db` |
-| مسار النسخة الاحتياطية | `D:\APP\secure-guide\New folder\catalog_backup_20260711T203543Z.db` |
+| مسار قاعدة العمل | `catalog.db` |
+| مسار النسخة الاحتياطية | `catalog_backup_20260711T203543Z.db` |
 | SHA-256 للنسخة الاحتياطية | `bc2274fbe12b2ac0da76a5ee8e8d9c7e4ecec03a62be549288cd6d3bbf64d894` |
 | وقت التنفيذ / المنطقة الزمنية | 2026-07-11T20:35Z (UTC) |
 

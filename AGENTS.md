@@ -10,18 +10,18 @@ The project goal is to build an offline-first security knowledge and assessment 
 
 The main source of truth is:
 
-1. `D:\APP\secure-guide\New folder\SecureGuide_Mobile_Docs\USACM_v2.2.1_Unified_Security_Artifact_Classification_Model.md`
-2. `D:\APP\secure-guide\New folder\SecureGuide_Mobile_Docs\SDT_v2.2.1_Security_Domain_Taxonomy.md`
+1. `SecureGuide_Mobile_Docs/USACM_v2.2.1_Unified_Security_Artifact_Classification_Model.md`
+2. `SecureGuide_Mobile_Docs/SDT_v2.2.1_Security_Domain_Taxonomy.md`
 
 The primary architectural guides are:
-3. `D:\APP\secure-guide\New folder\SecureGuide_Mobile_Docs\00_Executive_Summary_and_Vision.md`
-4. `D:\APP\secure-guide\New folder\PROJECT_VISION.md`
+3. `SecureGuide_Mobile_Docs/00_Executive_Summary_and_Vision.md`
+4. `PROJECT_VISION.md`
 
 The normative policy for writing and formatting artifact content is:
-5. `D:\APP\secure-guide\New folder\docs\AUTHORING_POLICY.md`
+5. `docs/AUTHORING_POLICY.md`
 
 The normative project policy for selecting and distinguishing artifact types is:
-6. `D:\APP\secure-guide\New folder\docs\ARTIFACT_TYPE_POLICY.md`
+6. `docs/ARTIFACT_TYPE_POLICY.md`
 
 This policy is subordinate to USACM v2.2.1 and must not introduce additional `ART-*` values.
 

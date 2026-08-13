@@ -1,10 +1,13 @@
 ﻿import json
 import re
+from pathlib import Path
 
-usacm_path = r'D:\APP\secure-guide\New folder\reference\usacm_v2.2.1.md'
-sdt_path = r'D:\APP\secure-guide\New folder\reference\sdt_v2.2.1.md'
-out_usacm = r'D:\APP\secure-guide\New folder\reference\usacm_codes.json'
-out_sdt = r'D:\APP\secure-guide\New folder\reference\sdt_domains.json'
+project_root = Path(__file__).resolve().parent.parent
+reference_dir = project_root / 'reference'
+usacm_path = reference_dir / 'usacm_v2.2.1.md'
+sdt_path = reference_dir / 'sdt_v2.2.1.md'
+out_usacm = reference_dir / 'usacm_codes.json'
+out_sdt = reference_dir / 'sdt_domains.json'
 
 # Extract USACM Types
 usacm_types = []

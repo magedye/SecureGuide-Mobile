@@ -1,7 +1,7 @@
 import os
 import re
 
-folder = r'D:\APP\secure-guide\New folder'
+folder = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 docs_folder = os.path.join(folder, 'SecureGuide_Mobile_Docs')
 arch_file = os.path.join(docs_folder, '02_Technical_Architecture_TAD.md')
 
