@@ -2,3 +2,17 @@
 .dart_tool/
 build/
 .packages
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+
+# Platform-local/generated configuration.
+*.iml
+android/.gradle/
+android/local.properties
+ios/Flutter/ephemeral/
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+ios/Pods/
+ios/.symlinks/

@@ -4,7 +4,9 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:secureguide_mobile/l10n/app_localizations.dart';
 import 'package:secureguide_mobile/read_model_contract.dart';
 import 'package:secureguide_mobile/src/screens/catalog_screen.dart';
 
@@ -23,6 +25,14 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
+        locale: const Locale('ar'),
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: AppLocalizations.supportedLocales,
         home: CatalogScreen(client: client, profileId: 'P-HQ'),
       ),
     );
@@ -44,7 +54,47 @@ void main() {
 
     await tester.tap(find.text('Security policy'));
     await tester.pumpAndSettle();
-    expect(find.text('تقييم العنصر'), findsOneWidget);
+    expect(find.text('تفاصيل العنصر'), findsOneWidget);
     expect(find.text('Security policy'), findsOneWidget);
+  });
+
+  testWidgets('catalog filters follow the active English locale', (
+    tester,
+  ) async {
+    final catalog = loadGolden('catalog');
+    final client = FakeSecureGuideClient(
+      dashboardView: DashboardView.fromJson(loadGolden('dashboard')),
+      profiles: ProfilesView.fromJson(loadGolden('profiles')).profiles,
+      catalogItems: (catalog['items'] as List).cast<Map<String, dynamic>>(),
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        locale: const Locale('en'),
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: CatalogScreen(client: client, profileId: 'P-HQ'),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byIcon(Icons.filter_list));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Catalog filters'), findsOneWidget);
+    expect(find.text('Artifact type'), findsOneWidget);
+    await tester.scrollUntilVisible(
+      find.text('Sub-domain'),
+      300,
+      scrollable: find.byType(Scrollable).last,
+    );
+    expect(find.text('Sub-domain'), findsOneWidget);
+    expect(find.text('Clear'), findsOneWidget);
+    expect(find.text('Apply'), findsOneWidget);
   });
 }

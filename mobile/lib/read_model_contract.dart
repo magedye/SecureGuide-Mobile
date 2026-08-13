@@ -230,6 +230,7 @@ class GapItem {
   const GapItem({
     this.artifactId,
     this.titleEn,
+    this.titleAr,
     this.primaryDomain,
     this.subDomain,
     this.priority,
@@ -243,6 +244,7 @@ class GapItem {
 
   final String? artifactId;
   final String? titleEn;
+  final String? titleAr;
   final String? primaryDomain;
   final String? subDomain;
   final String? priority;
@@ -256,6 +258,7 @@ class GapItem {
   factory GapItem.fromJson(Map<String, dynamic> json) => GapItem(
     artifactId: json['artifactId'] as String?,
     titleEn: json['titleEn'] as String?,
+    titleAr: json['titleAr'] as String?,
     primaryDomain: json['primaryDomain'] as String?,
     subDomain: json['subDomain'] as String?,
     priority: json['priority'] as String?,
@@ -270,6 +273,7 @@ class GapItem {
   Map<String, dynamic> toJson() => {
     'artifactId': artifactId,
     'titleEn': titleEn,
+    'titleAr': titleAr,
     'primaryDomain': primaryDomain,
     'subDomain': subDomain,
     'priority': priority,
@@ -1198,7 +1202,7 @@ class ReviewFinding {
   final String? inputValue;
   final String? canonicalValue;
   final String? detail;
-  final String? quality;
+  final num? quality;
 
   factory ReviewFinding.fromJson(Map<String, dynamic> json) => ReviewFinding(
     findingType: json['findingType'] as String?,
@@ -1207,7 +1211,7 @@ class ReviewFinding {
     inputValue: json['inputValue'] as String?,
     canonicalValue: json['canonicalValue'] as String?,
     detail: json['detail'] as String?,
-    quality: json['quality'] as String?,
+    quality: json['quality'] as num?,
   );
 
   Map<String, dynamic> toJson() => {
@@ -1483,12 +1487,18 @@ class ProfileArtifactView {
     this.profileId,
     required this.artifact,
     this.assessments = const [],
+    this.tags = const [],
+    this.mappings = const [],
+    this.relationships = const [],
   });
 
   final String contractVersion;
   final String? profileId;
   final OperationalItem artifact;
   final List<AssessmentRecord> assessments;
+  final List<ArtifactTag> tags;
+  final List<FrameworkMapping> mappings;
+  final List<ArtifactRelationship> relationships;
 
   factory ProfileArtifactView.fromJson(Map<String, dynamic> json) =>
       ProfileArtifactView(
@@ -1498,6 +1508,12 @@ class ProfileArtifactView {
           json['artifact'] as Map<String, dynamic>,
         ),
         assessments: _mapList(json['assessments'], AssessmentRecord.fromJson),
+        tags: _mapList(json['tags'], ArtifactTag.fromJson),
+        mappings: _mapList(json['mappings'], FrameworkMapping.fromJson),
+        relationships: _mapList(
+          json['relationships'],
+          ArtifactRelationship.fromJson,
+        ),
       );
 
   Map<String, dynamic> toJson() => {
@@ -1505,6 +1521,201 @@ class ProfileArtifactView {
     'profileId': profileId,
     'artifact': artifact.toJson(),
     'assessments': assessments.map((e) => e.toJson()).toList(),
+    'tags': tags.map((e) => e.toJson()).toList(),
+    'mappings': mappings.map((e) => e.toJson()).toList(),
+    'relationships': relationships.map((e) => e.toJson()).toList(),
+  };
+}
+
+class ArtifactTag {
+  const ArtifactTag({required this.tagType, required this.tagValue});
+
+  final String tagType;
+  final String tagValue;
+
+  factory ArtifactTag.fromJson(Map<String, dynamic> json) => ArtifactTag(
+    tagType: json['tagType'] as String,
+    tagValue: json['tagValue'] as String,
+  );
+
+  Map<String, dynamic> toJson() => {'tagType': tagType, 'tagValue': tagValue};
+}
+
+class FrameworkMapping {
+  const FrameworkMapping({
+    required this.framework,
+    required this.version,
+    required this.reference,
+    this.category,
+    required this.mappingStrength,
+    this.rationale,
+  });
+
+  final String framework;
+  final String version;
+  final String reference;
+  final String? category;
+  final String mappingStrength;
+  final String? rationale;
+
+  factory FrameworkMapping.fromJson(Map<String, dynamic> json) =>
+      FrameworkMapping(
+        framework: json['framework'] as String,
+        version: json['version'] as String,
+        reference: json['reference'] as String,
+        category: json['category'] as String?,
+        mappingStrength: json['mappingStrength'] as String,
+        rationale: json['rationale'] as String?,
+      );
+
+  Map<String, dynamic> toJson() => {
+    'framework': framework,
+    'version': version,
+    'reference': reference,
+    'category': category,
+    'mappingStrength': mappingStrength,
+    'rationale': rationale,
+  };
+}
+
+class ArtifactRelationship {
+  const ArtifactRelationship({
+    required this.sourceId,
+    required this.targetId,
+    required this.relationType,
+    this.description,
+  });
+
+  final String sourceId;
+  final String targetId;
+  final String relationType;
+  final String? description;
+
+  factory ArtifactRelationship.fromJson(Map<String, dynamic> json) =>
+      ArtifactRelationship(
+        sourceId: json['sourceId'] as String,
+        targetId: json['targetId'] as String,
+        relationType: json['relationType'] as String,
+        description: json['description'] as String?,
+      );
+
+  Map<String, dynamic> toJson() => {
+    'sourceId': sourceId,
+    'targetId': targetId,
+    'relationType': relationType,
+    'description': description,
+  };
+}
+
+/// The filter arguments for the master catalog.
+class CatalogFilter {
+  const CatalogFilter({
+    this.searchQuery,
+    this.profileId,
+    this.types,
+    this.primaryDomains,
+    this.subDomains,
+    this.priorities,
+    this.testability,
+    this.implementationStatus,
+  });
+
+  final String? searchQuery;
+  final String? profileId;
+  final List<String>? types;
+  final List<String>? primaryDomains;
+  final List<String>? subDomains;
+  final List<String>? priorities;
+  final String? testability;
+  final String? implementationStatus;
+
+  factory CatalogFilter.fromJson(Map<String, dynamic> json) => CatalogFilter(
+    searchQuery: json['searchQuery'] as String?,
+    profileId: json['profileId'] as String?,
+    types: (json['types'] as List<dynamic>?)?.map((e) => e as String).toList(),
+    primaryDomains: (json['primaryDomains'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
+    subDomains: (json['subDomains'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
+    priorities: (json['priorities'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
+    testability: json['testability'] as String?,
+    implementationStatus: json['implementationStatus'] as String?,
+  );
+
+  Map<String, dynamic> toJson() => {
+    'searchQuery': searchQuery,
+    'profileId': profileId,
+    'types': types,
+    'primaryDomains': primaryDomains,
+    'subDomains': subDomains,
+    'priorities': priorities,
+    'testability': testability,
+    'implementationStatus': implementationStatus,
+  };
+}
+
+/// A summary of a template.
+class TemplateSummary {
+  const TemplateSummary({
+    this.id,
+    this.name,
+    this.description,
+    this.version,
+    this.scopeNote,
+    this.category,
+    this.createdAt,
+  });
+
+  final String? id;
+  final String? name;
+  final String? description;
+  final String? version;
+  final String? scopeNote;
+  final String? category;
+  final String? createdAt;
+
+  factory TemplateSummary.fromJson(Map<String, dynamic> json) =>
+      TemplateSummary(
+        id: json['id'] as String?,
+        name: json['name'] as String?,
+        description: json['description'] as String?,
+        version: json['version'] as String?,
+        scopeNote: json['scopeNote'] as String?,
+        category: json['category'] as String?,
+        createdAt: json['createdAt'] as String?,
+      );
+
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'name': name,
+    'description': description,
+    'version': version,
+    'scopeNote': scopeNote,
+    'category': category,
+    'createdAt': createdAt,
+  };
+}
+
+/// A view containing a list of templates.
+class TemplateView {
+  const TemplateView({this.templates = const []});
+
+  final List<TemplateSummary> templates;
+
+  factory TemplateView.fromJson(Map<String, dynamic> json) => TemplateView(
+    templates:
+        (json['templates'] as List<dynamic>?)
+            ?.map((e) => TemplateSummary.fromJson(e as Map<String, dynamic>))
+            .toList() ??
+        const [],
+  );
+
+  Map<String, dynamic> toJson() => {
+    'templates': templates.map((e) => e.toJson()).toList(),
   };
 }
 
@@ -1535,5 +1746,63 @@ class AssessmentResult {
     'contractVersion': contractVersion,
     'assessment': assessment.toJson(),
     'artifact': artifact.toJson(),
+  };
+}
+
+/// Represents an exception granted against a specific profile artifact.
+class ExceptionRecord {
+  const ExceptionRecord({
+    required this.id,
+    required this.profileArtifactId,
+    required this.exceptionStatus,
+    required this.justification,
+    this.approvedBy,
+    this.approvalDate,
+    this.expiryDate,
+    this.riskAcceptedBy,
+    this.workflowStatus = 'DRAFT',
+    this.exceptionSource = 'USER',
+    required this.createdAt,
+  });
+
+  final String id;
+  final String profileArtifactId;
+  final String exceptionStatus;
+  final String justification;
+  final String? approvedBy;
+  final String? approvalDate;
+  final String? expiryDate;
+  final String? riskAcceptedBy;
+  final String workflowStatus;
+  final String exceptionSource;
+  final String createdAt;
+
+  factory ExceptionRecord.fromJson(Map<String, dynamic> json) =>
+      ExceptionRecord(
+        id: json['id'] as String,
+        profileArtifactId: json['profile_artifact_id'] as String,
+        exceptionStatus: json['exception_status'] as String,
+        justification: json['justification'] as String,
+        approvedBy: json['approved_by'] as String?,
+        approvalDate: json['approval_date'] as String?,
+        expiryDate: json['expiry_date'] as String?,
+        riskAcceptedBy: json['risk_accepted_by'] as String?,
+        workflowStatus: json['workflow_status'] as String? ?? 'DRAFT',
+        exceptionSource: json['exception_source'] as String? ?? 'USER',
+        createdAt: json['created_at'] as String,
+      );
+
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'profile_artifact_id': profileArtifactId,
+    'exception_status': exceptionStatus,
+    'justification': justification,
+    'approved_by': approvedBy,
+    'approval_date': approvalDate,
+    'expiry_date': expiryDate,
+    'risk_accepted_by': riskAcceptedBy,
+    'workflow_status': workflowStatus,
+    'exception_source': exceptionSource,
+    'created_at': createdAt,
   };
 }

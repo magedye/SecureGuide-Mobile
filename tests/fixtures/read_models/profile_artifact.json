@@ -47,5 +47,13 @@
       "exceptionStatus": "EXC-NONE",
       "comments": "Verified configuration and review records."
     }
-  ]
+  ],
+  "tags": [
+    {
+      "tagType": "Technology",
+      "tagValue": "Active Directory"
+    }
+  ],
+  "mappings": [],
+  "relationships": []
 }

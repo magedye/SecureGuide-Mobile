@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/app_localizations.dart';
+import 'blueprint_list_screen.dart';
+
+import 'exception_request_dialog.dart';
+import '../client/exception_manager.dart';
+
+import 'evidence_tab.dart';
+
 import '../../read_model_contract.dart';
 import '../client/secure_guide_client.dart';
 
@@ -67,7 +75,7 @@ class AssessmentScreen extends StatefulWidget {
 
 class _AssessmentScreenState extends State<AssessmentScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _assessor = TextEditingController(text: 'app-user');
+  final _assessor = TextEditingController();
   final _owner = TextEditingController();
   final _dueDate = TextEditingController();
   final _notes = TextEditingController();
@@ -150,6 +158,7 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
     if (!_formKey.currentState!.validate()) return;
     setState(() => _saving = true);
     final messenger = ScaffoldMessenger.of(context);
+    final l10n = AppLocalizations.of(context)!;
     try {
       final score = _score.text.trim().isEmpty
           ? null
@@ -187,12 +196,12 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
         _comments.clear();
         _saving = false;
       });
-      messenger.showSnackBar(const SnackBar(content: Text('تم حفظ التقييم.')));
+      messenger.showSnackBar(SnackBar(content: Text(l10n.assessmentSaved)));
     } catch (error) {
       if (!mounted) return;
       setState(() => _saving = false);
       messenger.showSnackBar(
-        SnackBar(content: Text('تعذّر حفظ التقييم: $error')),
+        SnackBar(content: Text(l10n.assessmentSaveError(error))),
       );
     }
   }
@@ -211,13 +220,28 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('تقييم العنصر')),
-      body: _body(),
+    final l10n = AppLocalizations.of(context)!;
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(l10n.artifactDetailsTitle),
+          bottom: TabBar(
+            tabs: [
+              Tab(text: l10n.detailsTab),
+              Tab(key: const Key('assessmentTab'), text: l10n.assessmentTab),
+              Tab(key: const Key('evidenceTab'), text: l10n.evidenceTab),
+              Tab(text: l10n.remediationPlansTab),
+            ],
+          ),
+        ),
+        body: _body(),
+      ),
     );
   }
 
   Widget _body() {
+    final l10n = AppLocalizations.of(context)!;
     if (_loading) return const Center(child: CircularProgressIndicator());
     if (_error != null) {
       return Center(
@@ -226,208 +250,389 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('تعذّر تحميل العنصر: $_error', textAlign: TextAlign.center),
-              const SizedBox(height: 12),
-              OutlinedButton(
-                onPressed: _load,
-                child: const Text('إعادة المحاولة'),
+              Text(
+                l10n.artifactLoadError(_error!),
+                textAlign: TextAlign.center,
               ),
+              const SizedBox(height: 12),
+              OutlinedButton(onPressed: _load, child: Text(l10n.retry)),
             ],
           ),
         ),
       );
     }
     final view = _view!;
+    return TabBarView(
+      children: [
+        _buildDetailsTab(view),
+        _buildAssessmentTab(view),
+        EvidenceTab(
+          profileArtifactId:
+              view.artifact.profileArtifactId ?? widget.artifactId,
+          profileId: widget.profileId ?? 'unknown',
+        ),
+        BlueprintListScreen(
+          client: widget.client,
+          profileId: widget.profileId ?? 'unknown',
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDetailsTab(ProfileArtifactView view) {
+    final l10n = AppLocalizations.of(context)!;
+    final artifact = view.artifact;
+    final isArabic = Localizations.localeOf(context).languageCode == 'ar';
+    final title = isArabic
+        ? artifact.titleAr ?? artifact.titleEn
+        : artifact.titleEn ?? artifact.titleAr;
+    final definition = isArabic
+        ? artifact.definitionShortAr ?? artifact.definitionShortEn
+        : artifact.definitionShortEn ?? artifact.definitionShortAr;
+    return ListView(
+      padding: const EdgeInsets.all(16),
+      children: [
+        Text(
+          title ?? artifact.artifactId ?? '—',
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
+        if (artifact.type != null) ...[
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              Chip(
+                label: Text(artifact.type!),
+                backgroundColor: Colors.blue.withValues(alpha: 0.1),
+              ),
+              const SizedBox(width: 8),
+              if (artifact.primaryDomain != null)
+                Chip(
+                  label: Text(artifact.primaryDomain!),
+                  backgroundColor: Colors.purple.withValues(alpha: 0.1),
+                ),
+            ],
+          ),
+        ],
+        const SizedBox(height: 16),
+        Text(
+          l10n.definition,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 4),
+        Text(definition ?? l10n.noDefinition),
+        const Divider(height: 32),
+        if (view.tags.isNotEmpty) ...[
+          Text(
+            l10n.tagsHeading,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: view.tags
+                .map(
+                  (t) => Chip(
+                    label: Text('${t.tagType}: ${t.tagValue}'),
+                    backgroundColor: Colors.grey.shade200,
+                  ),
+                )
+                .toList(),
+          ),
+          const Divider(height: 32),
+        ],
+        if (view.mappings.isNotEmpty) ...[
+          Text(
+            l10n.mappingsHeading,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 8),
+          ...view.mappings.map(
+            (m) => ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text('${m.framework} ${m.version}'),
+              subtitle: Text(
+                '${l10n.referenceLabel}: ${m.reference} '
+                '(${m.mappingStrength})',
+              ),
+              leading: const Icon(Icons.bookmark_outline),
+            ),
+          ),
+          const Divider(height: 32),
+        ],
+        if (view.relationships.isNotEmpty) ...[
+          Text(
+            l10n.relationshipsHeading,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 8),
+          ...view.relationships.map(
+            (r) => ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(r.relationType),
+              subtitle: Text(
+                r.sourceId == artifact.artifactId
+                    ? '${l10n.targetLabel}: ${r.targetId}'
+                    : '${l10n.sourceLabel}: ${r.sourceId}',
+              ),
+              leading: const Icon(Icons.link),
+            ),
+          ),
+          const SizedBox(height: 32),
+        ],
+      ],
+    );
+  }
+
+  Widget _buildAssessmentTab(ProfileArtifactView view) {
+    final l10n = AppLocalizations.of(context)!;
     final artifact = view.artifact;
     return Form(
       key: _formKey,
-      child: ListView(
+      child: SingleChildScrollView(
+        key: const Key('assessmentScroll'),
         padding: const EdgeInsets.all(16),
-        children: [
-          Text(
-            artifact.titleAr ?? artifact.titleEn ?? artifact.artifactId ?? '—',
-            style: Theme.of(context).textTheme.headlineSmall,
-          ),
-          const SizedBox(height: 4),
-          Text(
-            '${artifact.type ?? '—'} · ${artifact.primaryDomain ?? '—'} · ${artifact.subDomain ?? '—'}',
-          ),
-          if ((artifact.definitionShortAr ?? artifact.definitionShortEn) !=
-              null) ...[
-            const SizedBox(height: 12),
-            Text(artifact.definitionShortAr ?? artifact.definitionShortEn!),
-          ],
-          const SizedBox(height: 20),
-          _section('الحالة التشغيلية'),
-          _dropdown(
-            label: 'حالة التطبيق',
-            value: _implementationStatus,
-            values: _implementationStatuses,
-            onChanged: (value) => setState(() => _implementationStatus = value),
-          ),
-          _dropdown(
-            label: 'حالة التحقق',
-            value: _verificationStatus,
-            values: _verificationStatuses,
-            onChanged: (value) => setState(() => _verificationStatus = value),
-          ),
-          _dropdown(
-            label: 'الفعالية',
-            value: _effectiveness,
-            values: _effectivenessValues,
-            onChanged: (value) => setState(() => _effectiveness = value),
-          ),
-          Card(
-            child: ListTile(
-              leading: const Icon(Icons.rule_folder_outlined),
-              title: const Text('حالة الاستثناء'),
-              subtitle: Text(artifact.exceptionStatus ?? 'EXC-NONE'),
-              trailing: const Tooltip(
-                message: 'تُدار عبر مسار اعتماد الاستثناءات',
-                child: Icon(Icons.lock_outline),
-              ),
-            ),
-          ),
-          const SizedBox(height: 20),
-          _section('الملكية والتخطيط'),
-          _dropdown(
-            label: 'مستوى النضج الحالي',
-            value: _maturityLevel,
-            values: _maturityLevels,
-            required: false,
-            onChanged: (value) => setState(() => _maturityLevel = value),
-          ),
-          SwitchListTile(
-            value: _usePriorityOverride,
-            title: const Text('تجاوز أولوية الكتالوج/القالب'),
-            subtitle: Text(
-              'الفعالة الآن: ${artifact.effectivePriority ?? '—'}',
-            ),
-            onChanged: (value) => setState(() {
-              _usePriorityOverride = value;
-              if (value) {
-                _priorityOverride ??=
-                    artifact.effectivePriority ?? 'PRI-MEDIUM';
-              }
-            }),
-          ),
-          if (_usePriorityOverride)
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            _section(l10n.operationalState),
             _dropdown(
-              label: 'الأولوية المخصصة',
-              value: _priorityOverride,
-              values: _priorities,
-              onChanged: (value) => setState(() => _priorityOverride = value),
-            ),
-          SwitchListTile(
-            value: _useReviewOverride,
-            title: const Text('تجاوز تكرار المراجعة'),
-            subtitle: Text(
-              'الفعال الآن: ${artifact.effectiveReviewFrequency ?? '—'}',
-            ),
-            onChanged: (value) => setState(() {
-              _useReviewOverride = value;
-              if (value) {
-                _reviewFrequencyOverride ??=
-                    artifact.effectiveReviewFrequency ?? 'AD-HOC';
-              }
-            }),
-          ),
-          if (_useReviewOverride)
-            _dropdown(
-              label: 'تكرار المراجعة المخصص',
-              value: _reviewFrequencyOverride,
-              values: _reviewFrequencies,
+              fieldKey: const Key('implementationStatus'),
+              label: l10n.implementationStatus,
+              value: _implementationStatus,
+              values: _implementationStatuses,
               onChanged: (value) =>
-                  setState(() => _reviewFrequencyOverride = value),
+                  setState(() => _implementationStatus = value),
             ),
-          TextFormField(
-            controller: _owner,
-            decoration: const InputDecoration(labelText: 'المالك المعيّن'),
-          ),
-          const SizedBox(height: 12),
-          TextFormField(
-            controller: _dueDate,
-            readOnly: true,
-            onTap: _pickDueDate,
-            decoration: InputDecoration(
-              labelText: 'تاريخ الاستحقاق',
-              suffixIcon: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (_dueDate.text.isNotEmpty)
-                    IconButton(
-                      tooltip: 'مسح التاريخ',
-                      onPressed: () => setState(_dueDate.clear),
-                      icon: const Icon(Icons.clear),
-                    ),
-                  const Icon(Icons.calendar_today_outlined),
-                  const SizedBox(width: 12),
-                ],
+            _dropdown(
+              label: l10n.verificationStatus,
+              value: _verificationStatus,
+              values: _verificationStatuses,
+              onChanged: (value) => setState(() => _verificationStatus = value),
+            ),
+            _dropdown(
+              label: l10n.effectivenessLabel,
+              value: _effectiveness,
+              values: _effectivenessValues,
+              onChanged: (value) => setState(() => _effectiveness = value),
+            ),
+            Card(
+              child: ListTile(
+                leading: const Icon(Icons.rule_folder_outlined),
+                title: Text(l10n.exceptionState),
+                subtitle: Text(artifact.exceptionStatus ?? 'EXC-NONE'),
+                trailing: Tooltip(
+                  message: l10n.exceptionManagedTooltip,
+                  child: const Icon(Icons.lock_outline),
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 12),
-          TextFormField(
-            controller: _notes,
-            minLines: 2,
-            maxLines: 4,
-            decoration: const InputDecoration(
-              labelText: 'ملاحظات الحالة الحالية',
+            const SizedBox(height: 20),
+            _section(l10n.ownershipPlanning),
+            _dropdown(
+              label: l10n.currentMaturityLevel,
+              value: _maturityLevel,
+              values: _maturityLevels,
+              required: false,
+              onChanged: (value) => setState(() => _maturityLevel = value),
             ),
+            SwitchListTile(
+              value: _usePriorityOverride,
+              title: Text(l10n.overrideCatalogPriority),
+              subtitle: Text(
+                '${l10n.effectiveNow}: '
+                '${artifact.effectivePriority ?? '—'}',
+              ),
+              onChanged: (value) => setState(() {
+                _usePriorityOverride = value;
+                if (value) {
+                  _priorityOverride ??=
+                      artifact.effectivePriority ?? 'PRI-MEDIUM';
+                }
+              }),
+            ),
+            if (_usePriorityOverride)
+              _dropdown(
+                label: l10n.customPriority,
+                value: _priorityOverride,
+                values: _priorities,
+                onChanged: (value) => setState(() => _priorityOverride = value),
+              ),
+            SwitchListTile(
+              value: _useReviewOverride,
+              title: Text(l10n.overrideReviewFrequency),
+              subtitle: Text(
+                '${l10n.effectiveNow}: '
+                '${artifact.effectiveReviewFrequency ?? '—'}',
+              ),
+              onChanged: (value) => setState(() {
+                _useReviewOverride = value;
+                if (value) {
+                  _reviewFrequencyOverride ??=
+                      artifact.effectiveReviewFrequency ?? 'AD-HOC';
+                }
+              }),
+            ),
+            if (_useReviewOverride)
+              _dropdown(
+                label: l10n.customReviewFrequency,
+                value: _reviewFrequencyOverride,
+                values: _reviewFrequencies,
+                onChanged: (value) =>
+                    setState(() => _reviewFrequencyOverride = value),
+              ),
+            TextFormField(
+              controller: _owner,
+              decoration: InputDecoration(labelText: l10n.assignedOwner),
+            ),
+            const SizedBox(height: 12),
+            TextFormField(
+              controller: _dueDate,
+              readOnly: true,
+              onTap: _pickDueDate,
+              decoration: InputDecoration(
+                labelText: l10n.dueDate,
+                suffixIcon: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (_dueDate.text.isNotEmpty)
+                      IconButton(
+                        tooltip: l10n.clearDate,
+                        onPressed: () => setState(_dueDate.clear),
+                        icon: const Icon(Icons.clear),
+                      ),
+                    const Icon(Icons.calendar_today_outlined),
+                    const SizedBox(width: 12),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+            TextFormField(
+              controller: _notes,
+              minLines: 2,
+              maxLines: 4,
+              decoration: InputDecoration(labelText: l10n.currentStateNotes),
+            ),
+            const SizedBox(height: 20),
+            _section(l10n.newAssessmentRecord),
+            TextFormField(
+              key: const Key('assessmentAssessor'),
+              controller: _assessor,
+              decoration: InputDecoration(labelText: l10n.assessorName),
+              validator: (value) => value == null || value.trim().isEmpty
+                  ? l10n.assessorRequired
+                  : null,
+            ),
+            const SizedBox(height: 12),
+            TextFormField(
+              key: const Key('assessmentScore'),
+              controller: _score,
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
+              decoration: InputDecoration(labelText: l10n.scoreLabel),
+              validator: (value) {
+                if (value == null || value.trim().isEmpty) return null;
+                final score = num.tryParse(value.trim());
+                if (score == null || score < 0 || score > 100) {
+                  return l10n.scoreValidation;
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 12),
+            TextFormField(
+              controller: _comments,
+              minLines: 2,
+              maxLines: 4,
+              decoration: InputDecoration(labelText: l10n.assessmentComment),
+            ),
+            const SizedBox(height: 20),
+            FilledButton.icon(
+              key: const Key('saveAssessment'),
+              onPressed: _saving ? null : _save,
+              icon: _saving
+                  ? const SizedBox.square(
+                      dimension: 18,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : const Icon(Icons.save_outlined),
+              label: Text(l10n.saveAssessment),
+            ),
+            const SizedBox(height: 28),
+            KeyedSubtree(
+              key: const Key('assessmentHistory'),
+              child: _section(
+                '${l10n.assessmentHistory} (${view.assessments.length})',
+              ),
+            ),
+            if (view.assessments.isEmpty)
+              Text(l10n.noPreviousAssessments)
+            else
+              ...view.assessments.map(_assessmentCard),
+            const Divider(),
+            _buildExceptionSection(view),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildExceptionSection(ProfileArtifactView view) {
+    final l10n = AppLocalizations.of(context)!;
+    final status = view.artifact.exceptionStatus ?? 'EXC-NONE';
+    final isExempt = status != 'EXC-NONE';
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              Icon(
+                isExempt ? Icons.warning_amber_rounded : Icons.shield_outlined,
+                color: isExempt ? Colors.orange : Colors.grey,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                '${l10n.exceptionState}: $status',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: isExempt ? Colors.orange : Colors.grey,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 20),
-          _section('سجل التقييم الجديد'),
-          TextFormField(
-            key: const Key('assessmentAssessor'),
-            controller: _assessor,
-            decoration: const InputDecoration(labelText: 'اسم المقيّم'),
-            validator: (value) => value == null || value.trim().isEmpty
-                ? 'اسم المقيّم مطلوب'
-                : null,
-          ),
-          const SizedBox(height: 12),
-          TextFormField(
-            key: const Key('assessmentScore'),
-            controller: _score,
-            keyboardType: const TextInputType.numberWithOptions(decimal: true),
-            decoration: const InputDecoration(labelText: 'الدرجة (0–100)'),
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) return null;
-              final score = num.tryParse(value.trim());
-              if (score == null || score < 0 || score > 100) {
-                return 'أدخل درجة بين 0 و100';
+          const SizedBox(height: 8),
+          OutlinedButton.icon(
+            onPressed: () async {
+              final profileArtifactId = view.artifact.profileArtifactId;
+              if (profileArtifactId == null) return;
+              final manager = ExceptionManager();
+              final existing = await manager.getDraftForArtifact(
+                profileArtifactId,
+              );
+              if (!mounted) return;
+
+              final result = await showDialog<ExceptionRecord>(
+                context: context,
+                builder: (_) => ExceptionRequestDialog(
+                  profileArtifactId: profileArtifactId,
+                  existingRecord: existing,
+                ),
+              );
+
+              if (result != null) {
+                // Refresh the whole screen to reflect new exception status
+                setState(() => _loading = true);
+                _load();
               }
-              return null;
             },
+            icon: const Icon(Icons.rule),
+            label: Text(l10n.manageException),
           ),
-          const SizedBox(height: 12),
-          TextFormField(
-            controller: _comments,
-            minLines: 2,
-            maxLines: 4,
-            decoration: const InputDecoration(labelText: 'تعليق التقييم'),
-          ),
-          const SizedBox(height: 20),
-          FilledButton.icon(
-            key: const Key('saveAssessment'),
-            onPressed: _saving ? null : _save,
-            icon: _saving
-                ? const SizedBox.square(
-                    dimension: 18,
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  )
-                : const Icon(Icons.save_outlined),
-            label: const Text('حفظ التقييم'),
-          ),
-          const SizedBox(height: 28),
-          KeyedSubtree(
-            key: const Key('assessmentHistory'),
-            child: _section('سجل التقييمات (${view.assessments.length})'),
-          ),
-          if (view.assessments.isEmpty)
-            const Text('لا توجد تقييمات سابقة.')
-          else
-            ...view.assessments.map(_assessmentCard),
         ],
       ),
     );
@@ -439,6 +644,7 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
   );
 
   Widget _dropdown({
+    Key? fieldKey,
     required String label,
     required String? value,
     required List<String> values,
@@ -447,6 +653,7 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
   }) => Padding(
     padding: const EdgeInsets.only(bottom: 12),
     child: DropdownButtonFormField<String>(
+      key: fieldKey,
       initialValue: values.contains(value) ? value : null,
       decoration: InputDecoration(labelText: label),
       items: [
@@ -454,24 +661,29 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
           DropdownMenuItem(value: item, child: Text(item)),
       ],
       onChanged: onChanged,
-      validator: (current) =>
-          required && current == null ? '$label مطلوب' : null,
+      validator: (current) => required && current == null
+          ? AppLocalizations.of(context)!.requiredValue(label)
+          : null,
     ),
   );
 
-  Widget _assessmentCard(AssessmentRecord assessment) => Card(
-    child: ListTile(
-      title: Text(
-        '${assessment.assessorName ?? '—'} · ${assessment.score ?? 'بلا درجة'}',
+  Widget _assessmentCard(AssessmentRecord assessment) {
+    final l10n = AppLocalizations.of(context)!;
+    return Card(
+      child: ListTile(
+        title: Text(
+          '${assessment.assessorName ?? '—'} · '
+          '${assessment.score ?? l10n.unscored}',
+        ),
+        subtitle: Text(
+          '${assessment.assessmentDate ?? '—'}\n'
+          '${assessment.implementationStatus ?? '—'} · '
+          '${assessment.verificationStatus ?? '—'} · '
+          '${assessment.effectiveness ?? '—'}'
+          '${assessment.comments == null || assessment.comments!.isEmpty ? '' : '\n${assessment.comments}'}',
+        ),
+        isThreeLine: true,
       ),
-      subtitle: Text(
-        '${assessment.assessmentDate ?? '—'}\n'
-        '${assessment.implementationStatus ?? '—'} · '
-        '${assessment.verificationStatus ?? '—'} · '
-        '${assessment.effectiveness ?? '—'}'
-        '${assessment.comments == null || assessment.comments!.isEmpty ? '' : '\n${assessment.comments}'}',
-      ),
-      isThreeLine: true,
-    ),
-  );
+    );
+  }
 }

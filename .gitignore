@@ -3,6 +3,10 @@
 *.sqlite
 *.sqlite3
 
+# The offline mobile release seed is a required bundled asset, not an
+# operational database. It is rebuilt and integrity-checked before release.
+!mobile/assets/catalog.db
+
 # ── Build outputs (regenerable via scripts/build_release_db.py) ──
 dist/
 

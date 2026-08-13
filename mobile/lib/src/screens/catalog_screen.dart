@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../read_model_contract.dart';
 import '../client/secure_guide_client.dart';
 import 'assessment_screen.dart';
+import 'catalog_filter_sheet.dart';
 
 /// Browse the master catalog for the active profile and select artifacts into
 /// it. Binds to [CatalogView]/[CatalogItem]; selection is a governed write via
@@ -24,11 +26,23 @@ class _CatalogScreenState extends State<CatalogScreen> {
   CatalogView? _view;
   Object? _error;
   bool _loading = true;
-  String _query = '';
+  late CatalogFilter _filter;
+  String? _locale;
 
   @override
   void initState() {
     super.initState();
+    _filter = CatalogFilter(profileId: widget.profileId);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final locale = Localizations.localeOf(context).languageCode;
+    if (_locale == locale) return;
+    _locale = locale;
+    _view = null;
+    _loading = true;
     _load();
   }
 
@@ -41,8 +55,8 @@ class _CatalogScreenState extends State<CatalogScreen> {
   Future<void> _load() async {
     try {
       final view = await widget.client.catalog(
-        profileId: widget.profileId,
-        query: _query.isEmpty ? null : _query,
+        _filter,
+        locale: _locale ?? 'ar',
         limit: 100,
       );
       if (!mounted) return;
@@ -62,22 +76,50 @@ class _CatalogScreenState extends State<CatalogScreen> {
 
   void _search(String value) {
     setState(() {
-      _query = value.trim();
+      _filter = CatalogFilter.fromJson({
+        ..._filter.toJson(),
+        'searchQuery': value.trim().isEmpty ? null : value.trim(),
+      });
       _view = null;
       _loading = true;
     });
     _load();
   }
 
+  Future<void> _openFilter() async {
+    final result = await showModalBottomSheet<CatalogFilter>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => Padding(
+        padding: EdgeInsets.only(
+          top: MediaQuery.of(context).padding.top + kToolbarHeight,
+        ),
+        child: CatalogFilterSheet(initialFilter: _filter),
+      ),
+    );
+    if (result != null && mounted) {
+      setState(() {
+        _filter = result;
+        _view = null;
+        _loading = true;
+      });
+      _load();
+    }
+  }
+
   Future<void> _select(CatalogItem item) async {
     final id = item.id;
     if (id == null) return;
     final messenger = ScaffoldMessenger.of(context);
+    final l10n = AppLocalizations.of(context)!;
     try {
       await widget.client.selectArtifacts([id], profileId: widget.profileId);
       await _load();
     } catch (error) {
-      messenger.showSnackBar(SnackBar(content: Text('تعذّرت الإضافة: $error')));
+      messenger.showSnackBar(
+        SnackBar(content: Text(l10n.addToProfileError(error))),
+      );
     }
   }
 
@@ -98,8 +140,18 @@ class _CatalogScreenState extends State<CatalogScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: AppBar(title: const Text('الكتالوج')),
+      appBar: AppBar(
+        title: Text(l10n.catalog),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.filter_list),
+            tooltip: l10n.filter,
+            onPressed: _openFilter,
+          ),
+        ],
+      ),
       body: Column(
         children: [
           Padding(
@@ -110,9 +162,11 @@ class _CatalogScreenState extends State<CatalogScreen> {
               onSubmitted: _search,
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.search),
-                hintText: 'بحث في الكتالوج',
+                hintText: l10n.searchHint,
                 border: const OutlineInputBorder(),
-                suffixIcon: _query.isEmpty
+                suffixIcon:
+                    (_filter.searchQuery == null ||
+                        _filter.searchQuery!.isEmpty)
                     ? null
                     : IconButton(
                         icon: const Icon(Icons.clear),
@@ -131,6 +185,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
   }
 
   Widget _body() {
+    final l10n = AppLocalizations.of(context)!;
     if (_loading && _view == null) {
       return const Center(child: CircularProgressIndicator());
     }
@@ -138,13 +193,13 @@ class _CatalogScreenState extends State<CatalogScreen> {
       return Center(
         child: Padding(
           padding: const EdgeInsets.all(24),
-          child: Text('تعذّر تحميل الكتالوج: $_error'),
+          child: Text(l10n.catalogLoadError(_error!)),
         ),
       );
     }
     final items = _view?.items ?? const [];
     if (items.isEmpty) {
-      return const Center(child: Text('لا توجد عناصر مطابقة.'));
+      return Center(child: Text(l10n.noMatchingArtifacts));
     }
     return ListView.builder(
       itemCount: items.length,
@@ -170,23 +225,29 @@ class _CatalogRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final selected = item.isSelected == true;
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       child: ListTile(
+        key: ValueKey('catalog-item-${item.id}'),
         onTap: selected ? () => onOpen(item) : null,
         title: Text(item.title ?? item.id ?? '—'),
         subtitle: Text(
           '${item.primaryDomain ?? '—'} · ${item.effectivePriority ?? '—'}',
         ),
         trailing: selected
-            ? const Tooltip(
-                message: 'فتح التقييم',
-                child: Icon(Icons.assignment_outlined, color: Colors.green),
+            ? Tooltip(
+                message: l10n.openAssessment,
+                child: const Icon(
+                  Icons.assignment_outlined,
+                  color: Colors.green,
+                ),
               )
             : IconButton(
+                key: ValueKey('catalog-add-${item.id}'),
                 icon: const Icon(Icons.add_circle_outline),
-                tooltip: 'إضافة إلى الملف',
+                tooltip: l10n.addToProfile,
                 onPressed: () => onSelect(item),
               ),
       ),

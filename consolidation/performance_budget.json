@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "qualificationMinimumArtifacts": 1000,
+  "warmupIterations": 5,
+  "sampleIterations": 30,
+  "thresholdsMs": {
+    "catalogSearchP95": 250,
+    "profileDashboardP95": 500,
+    "htmlReportP95": 1500
+  },
+  "notes": [
+    "These are host-side SQLite regression budgets, not mobile frame-rendering SLAs.",
+    "Qualification requires the governed release catalog itself; duplicated synthetic catalog rows are prohibited.",
+    "The 1000-artifact floor is provisional until the owner declares the complete governed release population."
+  ]
+}
