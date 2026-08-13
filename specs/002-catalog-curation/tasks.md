@@ -10,9 +10,9 @@
 
 **Purpose**: Establish versioned contracts and reproducible tool dependencies.
 
-- [ ] T001 Create the versioned minimum-entry contract and pin build-time workbook dependencies in `config/catalog_minimum_fields.yaml` and `requirements-curation.txt`
-- [ ] T002 [P] Create pinned source corpus and conservative source-rights inputs in `config/source_manifest.json` and `config/source_rights.yaml`
-- [ ] T003 [P] Document minimum validation, source rights, raw dispositions, final lineage, and Excel semantics in `docs/CATALOG_CURATION.md`
+- [x] T001 Create the versioned minimum-entry contract and pin build-time workbook dependencies in `config/catalog_minimum_fields.yaml` and `requirements-curation.txt`
+- [x] T002 [P] Create pinned source corpus and conservative source-rights inputs in `config/source_manifest.json` and `config/source_rights.yaml`
+- [x] T003 [P] Document minimum validation, source rights, raw dispositions, final lineage, and Excel semantics in `docs/CATALOG_CURATION.md`
 
 ---
 
@@ -22,9 +22,9 @@
 
 **Checkpoint**: All later stories depend on this phase.
 
-- [ ] T004 Write failing migration tests for manifests, source rights, dispositions, lineage, delete guards, and profile separation in `tests/test_catalog_closure_schema.py`
-- [ ] T005 Implement additive closure schema, constraints, indexes, and recovery notes in `migrations/031_catalog_closure_foundation.sql`
-- [ ] T006 Regenerate embedded Flutter migrations and verify schema 031 parity in `mobile/lib/core/database/generated_migrations.dart` and `tests/test_catalog_closure_schema.py`
+- [x] T004 Write failing migration tests for manifests, source rights, dispositions, lineage, delete guards, and profile separation in `tests/test_catalog_closure_schema.py`
+- [x] T005 Implement additive closure schema, constraints, indexes, and recovery notes in `migrations/031_catalog_closure_foundation.sql`
+- [x] T006 Regenerate embedded Flutter migrations and verify schema 031 parity in `mobile/lib/core/database/generated_migrations.dart` and `tests/test_catalog_closure_schema.py`
 - [ ] T007 Write failing tests that distinguish minimum validation, strict USACM conformance, low-confidence review flags, type requirements, risk remediation, and closure errors in `tests/test_catalog_validation.py`
 - [ ] T008 Implement contract loading, canonical hashing, separate validators, closure/integrity checks, and deterministic JSON reports in `secureguide/catalog_validation.py`
 - [ ] T009 Expose validation through `scripts/catalog_validate.py` and prove stable exit codes and report hashes in `tests/test_catalog_validation.py`
