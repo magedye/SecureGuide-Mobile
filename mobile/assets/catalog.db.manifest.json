@@ -1,31 +1,16 @@
 {
   "name": "catalog.db",
   "builtWith": "scripts.build_release_db",
-  "mode": "release",
-  "generatedAt": "2026-08-13T10:10:02.609734+00:00",
-  "schemaVersion": "030",
-  "appliedMigrations": [
-    "017",
-    "018",
-    "019",
-    "020",
-    "021",
-    "022",
-    "023",
-    "024",
-    "025",
-    "026",
-    "027",
-    "028",
-    "029",
-    "030"
-  ],
+  "mode": "curated",
+  "generatedAt": "2026-07-01T00:00:00Z",
+  "schemaVersion": "033",
+  "appliedMigrations": [],
   "publicationStatus": {
-    "APPROVED": 4
+    "APPROVED": 1227
   },
   "counts": {
-    "security_artifacts": 4,
-    "staging_artifacts": 11,
+    "security_artifacts": 1227,
+    "staging_artifacts": 0,
     "enterprise_profiles": 0,
     "profile_artifacts": 0,
     "profile_assessments": 0,
@@ -42,18 +27,74 @@
     "v_profile_origin_governance_issues",
     "v_blueprint_governance_issues",
     "v_blueprint_enrichment_governance_issues",
-    "approved_promotion_lineage",
+    "minimum_catalog_validation",
+    "raw_disposition_closure",
     "raw_source_lineage",
+    "source_rights",
     "usable_templates"
   ],
   "releaseCounts": {
-    "artifacts": 4,
-    "rawArtifacts": 2798,
+    "artifacts": 1227,
+    "rawArtifacts": 4265,
     "templates": 1,
-    "templateItems": 4
+    "templateItems": 4,
+    "quality": {
+      "minimumValid": 1227,
+      "strictConformant": 1227,
+      "requiresHumanReview": 719,
+      "humanApproved": 4
+    },
+    "closure": {
+      "rawDisposed": 4265,
+      "canonicalsWithLineage": 1227
+    }
   },
   "sourceSha256": "3dcce6f5a3963f1b01ce89bfc3c094d4b34849146873d27f574fe6406ae8bc73",
+  "sourceManifestSha256": "c2f17de0e577aa14d1d1ed248b65c4d469f5b9dfe9795cd64ddbf9d248002722",
+  "rights": {
+    "rawRecordsTotal": 4265,
+    "rawPayloadsIncluded": 0,
+    "rawPayloadsExcluded": 4265
+  },
+  "curation": {
+    "candidateCount": 1467,
+    "equivalenceGroupCount": 220,
+    "selectedProjectionCount": 1223,
+    "canonicalTotal": 1227,
+    "rawTotal": 4265,
+    "lineageRows": 1473,
+    "normalized": {
+      "frameworkMappings": 855,
+      "actions": 1024,
+      "tags": 0,
+      "relationships": 0
+    },
+    "dispositions": {
+      "DEFERRED": 2792,
+      "SUPPORTS_CANONICAL": 1473
+    },
+    "domains": {
+      "SD-01": 78,
+      "SD-02": 124,
+      "SD-03": 247,
+      "SD-04": 295,
+      "SD-05": 131,
+      "SD-06": 172,
+      "SD-07": 97,
+      "SD-08": 83
+    },
+    "selectionOverrides": [
+      {
+        "groupId": "EQG-SD-08.03-125",
+        "declaredCanonical": "STG-CURATED-0148",
+        "selectedCanonical": "STG-CURATED-0641",
+        "reason": "Declared canonical lacks type-required minimum fields; selected a structurally valid equivalent member."
+      }
+    ],
+    "equivalenceSha256": "518fa13e2d89923bca020f85b5c1d9d7a624186caf5015053519fd6a6b30cf32"
+  },
   "reproducibleBuildTimestampUtc": "2026-07-01T00:00:00Z",
-  "sizeBytes": 16785408,
-  "sha256": "22c2f5ec260293e06fca2a2b9d42f3675c2f62a6ec03553e1120a7c2fa517b03"
+  "sizeBytes": 10563584,
+  "sha256": "51e940debba2c7c664e779dd27f9b478b253068b784b553bc8d31deedf05be35",
+  "manifestSha256": "c2eb4321f5f7684d0160417168013864337fc0429a8c13c2152312ba15a8af18"
 }
