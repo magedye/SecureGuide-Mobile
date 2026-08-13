@@ -41,7 +41,7 @@
 
 - [x] T012 [US1] Refactor promotion blockers into structural/minimum and strict-review gates without weakening controlled values in `scripts/_promote_common.py`
 - [x] T013 [US1] Preserve low-confidence `MINIMUM_VALID` rows with correct review flags and publication state during promotion in `scripts/promote.py`
-- [ ] T014 [US1] Replace release human-approval equivalence with separately reported minimum, strict, and review summaries in `scripts/build_release_db.py`
+- [x] T014 [US1] Replace release human-approval equivalence with separately reported minimum, strict, and review summaries in `scripts/build_release_db.py`
 - [x] T015 [US1] Add promotion/release regression tests for `NOT_REVIEWED`, low confidence, missing type fields, and strict/minimum divergence in `tests/test_promotion_minimum_valid.py`
 
 **Checkpoint**: A valid canonical can enter the catalog without a false human-review or strict-conformance claim.
@@ -89,23 +89,23 @@
 
 **Independent Test**: Two builds have identical DB and canonical-manifest hashes; restricted/unknown raw payload is absent; populated upgrade snapshots are identical; performance evidence covers all required categories.
 
-- [ ] T029 [US4] Write failing deterministic manifest, input-hash, rights-scrub, and atomic pair tests in `tests/test_release_build.py`
-- [ ] T030 [US4] Extend release construction with curated mode, rights-safe payload scrubbing, canonical deterministic manifests, staged pair verification, and atomic candidate promotion in `scripts/build_release_db.py`
-- [ ] T031 [US4] Write failing populated-install catalog-upgrade and rollback tests covering profiles, controls, assessments, evidence, and exceptions in `tests/test_catalog_upgrade.py`
-- [ ] T032 [US4] Implement transactional catalog-data upgrade with stable-ID and operational-snapshot guards in `secureguide/catalog_upgrade.py` and `scripts/catalog_upgrade.py`
-- [ ] T033 [US4] Add Flutter-side catalog content upgrade qualification and full operational preservation coverage in `mobile/lib/core/database/database_helper.dart` and `mobile/test/catalog_upgrade_test.dart`
-- [ ] T034 [US4] Write failing qualification tests for startup, database size, memory, migration duration, integrity, declared population, query plans, and baseline comparison in `tests/test_performance_benchmark.py`
-- [ ] T035 [US4] Extend performance qualification and evidence output without inventing new thresholds in `scripts/benchmark_release_catalog.py` and `consolidation/performance_budget.json`
-- [ ] T036 [US4] Build two clean candidates, compare hashes, qualify performance and upgrade preservation, then publish the verified pair through `scripts/build_release_db.py` to `mobile/assets/catalog.db` and `mobile/assets/catalog.db.manifest.json`
+- [x] T029 [US4] Write failing deterministic manifest, input-hash, rights-scrub, and atomic pair tests in `tests/test_release_build.py`
+- [x] T030 [US4] Extend release construction with curated mode, rights-safe payload scrubbing, canonical deterministic manifests, staged pair verification, and atomic candidate promotion in `scripts/build_release_db.py`
+- [x] T031 [US4] Write failing populated-install catalog-upgrade and rollback tests covering profiles, controls, assessments, evidence, and exceptions in `tests/test_catalog_upgrade.py`
+- [x] T032 [US4] Implement transactional catalog-data upgrade with stable-ID and operational-snapshot guards in `secureguide/catalog_upgrade.py` and `scripts/catalog_upgrade.py`
+- [x] T033 [US4] Add Flutter-side catalog content upgrade qualification and full operational preservation coverage in `mobile/lib/core/database/database_helper.dart` and `mobile/test/catalog_upgrade_test.dart`
+- [x] T034 [US4] Write failing qualification tests for startup, database size, memory, migration duration, integrity, declared population, query plans, and baseline comparison in `tests/test_performance_benchmark.py`
+- [x] T035 [US4] Extend performance qualification and evidence output without inventing new thresholds in `scripts/benchmark_release_catalog.py` and `consolidation/performance_budget.json`
+- [x] T036 [US4] Build two clean candidates, compare hashes, qualify performance and upgrade preservation, then publish the verified pair through `scripts/build_release_db.py` to `mobile/assets/catalog.db` and `mobile/assets/catalog.db.manifest.json`
 
 ---
 
 ## Phase 7: Polish & Cross-Cutting Validation
 
-- [ ] T037 Run all Python schema, curation, release, upgrade, read-model, security, and performance tests from `tests/`
-- [ ] T038 Run Flutter analysis, unit tests, database lifecycle tests, and applicable Android build gates from `mobile/`
-- [ ] T039 Re-run catalog validation and verify deterministic clean rebuild, 100 percent closure, zero FK/dangling issues, and profile preservation using `specs/002-catalog-curation/quickstart.md`
-- [ ] T040 Update curation, release, installation, recovery, and performance evidence in `docs/CATALOG_CURATION.md`, `docs/PERFORMANCE_QUALIFICATION.md`, and `mobile/docs/RELEASE_INSTALLATION.md`
+- [x] T037 Run all Python schema, curation, release, upgrade, read-model, security, and performance tests from `tests/`
+- [x] T038 Run Flutter analysis, unit tests, database lifecycle tests, and applicable Android build gates from `mobile/`
+- [x] T039 Re-run catalog validation and verify deterministic clean rebuild, 100 percent closure, zero FK/dangling issues, and profile preservation using `specs/002-catalog-curation/quickstart.md`
+- [x] T040 Update curation, release, installation, recovery, and performance evidence in `docs/CATALOG_CURATION.md`, `docs/PERFORMANCE_QUALIFICATION.md`, and `mobile/docs/RELEASE_INSTALLATION.md`
 
 ---
 
@@ -133,3 +133,8 @@
 4. Build and qualify outside the mobile asset path.
 5. Replace the bundled asset only once with the verified candidate pair.
 6. Preserve `old/` and all unrelated worktree content.
+
+## Phase 8: Convergence
+
+- [x] T041 Populate `08_Validation_Errors` deterministically during CLI workbook validation and test actionable sheet-level findings per US2/AC5 (partial)
+- [x] T042 Reject duplicate editable row identities in every governed workbook sheet and add regression coverage per spec edge case: duplicate row identities (missing)

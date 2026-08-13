@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 
 from secureguide.catalog_workbook import (
+    annotate_validation_errors,
     WorkbookConflict,
     WorkbookError,
     apply_workbook_plan,
@@ -37,6 +38,7 @@ def main(argv: list[str] | None = None) -> int:
     validate.add_argument("--db", type=Path, required=True)
     validate.add_argument("--workbook", type=Path, required=True)
     validate.add_argument("--output", type=Path)
+    validate.add_argument("--annotated-workbook", type=Path)
     plan = sub.add_parser("plan")
     plan.add_argument("--db", type=Path, required=True)
     plan.add_argument("--workbook", type=Path, required=True)
@@ -51,6 +53,12 @@ def main(argv: list[str] | None = None) -> int:
             _write(export_workbook(args.db, args.workbook, actor=args.actor), None)
         elif args.command == "validate":
             result = validate_workbook(args.workbook, args.db)
+            if args.annotated_workbook:
+                result["annotatedWorkbook"] = annotate_validation_errors(
+                    args.workbook,
+                    result["errors"],
+                    args.annotated_workbook,
+                )
             _write(result, args.output)
             return 0 if result["valid"] else 1
         elif args.command == "plan":

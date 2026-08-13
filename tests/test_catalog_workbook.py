@@ -9,7 +9,11 @@ from pathlib import Path
 
 from openpyxl import load_workbook
 
-from secureguide.catalog_workbook import export_workbook, validate_workbook
+from secureguide.catalog_workbook import (
+    annotate_validation_errors,
+    export_workbook,
+    validate_workbook,
+)
 from secureguide.database import apply_migrations
 
 
@@ -108,6 +112,15 @@ class WorkbookSchemaTests(unittest.TestCase):
 
     def test_export_has_exact_sheets_named_lists_and_validates(self) -> None:
         self._seed_catalog()
+        # openpyxl reloads an Excel numeric 0.0 as int 0; the semantic row
+        # envelope must not report that representation change as an edit.
+        conn = sqlite3.connect(self.db)
+        conn.execute(
+            "UPDATE security_artifacts SET classification_confidence=0.0 "
+            "WHERE id='SG-CTR-1'"
+        )
+        conn.commit()
+        conn.close()
         workbook = Path(self.temp.name) / "catalog.xlsx"
         result = export_workbook(self.db, workbook)
         self.assertEqual(result["sheets"], EXPECTED_SHEETS)
@@ -131,6 +144,38 @@ class WorkbookSchemaTests(unittest.TestCase):
         codes = {error["code"] for error in result["errors"]}
         self.assertIn("FORMULA", codes)
         self.assertIn("ACTION_REQUIRED", codes)
+        annotated = Path(self.temp.name) / "catalog.validated.xlsx"
+        annotation = annotate_validation_errors(workbook, result["errors"], annotated)
+        self.assertEqual(annotation["errorCount"], len(result["errors"]))
+        annotated_wb = load_workbook(annotated, data_only=False)
+        error_rows = list(
+            annotated_wb["08_Validation_Errors"].iter_rows(
+                min_row=2, values_only=True
+            )
+        )
+        self.assertEqual(len(error_rows), len(result["errors"]))
+        self.assertEqual(
+            {row[3] for row in error_rows},
+            {error["code"] for error in result["errors"]},
+        )
+
+    def test_duplicate_editable_row_identity_is_rejected(self) -> None:
+        self._seed_catalog()
+        workbook = Path(self.temp.name) / "catalog.xlsx"
+        export_workbook(self.db, workbook)
+        wb = load_workbook(workbook)
+        ws = wb["01_Artifacts"]
+        ws.append([cell.value for cell in ws[2]])
+        wb.save(workbook)
+        result = validate_workbook(workbook, self.db)
+        duplicate = [
+            error
+            for error in result["errors"]
+            if error["code"] == "DUPLICATE_ROW_KEY"
+        ]
+        self.assertEqual(len(duplicate), 1)
+        self.assertEqual(duplicate[0]["sheet"], "01_Artifacts")
+        self.assertIn("row 2", duplicate[0]["message"])
 
 
 if __name__ == "__main__":

@@ -19,7 +19,7 @@ before it changes the installed application:
 
 ```powershell
 mobile\tool\verify_android_install.ps1 `
-  -SignedApk <absolute-apk-path> `
+  -SignedApk <apk-path> `
   -ApplicationId <owner-approved-application-id> `
   -ExpectedCertificateSha256 <approved-certificate-sha256> `
   -DeviceId <adb-device-id>
@@ -41,6 +41,27 @@ Before an update:
    match the installed package.
 5. Re-run offline acceptance and open a sample of profile evidence after the
    process restart.
+
+## Catalog-content upgrade behavior
+
+On an existing installation, startup does not replace the user's database with
+the bundled catalog. SecureGuide instead:
+
+1. extracts the bundled `assets/catalog.db` to a temporary candidate;
+2. creates a same-filesystem recovery copy of the installed database;
+3. migrates the installed database and candidate to the embedded schema;
+4. transactionally merges governed catalog tables while preserving stable IDs;
+5. proves that profiles, selected ضوابط, assessments, evidence, exceptions,
+   blueprints, and tasks have the same operational snapshot before and after;
+6. verifies catalog closure, SQLite integrity, and foreign keys;
+7. deletes the recovery copy only after success.
+
+Any failure after the recovery copy is created restores that copy. A failure
+before the copy exists leaves the live database untouched. Reapplying the same
+candidate is idempotent. The qualified predecessor fixture upgrades from four
+to 1,227 catalog ضوابط while preserving two profiles, three selected items, one
+assessment, one evidence record, and one exception. The measured host-side
+upgrade took 6,743.899 ms; device timing remains part of device acceptance.
 
 ## Non-destructive recovery
 

@@ -84,6 +84,14 @@ class WorkbookConflict(WorkbookError):
     pass
 
 
+def _portable_path(path: str | Path) -> str:
+    resolved = Path(path).resolve()
+    try:
+        return resolved.relative_to(ROOT.resolve()).as_posix()
+    except ValueError:
+        return str(resolved)
+
+
 def _json_value(value: Any) -> Any:
     if isinstance(value, (date, datetime)):
         return value.isoformat()
@@ -96,7 +104,18 @@ def _row_dict(row: sqlite3.Row, columns: Iterable[str] | None = None) -> dict[st
 
 
 def row_hash(values: dict[str, Any]) -> str:
-    return canonical_hash({key: values[key] for key in sorted(values)})
+    # Excel stores integral floating-point values such as 0.0 as numeric 0.
+    # Treat those JSON number spellings as the same semantic value while
+    # retaining booleans and non-integral floats exactly.
+    normalized = {
+        key: (
+            int(values[key])
+            if isinstance(values[key], float) and values[key].is_integer()
+            else values[key]
+        )
+        for key in sorted(values)
+    }
+    return canonical_hash(normalized)
 
 
 def _table_columns(conn: sqlite3.Connection, table: str) -> list[str]:
@@ -228,7 +247,7 @@ def export_workbook(database: str | Path, output: str | Path, *, actor: str = "c
         output.parent.mkdir(parents=True, exist_ok=True)
         wb.save(output)
         return {
-            "path": str(output), "sheetCount": len(wb.sheetnames),
+            "path": _portable_path(output), "sheetCount": len(wb.sheetnames),
             "sheets": wb.sheetnames, "baselineDbSha256": baseline,
             "workbookSha256": file_hash(output),
         }
@@ -263,6 +282,51 @@ def _key(sheet: str, row: dict[str, Any]) -> str:
     return canonical_hash({key: row.get(key) for key in PRIMARY_KEYS[sheet]})
 
 
+def annotate_validation_errors(
+    workbook: str | Path,
+    errors: Iterable[dict[str, Any]],
+    output: str | Path,
+) -> dict[str, Any]:
+    """Write an actionable, ordered error sheet to a workbook copy."""
+    workbook = Path(workbook).resolve()
+    output = Path(output).resolve()
+    wb = load_workbook(workbook, data_only=False)
+    if "08_Validation_Errors" not in wb.sheetnames:
+        raise WorkbookError("08_Validation_Errors sheet is missing")
+    ws = wb["08_Validation_Errors"]
+    if ws.max_row > 1:
+        ws.delete_rows(2, ws.max_row - 1)
+    sheet_order = {name: index for index, name in enumerate(SHEETS)}
+    ordered = sorted(
+        errors,
+        key=lambda error: (
+            sheet_order.get(str(error.get("sheet")), len(SHEETS)),
+            int(error.get("row") or 0),
+            str(error.get("field") or ""),
+            str(error.get("code") or ""),
+            str(error.get("message") or ""),
+        ),
+    )
+    for error in ordered:
+        ws.append(
+            [
+                error.get("sheet"),
+                error.get("row"),
+                error.get("field"),
+                error.get("code"),
+                error.get("message"),
+            ]
+        )
+    _style_sheet(ws)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    wb.save(output)
+    return {
+        "path": _portable_path(output),
+        "errorCount": len(ordered),
+        "workbookSha256": file_hash(output),
+    }
+
+
 def validate_workbook(workbook: str | Path, database: str | Path) -> dict[str, Any]:
     workbook = Path(workbook).resolve()
     database = Path(database).resolve()
@@ -292,14 +356,29 @@ def validate_workbook(workbook: str | Path, database: str | Path) -> dict[str, A
             if _headers(ws) != expected_headers:
                 errors.append({"sheet": sheet, "row": 1, "field": "headers", "code": "HEADERS", "message": "Columns differ from the exported contract."})
                 continue
+            seen_keys: dict[str, int] = {}
             for row_number, row in _workbook_rows(ws):
                 action = row.get("_action")
                 if action not in ACTION_VALUES:
                     errors.append({"sheet": sheet, "row": row_number, "field": "_action", "code": "ACTION", "message": f"Invalid action {action}."})
                     continue
                 values = _business_values(row)
+                semantic_key = _key(sheet, values)
+                if semantic_key in seen_keys:
+                    errors.append({
+                        "sheet": sheet,
+                        "row": row_number,
+                        "field": ",".join(PRIMARY_KEYS[sheet]),
+                        "code": "DUPLICATE_ROW_KEY",
+                        "message": (
+                            "Editable row identity duplicates row "
+                            f"{seen_keys[semantic_key]}."
+                        ),
+                    })
+                else:
+                    seen_keys[semantic_key] = row_number
                 baseline_key = row.get("_baseline_key")
-                if baseline_key and baseline_key != _key(sheet, values):
+                if baseline_key and baseline_key != semantic_key:
                     errors.append({"sheet": sheet, "row": row_number, "field": PRIMARY_KEYS[sheet][0], "code": "IMMUTABLE_ID", "message": "Primary identity changed since export."})
                 proposed_hash = row_hash(values)
                 if action == "NO_CHANGE" and row.get("_baseline_hash") != proposed_hash:
@@ -385,8 +464,8 @@ def plan_workbook(
                 })
         plan = {
             "contract": "secureguide-catalog-workbook-plan-v1",
-            "database": str(Path(database).resolve()),
-            "workbook": str(Path(workbook).resolve()),
+            "database": _portable_path(database),
+            "workbook": _portable_path(workbook),
             "baselineDbSha256": validation["baselineDbSha256"],
             "currentDbSha256": validation["currentDbSha256"],
             "workbookSha256": validation["workbookSha256"],

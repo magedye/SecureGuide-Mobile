@@ -220,10 +220,10 @@ export -> validate -> plan -> transactional apply
 The command contract is:
 
 ```text
-catalog_workbook export   --db <working.db> --out <catalog.xlsx>
-catalog_workbook validate --db <working.db> --workbook <catalog.xlsx> --out <validated.xlsx>
-catalog_workbook plan     --db <working.db> --workbook <validated.xlsx> --out <plan.json> --actor <name>
-catalog_workbook apply    --db <working.db> --plan <plan.json> --actor <name> [--resolution <resolution.json>]
+catalog_workbook export   --db <working.db> --workbook <catalog.xlsx> --actor <name>
+catalog_workbook validate --db <working.db> --workbook <catalog.xlsx> --annotated-workbook <validated.xlsx> --output <validation.json>
+catalog_workbook plan     --db <working.db> --workbook <validated.xlsx> --output <plan.json> [--resolutions <resolution.json>]
+catalog_workbook apply    --plan <plan.json> --actor <name>
 ```
 
 `apply` accepts only a previously validated deterministic plan. Any error rolls back the complete transaction and its catalog mutations.
@@ -296,3 +296,32 @@ Command exit codes are:
 - `2`: qualification is blocked by an explicitly reported prerequisite.
 
 Performance evidence declares the target profile and corpus population and measures representative query latency, startup impact, database size, memory impact, migration duration, and integrity validation. Existing evidence-backed thresholds are enforced. A missing threshold is recorded as a baseline gap, not replaced by an invented release limit.
+
+## 13. RC1 closure record
+
+The curated release is generated only by:
+
+```powershell
+python -m scripts.build_release_db --mode curated --output mobile/assets/catalog.db
+```
+
+The deterministic release facts are:
+
+- 4,265 preserved raw identities, each with exactly one disposition;
+- 1,227 approved active ضوابط, all minimum-valid and structurally strict-conformant;
+- final lineage for all 1,227 canonicals and 1,473 supporting lineage rows;
+- 855 normalized framework mappings and 1,024 normalized actions;
+- all eight SDT primary domains represented;
+- 719 canonicals explicitly routed to human review and only four claimed as
+  human-approved; minimum acceptance does not change those review facts;
+- zero raw payloads shipped because all 23 current source-rights decisions are
+  fail-closed `UNKNOWN`;
+- zero missing dispositions, missing lineage, source-manifest gaps,
+  source-rights gaps, foreign-key violations, or SQLite integrity findings.
+
+Two independent clean builds and the published mobile asset share database
+SHA-256 `51e940debba2c7c664e779dd27f9b478b253068b784b553bc8d31deedf05be35`
+and manifest SHA-256
+`c2eb4321f5f7684d0160417168013864337fc0429a8c13c2152312ba15a8af18`.
+This proves deterministic reconstruction of the governed candidate; it does not
+claim completion of the outstanding human-review queue.
