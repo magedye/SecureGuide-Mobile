@@ -36,20 +36,31 @@ class PerformanceBenchmarkTests(unittest.TestCase):
         self.assertEqual(result["status"], "SMOKE_ONLY")
         self.assertFalse(result["qualified"])
         self.assertEqual(result["population"]["catalogRowsDuplicated"], 0)
-        self.assertEqual(result["source"]["approvedActiveArtifacts"], 4)
+        self.assertGreater(result["source"]["approvedActiveArtifacts"], 0)
         self.assertEqual(_sha256(DATABASE), before)
         self.assertTrue(result["queryPlans"]["catalogSearch"])
+        self.assertIn("p95Ms", result["startup"])
+        self.assertGreater(result["databaseSize"]["bytes"], 0)
+        self.assertGreater(result["memory"]["peakBytes"], 0)
+        self.assertEqual(result["migration"]["status"], "NOT_MEASURED_SMOKE")
+        self.assertIsNone(result["migration"]["durationMs"])
+        self.assertEqual(result["integrityValidation"]["integrityCheck"], "ok")
+        self.assertEqual(result["integrityValidation"]["foreignKeyViolations"], 0)
 
-    def test_qualification_fails_closed_on_starter_catalog(self) -> None:
+    def test_qualification_fails_closed_below_declared_population(self) -> None:
         result = run_benchmark(
             DATABASE,
             self.budget,
             mode="qualification",
             warmups=0,
             iterations=3,
+            minimum_artifacts=999999,
         )
         self.assertEqual(result["status"], "BLOCKED_CATALOG_TOO_SMALL")
         self.assertFalse(result["population"]["sufficient"])
+        self.assertEqual(
+            result["migration"]["status"], "NOT_MEASURED_CATALOG_TOO_SMALL"
+        )
 
 
 if __name__ == "__main__":

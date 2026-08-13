@@ -19,11 +19,14 @@ import statistics
 import sys
 import tempfile
 import time
+import tracemalloc
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable, Iterable
 
 from secureguide import SecureGuideService
+from secureguide.catalog_upgrade import upgrade_catalog
+from secureguide.database import apply_migrations
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -131,6 +134,25 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _report_path(path: Path) -> str:
+    """Keep durable evidence portable when the project root moves."""
+    try:
+        return path.resolve().relative_to(ROOT.resolve()).as_posix()
+    except ValueError:
+        return path.name
+
+
+def _result_sha256(result: dict[str, Any]) -> str:
+    """Bind a benchmark report to its exact canonical JSON payload."""
+    payload = json.dumps(
+        result,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
 def _measure(
     operation: Callable[[], object], *, warmups: int, iterations: int
 ) -> Measurement:
@@ -225,6 +247,99 @@ def _query_plans(database: Path) -> dict[str, list[str]]:
         connection.close()
 
 
+def _startup(database: Path, *, warmups: int, iterations: int) -> Measurement:
+    def open_and_read() -> None:
+        connection = sqlite3.connect(f"file:{database}?mode=ro", uri=True)
+        try:
+            connection.execute(
+                "SELECT id,title_en FROM security_artifacts "
+                "WHERE is_active=1 ORDER BY id LIMIT 1"
+            ).fetchone()
+        finally:
+            connection.close()
+
+    return _measure(open_and_read, warmups=warmups, iterations=iterations)
+
+
+def _memory_peak(service: SecureGuideService) -> dict[str, int]:
+    tracemalloc.start()
+    try:
+        service.search_catalog(profile_id=PROFILE_ID, locale="en", query="__secureguide_no_match__", limit=100)
+        service.dashboard(profile_id=PROFILE_ID)
+        service.report_html(profile_id=PROFILE_ID)
+        current, peak = tracemalloc.get_traced_memory()
+        return {"currentBytes": int(current), "peakBytes": int(peak)}
+    finally:
+        tracemalloc.stop()
+
+
+def _integrity_measure(database: Path) -> tuple[float, str, int]:
+    connection = sqlite3.connect(database)
+    try:
+        started = time.perf_counter_ns()
+        integrity = connection.execute("PRAGMA integrity_check").fetchone()[0]
+        foreign_keys = len(connection.execute("PRAGMA foreign_key_check").fetchall())
+        duration = (time.perf_counter_ns() - started) / 1_000_000
+        return duration, str(integrity), foreign_keys
+    finally:
+        connection.close()
+
+
+def _upgrade_measure(candidate: Path, baseline: Path) -> dict[str, Any]:
+    with tempfile.TemporaryDirectory(prefix="secureguide-upgrade-performance-") as temp:
+        installed = Path(temp) / "installed.db"
+        shutil.copy2(baseline, installed)
+        started = time.perf_counter_ns()
+        result = upgrade_catalog(installed, candidate, actor="performance-qualification")
+        elapsed = (time.perf_counter_ns() - started) / 1_000_000
+        return {
+            "status": "MEASURED",
+            "durationMs": round(elapsed, 3),
+            "oldArtifactCount": result["oldArtifactCount"],
+            "newArtifactCount": result["newArtifactCount"],
+            "operationalSnapshotPreserved": (
+                result["operationalSnapshotBefore"] == result["operationalSnapshotAfter"]
+            ),
+        }
+
+
+def _upgrade_not_measured(reason: str) -> dict[str, Any]:
+    return {
+        "status": reason,
+        "durationMs": None,
+        "oldArtifactCount": None,
+        "newArtifactCount": None,
+        "operationalSnapshotPreserved": None,
+    }
+
+
+def _baseline_comparison(result: dict[str, Any], baseline: dict[str, Any] | None) -> dict[str, Any]:
+    if not baseline:
+        return {"status": "BASELINE_NOT_ESTABLISHED", "comparisons": {}}
+    observed = {
+        "catalogSearchP95Ms": result["measurements"]["catalogSearch"]["p95Ms"],
+        "profileDashboardP95Ms": result["measurements"]["profileDashboard"]["p95Ms"],
+        "htmlReportP95Ms": result["measurements"]["htmlReport"]["p95Ms"],
+        "startupP95Ms": result["startup"]["p95Ms"],
+        "databaseSizeBytes": result["databaseSize"]["bytes"],
+        "memoryPeakBytes": result["memory"]["peakBytes"],
+        "catalogUpgradeDurationMs": result["migration"]["durationMs"],
+        "integrityDurationMs": result["integrityValidation"]["durationMs"],
+    }
+    comparisons = {}
+    for name, value in observed.items():
+        reference = baseline.get(name)
+        comparisons[name] = {
+            "baseline": reference,
+            "observed": value,
+            "deltaPercent": (
+                None if reference in (None, 0) or value is None
+                else round((float(value) - float(reference)) / float(reference) * 100, 3)
+            ),
+        }
+    return {"status": "COMPARED", "baselineId": baseline.get("id"), "comparisons": comparisons}
+
+
 def run_benchmark(
     database: Path,
     budget: dict[str, Any],
@@ -277,12 +392,32 @@ def run_benchmark(
             ),
         }
         plans = _query_plans(working)
+        startup = _startup(
+            database,
+            warmups=warmup_count,
+            iterations=sample_count,
+        )
+        memory = _memory_peak(service)
+        integrity_duration, integrity_check, foreign_key_violations = _integrity_measure(working)
         connection = sqlite3.connect(working)
         try:
             raw_count = connection.execute("SELECT COUNT(*) FROM raw_artifacts").fetchone()[0]
             schema_version = connection.execute("PRAGMA user_version").fetchone()[0]
         finally:
             connection.close()
+
+    migration_baseline = Path(
+        budget.get("migrationBaselineDatabase", str(ROOT / "catalog.db"))
+    )
+    if not migration_baseline.is_absolute():
+        migration_baseline = ROOT / migration_baseline
+    population_sufficient = artifact_count >= artifact_floor
+    if mode == "qualification" and population_sufficient:
+        migration = _upgrade_measure(database, migration_baseline)
+    elif mode == "qualification":
+        migration = _upgrade_not_measured("NOT_MEASURED_CATALOG_TOO_SMALL")
+    else:
+        migration = _upgrade_not_measured("NOT_MEASURED_SMOKE")
 
     if _sha256(database) != source_hash:
         raise RuntimeError("source release database changed during benchmark")
@@ -296,7 +431,6 @@ def run_benchmark(
         "htmlReport": measurements["htmlReport"].p95
         <= float(thresholds["htmlReportP95"]),
     }
-    population_sufficient = artifact_count >= artifact_floor
     thresholds_passed = all(threshold_results.values())
     if mode == "qualification" and not population_sufficient:
         status = "BLOCKED_CATALOG_TOO_SMALL"
@@ -307,12 +441,12 @@ def run_benchmark(
     else:
         status = "SMOKE_ONLY"
 
-    return {
+    result = {
         "status": status,
         "qualified": status == "QUALIFIED",
         "mode": mode,
         "source": {
-            "path": str(database),
+            "path": _report_path(database),
             "sha256": source_hash,
             "schemaVersion": schema_version,
             "approvedActiveArtifacts": artifact_count,
@@ -330,6 +464,7 @@ def run_benchmark(
             "sqlite": sqlite3.sqlite_version,
             "platform": platform.platform(),
         },
+        "targetProfile": budget.get("targetProfile", {}),
         "iterations": {"warmup": warmup_count, "samples": sample_count},
         "thresholdsMs": thresholds,
         "thresholdResults": threshold_results,
@@ -337,12 +472,27 @@ def run_benchmark(
             name: measurement.to_json()
             for name, measurement in measurements.items()
         },
+        "startup": startup.to_json(),
+        "databaseSize": {
+            "bytes": database.stat().st_size,
+            "baselineBytes": (budget.get("baseline") or {}).get("databaseSizeBytes"),
+        },
+        "memory": memory,
+        "migration": migration,
+        "integrityValidation": {
+            "durationMs": round(integrity_duration, 3),
+            "integrityCheck": integrity_check,
+            "foreignKeyViolations": foreign_key_violations,
+        },
         "queryPlans": plans,
         "limitations": [
             "Host-side regression benchmark; device rendering and PDF rasterization are not measured.",
             "SMOKE_ONLY is not release-catalog performance qualification.",
         ],
     }
+    result["baselineComparison"] = _baseline_comparison(result, budget.get("baseline"))
+    result["reportSha256"] = _result_sha256(result)
+    return result
 
 
 def _parser() -> argparse.ArgumentParser:
