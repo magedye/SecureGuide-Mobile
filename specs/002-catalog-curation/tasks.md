@@ -29,7 +29,7 @@
 - [x] T008 Implement contract loading, canonical hashing, separate validators, closure/integrity checks, and deterministic JSON reports in `secureguide/catalog_validation.py`
 - [x] T009 Expose validation through `scripts/catalog_validate.py` and prove stable exit codes and report hashes in `tests/test_catalog_validation.py`
 - [x] T010 Remove silent `ART-CTR` fallback and make unresolved classification explicitly deferred in `scripts/batch_process.py` and its focused tests in `tests/test_catalog_validation.py`
-- [ ] T011 Backfill source manifests and rights from pinned evidence without inventing metadata in `secureguide/catalog_curation.py` and `tests/test_complete_catalog_curation.py`
+- [x] T011 Backfill source manifests and rights from pinned evidence without inventing metadata in `secureguide/catalog_curation.py` and `tests/test_complete_catalog_curation.py`
 
 ---
 
