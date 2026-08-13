@@ -25,10 +25,10 @@
 - [x] T004 Write failing migration tests for manifests, source rights, dispositions, lineage, delete guards, and profile separation in `tests/test_catalog_closure_schema.py`
 - [x] T005 Implement additive closure schema, constraints, indexes, and recovery notes in `migrations/031_catalog_closure_foundation.sql`
 - [x] T006 Regenerate embedded Flutter migrations and verify schema 031 parity in `mobile/lib/core/database/generated_migrations.dart` and `tests/test_catalog_closure_schema.py`
-- [ ] T007 Write failing tests that distinguish minimum validation, strict USACM conformance, low-confidence review flags, type requirements, risk remediation, and closure errors in `tests/test_catalog_validation.py`
-- [ ] T008 Implement contract loading, canonical hashing, separate validators, closure/integrity checks, and deterministic JSON reports in `secureguide/catalog_validation.py`
-- [ ] T009 Expose validation through `scripts/catalog_validate.py` and prove stable exit codes and report hashes in `tests/test_catalog_validation.py`
-- [ ] T010 Remove silent `ART-CTR` fallback and make unresolved classification explicitly deferred in `scripts/batch_process.py` and its focused tests in `tests/test_catalog_validation.py`
+- [x] T007 Write failing tests that distinguish minimum validation, strict USACM conformance, low-confidence review flags, type requirements, risk remediation, and closure errors in `tests/test_catalog_validation.py`
+- [x] T008 Implement contract loading, canonical hashing, separate validators, closure/integrity checks, and deterministic JSON reports in `secureguide/catalog_validation.py`
+- [x] T009 Expose validation through `scripts/catalog_validate.py` and prove stable exit codes and report hashes in `tests/test_catalog_validation.py`
+- [x] T010 Remove silent `ART-CTR` fallback and make unresolved classification explicitly deferred in `scripts/batch_process.py` and its focused tests in `tests/test_catalog_validation.py`
 - [ ] T011 Backfill source manifests and rights from pinned evidence without inventing metadata in `secureguide/catalog_curation.py` and `tests/test_complete_catalog_curation.py`
 
 ---
