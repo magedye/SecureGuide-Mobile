@@ -10,6 +10,7 @@
 
 # ── Build outputs (regenerable via scripts/build_release_db.py) ──
 dist/
+outputs/
 
 # ── Python bytecode / caches ──
 __pycache__/

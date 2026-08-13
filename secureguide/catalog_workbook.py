@@ -1,4 +1,4 @@
-"""Audited nine-sheet Excel round-trip for SecureGuide catalog curation."""
+"""Audited comprehensive Excel round-trip for SecureGuide catalog curation."""
 
 from __future__ import annotations
 
@@ -27,11 +27,34 @@ from secureguide.database import connect
 
 ROOT = Path(__file__).resolve().parent.parent
 RELEASE_ASSET = (ROOT / "mobile" / "assets" / "catalog.db").resolve()
-SHEETS = (
+CORE_SHEETS = (
     "00_Manifest", "01_Artifacts", "02_Source_Lineage",
     "03_Framework_Mappings", "04_Relationships", "05_Tags",
     "06_Type_Specific", "07_Reference_Lists", "08_Validation_Errors",
 )
+DETAIL_TABLE_SHEETS = {
+    "09_Applicability": "artifact_applicability_scope",
+    "10_Reference_Assessments": "artifact_self_assessments",
+    "11_Technical_Dependencies": "technical_dependencies",
+    "12_Verification_Tools": "verification_tools",
+    "13_Stakeholders": "stakeholders",
+    "14_Remediation_Actions": "remediation_actions",
+    "15_External_References": "external_references",
+    "16_Localizations": "artifact_localizations",
+    "17_Actions": "artifact_actions",
+    "18_Variants": "artifact_variants",
+    "19_Security_Objectives": "artifact_security_objectives",
+    "20_CSF_Functions": "artifact_csf_functions",
+    "21_Control_Purposes": "artifact_control_purposes",
+    "22_Implementation_Types": "artifact_implementation_types",
+    "23_Maturity_Requirements": "artifact_maturity_requirements",
+    "24_Verification_Evidence": "artifact_verification_evidence_types",
+    "25_Threats": "artifact_threats",
+    "26_Platforms": "artifact_platforms",
+    "27_Amani_Assets": "catalog_amani_assets",
+    "28_Amani_Provenance": "catalog_amani_provenance",
+}
+SHEETS = (*CORE_SHEETS, *DETAIL_TABLE_SHEETS)
 ACTION_VALUES = ("NO_CHANGE", "UPSERT", "DEPRECATE")
 TABLE_SHEETS = {
     "01_Artifacts": "security_artifacts",
@@ -39,7 +62,13 @@ TABLE_SHEETS = {
     "03_Framework_Mappings": "framework_mappings",
     "04_Relationships": "artifact_relationships",
     "05_Tags": "artifact_tags",
+    **DETAIL_TABLE_SHEETS,
 }
+EDITABLE_SHEETS = (
+    "01_Artifacts", "02_Source_Lineage", "03_Framework_Mappings",
+    "04_Relationships", "05_Tags", "06_Type_Specific",
+    *DETAIL_TABLE_SHEETS,
+)
 PRIMARY_KEYS = {
     "01_Artifacts": ("id",),
     "02_Source_Lineage": ("artifact_id", "raw_artifact_id"),
@@ -47,6 +76,26 @@ PRIMARY_KEYS = {
     "04_Relationships": ("id",),
     "05_Tags": ("artifact_id", "tag_type", "tag_value"),
     "06_Type_Specific": ("artifact_id",),
+    "09_Applicability": ("id",),
+    "10_Reference_Assessments": ("id",),
+    "11_Technical_Dependencies": ("id",),
+    "12_Verification_Tools": ("id",),
+    "13_Stakeholders": ("id",),
+    "14_Remediation_Actions": ("id",),
+    "15_External_References": ("id",),
+    "16_Localizations": ("artifact_id", "locale"),
+    "17_Actions": ("id",),
+    "18_Variants": ("id",),
+    "19_Security_Objectives": ("artifact_id", "objective_code"),
+    "20_CSF_Functions": ("artifact_id", "csf_code"),
+    "21_Control_Purposes": ("artifact_id", "purpose_code"),
+    "22_Implementation_Types": ("artifact_id", "impl_type_code"),
+    "23_Maturity_Requirements": ("id",),
+    "24_Verification_Evidence": ("artifact_id", "evidence_type"),
+    "25_Threats": ("artifact_id", "threat_code"),
+    "26_Platforms": ("artifact_id", "platform_code"),
+    "27_Amani_Assets": ("artifact_id", "asset_ref"),
+    "28_Amani_Provenance": ("artifact_id",),
 }
 TYPE_FIELDS = (
     "artifact_id", "type", "requirement_type", "control_nature",
@@ -62,6 +111,24 @@ LOOKUPS = {
     "control_function": "lk_control_function", "testability": "lk_testability",
     "priority": "lk_priority", "review_frequency": "lk_review_frequency",
     "publication_status": "lk_publication_status", "ai_review_status": "lk_ai_review_status",
+    "implementation_status": "lk_implementation_status",
+    "verification_status": "lk_verification_status",
+    "effectiveness": "lk_effectiveness", "exception_status": "lk_exception_status",
+    "asset_type": "lk_asset_type", "maturity_level": "lk_maturity_level",
+    "cost_category": "lk_cost_category", "import_status": "lk_import_status",
+    "resolution_status": "lk_resolution_status",
+    "applicability_scope_type": "lk_applicability_scope_type",
+    "self_assessment_status": "lk_self_assessment_status",
+    "dependency_type": "lk_dependency_type", "dependency_status": "lk_dependency_status",
+    "verification_tool_type": "lk_verification_tool_type",
+    "verification_method": "lk_verification_method",
+    "stakeholder_responsibility": "lk_stakeholder_responsibility",
+    "external_reference_type": "lk_external_reference_type",
+    "objective_code": "lk_security_objective",
+    "objective_strength": "lk_objective_strength",
+    "csf_code": "lk_csf_function", "purpose_code": "lk_control_purpose",
+    "impl_type_code": "lk_implementation_type", "tier_code": "lk_tier",
+    "threat_code": "lk_threat", "platform_code": "lk_platform",
 }
 STATIC_LISTS = {
     "action": ACTION_VALUES,
@@ -72,6 +139,64 @@ STATIC_LISTS = {
         "REL-MEA", "REL-MIT", "REL-AFF", "REL-EXC", "REL-DEP", "REL-CNF",
     ),
     "tag_type": ("Technology", "Framework", "Concept", "Context", "Threat", "Data", "Party"),
+    "content_maturity": ("DRAFT", "MINIMAL", "ENRICHED", "REVIEWED"),
+    "content_review_status": ("NOT_REVIEWED", "NEEDS_REVIEW", "APPROVED"),
+    "action_kind": ("ACTION", "VERIFICATION"),
+    "csf_strength": ("primary", "supporting"),
+    "verification_evidence_type": (
+        "DOCUMENT", "SCREENSHOT", "LOG", "REPORT", "CONFIG",
+        "ATTESTATION", "LINK", "OTHER",
+    ),
+}
+CUSTOM_LIST_QUERIES = {
+    "amani_domain": "SELECT amani_key FROM amani_domain_alias ORDER BY amani_key",
+}
+GLOBAL_FIELD_LISTS = {
+    "type": "type", "primary_domain": "primary_domain", "sub_domain": "sub_domain",
+    "abstraction_level": "abstraction_level", "source": "source",
+    "source_type": "source_type", "obligation_level": "obligation_level",
+    "requirement_type": "requirement_type", "granularity_level": "granularity_level",
+    "control_nature": "control_nature", "control_function": "control_function",
+    "testability": "testability", "priority": "priority",
+    "implementation_status": "implementation_status",
+    "verification_status": "verification_status", "effectiveness": "effectiveness",
+    "exception_status": "exception_status", "review_frequency": "review_frequency",
+    "publication_status": "publication_status", "asset_type": "asset_type",
+    "required_maturity_level": "maturity_level", "cost_category": "cost_category",
+    "ai_review_status": "ai_review_status", "import_status": "import_status",
+    "mapping_strength": "mapping_strength", "tag_type": "tag_type",
+}
+SHEET_FIELD_LISTS = {
+    "02_Source_Lineage": {"lineage_role": "lineage_role"},
+    "04_Relationships": {
+        "relation_type": "relation_type", "resolution_status": "resolution_status",
+    },
+    "09_Applicability": {"scope_type": "applicability_scope_type"},
+    "10_Reference_Assessments": {"status": "self_assessment_status"},
+    "11_Technical_Dependencies": {
+        "dependency_type": "dependency_type", "dependency_status": "dependency_status",
+    },
+    "12_Verification_Tools": {
+        "tool_type": "verification_tool_type", "verification_method": "verification_method",
+    },
+    "13_Stakeholders": {"responsibility": "stakeholder_responsibility"},
+    "15_External_References": {"type": "external_reference_type"},
+    "16_Localizations": {
+        "content_maturity": "content_maturity",
+        "content_review_status": "content_review_status",
+    },
+    "17_Actions": {"kind": "action_kind"},
+    "19_Security_Objectives": {
+        "objective_code": "objective_code", "strength": "objective_strength",
+    },
+    "20_CSF_Functions": {"csf_code": "csf_code", "strength": "csf_strength"},
+    "21_Control_Purposes": {"purpose_code": "purpose_code"},
+    "22_Implementation_Types": {"impl_type_code": "impl_type_code"},
+    "23_Maturity_Requirements": {"tier_code": "tier_code"},
+    "24_Verification_Evidence": {"evidence_type": "verification_evidence_type"},
+    "25_Threats": {"threat_code": "threat_code"},
+    "26_Platforms": {"platform_code": "platform_code"},
+    "28_Amani_Provenance": {"amani_domain": "amani_domain"},
 }
 META_COLUMNS = ("_action", "_baseline_key", "_baseline_hash")
 
@@ -119,7 +244,10 @@ def row_hash(values: dict[str, Any]) -> str:
 
 
 def _table_columns(conn: sqlite3.Connection, table: str) -> list[str]:
-    return [row[1] for row in conn.execute(f"PRAGMA table_info({table})")]
+    columns = [row[1] for row in conn.execute(f'PRAGMA table_info("{table}")')]
+    if not columns:
+        raise WorkbookError(f"required workbook table is missing: {table}")
+    return columns
 
 
 def _table_rows(conn: sqlite3.Connection, table: str) -> list[dict[str, Any]]:
@@ -127,7 +255,10 @@ def _table_rows(conn: sqlite3.Connection, table: str) -> list[dict[str, Any]]:
     order = ",".join(
         row[1] for row in conn.execute(f"PRAGMA table_info({table})") if row[5]
     ) or ",".join(columns)
-    return [_row_dict(row, columns) for row in conn.execute(f"SELECT * FROM {table} ORDER BY {order}")]
+    return [
+        _row_dict(row, columns)
+        for row in conn.execute(f'SELECT * FROM "{table}" ORDER BY {order}')
+    ]
 
 
 def catalog_state_hash(conn: sqlite3.Connection) -> str:
@@ -166,6 +297,20 @@ def _reference_lists(conn: sqlite3.Connection) -> dict[str, tuple[str, ...]]:
     for field, table in LOOKUPS.items():
         if table in tables:
             result[field] = tuple(row[0] for row in conn.execute(f"SELECT code FROM {table} ORDER BY sort_order,code"))
+    for name, query in CUSTOM_LIST_QUERIES.items():
+        result[name] = tuple(row[0] for row in conn.execute(query))
+    return result
+
+
+def _field_lists_for_sheet(sheet: str, columns: Iterable[str]) -> dict[str, str]:
+    """Map worksheet columns to controlled-list names without name collisions."""
+    overridden = SHEET_FIELD_LISTS.get(sheet, {})
+    result: dict[str, str] = {}
+    for field in columns:
+        if field in overridden:
+            result[field] = overridden[field]
+        elif field in GLOBAL_FIELD_LISTS:
+            result[field] = GLOBAL_FIELD_LISTS[field]
     return result
 
 
@@ -176,25 +321,38 @@ def export_workbook(database: str | Path, output: str | Path, *, actor: str = "c
     try:
         baseline = catalog_state_hash(conn)
         schema = conn.execute("SELECT MAX(CAST(version AS INTEGER)) FROM schema_migrations").fetchone()[0]
+        table_rows = {
+            sheet: _table_rows(conn, table) for sheet, table in TABLE_SHEETS.items()
+        }
         wb = Workbook()
         wb.remove(wb.active)
         manifest_ws = wb.create_sheet(SHEETS[0])
         manifest_ws.append(["key", "value"])
         manifest = {
-            "workbook_contract": "secureguide-catalog-workbook-v1",
+            "workbook_contract": "secureguide-catalog-workbook-v2",
             "schema_version": int(schema or 0),
             "baseline_db_sha256": baseline,
             "database_name": database.name,
+            "database_path": _portable_path(database),
+            "export_scope": "ALL_CATALOG_ARTIFACTS",
+            "artifact_count": len(table_rows["01_Artifacts"]),
+            "excluded_data": "PROFILE_OPERATIONAL|RAW_PAYLOAD|DERIVED_EMBEDDINGS|WORKFLOW_BLUEPRINTS",
             "row_omission_semantics": "NO_CHANGE",
             "allowed_actions": "|".join(ACTION_VALUES),
         }
+        manifest.update({
+            f"row_count.{sheet}": len(rows)
+            for sheet, rows in table_rows.items()
+        })
+        manifest["row_count.06_Type_Specific"] = len(table_rows["01_Artifacts"])
         for key, value in manifest.items():
             manifest_ws.append([key, value])
 
-        for sheet, table in TABLE_SHEETS.items():
+        for sheet in CORE_SHEETS[1:6]:
+            table = TABLE_SHEETS[sheet]
             ws = wb.create_sheet(sheet)
             columns = _table_columns(conn, table)
-            _append_table(ws, columns, _table_rows(conn, table))
+            _append_table(ws, columns, table_rows[sheet])
 
         type_ws = wb.create_sheet("06_Type_Specific")
         type_rows = []
@@ -220,14 +378,19 @@ def export_workbook(database: str | Path, output: str | Path, *, actor: str = "c
         errors_ws = wb.create_sheet("08_Validation_Errors")
         errors_ws.append(["sheet", "row", "field", "code", "message"])
 
+        for sheet, table in DETAIL_TABLE_SHEETS.items():
+            ws = wb.create_sheet(sheet)
+            _append_table(ws, _table_columns(conn, table), table_rows[sheet])
+
         for ws in wb.worksheets:
             _style_sheet(ws)
         action_fill = PatternFill("solid", fgColor="FFF2CC")
-        for sheet in SHEETS[1:7]:
+        for sheet in EDITABLE_SHEETS:
             ws = wb[sheet]
             for cell in ws["A"][1:]:
                 cell.fill = action_fill
-            action_dv = DataValidation(type="list", formula1='"NO_CHANGE,UPSERT,DEPRECATE"')
+            actions = ACTION_VALUES if sheet == "01_Artifacts" else ACTION_VALUES[:2]
+            action_dv = DataValidation(type="list", formula1=f'"{",".join(actions)}"')
             ws.add_data_validation(action_dv)
             action_dv.add(f"A2:A{max(ws.max_row + 500, 501)}")
 
@@ -235,11 +398,15 @@ def export_workbook(database: str | Path, output: str | Path, *, actor: str = "c
             safe = "REF_" + "".join(ch if ch.isalnum() else "_" for ch in name).upper()
             reference = f"{quote_sheetname('07_Reference_Lists')}!$B${start}:$B${end}"
             wb.defined_names.add(DefinedName(safe, attr_text=reference))
-            for sheet in ("01_Artifacts", "02_Source_Lineage", "03_Framework_Mappings", "04_Relationships", "05_Tags", "06_Type_Specific"):
+            for sheet in EDITABLE_SHEETS:
                 ws = wb[sheet]
                 headers = {cell.value: cell.column for cell in ws[1]}
-                if name in headers:
-                    col = get_column_letter(headers[name])
+                controlled = _field_lists_for_sheet(sheet, headers)
+                matching_fields = [
+                    field for field, list_name in controlled.items() if list_name == name
+                ]
+                for field in matching_fields:
+                    col = get_column_letter(headers[field])
                     dv = DataValidation(type="list", formula1=f"={safe}", allow_blank=True)
                     ws.add_data_validation(dv)
                     dv.add(f"{col}2:{col}{max(ws.max_row + 500, 501)}")
@@ -334,7 +501,7 @@ def validate_workbook(workbook: str | Path, database: str | Path) -> dict[str, A
     errors: list[dict[str, Any]] = []
 
     if wb.sheetnames != list(SHEETS):
-        errors.append({"sheet": "WORKBOOK", "row": 0, "field": "sheetnames", "code": "SHEET_SET", "message": "Workbook must contain the exact nine sheets in contract order."})
+        errors.append({"sheet": "WORKBOOK", "row": 0, "field": "sheetnames", "code": "SHEET_SET", "message": "Workbook sheets differ from the comprehensive contract order."})
         return {"valid": False, "errors": errors, "workbookSha256": file_hash(workbook)}
 
     for ws in wb.worksheets:
@@ -344,13 +511,18 @@ def validate_workbook(workbook: str | Path, database: str | Path) -> dict[str, A
                     errors.append({"sheet": ws.title, "row": cell.row, "field": cell.coordinate, "code": "FORMULA", "message": "Formulas are forbidden in curation workbooks."})
 
     manifest = _manifest(wb)
+    if manifest.get("workbook_contract") != "secureguide-catalog-workbook-v2":
+        errors.append({
+            "sheet": "00_Manifest", "row": 2, "field": "workbook_contract",
+            "code": "CONTRACT", "message": "Workbook contract must be secureguide-catalog-workbook-v2.",
+        })
     conn = connect(database)
     try:
         current_db_hash = catalog_state_hash(conn)
         refs = _reference_lists(conn)
         table_columns = {sheet: _table_columns(conn, table) for sheet, table in TABLE_SHEETS.items()}
         table_columns["06_Type_Specific"] = list(TYPE_FIELDS)
-        for sheet in SHEETS[1:7]:
+        for sheet in EDITABLE_SHEETS:
             ws = wb[sheet]
             expected_headers = [*META_COLUMNS, *table_columns[sheet]]
             if _headers(ws) != expected_headers:
@@ -361,6 +533,9 @@ def validate_workbook(workbook: str | Path, database: str | Path) -> dict[str, A
                 action = row.get("_action")
                 if action not in ACTION_VALUES:
                     errors.append({"sheet": sheet, "row": row_number, "field": "_action", "code": "ACTION", "message": f"Invalid action {action}."})
+                    continue
+                if action == "DEPRECATE" and sheet != "01_Artifacts":
+                    errors.append({"sheet": sheet, "row": row_number, "field": "_action", "code": "DEPRECATE_SCOPE", "message": "Only catalog artifacts support logical deprecation."})
                     continue
                 values = _business_values(row)
                 semantic_key = _key(sheet, values)
@@ -383,11 +558,10 @@ def validate_workbook(workbook: str | Path, database: str | Path) -> dict[str, A
                 proposed_hash = row_hash(values)
                 if action == "NO_CHANGE" and row.get("_baseline_hash") != proposed_hash:
                     errors.append({"sheet": sheet, "row": row_number, "field": "_action", "code": "ACTION_REQUIRED", "message": "Edited row must use UPSERT or DEPRECATE."})
-                if action == "DEPRECATE" and sheet != "01_Artifacts":
-                    errors.append({"sheet": sheet, "row": row_number, "field": "_action", "code": "DEPRECATE_SCOPE", "message": "Only catalog artifacts support logical deprecation."})
-                for field, allowed in refs.items():
-                    if field in values and values[field] not in (None, "") and values[field] not in allowed:
-                        errors.append({"sheet": sheet, "row": row_number, "field": field, "code": "ENUM", "message": f"Value {values[field]} is not controlled."})
+                for field, list_name in _field_lists_for_sheet(sheet, values).items():
+                    allowed = refs[list_name]
+                    if values[field] not in (None, "") and values[field] not in allowed:
+                        errors.append({"sheet": sheet, "row": row_number, "field": field, "code": "ENUM", "message": f"Value {values[field]} is not controlled by {list_name}."})
                 if sheet == "01_Artifacts" and action == "UPSERT":
                     for field in load_contract()["core_required"]:
                         if values.get(field) in (None, ""):
@@ -421,7 +595,7 @@ def _current_row(conn: sqlite3.Connection, sheet: str, values: dict[str, Any]) -
         return None
     where = " AND ".join(f"{key}=?" for key in keys)
     row = conn.execute(
-        f"SELECT * FROM {table} WHERE {where}", tuple(values[key] for key in keys)
+        f'SELECT * FROM "{table}" WHERE {where}', tuple(values[key] for key in keys)
     ).fetchone()
     return _row_dict(row) if row else None
 
@@ -440,7 +614,7 @@ def plan_workbook(
         entries: list[dict[str, Any]] = []
         conflicts: list[dict[str, Any]] = []
         db_stale = validation["baselineDbSha256"] != validation["currentDbSha256"]
-        for sheet in SHEETS[1:7]:
+        for sheet in EDITABLE_SHEETS:
             for row_number, row in _workbook_rows(wb[sheet]):
                 action = row["_action"]
                 if action == "NO_CHANGE":
@@ -463,7 +637,7 @@ def plan_workbook(
                     "values": values, "resolution": resolution,
                 })
         plan = {
-            "contract": "secureguide-catalog-workbook-plan-v1",
+            "contract": "secureguide-catalog-workbook-plan-v2",
             "database": _portable_path(database),
             "workbook": _portable_path(workbook),
             "baselineDbSha256": validation["baselineDbSha256"],
@@ -528,15 +702,30 @@ def _apply_entry(conn: sqlite3.Connection, entry: dict[str, Any]) -> None:
                 )
         else:
             conn.execute(
-                f"INSERT INTO {table}({','.join(columns)}) VALUES({','.join('?' for _ in columns)})",
+                f'INSERT INTO "{table}"({",".join(columns)}) VALUES({",".join("?" for _ in columns)})',
                 tuple(values[c] for c in columns),
             )
+
+
+def _affected_artifact_ids(sheet: str, values: dict[str, Any]) -> set[str]:
+    if sheet == "01_Artifacts":
+        return {str(values["id"])} if values.get("id") not in (None, "") else set()
+    if sheet == "04_Relationships":
+        return {
+            str(values[field])
+            for field in ("source_id", "target_id")
+            if values.get(field) not in (None, "")
+        }
+    artifact_id = values.get("artifact_id")
+    return {str(artifact_id)} if artifact_id not in (None, "") else set()
 
 
 def apply_workbook_plan(plan: dict[str, Any], *, actor: str = "codex") -> dict[str, Any]:
     database = Path(plan["database"]).resolve()
     if database == RELEASE_ASSET:
         raise WorkbookError("direct curation of mobile/assets/catalog.db is forbidden")
+    if plan.get("contract") != "secureguide-catalog-workbook-plan-v2":
+        raise WorkbookError("unsupported workbook plan contract")
     if canonical_hash({k: v for k, v in plan.items() if k != "planSha256"}) != plan.get("planSha256"):
         raise WorkbookError("plan hash mismatch")
     unresolved = [c for c in plan["conflicts"] if not any(
@@ -569,9 +758,7 @@ def apply_workbook_plan(plan: dict[str, Any], *, actor: str = "codex") -> dict[s
             if entry.get("resolution") == "MANUAL":
                 raise WorkbookConflict(f"manual resolution incomplete for {entry['rowKey']}")
             _apply_entry(conn, entry)
-            artifact_id = entry["values"].get("id") or entry["values"].get("artifact_id")
-            if artifact_id:
-                affected.add(str(artifact_id))
+            affected.update(_affected_artifact_ids(entry["sheet"], entry["values"]))
             conn.execute(
                 """INSERT INTO catalog_workbook_row_audit(
                        run_id,sheet_name,row_key,action,baseline_hash,current_hash,

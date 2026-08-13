@@ -75,6 +75,17 @@ def edit_artifact(workbook: Path, field: str, value: object, action: str = "UPSE
     wb.save(workbook)
 
 
+def edit_detail(
+    workbook: Path, sheet: str, field: str, value: object, action: str = "UPSERT"
+) -> None:
+    wb = load_workbook(workbook)
+    ws = wb[sheet]
+    headers = {cell.value: cell.column for cell in ws[1]}
+    ws.cell(2, headers["_action"], action)
+    ws.cell(2, headers[field], value)
+    wb.save(workbook)
+
+
 class WorkbookApplyTests(unittest.TestCase):
     def setUp(self) -> None:
         self.temp = tempfile.TemporaryDirectory()
@@ -103,6 +114,65 @@ class WorkbookApplyTests(unittest.TestCase):
             ).fetchone()[0], 1)
         finally:
             conn.close()
+
+    def test_comprehensive_detail_edit_round_trip_is_audited(self) -> None:
+        conn = sqlite3.connect(self.db)
+        conn.execute(
+            """INSERT INTO technical_dependencies(
+                   artifact_id,dependency_type,dependency_name,dependency_status)
+               VALUES('SG-CTR-1','SYSTEM','Inventory service','AVAILABLE')"""
+        )
+        conn.commit()
+        conn.close()
+        export_workbook(self.db, self.workbook)
+        edit_detail(
+            self.workbook,
+            "11_Technical_Dependencies",
+            "dependency_status",
+            "PLANNED",
+        )
+        plan = plan_workbook(self.workbook, self.db)
+        self.assertEqual(plan["contract"], "secureguide-catalog-workbook-plan-v2")
+        self.assertEqual(plan["conflicts"], [])
+        result = apply_workbook_plan(plan, actor="tester")
+        conn = sqlite3.connect(self.db)
+        try:
+            self.assertEqual(result["affectedArtifacts"], 1)
+            self.assertEqual(
+                conn.execute(
+                    "SELECT dependency_status FROM technical_dependencies "
+                    "WHERE artifact_id='SG-CTR-1'"
+                ).fetchone()[0],
+                "PLANNED",
+            )
+            self.assertEqual(
+                conn.execute(
+                    "SELECT sheet_name FROM catalog_workbook_row_audit"
+                ).fetchone()[0],
+                "11_Technical_Dependencies",
+            )
+        finally:
+            conn.close()
+
+    def test_child_detail_cannot_be_deprecated(self) -> None:
+        conn = sqlite3.connect(self.db)
+        conn.execute(
+            """INSERT INTO technical_dependencies(
+                   artifact_id,dependency_type,dependency_name,dependency_status)
+               VALUES('SG-CTR-1','SYSTEM','Inventory service','AVAILABLE')"""
+        )
+        conn.commit()
+        conn.close()
+        export_workbook(self.db, self.workbook)
+        edit_detail(
+            self.workbook,
+            "11_Technical_Dependencies",
+            "dependency_status",
+            "AVAILABLE",
+            action="DEPRECATE",
+        )
+        with self.assertRaisesRegex(WorkbookError, "validation failed"):
+            plan_workbook(self.workbook, self.db)
 
     def test_row_omission_is_no_change(self) -> None:
         export_workbook(self.db, self.workbook)

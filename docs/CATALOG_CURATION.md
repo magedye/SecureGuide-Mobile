@@ -193,9 +193,9 @@ Final lineage is a normalized many-to-many relation. Staging JSON, `raw_artifact
 
 The primary key is `(artifact_id, raw_artifact_id)`. Both identifiers are foreign keys. Lineage must be inserted, validated, and promoted transactionally with the related disposition and canonical changes. A dangling or inconsistent row fails closed.
 
-## 10. Nine-sheet Excel round trip
+## 10. Comprehensive Excel round trip
 
-Excel is the primary human bulk-curation interface. SQLite remains authoritative. A governed workbook has exactly these sheets in this stable order:
+Excel is the primary human bulk-curation interface. SQLite remains authoritative. Contract v2 preserves the original nine core sheets and appends one normalized sheet for every supported Master Catalog detail table. The stable order is:
 
 | Sheet | Semantics |
 |---|---|
@@ -208,6 +208,30 @@ Excel is the primary human bulk-curation interface. SQLite remains authoritative
 | `06_Type_Specific` | Type-specific fields and relational requirements such as risk remediation |
 | `07_Reference_Lists` | Controlled values and named ranges used for spreadsheet dropdown validation |
 | `08_Validation_Errors` | Actionable severity, code, sheet, row, key, field, message, and current database hash |
+| `09_Applicability` | Normalized applicability scopes |
+| `10_Reference_Assessments` | USACM reference self-assessments, distinct from profile assessments |
+| `11_Technical_Dependencies` | Reference system, platform, vendor, skill, and budget dependencies |
+| `12_Verification_Tools` | Reference verification tools and methods |
+| `13_Stakeholders` | Reference roles and responsibilities |
+| `14_Remediation_Actions` | Reference remediation actions linked to catalog artifacts |
+| `15_External_References` | Normalized external catalog references |
+| `16_Localizations` | Complete localized content and content-review metadata |
+| `17_Actions` | Ordered implementation and verification actions |
+| `18_Variants` | Platform or context variants |
+| `19_Security_Objectives` | Security objectives and strengths |
+| `20_CSF_Functions` | CSF functions and strengths |
+| `21_Control_Purposes` | Controlled security purposes |
+| `22_Implementation_Types` | Controlled implementation types |
+| `23_Maturity_Requirements` | Tier-specific maturity requirements |
+| `24_Verification_Evidence` | Accepted reference evidence types |
+| `25_Threats` | Normalized threat associations |
+| `26_Platforms` | Normalized platform associations |
+| `27_Amani_Assets` | Amani asset references |
+| `28_Amani_Provenance` | Amani source classification provenance |
+
+The manifest uses `secureguide-catalog-workbook-v2`, records the repository-relative database path when applicable, declares the `ALL_CATALOG_ARTIFACTS` scope, and records the artifact count plus one row count for every editable sheet. Export is unfiltered by artifact type or human-review state.
+
+The comprehensive catalog boundary intentionally excludes profile/operational tables, raw source payload text, derived embedding vectors, and workflow blueprints. Those exclusions preserve catalog/profile separation, source-rights controls, and a human-readable curation surface.
 
 ### 10.1 Command sequence
 
@@ -220,10 +244,10 @@ export -> validate -> plan -> transactional apply
 The command contract is:
 
 ```text
-catalog_workbook export   --db <working.db> --workbook <catalog.xlsx> --actor <name>
-catalog_workbook validate --db <working.db> --workbook <catalog.xlsx> --annotated-workbook <validated.xlsx> --output <validation.json>
-catalog_workbook plan     --db <working.db> --workbook <validated.xlsx> --output <plan.json> [--resolutions <resolution.json>]
-catalog_workbook apply    --plan <plan.json> --actor <name>
+py -3 -m scripts.catalog_workbook export   --db <working.db> --workbook <catalog.xlsx> --actor <name>
+py -3 -m scripts.catalog_workbook validate --db <working.db> --workbook <catalog.xlsx> --annotated-workbook <validated.xlsx> --output <validation.json>
+py -3 -m scripts.catalog_workbook plan     --db <working.db> --workbook <validated.xlsx> --output <plan.json> [--resolutions <resolution.json>]
+py -3 -m scripts.catalog_workbook apply    --plan <plan.json> --actor <name>
 ```
 
 `apply` accepts only a previously validated deterministic plan. Any error rolls back the complete transaction and its catalog mutations.
