@@ -119,6 +119,9 @@ final class DatabaseMigrator {
       'security_artifacts',
       'enterprise_profiles',
       'profile_artifacts',
+      'profile_assessments',
+      'profile_evidence',
+      'profile_exceptions',
       'application_state',
     };
     final tables = database

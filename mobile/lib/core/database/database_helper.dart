@@ -7,6 +7,7 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
+import 'catalog_content_upgrader.dart';
 import 'database_migrator.dart';
 
 final class DatabaseRestoreResult {
@@ -74,11 +75,40 @@ class DatabaseHelper {
 
       // Write and flush the bytes written
       await File(path).writeAsBytes(bytes, flush: true);
+      await DatabaseMigrator.migrate(path);
     } else {
-      // print("Opening existing database");
+      final stamp = DateTime.now().toUtc().microsecondsSinceEpoch;
+      final candidatePath = '$path.catalog-candidate-$stamp';
+      final recoveryPath = '$path.pre-catalog-upgrade-$stamp';
+      final candidate = File(candidatePath);
+      final recovery = File(recoveryPath);
+      try {
+        final data = await rootBundle.load(join("assets", _databaseName));
+        final bytes = data.buffer.asUint8List(
+          data.offsetInBytes,
+          data.lengthInBytes,
+        );
+        await candidate.writeAsBytes(bytes, flush: true);
+        await File(path).copy(recoveryPath);
+        await DatabaseMigrator.migrate(path);
+        await DatabaseMigrator.migrate(candidatePath);
+        await CatalogContentUpgrader.upgrade(path, candidatePath);
+        await DatabaseMigrator.validate(path);
+        if (await recovery.exists()) await recovery.delete();
+      } catch (_) {
+        // A failure before the recovery copy exists must never remove the
+        // user's live database. Once the copy exists, restore it atomically on
+        // the same filesystem after discarding the partially upgraded file.
+        if (await recovery.exists()) {
+          final live = File(path);
+          if (await live.exists()) await live.delete();
+          await recovery.rename(path);
+        }
+        rethrow;
+      } finally {
+        if (await candidate.exists()) await candidate.delete();
+      }
     }
-
-    await DatabaseMigrator.migrate(path);
 
     // Open the migrated database through the asynchronous application driver.
     return await openDatabase(
