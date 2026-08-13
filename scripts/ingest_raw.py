@@ -85,10 +85,13 @@ def upsert_catalog(conn, cat_id, name, source_type, version, url, authority, pub
 
 def ingest_file(conn, path, stats):
     fname = os.path.basename(path)
-    data = json.load(io.open(path, encoding='utf-8'))
+    with io.open(path, encoding='utf-8') as source:
+        data = json.load(source)
     meta = data.get('extraction_metadata', {}) if isinstance(data, dict) else {}
     artifacts = data.get('artifacts', []) if isinstance(data, dict) else (data if isinstance(data, list) else [])
-    cat_id = slug(fname.replace('.json', ''))
+    # A recovered source snapshot may retain its original catalog identity even
+    # when the recovery filename is deliberately explicit.
+    cat_id = meta.get('source_catalog_id') or slug(fname.replace('.json', ''))
     cat_name = meta.get('source_document') or fname
     # per-file metadata sample (rich variant carries url/authority/date)
     sm0 = (artifacts[0].get('source_metadata') if artifacts else {}) or {}

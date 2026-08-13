@@ -10,6 +10,22 @@ policy:
   default_ship_raw_text: false
   rule: Raw source text may ship only when an explicit, versioned ALLOWED decision is supported by recorded rights evidence.
 rights:
+  - id: srv-amani_v4-v1
+    source_catalog_id: amani_v4
+    source_version: "4.1.0"
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: Recovered internal working-database evidence preserves the source records, but no exact-version raw-text redistribution grant is recorded; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true
   - id: srv-cis_controls_v8-v1
     source_catalog_id: cis_controls_v8
     source_version: UNKNOWN

@@ -4,16 +4,29 @@
   "created_at": "2026-08-13T18:52:16Z",
   "corpus_root": "SecureGuide_Mobile_Docs/Raw_Catalogs",
   "hash_algorithm": "SHA-256",
-  "manifest_sha256": "efc2c68cbe580cb4d8ae69c5ac9b958688ea44a6e12c87786507f3841bb74288",
+  "manifest_sha256": "c2f17de0e577aa14d1d1ed248b65c4d469f5b9dfe9795cd64ddbf9d248002722",
   "manifest_hash_scope": "SHA-256 of UTF-8 canonical JSON (sorted keys, compact separators, ensure_ascii=false) with manifest_sha256 set to null",
-  "source_count": 22,
-  "raw_record_count": 3559,
-  "total_bytes": 9732317,
+  "source_count": 23,
+  "raw_record_count": 4265,
+  "total_bytes": 15647049,
   "importer": {
     "name": "scripts/ingest_raw.py",
-    "version": "sha256:f05fefcee2e626196b7076e419f35573383fcb570ca3fd79f87d4ad1a6c587ad"
+    "version": "sha256:efaa22d2658ba30eef47c203edac4662058d7acb36f36c7d0c90b22c9313908c"
   },
   "sources": [
+    {
+      "id": "sim-amani_v4-recovered-8a9f7327b3c4",
+      "source_catalog_id": "amani_v4",
+      "source_document": "amani SecureGuide v4",
+      "source_version": "4.1.0",
+      "version_unknown_reason": null,
+      "source_file": "SecureGuide_Mobile_Docs/Raw_Catalogs/amani_v4_recovered.json",
+      "source_sha256": "8a9f7327b3c4bc8456750f0c528b3e958b7d05b25b07be5603dd68d5fb39c9db",
+      "source_bytes": 5914732,
+      "retrieval_uri": null,
+      "retrieved_at": null,
+      "raw_record_count": 706
+    },
     {
       "id": "sim-cis_controls_v8-acdc33475cf0",
       "source_catalog_id": "cis_controls_v8",

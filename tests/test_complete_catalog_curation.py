@@ -13,9 +13,16 @@ import yaml
 from secureguide.catalog_curation import (
     CurationInputError,
     backfill_source_provenance,
+    build_projection,
+    curate_complete_catalog,
+    load_curation_candidates,
+    prepare_curation_database,
 )
-from secureguide.catalog_validation import canonical_hash
+from secureguide.catalog_validation import canonical_hash, validate_catalog
 from secureguide.database import apply_migrations
+
+
+ROOT = Path(__file__).resolve().parent.parent
 
 
 class ProvenanceBackfillTests(unittest.TestCase):
@@ -124,6 +131,40 @@ class ProvenanceBackfillTests(unittest.TestCase):
             backfill_source_provenance(
                 self.conn, self.manifest_path, self.rights_path, root=self.root
             )
+
+
+class CompleteProjectionTests(unittest.TestCase):
+    def test_projection_is_deterministic_and_globally_accounts_for_candidates(self) -> None:
+        candidates = load_curation_candidates()
+        first = build_projection(candidates)
+        second = build_projection(candidates)
+        self.assertEqual(len(candidates), 1467)
+        self.assertEqual(len(first["groups"]), 220)
+        self.assertEqual(len(first["selected"]), 1223)
+        self.assertEqual(len(first["rawToCandidate"]), 1467)
+        self.assertEqual(canonical_hash(first), canonical_hash(second))
+        self.assertEqual(first["selectionOverrides"][0]["selectedCanonical"], "STG-CURATED-0641")
+
+    def test_full_corpus_closes_with_all_domains_and_minimum_valid_canonicals(self) -> None:
+        with tempfile.TemporaryDirectory() as folder:
+            database = Path(folder) / "curated.db"
+            prepare_curation_database(ROOT / "catalog.db", database)
+            conn = sqlite3.connect(database, isolation_level=None)
+            conn.row_factory = sqlite3.Row
+            conn.execute("PRAGMA foreign_keys=ON")
+            try:
+                provenance = backfill_source_provenance(conn)
+                result = curate_complete_catalog(conn)
+            finally:
+                conn.close()
+            validation = validate_catalog(database)
+            self.assertEqual(provenance["missingManifestRows"], 0)
+            self.assertEqual(result["rawTotal"], 4265)
+            self.assertEqual(sum(result["dispositions"].values()), 4265)
+            self.assertEqual(set(result["domains"]), {f"SD-{number:02d}" for number in range(1, 9)})
+            self.assertEqual(validation["summary"]["minimumValid"], result["canonicalTotal"])
+            self.assertTrue(validation["closure"]["valid"])
+            self.assertTrue(validation["integrity"]["valid"])
 
 
 if __name__ == "__main__":

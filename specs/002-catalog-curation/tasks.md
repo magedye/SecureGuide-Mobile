@@ -72,12 +72,12 @@
 
 **Independent Test**: Full-corpus closure reports 100 percent dispositions, complete canonical lineage, disposition-lineage consistency, all eight domain checkpoints, and zero dangling references.
 
-- [ ] T023 [US3] Write failing deterministic projection and closure tests using all staging candidates and `consolidation/unified/equivalence.json` in `tests/test_complete_catalog_curation.py`
-- [ ] T024 [US3] Implement deterministic canonical selection, stable IDs, duplicate/supporting lineage, explicit deferral, and no-default-type behavior in `secureguide/catalog_curation.py`
-- [ ] T025 [US3] Normalize framework mappings, tags, relationships, type-specific data, final lineage, and raw dispositions transactionally in `secureguide/catalog_curation.py`
-- [ ] T026 [US3] Expose global curation and SD-01 through SD-08 checkpoints through `scripts/curate_complete_catalog.py`
-- [ ] T027 [US3] Run global similarity/equivalence conflict discovery and persist the deterministic checkpoint in `consolidation/curation_checkpoint.json`
-- [ ] T028 [US3] Run final closure validation and record counts, debt, and independent minimum/strict results in `consolidation/catalog_validation.json`
+- [x] T023 [US3] Write failing deterministic projection and closure tests using all staging candidates and `consolidation/unified/equivalence.json` in `tests/test_complete_catalog_curation.py`
+- [x] T024 [US3] Implement deterministic canonical selection, stable IDs, duplicate/supporting lineage, explicit deferral, and no-default-type behavior in `secureguide/catalog_curation.py`
+- [x] T025 [US3] Normalize framework mappings, tags, relationships, type-specific data, final lineage, and raw dispositions transactionally in `secureguide/catalog_curation.py`
+- [x] T026 [US3] Expose global curation and SD-01 through SD-08 checkpoints through `scripts/curate_complete_catalog.py`
+- [x] T027 [US3] Run global similarity/equivalence conflict discovery and persist the deterministic checkpoint in `consolidation/curation_checkpoint.json`
+- [x] T028 [US3] Run final closure validation and record counts, debt, and independent minimum/strict results in `consolidation/catalog_validation.json`
 
 **Checkpoint**: The complete raw corpus is closed and the minimum-valid canonical catalog is globally reconciled.
 
