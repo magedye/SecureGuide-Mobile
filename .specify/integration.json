@@ -1,0 +1,25 @@
+{
+  "version": "0.16.0",
+  "integration_state_schema": 1,
+  "installed_integrations": [
+    "gemini",
+    "codex",
+    "agy"
+  ],
+  "integration_settings": {
+    "gemini": {
+      "script": "ps",
+      "invoke_separator": "."
+    },
+    "codex": {
+      "script": "ps",
+      "invoke_separator": "-"
+    },
+    "agy": {
+      "script": "ps",
+      "invoke_separator": "-"
+    }
+  },
+  "integration": "agy",
+  "default_integration": "agy"
+}

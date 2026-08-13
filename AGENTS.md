@@ -572,3 +572,12 @@ If fewer than three valid options genuinely exist because of safety, compliance,
 SecureGuide should be extensible because the model is disciplined, not because the code accepts anything.
 
 When in doubt, preserve source lineage, validate against USACM and SDT, store uncertainty explicitly, and route ambiguous decisions to human review.
+
+## Specification-Driven Development (Spec Kit) Governance
+
+1. **Spec Kit Governs Execution**: GitHub Spec Kit governs feature execution. The active feature `spec.md`, `plan.md`, and `tasks.md` located in `specs/` are authoritative.
+2. **Constitution is Mandatory**: Principles in `.specify/memory/constitution.md` are non-negotiable.
+3. **Autonomous Execution**: Agents should continue documented tasks autonomously in dependency order.
+4. **Complete the Loop**: Agents should implement, test, verify, update task status, and continue.
+5. **Autonomy on Routine Decisions**: Routine implementation decisions do not require user approval.
+6. **When to Stop**: Agents stop only for genuine product-level ambiguity, destructive irreversible actions requiring authorization, or unavoidable external dependencies.
