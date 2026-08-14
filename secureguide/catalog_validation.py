@@ -44,6 +44,16 @@ def file_hash(path: str | Path) -> str:
     return digest.hexdigest()
 
 
+def portable_text_bytes(path: str | Path) -> bytes:
+    """Return UTF-8 text bytes with repository-canonical LF newlines."""
+
+    return Path(path).read_bytes().replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+
+
+def portable_text_hash(path: str | Path) -> str:
+    return hashlib.sha256(portable_text_bytes(path)).hexdigest()
+
+
 def load_contract(path: str | Path = DEFAULT_CONTRACT) -> dict[str, Any]:
     """Load the JSON-compatible YAML contract without an extra YAML runtime."""
 

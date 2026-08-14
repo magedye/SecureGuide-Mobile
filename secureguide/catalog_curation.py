@@ -15,7 +15,11 @@ from typing import Any
 
 import yaml
 
-from secureguide.catalog_validation import canonical_hash, file_hash
+from secureguide.catalog_validation import (
+    canonical_hash,
+    portable_text_bytes,
+    portable_text_hash,
+)
 from secureguide.catalog_validation import validate_catalog
 from secureguide.database import apply_migrations, connect
 from secureguide.semantic_classification import canonical_text, external_references
@@ -80,12 +84,13 @@ def verify_pinned_sources(
         if not source.is_file():
             errors.append(f"missing:{item['source_file']}")
             continue
-        if file_hash(source) != item["source_sha256"]:
+        source_bytes = portable_text_bytes(source)
+        if portable_text_hash(source) != item["source_sha256"]:
             errors.append(f"hash:{item['source_file']}")
-        if source.stat().st_size != int(item["source_bytes"]):
+        if len(source_bytes) != int(item["source_bytes"]):
             errors.append(f"bytes:{item['source_file']}")
         total_records += int(item["raw_record_count"])
-        total_bytes += source.stat().st_size
+        total_bytes += len(source_bytes)
     return {
         "valid": not errors,
         "errors": errors,
@@ -253,9 +258,9 @@ def load_curation_candidates(
     pinned_material.pop("semantic_sha256", None)
     if pinned_hash != canonical_hash(pinned_material):
         raise CurationInputError("legacy classification semantic hash mismatch")
-    if legacy_pinned.get("input_sha256") != file_hash(legacy_raw):
+    if legacy_pinned.get("input_sha256") != portable_text_hash(legacy_raw):
         raise CurationInputError("legacy classifications are stale for the recovered source")
-    if legacy_pinned.get("reference_sha256") != file_hash(curated_classifications):
+    if legacy_pinned.get("reference_sha256") != portable_text_hash(curated_classifications):
         raise CurationInputError("legacy classifications are stale for the curated reference")
     legacy_items = legacy_pinned.get("items") or []
     if legacy_pinned.get("item_count") != len(legacy_items) or len(legacy_items) != len(legacy_envelope["artifacts"]):
@@ -453,7 +458,7 @@ def build_projection(
     return {
         "groups": groups, "selected": sorted(selected),
         "rawToCandidate": raw_to_candidate, "selectionOverrides": overrides,
-        "equivalenceSha256": file_hash(equivalence_path),
+        "equivalenceSha256": portable_text_hash(equivalence_path),
     }
 
 

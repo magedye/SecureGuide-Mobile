@@ -10,7 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from secureguide.catalog_validation import canonical_hash, file_hash
+from secureguide.catalog_validation import canonical_hash, portable_text_hash
 from secureguide.semantic_classification import (
     CLASSIFIER_VERSION,
     classify_record,
@@ -46,9 +46,9 @@ def build_payload(source: Path, reference_path: Path) -> dict:
         "classifier_version": CLASSIFIER_VERSION,
         "source_catalog_id": "legacy_catalog_v4",
         "source_file": source.relative_to(ROOT).as_posix(),
-        "input_sha256": file_hash(source),
+        "input_sha256": portable_text_hash(source),
         "reference_file": reference_path.relative_to(ROOT).as_posix(),
-        "reference_sha256": file_hash(reference_path),
+        "reference_sha256": portable_text_hash(reference_path),
         "generated_at": PINNED_GENERATED_AT,
         "item_count": len(items),
         "items": items,

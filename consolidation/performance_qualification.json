@@ -4,7 +4,7 @@
   "mode": "qualification",
   "source": {
     "path": "mobile/assets/catalog.db",
-    "sha256": "39d8fd8edbae91799a7879e820d27e05e0f74119a90d76bd43b8e696f5a7668f",
+    "sha256": "4dc931868afc6705b483c39a62daa9a32a86c8cd243230ef0a882eeafa5b94ea",
     "schemaVersion": 34,
     "approvedActiveArtifacts": 1218,
     "rawArtifacts": 4265
@@ -46,32 +46,32 @@
   "measurements": {
     "catalogSearch": {
       "samples": 30,
-      "minMs": 53.272,
-      "p50Ms": 81.238,
-      "p95Ms": 121.286,
-      "maxMs": 183.623
+      "minMs": 38.992,
+      "p50Ms": 51.004,
+      "p95Ms": 87.896,
+      "maxMs": 144.294
     },
     "profileDashboard": {
       "samples": 30,
-      "minMs": 203.29,
-      "p50Ms": 304.513,
-      "p95Ms": 408.282,
-      "maxMs": 680.057
+      "minMs": 107.356,
+      "p50Ms": 125.928,
+      "p95Ms": 142.304,
+      "maxMs": 169.643
     },
     "htmlReport": {
       "samples": 30,
-      "minMs": 327.181,
-      "p50Ms": 440.533,
-      "p95Ms": 838.091,
-      "maxMs": 896.029
+      "minMs": 189.809,
+      "p50Ms": 220.376,
+      "p95Ms": 357.967,
+      "maxMs": 393.541
     }
   },
   "startup": {
     "samples": 30,
-    "minMs": 27.745,
-    "p50Ms": 35.215,
-    "p95Ms": 89.766,
-    "maxMs": 90.292
+    "minMs": 18.815,
+    "p50Ms": 22.889,
+    "p95Ms": 26.177,
+    "maxMs": 26.515
   },
   "databaseSize": {
     "bytes": 10973184,
@@ -83,13 +83,13 @@
   },
   "migration": {
     "status": "MEASURED",
-    "durationMs": 16711.869,
+    "durationMs": 7903.134,
     "oldArtifactCount": 4,
     "newArtifactCount": 1218,
     "operationalSnapshotPreserved": true
   },
   "integrityValidation": {
-    "durationMs": 1392.764,
+    "durationMs": 746.192,
     "integrityCheck": "ok",
     "foreignKeyViolations": 0
   },
@@ -138,23 +138,23 @@
     "comparisons": {
       "catalogSearchP95Ms": {
         "baseline": 67.251,
-        "observed": 121.286,
-        "deltaPercent": 80.348
+        "observed": 87.896,
+        "deltaPercent": 30.698
       },
       "profileDashboardP95Ms": {
         "baseline": 439.803,
-        "observed": 408.282,
-        "deltaPercent": -7.167
+        "observed": 142.304,
+        "deltaPercent": -67.644
       },
       "htmlReportP95Ms": {
         "baseline": 509.737,
-        "observed": 838.091,
-        "deltaPercent": 64.416
+        "observed": 357.967,
+        "deltaPercent": -29.774
       },
       "startupP95Ms": {
         "baseline": 39.496,
-        "observed": 89.766,
-        "deltaPercent": 127.279
+        "observed": 26.177,
+        "deltaPercent": -33.722
       },
       "databaseSizeBytes": {
         "baseline": 10563584,
@@ -168,15 +168,15 @@
       },
       "catalogUpgradeDurationMs": {
         "baseline": 9124.935,
-        "observed": 16711.869,
-        "deltaPercent": 83.145
+        "observed": 7903.134,
+        "deltaPercent": -13.39
       },
       "integrityDurationMs": {
         "baseline": 665.277,
-        "observed": 1392.764,
-        "deltaPercent": 109.351
+        "observed": 746.192,
+        "deltaPercent": 12.163
       }
     }
   },
-  "reportSha256": "f161315260f58f739dff98365e0ef52c758aaf164e599e21cd1405f7a9390007"
+  "reportSha256": "e09ddd06b38ba0dc7be4b244acd45ed835f639f144e53ae1b1d1c75581f6e536"
 }

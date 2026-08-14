@@ -1,6 +1,6 @@
 {
   "schemaVersion": 34,
-  "databaseSha256": "39d8fd8edbae91799a7879e820d27e05e0f74119a90d76bd43b8e696f5a7668f",
+  "databaseSha256": "4dc931868afc6705b483c39a62daa9a32a86c8cd243230ef0a882eeafa5b94ea",
   "contract": {
     "id": "secureguide-catalog-minimum-valid",
     "version": "2.0.0",
@@ -51256,5 +51256,5 @@
     "integrityCheck": "ok",
     "foreignKeyViolations": 0
   },
-  "reportSha256": "dd061e175854a4423bfff8d3aee9b5043685006f8ef625b000afe1bf6ce25a38"
+  "reportSha256": "c23ae887d7c0914f95874c215a90672e3667b8466bd7476c8794f7d786570741"
 }
