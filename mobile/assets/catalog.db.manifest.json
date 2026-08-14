@@ -3,13 +3,13 @@
   "builtWith": "scripts.build_release_db",
   "mode": "curated",
   "generatedAt": "2026-07-01T00:00:00Z",
-  "schemaVersion": "034",
+  "schemaVersion": "036",
   "appliedMigrations": [],
   "publicationStatus": {
-    "APPROVED": 1218
+    "APPROVED": 3762
   },
   "counts": {
-    "security_artifacts": 1218,
+    "security_artifacts": 3762,
     "staging_artifacts": 0,
     "enterprise_profiles": 0,
     "profile_artifacts": 0,
@@ -34,23 +34,23 @@
     "usable_templates"
   ],
   "releaseCounts": {
-    "artifacts": 1218,
+    "artifacts": 3762,
     "rawArtifacts": 4265,
     "templates": 1,
     "templateItems": 4,
     "quality": {
-      "minimumValid": 1218,
-      "strictConformant": 1218,
-      "requiresHumanReview": 529,
+      "minimumValid": 3762,
+      "strictConformant": 3762,
+      "requiresHumanReview": 526,
       "humanApproved": 4
     },
     "closure": {
       "rawDisposed": 4265,
-      "canonicalsWithLineage": 1218
+      "canonicalsWithLineage": 3762
     }
   },
   "sourceSha256": "3dcce6f5a3963f1b01ce89bfc3c094d4b34849146873d27f574fe6406ae8bc73",
-  "sourceManifestSha256": "a78b9acb22d702d3e2687597573cb685ccb2d0fe6c76fe5a449f5d0be912057e",
+  "sourceManifestSha256": "efcfc236659274f191b0abb1fe990623faf88f9e6a88724ee5cf1e4a33adcb23",
   "rights": {
     "rawRecordsTotal": 4265,
     "rawPayloadsIncluded": 0,
@@ -60,9 +60,9 @@
     "candidateCount": 1467,
     "equivalenceGroupCount": 215,
     "selectedProjectionCount": 1214,
-    "canonicalTotal": 1218,
+    "canonicalTotal": 3762,
     "rawTotal": 4265,
-    "lineageRows": 1473,
+    "lineageRows": 4227,
     "normalized": {
       "frameworkMappings": 841,
       "actions": 1024,
@@ -72,18 +72,18 @@
       "artifactIdAliases": 959
     },
     "dispositions": {
-      "DEFERRED": 2792,
-      "SUPPORTS_CANONICAL": 1473
+      "DEFERRED": 38,
+      "SUPPORTS_CANONICAL": 4227
     },
     "domains": {
-      "SD-01": 84,
-      "SD-02": 160,
-      "SD-03": 251,
-      "SD-04": 236,
-      "SD-05": 137,
-      "SD-06": 169,
-      "SD-07": 77,
-      "SD-08": 104
+      "SD-01": 261,
+      "SD-02": 331,
+      "SD-03": 612,
+      "SD-04": 639,
+      "SD-05": 536,
+      "SD-06": 928,
+      "SD-07": 210,
+      "SD-08": 245
     },
     "selectionOverrides": [
       {
@@ -93,16 +93,27 @@
         "reason": "Declared canonical lacks type-required minimum fields; selected a structurally valid equivalent member."
       }
     ],
-    "equivalenceSha256": "ccaa4c62e91425fb69168e7e6cb2d42c64d6dbe4944777bc3a52bcdef0cd7ff9"
+    "equivalenceSha256": "ccaa4c62e91425fb69168e7e6cb2d42c64d6dbe4944777bc3a52bcdef0cd7ff9",
+    "globalReconciliation": {
+      "valid": true,
+      "reportSha256": "d735b54d501d4fe564513bc6933efeb96e6915c465e30bd8c60239e596e3c724",
+      "decisionCounts": {
+        "CANONICALIZE": 228,
+        "KEEP_SEPARATE": 721
+      },
+      "rawRecordsConsidered": 4265
+    }
   },
   "reproducibleBuildTimestampUtc": "2026-07-01T00:00:00Z",
   "minimumContractSha256": "7f650fc841ac79318d2598232922f657bd24dbfd401262c7d9186c802509dbcc",
   "sourceRightsSha256": "7153038ac0efc15cb6e803733f547013e6ef86fed104454c6c157a5b8628d0b7",
   "curatedClassificationsSha256": "86bbab78b0d4a37ce524e20035092048af46e44afe41f9eff623a26399c7413a",
-  "legacyClassificationsSha256": "1b04d3a87995c9050a7f0591d0b82cbbb81717eb0f787b84db35105c8002f3a6",
+  "legacyClassificationsSha256": "13e60af9de77e9dbf68f08a15a1e5e498340db896a78aaf99aa50a381417834f",
   "equivalenceDecisionsSha256": "ccaa4c62e91425fb69168e7e6cb2d42c64d6dbe4944777bc3a52bcdef0cd7ff9",
-  "catalogContentSha256": "2b774f542b3fc17b810ff7d42de0c72d9f408836519c94db0d6931eb7187034b",
-  "sizeBytes": 10973184,
-  "sha256": "4dc931868afc6705b483c39a62daa9a32a86c8cd243230ef0a882eeafa5b94ea",
-  "manifestSha256": "84582221462c7a794af13a963ed240bc33d9201ae6b89fc0acc04630af1dd3c3"
+  "semanticLedgerSha256": "36a1f434478b29c2c73979654951a3122da71e11c20aaaa044f029cc8213087b",
+  "globalReconciliationSha256": "7c52467ca0efefef2eca011ace7b6ed3dcb6f88aead92e84db7d7da4ea7c5704",
+  "catalogContentSha256": "e66a024405095c86c353f28e22eb61f3f7b5bf704dd17d4b66b956b12089bc94",
+  "sizeBytes": 21655552,
+  "sha256": "aac83cb867bd92bcad95442641e48f45a7d77925a7f2f3f8d6d30aa72d6772c0",
+  "manifestSha256": "a1eac457815256d551e140c4c865caf651358287a514038f0decc6751206ad42"
 }
