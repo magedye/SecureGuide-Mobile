@@ -20,7 +20,12 @@ from secureguide.catalog_curation import (
     prepare_curation_database,
     validate_semantic_reconciliation_ledger,
 )
-from secureguide.catalog_validation import canonical_hash, validate_catalog
+from secureguide.catalog_validation import (
+    canonical_hash,
+    portable_text_bytes,
+    portable_text_hash,
+    validate_catalog,
+)
 from secureguide.database import apply_migrations
 
 
@@ -48,7 +53,7 @@ class ProvenanceBackfillTests(unittest.TestCase):
                ) VALUES('RAW','SRC','Source','Unknown','{}','source.json',?)""",
             ("c" * 64,),
         )
-        source_hash = __import__("hashlib").sha256(self.source.read_bytes()).hexdigest()
+        source_hash = portable_text_hash(self.source)
         manifest = {
             "schema_version": 1,
             "manifest_id": "test",
@@ -59,14 +64,14 @@ class ProvenanceBackfillTests(unittest.TestCase):
             "manifest_hash_scope": "test",
             "source_count": 1,
             "raw_record_count": 1,
-            "total_bytes": self.source.stat().st_size,
+            "total_bytes": len(portable_text_bytes(self.source)),
             "importer": {"name": "test", "version": "1"},
             "sources": [{
                 "id": "MAN", "source_catalog_id": "SRC",
                 "source_document": "Source", "source_version": "UNKNOWN",
                 "version_unknown_reason": "No immutable upstream version evidence.",
                 "source_file": "source.json", "source_sha256": source_hash,
-                "source_bytes": self.source.stat().st_size,
+                "source_bytes": len(portable_text_bytes(self.source)),
                 "retrieval_uri": None, "retrieved_at": None,
                 "raw_record_count": 1,
             }],
@@ -182,7 +187,7 @@ class CompleteProjectionTests(unittest.TestCase):
         self.assertEqual(canonical_hash(first), canonical_hash(second))
         self.assertEqual(first["selectionOverrides"][0]["selectedCanonical"], "STG-CURATED-0641")
 
-    def test_full_corpus_closes_with_all_domains_and_minimum_valid_canonicals(self) -> None:
+    def test_legacy_projection_is_rejected_until_full_corpus_reconciliation_exists(self) -> None:
         with tempfile.TemporaryDirectory() as folder:
             database = Path(folder) / "curated.db"
             prepare_curation_database(ROOT / "catalog.db", database)
@@ -200,7 +205,9 @@ class CompleteProjectionTests(unittest.TestCase):
             self.assertEqual(sum(result["dispositions"].values()), 4265)
             self.assertEqual(set(result["domains"]), {f"SD-{number:02d}" for number in range(1, 9)})
             self.assertEqual(validation["summary"]["minimumValid"], result["canonicalTotal"])
-            self.assertTrue(validation["closure"]["valid"])
+            self.assertFalse(validation["closure"]["valid"])
+            self.assertEqual(validation["closure"]["genericDeferredRationales"], 2792)
+            self.assertEqual(validation["closure"]["deferredWithoutReasonCode"], 2792)
             self.assertTrue(validation["integrity"]["valid"])
             self.assertEqual(result["normalized"]["artifactIdAliases"], 959)
             verified = sqlite3.connect(database)
