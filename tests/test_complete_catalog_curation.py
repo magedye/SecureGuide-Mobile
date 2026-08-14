@@ -16,8 +16,10 @@ from secureguide.catalog_curation import (
     build_projection,
     curate_complete_catalog,
     load_curation_candidates,
+    load_global_semantic_reconciliation,
     load_semantic_reconciliation_ledger,
     prepare_curation_database,
+    validate_global_reconciliation_binding,
     validate_semantic_reconciliation_ledger,
 )
 from secureguide.catalog_validation import (
@@ -195,11 +197,16 @@ class CompleteProjectionTests(unittest.TestCase):
             conn.row_factory = sqlite3.Row
             conn.execute("PRAGMA foreign_keys=ON")
             try:
+                preexisting_canonicals = conn.execute(
+                    "SELECT COUNT(*) FROM security_artifacts"
+                ).fetchone()[0]
                 provenance = backfill_source_provenance(conn)
                 result = curate_complete_catalog(conn)
             finally:
                 conn.close()
             validation = validate_catalog(database)
+            global_reconciliation = load_global_semantic_reconciliation()
+            binding = validate_global_reconciliation_binding()
             self.assertEqual(provenance["missingManifestRows"], 0)
             self.assertEqual(result["rawTotal"], 4265)
             self.assertEqual(sum(result["dispositions"].values()), 4265)
@@ -208,7 +215,21 @@ class CompleteProjectionTests(unittest.TestCase):
             self.assertTrue(validation["closure"]["valid"])
             self.assertEqual(validation["closure"]["genericDeferredRationales"], 0)
             self.assertEqual(validation["closure"]["deferredWithoutReasonCode"], 0)
+            self.assertEqual(validation["closure"]["supportsDistinctRawIds"], 4227)
+            self.assertEqual(
+                validation["closure"]["supportsRepresentedInFinalLineage"], 4227
+            )
+            self.assertEqual(validation["closure"]["supportsLineageMismatch"], 0)
+            self.assertEqual(
+                validation["closure"]["lineageWithoutCompatibleDisposition"], 0
+            )
+            self.assertEqual(validation["closure"]["multiCanonicalWithoutSplit"], 0)
             self.assertTrue(validation["integrity"]["valid"])
+            self.assertTrue(binding["valid"])
+            self.assertEqual(binding["rawRecordsConsidered"], 4265)
+            self.assertEqual(
+                global_reconciliation["scope"]["explicitlyDeferredRecords"], 38
+            )
             self.assertEqual(result["normalized"]["artifactIdAliases"], 959)
             verified = sqlite3.connect(database)
             try:
@@ -219,7 +240,13 @@ class CompleteProjectionTests(unittest.TestCase):
             finally:
                 verified.close()
             self.assertEqual(alias_target, "SG-CFG-CAT-0203")
-            self.assertEqual(validation["summary"]["canonicalTotal"], 3972)
+            ledger = load_semantic_reconciliation_ledger()
+            expected_canonicals = len({
+                item["new_canonical"]["artifact_id"]
+                for item in ledger.values()
+                if item.get("new_canonical")
+            }) + len(build_projection(load_curation_candidates())["selected"]) + preexisting_canonicals
+            self.assertEqual(validation["summary"]["canonicalTotal"], expected_canonicals)
 
 
 if __name__ == "__main__":

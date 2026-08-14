@@ -164,14 +164,19 @@ class CuratedReleaseBuildTests(unittest.TestCase):
 
     def test_curated_release_has_closed_minimum_catalog_and_no_unlicensed_payload(self) -> None:
         manifest = self.first_manifest
-        self.assertEqual(manifest["releaseCounts"]["artifacts"], 3972)
         self.assertEqual(manifest["releaseCounts"]["rawArtifacts"], 4265)
-        self.assertEqual(manifest["releaseCounts"]["quality"]["minimumValid"], 3972)
         self.assertEqual(manifest["releaseCounts"]["closure"]["rawDisposed"], 4265)
         self.assertEqual(manifest["rights"]["rawPayloadsIncluded"], 0)
         self.assertEqual(manifest["rights"]["rawPayloadsExcluded"], 4265)
         conn = sqlite3.connect(self.first)
         try:
+            candidate_artifacts = conn.execute(
+                "SELECT COUNT(*) FROM security_artifacts"
+            ).fetchone()[0]
+            self.assertEqual(manifest["releaseCounts"]["artifacts"], candidate_artifacts)
+            self.assertEqual(
+                manifest["releaseCounts"]["quality"]["minimumValid"], candidate_artifacts
+            )
             self.assertEqual(conn.execute(
                 """SELECT COUNT(*) FROM raw_artifacts
                      WHERE raw_text_en IS NOT NULL OR raw_text_ar IS NOT NULL

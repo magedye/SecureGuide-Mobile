@@ -35,6 +35,7 @@ DEFAULT_LEGACY_CLASSIFICATIONS = ROOT / "consolidation" / "curated" / "legacy_cl
 DEFAULT_TEXT_CORRECTIONS = ROOT / "config" / "catalog_text_corrections.json"
 DEFAULT_LEGACY_RAW = ROOT / "SecureGuide_Mobile_Docs" / "Raw_Catalogs" / "legacy_catalog_v4_recovered.json"
 DEFAULT_RECONCILIATION_LEDGER = ROOT / "config" / "semantic_reconciliation_ledger.json"
+DEFAULT_GLOBAL_RECONCILIATION = ROOT / "consolidation" / "global_semantic_reconciliation.json"
 
 RECONCILIATION_DISPOSITIONS = frozenset({
     "SUPPORTS_CANONICAL", "SPLIT", "DUPLICATE", "CROSSWALK_ONLY",
@@ -108,6 +109,57 @@ def validate_semantic_reconciliation_ledger(
         "missingRawIds": missing,
         "unknownRawIds": unknown,
         "staleRawIds": stale,
+    }
+
+
+def load_global_semantic_reconciliation(
+    path: str | Path = DEFAULT_GLOBAL_RECONCILIATION,
+) -> dict[str, Any]:
+    """Load the evidence-bearing global reconciliation decision report."""
+
+    material = json.loads(Path(path).read_text(encoding="utf-8"))
+    expected = material.get("reconciliation_sha256")
+    hashed = dict(material)
+    hashed["reconciliation_sha256"] = None
+    if material.get("schema_version") != 1 or expected != canonical_hash(hashed):
+        raise CurationInputError("global semantic reconciliation hash mismatch")
+    decisions = material.get("decisions")
+    if not isinstance(decisions, list):
+        raise CurationInputError("global semantic reconciliation decisions are missing")
+    for decision in decisions:
+        if decision.get("decision") not in {"CANONICALIZE", "DUPLICATE", "CROSSWALK_ONLY", "RELATION_ONLY", "KEEP_SEPARATE"}:
+            raise CurationInputError("invalid global semantic reconciliation decision")
+        if not isinstance(decision.get("rawIds"), list) or len(decision["rawIds"]) < 2:
+            raise CurationInputError("global semantic reconciliation has incomplete source pair")
+        if not str(decision.get("rationale") or "").strip():
+            raise CurationInputError("global semantic reconciliation lacks rationale")
+    return material
+
+
+def validate_global_reconciliation_binding(
+    ledger_path: str | Path = DEFAULT_RECONCILIATION_LEDGER,
+    report_path: str | Path = DEFAULT_GLOBAL_RECONCILIATION,
+) -> dict[str, Any]:
+    """Reject a candidate if its ledger is not bound to the global decisions."""
+
+    ledger_document = json.loads(Path(ledger_path).read_text(encoding="utf-8"))
+    report = load_global_semantic_reconciliation(report_path)
+    expected = ledger_document.get("global_reconciliation_sha256")
+    if expected != report["reconciliation_sha256"]:
+        raise CurationInputError("semantic ledger is not bound to the current global reconciliation")
+    ledger_raw_ids = {str(item.get("raw_id") or "") for item in ledger_document.get("decisions") or []}
+    report_raw_ids = {
+        raw_id
+        for item in report["decisions"]
+        for raw_id in item["rawIds"]
+    }
+    if not report_raw_ids <= ledger_raw_ids:
+        raise CurationInputError("global reconciliation references raw IDs absent from the semantic ledger")
+    return {
+        "valid": True,
+        "reportSha256": report["reconciliation_sha256"],
+        "decisionCounts": report.get("counts", {}),
+        "rawRecordsConsidered": report.get("scope", {}).get("rawRecordsConsidered"),
     }
 
 
@@ -692,6 +744,7 @@ def curate_complete_catalog(
     conn.row_factory = sqlite3.Row
     candidates = candidates or load_curation_candidates()
     projection = build_projection(candidates, equivalence_path)
+    global_reconciliation = validate_global_reconciliation_binding(ledger_path)
     ledger = load_semantic_reconciliation_ledger(ledger_path)
     ledger_check = validate_semantic_reconciliation_ledger(conn, ledger)
     if not ledger_check["valid"]:
@@ -756,16 +809,22 @@ def curate_complete_catalog(
         conn.execute("DELETE FROM raw_artifact_reconciliation_links")
         conn.execute("DELETE FROM raw_artifact_deferred_reasons")
         conn.execute("DELETE FROM raw_artifact_dispositions")
+        # Materialize every ledger-created canonical before attaching any raw
+        # lineage.  Global reconciliation can legitimately select a later raw
+        # record's canonical, so one-pass ordered insertion would be wrong.
+        for raw_id in sorted(raw_ids):
+            decision = ledger[raw_id]
+            candidate = decision.get("new_canonical")
+            target = decision.get("target_artifact_id")
+            if candidate:
+                if candidate.get("artifact_id") != target or _candidate_issues(candidate):
+                    raise CurationInputError(f"invalid new canonical decision for {raw_id}")
+                _insert_candidate(conn, candidate, None)
         primary_written: set[str] = set()
         for raw_id in sorted(raw_ids):
             decision = ledger[raw_id]
             disposition = decision["disposition"]
             target = decision.get("target_artifact_id")
-            candidate = decision.get("new_canonical")
-            if candidate:
-                if candidate.get("artifact_id") != target or _candidate_issues(candidate):
-                    raise CurationInputError(f"invalid new canonical decision for {raw_id}")
-                _insert_candidate(conn, candidate, None)
             if disposition in {"SUPPORTS_CANONICAL", "SPLIT"}:
                 if not target or not conn.execute("SELECT 1 FROM security_artifacts WHERE id=?", (target,)).fetchone():
                     raise CurationInputError(f"missing lineage target for {raw_id}")
@@ -974,6 +1033,7 @@ def curate_complete_catalog(
         "dispositions": dispositions, "domains": domains,
         "selectionOverrides": projection["selectionOverrides"],
         "equivalenceSha256": projection["equivalenceSha256"],
+        "globalReconciliation": global_reconciliation,
     }
 
 

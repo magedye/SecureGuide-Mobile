@@ -308,6 +308,40 @@ def _closure(conn: sqlite3.Connection, contract: dict[str, Any]) -> dict[str, An
                 WHERE l.raw_artifact_id=d.raw_artifact_id
                   AND l.lineage_role=d.disposition)"""
     )
+    supports_distinct_raw_ids = count(
+        """SELECT COUNT(DISTINCT raw_artifact_id) FROM raw_artifact_dispositions
+             WHERE disposition='SUPPORTS_CANONICAL'"""
+    )
+    supports_represented_in_final_lineage = count(
+        """SELECT COUNT(DISTINCT d.raw_artifact_id)
+             FROM raw_artifact_dispositions d
+             JOIN artifact_source_lineage l ON l.raw_artifact_id=d.raw_artifact_id
+             WHERE d.disposition='SUPPORTS_CANONICAL'
+               AND l.lineage_role='SUPPORTS_CANONICAL'"""
+    )
+    lineage_without_compatible_disposition = count(
+        """SELECT COUNT(*) FROM artifact_source_lineage l
+             LEFT JOIN raw_artifact_dispositions d ON d.raw_artifact_id=l.raw_artifact_id
+             WHERE d.raw_artifact_id IS NULL
+                OR (l.lineage_role='SUPPORTS_CANONICAL'
+                    AND d.disposition NOT IN ('SUPPORTS_CANONICAL','SPLIT'))
+                OR (l.lineage_role='SPLIT' AND d.disposition != 'SPLIT')"""
+    )
+    raw_ids_linked_to_multiple_canonicals = count(
+        """SELECT COUNT(*) FROM (
+               SELECT raw_artifact_id FROM artifact_source_lineage
+                GROUP BY raw_artifact_id HAVING COUNT(DISTINCT artifact_id)>1
+             )"""
+    )
+    multi_canonical_without_split = count(
+        """SELECT COUNT(*) FROM (
+               SELECT l.raw_artifact_id, d.disposition
+                 FROM artifact_source_lineage l
+                 JOIN raw_artifact_dispositions d ON d.raw_artifact_id=l.raw_artifact_id
+                GROUP BY l.raw_artifact_id, d.disposition
+               HAVING COUNT(DISTINCT l.artifact_id)>1
+             ) WHERE disposition!='SPLIT'"""
+    )
     missing_manifests = count(
         "SELECT COUNT(*) FROM raw_artifacts WHERE source_manifest_id IS NULL"
     )
@@ -354,6 +388,11 @@ def _closure(conn: sqlite3.Connection, contract: dict[str, Any]) -> dict[str, An
         "missingDispositions": missing_dispositions,
         "missingCanonicalLineage": missing_canonical_lineage,
         "supportingWithoutLineage": supporting_without_lineage,
+        "supportsLineageMismatch": abs(
+            supports_distinct_raw_ids - supports_represented_in_final_lineage
+        ),
+        "lineageWithoutCompatibleDisposition": lineage_without_compatible_disposition,
+        "multiCanonicalWithoutSplit": multi_canonical_without_split,
         "missingSourceManifests": missing_manifests,
         "missingSourceRights": missing_rights,
         "invalidDispositions": invalid_dispositions,
@@ -366,6 +405,10 @@ def _closure(conn: sqlite3.Connection, contract: dict[str, Any]) -> dict[str, An
         "rawDisposed": raw_disposed,
         "canonicalTotal": canonical_total,
         "canonicalsWithLineage": canonical_with_lineage,
+        "lineageRows": count("SELECT COUNT(*) FROM artifact_source_lineage"),
+        "supportsDistinctRawIds": supports_distinct_raw_ids,
+        "supportsRepresentedInFinalLineage": supports_represented_in_final_lineage,
+        "rawIdsLinkedToMultipleCanonicals": raw_ids_linked_to_multiple_canonicals,
         **issues,
     }
 
