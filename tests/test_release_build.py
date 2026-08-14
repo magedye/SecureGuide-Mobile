@@ -148,25 +148,25 @@ class CuratedReleaseBuildTests(unittest.TestCase):
             _canonical_manifest_hash(self.first_manifest),
         )
 
-    def test_legacy_curated_candidates_are_rejected_until_semantic_closure_exists(self) -> None:
+    def test_ledger_curated_candidates_pass_v1_through_v4_release_validation(self) -> None:
         from scripts.validate_catalog_release import validate_release
 
         report = validate_release(
             self.first,
             comparison_database=self.second,
         )
-        self.assertFalse(report["valid"], report)
-        self.assertFalse(report["V1"]["valid"], report)
-        self.assertEqual(report["V1"]["closure"]["genericDeferredRationales"], 2792)
-        self.assertEqual(report["V1"]["closure"]["deferredWithoutReasonCode"], 2792)
-        self.assertTrue(all(report[level]["valid"] for level in ("V2", "V3", "V4")))
+        self.assertTrue(report["valid"], report)
+        self.assertTrue(all(report[level]["valid"] for level in ("V1", "V2", "V3", "V4")))
+        self.assertEqual(report["V1"]["closure"]["rawDisposed"], 4265)
+        self.assertEqual(report["V1"]["closure"]["genericDeferredRationales"], 0)
+        self.assertEqual(report["V1"]["closure"]["deferredWithoutReasonCode"], 0)
         self.assertEqual(report["V4"]["bindingErrors"], {})
 
     def test_curated_release_has_closed_minimum_catalog_and_no_unlicensed_payload(self) -> None:
         manifest = self.first_manifest
-        self.assertEqual(manifest["releaseCounts"]["artifacts"], 1218)
+        self.assertEqual(manifest["releaseCounts"]["artifacts"], 3972)
         self.assertEqual(manifest["releaseCounts"]["rawArtifacts"], 4265)
-        self.assertEqual(manifest["releaseCounts"]["quality"]["minimumValid"], 1218)
+        self.assertEqual(manifest["releaseCounts"]["quality"]["minimumValid"], 3972)
         self.assertEqual(manifest["releaseCounts"]["closure"]["rawDisposed"], 4265)
         self.assertEqual(manifest["rights"]["rawPayloadsIncluded"], 0)
         self.assertEqual(manifest["rights"]["rawPayloadsExcluded"], 4265)

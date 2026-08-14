@@ -17,7 +17,9 @@ from typing import Any
 CLASSIFIER_VERSION = "secureguide-semantic-rules-1.3.0"
 
 MARKDOWN_LINK = re.compile(r"\[([^\]]+)\]\((https?://[^)]+)\)", re.IGNORECASE)
+TRUNCATED_MARKDOWN_LINK = re.compile(r"\[([^\]]+)\]\(https?:/[^\s]*…", re.IGNORECASE)
 CITATION = re.compile(r"\s*\(Citation:[^)]+\)", re.IGNORECASE)
+TRUNCATED_CITATION = re.compile(r"\s*\(Citation:.*$", re.IGNORECASE)
 HTML_TAG = re.compile(r"</?[^>]+>")
 
 TYPE_LEVEL = {
@@ -174,7 +176,9 @@ def canonical_text(value: str) -> str:
     """Remove source markup while preserving its readable meaning."""
 
     value = MARKDOWN_LINK.sub(lambda match: match.group(1), value)
+    value = TRUNCATED_MARKDOWN_LINK.sub(lambda match: match.group(1), value)
     value = CITATION.sub("", value)
+    value = TRUNCATED_CITATION.sub("", value)
     value = HTML_TAG.sub("", value)
     return re.sub(r"\s+", " ", value).strip()
 

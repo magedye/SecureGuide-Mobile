@@ -119,6 +119,27 @@ class SemanticClassificationTests(unittest.TestCase):
             "url": "https://attack.example/T1040",
         }])
 
+    def test_truncated_source_citation_does_not_ship_as_canonical_prose(self) -> None:
+        source = record(
+            "T1159 - Launch Agent",
+            "Adversaries may install a launch agent. (Citation: Anti…",
+            "Technique T1159",
+        )
+        source["source_metadata"]["source_document"] = "MITRE ATT&CK Enterprise"
+        result = classify_record(source)
+        self.assertEqual(result["definition_short_en"], "Adversaries may install a launch agent.")
+
+    def test_truncated_source_link_does_not_ship_as_canonical_prose(self) -> None:
+        result = classify_record(record(
+            "T1092 - Removable Media",
+            "Transfer commands through [Replication Through Removable Media](https:/…",
+            "IPS-NET",
+        ))
+        self.assertEqual(
+            result["definition_short_en"],
+            "Transfer commands through Replication Through Removable Media",
+        )
+
     def test_requirement_mentions_do_not_become_named_artifacts(self) -> None:
         cases = (
             (

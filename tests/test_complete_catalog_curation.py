@@ -187,7 +187,7 @@ class CompleteProjectionTests(unittest.TestCase):
         self.assertEqual(canonical_hash(first), canonical_hash(second))
         self.assertEqual(first["selectionOverrides"][0]["selectedCanonical"], "STG-CURATED-0641")
 
-    def test_legacy_projection_is_rejected_until_full_corpus_reconciliation_exists(self) -> None:
+    def test_ledger_projection_closes_the_full_pinned_corpus(self) -> None:
         with tempfile.TemporaryDirectory() as folder:
             database = Path(folder) / "curated.db"
             prepare_curation_database(ROOT / "catalog.db", database)
@@ -205,9 +205,9 @@ class CompleteProjectionTests(unittest.TestCase):
             self.assertEqual(sum(result["dispositions"].values()), 4265)
             self.assertEqual(set(result["domains"]), {f"SD-{number:02d}" for number in range(1, 9)})
             self.assertEqual(validation["summary"]["minimumValid"], result["canonicalTotal"])
-            self.assertFalse(validation["closure"]["valid"])
-            self.assertEqual(validation["closure"]["genericDeferredRationales"], 2792)
-            self.assertEqual(validation["closure"]["deferredWithoutReasonCode"], 2792)
+            self.assertTrue(validation["closure"]["valid"])
+            self.assertEqual(validation["closure"]["genericDeferredRationales"], 0)
+            self.assertEqual(validation["closure"]["deferredWithoutReasonCode"], 0)
             self.assertTrue(validation["integrity"]["valid"])
             self.assertEqual(result["normalized"]["artifactIdAliases"], 959)
             verified = sqlite3.connect(database)
@@ -219,7 +219,7 @@ class CompleteProjectionTests(unittest.TestCase):
             finally:
                 verified.close()
             self.assertEqual(alias_target, "SG-CFG-CAT-0203")
-            self.assertGreaterEqual(validation["summary"]["canonicalTotal"], 1000)
+            self.assertEqual(validation["summary"]["canonicalTotal"], 3972)
 
 
 if __name__ == "__main__":

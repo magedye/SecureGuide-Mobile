@@ -267,8 +267,10 @@ def _release_gates(conn: sqlite3.Connection) -> dict[str, int | dict[str, int]]:
 
     demo_markers = conn.execute(
         """SELECT COUNT(*) FROM security_artifacts
-           WHERE lower(id) LIKE '%demo%' OR lower(id) LIKE '%test%'
-              OR lower(title_en) LIKE '%demo%' OR lower(title_en) LIKE '%test fixture%'
+           WHERE lower(id) LIKE 'demo-%' OR lower(id) LIKE '%-demo-%'
+              OR lower(id) LIKE 'test-%' OR lower(id) LIKE '%-test-%'
+              OR lower(title_en) LIKE 'demo %' OR lower(title_en) LIKE 'demo:%'
+              OR lower(title_en) LIKE '%test fixture%'
               OR lower(COALESCE(source_document,'')) LIKE '%test fixture%'"""
     ).fetchone()[0]
     if demo_markers:
@@ -282,9 +284,14 @@ def _release_gates(conn: sqlite3.Connection) -> dict[str, int | dict[str, int]]:
         requires_review += int(bool(row["requires_human_review"]))
         human_approved += int(row["ai_review_status"] == "AIR-HUMAN-APPROVED")
     if minimum_valid != counts["artifacts"]:
+        invalid_ids = [
+            (row["id"], minimum_result(conn, row, contract)["missing"])
+            for row in conn.execute("SELECT * FROM security_artifacts ORDER BY id")
+            if not minimum_result(conn, row, contract)["valid"]
+        ]
         raise BuildError(
             f"release catalog has {counts['artifacts'] - minimum_valid} artifact(s) "
-            "that fail MINIMUM_CATALOG_VALIDATION"
+            f"that fail MINIMUM_CATALOG_VALIDATION: {invalid_ids}"
         )
 
     closure = conn.execute("SELECT * FROM v_catalog_closure").fetchone()
@@ -458,10 +465,20 @@ def build(
                     ("source_import_manifests", "created_at"),
                     ("artifact_source_lineage", "created_at"),
                     ("raw_artifact_dispositions", "decided_at"),
+                    ("raw_artifact_deferred_reasons", "created_at"),
+                    ("raw_artifact_reconciliation_links", "created_at"),
                     ("catalog_artifact_id_aliases", "created_at"),
                 ):
                     conn.execute(f"UPDATE {table} SET {column}=?", (sqlite_timestamp,))
                 if mode == "curated":
+                    # New source-derived canonicals are deterministic ledger
+                    # material, not runtime events.  Normalize their audit
+                    # timestamps together with retained canonicals so two
+                    # candidates have identical bytes.
+                    conn.execute(
+                        "UPDATE security_artifacts SET created_at=?,updated_at=?",
+                        (sqlite_timestamp, sqlite_timestamp),
+                    )
                     conn.execute(
                         "UPDATE source_catalogs SET imported_at=? WHERE id IN ('legacy_catalog_v4','securekit_curated_controls')",
                         (sqlite_timestamp,),

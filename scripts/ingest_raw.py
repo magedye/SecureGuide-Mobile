@@ -127,7 +127,10 @@ def ingest_file(conn, path, stats):
             flag(qf.get('is_ambiguous'), 0), qf.get('ambiguity_reason'),
             raw_json, fname, chash,
         )
-        existing = conn.execute("SELECT content_hash FROM raw_artifacts WHERE id=?", (raw_id,)).fetchone()
+        existing = conn.execute(
+            "SELECT content_hash,raw_json,title_draft,description_draft FROM raw_artifacts WHERE id=?",
+            (raw_id,),
+        ).fetchone()
         if existing is None:
             conn.execute(
                 """INSERT INTO raw_artifacts
@@ -149,6 +152,21 @@ def ingest_file(conn, path, stats):
                      needs_human_review=?, is_ambiguous=?, ambiguity_reason=?, raw_json=?, source_file=?, content_hash=?
                    WHERE id=?""", row[1:] + (raw_id,))
             stats['updated'] += 1
+        elif existing[1] in (None, '{}') or existing[2] is None or existing[3] is None:
+            # Release derivatives intentionally scrub restricted raw payloads
+            # while retaining their content hash.  An isolated curation
+            # candidate must rehydrate the exact pinned source before any
+            # semantic decision is made; treating the matching hash as a
+            # no-op would otherwise classify empty placeholders.
+            conn.execute(
+                """UPDATE raw_artifacts SET source_catalog_id=?, external_raw_id=?, source_document=?,
+                     source_type=?, source_section=?, source_version=?, source_url=?, title_draft=?,
+                     description_draft=?, raw_text_en=?, raw_text_ar=?, original_heading=?,
+                     context_paragraph=?, keywords_json=?, entities_mentioned_json=?, usacm_type_assigned=?,
+                     sdt_domain_assigned=?, sdt_subdomain_assigned=?, requires_classification=?,
+                     needs_human_review=?, is_ambiguous=?, ambiguity_reason=?, raw_json=?, source_file=?, content_hash=?
+                   WHERE id=?""", row[1:] + (raw_id,))
+            stats['rehydrated'] = stats.get('rehydrated', 0) + 1
         else:
             stats['unchanged'] += 1
 

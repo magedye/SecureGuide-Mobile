@@ -534,6 +534,8 @@ def build_projection(
 
 
 def final_artifact_id(candidate: dict[str, Any]) -> str:
+    if candidate.get("artifact_id"):
+        return str(candidate["artifact_id"])
     number = candidate["candidate_id"].rsplit("-", 1)[1]
     return f"SG-{candidate['type'][4:]}-{candidate['source_key']}-{number}"
 
@@ -683,12 +685,17 @@ def curate_complete_catalog(
     conn: sqlite3.Connection,
     candidates: dict[str, dict[str, Any]] | None = None,
     equivalence_path: str | Path = DEFAULT_EQUIVALENCE,
+    ledger_path: str | Path = DEFAULT_RECONCILIATION_LEDGER,
 ) -> dict[str, Any]:
     """Curate the complete tracked corpus transactionally and close every raw row."""
 
     conn.row_factory = sqlite3.Row
     candidates = candidates or load_curation_candidates()
     projection = build_projection(candidates, equivalence_path)
+    ledger = load_semantic_reconciliation_ledger(ledger_path)
+    ledger_check = validate_semantic_reconciliation_ledger(conn, ledger)
+    if not ledger_check["valid"]:
+        raise CurationInputError(f"semantic reconciliation ledger is not current: {ledger_check}")
     selected_set = set(projection["selected"])
     group_by_selected = {
         group["selected_canonical"]: group for group in projection["groups"]
@@ -746,55 +753,60 @@ def curate_complete_catalog(
                     raw_to_final.setdefault(raw_id, artifact_id)
 
         raw_ids = {row[0] for row in conn.execute("SELECT id FROM raw_artifacts")}
-        missing_candidate_raw = sorted(set(raw_to_final) - raw_ids)
-        if missing_candidate_raw:
-            raise CurationInputError(f"projection references missing raw rows: {missing_candidate_raw[:3]}")
-
-        primary_raw_by_artifact = {
-            candidate_to_final[candidate_id]: candidates[candidate_id]["raw_id"]
-            for candidate_id in selected_set
-        }
-        for artifact_id, mappings in legacy.items():
-            if mappings:
-                primary_raw_by_artifact.setdefault(artifact_id, mappings[0].get("raw_id"))
-
+        conn.execute("DELETE FROM raw_artifact_reconciliation_links")
+        conn.execute("DELETE FROM raw_artifact_deferred_reasons")
+        conn.execute("DELETE FROM raw_artifact_dispositions")
+        primary_written: set[str] = set()
         for raw_id in sorted(raw_ids):
-            artifact_id = raw_to_final.get(raw_id)
-            if artifact_id:
-                is_primary = int(primary_raw_by_artifact.get(artifact_id) == raw_id)
+            decision = ledger[raw_id]
+            disposition = decision["disposition"]
+            target = decision.get("target_artifact_id")
+            candidate = decision.get("new_canonical")
+            if candidate:
+                if candidate.get("artifact_id") != target or _candidate_issues(candidate):
+                    raise CurationInputError(f"invalid new canonical decision for {raw_id}")
+                _insert_candidate(conn, candidate, None)
+            if disposition in {"SUPPORTS_CANONICAL", "SPLIT"}:
+                if not target or not conn.execute("SELECT 1 FROM security_artifacts WHERE id=?", (target,)).fetchone():
+                    raise CurationInputError(f"missing lineage target for {raw_id}")
                 conn.execute(
                     """INSERT OR IGNORE INTO artifact_source_lineage(
-                           artifact_id,raw_artifact_id,lineage_role,mapping_strength,
-                           rationale,is_primary
-                       ) VALUES(?,?,'SUPPORTS_CANONICAL','DIRECT',?,?)""",
-                    (artifact_id, raw_id, "Deterministic global reconciliation.", is_primary),
+                           artifact_id,raw_artifact_id,lineage_role,mapping_strength,rationale,is_primary
+                       ) VALUES(?,?,?,?,?,?)""",
+                    (target, raw_id, disposition, decision.get("mapping_strength") or "DIRECT",
+                     decision["rationale"], int(target not in primary_written)),
                 )
-                disposition, rationale = (
-                    "SUPPORTS_CANONICAL", f"Supports canonical artifact {artifact_id}."
-                )
+                primary_written.add(target)
+                conn.execute("UPDATE raw_artifacts SET promoted_artifact_id=? WHERE id=?", (target, raw_id))
+            elif disposition in {"DUPLICATE", "CROSSWALK_ONLY", "RELATION_ONLY"}:
+                links = decision.get("links") or []
+                if not links:
+                    raise CurationInputError(f"missing reconciliation links for {raw_id}")
+                for index, link in enumerate(links):
+                    conn.execute(
+                        """INSERT INTO raw_artifact_reconciliation_links(
+                               raw_artifact_id,link_index,disposition,target_artifact_id,target_raw_artifact_id,
+                               mapping_strength,rationale,evidence_method
+                           ) VALUES(?,?,?,?,?,?,?,?)""",
+                        (raw_id, index, disposition, link.get("target_artifact_id"), link.get("target_raw_artifact_id"),
+                         link.get("mapping_strength") or "INFORMATIVE", link.get("rationale") or decision["rationale"],
+                         decision["decision_method"]),
+                    )
+            elif disposition == "DEFERRED":
                 conn.execute(
-                    "UPDATE raw_artifacts SET promoted_artifact_id=? WHERE id=?",
-                    (artifact_id, raw_id),
+                    "INSERT INTO raw_artifact_deferred_reasons(raw_artifact_id,reason_code) VALUES(?,?)",
+                    (raw_id, decision["deferred_reason_code"]),
                 )
-            else:
-                disposition, rationale = (
-                    "DEFERRED",
-                    "No defensible globally reconciled canonical was selected from the current tracked classification evidence.",
-                )
+            confidence_state = str(decision.get("confidence_state") or "UNSCORED")
+            confidence = float(confidence_state) if confidence_state != "UNSCORED" else 0.0
             conn.execute(
                 """INSERT INTO raw_artifact_dispositions(
                        raw_artifact_id,disposition,rationale,decision_method,
                        decision_confidence,requires_human_review,decided_by,decision_batch_id
-                   ) VALUES(?,?,?,?,?,?,?,?)
-                   ON CONFLICT(raw_artifact_id) DO UPDATE SET
-                     disposition=excluded.disposition,rationale=excluded.rationale,
-                     decision_method=excluded.decision_method,
-                     decision_confidence=excluded.decision_confidence,
-                     requires_human_review=excluded.requires_human_review,
-                     decided_by=excluded.decided_by,decision_batch_id=excluded.decision_batch_id""",
-                (raw_id, disposition, rationale, "DETERMINISTIC_GLOBAL_RECONCILIATION",
-                 1.0 if artifact_id else 0.0, 0 if artifact_id else 1,
-                 "SecureGuide curation pipeline", "COMPLETE-CATALOG-V1"),
+                   ) VALUES(?,?,?,?,?,?,?,?)""",
+                (raw_id, disposition, decision["rationale"], decision["decision_method"], confidence,
+                 int(confidence_state == "UNSCORED" or confidence <= 0.70),
+                 "SecureGuide semantic reconciliation", "SEMANTIC-LEDGER-V1"),
             )
 
         valid_threats = {row[0] for row in conn.execute("SELECT code FROM lk_threat")}
@@ -819,7 +831,7 @@ def curate_complete_catalog(
                     continue
                 seen_mappings.add(signature)
                 conn.execute(
-                    """INSERT INTO framework_mappings(
+                    """INSERT OR IGNORE INTO framework_mappings(
                            artifact_id,framework,version,reference,mapping_strength,rationale
                        ) VALUES(?,?,?,?,?,?)""",
                     (artifact_id, framework, version, reference, strength, rationale),
@@ -837,7 +849,7 @@ def curate_complete_catalog(
                     continue
                 seen_actions.add(signature)
                 conn.execute(
-                    """INSERT INTO artifact_actions(
+                    """INSERT OR IGNORE INTO artifact_actions(
                            artifact_id,kind,seq,text_en,text_ar
                        ) VALUES(?,?,?,?,?)""",
                     (artifact_id, kind, sequence, text_en, action.get("text_ar")),
@@ -883,7 +895,7 @@ def curate_complete_catalog(
                 ):
                     raise CurationInputError(f"unresolved conflict relationship on {candidate_id}")
                 conn.execute(
-                    """INSERT INTO artifact_relationships(
+                    """INSERT OR IGNORE INTO artifact_relationships(
                            source_id,target_id,relation_type,resolution_status,resolution_note
                        ) VALUES(?,?,?,?,?)""",
                     (artifact_id, target_id, relation_type,
