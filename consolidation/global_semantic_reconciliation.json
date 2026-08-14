@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reconciliation_sha256": "32474b1fc1431169b6c879c89a3c2dff8c50105a53636ebe9f4f896daf7a85e7",
+  "reconciliation_sha256": "d735b54d501d4fe564513bc6933efeb96e6915c465e30bd8c60239e596e3c724",
   "scope": {
     "rawRecordsConsidered": 4265,
     "reconciledRecords": 4227,
@@ -82,11 +82,39 @@
     },
     {
       "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0001",
+        "legacy_catalog_v4::0214"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-REQ-CAT-0214",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
         "essential_cybersecurity_controls_ecc_2_2024::0002",
         "legacy_catalog_v4::0215"
       ],
       "decision": "CANONICALIZE",
       "targetArtifactId": "SG-REQ-CAT-0215",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0008",
+        "legacy_catalog_v4::0221"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-REQ-CAT-0221",
       "evidence": {
         "titleMatch": "NORMALIZED_EXACT",
         "statementMatch": "NORMALIZED_EXACT",
@@ -110,11 +138,95 @@
     },
     {
       "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0013",
+        "legacy_catalog_v4::0226"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-REQ-CAT-0226",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0014",
+        "legacy_catalog_v4::0227"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-REQ-CAT-0227",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0015",
+        "legacy_catalog_v4::0228"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-REQ-CAT-0228",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0016",
+        "legacy_catalog_v4::0229"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-REQ-CAT-0229",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
         "essential_cybersecurity_controls_ecc_2_2024::0017",
         "legacy_catalog_v4::0230"
       ],
       "decision": "CANONICALIZE",
       "targetArtifactId": "SG-REQ-CAT-0230",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0021",
+        "legacy_catalog_v4::0234"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-REQ-CAT-0234",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0022",
+        "legacy_catalog_v4::0235"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-REQ-CAT-0235",
       "evidence": {
         "titleMatch": "NORMALIZED_EXACT",
         "statementMatch": "NORMALIZED_EXACT",
@@ -572,6 +684,20 @@
     },
     {
       "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0086",
+        "legacy_catalog_v4::0299"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-REQ-CAT-0299",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
         "essential_cybersecurity_controls_ecc_2_2024::0087",
         "legacy_catalog_v4::0300"
       ],
@@ -647,6 +773,496 @@
       ],
       "decision": "CANONICALIZE",
       "targetArtifactId": "SG-REQ-CAT-0307",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0313",
+        "legacy_catalog_v4::0635"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0313",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0313",
+        "the_nist_cybersecurity_framework_csf_2_0::0000"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0313",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0318",
+        "legacy_catalog_v4::0640"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0318",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0318",
+        "the_nist_cybersecurity_framework_csf_2_0::0005"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0318",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0320",
+        "legacy_catalog_v4::0642"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0320",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0320",
+        "the_nist_cybersecurity_framework_csf_2_0::0007"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0320",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0326",
+        "legacy_catalog_v4::0648"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0326",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0326",
+        "the_nist_cybersecurity_framework_csf_2_0::0013"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0326",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0328",
+        "legacy_catalog_v4::0650"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0328",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0328",
+        "the_nist_cybersecurity_framework_csf_2_0::0015"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0328",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0331",
+        "legacy_catalog_v4::0653"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0331",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0331",
+        "the_nist_cybersecurity_framework_csf_2_0::0018"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0331",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0332",
+        "legacy_catalog_v4::0654"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0332",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0332",
+        "the_nist_cybersecurity_framework_csf_2_0::0019"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0332",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0347",
+        "legacy_catalog_v4::0669"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0347",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0347",
+        "the_nist_cybersecurity_framework_csf_2_0::0034"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0347",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0352",
+        "legacy_catalog_v4::0674"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0352",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0352",
+        "the_nist_cybersecurity_framework_csf_2_0::0039"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0352",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0360",
+        "legacy_catalog_v4::0682"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0360",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0360",
+        "the_nist_cybersecurity_framework_csf_2_0::0047"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0360",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0365",
+        "legacy_catalog_v4::0687"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0365",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0365",
+        "the_nist_cybersecurity_framework_csf_2_0::0052"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0365",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0370",
+        "legacy_catalog_v4::0692"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0370",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0370",
+        "the_nist_cybersecurity_framework_csf_2_0::0057"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0370",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0375",
+        "legacy_catalog_v4::0697"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0375",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0375",
+        "the_nist_cybersecurity_framework_csf_2_0::0062"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0375",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0376",
+        "legacy_catalog_v4::0698"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0376",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0376",
+        "the_nist_cybersecurity_framework_csf_2_0::0063"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0376",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0377",
+        "legacy_catalog_v4::0699"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0377",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0377",
+        "the_nist_cybersecurity_framework_csf_2_0::0064"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0377",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0384",
+        "the_nist_cybersecurity_framework_csf_2_0::0071"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0384",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0385",
+        "the_nist_cybersecurity_framework_csf_2_0::0072"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0385",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0396",
+        "the_nist_cybersecurity_framework_csf_2_0::0083"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0396",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0398",
+        "the_nist_cybersecurity_framework_csf_2_0::0085"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0398",
+      "evidence": {
+        "titleMatch": "NORMALIZED_EXACT",
+        "statementMatch": "NORMALIZED_EXACT",
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "The two source records express the same atomic statement with compatible semantics."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0411",
+        "the_nist_cybersecurity_framework_csf_2_0::0098"
+      ],
+      "decision": "CANONICALIZE",
+      "targetArtifactId": "SG-OBJ-CAT-0411",
       "evidence": {
         "titleMatch": "NORMALIZED_EXACT",
         "statementMatch": "NORMALIZED_EXACT",
@@ -2256,7 +2872,7 @@
         "the_nist_cybersecurity_framework_csf_2_0::0000"
       ],
       "decision": "CANONICALIZE",
-      "targetArtifactId": "SG-OBJ-SRC-6F35D10190C1",
+      "targetArtifactId": "SG-OBJ-CAT-0313",
       "evidence": {
         "sourceIdentifier": "CSF:GV.OC-01",
         "statementMatch": "NORMALIZED_EXACT",
@@ -2326,7 +2942,7 @@
         "the_nist_cybersecurity_framework_csf_2_0::0005"
       ],
       "decision": "CANONICALIZE",
-      "targetArtifactId": "SG-OBJ-SRC-B0DE01E6B6FF",
+      "targetArtifactId": "SG-OBJ-CAT-0318",
       "evidence": {
         "sourceIdentifier": "CSF:GV.RM-01",
         "statementMatch": "NORMALIZED_EXACT",
@@ -2354,7 +2970,7 @@
         "the_nist_cybersecurity_framework_csf_2_0::0007"
       ],
       "decision": "CANONICALIZE",
-      "targetArtifactId": "SG-OBJ-SRC-2057B192FE89",
+      "targetArtifactId": "SG-OBJ-CAT-0320",
       "evidence": {
         "sourceIdentifier": "CSF:GV.RM-03",
         "statementMatch": "NORMALIZED_EXACT",
@@ -2438,7 +3054,7 @@
         "the_nist_cybersecurity_framework_csf_2_0::0039"
       ],
       "decision": "CANONICALIZE",
-      "targetArtifactId": "SG-OBJ-SRC-E198D62DDA6D",
+      "targetArtifactId": "SG-OBJ-CAT-0352",
       "evidence": {
         "sourceIdentifier": "CSF:ID.RA-02",
         "statementMatch": "NORMALIZED_EXACT",
@@ -2452,7 +3068,7 @@
         "the_nist_cybersecurity_framework_csf_2_0::0052"
       ],
       "decision": "CANONICALIZE",
-      "targetArtifactId": "SG-OBJ-SRC-1AB2698E62BE",
+      "targetArtifactId": "SG-OBJ-CAT-0365",
       "evidence": {
         "sourceIdentifier": "CSF:PR.AA-01",
         "statementMatch": "NORMALIZED_EXACT",
@@ -2550,7 +3166,7 @@
         "the_nist_cybersecurity_framework_csf_2_0::0085"
       ],
       "decision": "CANONICALIZE",
-      "targetArtifactId": "SG-OBJ-SRC-27A92219D225",
+      "targetArtifactId": "SG-OBJ-CAT-0398",
       "evidence": {
         "sourceIdentifier": "CSF:RS.MA-01",
         "statementMatch": "SOURCE_VARIANT",
@@ -2592,7 +3208,7 @@
         "the_nist_cybersecurity_framework_csf_2_0::0098"
       ],
       "decision": "CANONICALIZE",
-      "targetArtifactId": "SG-OBJ-SRC-DAF9E6B72851",
+      "targetArtifactId": "SG-OBJ-CAT-0411",
       "evidence": {
         "sourceIdentifier": "CSF:RC.RP-01",
         "statementMatch": "SOURCE_VARIANT",
@@ -3229,6 +3845,23 @@
     {
       "rawIds": [
         "essential_cybersecurity_controls_ecc_2_2024::0000",
+        "legacy_catalog_v4::0214"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-CAT-0213",
+        "SG-REQ-CAT-0214"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.1579,
+        "titleTokenJaccard": 1.0,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0000",
         "legacy_catalog_v4::0215"
       ],
       "decision": "KEEP_SEPARATE",
@@ -3250,7 +3883,7 @@
       ],
       "decision": "KEEP_SEPARATE",
       "targetArtifactIds": [
-        "SG-REQ-SRC-78B8EEA9DF13",
+        "SG-REQ-CAT-0214",
         "SG-REQ-CAT-0213"
       ],
       "evidence": {
@@ -3267,7 +3900,7 @@
       ],
       "decision": "KEEP_SEPARATE",
       "targetArtifactIds": [
-        "SG-REQ-SRC-78B8EEA9DF13",
+        "SG-REQ-CAT-0214",
         "SG-REQ-CAT-0215"
       ],
       "evidence": {
@@ -3289,6 +3922,23 @@
       ],
       "evidence": {
         "statementTokenJaccard": 0.0833,
+        "titleTokenJaccard": 1.0,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0002",
+        "legacy_catalog_v4::0214"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-CAT-0215",
+        "SG-REQ-CAT-0214"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.125,
         "titleTokenJaccard": 1.0,
         "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
       },
@@ -3324,6 +3974,40 @@
       "evidence": {
         "statementTokenJaccard": 0.5882,
         "titleTokenJaccard": 0.5,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0008",
+        "legacy_catalog_v4::0220"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-CAT-0221",
+        "SG-REQ-CAT-0220"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.2,
+        "titleTokenJaccard": 1.0,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0008",
+        "legacy_catalog_v4::0222"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-CAT-0221",
+        "SG-REQ-CAT-0222"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.2353,
+        "titleTokenJaccard": 1.0,
         "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
       },
       "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
@@ -3483,12 +4167,97 @@
     },
     {
       "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0012",
+        "legacy_catalog_v4::0226"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-SRC-CAE87E978F5E",
+        "SG-REQ-CAT-0226"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.3684,
+        "titleTokenJaccard": 1.0,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0012",
+        "legacy_catalog_v4::0227"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-SRC-CAE87E978F5E",
+        "SG-REQ-CAT-0227"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.1923,
+        "titleTokenJaccard": 1.0,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0012",
+        "legacy_catalog_v4::0228"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-SRC-CAE87E978F5E",
+        "SG-REQ-CAT-0228"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.1667,
+        "titleTokenJaccard": 1.0,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0013",
+        "legacy_catalog_v4::0227"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-CAT-0226",
+        "SG-REQ-CAT-0227"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.2353,
+        "titleTokenJaccard": 1.0,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0013",
+        "legacy_catalog_v4::0228"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-CAT-0226",
+        "SG-REQ-CAT-0228"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.25,
+        "titleTokenJaccard": 1.0,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
         "essential_cybersecurity_controls_ecc_2_2024::0013",
         "securekit_curated_controls::0023"
       ],
       "decision": "KEEP_SEPARATE",
       "targetArtifactIds": [
-        "SG-REQ-SRC-C0124AC7F658",
+        "SG-REQ-CAT-0226",
         "SG-REQ-CURATED-0023"
       ],
       "evidence": {
@@ -3500,12 +4269,80 @@
     },
     {
       "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0014",
+        "legacy_catalog_v4::0226"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-CAT-0227",
+        "SG-REQ-CAT-0226"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.2353,
+        "titleTokenJaccard": 1.0,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0014",
+        "legacy_catalog_v4::0228"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-CAT-0227",
+        "SG-REQ-CAT-0228"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.1538,
+        "titleTokenJaccard": 1.0,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0015",
+        "legacy_catalog_v4::0226"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-CAT-0228",
+        "SG-REQ-CAT-0226"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.25,
+        "titleTokenJaccard": 1.0,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0015",
+        "legacy_catalog_v4::0227"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-CAT-0228",
+        "SG-REQ-CAT-0227"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.1538,
+        "titleTokenJaccard": 1.0,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
         "essential_cybersecurity_controls_ecc_2_2024::0015",
         "securekit_curated_controls::0025"
       ],
       "decision": "KEEP_SEPARATE",
       "targetArtifactIds": [
-        "SG-REQ-SRC-8C8526C82266",
+        "SG-REQ-CAT-0228",
         "SG-REQ-CURATED-0025"
       ],
       "evidence": {
@@ -3552,28 +4389,11 @@
     {
       "rawIds": [
         "essential_cybersecurity_controls_ecc_2_2024::0022",
-        "legacy_catalog_v4::0234"
-      ],
-      "decision": "KEEP_SEPARATE",
-      "targetArtifactIds": [
-        "SG-REQ-SRC-C1229F8DDD0F",
-        "SG-REQ-CAT-0234"
-      ],
-      "evidence": {
-        "statementTokenJaccard": 0.25,
-        "titleTokenJaccard": 1.0,
-        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
-      },
-      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
-    },
-    {
-      "rawIds": [
-        "essential_cybersecurity_controls_ecc_2_2024::0022",
         "legacy_catalog_v4::0236"
       ],
       "decision": "KEEP_SEPARATE",
       "targetArtifactIds": [
-        "SG-REQ-SRC-C1229F8DDD0F",
+        "SG-REQ-CAT-0235",
         "SG-REQ-CAT-0236"
       ],
       "evidence": {
@@ -3586,15 +4406,15 @@
     {
       "rawIds": [
         "essential_cybersecurity_controls_ecc_2_2024::0023",
-        "legacy_catalog_v4::0234"
+        "legacy_catalog_v4::0235"
       ],
       "decision": "KEEP_SEPARATE",
       "targetArtifactIds": [
         "SG-REQ-CAT-0236",
-        "SG-REQ-CAT-0234"
+        "SG-REQ-CAT-0235"
       ],
       "evidence": {
-        "statementTokenJaccard": 0.2222,
+        "statementTokenJaccard": 0.1,
         "titleTokenJaccard": 1.0,
         "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
       },
@@ -4912,6 +5732,23 @@
     {
       "rawIds": [
         "essential_cybersecurity_controls_ecc_2_2024::0084",
+        "legacy_catalog_v4::0299"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-CAT-0297",
+        "SG-REQ-CAT-0299"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.3529,
+        "titleTokenJaccard": 1.0,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0084",
         "legacy_catalog_v4::0300"
       ],
       "decision": "KEEP_SEPARATE",
@@ -4980,6 +5817,23 @@
     {
       "rawIds": [
         "essential_cybersecurity_controls_ecc_2_2024::0085",
+        "legacy_catalog_v4::0299"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-CAT-0298",
+        "SG-REQ-CAT-0299"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.4,
+        "titleTokenJaccard": 1.0,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0085",
         "legacy_catalog_v4::0300"
       ],
       "decision": "KEEP_SEPARATE",
@@ -5018,7 +5872,7 @@
       ],
       "decision": "KEEP_SEPARATE",
       "targetArtifactIds": [
-        "SG-REQ-SRC-A6A71FCF1961",
+        "SG-REQ-CAT-0299",
         "SG-REQ-CAT-0297"
       ],
       "evidence": {
@@ -5035,7 +5889,7 @@
       ],
       "decision": "KEEP_SEPARATE",
       "targetArtifactIds": [
-        "SG-REQ-SRC-A6A71FCF1961",
+        "SG-REQ-CAT-0299",
         "SG-REQ-CAT-0298"
       ],
       "evidence": {
@@ -5052,7 +5906,7 @@
       ],
       "decision": "KEEP_SEPARATE",
       "targetArtifactIds": [
-        "SG-REQ-SRC-A6A71FCF1961",
+        "SG-REQ-CAT-0299",
         "SG-REQ-CAT-0300"
       ],
       "evidence": {
@@ -5091,6 +5945,23 @@
       ],
       "evidence": {
         "statementTokenJaccard": 0.6364,
+        "titleTokenJaccard": 1.0,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0087",
+        "legacy_catalog_v4::0299"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-CAT-0300",
+        "SG-REQ-CAT-0299"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.3529,
         "titleTokenJaccard": 1.0,
         "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
       },
@@ -5438,6 +6309,23 @@
     },
     {
       "rawIds": [
+        "essential_cybersecurity_controls_ecc_2_2024::0098",
+        "legacy_catalog_v4::0311"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-SRC-783A0351D26F",
+        "SG-REQ-CAT-0311"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 1.0,
+        "titleTokenJaccard": 0.0,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
         "essential_cybersecurity_controls_ecc_2_2024::0099",
         "legacy_catalog_v4::0310"
       ],
@@ -5761,6 +6649,125 @@
     },
     {
       "rawIds": [
+        "legacy_catalog_v4::0218",
+        "securekit_curated_controls::0015"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-CAT-0218",
+        "SG-REQ-CURATED-0015"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.7059,
+        "titleTokenJaccard": 0.25,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0218",
+        "securekit_curated_controls::0224"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-CAT-0218",
+        "SG-REQ-CURATED-0015"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.7059,
+        "titleTokenJaccard": 0.25,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0219",
+        "securekit_curated_controls::0016"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-POL-CAT-0219",
+        "SG-POL-CURATED-0016"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.5909,
+        "titleTokenJaccard": 0.1667,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0219",
+        "securekit_curated_controls::0252"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-POL-CAT-0219",
+        "SG-POL-CURATED-0016"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.5909,
+        "titleTokenJaccard": 0.1667,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0220",
+        "securekit_curated_controls::0017"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-CAT-0220",
+        "SG-REQ-CURATED-0017"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.6875,
+        "titleTokenJaccard": 0.4,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0222",
+        "securekit_curated_controls::0019"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-CAT-0222",
+        "SG-REQ-CURATED-0553"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.6,
+        "titleTokenJaccard": 0.0,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0222",
+        "securekit_curated_controls::0553"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-CAT-0222",
+        "SG-REQ-CURATED-0553"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.6,
+        "titleTokenJaccard": 0.0,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
         "legacy_catalog_v4::0223",
         "securekit_curated_controls::0020"
       ],
@@ -5789,6 +6796,40 @@
       "evidence": {
         "statementTokenJaccard": 0.6316,
         "titleTokenJaccard": 0.75,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0226",
+        "securekit_curated_controls::0023"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-CAT-0226",
+        "SG-REQ-CURATED-0023"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.5714,
+        "titleTokenJaccard": 0.4,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0228",
+        "securekit_curated_controls::0025"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-REQ-CAT-0228",
+        "SG-REQ-CURATED-0025"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.6667,
+        "titleTokenJaccard": 0.1667,
         "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
       },
       "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
@@ -6458,33 +7499,50 @@
     },
     {
       "rawIds": [
-        "legacy_catalog_v4::0330",
-        "securekit_curated_controls::0558"
+        "legacy_catalog_v4::0314",
+        "nist_csf_2_0::0001"
       ],
       "decision": "KEEP_SEPARATE",
       "targetArtifactIds": [
-        "SG-POL-CAT-0330",
-        "SG-POL-CURATED-0558"
+        "SG-OBJ-CAT-0314",
+        "SG-OBJ-SRC-F099FC7A51F0"
       ],
       "evidence": {
-        "statementTokenJaccard": 0.5909,
-        "titleTokenJaccard": 0.1111,
+        "statementTokenJaccard": 0.9333,
+        "titleTokenJaccard": 0.2143,
         "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
       },
       "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
     },
     {
       "rawIds": [
-        "legacy_catalog_v4::0332",
-        "securekit_curated_controls::0599"
+        "legacy_catalog_v4::0314",
+        "the_nist_cybersecurity_framework_csf_2_0::0001"
       ],
       "decision": "KEEP_SEPARATE",
       "targetArtifactIds": [
-        "SG-REQ-CAT-0332",
-        "SG-REQ-CURATED-0599"
+        "SG-OBJ-CAT-0314",
+        "SG-OBJ-SRC-F099FC7A51F0"
       ],
       "evidence": {
-        "statementTokenJaccard": 0.6471,
+        "statementTokenJaccard": 0.9333,
+        "titleTokenJaccard": 0.8667,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0315",
+        "nist_csf_2_0::0002"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0315",
+        "SG-OBJ-SRC-BDB571A69B30"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9412,
         "titleTokenJaccard": 0.2,
         "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
       },
@@ -6492,17 +7550,714 @@
     },
     {
       "rawIds": [
-        "legacy_catalog_v4::0340",
-        "securekit_curated_controls::0672"
+        "legacy_catalog_v4::0315",
+        "the_nist_cybersecurity_framework_csf_2_0::0002"
       ],
       "decision": "KEEP_SEPARATE",
       "targetArtifactIds": [
-        "SG-CTR-CAT-0662",
-        "SG-CTR-CURATED-0672"
+        "SG-OBJ-CAT-0315",
+        "SG-OBJ-SRC-BDB571A69B30"
       ],
       "evidence": {
-        "statementTokenJaccard": 0.5556,
-        "titleTokenJaccard": 0.05,
+        "statementTokenJaccard": 0.9412,
+        "titleTokenJaccard": 0.8235,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0319",
+        "nist_csf_2_0::0006"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0641",
+        "SG-OBJ-SRC-FC830E995389"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9091,
+        "titleTokenJaccard": 0.2727,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0319",
+        "the_nist_cybersecurity_framework_csf_2_0::0006"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0641",
+        "SG-OBJ-SRC-FC830E995389"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9091,
+        "titleTokenJaccard": 0.9091,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0322",
+        "nist_csf_2_0::0009"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0322",
+        "SG-OBJ-SRC-DE959EEC902D"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 1.0,
+        "titleTokenJaccard": 0.2143,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0322",
+        "the_nist_cybersecurity_framework_csf_2_0::0009"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0322",
+        "SG-OBJ-SRC-DE959EEC902D"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 1.0,
+        "titleTokenJaccard": 0.9333,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0325",
+        "the_nist_cybersecurity_framework_csf_2_0::0012"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0647",
+        "SG-OBJ-SRC-25E663BFD025"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9375,
+        "titleTokenJaccard": 0.8125,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0329",
+        "the_nist_cybersecurity_framework_csf_2_0::0016"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0651",
+        "SG-OBJ-SRC-C6696FF4B637"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.8824,
+        "titleTokenJaccard": 0.7647,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0333",
+        "the_nist_cybersecurity_framework_csf_2_0::0020"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0655",
+        "SG-OBJ-SRC-C652A5E5C3B2"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9231,
+        "titleTokenJaccard": 0.9231,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0334",
+        "the_nist_cybersecurity_framework_csf_2_0::0021"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0334",
+        "SG-OBJ-SRC-571820FCD294"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9444,
+        "titleTokenJaccard": 0.8333,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0335",
+        "the_nist_cybersecurity_framework_csf_2_0::0022"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0657",
+        "SG-OBJ-SRC-6C52CCAEE31F"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.875,
+        "titleTokenJaccard": 0.75,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0336",
+        "the_nist_cybersecurity_framework_csf_2_0::0023"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0658",
+        "SG-OBJ-SRC-A435AE3CBB9F"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9333,
+        "titleTokenJaccard": 0.8,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0337",
+        "the_nist_cybersecurity_framework_csf_2_0::0024"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0659",
+        "SG-OBJ-SRC-680BCAAF8F06"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.875,
+        "titleTokenJaccard": 0.875,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0338",
+        "the_nist_cybersecurity_framework_csf_2_0::0025"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0338",
+        "SG-OBJ-SRC-D6EC41C92D13"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 1.0,
+        "titleTokenJaccard": 0.7619,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0339",
+        "the_nist_cybersecurity_framework_csf_2_0::0026"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0661",
+        "SG-OBJ-SRC-19871F47C7ED"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9474,
+        "titleTokenJaccard": 0.9474,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0340",
+        "the_nist_cybersecurity_framework_csf_2_0::0027"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0662",
+        "SG-OBJ-SRC-02B2C26C2EA2"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9091,
+        "titleTokenJaccard": 0.6818,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0341",
+        "the_nist_cybersecurity_framework_csf_2_0::0028"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0663",
+        "SG-OBJ-SRC-AA654E7902B1"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9333,
+        "titleTokenJaccard": 0.9333,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0342",
+        "the_nist_cybersecurity_framework_csf_2_0::0029"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0342",
+        "SG-OBJ-SRC-F6D620D4CCC1"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9565,
+        "titleTokenJaccard": 0.6522,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0343",
+        "the_nist_cybersecurity_framework_csf_2_0::0030"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0665",
+        "SG-OBJ-SRC-3B4AF5C75E7D"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9474,
+        "titleTokenJaccard": 0.8421,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0357",
+        "the_nist_cybersecurity_framework_csf_2_0::0044"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0679",
+        "SG-OBJ-SRC-0F256BDC2D66"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9167,
+        "titleTokenJaccard": 0.9167,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0358",
+        "the_nist_cybersecurity_framework_csf_2_0::0045"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0680",
+        "SG-OBJ-SRC-3C1CD17520A7"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9091,
+        "titleTokenJaccard": 0.9091,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0362",
+        "the_nist_cybersecurity_framework_csf_2_0::0049"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0362",
+        "SG-OBJ-SRC-78779C977606"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9412,
+        "titleTokenJaccard": 0.8824,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0364",
+        "the_nist_cybersecurity_framework_csf_2_0::0051"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0686",
+        "SG-OBJ-SRC-895677F41C77"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9333,
+        "titleTokenJaccard": 0.9333,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0366",
+        "nist_csf_2_0::0015"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0688",
+        "SG-OBJ-SRC-97903963AFD4"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9091,
+        "titleTokenJaccard": 0.2727,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0366",
+        "the_nist_cybersecurity_framework_csf_2_0::0053"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0688",
+        "SG-OBJ-SRC-97903963AFD4"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9091,
+        "titleTokenJaccard": 0.9091,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0369",
+        "the_nist_cybersecurity_framework_csf_2_0::0056"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0691",
+        "SG-OBJ-SRC-B309C206F5C1"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9,
+        "titleTokenJaccard": 0.65,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0373",
+        "nist_csf_2_0::0017"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0695",
+        "SG-OBJ-SRC-9B76B88FA6AB"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9,
+        "titleTokenJaccard": 0.3,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0373",
+        "nist_csf_2_0::0018"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0695",
+        "SG-OBJ-SRC-DF846A556D60"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.5833,
+        "titleTokenJaccard": 0.1818,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0373",
+        "the_nist_cybersecurity_framework_csf_2_0::0060"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0695",
+        "SG-OBJ-SRC-9B76B88FA6AB"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9,
+        "titleTokenJaccard": 0.9,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0373",
+        "the_nist_cybersecurity_framework_csf_2_0::0061"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0695",
+        "SG-OBJ-SRC-DF846A556D60"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.5833,
+        "titleTokenJaccard": 0.5833,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0373",
+        "the_nist_cybersecurity_framework_csf_2_0::0062"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0695",
+        "SG-OBJ-CAT-0375"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.5833,
+        "titleTokenJaccard": 0.5833,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0374",
+        "nist_csf_2_0::0017"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0696",
+        "SG-OBJ-SRC-9B76B88FA6AB"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.5833,
+        "titleTokenJaccard": 0.1818,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0374",
+        "nist_csf_2_0::0018"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0696",
+        "SG-OBJ-SRC-DF846A556D60"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9,
+        "titleTokenJaccard": 0.3,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0374",
+        "the_nist_cybersecurity_framework_csf_2_0::0060"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0696",
+        "SG-OBJ-SRC-9B76B88FA6AB"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.5833,
+        "titleTokenJaccard": 0.5833,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0374",
+        "the_nist_cybersecurity_framework_csf_2_0::0061"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0696",
+        "SG-OBJ-SRC-DF846A556D60"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9,
+        "titleTokenJaccard": 0.9,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0374",
+        "the_nist_cybersecurity_framework_csf_2_0::0062"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0696",
+        "SG-OBJ-CAT-0375"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.5833,
+        "titleTokenJaccard": 0.5833,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0375",
+        "nist_csf_2_0::0017"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0375",
+        "SG-OBJ-SRC-9B76B88FA6AB"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.6364,
+        "titleTokenJaccard": 0.2,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0375",
+        "nist_csf_2_0::0018"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0375",
+        "SG-OBJ-SRC-DF846A556D60"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.6364,
+        "titleTokenJaccard": 0.2,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0375",
+        "the_nist_cybersecurity_framework_csf_2_0::0060"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0375",
+        "SG-OBJ-SRC-9B76B88FA6AB"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.6364,
+        "titleTokenJaccard": 0.6364,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0375",
+        "the_nist_cybersecurity_framework_csf_2_0::0061"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0375",
+        "SG-OBJ-SRC-DF846A556D60"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.6364,
+        "titleTokenJaccard": 0.6364,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0379",
+        "the_nist_cybersecurity_framework_csf_2_0::0065"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0701",
+        "SG-OBJ-SRC-626DFAAA85BA"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.5833,
+        "titleTokenJaccard": 0.5833,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0379",
+        "the_nist_cybersecurity_framework_csf_2_0::0066"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0701",
+        "SG-OBJ-SRC-2DB029AC0385"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9,
+        "titleTokenJaccard": 0.9,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0383",
+        "the_nist_cybersecurity_framework_csf_2_0::0070"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0705",
+        "SG-OBJ-SRC-1B67A7A19753"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9091,
+        "titleTokenJaccard": 0.9091,
         "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
       },
       "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
@@ -6519,6 +8274,23 @@
       ],
       "evidence": {
         "statementTokenJaccard": 0.8182,
+        "titleTokenJaccard": 0.0,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0415",
+        "pci_dss_v4_0::0002"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-CTR-CAT-0415",
+        "SG-CTR-SRC-99AA0ACECF43"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.8333,
         "titleTokenJaccard": 0.0,
         "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
       },
@@ -12323,33 +14095,50 @@
     },
     {
       "rawIds": [
-        "legacy_catalog_v4::0652",
-        "securekit_curated_controls::0558"
+        "legacy_catalog_v4::0636",
+        "nist_csf_2_0::0001"
       ],
       "decision": "KEEP_SEPARATE",
       "targetArtifactIds": [
-        "SG-POL-CAT-0330",
-        "SG-POL-CURATED-0558"
+        "SG-OBJ-CAT-0314",
+        "SG-OBJ-SRC-F099FC7A51F0"
       ],
       "evidence": {
-        "statementTokenJaccard": 0.5909,
-        "titleTokenJaccard": 0.1111,
+        "statementTokenJaccard": 0.9333,
+        "titleTokenJaccard": 0.2143,
         "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
       },
       "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
     },
     {
       "rawIds": [
-        "legacy_catalog_v4::0654",
-        "securekit_curated_controls::0599"
+        "legacy_catalog_v4::0636",
+        "the_nist_cybersecurity_framework_csf_2_0::0001"
       ],
       "decision": "KEEP_SEPARATE",
       "targetArtifactIds": [
-        "SG-REQ-CAT-0332",
-        "SG-REQ-CURATED-0599"
+        "SG-OBJ-CAT-0314",
+        "SG-OBJ-SRC-F099FC7A51F0"
       ],
       "evidence": {
-        "statementTokenJaccard": 0.6471,
+        "statementTokenJaccard": 0.9333,
+        "titleTokenJaccard": 0.8667,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0637",
+        "nist_csf_2_0::0002"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0315",
+        "SG-OBJ-SRC-BDB571A69B30"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9412,
         "titleTokenJaccard": 0.2,
         "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
       },
@@ -12357,17 +14146,714 @@
     },
     {
       "rawIds": [
-        "legacy_catalog_v4::0662",
-        "securekit_curated_controls::0672"
+        "legacy_catalog_v4::0637",
+        "the_nist_cybersecurity_framework_csf_2_0::0002"
       ],
       "decision": "KEEP_SEPARATE",
       "targetArtifactIds": [
-        "SG-CTR-CAT-0662",
-        "SG-CTR-CURATED-0672"
+        "SG-OBJ-CAT-0315",
+        "SG-OBJ-SRC-BDB571A69B30"
       ],
       "evidence": {
-        "statementTokenJaccard": 0.5556,
-        "titleTokenJaccard": 0.05,
+        "statementTokenJaccard": 0.9412,
+        "titleTokenJaccard": 0.8235,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0641",
+        "nist_csf_2_0::0006"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0641",
+        "SG-OBJ-SRC-FC830E995389"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9091,
+        "titleTokenJaccard": 0.2727,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0641",
+        "the_nist_cybersecurity_framework_csf_2_0::0006"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0641",
+        "SG-OBJ-SRC-FC830E995389"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9091,
+        "titleTokenJaccard": 0.9091,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0644",
+        "nist_csf_2_0::0009"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0322",
+        "SG-OBJ-SRC-DE959EEC902D"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 1.0,
+        "titleTokenJaccard": 0.2143,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0644",
+        "the_nist_cybersecurity_framework_csf_2_0::0009"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0322",
+        "SG-OBJ-SRC-DE959EEC902D"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 1.0,
+        "titleTokenJaccard": 0.9333,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0647",
+        "the_nist_cybersecurity_framework_csf_2_0::0012"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0647",
+        "SG-OBJ-SRC-25E663BFD025"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9375,
+        "titleTokenJaccard": 0.8125,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0651",
+        "the_nist_cybersecurity_framework_csf_2_0::0016"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0651",
+        "SG-OBJ-SRC-C6696FF4B637"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.8824,
+        "titleTokenJaccard": 0.7647,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0655",
+        "the_nist_cybersecurity_framework_csf_2_0::0020"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0655",
+        "SG-OBJ-SRC-C652A5E5C3B2"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9231,
+        "titleTokenJaccard": 0.9231,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0656",
+        "the_nist_cybersecurity_framework_csf_2_0::0021"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0334",
+        "SG-OBJ-SRC-571820FCD294"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9444,
+        "titleTokenJaccard": 0.8333,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0657",
+        "the_nist_cybersecurity_framework_csf_2_0::0022"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0657",
+        "SG-OBJ-SRC-6C52CCAEE31F"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.875,
+        "titleTokenJaccard": 0.75,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0658",
+        "the_nist_cybersecurity_framework_csf_2_0::0023"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0658",
+        "SG-OBJ-SRC-A435AE3CBB9F"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9333,
+        "titleTokenJaccard": 0.8,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0659",
+        "the_nist_cybersecurity_framework_csf_2_0::0024"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0659",
+        "SG-OBJ-SRC-680BCAAF8F06"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.875,
+        "titleTokenJaccard": 0.875,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0660",
+        "the_nist_cybersecurity_framework_csf_2_0::0025"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0338",
+        "SG-OBJ-SRC-D6EC41C92D13"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 1.0,
+        "titleTokenJaccard": 0.7619,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0661",
+        "the_nist_cybersecurity_framework_csf_2_0::0026"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0661",
+        "SG-OBJ-SRC-19871F47C7ED"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9474,
+        "titleTokenJaccard": 0.9474,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0662",
+        "the_nist_cybersecurity_framework_csf_2_0::0027"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0662",
+        "SG-OBJ-SRC-02B2C26C2EA2"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9091,
+        "titleTokenJaccard": 0.6818,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0663",
+        "the_nist_cybersecurity_framework_csf_2_0::0028"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0663",
+        "SG-OBJ-SRC-AA654E7902B1"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9333,
+        "titleTokenJaccard": 0.9333,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0664",
+        "the_nist_cybersecurity_framework_csf_2_0::0029"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0342",
+        "SG-OBJ-SRC-F6D620D4CCC1"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9565,
+        "titleTokenJaccard": 0.6522,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0665",
+        "the_nist_cybersecurity_framework_csf_2_0::0030"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0665",
+        "SG-OBJ-SRC-3B4AF5C75E7D"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9474,
+        "titleTokenJaccard": 0.8421,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0679",
+        "the_nist_cybersecurity_framework_csf_2_0::0044"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0679",
+        "SG-OBJ-SRC-0F256BDC2D66"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9167,
+        "titleTokenJaccard": 0.9167,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0680",
+        "the_nist_cybersecurity_framework_csf_2_0::0045"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0680",
+        "SG-OBJ-SRC-3C1CD17520A7"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9091,
+        "titleTokenJaccard": 0.9091,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0684",
+        "the_nist_cybersecurity_framework_csf_2_0::0049"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0362",
+        "SG-OBJ-SRC-78779C977606"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9412,
+        "titleTokenJaccard": 0.8824,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0686",
+        "the_nist_cybersecurity_framework_csf_2_0::0051"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0686",
+        "SG-OBJ-SRC-895677F41C77"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9333,
+        "titleTokenJaccard": 0.9333,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0688",
+        "nist_csf_2_0::0015"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0688",
+        "SG-OBJ-SRC-97903963AFD4"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9091,
+        "titleTokenJaccard": 0.2727,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0688",
+        "the_nist_cybersecurity_framework_csf_2_0::0053"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0688",
+        "SG-OBJ-SRC-97903963AFD4"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9091,
+        "titleTokenJaccard": 0.9091,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0691",
+        "the_nist_cybersecurity_framework_csf_2_0::0056"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0691",
+        "SG-OBJ-SRC-B309C206F5C1"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9,
+        "titleTokenJaccard": 0.65,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0695",
+        "nist_csf_2_0::0017"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0695",
+        "SG-OBJ-SRC-9B76B88FA6AB"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9,
+        "titleTokenJaccard": 0.3,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0695",
+        "nist_csf_2_0::0018"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0695",
+        "SG-OBJ-SRC-DF846A556D60"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.5833,
+        "titleTokenJaccard": 0.1818,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0695",
+        "the_nist_cybersecurity_framework_csf_2_0::0060"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0695",
+        "SG-OBJ-SRC-9B76B88FA6AB"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9,
+        "titleTokenJaccard": 0.9,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0695",
+        "the_nist_cybersecurity_framework_csf_2_0::0061"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0695",
+        "SG-OBJ-SRC-DF846A556D60"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.5833,
+        "titleTokenJaccard": 0.5833,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0695",
+        "the_nist_cybersecurity_framework_csf_2_0::0062"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0695",
+        "SG-OBJ-CAT-0375"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.5833,
+        "titleTokenJaccard": 0.5833,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0696",
+        "nist_csf_2_0::0017"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0696",
+        "SG-OBJ-SRC-9B76B88FA6AB"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.5833,
+        "titleTokenJaccard": 0.1818,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0696",
+        "nist_csf_2_0::0018"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0696",
+        "SG-OBJ-SRC-DF846A556D60"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9,
+        "titleTokenJaccard": 0.3,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0696",
+        "the_nist_cybersecurity_framework_csf_2_0::0060"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0696",
+        "SG-OBJ-SRC-9B76B88FA6AB"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.5833,
+        "titleTokenJaccard": 0.5833,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0696",
+        "the_nist_cybersecurity_framework_csf_2_0::0061"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0696",
+        "SG-OBJ-SRC-DF846A556D60"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9,
+        "titleTokenJaccard": 0.9,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0696",
+        "the_nist_cybersecurity_framework_csf_2_0::0062"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0696",
+        "SG-OBJ-CAT-0375"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.5833,
+        "titleTokenJaccard": 0.5833,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0697",
+        "nist_csf_2_0::0017"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0375",
+        "SG-OBJ-SRC-9B76B88FA6AB"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.6364,
+        "titleTokenJaccard": 0.2,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0697",
+        "nist_csf_2_0::0018"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0375",
+        "SG-OBJ-SRC-DF846A556D60"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.6364,
+        "titleTokenJaccard": 0.2,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0697",
+        "the_nist_cybersecurity_framework_csf_2_0::0060"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0375",
+        "SG-OBJ-SRC-9B76B88FA6AB"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.6364,
+        "titleTokenJaccard": 0.6364,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0697",
+        "the_nist_cybersecurity_framework_csf_2_0::0061"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0375",
+        "SG-OBJ-SRC-DF846A556D60"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.6364,
+        "titleTokenJaccard": 0.6364,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0701",
+        "the_nist_cybersecurity_framework_csf_2_0::0065"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0701",
+        "SG-OBJ-SRC-626DFAAA85BA"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.5833,
+        "titleTokenJaccard": 0.5833,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0701",
+        "the_nist_cybersecurity_framework_csf_2_0::0066"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0701",
+        "SG-OBJ-SRC-2DB029AC0385"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9,
+        "titleTokenJaccard": 0.9,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "legacy_catalog_v4::0705",
+        "the_nist_cybersecurity_framework_csf_2_0::0070"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0705",
+        "SG-OBJ-SRC-1B67A7A19753"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9091,
+        "titleTokenJaccard": 0.9091,
         "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
       },
       "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
@@ -12533,7 +15019,7 @@
       "decision": "KEEP_SEPARATE",
       "targetArtifactIds": [
         "SG-OBJ-SRC-9B76B88FA6AB",
-        "SG-OBJ-SRC-FA38864BA6F9"
+        "SG-OBJ-CAT-0375"
       ],
       "evidence": {
         "statementTokenJaccard": 0.6364,
@@ -12567,7 +15053,7 @@
       "decision": "KEEP_SEPARATE",
       "targetArtifactIds": [
         "SG-OBJ-SRC-DF846A556D60",
-        "SG-OBJ-SRC-FA38864BA6F9"
+        "SG-OBJ-CAT-0375"
       ],
       "evidence": {
         "statementTokenJaccard": 0.6364,
@@ -12983,10 +15469,27 @@
         "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
       },
       "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
+    },
+    {
+      "rawIds": [
+        "securekit_curated_controls::0362",
+        "the_nist_cybersecurity_framework_csf_2_0::0056"
+      ],
+      "decision": "KEEP_SEPARATE",
+      "targetArtifactIds": [
+        "SG-OBJ-CAT-0691",
+        "SG-OBJ-SRC-B309C206F5C1"
+      ],
+      "evidence": {
+        "statementTokenJaccard": 0.9,
+        "titleTokenJaccard": 0.65,
+        "semanticCompatibility": "TYPE_DOMAIN_LEVEL_EXACT"
+      },
+      "rationale": "Lexical similarity is discovery evidence only; no authoritative crosswalk or source-identifier equivalence establishes that these separately scoped source statements are the same atomic security concept."
     }
   ],
   "counts": {
-    "CANONICALIZE": 184,
-    "KEEP_SEPARATE": 610
+    "CANONICALIZE": 228,
+    "KEEP_SEPARATE": 721
   }
 }

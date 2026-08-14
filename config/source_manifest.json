@@ -4,25 +4,25 @@
   "created_at": "2026-08-13T18:52:16Z",
   "corpus_root": "SecureGuide_Mobile_Docs/Raw_Catalogs",
   "hash_algorithm": "SHA-256",
-  "manifest_sha256": "a78b9acb22d702d3e2687597573cb685ccb2d0fe6c76fe5a449f5d0be912057e",
+  "manifest_sha256": "efcfc236659274f191b0abb1fe990623faf88f9e6a88724ee5cf1e4a33adcb23",
   "manifest_hash_scope": "SHA-256 of UTF-8 canonical JSON (sorted keys, compact separators, ensure_ascii=false) with manifest_sha256 set to null",
   "source_count": 23,
   "raw_record_count": 4265,
-  "total_bytes": 15461571,
+  "total_bytes": 15487652,
   "importer": {
     "name": "scripts/ingest_raw.py",
     "version": "sha256:efaa22d2658ba30eef47c203edac4662058d7acb36f36c7d0c90b22c9313908c"
   },
   "sources": [
     {
-      "id": "sim-legacy_catalog_v4-recovered-e7bebf047220",
+      "id": "sim-legacy_catalog_v4-recovered-ff684760b28b",
       "source_catalog_id": "legacy_catalog_v4",
       "source_document": "SecureGuide Legacy Catalog v4",
       "source_version": "4.1.0",
       "version_unknown_reason": null,
       "source_file": "SecureGuide_Mobile_Docs/Raw_Catalogs/legacy_catalog_v4_recovered.json",
-      "source_sha256": "e7bebf047220fcb044de0ee71971c4e540f098c9e103fa61a490456bb260230d",
-      "source_bytes": 5914750,
+      "source_sha256": "ff684760b28bef28dda3fad5db7ca523525cd7f2c9c56424d440bdb9d860ab64",
+      "source_bytes": 5940831,
       "retrieval_uri": null,
       "retrieved_at": null,
       "raw_record_count": 706

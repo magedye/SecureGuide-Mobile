@@ -15,7 +15,7 @@ sys.path.insert(0, str(ROOT))
 
 from scripts.build_release_db import _canonical_manifest_hash
 from scripts.rebuild_unified_equivalence import rebuild
-from scripts.validate_catalog_identity import scan as scan_identity
+from scripts.validate_catalog_identity import audit_database, scan as scan_identity
 from secureguide.catalog_validation import (
     file_hash,
     load_contract,
@@ -79,19 +79,8 @@ def validate_release(
                LEFT JOIN security_artifacts t ON t.id=r.target_id
                WHERE s.id IS NULL OR t.id IS NULL""",
         )
-        retired = "".join(chr(code) for code in (97, 109, 97, 110, 105))
-        active_identity_rows = sum(
-            _count(conn, query)
-            for query in (
-                f"SELECT COUNT(*) FROM security_artifacts WHERE lower(id) LIKE '%{retired}%'",
-                f"SELECT COUNT(*) FROM source_catalogs WHERE lower(id) LIKE '%{retired}%' OR lower(name) LIKE '%{retired}%'",
-                f"SELECT COUNT(*) FROM raw_artifacts WHERE lower(id) LIKE '%{retired}%' OR lower(source_catalog_id) LIKE '%{retired}%'",
-            )
-        )
-        tables = [row[0] for row in conn.execute(
-            "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name"
-        )]
-        active_identity_tables = sum(retired in str(name).lower() for name in tables)
+        identity_audit = audit_database(database)
+        active_identity_rows = len(identity_audit["ACTIVE_CURRENT"])
 
         query_started = time.perf_counter()
         for _ in range(50):
@@ -145,7 +134,7 @@ def validate_release(
     )
     v3_valid = (
         dangling_mappings == 0 and dangling_relationships == 0
-        and active_identity_rows == 0 and active_identity_tables == 0
+        and active_identity_rows == 0
         and not scan_identity() and len(equivalence) == equivalence_stats["groups"]
         and len(type_distribution) > 1 and len(domain_distribution) == 8
     )
@@ -167,7 +156,7 @@ def validate_release(
         "V3": {"valid": v3_valid, "danglingMappings": dangling_mappings,
                "danglingRelationships": dangling_relationships,
                "activeRetiredIdentityRows": active_identity_rows,
-               "activeRetiredIdentityTables": active_identity_tables,
+               "identityAudit": identity_audit,
                "equivalence": equivalence_stats, "typeDistribution": type_distribution,
                "domainDistribution": domain_distribution},
         "V4": {"valid": v4_valid, "manifestHashValid": manifest_hash_valid,
