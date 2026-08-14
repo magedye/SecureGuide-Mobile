@@ -1273,10 +1273,44 @@ class SecureGuideService:
             assessments = self.profiles.assessments(
                 conn, artifact["profile_artifact_id"]
             )
+            tags = [
+                dict(row)
+                for row in conn.execute(
+                    """SELECT tag_type,tag_value
+                         FROM artifact_tags
+                        WHERE artifact_id=?
+                        ORDER BY tag_type,tag_value""",
+                    (artifact_id,),
+                ).fetchall()
+            ]
+            mappings = [
+                dict(row)
+                for row in conn.execute(
+                    """SELECT framework,version,reference,category,
+                              mapping_strength,rationale
+                         FROM framework_mappings
+                        WHERE artifact_id=?
+                        ORDER BY framework,version,reference""",
+                    (artifact_id,),
+                ).fetchall()
+            ]
+            relationships = [
+                dict(row)
+                for row in conn.execute(
+                    """SELECT source_id,target_id,relation_type,description
+                         FROM artifact_relationships
+                        WHERE source_id=? OR target_id=?
+                        ORDER BY relation_type,source_id,target_id""",
+                    (artifact_id, artifact_id),
+                ).fetchall()
+            ]
         return {
             "profile_id": resolved,
             "artifact": artifact,
             "assessments": assessments,
+            "tags": tags,
+            "mappings": mappings,
+            "relationships": relationships,
         }
 
     def add_evidence(

@@ -81,7 +81,9 @@ def cmd_validate(args):
 # --------------------------------- plan ------------------------------------
 def build_plan(conn, valid, batch_id):
     items, excluded, conflicts = [], [], []
-    for r in conn.execute("SELECT * FROM staging_artifacts WHERE final_review_status IS NOT NULL ORDER BY id"):
+    for r in conn.execute(
+            "SELECT * FROM staging_artifacts "
+            "WHERE ready_for_promotion=1 OR final_review_status IS NOT NULL ORDER BY id"):
         if r['ready_for_promotion'] != 1:
             excluded.append({'staging_id': r['id'], 'reason': f"not ready ({r['final_review_status']})"})
             continue
@@ -121,8 +123,8 @@ def build_plan(conn, valid, batch_id):
                       'purposes': jc('proposed_control_purposes_json'), 'impl_types': jc('proposed_implementation_types_json'),
                       'maturity': jc('proposed_maturity_requirements_json'), 'verification': jc('proposed_verification_json'),
                       'threats': jc('proposed_threats_json'), 'platforms': jc('proposed_platforms_json'),
-                      'provenance': (json.loads(r['proposed_amani_provenance_json'])
-                                     if ('proposed_amani_provenance_json' in r.keys() and r['proposed_amani_provenance_json'])
+                      'provenance': (json.loads(r['proposed_legacy_provenance_json'])
+                                     if ('proposed_legacy_provenance_json' in r.keys() and r['proposed_legacy_provenance_json'])
                                      else None)})
     counts = {'insert': sum(1 for i in items if i['action'] == 'INSERT'),
               'skip': sum(1 for i in items if i['action'] == 'SKIP'),
@@ -211,6 +213,18 @@ def cmd_apply(args):
             d = derive_catalog_fields(conn, r, maps)
             def sg(k):  # safe staging get (enrichment cols may be absent on pre-007 rows)
                 return r[k] if k in r.keys() else None
+            review_evidenced = (
+                r['final_review_status'] in ('APPROVED', 'SPLIT_AND_APPROVED')
+                and bool(r['approved_by']) and bool(r['approved_at'])
+            )
+            needs_review = bool(r['requires_human_review']) or (
+                r['classification_confidence'] is not None
+                and r['classification_confidence'] <= 0.70
+            )
+            ai_review_status = (
+                'AIR-HUMAN-APPROVED' if review_evidenced
+                else ('AIR-HUMAN-REVIEW' if needs_review else 'AIR-AUTO-ACCEPTED')
+            )
             vals = {
                 'id': fid, 'source_catalog_id': d['source_catalog_id'], 'title_en': r['title_en'],
                 'title_ar': sg('title_ar'),
@@ -238,8 +252,10 @@ def cmd_apply(args):
                 'scoring_weight': sg('proposed_scoring_weight'), 'risk_reduction': sg('proposed_risk_reduction'),
                 'effort_level': sg('proposed_effort_level'), 'tier': sg('proposed_tier'),
                 'classification_confidence': r['classification_confidence'],
-                'classification_rationale': r['classification_rationale'], 'ai_review_status': 'AIR-HUMAN-APPROVED',
-                'requires_human_review': 0, 'publication_status': 'APPROVED',
+                'classification_rationale': r['classification_rationale'],
+                'ai_review_status': ai_review_status,
+                'requires_human_review': int(needs_review and not review_evidenced),
+                'publication_status': 'APPROVED',
                 'source_document': d['source_document'], 'is_active': 1,
             }
             cols = ','.join(CATALOG_COLS)
@@ -292,7 +308,7 @@ def cmd_apply(args):
             for st in verif.get('testing_steps', []):
                 conn.execute("INSERT INTO artifact_actions (artifact_id,kind,seq,text_en,text_ar) VALUES (?,'VERIFICATION',?,?,?)",
                              (fid, st['seq'], st['text_en'], st.get('text_ar')))
-            # ---- SADP dimensions: threats (§2.4/§3.1) + platforms + amani provenance ----
+            # ---- SADP dimensions: threats (§2.4/§3.1) + platforms + legacy provenance ----
             threats = [t.get('threat_code') if isinstance(t, dict) else t for t in it.get('threats', [])]
             threats = [t for t in dict.fromkeys(threats) if t]     # dedup, keep order
             if not threats:
@@ -304,10 +320,18 @@ def cmd_apply(args):
                 conn.execute("INSERT OR IGNORE INTO artifact_platforms (artifact_id,platform_code) VALUES (?,?)", (fid, pc))
             prov = it.get('provenance')
             if prov:
-                conn.execute("INSERT INTO catalog_amani_provenance (artifact_id,amani_id,amani_domain,amani_sub) VALUES (?,?,?,?)",
-                             (fid, prov.get('amani_id'), prov.get('amani_domain'), prov.get('amani_sub')))
+                # Historical payloads used source-branded keys.  The forward
+                # migration keeps the JSON value but the active API resolves
+                # it generically and writes only neutral schema names.
+                def legacy_value(suffix):
+                    return prov.get(f'legacy_{suffix}') or next(
+                        (value for key, value in prov.items() if key.endswith(f'_{suffix}')),
+                        None,
+                    )
+                conn.execute("INSERT INTO catalog_legacy_provenance (artifact_id,legacy_id,legacy_domain,legacy_sub) VALUES (?,?,?,?)",
+                             (fid, legacy_value('id'), legacy_value('domain'), legacy_value('sub')))
                 for a in dict.fromkeys(prov.get('assets') or []):
-                    conn.execute("INSERT OR IGNORE INTO catalog_amani_assets (artifact_id,asset_ref) VALUES (?,?)", (fid, a))
+                    conn.execute("INSERT OR IGNORE INTO catalog_legacy_assets (artifact_id,asset_ref) VALUES (?,?)", (fid, a))
             conn.execute("UPDATE staging_artifacts SET promoted_artifact_id=? WHERE id=?", (fid, it['staging_id']))
             conn.execute("""INSERT OR REPLACE INTO promotion_batch_items
                 (batch_id,staging_id,final_artifact_id,source_staging_hash,action,mappings_created,tags_created,relationships_created)
@@ -360,7 +384,7 @@ def cmd_rollback(args):
             for t in ('artifact_actions', 'artifact_variants', 'artifact_security_objectives',
                       'artifact_csf_functions', 'artifact_control_purposes', 'artifact_implementation_types',
                       'artifact_maturity_requirements', 'artifact_verification_evidence_types',
-                      'artifact_threats', 'artifact_platforms', 'catalog_amani_provenance', 'catalog_amani_assets'):
+                      'artifact_threats', 'artifact_platforms', 'catalog_legacy_provenance', 'catalog_legacy_assets'):
                 conn.execute(f"DELETE FROM {t} WHERE artifact_id=?", (fid,))
             conn.execute("DELETE FROM security_artifacts WHERE id=?", (fid,))
             conn.execute("UPDATE staging_artifacts SET promoted_artifact_id=NULL WHERE id=?", (it['staging_id'],))

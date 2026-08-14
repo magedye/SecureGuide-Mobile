@@ -162,8 +162,7 @@ def classify(raw):
                     conf += 0.10
                     break
     if ptype is None:
-        ptype = 'ART-CTR'
-        reasons.append("type defaulted to ART-CTR")
+        reasons.append("type unresolved; deferred without a default")
 
     # ---- domain / sub-domain ----
     psub = None
@@ -199,7 +198,7 @@ def classify(raw):
     st = (raw['source_type'] or '').upper()
     obligation = 'OBL-MND' if st in ('FRAMEWORK', 'STANDARD', 'REGULATION') else 'OBL-REC'
 
-    needs_review = 1 if (conf <= THRESHOLD or pdom is None or raw['is_ambiguous']) else 0
+    needs_review = 1 if (ptype is None or conf <= THRESHOLD or pdom is None or raw['is_ambiguous']) else 0
     status = 'NEEDS_REVIEW' if needs_review else 'CLASSIFIED'
     return {
         'proposed_type': ptype, 'proposed_abstraction_level': abs_level,
@@ -207,6 +206,7 @@ def classify(raw):
         'proposed_obligation_level': obligation, 'confidence': conf,
         'rationale': "First-pass heuristic: " + "; ".join(reasons) + ".",
         'requires_human_review': needs_review, 'curation_status': status,
+        'disposition': 'DEFERRED' if ptype is None else None,
     }
 
 

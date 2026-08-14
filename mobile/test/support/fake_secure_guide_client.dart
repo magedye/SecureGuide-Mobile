@@ -69,15 +69,15 @@ class FakeSecureGuideClient implements SecureGuideClient {
   Future<DashboardView> dashboard({String? profileId}) async => dashboardView;
 
   @override
-  Future<CatalogView> catalog({
-    String? profileId,
-    String? query,
+  Future<CatalogView> catalog(
+    CatalogFilter filter, {
     String locale = 'en',
     bool selectedOnly = false,
     int limit = 100,
     int offset = 0,
   }) async {
     var items = _catalogItems;
+    final query = filter.searchQuery;
     if (query != null && query.trim().isNotEmpty) {
       final needle = query.toLowerCase();
       items = items
@@ -123,6 +123,25 @@ class FakeSecureGuideClient implements SecureGuideClient {
   }
 
   @override
+  Future<TemplateView> templates() async => const TemplateView();
+
+  @override
+  Future<CatalogView> templateItems(
+    String templateId, {
+    int limit = 100,
+    int offset = 0,
+  }) async => const CatalogView();
+
+  @override
+  Future<ProfileSummary> applyTemplate(
+    String profileId,
+    String templateId, {
+    required String appliedBy,
+  }) async {
+    return ProfileSummary(id: profileId, name: 'Fake Profile');
+  }
+
+  @override
   Future<ProfileSummary> createProfile({
     required String name,
     String? profileKind,
@@ -150,6 +169,26 @@ class FakeSecureGuideClient implements SecureGuideClient {
       (p) => p.id == profileId,
       orElse: () => ProfileSummary(id: profileId, isActive: true),
     );
+  }
+
+  @override
+  Future<ProfileSummary> updateProfile(
+    String profileId, {
+    String? name,
+    String? profileKind,
+    String? organizationSize,
+    String? industry,
+    String? country,
+    String? targetMaturityLevel,
+    bool clearTargetMaturityLevel = false,
+    String? description,
+  }) async {
+    return _profiles.firstWhere((p) => p.id == profileId);
+  }
+
+  @override
+  Future<void> archiveProfile(String profileId) async {
+    // No-op for now
   }
 
   @override
@@ -268,5 +307,39 @@ class FakeSecureGuideClient implements SecureGuideClient {
       item['effectiveness'] = artifact.effectiveness;
     }
     return AssessmentResult(assessment: assessment, artifact: artifact);
+  }
+
+  @override
+  Future<BlueprintsView> blueprints(
+    String profileId, {
+    String? artifactId,
+  }) async {
+    return const BlueprintsView(blueprints: []);
+  }
+
+  @override
+  Future<BlueprintDetailView> blueprint(String blueprintId) async {
+    throw UnimplementedError(
+      'FakeSecureGuideClient does not implement blueprint',
+    );
+  }
+
+  @override
+  Future<TasksView> tasks(
+    String profileId, {
+    String? status,
+    String? assignedTo,
+  }) async {
+    return const TasksView(tasks: []);
+  }
+
+  @override
+  Future<void> updateTaskStatus(
+    String taskId,
+    String newStatus,
+    String note, {
+    required String actor,
+  }) async {
+    // No-op for now
   }
 }

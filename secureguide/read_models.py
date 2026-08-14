@@ -38,6 +38,9 @@ __all__ = [
     "RecommendationItem",
     "OperationalItem",
     "AssessmentRecord",
+    "ArtifactTag",
+    "FrameworkMapping",
+    "ArtifactRelationship",
     "CatalogItem",
     "BlueprintSummary",
     "BlueprintDetail",
@@ -192,6 +195,7 @@ class GapItem:
         return {
             "artifactId": g.get("artifact_id"),
             "titleEn": g.get("title_en"),
+            "titleAr": g.get("title_ar"),
             "primaryDomain": g.get("primary_domain"),
             "subDomain": g.get("sub_domain"),
             "priority": g.get("priority"),
@@ -298,6 +302,63 @@ class AssessmentRecord:
             "effectiveness": a.get("effectiveness"),
             "exceptionStatus": a.get("exception_status"),
             "comments": a.get("comments"),
+        }
+
+
+@dataclass(frozen=True)
+class ArtifactTag:
+    """One normalized USACM tag attached to a catalog artifact."""
+
+    raw: dict[str, Any]
+
+    @classmethod
+    def from_row(cls, row: dict[str, Any]) -> "ArtifactTag":
+        return cls(raw=row or {})
+
+    def to_wire(self) -> dict[str, Any]:
+        return {
+            "tagType": self.raw.get("tag_type"),
+            "tagValue": self.raw.get("tag_value"),
+        }
+
+
+@dataclass(frozen=True)
+class FrameworkMapping:
+    """Evidence-bearing framework crosswalk metadata."""
+
+    raw: dict[str, Any]
+
+    @classmethod
+    def from_row(cls, row: dict[str, Any]) -> "FrameworkMapping":
+        return cls(raw=row or {})
+
+    def to_wire(self) -> dict[str, Any]:
+        return {
+            "framework": self.raw.get("framework"),
+            "version": self.raw.get("version"),
+            "reference": self.raw.get("reference"),
+            "category": self.raw.get("category"),
+            "mappingStrength": self.raw.get("mapping_strength"),
+            "rationale": self.raw.get("rationale"),
+        }
+
+
+@dataclass(frozen=True)
+class ArtifactRelationship:
+    """A directional normalized relationship touching the artifact."""
+
+    raw: dict[str, Any]
+
+    @classmethod
+    def from_row(cls, row: dict[str, Any]) -> "ArtifactRelationship":
+        return cls(raw=row or {})
+
+    def to_wire(self) -> dict[str, Any]:
+        return {
+            "sourceId": self.raw.get("source_id"),
+            "targetId": self.raw.get("target_id"),
+            "relationType": self.raw.get("relation_type"),
+            "description": self.raw.get("description"),
         }
 
 
@@ -642,6 +703,18 @@ class ReadModel:
             assessments=[
                 AssessmentRecord.from_row(row).to_wire()
                 for row in data.get("assessments") or []
+            ],
+            tags=[
+                ArtifactTag.from_row(row).to_wire()
+                for row in data.get("tags") or []
+            ],
+            mappings=[
+                FrameworkMapping.from_row(row).to_wire()
+                for row in data.get("mappings") or []
+            ],
+            relationships=[
+                ArtifactRelationship.from_row(row).to_wire()
+                for row in data.get("relationships") or []
             ],
         )
 

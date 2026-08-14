@@ -58,7 +58,7 @@ HASH_FIELDS = [
     'proposed_maturity_requirements_json', 'proposed_verification_json',
     # --- SADP v1.0 (threat dimension, platforms, baseline priority, provenance) ---
     'proposed_threats_json', 'proposed_platforms_json', 'proposed_priority',
-    'proposed_amani_provenance_json',
+    'proposed_legacy_provenance_json',
 ]
 
 
@@ -261,19 +261,33 @@ def enrichment_blockers(row):
     return b
 
 
-def promotion_blockers(row, valid):
-    """Return a list of blocker strings. Empty list = promotable."""
+def strict_review_blockers(row):
+    """Return review/strict blockers without redefining catalog readiness."""
+    b = []
+    status = (row['final_review_status'] or '')
+    if status not in ('APPROVED', 'SPLIT_AND_APPROVED'):
+        b.append(f"final_review_status={status or 'NOT_REVIEWED'}")
+    elif not (row['approved_by'] and row['approved_at']):
+        b.append('human approval lacks approved_by/approved_at evidence')
+    if row['requires_human_review'] == 1:
+        b.append('requires_human_review=1')
+    if row['classification_confidence'] is not None and row['classification_confidence'] <= 0.70:
+        b.append('confidence <= 0.70')
+    return b
+
+
+def minimum_promotion_blockers(row, valid):
+    """Return structural catalog-entry blockers only.
+
+    Human review and strict conformance are reported independently and do not
+    prevent a structurally valid MINIMUM_VALID artifact from entering the
+    catalog.
+    """
     b = []
     if row['ready_for_promotion'] != 1:
         b.append('not ready_for_promotion')
-    if (row['final_review_status'] or '') not in ('APPROVED', 'SPLIT_AND_APPROVED'):
-        b.append(f"final_review_status={row['final_review_status']} (not approved)")
     if (row['curation_status'] or '') == 'REJECTED':
         b.append('curation_status REJECTED')
-    if row['requires_human_review'] == 1:
-        b.append('requires_human_review=1 (NEEDS_REVIEW must not be promoted)')
-    if row['classification_confidence'] is not None and row['classification_confidence'] <= 0.70:
-        b.append('confidence <= 0.70')
     existing = row['promotion_blockers']
     if existing:
         try:
@@ -363,6 +377,21 @@ def promotion_blockers(row, valid):
     # --- SADP v1.0 gate ---
     b.extend(sadp_blockers(row, valid))
     return b
+
+
+def promotion_blockers(row, valid):
+    """Backward-compatible name for the authoritative minimum entry gate."""
+    return minimum_promotion_blockers(row, valid)
+
+
+def promotion_assessment(row, valid):
+    """Expose the two independent promotion dimensions explicitly."""
+    minimum = minimum_promotion_blockers(row, valid)
+    strict = strict_review_blockers(row)
+    return {
+        'MINIMUM_CATALOG_VALIDATION': {'valid': not minimum, 'blockers': minimum},
+        'STRICT_USACM_CONFORMANCE': {'valid': not strict, 'blockers': strict},
+    }
 
 
 def sadp_blockers(row, valid):

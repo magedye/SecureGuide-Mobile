@@ -1,0 +1,56 @@
+{
+  "status": "COMPLETE",
+  "database": "catalog-curated.db",
+  "provenance": {
+    "manifestSha256": "c2f17de0e577aa14d1d1ed248b65c4d469f5b9dfe9795cd64ddbf9d248002722",
+    "manifestsWritten": 23,
+    "rightsWritten": 23,
+    "rawRowsLinked": 4265,
+    "missingManifestRows": 0,
+    "missingRightsRows": 0,
+    "unconfiguredCatalogs": [],
+    "sourceVerification": {
+      "valid": true,
+      "errors": [],
+      "sourceCount": 23,
+      "rawRecordCount": 4265,
+      "totalBytes": 15647049
+    }
+  },
+  "candidateCount": 1467,
+  "equivalenceGroupCount": 220,
+  "selectedProjectionCount": 1223,
+  "canonicalTotal": 1227,
+  "rawTotal": 4265,
+  "lineageRows": 1473,
+  "normalized": {
+    "frameworkMappings": 855,
+    "actions": 1024,
+    "tags": 0,
+    "relationships": 0
+  },
+  "dispositions": {
+    "DEFERRED": 2792,
+    "SUPPORTS_CANONICAL": 1473
+  },
+  "domains": {
+    "SD-01": 78,
+    "SD-02": 124,
+    "SD-03": 247,
+    "SD-04": 295,
+    "SD-05": 131,
+    "SD-06": 172,
+    "SD-07": 97,
+    "SD-08": 83
+  },
+  "selectionOverrides": [
+    {
+      "groupId": "EQG-SD-08.03-125",
+      "declaredCanonical": "STG-CURATED-0148",
+      "selectedCanonical": "STG-CURATED-0641",
+      "reason": "Declared canonical lacks type-required minimum fields; selected a structurally valid equivalent member."
+    }
+  ],
+  "equivalenceSha256": "518fa13e2d89923bca020f85b5c1d9d7a624186caf5015053519fd6a6b30cf32",
+  "reportSha256": "658eb06f12fa80f3de551bd6d53dd1ac408235c745b5c81f8ca7e5ada9d482cd"
+}

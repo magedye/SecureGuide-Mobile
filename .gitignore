@@ -3,8 +3,14 @@
 *.sqlite
 *.sqlite3
 
+# The checksum-pinned production source and offline mobile release seed are
+# governed release inputs/assets, not operational databases.
+!catalog.db
+!mobile/assets/catalog.db
+
 # ── Build outputs (regenerable via scripts/build_release_db.py) ──
 dist/
+outputs/
 
 # ── Python bytecode / caches ──
 __pycache__/

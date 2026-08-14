@@ -1,0 +1,121 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  catalog-and-python:
+    name: Catalog, migrations, and Python tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned catalog-curation dependencies
+        run: python -m pip install -r requirements-curation.txt
+      - name: Run Python test suite
+        run: python -m unittest discover -s tests -v
+      - name: Verify standalone mobile runtime boundary
+        run: python -m scripts.verify_mobile_runtime_boundary
+      - name: Verify embedded migration parity
+        run: |
+          python -m scripts.generate_mobile_migrations
+          git diff --exit-code -- mobile/lib/core/database/generated_migrations.dart
+      - name: Build governed release catalog
+        run: >-
+          python -m scripts.build_release_db
+          --mode release
+          --output "${RUNNER_TEMP}/secureguide-release.db"
+
+  mobile-test:
+    name: Flutter quality and tests
+    needs: catalog-and-python
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./mobile
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.41.1'
+          channel: stable
+          cache: true
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Verify generated localization parity
+        run: |
+          flutter gen-l10n
+          git diff --exit-code -- lib/l10n
+      - name: Check formatting
+        run: dart format --output=none --set-exit-if-changed lib test integration_test
+      - name: Analyze code
+        run: flutter analyze --fatal-infos --fatal-warnings
+      - name: Run tests
+        run: flutter test
+
+  android-build:
+    name: Android release compile
+    needs: mobile-test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./mobile
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: '17'
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.41.1'
+          channel: stable
+          cache: true
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Compile release APK
+        run: flutter build apk --release
+      - name: Upload Android compile artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: secureguide-android-release-compile
+          path: mobile/build/app/outputs/flutter-apk/*.apk
+          if-no-files-found: error
+
+  ios-build:
+    name: iOS release compile (unsigned)
+    needs: mobile-test
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: ./mobile
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.41.1'
+          channel: stable
+          cache: true
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Compile iOS release without code signing
+        run: flutter build ios --release --no-codesign
+      - name: Upload iOS compile artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: secureguide-ios-release-compile
+          path: mobile/build/ios/iphoneos/Runner.app
+          if-no-files-found: error

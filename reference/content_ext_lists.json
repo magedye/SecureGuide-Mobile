@@ -333,7 +333,7 @@
       "label_en": "Excellent"
     }
   ],
-  "amani_domain_alias": {
+  "legacy_domain_alias": {
     "identity_accounts": {
       "sdt_primary": "SD-03",
       "sdt_sub": "SD-03.02",

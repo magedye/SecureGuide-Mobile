@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:secureguide_mobile/l10n/app_localizations.dart';
 import 'package:secureguide_mobile/read_model_contract.dart';
 import 'package:secureguide_mobile/src/screens/assessment_screen.dart';
 
@@ -20,6 +21,9 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
+        locale: const Locale('ar'),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         home: AssessmentScreen(
           client: client,
           profileId: 'P-HQ',
@@ -30,8 +34,15 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Identity governance'), findsOneWidget);
+    await tester.tap(find.text('التقييم'));
+    await tester.pumpAndSettle();
     expect(find.byIcon(Icons.lock_outline), findsOneWidget);
-    final verticalScroll = find.byType(Scrollable).first;
+    final verticalScroll = find
+        .descendant(
+          of: find.byKey(const Key('assessmentScroll')),
+          matching: find.byType(Scrollable),
+        )
+        .first;
 
     final implementation = find.byType(DropdownButtonFormField<String>).at(0);
     await tester.tap(implementation);
@@ -80,6 +91,9 @@ void main() {
     );
     await tester.pumpWidget(
       MaterialApp(
+        locale: const Locale('ar'),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         home: AssessmentScreen(
           client: client,
           profileId: 'P-HQ',
@@ -89,7 +103,14 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    final verticalScroll = find.byType(Scrollable).first;
+    await tester.tap(find.text('التقييم'));
+    await tester.pumpAndSettle();
+    final verticalScroll = find
+        .descendant(
+          of: find.byKey(const Key('assessmentScroll')),
+          matching: find.byType(Scrollable),
+        )
+        .first;
     final assessor = find.byKey(const Key('assessmentAssessor'));
     await tester.scrollUntilVisible(assessor, 300, scrollable: verticalScroll);
     await tester.enterText(assessor, '');
@@ -99,10 +120,48 @@ void main() {
     final save = find.byKey(const Key('saveAssessment'));
     await tester.scrollUntilVisible(save, 300, scrollable: verticalScroll);
     await tester.tap(save);
-    await tester.pump();
+    await tester.pumpAndSettle();
 
     expect(find.text('اسم المقيّم مطلوب'), findsOneWidget);
     expect(find.text('أدخل درجة بين 0 و100'), findsOneWidget);
     expect(client.lastAssessment, isNull);
+  });
+
+  testWidgets('assessment workspace follows the English locale and LTR', (
+    tester,
+  ) async {
+    final profileArtifactJson = loadGolden('profile_artifact');
+    final artifactJson =
+        profileArtifactJson['artifact'] as Map<String, dynamic>;
+    artifactJson['titleAr'] = 'حوكمة الهوية';
+    artifactJson['definitionShortAr'] = 'تطبيق ضوابط حوكمة الهوية.';
+    final client = FakeSecureGuideClient(
+      dashboardView: DashboardView.fromJson(loadGolden('dashboard')),
+      profiles: ProfilesView.fromJson(loadGolden('profiles')).profiles,
+      profileArtifactView: ProfileArtifactView.fromJson(profileArtifactJson),
+    );
+
+    await tester.pumpWidget(
+      MaterialApp(
+        locale: const Locale('en'),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: AssessmentScreen(
+          client: client,
+          profileId: 'P-HQ',
+          artifactId: 'A-IDENTITY',
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('Artifact details'), findsOneWidget);
+    expect(find.text('Assessment'), findsOneWidget);
+    expect(find.text('Identity governance'), findsOneWidget);
+    expect(find.text('حوكمة الهوية'), findsNothing);
+    expect(
+      Directionality.of(tester.element(find.byType(AssessmentScreen))),
+      TextDirection.ltr,
+    );
   });
 }

@@ -1,0 +1,151 @@
+name: Android signed release candidate
+
+on:
+  workflow_dispatch:
+    inputs:
+      application_id:
+        description: Owner-approved Android application ID
+        required: true
+        type: string
+      version_name:
+        description: Release version, for example 1.0.0
+        required: true
+        type: string
+      build_number:
+        description: Strictly increasing positive Android version code
+        required: true
+        type: number
+
+permissions:
+  contents: read
+
+jobs:
+  signed-android-candidate:
+    name: Build and verify signed Android candidate
+    runs-on: ubuntu-latest
+    environment: release-signing
+    env:
+      SECUREGUIDE_APPLICATION_ID: ${{ inputs.application_id }}
+      SECUREGUIDE_REQUIRE_RELEASE_SIGNING: 'true'
+      SECUREGUIDE_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+      SECUREGUIDE_ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+      SECUREGUIDE_ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+      ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate release identity and secret presence
+        env:
+          RELEASE_VERSION_NAME: ${{ inputs.version_name }}
+          RELEASE_BUILD_NUMBER: ${{ inputs.build_number }}
+        run: |
+          python - <<'PY'
+          import os
+          import re
+
+          application_id = os.environ["SECUREGUIDE_APPLICATION_ID"]
+          version = os.environ["RELEASE_VERSION_NAME"]
+          build = os.environ["RELEASE_BUILD_NUMBER"]
+          if application_id.startswith("com.example."):
+              raise SystemExit("Owner-approved application ID must replace com.example.*")
+          if not re.fullmatch(r"[A-Za-z][A-Za-z0-9_]*(\.[A-Za-z][A-Za-z0-9_]*)+", application_id):
+              raise SystemExit("Invalid Android application ID")
+          component = r"(?:0|[1-9][0-9]*)"
+          if not re.fullmatch(rf"{component}\.{component}\.{component}", version):
+              raise SystemExit("version_name must contain exactly three numeric components")
+          if not build.isdigit() or int(build) < 1:
+              raise SystemExit("build_number must be a positive integer")
+          required = (
+              "ANDROID_KEYSTORE_BASE64",
+              "SECUREGUIDE_ANDROID_KEYSTORE_PASSWORD",
+              "SECUREGUIDE_ANDROID_KEY_ALIAS",
+              "SECUREGUIDE_ANDROID_KEY_PASSWORD",
+          )
+          missing = [name for name in required if not os.environ.get(name)]
+          if missing:
+              raise SystemExit("Missing protected release secrets: " + ", ".join(missing))
+          PY
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: '17'
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.41.1'
+          channel: stable
+          cache: true
+      - name: Materialize protected upload keystore
+        run: |
+          python - <<'PY'
+          import base64
+          import os
+          from pathlib import Path
+
+          destination = Path(os.environ["RUNNER_TEMP"]) / "secureguide-upload.jks"
+          try:
+              payload = base64.b64decode(os.environ["ANDROID_KEYSTORE_BASE64"], validate=True)
+          except Exception as exc:
+              raise SystemExit("ANDROID_KEYSTORE_BASE64 is not valid base64") from exc
+          if not payload:
+              raise SystemExit("Decoded keystore is empty")
+          destination.write_bytes(payload)
+          destination.chmod(0o600)
+          with Path(os.environ["GITHUB_ENV"]).open("a", encoding="utf-8") as output:
+              output.write(f"SECUREGUIDE_ANDROID_KEYSTORE_PATH={destination}\n")
+          PY
+      - name: Run fail-closed release gates
+        run: |
+          python -m unittest discover -s tests -v
+          python -m scripts.verify_mobile_runtime_boundary
+          python -m scripts.generate_mobile_migrations
+          git diff --exit-code -- mobile/lib/core/database/generated_migrations.dart
+          python -m scripts.build_release_db --mode release --output mobile/assets/catalog.db
+      - name: Run Flutter quality gates
+        working-directory: mobile
+        run: |
+          flutter pub get
+          flutter gen-l10n
+          git diff --exit-code -- lib/l10n
+          dart format --output=none --set-exit-if-changed lib test integration_test
+          flutter analyze --fatal-infos --fatal-warnings
+          flutter test
+      - name: Build signed APK and app bundle
+        working-directory: mobile
+        run: |
+          flutter build apk --release --build-name '${{ inputs.version_name }}' --build-number '${{ inputs.build_number }}'
+          flutter build appbundle --release --build-name '${{ inputs.version_name }}' --build-number '${{ inputs.build_number }}'
+      - name: Verify signatures, identity, version, and hashes
+        working-directory: mobile
+        env:
+          RELEASE_VERSION_NAME: ${{ inputs.version_name }}
+          RELEASE_BUILD_NUMBER: ${{ inputs.build_number }}
+        run: |
+          set -euo pipefail
+          mkdir -p build/release-evidence
+          apk='build/app/outputs/flutter-apk/app-release.apk'
+          aab='build/app/outputs/bundle/release/app-release.aab'
+          apksigner="$(find "${ANDROID_SDK_ROOT}/build-tools" -type f -name apksigner | sort -V | tail -n 1)"
+          apkanalyzer="${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/apkanalyzer"
+          test -x "${apksigner}"
+          test -x "${apkanalyzer}"
+          "${apksigner}" verify --verbose --print-certs "${apk}" | tee build/release-evidence/apk-signature.txt
+          jarsigner -verify -strict -certs "${aab}" | tee build/release-evidence/aab-signature.txt
+          test "$("${apkanalyzer}" manifest application-id "${apk}")" = "${SECUREGUIDE_APPLICATION_ID}"
+          test "$("${apkanalyzer}" manifest version-name "${apk}")" = "${RELEASE_VERSION_NAME}"
+          test "$("${apkanalyzer}" manifest version-code "${apk}")" = "${RELEASE_BUILD_NUMBER}"
+          sha256sum "${apk}" "${aab}" | tee build/release-evidence/SHA256SUMS
+      - name: Upload verified signed candidate
+        uses: actions/upload-artifact@v4
+        with:
+          name: secureguide-android-${{ inputs.version_name }}-${{ inputs.build_number }}
+          path: |
+            mobile/build/app/outputs/flutter-apk/app-release.apk
+            mobile/build/app/outputs/bundle/release/app-release.aab
+            mobile/build/release-evidence/
+          if-no-files-found: error
+          retention-days: 30

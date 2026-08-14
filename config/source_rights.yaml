@@ -1,0 +1,380 @@
+schema_version: 1
+rights_manifest_id: secureguide-source-rights-v1
+created_at: "2026-08-13T18:52:16Z"
+policy:
+  allowed_statuses:
+    - ALLOWED
+    - RESTRICTED
+    - UNKNOWN
+  default_redistribution_status: UNKNOWN
+  default_ship_raw_text: false
+  rule: Raw source text may ship only when an explicit, versioned ALLOWED decision is supported by recorded rights evidence.
+rights:
+  - id: srv-legacy_catalog_v4-v1
+    source_catalog_id: legacy_catalog_v4
+    source_version: "4.1.0"
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: Recovered internal working-database evidence preserves the source records, but no exact-version raw-text redistribution grant is recorded; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true
+  - id: srv-cis_controls_v8-v1
+    source_catalog_id: cis_controls_v8
+    source_version: UNKNOWN
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: No repository evidence establishes raw-text redistribution permission for this exact pinned source input; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true
+  - id: srv-cis_linux_unix_benchmarks-v1
+    source_catalog_id: cis_linux_unix_benchmarks
+    source_version: UNKNOWN
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: No repository evidence establishes raw-text redistribution permission for this exact pinned source input; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true
+  - id: srv-enterprise_infrastructure_benchmarks-v1
+    source_catalog_id: enterprise_infrastructure_benchmarks
+    source_version: UNKNOWN
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: No repository evidence establishes raw-text redistribution permission for this exact pinned source input; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true
+  - id: srv-essential_cybersecurity_controls_ecc_2_2024-v1
+    source_catalog_id: essential_cybersecurity_controls_ecc_2_2024
+    source_version: ECC 2-2024
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: No repository evidence establishes raw-text redistribution permission for this exact pinned source input; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true
+  - id: srv-iso_27002_2022-v1
+    source_catalog_id: iso_27002_2022
+    source_version: UNKNOWN
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: No repository evidence establishes raw-text redistribution permission for this exact pinned source input; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true
+  - id: srv-microsoft_security_best_practices-v1
+    source_catalog_id: microsoft_security_best_practices
+    source_version: UNKNOWN
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: No repository evidence establishes raw-text redistribution permission for this exact pinned source input; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true
+  - id: srv-mitre_atlas-v1
+    source_catalog_id: mitre_atlas
+    source_version: "1.0"
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: No repository evidence establishes raw-text redistribution permission for this exact pinned source input; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true
+  - id: srv-mitre_att_ck_enterprise-v1
+    source_catalog_id: mitre_att_ck_enterprise
+    source_version: "19.1"
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: No repository evidence establishes raw-text redistribution permission for this exact pinned source input; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true
+  - id: srv-mitre_att_ck_v14-v1
+    source_catalog_id: mitre_att_ck_v14
+    source_version: UNKNOWN
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: No repository evidence establishes raw-text redistribution permission for this exact pinned source input; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true
+  - id: srv-nca_ecc_1_2018-v1
+    source_catalog_id: nca_ecc_1_2018
+    source_version: UNKNOWN
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: No repository evidence establishes raw-text redistribution permission for this exact pinned source input; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true
+  - id: srv-nist_ai_rmf_1_0-v1
+    source_catalog_id: nist_ai_rmf_1_0
+    source_version: "1.0"
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: No repository evidence establishes raw-text redistribution permission for this exact pinned source input; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true
+  - id: srv-nist_csf_2_0-v1
+    source_catalog_id: nist_csf_2_0
+    source_version: UNKNOWN
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: No repository evidence establishes raw-text redistribution permission for this exact pinned source input; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true
+  - id: srv-nist_sp_800_115_security_testing-v1
+    source_catalog_id: nist_sp_800_115_security_testing
+    source_version: UNKNOWN
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: No repository evidence establishes raw-text redistribution permission for this exact pinned source input; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true
+  - id: srv-nist_sp_800_124_rev_2-v1
+    source_catalog_id: nist_sp_800_124_rev_2
+    source_version: UNKNOWN
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: No repository evidence establishes raw-text redistribution permission for this exact pinned source input; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true
+  - id: srv-nist_sp_800_53_rev_5-v1
+    source_catalog_id: nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations
+    source_version: Release 5.2.0
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: No repository evidence establishes raw-text redistribution permission for this exact pinned source input; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true
+  - id: srv-owasp_asvs_5_0_0-v1
+    source_catalog_id: owasp_application_security_verification_standard_5_0_0
+    source_version: "5.0.0"
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: No repository evidence establishes raw-text redistribution permission for this exact pinned source input; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true
+  - id: srv-owasp_masvs_v2_0-v1
+    source_catalog_id: owasp_masvs_v2_0
+    source_version: UNKNOWN
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: No repository evidence establishes raw-text redistribution permission for this exact pinned source input; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true
+  - id: srv-owasp_top_10_llms_v1_1-v1
+    source_catalog_id: owasp_top_10_llms_v1_1
+    source_version: UNKNOWN
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: No repository evidence establishes raw-text redistribution permission for this exact pinned source input; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true
+  - id: srv-pci_dss_v4_0-v1
+    source_catalog_id: pci_dss_v4_0
+    source_version: UNKNOWN
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: No repository evidence establishes raw-text redistribution permission for this exact pinned source input; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true
+  - id: srv-sans_security_policy_templates-v1
+    source_catalog_id: sans_security_policy_templates
+    source_version: UNKNOWN
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: No repository evidence establishes raw-text redistribution permission for this exact pinned source input; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true
+  - id: srv-securekit_curated_controls-v1
+    source_catalog_id: securekit_curated_controls
+    source_version: "1"
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: No repository evidence establishes raw-text redistribution permission for this exact pinned source input; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true
+  - id: srv-the_nist_csf_2_0-v1
+    source_catalog_id: the_nist_cybersecurity_framework_csf_2_0
+    source_version: "2.0"
+    rights_version: "1"
+    redistribution_status: UNKNOWN
+    ship_raw_text: false
+    license_identifier: null
+    terms_url: null
+    evidence_sha256: null
+    evidence_retrieved_at: null
+    attribution_text: null
+    decision_reason: No repository evidence establishes raw-text redistribution permission for this exact pinned source input; fail-closed owner policy requires exclusion.
+    decided_by: SecureGuide owner policy
+    decided_at: "2026-08-13T18:52:16Z"
+    supersedes_id: null
+    is_current: true

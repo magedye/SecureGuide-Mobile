@@ -10,18 +10,18 @@ The project goal is to build an offline-first security knowledge and assessment 
 
 The main source of truth is:
 
-1. `D:\APP\secure-guide\New folder\SecureGuide_Mobile_Docs\USACM_v2.2.1_Unified_Security_Artifact_Classification_Model.md`
-2. `D:\APP\secure-guide\New folder\SecureGuide_Mobile_Docs\SDT_v2.2.1_Security_Domain_Taxonomy.md`
+1. `SecureGuide_Mobile_Docs/USACM_v2.2.1_Unified_Security_Artifact_Classification_Model.md`
+2. `SecureGuide_Mobile_Docs/SDT_v2.2.1_Security_Domain_Taxonomy.md`
 
 The primary architectural guides are:
-3. `D:\APP\secure-guide\New folder\SecureGuide_Mobile_Docs\00_Executive_Summary_and_Vision.md`
-4. `D:\APP\secure-guide\New folder\PROJECT_VISION.md`
+3. `SecureGuide_Mobile_Docs/00_Executive_Summary_and_Vision.md`
+4. `PROJECT_VISION.md`
 
 The normative policy for writing and formatting artifact content is:
-5. `D:\APP\secure-guide\New folder\docs\AUTHORING_POLICY.md`
+5. `docs/AUTHORING_POLICY.md`
 
 The normative project policy for selecting and distinguishing artifact types is:
-6. `D:\APP\secure-guide\New folder\docs\ARTIFACT_TYPE_POLICY.md`
+6. `docs/ARTIFACT_TYPE_POLICY.md`
 
 This policy is subordinate to USACM v2.2.1 and must not introduce additional `ART-*` values.
 
@@ -67,6 +67,10 @@ Must be profile-specific:
 If a USACM baseline table contains operational fields in `security_artifacts`, treat them as default or reference fields only when building SecureGuide profiles. Never let them replace profile-specific state.
 
 ### 2. Do Not Treat All Items As Controls
+
+In Arabic user-facing conversation, **الضوابط** is the agreed umbrella term for
+all catalog artifacts. It does not change the stored USACM `type`: only
+`ART-CTR` is a Security Control in the classification model.
 
 Every imported item must be classified by `type`.
 
@@ -572,3 +576,12 @@ If fewer than three valid options genuinely exist because of safety, compliance,
 SecureGuide should be extensible because the model is disciplined, not because the code accepts anything.
 
 When in doubt, preserve source lineage, validate against USACM and SDT, store uncertainty explicitly, and route ambiguous decisions to human review.
+
+## Specification-Driven Development (Spec Kit) Governance
+
+1. **Spec Kit Governs Execution**: GitHub Spec Kit governs feature execution. The active feature `spec.md`, `plan.md`, and `tasks.md` located in `specs/` are authoritative.
+2. **Constitution is Mandatory**: Principles in `.specify/memory/constitution.md` are non-negotiable.
+3. **Autonomous Execution**: Agents should continue documented tasks autonomously in dependency order.
+4. **Complete the Loop**: Agents should implement, test, verify, update task status, and continue.
+5. **Autonomy on Routine Decisions**: Routine implementation decisions do not require user approval.
+6. **When to Stop**: Agents stop only for genuine product-level ambiguity, destructive irreversible actions requiring authorization, or unavoidable external dependencies.

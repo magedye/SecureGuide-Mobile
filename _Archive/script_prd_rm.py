@@ -1,6 +1,7 @@
 import os
 
-folder = r'D:\APP\secure-guide\New folder\SecureGuide_Mobile_Docs'
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+folder = os.path.join(project_root, 'SecureGuide_Mobile_Docs')
 prd_file = os.path.join(folder, '01_Product_Requirements_Document_PRD.md')
 rm_file = os.path.join(folder, '06_Implementation_Plan_and_Roadmap.md')
 

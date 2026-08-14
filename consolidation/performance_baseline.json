@@ -1,0 +1,182 @@
+{
+  "status": "QUALIFIED",
+  "qualified": true,
+  "mode": "qualification",
+  "source": {
+    "path": "dist/candidate-a.db",
+    "sha256": "51e940debba2c7c664e779dd27f9b478b253068b784b553bc8d31deedf05be35",
+    "schemaVersion": 33,
+    "approvedActiveArtifacts": 1227,
+    "rawArtifacts": 4265
+  },
+  "population": {
+    "requiredArtifacts": 1000,
+    "actualArtifacts": 1227,
+    "sufficient": true,
+    "catalogRowsDuplicated": 0,
+    "temporaryProfileSelections": 1227
+  },
+  "environment": {
+    "python": "3.12.10",
+    "sqlite": "3.49.1",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "targetProfile": {
+    "id": "WINDOWS-HOST-SQLITE-QUALIFICATION-V1",
+    "kind": "host-regression",
+    "operatingSystem": "Windows 11",
+    "runtime": "CPython 3.12 + bundled sqlite3",
+    "storage": "local workspace filesystem",
+    "note": "Reproducible host qualification profile; physical Android/iOS rendering remains a separate device acceptance activity."
+  },
+  "iterations": {
+    "warmup": 5,
+    "samples": 30
+  },
+  "thresholdsMs": {
+    "catalogSearchP95": 250,
+    "profileDashboardP95": 500,
+    "htmlReportP95": 1500
+  },
+  "thresholdResults": {
+    "catalogSearch": true,
+    "profileDashboard": true,
+    "htmlReport": true
+  },
+  "measurements": {
+    "catalogSearch": {
+      "samples": 30,
+      "minMs": 39.464,
+      "p50Ms": 49.743,
+      "p95Ms": 67.251,
+      "maxMs": 84.318
+    },
+    "profileDashboard": {
+      "samples": 30,
+      "minMs": 138.602,
+      "p50Ms": 245.472,
+      "p95Ms": 439.803,
+      "maxMs": 716.552
+    },
+    "htmlReport": {
+      "samples": 30,
+      "minMs": 209.206,
+      "p50Ms": 294.115,
+      "p95Ms": 509.737,
+      "maxMs": 798.502
+    }
+  },
+  "startup": {
+    "samples": 30,
+    "minMs": 18.332,
+    "p50Ms": 22.274,
+    "p95Ms": 39.496,
+    "maxMs": 67.317
+  },
+  "databaseSize": {
+    "bytes": 10563584,
+    "baselineBytes": 10563584
+  },
+  "memory": {
+    "currentBytes": 21020,
+    "peakBytes": 4330599
+  },
+  "migration": {
+    "status": "MEASURED",
+    "durationMs": 9124.935,
+    "oldArtifactCount": 4,
+    "newArtifactCount": 1227,
+    "operationalSnapshotPreserved": true
+  },
+  "integrityValidation": {
+    "durationMs": 665.277,
+    "integrityCheck": "ok",
+    "foreignKeyViolations": 0
+  },
+  "queryPlans": {
+    "catalogSearch": [
+      "SCAN a",
+      "SEARCH loc USING INDEX sqlite_autoindex_artifact_localizations_1 (artifact_id=? AND locale=?) LEFT-JOIN",
+      "CORRELATED SCALAR SUBQUERY 1",
+      "SEARCH tag USING COVERING INDEX sqlite_autoindex_artifact_tags_1 (artifact_id=?)",
+      "SEARCH pa USING INDEX sqlite_autoindex_profile_artifacts_2 (profile_id=? AND artifact_id=?) LEFT-JOIN",
+      "USE TEMP B-TREE FOR ORDER BY"
+    ],
+    "profileDashboard": [
+      "CO-ROUTINE v_profile_dashboard",
+      "SEARCH p USING INDEX sqlite_autoindex_enterprise_profiles_1 (id=?)",
+      "SCAN pa LEFT-JOIN",
+      "SCAN v_profile_dashboard",
+      "SCAN pa",
+      "SEARCH a USING INDEX sqlite_autoindex_security_artifacts_1 (id=?)"
+    ],
+    "htmlReport": [
+      "SEARCH pa USING INDEX sqlite_autoindex_profile_artifacts_2 (profile_id=?)",
+      "SEARCH a USING INDEX sqlite_autoindex_security_artifacts_1 (id=?)",
+      "CORRELATED SCALAR SUBQUERY 3",
+      "SEARCH e USING COVERING INDEX idx_prof_evidence_pa (profile_artifact_id=?)",
+      "CORRELATED SCALAR SUBQUERY 4",
+      "SEARCH x USING COVERING INDEX idx_prof_assess_pa (profile_artifact_id=?)",
+      "CORRELATED SCALAR SUBQUERY 5",
+      "SEARCH o USING COVERING INDEX idx_profile_artifact_origins_pa (profile_artifact_id=?)",
+      "SEARCH pa USING INDEX sqlite_autoindex_profile_artifacts_2 (profile_id=?)",
+      "SEARCH a USING INDEX sqlite_autoindex_security_artifacts_1 (id=?)",
+      "USE TEMP B-TREE FOR ORDER BY",
+      "SEARCH t USING INDEX idx_profile_tasks_work_queue (profile_id=?)",
+      "SEARCH b USING INDEX sqlite_autoindex_approved_blueprints_1 (id=?)",
+      "SEARCH a USING INDEX sqlite_autoindex_profile_artifacts_1 (id=?)",
+      "SEARCH sa USING INDEX sqlite_autoindex_security_artifacts_1 (id=?)"
+    ]
+  },
+  "limitations": [
+    "Host-side regression benchmark; device rendering and PDF rasterization are not measured.",
+    "SMOKE_ONLY is not release-catalog performance qualification."
+  ],
+  "baselineComparison": {
+    "status": "COMPARED",
+    "baselineId": "WINDOWS-HOST-BASELINE-2026-08-13-RC1",
+    "comparisons": {
+      "catalogSearchP95Ms": {
+        "baseline": 49.457,
+        "observed": 67.251,
+        "deltaPercent": 35.979
+      },
+      "profileDashboardP95Ms": {
+        "baseline": 377.698,
+        "observed": 439.803,
+        "deltaPercent": 16.443
+      },
+      "htmlReportP95Ms": {
+        "baseline": 382.746,
+        "observed": 509.737,
+        "deltaPercent": 33.179
+      },
+      "startupP95Ms": {
+        "baseline": 95.203,
+        "observed": 39.496,
+        "deltaPercent": -58.514
+      },
+      "databaseSizeBytes": {
+        "baseline": 10563584,
+        "observed": 10563584,
+        "deltaPercent": 0.0
+      },
+      "memoryPeakBytes": {
+        "baseline": 4330599,
+        "observed": 4330599,
+        "deltaPercent": 0.0
+      },
+      "catalogUpgradeDurationMs": {
+        "baseline": 5122.424,
+        "observed": 9124.935,
+        "deltaPercent": 78.137
+      },
+      "integrityDurationMs": {
+        "baseline": 406.927,
+        "observed": 665.277,
+        "deltaPercent": 63.488
+      }
+    }
+  },
+  "reportSha256": "012e7c7b0fe26b8a129074d78599fc8a724ba48ed056ca8f73b1a40c836765af"
+}

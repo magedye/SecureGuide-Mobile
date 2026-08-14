@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "source_baseline": "unified/production_baseline.json",
+  "reproducible_build_timestamp_utc": "2026-07-01T00:00:00Z",
+  "templates": [
+    {
+      "id": "TPL-GOVERNED-STARTER-2026-07",
+      "name": "SecureGuide Governed Starter Baseline",
+      "description": "A traceable starter selection containing only independently reviewed and promoted catalog artifacts.",
+      "version": "2026.07.1",
+      "scope_note": "Starter assessment for asset and software inventory governance; tailor applicability in each enterprise profile.",
+      "category": "GOVERNED_STARTER",
+      "items": [
+        {
+          "id": "TPI-GOV-001",
+          "artifact_id": "SG-CTR-AI-02",
+          "inclusion_status": "RECOMMENDED",
+          "inclusion_reason": "Maintain an accurate and current enterprise asset inventory.",
+          "priority_override": "PRI-HIGH",
+          "review_frequency_override": "MONTHLY"
+        },
+        {
+          "id": "TPI-GOV-002",
+          "artifact_id": "SG-CTR-AI-05",
+          "inclusion_status": "RECOMMENDED",
+          "inclusion_reason": "Detect assets that are not authorized for the assessed scope.",
+          "priority_override": "PRI-HIGH",
+          "review_frequency_override": "CONTINUOUS"
+        },
+        {
+          "id": "TPI-GOV-003",
+          "artifact_id": "SG-REQ-AI-06",
+          "inclusion_status": "RECOMMENDED",
+          "inclusion_reason": "Establish the required software inventory outcome for the assessed scope.",
+          "priority_override": "PRI-HIGH",
+          "review_frequency_override": "MONTHLY"
+        },
+        {
+          "id": "TPI-GOV-004",
+          "artifact_id": "SG-POL-AI-08",
+          "inclusion_status": "RECOMMENDED",
+          "inclusion_reason": "Include the approved acceptable-use policy artifact as a governance foundation.",
+          "priority_override": "PRI-MEDIUM",
+          "review_frequency_override": "ANNUAL"
+        }
+      ]
+    }
+  ]
+}

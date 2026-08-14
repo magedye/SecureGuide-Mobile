@@ -164,6 +164,7 @@
     {
       "artifactId": "A-BACKUP",
       "titleEn": "Backup restoration",
+      "titleAr": null,
       "primaryDomain": "SD-07",
       "subDomain": "SD-07.03",
       "priority": "PRI-MEDIUM",
@@ -177,6 +178,7 @@
     {
       "artifactId": "A-LOGGING",
       "titleEn": "Security logging",
+      "titleAr": null,
       "primaryDomain": "SD-06",
       "subDomain": "SD-06.01",
       "priority": "PRI-HIGH",

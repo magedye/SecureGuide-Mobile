@@ -1,5 +1,56 @@
 [
   {
+    "id": "EQG-EXACT-89A5EFDB24B73EA3",
+    "members": [
+      "STG-LEGACY-0329",
+      "STG-LEGACY-0651"
+    ],
+    "canonical": "STG-LEGACY-0651",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-01.01",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-FC482959C1BEF87E",
+    "members": [
+      "STG-LEGACY-0335",
+      "STG-LEGACY-0657"
+    ],
+    "canonical": "STG-LEGACY-0657",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-01.01",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-FCB3F8E8385D94EE",
+    "members": [
+      "STG-LEGACY-0325",
+      "STG-LEGACY-0647"
+    ],
+    "canonical": "STG-LEGACY-0647",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-01.01",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
     "id": "EQG-SD-01.01-000",
     "members": [
       "STG-CURATED-0001",
@@ -63,9 +114,9 @@
   {
     "id": "EQG-SD-01.01-003",
     "members": [
-      "STG-AMANI-0216",
       "STG-CURATED-0013",
-      "STG-CURATED-0300"
+      "STG-CURATED-0300",
+      "STG-LEGACY-0216"
     ],
     "canonical": "STG-CURATED-0013",
     "decision": "CANONICALIZE",
@@ -76,13 +127,13 @@
     "requires_human_review": true,
     "sub_domain": "SD-01.01",
     "classification_conflicts": {
-      "types": [
-        "ART-CTR",
-        "ART-REQ"
+      "primary_domains": [
+        "SD-01",
+        "SD-05"
       ],
-      "abstraction_levels": [
-        "ABS-CTR",
-        "ABS-GOV"
+      "sub_domains": [
+        "SD-01.01",
+        "SD-05.04"
       ]
     },
     "exact_match_keys": 0
@@ -90,9 +141,9 @@
   {
     "id": "EQG-SD-01.01-004",
     "members": [
-      "STG-AMANI-0217",
       "STG-CURATED-0014",
-      "STG-CURATED-0255"
+      "STG-CURATED-0255",
+      "STG-LEGACY-0217"
     ],
     "canonical": "STG-CURATED-0014",
     "decision": "CANONICALIZE",
@@ -103,13 +154,9 @@
     "requires_human_review": true,
     "sub_domain": "SD-01.01",
     "classification_conflicts": {
-      "types": [
-        "ART-CTR",
-        "ART-REQ"
-      ],
-      "abstraction_levels": [
-        "ABS-CTR",
-        "ABS-GOV"
+      "sub_domains": [
+        "SD-01.01",
+        "SD-01.04"
       ]
     },
     "exact_match_keys": 0
@@ -156,9 +203,9 @@
   {
     "id": "EQG-SD-01.01-007",
     "members": [
-      "STG-AMANI-0224",
       "STG-CURATED-0021",
-      "STG-CURATED-0257"
+      "STG-CURATED-0257",
+      "STG-LEGACY-0224"
     ],
     "canonical": "STG-CURATED-0021",
     "decision": "CANONICALIZE",
@@ -168,17 +215,42 @@
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
     "sub_domain": "SD-01.01",
-    "classification_conflicts": {
-      "types": [
-        "ART-CTR",
-        "ART-REQ"
-      ],
-      "abstraction_levels": [
-        "ABS-CTR",
-        "ABS-GOV"
-      ]
-    },
+    "classification_conflicts": {},
     "exact_match_keys": 0
+  },
+  {
+    "id": "EQG-EXACT-2DFE9DF35FA5C202",
+    "members": [
+      "STG-LEGACY-0330",
+      "STG-LEGACY-0652"
+    ],
+    "canonical": "STG-LEGACY-0330",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-01.02",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-75F82BC19D391C30",
+    "members": [
+      "STG-LEGACY-0357",
+      "STG-LEGACY-0679"
+    ],
+    "canonical": "STG-LEGACY-0679",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-01.02",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
   },
   {
     "id": "EQG-SD-01.02-008",
@@ -264,6 +336,176 @@
     "exact_match_keys": 0
   },
   {
+    "id": "EQG-EXACT-24CDCC53AEAFF1B8",
+    "members": [
+      "STG-LEGACY-0333",
+      "STG-LEGACY-0655"
+    ],
+    "canonical": "STG-LEGACY-0655",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-01.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-456D1DA81C1E9213",
+    "members": [
+      "STG-LEGACY-0336",
+      "STG-LEGACY-0658"
+    ],
+    "canonical": "STG-LEGACY-0658",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-01.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-48B5252A4A720740",
+    "members": [
+      "STG-LEGACY-0342",
+      "STG-LEGACY-0664"
+    ],
+    "canonical": "STG-LEGACY-0342",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-01.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-60469D3EB30FF758",
+    "members": [
+      "STG-LEGACY-0320",
+      "STG-LEGACY-0642"
+    ],
+    "canonical": "STG-LEGACY-0320",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-01.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-7FB7F5474CBF5D78",
+    "members": [
+      "STG-LEGACY-0318",
+      "STG-LEGACY-0640"
+    ],
+    "canonical": "STG-LEGACY-0318",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-01.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-85357AD88BFEDDCE",
+    "members": [
+      "STG-LEGACY-0332",
+      "STG-LEGACY-0654"
+    ],
+    "canonical": "STG-LEGACY-0332",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-01.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-A1B2086720D7B7F0",
+    "members": [
+      "STG-LEGACY-0331",
+      "STG-LEGACY-0653"
+    ],
+    "canonical": "STG-LEGACY-0331",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-01.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-EEBC50612CA8A1A9",
+    "members": [
+      "STG-LEGACY-0343",
+      "STG-LEGACY-0665"
+    ],
+    "canonical": "STG-LEGACY-0665",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-01.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-F4EE4A2117FB4C53",
+    "members": [
+      "STG-LEGACY-0314",
+      "STG-LEGACY-0636"
+    ],
+    "canonical": "STG-LEGACY-0314",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-01.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-F5074938C48100EB",
+    "members": [
+      "STG-LEGACY-0319",
+      "STG-LEGACY-0641"
+    ],
+    "canonical": "STG-LEGACY-0641",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-01.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
     "id": "EQG-SD-01.03-012",
     "members": [
       "STG-CURATED-0022",
@@ -306,6 +548,74 @@
     "sub_domain": "SD-01.03",
     "classification_conflicts": {},
     "exact_match_keys": 0
+  },
+  {
+    "id": "EQG-SD-02.04-024",
+    "members": [
+      "STG-LEGACY-0326",
+      "STG-LEGACY-0648"
+    ],
+    "canonical": "STG-LEGACY-0326",
+    "decision": "CANONICALIZE",
+    "decision_method": "AI_CONSERVATIVE",
+    "decision_confidence": null,
+    "rationale": "Both are NIST CSF GV.RR-02 with verbatim-identical definitions on establishing, communicating, understanding, and enforcing cybersecurity roles, responsibilities, and authorities.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-01.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-SD-04.03-072",
+    "members": [
+      "STG-LEGACY-0313",
+      "STG-LEGACY-0635"
+    ],
+    "canonical": "STG-LEGACY-0313",
+    "decision": "CANONICALIZE",
+    "decision_method": "AI_CONSERVATIVE",
+    "decision_confidence": null,
+    "rationale": "Identical NIST CSF GV.OC-01 subcategory text; one is the enterprise-labeled duplicate.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-01.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-SD-04.03-073",
+    "members": [
+      "STG-LEGACY-0334",
+      "STG-LEGACY-0656"
+    ],
+    "canonical": "STG-LEGACY-0334",
+    "decision": "CANONICALIZE",
+    "decision_method": "AI_CONSERVATIVE",
+    "decision_confidence": null,
+    "rationale": "Identical NIST CSF GV.SC-01 subcategory text; one is the enterprise-labeled duplicate.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-01.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-69F6BE4A31A8B8C8",
+    "members": [
+      "STG-LEGACY-0315",
+      "STG-LEGACY-0637"
+    ],
+    "canonical": "STG-LEGACY-0315",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-01.04",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
   },
   {
     "id": "EQG-SD-01.04-014",
@@ -403,6 +713,111 @@
     "exact_match_keys": 0
   },
   {
+    "id": "EQG-SD-03.03-051",
+    "members": [
+      "STG-LEGACY-0509",
+      "STG-LEGACY-0549"
+    ],
+    "canonical": "STG-LEGACY-0549",
+    "decision": "CANONICALIZE",
+    "decision_method": "AI_CONSERVATIVE",
+    "decision_confidence": null,
+    "rationale": "Both describe adversaries disabling Windows event logging to limit detection/audit data, near-verbatim identical technique text.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-01.04",
+    "classification_conflicts": {},
+    "exact_match_keys": 0
+  },
+  {
+    "id": "EQG-CROSS-CIS-ASSET-INVENTORY",
+    "members": [
+      "STG-CURATED-0000",
+      "STG-LEGACY-0184",
+      "STG-LEGACY-0606"
+    ],
+    "canonical": "STG-CURATED-0000",
+    "decision": "CANONICALIZE",
+    "decision_method": "CURATION_REVIEW",
+    "decision_confidence": 0.96,
+    "rationale": "Both source rows define the same atomic enterprise-asset inventory safeguard; wording and examples differ without changing the required outcome.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-02.01",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-082E2A4429EA686A",
+    "members": [
+      "STG-CURATED-0138",
+      "STG-CURATED-0168",
+      "STG-LEGACY-0203",
+      "STG-LEGACY-0625"
+    ],
+    "canonical": "STG-LEGACY-0203",
+    "decision": "CANONICALIZE",
+    "decision_method": "CURATION_REVIEW+EXACT_MATCH",
+    "decision_confidence": 0.97,
+    "rationale": "All four rows require daily-or-more-frequent automatic anti-malware signature updates. The configuration canonical preserves the concrete technical-setting semantics.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-02.01",
+    "classification_conflicts": {
+      "types": [
+        "ART-CFG",
+        "ART-CTR"
+      ],
+      "abstraction_levels": [
+        "ABS-CTR",
+        "ABS-TEC"
+      ],
+      "primary_domains": [
+        "SD-02",
+        "SD-04"
+      ],
+      "sub_domains": [
+        "SD-02.01",
+        "SD-04.02"
+      ]
+    },
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-9857E8C2B6CC5CD9",
+    "members": [
+      "STG-LEGACY-0192",
+      "STG-LEGACY-0614"
+    ],
+    "canonical": "STG-LEGACY-0614",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-02.01",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-F217524BB530E962",
+    "members": [
+      "STG-LEGACY-0197",
+      "STG-LEGACY-0619"
+    ],
+    "canonical": "STG-LEGACY-0619",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-02.01",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
     "id": "EQG-SD-02.01-018",
     "members": [
       "STG-CURATED-0004",
@@ -437,21 +852,66 @@
     "exact_match_keys": 0
   },
   {
-    "id": "EQG-SD-02.02-020",
+    "id": "EQG-SD-03.03-044",
     "members": [
-      "STG-CURATED-0040",
-      "STG-CURATED-0656"
+      "STG-LEGACY-0202",
+      "STG-LEGACY-0624"
     ],
-    "canonical": "STG-CURATED-0656",
+    "canonical": "STG-LEGACY-0202",
     "decision": "CANONICALIZE",
     "decision_method": "AI_CONSERVATIVE",
     "decision_confidence": null,
-    "rationale": "Both require establishing and maintaining a detailed inventory of all licensed software installed on enterprise assets, with identical intent and scope.",
+    "rationale": "Both are CIS Control 10.1 with identical text mandating anti-malware software on all enterprise assets.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-02.01",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-CROSS-CIS-SOFTWARE-INVENTORY",
+    "members": [
+      "STG-CURATED-0040",
+      "STG-CURATED-0656",
+      "STG-LEGACY-0186",
+      "STG-LEGACY-0608"
+    ],
+    "canonical": "STG-CURATED-0656",
+    "decision": "CANONICALIZE",
+    "decision_method": "CURATION_REVIEW",
+    "decision_confidence": 0.96,
+    "rationale": "Both source rows define the same atomic licensed-software inventory safeguard; the expanded wording only states the expected benefit.",
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
     "sub_domain": "SD-02.02",
     "classification_conflicts": {},
-    "exact_match_keys": 0
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-BFDFEEBD289C61EA",
+    "members": [
+      "STG-LEGACY-0209",
+      "STG-LEGACY-0631"
+    ],
+    "canonical": "STG-LEGACY-0209",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-02.03",
+    "classification_conflicts": {
+      "primary_domains": [
+        "SD-02",
+        "SD-03"
+      ],
+      "sub_domains": [
+        "SD-02.03",
+        "SD-03.04"
+      ]
+    },
+    "exact_match_keys": 1
   },
   {
     "id": "EQG-SD-02.03-021",
@@ -497,38 +957,29 @@
     "exact_match_keys": 0
   },
   {
-    "id": "EQG-EXACT-082E2A4429EA686A",
+    "id": "EQG-SD-04.03-070",
     "members": [
-      "STG-AMANI-0203",
-      "STG-AMANI-0625"
+      "STG-LEGACY-0188",
+      "STG-LEGACY-0610"
     ],
-    "canonical": "STG-AMANI-0203",
+    "canonical": "STG-LEGACY-0188",
     "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "decision_method": "AI_CONSERVATIVE",
+    "decision_confidence": null,
+    "rationale": "Identical CIS 3.1 wording establishing and maintaining a data management process; one is the enterprise-labeled duplicate.",
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
-    "sub_domain": "SD-02.04",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-02",
-        "SD-03"
-      ],
-      "sub_domains": [
-        "SD-02.04",
-        "SD-03.03"
-      ]
-    },
+    "sub_domain": "SD-02.03",
+    "classification_conflicts": {},
     "exact_match_keys": 1
   },
   {
-    "id": "EQG-EXACT-17680FC54A015AD6",
+    "id": "EQG-EXACT-0A446249B2E86112",
     "members": [
-      "STG-AMANI-0337",
-      "STG-AMANI-0659"
+      "STG-LEGACY-0374",
+      "STG-LEGACY-0696"
     ],
-    "canonical": "STG-AMANI-0659",
+    "canonical": "STG-LEGACY-0696",
     "decision": "CANONICALIZE",
     "decision_method": "EXACT_MATCH",
     "decision_confidence": 0.95,
@@ -536,103 +987,16 @@
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
     "sub_domain": "SD-02.04",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-02",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-02.04",
-        "SD-04.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-2DFE9DF35FA5C202",
-    "members": [
-      "STG-AMANI-0330",
-      "STG-AMANI-0652"
-    ],
-    "canonical": "STG-AMANI-0330",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-02.04",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-02",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-02.04",
-        "SD-04.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-48B5252A4A720740",
-    "members": [
-      "STG-AMANI-0342",
-      "STG-AMANI-0664"
-    ],
-    "canonical": "STG-AMANI-0342",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-02.04",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-02",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-02.04",
-        "SD-04.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-60469D3EB30FF758",
-    "members": [
-      "STG-AMANI-0320",
-      "STG-AMANI-0642"
-    ],
-    "canonical": "STG-AMANI-0320",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-02.04",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-02",
-        "SD-03"
-      ],
-      "sub_domains": [
-        "SD-02.04",
-        "SD-03.03"
-      ]
-    },
+    "classification_conflicts": {},
     "exact_match_keys": 1
   },
   {
     "id": "EQG-EXACT-6F5F56AB6A80F5EA",
     "members": [
-      "STG-AMANI-0368",
-      "STG-AMANI-0690"
+      "STG-LEGACY-0368",
+      "STG-LEGACY-0690"
     ],
-    "canonical": "STG-AMANI-0690",
+    "canonical": "STG-LEGACY-0690",
     "decision": "CANONICALIZE",
     "decision_method": "EXACT_MATCH",
     "decision_confidence": 0.95,
@@ -646,127 +1010,23 @@
         "SD-02"
       ],
       "sub_domains": [
-        "SD-01.01",
+        "SD-01.04",
         "SD-02.04"
       ]
     },
     "exact_match_keys": 1
   },
   {
-    "id": "EQG-EXACT-8B9D3BD20EE56910",
+    "id": "EQG-EXACT-7DFE9C92DB0EBCB8",
     "members": [
-      "STG-AMANI-0376",
-      "STG-AMANI-0698"
+      "STG-LEGACY-0373",
+      "STG-LEGACY-0695"
     ],
-    "canonical": "STG-AMANI-0376",
+    "canonical": "STG-LEGACY-0695",
     "decision": "CANONICALIZE",
     "decision_method": "EXACT_MATCH",
     "decision_confidence": 0.95,
     "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-02.04",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-02",
-        "SD-05"
-      ],
-      "sub_domains": [
-        "SD-02.04",
-        "SD-05.01"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-A70889BAB25B21E1",
-    "members": [
-      "STG-AMANI-0364",
-      "STG-AMANI-0686"
-    ],
-    "canonical": "STG-AMANI-0686",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-02.04",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-02",
-        "SD-06"
-      ],
-      "sub_domains": [
-        "SD-02.04",
-        "SD-06.01"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-BFDFEEBD289C61EA",
-    "members": [
-      "STG-AMANI-0209",
-      "STG-AMANI-0631"
-    ],
-    "canonical": "STG-AMANI-0209",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-02.04",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-02",
-        "SD-03"
-      ],
-      "sub_domains": [
-        "SD-02.04",
-        "SD-03.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-D9AB0441D4ADBF00",
-    "members": [
-      "STG-AMANI-0198",
-      "STG-AMANI-0620"
-    ],
-    "canonical": "STG-AMANI-0198",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-02.04",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-02",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-02.04",
-        "SD-04.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-EBF0285F4027E058",
-    "members": [
-      "STG-AMANI-0122",
-      "STG-AMANI-0123"
-    ],
-    "canonical": "STG-AMANI-0123",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 1 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
     "sub_domain": "SD-02.04",
@@ -774,59 +1034,16 @@
     "exact_match_keys": 1
   },
   {
-    "id": "EQG-EXACT-F4EE4A2117FB4C53",
+    "id": "EQG-EXACT-DCCE0C9D11A53D8E",
     "members": [
-      "STG-AMANI-0314",
-      "STG-AMANI-0636"
+      "STG-LEGACY-0375",
+      "STG-LEGACY-0697"
     ],
-    "canonical": "STG-AMANI-0314",
+    "canonical": "STG-LEGACY-0375",
     "decision": "CANONICALIZE",
     "decision_method": "EXACT_MATCH",
     "decision_confidence": 0.95,
     "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-02.04",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-02",
-        "SD-07"
-      ],
-      "sub_domains": [
-        "SD-02.04",
-        "SD-07.04"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-SD-02.04-023",
-    "members": [
-      "STG-AMANI-0186",
-      "STG-AMANI-0608"
-    ],
-    "canonical": "STG-AMANI-0186",
-    "decision": "CANONICALIZE",
-    "decision_method": "AI_CONSERVATIVE",
-    "decision_confidence": null,
-    "rationale": "Both are CIS Control 2.1 with the identical requirement to establish and maintain a detailed inventory of all licensed software on enterprise assets.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-02.04",
-    "classification_conflicts": {},
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-SD-02.04-024",
-    "members": [
-      "STG-AMANI-0326",
-      "STG-AMANI-0648"
-    ],
-    "canonical": "STG-AMANI-0326",
-    "decision": "CANONICALIZE",
-    "decision_method": "AI_CONSERVATIVE",
-    "decision_confidence": null,
-    "rationale": "Both are NIST CSF GV.RR-02 with verbatim-identical definitions on establishing, communicating, understanding, and enforcing cybersecurity roles, responsibilities, and authorities.",
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
     "sub_domain": "SD-02.04",
@@ -854,9 +1071,9 @@
   {
     "id": "EQG-SD-02.04-026",
     "members": [
-      "STG-AMANI-0180",
       "STG-CURATED-0285",
-      "STG-CURATED-0329"
+      "STG-CURATED-0329",
+      "STG-LEGACY-0180"
     ],
     "canonical": "STG-CURATED-0329",
     "decision": "CANONICALIZE",
@@ -936,6 +1153,144 @@
     "sub_domain": "SD-02.05",
     "classification_conflicts": {},
     "exact_match_keys": 0
+  },
+  {
+    "id": "EQG-EXACT-0104AAFBA3308EB0",
+    "members": [
+      "STG-LEGACY-0354",
+      "STG-LEGACY-0676"
+    ],
+    "canonical": "STG-LEGACY-0354",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-03.01",
+    "classification_conflicts": {
+      "primary_domains": [
+        "SD-03",
+        "SD-07"
+      ],
+      "sub_domains": [
+        "SD-03.01",
+        "SD-07.01"
+      ]
+    },
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-01F1C2439763454C",
+    "members": [
+      "STG-LEGACY-0324",
+      "STG-LEGACY-0646"
+    ],
+    "canonical": "STG-LEGACY-0324",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-03.01",
+    "classification_conflicts": {
+      "primary_domains": [
+        "SD-03",
+        "SD-04"
+      ],
+      "sub_domains": [
+        "SD-03.01",
+        "SD-04.01"
+      ]
+    },
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-50BF019E56A12D3B",
+    "members": [
+      "STG-LEGACY-0191",
+      "STG-LEGACY-0613"
+    ],
+    "canonical": "STG-LEGACY-0613",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-03.01",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-81E2643ACCF4B15C",
+    "members": [
+      "STG-LEGACY-0194",
+      "STG-LEGACY-0616"
+    ],
+    "canonical": "STG-LEGACY-0616",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-03.01",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-C9D5CEF78D9E8E36",
+    "members": [
+      "STG-LEGACY-0378",
+      "STG-LEGACY-0700"
+    ],
+    "canonical": "STG-LEGACY-0700",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-03.01",
+    "classification_conflicts": {
+      "primary_domains": [
+        "SD-03",
+        "SD-04"
+      ],
+      "sub_domains": [
+        "SD-03.01",
+        "SD-04.03"
+      ]
+    },
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-E24AAEF306CAE6F5",
+    "members": [
+      "STG-LEGACY-0351",
+      "STG-LEGACY-0673"
+    ],
+    "canonical": "STG-LEGACY-0673",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-03.01",
+    "classification_conflicts": {
+      "primary_domains": [
+        "SD-03",
+        "SD-08"
+      ],
+      "sub_domains": [
+        "SD-03.01",
+        "SD-08.03"
+      ]
+    },
+    "exact_match_keys": 1
   },
   {
     "id": "EQG-SD-03.01-031",
@@ -1023,12 +1378,63 @@
     "exact_match_keys": 0
   },
   {
+    "id": "EQG-EXACT-048EA8CC993AC314",
+    "members": [
+      "STG-LEGACY-0366",
+      "STG-LEGACY-0688"
+    ],
+    "canonical": "STG-LEGACY-0688",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-03.02",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-19FE49F23731C4FC",
+    "members": [
+      "STG-LEGACY-0015",
+      "STG-LEGACY-0061"
+    ],
+    "canonical": "STG-LEGACY-0061",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-03.02",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-4D39942CBEF50492",
+    "members": [
+      "STG-LEGACY-0511",
+      "STG-LEGACY-0514"
+    ],
+    "canonical": "STG-LEGACY-0514",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-03.02",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
     "id": "EQG-EXACT-64460A798A54BDF8",
     "members": [
-      "STG-AMANI-0011",
-      "STG-AMANI-0012"
+      "STG-LEGACY-0011",
+      "STG-LEGACY-0012"
     ],
-    "canonical": "STG-AMANI-0012",
+    "canonical": "STG-LEGACY-0012",
     "decision": "CANONICALIZE",
     "decision_method": "EXACT_MATCH",
     "decision_confidence": 0.95,
@@ -1037,6 +1443,32 @@
     "requires_human_review": true,
     "sub_domain": "SD-03.02",
     "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-F4FF0A11317CA027",
+    "members": [
+      "STG-LEGACY-0356",
+      "STG-LEGACY-0678"
+    ],
+    "canonical": "STG-LEGACY-0356",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-03.02",
+    "classification_conflicts": {
+      "primary_domains": [
+        "SD-03",
+        "SD-04"
+      ],
+      "sub_domains": [
+        "SD-03.02",
+        "SD-04.02"
+      ]
+    },
     "exact_match_keys": 1
   },
   {
@@ -1169,142 +1601,63 @@
     "exact_match_keys": 0
   },
   {
-    "id": "EQG-EXACT-0104AAFBA3308EB0",
+    "id": "EQG-SD-03.03-043",
     "members": [
-      "STG-AMANI-0354",
-      "STG-AMANI-0676"
+      "STG-LEGACY-0195",
+      "STG-LEGACY-0617"
     ],
-    "canonical": "STG-AMANI-0354",
+    "canonical": "STG-LEGACY-0195",
     "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "decision_method": "AI_CONSERVATIVE",
+    "decision_confidence": null,
+    "rationale": "Both are CIS Control 6.3 with identical wording requiring MFA for all external/remote (VPN) access.",
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-03",
-        "SD-07"
-      ],
-      "sub_domains": [
-        "SD-03.03",
-        "SD-07.04"
-      ]
-    },
+    "sub_domain": "SD-03.02",
+    "classification_conflicts": {},
     "exact_match_keys": 1
   },
   {
-    "id": "EQG-EXACT-01F1C2439763454C",
+    "id": "EQG-SD-03.03-050",
     "members": [
-      "STG-AMANI-0324",
-      "STG-AMANI-0646"
+      "STG-LEGACY-0544",
+      "STG-LEGACY-0559"
     ],
-    "canonical": "STG-AMANI-0324",
+    "canonical": "STG-LEGACY-0559",
     "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "decision_method": "AI_CONSERVATIVE",
+    "decision_confidence": null,
+    "rationale": "Both describe the same ATT&CK technique 'Credentials from Web Browsers' (legacy T1503 = current T1555.003) with identical opening definition.",
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-03",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-03.03",
-        "SD-04.03"
-      ]
-    },
-    "exact_match_keys": 1
+    "sub_domain": "SD-03.02",
+    "classification_conflicts": {},
+    "exact_match_keys": 0
   },
   {
-    "id": "EQG-EXACT-06F21E04F799BD00",
+    "id": "EQG-SD-07.04-117",
     "members": [
-      "STG-AMANI-0341",
-      "STG-AMANI-0663"
+      "STG-LEGACY-0365",
+      "STG-LEGACY-0687"
     ],
-    "canonical": "STG-AMANI-0663",
+    "canonical": "STG-LEGACY-0365",
     "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "decision_method": "AI_CONSERVATIVE",
+    "decision_confidence": null,
+    "rationale": "Identical PR.AA-01 requirement to manage identities and credentials for authorized users, services, and hardware.",
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-03",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-03.03",
-        "SD-04.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-1A0B5A17880500A3",
-    "members": [
-      "STG-AMANI-0322",
-      "STG-AMANI-0644"
-    ],
-    "canonical": "STG-AMANI-0322",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-02",
-        "SD-03"
-      ],
-      "sub_domains": [
-        "SD-02.04",
-        "SD-03.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-24CDCC53AEAFF1B8",
-    "members": [
-      "STG-AMANI-0333",
-      "STG-AMANI-0655"
-    ],
-    "canonical": "STG-AMANI-0655",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-03",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-03.03",
-        "SD-04.03"
-      ]
-    },
+    "sub_domain": "SD-03.02",
+    "classification_conflicts": {},
     "exact_match_keys": 1
   },
   {
     "id": "EQG-EXACT-28E3635EA3BBB08E",
     "members": [
-      "STG-AMANI-0361",
-      "STG-AMANI-0683"
+      "STG-LEGACY-0361",
+      "STG-LEGACY-0683"
     ],
-    "canonical": "STG-AMANI-0683",
+    "canonical": "STG-LEGACY-0683",
     "decision": "CANONICALIZE",
     "decision_method": "EXACT_MATCH",
     "decision_confidence": 0.95,
@@ -1319,7 +1672,7 @@
       ],
       "sub_domains": [
         "SD-03.03",
-        "SD-04.03"
+        "SD-04.02"
       ]
     },
     "exact_match_keys": 1
@@ -1327,10 +1680,10 @@
   {
     "id": "EQG-EXACT-3BF6AAAC7E080251",
     "members": [
-      "STG-AMANI-0359",
-      "STG-AMANI-0681"
+      "STG-LEGACY-0359",
+      "STG-LEGACY-0681"
     ],
-    "canonical": "STG-AMANI-0681",
+    "canonical": "STG-LEGACY-0681",
     "decision": "CANONICALIZE",
     "decision_method": "EXACT_MATCH",
     "decision_confidence": 0.95,
@@ -1344,85 +1697,7 @@
         "SD-03"
       ],
       "sub_domains": [
-        "SD-01.01",
-        "SD-03.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-4D39942CBEF50492",
-    "members": [
-      "STG-AMANI-0511",
-      "STG-AMANI-0514"
-    ],
-    "canonical": "STG-AMANI-0514",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-03",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-03.03",
-        "SD-04.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-50BF019E56A12D3B",
-    "members": [
-      "STG-AMANI-0191",
-      "STG-AMANI-0613"
-    ],
-    "canonical": "STG-AMANI-0613",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-03",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-03.03",
-        "SD-04.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-5AF7910E2123CC9B",
-    "members": [
-      "STG-AMANI-0205",
-      "STG-AMANI-0627"
-    ],
-    "canonical": "STG-AMANI-0205",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-02",
-        "SD-03"
-      ],
-      "sub_domains": [
-        "SD-02.04",
+        "SD-01.02",
         "SD-03.03"
       ]
     },
@@ -1431,10 +1706,10 @@
   {
     "id": "EQG-EXACT-6B3CFA131890DA1F",
     "members": [
-      "STG-AMANI-0355",
-      "STG-AMANI-0677"
+      "STG-LEGACY-0355",
+      "STG-LEGACY-0677"
     ],
-    "canonical": "STG-AMANI-0677",
+    "canonical": "STG-LEGACY-0677",
     "decision": "CANONICALIZE",
     "decision_method": "EXACT_MATCH",
     "decision_confidence": 0.95,
@@ -1449,33 +1724,7 @@
       ],
       "sub_domains": [
         "SD-03.03",
-        "SD-04.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-6FBE2F3F99A28AAC",
-    "members": [
-      "STG-AMANI-0328",
-      "STG-AMANI-0650"
-    ],
-    "canonical": "STG-AMANI-0328",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-03",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-03.03",
-        "SD-04.03"
+        "SD-04.04"
       ]
     },
     "exact_match_keys": 1
@@ -1483,10 +1732,10 @@
   {
     "id": "EQG-EXACT-7BC6D34BFB25DD3C",
     "members": [
-      "STG-AMANI-0383",
-      "STG-AMANI-0705"
+      "STG-LEGACY-0383",
+      "STG-LEGACY-0705"
     ],
-    "canonical": "STG-AMANI-0705",
+    "canonical": "STG-LEGACY-0705",
     "decision": "CANONICALIZE",
     "decision_method": "EXACT_MATCH",
     "decision_confidence": 0.95,
@@ -1494,129 +1743,16 @@
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
     "sub_domain": "SD-03.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-03",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-03.03",
-        "SD-04.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-7CC70A8DA88262ED",
-    "members": [
-      "STG-AMANI-0347",
-      "STG-AMANI-0669"
-    ],
-    "canonical": "STG-AMANI-0347",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-03",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-03.03",
-        "SD-04.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-85357AD88BFEDDCE",
-    "members": [
-      "STG-AMANI-0332",
-      "STG-AMANI-0654"
-    ],
-    "canonical": "STG-AMANI-0332",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-03",
-        "SD-07"
-      ],
-      "sub_domains": [
-        "SD-03.03",
-        "SD-07.04"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-89A5EFDB24B73EA3",
-    "members": [
-      "STG-AMANI-0329",
-      "STG-AMANI-0651"
-    ],
-    "canonical": "STG-AMANI-0651",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-01",
-        "SD-03"
-      ],
-      "sub_domains": [
-        "SD-01.01",
-        "SD-03.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-8AF0E4A2F3C64A96",
-    "members": [
-      "STG-AMANI-0208",
-      "STG-AMANI-0630"
-    ],
-    "canonical": "STG-AMANI-0630",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-01",
-        "SD-03"
-      ],
-      "sub_domains": [
-        "SD-01.01",
-        "SD-03.03"
-      ]
-    },
+    "classification_conflicts": {},
     "exact_match_keys": 1
   },
   {
     "id": "EQG-EXACT-A628F91A710D06BB",
     "members": [
-      "STG-AMANI-0381",
-      "STG-AMANI-0703"
+      "STG-LEGACY-0381",
+      "STG-LEGACY-0703"
     ],
-    "canonical": "STG-AMANI-0381",
+    "canonical": "STG-LEGACY-0381",
     "decision": "CANONICALIZE",
     "decision_method": "EXACT_MATCH",
     "decision_confidence": 0.95,
@@ -1631,286 +1767,18 @@
       ],
       "sub_domains": [
         "SD-03.03",
-        "SD-05.01"
+        "SD-05.02"
       ]
     },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-C9D5CEF78D9E8E36",
-    "members": [
-      "STG-AMANI-0378",
-      "STG-AMANI-0700"
-    ],
-    "canonical": "STG-AMANI-0700",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-03",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-03.03",
-        "SD-04.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-D8A9C5ABC88B50ED",
-    "members": [
-      "STG-AMANI-0339",
-      "STG-AMANI-0661"
-    ],
-    "canonical": "STG-AMANI-0661",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-01",
-        "SD-03"
-      ],
-      "sub_domains": [
-        "SD-01.01",
-        "SD-03.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-DCCE0C9D11A53D8E",
-    "members": [
-      "STG-AMANI-0375",
-      "STG-AMANI-0697"
-    ],
-    "canonical": "STG-AMANI-0375",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-03",
-        "SD-07"
-      ],
-      "sub_domains": [
-        "SD-03.03",
-        "SD-07.04"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-DE3B58941E23CBA3",
-    "members": [
-      "STG-AMANI-0338",
-      "STG-AMANI-0660"
-    ],
-    "canonical": "STG-AMANI-0338",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-03",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-03.03",
-        "SD-04.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-E24AAEF306CAE6F5",
-    "members": [
-      "STG-AMANI-0351",
-      "STG-AMANI-0673"
-    ],
-    "canonical": "STG-AMANI-0673",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-01",
-        "SD-03"
-      ],
-      "sub_domains": [
-        "SD-01.01",
-        "SD-03.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-ECE62436595CB776",
-    "members": [
-      "STG-AMANI-0196",
-      "STG-AMANI-0618"
-    ],
-    "canonical": "STG-AMANI-0196",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-03",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-03.03",
-        "SD-04.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-F4FF0A11317CA027",
-    "members": [
-      "STG-AMANI-0356",
-      "STG-AMANI-0678"
-    ],
-    "canonical": "STG-AMANI-0356",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-03",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-03.03",
-        "SD-04.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-F7F213D822CDC3FB",
-    "members": [
-      "STG-AMANI-0567",
-      "STG-AMANI-0578"
-    ],
-    "canonical": "STG-AMANI-0578",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-03",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-03.03",
-        "SD-04.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-FCB3F8E8385D94EE",
-    "members": [
-      "STG-AMANI-0325",
-      "STG-AMANI-0647"
-    ],
-    "canonical": "STG-AMANI-0647",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-03",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-03.03",
-        "SD-04.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-SD-03.03-043",
-    "members": [
-      "STG-AMANI-0195",
-      "STG-AMANI-0617"
-    ],
-    "canonical": "STG-AMANI-0195",
-    "decision": "CANONICALIZE",
-    "decision_method": "AI_CONSERVATIVE",
-    "decision_confidence": null,
-    "rationale": "Both are CIS Control 6.3 with identical wording requiring MFA for all external/remote (VPN) access.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {},
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-SD-03.03-044",
-    "members": [
-      "STG-AMANI-0202",
-      "STG-AMANI-0624"
-    ],
-    "canonical": "STG-AMANI-0202",
-    "decision": "CANONICALIZE",
-    "decision_method": "AI_CONSERVATIVE",
-    "decision_confidence": null,
-    "rationale": "Both are CIS Control 10.1 with identical text mandating anti-malware software on all enterprise assets.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {},
     "exact_match_keys": 1
   },
   {
     "id": "EQG-SD-03.03-045",
     "members": [
-      "STG-AMANI-0350",
-      "STG-AMANI-0672"
+      "STG-LEGACY-0350",
+      "STG-LEGACY-0672"
     ],
-    "canonical": "STG-AMANI-0350",
+    "canonical": "STG-LEGACY-0350",
     "decision": "CANONICALIZE",
     "decision_method": "AI_CONSERVATIVE",
     "decision_confidence": null,
@@ -1924,11 +1792,11 @@
   {
     "id": "EQG-SD-03.03-046",
     "members": [
-      "STG-AMANI-0369",
-      "STG-AMANI-0691",
-      "STG-CURATED-0362"
+      "STG-CURATED-0362",
+      "STG-LEGACY-0369",
+      "STG-LEGACY-0691"
     ],
-    "canonical": "STG-AMANI-0691",
+    "canonical": "STG-LEGACY-0691",
     "decision": "CANONICALIZE",
     "decision_method": "AI_CONSERVATIVE+EXACT_MATCH",
     "decision_confidence": 0.95,
@@ -1944,14 +1812,6 @@
       "abstraction_levels": [
         "ABS-CTR",
         "ABS-POL"
-      ],
-      "primary_domains": [
-        "SD-03",
-        "SD-07"
-      ],
-      "sub_domains": [
-        "SD-03.03",
-        "SD-07.04"
       ]
     },
     "exact_match_keys": 1
@@ -2008,55 +1868,109 @@
     "exact_match_keys": 0
   },
   {
-    "id": "EQG-SD-03.03-050",
+    "id": "EQG-SD-04.03-071",
     "members": [
-      "STG-AMANI-0544",
-      "STG-AMANI-0559"
+      "STG-LEGACY-0189",
+      "STG-LEGACY-0611"
     ],
-    "canonical": "STG-AMANI-0559",
+    "canonical": "STG-LEGACY-0189",
     "decision": "CANONICALIZE",
     "decision_method": "AI_CONSERVATIVE",
     "decision_confidence": null,
-    "rationale": "Both describe the same ATT&CK technique 'Credentials from Web Browsers' (legacy T1503 = current T1555.003) with identical opening definition.",
+    "rationale": "Identical CIS 3.3 wording configuring data access control lists by need-to-know under least privilege; one is the enterprise-labeled duplicate.",
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
     "sub_domain": "SD-03.03",
     "classification_conflicts": {},
-    "exact_match_keys": 0
+    "exact_match_keys": 1
   },
   {
-    "id": "EQG-SD-03.03-051",
-    "members": [
-      "STG-AMANI-0509",
-      "STG-AMANI-0549"
-    ],
-    "canonical": "STG-AMANI-0549",
-    "decision": "CANONICALIZE",
-    "decision_method": "AI_CONSERVATIVE",
-    "decision_confidence": null,
-    "rationale": "Both describe adversaries disabling Windows event logging to limit detection/audit data, near-verbatim identical technique text.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-03.03",
-    "classification_conflicts": {},
-    "exact_match_keys": 0
-  },
-  {
-    "id": "EQG-SD-03.04-052",
+    "id": "EQG-CROSS-CIS-ADMIN-MFA",
     "members": [
       "STG-CURATED-0127",
-      "STG-CURATED-0446"
+      "STG-CURATED-0446",
+      "STG-LEGACY-0196",
+      "STG-LEGACY-0618"
     ],
     "canonical": "STG-CURATED-0127",
     "decision": "CANONICALIZE",
-    "decision_method": "AI_CONSERVATIVE",
-    "decision_confidence": null,
-    "rationale": "Both have identical title and require multi-factor authentication for all administrative access to enterprise assets, differing only in trivial phrasing of the protected-against threat.",
+    "decision_method": "CURATION_REVIEW",
+    "decision_confidence": 0.97,
+    "rationale": "Both source rows require MFA for all administrative access to enterprise assets and therefore express one atomic safeguard.",
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
     "sub_domain": "SD-03.04",
     "classification_conflicts": {},
-    "exact_match_keys": 0
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-F7F213D822CDC3FB",
+    "members": [
+      "STG-LEGACY-0567",
+      "STG-LEGACY-0578"
+    ],
+    "canonical": "STG-LEGACY-0578",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-03.04",
+    "classification_conflicts": {
+      "primary_domains": [
+        "SD-03",
+        "SD-04"
+      ],
+      "sub_domains": [
+        "SD-03.04",
+        "SD-04.02"
+      ]
+    },
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-8540D89698798E64",
+    "members": [
+      "STG-LEGACY-0206",
+      "STG-LEGACY-0628"
+    ],
+    "canonical": "STG-LEGACY-0628",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-04.01",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-E18397F6CAAD7D0F",
+    "members": [
+      "STG-LEGACY-0367",
+      "STG-LEGACY-0689"
+    ],
+    "canonical": "STG-LEGACY-0689",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-04.01",
+    "classification_conflicts": {
+      "primary_domains": [
+        "SD-01",
+        "SD-04"
+      ],
+      "sub_domains": [
+        "SD-01.03",
+        "SD-04.01"
+      ]
+    },
+    "exact_match_keys": 1
   },
   {
     "id": "EQG-SD-04.01-053",
@@ -2096,13 +2010,14 @@
     "id": "EQG-SD-04.01-055",
     "members": [
       "STG-CURATED-0005",
-      "STG-CURATED-0343"
+      "STG-CURATED-0343",
+      "STG-LEGACY-0413"
     ],
     "canonical": "STG-CURATED-0005",
     "decision": "CANONICALIZE",
     "decision_method": "AI_CONSERVATIVE",
-    "decision_confidence": null,
-    "rationale": "Both define and implement configuration standards for network security controls (firewalls) to enforce consistent secure baselines.",
+    "decision_confidence": 0.97,
+    "rationale": "All three rows define and implement configuration standards for network security controls to enforce consistent secure baselines.",
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
     "sub_domain": "SD-04.01",
@@ -2147,10 +2062,10 @@
   {
     "id": "EQG-EXACT-16DA3F02BE3042E3",
     "members": [
-      "STG-AMANI-0055",
-      "STG-AMANI-0056"
+      "STG-LEGACY-0055",
+      "STG-LEGACY-0056"
     ],
-    "canonical": "STG-AMANI-0056",
+    "canonical": "STG-LEGACY-0056",
     "decision": "CANONICALIZE",
     "decision_method": "EXACT_MATCH",
     "decision_confidence": 0.95,
@@ -2159,6 +2074,92 @@
     "requires_human_review": true,
     "sub_domain": "SD-04.02",
     "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-62B64740B6F5F8AC",
+    "members": [
+      "STG-LEGACY-0371",
+      "STG-LEGACY-0693"
+    ],
+    "canonical": "STG-LEGACY-0693",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-04.02",
+    "classification_conflicts": {
+      "types": [
+        "ART-CTR",
+        "ART-PRG"
+      ],
+      "abstraction_levels": [
+        "ABS-CTR",
+        "ABS-PRO"
+      ],
+      "primary_domains": [
+        "SD-04",
+        "SD-08"
+      ],
+      "sub_domains": [
+        "SD-04.02",
+        "SD-08.01"
+      ]
+    },
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-CB54F0BD6AD5D4CE",
+    "members": [
+      "STG-LEGACY-0193",
+      "STG-LEGACY-0615"
+    ],
+    "canonical": "STG-LEGACY-0615",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-04.02",
+    "classification_conflicts": {
+      "primary_domains": [
+        "SD-01",
+        "SD-04"
+      ],
+      "sub_domains": [
+        "SD-01.02",
+        "SD-04.02"
+      ]
+    },
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-E4E8F9A9FECA2028",
+    "members": [
+      "STG-LEGACY-0379",
+      "STG-LEGACY-0701"
+    ],
+    "canonical": "STG-LEGACY-0701",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-04.02",
+    "classification_conflicts": {
+      "primary_domains": [
+        "SD-04",
+        "SD-07"
+      ],
+      "sub_domains": [
+        "SD-04.02",
+        "SD-07.01"
+      ]
+    },
     "exact_match_keys": 1
   },
   {
@@ -2264,64 +2265,38 @@
     "exact_match_keys": 0
   },
   {
-    "id": "EQG-SD-04.02-064",
+    "id": "EQG-SD-04.03-075",
     "members": [
-      "STG-CURATED-0138",
-      "STG-CURATED-0168"
+      "STG-LEGACY-0348",
+      "STG-LEGACY-0670"
     ],
-    "canonical": "STG-CURATED-0138",
+    "canonical": "STG-LEGACY-0348",
     "decision": "CANONICALIZE",
     "decision_method": "AI_CONSERVATIVE",
     "decision_confidence": null,
-    "rationale": "Both require configuring automatic anti-malware signature updates on all enterprise assets on a daily-or-more-frequent basis (CIS 10.2).",
+    "rationale": "Identical NIST CSF ID.AM-05 subcategory text; one is the enterprise-labeled duplicate.",
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
     "sub_domain": "SD-04.02",
     "classification_conflicts": {
-      "types": [
-        "ART-CFG",
-        "ART-CTR"
-      ],
-      "abstraction_levels": [
-        "ABS-CTR",
-        "ABS-TEC"
-      ]
-    },
-    "exact_match_keys": 0
-  },
-  {
-    "id": "EQG-EXACT-0A446249B2E86112",
-    "members": [
-      "STG-AMANI-0374",
-      "STG-AMANI-0696"
-    ],
-    "canonical": "STG-AMANI-0696",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-04.03",
-    "classification_conflicts": {
       "primary_domains": [
-        "SD-01",
+        "SD-02",
         "SD-04"
       ],
       "sub_domains": [
-        "SD-01.01",
-        "SD-04.03"
+        "SD-02.01",
+        "SD-04.02"
       ]
     },
     "exact_match_keys": 1
   },
   {
-    "id": "EQG-EXACT-456D1DA81C1E9213",
+    "id": "EQG-EXACT-977CEA6C5DB842B0",
     "members": [
-      "STG-AMANI-0336",
-      "STG-AMANI-0658"
+      "STG-LEGACY-0377",
+      "STG-LEGACY-0699"
     ],
-    "canonical": "STG-AMANI-0658",
+    "canonical": "STG-LEGACY-0377",
     "decision": "CANONICALIZE",
     "decision_method": "EXACT_MATCH",
     "decision_confidence": 0.95,
@@ -2329,312 +2304,17 @@
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
     "sub_domain": "SD-04.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-01",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-01.01",
-        "SD-04.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-62B64740B6F5F8AC",
-    "members": [
-      "STG-AMANI-0371",
-      "STG-AMANI-0693"
-    ],
-    "canonical": "STG-AMANI-0693",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-04.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-04",
-        "SD-06"
-      ],
-      "sub_domains": [
-        "SD-04.03",
-        "SD-06.01"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-81E2643ACCF4B15C",
-    "members": [
-      "STG-AMANI-0194",
-      "STG-AMANI-0616"
-    ],
-    "canonical": "STG-AMANI-0616",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-04.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-01",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-01.01",
-        "SD-04.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-9857E8C2B6CC5CD9",
-    "members": [
-      "STG-AMANI-0192",
-      "STG-AMANI-0614"
-    ],
-    "canonical": "STG-AMANI-0614",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-04.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-04",
-        "SD-06"
-      ],
-      "sub_domains": [
-        "SD-04.03",
-        "SD-06.01"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-C68FC77F96825233",
-    "members": [
-      "STG-AMANI-0358",
-      "STG-AMANI-0680"
-    ],
-    "canonical": "STG-AMANI-0680",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-04.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-01",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-01.01",
-        "SD-04.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-CB54F0BD6AD5D4CE",
-    "members": [
-      "STG-AMANI-0193",
-      "STG-AMANI-0615"
-    ],
-    "canonical": "STG-AMANI-0615",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-04.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-01",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-01.01",
-        "SD-04.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-E18397F6CAAD7D0F",
-    "members": [
-      "STG-AMANI-0367",
-      "STG-AMANI-0689"
-    ],
-    "canonical": "STG-AMANI-0689",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-04.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-01",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-01.01",
-        "SD-04.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-E4E8F9A9FECA2028",
-    "members": [
-      "STG-AMANI-0379",
-      "STG-AMANI-0701"
-    ],
-    "canonical": "STG-AMANI-0701",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-04.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-04",
-        "SD-06"
-      ],
-      "sub_domains": [
-        "SD-04.03",
-        "SD-06.01"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-EEBC50612CA8A1A9",
-    "members": [
-      "STG-AMANI-0343",
-      "STG-AMANI-0665"
-    ],
-    "canonical": "STG-AMANI-0665",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-04.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-04",
-        "SD-06"
-      ],
-      "sub_domains": [
-        "SD-04.03",
-        "SD-06.01"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-F217524BB530E962",
-    "members": [
-      "STG-AMANI-0197",
-      "STG-AMANI-0619"
-    ],
-    "canonical": "STG-AMANI-0619",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-04.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-01",
-        "SD-04"
-      ],
-      "sub_domains": [
-        "SD-01.01",
-        "SD-04.03"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-F5074938C48100EB",
-    "members": [
-      "STG-AMANI-0319",
-      "STG-AMANI-0641"
-    ],
-    "canonical": "STG-AMANI-0641",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-04.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-04",
-        "SD-06"
-      ],
-      "sub_domains": [
-        "SD-04.03",
-        "SD-06.01"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-FC482959C1BEF87E",
-    "members": [
-      "STG-AMANI-0335",
-      "STG-AMANI-0657"
-    ],
-    "canonical": "STG-AMANI-0657",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-04.03",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-04",
-        "SD-06"
-      ],
-      "sub_domains": [
-        "SD-04.03",
-        "SD-06.01"
-      ]
-    },
+    "classification_conflicts": {},
     "exact_match_keys": 1
   },
   {
     "id": "EQG-SD-04.03-065",
     "members": [
-      "STG-AMANI-0190",
-      "STG-AMANI-0612",
       "STG-CURATED-0116",
       "STG-CURATED-0230",
-      "STG-CURATED-0611"
+      "STG-CURATED-0611",
+      "STG-LEGACY-0190",
+      "STG-LEGACY-0612"
     ],
     "canonical": "STG-CURATED-0230",
     "decision": "CANONICALIZE",
@@ -2646,21 +2326,8 @@
     "sub_domain": "SD-04.03",
     "classification_conflicts": {
       "types": [
-        "ART-CTR",
         "ART-PRC",
         "ART-PRO"
-      ],
-      "abstraction_levels": [
-        "ABS-CTR",
-        "ABS-PRO"
-      ],
-      "primary_domains": [
-        "SD-04",
-        "SD-07"
-      ],
-      "sub_domains": [
-        "SD-04.03",
-        "SD-07.04"
       ]
     },
     "exact_match_keys": 1
@@ -2719,8 +2386,8 @@
   {
     "id": "EQG-SD-04.03-069",
     "members": [
-      "STG-AMANI-0490",
-      "STG-CURATED-0452"
+      "STG-CURATED-0452",
+      "STG-LEGACY-0490"
     ],
     "canonical": "STG-CURATED-0452",
     "decision": "CANONICALIZE",
@@ -2738,85 +2405,21 @@
       "abstraction_levels": [
         "ABS-CTR",
         "ABS-TEC"
+      ],
+      "sub_domains": [
+        "SD-04.01",
+        "SD-04.03"
       ]
     },
     "exact_match_keys": 0
   },
   {
-    "id": "EQG-SD-04.03-070",
-    "members": [
-      "STG-AMANI-0188",
-      "STG-AMANI-0610"
-    ],
-    "canonical": "STG-AMANI-0188",
-    "decision": "CANONICALIZE",
-    "decision_method": "AI_CONSERVATIVE",
-    "decision_confidence": null,
-    "rationale": "Identical CIS 3.1 wording establishing and maintaining a data management process; one is the enterprise-labeled duplicate.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-04.03",
-    "classification_conflicts": {},
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-SD-04.03-071",
-    "members": [
-      "STG-AMANI-0189",
-      "STG-AMANI-0611"
-    ],
-    "canonical": "STG-AMANI-0189",
-    "decision": "CANONICALIZE",
-    "decision_method": "AI_CONSERVATIVE",
-    "decision_confidence": null,
-    "rationale": "Identical CIS 3.3 wording configuring data access control lists by need-to-know under least privilege; one is the enterprise-labeled duplicate.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-04.03",
-    "classification_conflicts": {},
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-SD-04.03-072",
-    "members": [
-      "STG-AMANI-0313",
-      "STG-AMANI-0635"
-    ],
-    "canonical": "STG-AMANI-0313",
-    "decision": "CANONICALIZE",
-    "decision_method": "AI_CONSERVATIVE",
-    "decision_confidence": null,
-    "rationale": "Identical NIST CSF GV.OC-01 subcategory text; one is the enterprise-labeled duplicate.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-04.03",
-    "classification_conflicts": {},
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-SD-04.03-073",
-    "members": [
-      "STG-AMANI-0334",
-      "STG-AMANI-0656"
-    ],
-    "canonical": "STG-AMANI-0334",
-    "decision": "CANONICALIZE",
-    "decision_method": "AI_CONSERVATIVE",
-    "decision_confidence": null,
-    "rationale": "Identical NIST CSF GV.SC-01 subcategory text; one is the enterprise-labeled duplicate.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-04.03",
-    "classification_conflicts": {},
-    "exact_match_keys": 1
-  },
-  {
     "id": "EQG-SD-04.03-074",
     "members": [
-      "STG-AMANI-0346",
-      "STG-AMANI-0668"
+      "STG-LEGACY-0346",
+      "STG-LEGACY-0668"
     ],
-    "canonical": "STG-AMANI-0346",
+    "canonical": "STG-LEGACY-0346",
     "decision": "CANONICALIZE",
     "decision_method": "AI_CONSERVATIVE",
     "decision_confidence": null,
@@ -2824,58 +2427,67 @@
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
     "sub_domain": "SD-04.03",
+    "classification_conflicts": {
+      "sub_domains": [
+        "SD-04.02",
+        "SD-04.03"
+      ]
+    },
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-10F6994E26FCE405",
+    "members": [
+      "STG-CURATED-0135",
+      "STG-CURATED-0676",
+      "STG-LEGACY-0201",
+      "STG-LEGACY-0623"
+    ],
+    "canonical": "STG-CURATED-0135",
+    "decision": "CANONICALIZE",
+    "decision_method": "CURATION_REVIEW+EXACT_MATCH",
+    "decision_confidence": 0.97,
+    "rationale": "All four rows restrict use to fully supported, enterprise-approved browsers and email clients and therefore express one atomic safeguard.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-04.05",
     "classification_conflicts": {},
     "exact_match_keys": 1
   },
   {
-    "id": "EQG-SD-04.03-075",
+    "id": "EQG-EXACT-17BC05C98778DF71",
     "members": [
-      "STG-AMANI-0348",
-      "STG-AMANI-0670"
+      "STG-LEGACY-0063",
+      "STG-LEGACY-0067",
+      "STG-LEGACY-0076",
+      "STG-LEGACY-0080"
     ],
-    "canonical": "STG-AMANI-0348",
+    "canonical": "STG-LEGACY-0080",
     "decision": "CANONICALIZE",
-    "decision_method": "AI_CONSERVATIVE",
-    "decision_confidence": null,
-    "rationale": "Identical NIST CSF ID.AM-05 subcategory text; one is the enterprise-labeled duplicate.",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 4 source rows share an identical normalized short definition across 1 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
-    "sub_domain": "SD-04.03",
-    "classification_conflicts": {},
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-SD-04.03-076",
-    "members": [
-      "STG-AMANI-0353",
-      "STG-AMANI-0675"
-    ],
-    "canonical": "STG-AMANI-0353",
-    "decision": "CANONICALIZE",
-    "decision_method": "AI_CONSERVATIVE",
-    "decision_confidence": null,
-    "rationale": "Identical NIST CSF ID.RA-03 subcategory text; one is the enterprise-labeled duplicate.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-04.03",
-    "classification_conflicts": {},
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-SD-04.03-077",
-    "members": [
-      "STG-AMANI-0360",
-      "STG-AMANI-0682"
-    ],
-    "canonical": "STG-AMANI-0360",
-    "decision": "CANONICALIZE",
-    "decision_method": "AI_CONSERVATIVE",
-    "decision_confidence": null,
-    "rationale": "Identical NIST CSF ID.RA-10 subcategory text; one is the enterprise-labeled duplicate.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-04.03",
-    "classification_conflicts": {},
+    "sub_domain": "SD-04.05",
+    "classification_conflicts": {
+      "types": [
+        "ART-CFG",
+        "ART-CTR"
+      ],
+      "abstraction_levels": [
+        "ABS-CTR",
+        "ABS-TEC"
+      ],
+      "primary_domains": [
+        "SD-04",
+        "SD-08"
+      ],
+      "sub_domains": [
+        "SD-04.05",
+        "SD-08.03"
+      ]
+    },
     "exact_match_keys": 1
   },
   {
@@ -2889,23 +2501,6 @@
     "decision_method": "AI_CONSERVATIVE",
     "decision_confidence": null,
     "rationale": "Both require analyzing and filtering inbound email with advanced mechanisms to block phishing and spam — the same anti-phishing email filtering control.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-04.05",
-    "classification_conflicts": {},
-    "exact_match_keys": 0
-  },
-  {
-    "id": "EQG-SD-04.05-079",
-    "members": [
-      "STG-CURATED-0135",
-      "STG-CURATED-0676"
-    ],
-    "canonical": "STG-CURATED-0135",
-    "decision": "CANONICALIZE",
-    "decision_method": "AI_CONSERVATIVE",
-    "decision_confidence": null,
-    "rationale": "Both restrict usage to only fully supported, enterprise-approved web browsers and email clients — the same client-software approval control.",
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
     "sub_domain": "SD-04.05",
@@ -2932,10 +2527,10 @@
   {
     "id": "EQG-EXACT-0047A102B814C16C",
     "members": [
-      "STG-AMANI-0344",
-      "STG-AMANI-0666"
+      "STG-LEGACY-0344",
+      "STG-LEGACY-0666"
     ],
-    "canonical": "STG-AMANI-0344",
+    "canonical": "STG-LEGACY-0344",
     "decision": "CANONICALIZE",
     "decision_method": "EXACT_MATCH",
     "decision_confidence": 0.95,
@@ -2949,208 +2544,7 @@
         "SD-05"
       ],
       "sub_domains": [
-        "SD-04.03",
-        "SD-05.01"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-048EA8CC993AC314",
-    "members": [
-      "STG-AMANI-0366",
-      "STG-AMANI-0688"
-    ],
-    "canonical": "STG-AMANI-0688",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-05.01",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-04",
-        "SD-05"
-      ],
-      "sub_domains": [
-        "SD-04.03",
-        "SD-05.01"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-16D3A8346A1400C2",
-    "members": [
-      "STG-AMANI-0207",
-      "STG-AMANI-0629"
-    ],
-    "canonical": "STG-AMANI-0207",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-05.01",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-04",
-        "SD-05"
-      ],
-      "sub_domains": [
-        "SD-04.03",
-        "SD-05.01"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-17BC05C98778DF71",
-    "members": [
-      "STG-AMANI-0063",
-      "STG-AMANI-0067",
-      "STG-AMANI-0076",
-      "STG-AMANI-0080"
-    ],
-    "canonical": "STG-AMANI-0080",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 4 source rows share an identical normalized short definition across 1 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-05.01",
-    "classification_conflicts": {},
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-19FE49F23731C4FC",
-    "members": [
-      "STG-AMANI-0015",
-      "STG-AMANI-0061"
-    ],
-    "canonical": "STG-AMANI-0061",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-05.01",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-03",
-        "SD-05"
-      ],
-      "sub_domains": [
-        "SD-03.02",
-        "SD-05.01"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-386AB0BD09617E8F",
-    "members": [
-      "STG-AMANI-0317",
-      "STG-AMANI-0639"
-    ],
-    "canonical": "STG-AMANI-0317",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-05.01",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-05",
-        "SD-07"
-      ],
-      "sub_domains": [
-        "SD-05.01",
-        "SD-07.04"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-5951ED7DE5071E2F",
-    "members": [
-      "STG-AMANI-0327",
-      "STG-AMANI-0649"
-    ],
-    "canonical": "STG-AMANI-0327",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-05.01",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-03",
-        "SD-05"
-      ],
-      "sub_domains": [
-        "SD-03.03",
-        "SD-05.01"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-7FB7F5474CBF5D78",
-    "members": [
-      "STG-AMANI-0318",
-      "STG-AMANI-0640"
-    ],
-    "canonical": "STG-AMANI-0318",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-05.01",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-03",
-        "SD-05"
-      ],
-      "sub_domains": [
-        "SD-03.03",
-        "SD-05.01"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-90804FE9FEF2BF96",
-    "members": [
-      "STG-AMANI-0187",
-      "STG-AMANI-0609"
-    ],
-    "canonical": "STG-AMANI-0609",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-05.01",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-04",
-        "SD-05"
-      ],
-      "sub_domains": [
-        "SD-04.03",
+        "SD-04.02",
         "SD-05.01"
       ]
     },
@@ -3159,10 +2553,10 @@
   {
     "id": "EQG-EXACT-91BD10F56ECC2552",
     "members": [
-      "STG-AMANI-0345",
-      "STG-AMANI-0667"
+      "STG-LEGACY-0345",
+      "STG-LEGACY-0667"
     ],
-    "canonical": "STG-AMANI-0345",
+    "canonical": "STG-LEGACY-0345",
     "decision": "CANONICALIZE",
     "decision_method": "EXACT_MATCH",
     "decision_confidence": 0.95,
@@ -3176,33 +2570,7 @@
         "SD-05"
       ],
       "sub_domains": [
-        "SD-03.03",
-        "SD-05.01"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-977CEA6C5DB842B0",
-    "members": [
-      "STG-AMANI-0377",
-      "STG-AMANI-0699"
-    ],
-    "canonical": "STG-AMANI-0377",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-05.01",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-03",
-        "SD-05"
-      ],
-      "sub_domains": [
-        "SD-03.03",
+        "SD-03.01",
         "SD-05.01"
       ]
     },
@@ -3211,10 +2579,10 @@
   {
     "id": "EQG-EXACT-9AE2DE565A5FF76C",
     "members": [
-      "STG-AMANI-0323",
-      "STG-AMANI-0645"
+      "STG-LEGACY-0323",
+      "STG-LEGACY-0645"
     ],
-    "canonical": "STG-AMANI-0323",
+    "canonical": "STG-LEGACY-0323",
     "decision": "CANONICALIZE",
     "decision_method": "EXACT_MATCH",
     "decision_confidence": 0.95,
@@ -3229,136 +2597,6 @@
       ],
       "sub_domains": [
         "SD-02.04",
-        "SD-05.01"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-A1B2086720D7B7F0",
-    "members": [
-      "STG-AMANI-0331",
-      "STG-AMANI-0653"
-    ],
-    "canonical": "STG-AMANI-0331",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-05.01",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-04",
-        "SD-05"
-      ],
-      "sub_domains": [
-        "SD-04.03",
-        "SD-05.01"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-A9AF62658C7D3B13",
-    "members": [
-      "STG-AMANI-0321",
-      "STG-AMANI-0643"
-    ],
-    "canonical": "STG-AMANI-0643",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-05.01",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-04",
-        "SD-05"
-      ],
-      "sub_domains": [
-        "SD-04.03",
-        "SD-05.01"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-AEB14CFA7F471D8B",
-    "members": [
-      "STG-AMANI-0380",
-      "STG-AMANI-0702"
-    ],
-    "canonical": "STG-AMANI-0380",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-05.01",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-04",
-        "SD-05"
-      ],
-      "sub_domains": [
-        "SD-04.03",
-        "SD-05.01"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-B566715F65DA47E4",
-    "members": [
-      "STG-AMANI-0352",
-      "STG-AMANI-0674"
-    ],
-    "canonical": "STG-AMANI-0352",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-05.01",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-04",
-        "SD-05"
-      ],
-      "sub_domains": [
-        "SD-04.03",
-        "SD-05.01"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-BFF805E892616456",
-    "members": [
-      "STG-AMANI-0211",
-      "STG-AMANI-0633"
-    ],
-    "canonical": "STG-AMANI-0211",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-05.01",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-03",
-        "SD-05"
-      ],
-      "sub_domains": [
-        "SD-03.03",
         "SD-05.01"
       ]
     },
@@ -3367,10 +2605,10 @@
   {
     "id": "EQG-EXACT-D237D78D1F1B6F3C",
     "members": [
-      "STG-AMANI-0185",
-      "STG-AMANI-0607"
+      "STG-LEGACY-0185",
+      "STG-LEGACY-0607"
     ],
-    "canonical": "STG-AMANI-0185",
+    "canonical": "STG-LEGACY-0185",
     "decision": "CANONICALIZE",
     "decision_method": "EXACT_MATCH",
     "decision_confidence": 0.95,
@@ -3385,7 +2623,7 @@
       ],
       "sub_domains": [
         "SD-05.01",
-        "SD-07.04"
+        "SD-07.01"
       ]
     },
     "exact_match_keys": 1
@@ -3393,10 +2631,10 @@
   {
     "id": "EQG-EXACT-DC69CB300A3BBE58",
     "members": [
-      "STG-AMANI-0372",
-      "STG-AMANI-0694"
+      "STG-LEGACY-0372",
+      "STG-LEGACY-0694"
     ],
-    "canonical": "STG-AMANI-0372",
+    "canonical": "STG-LEGACY-0372",
     "decision": "CANONICALIZE",
     "decision_method": "EXACT_MATCH",
     "decision_confidence": 0.95,
@@ -3417,63 +2655,11 @@
     "exact_match_keys": 1
   },
   {
-    "id": "EQG-EXACT-E54DF801B9803F61",
-    "members": [
-      "STG-AMANI-0199",
-      "STG-AMANI-0621"
-    ],
-    "canonical": "STG-AMANI-0199",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-05.01",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-02",
-        "SD-05"
-      ],
-      "sub_domains": [
-        "SD-02.04",
-        "SD-05.01"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-EE5BDD3F713EAB48",
-    "members": [
-      "STG-AMANI-0200",
-      "STG-AMANI-0622"
-    ],
-    "canonical": "STG-AMANI-0622",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-05.01",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-01",
-        "SD-05"
-      ],
-      "sub_domains": [
-        "SD-01.01",
-        "SD-05.01"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
     "id": "EQG-SD-05.01-081",
     "members": [
-      "STG-AMANI-0305",
       "STG-CURATED-0071",
-      "STG-CURATED-0749"
+      "STG-CURATED-0749",
+      "STG-LEGACY-0305"
     ],
     "canonical": "STG-CURATED-0071",
     "decision": "CANONICALIZE",
@@ -3483,16 +2669,7 @@
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
     "sub_domain": "SD-05.01",
-    "classification_conflicts": {
-      "types": [
-        "ART-CTR",
-        "ART-REQ"
-      ],
-      "abstraction_levels": [
-        "ABS-CTR",
-        "ABS-GOV"
-      ]
-    },
+    "classification_conflicts": {},
     "exact_match_keys": 0
   },
   {
@@ -3524,10 +2701,10 @@
   {
     "id": "EQG-SD-05.01-083",
     "members": [
-      "STG-AMANI-0210",
-      "STG-AMANI-0632",
       "STG-CURATED-0149",
-      "STG-CURATED-0615"
+      "STG-CURATED-0615",
+      "STG-LEGACY-0210",
+      "STG-LEGACY-0632"
     ],
     "canonical": "STG-CURATED-0615",
     "decision": "CANONICALIZE",
@@ -3539,21 +2716,8 @@
     "sub_domain": "SD-05.01",
     "classification_conflicts": {
       "types": [
-        "ART-CTR",
         "ART-PRC",
         "ART-PRO"
-      ],
-      "abstraction_levels": [
-        "ABS-CTR",
-        "ABS-PRO"
-      ],
-      "primary_domains": [
-        "SD-03",
-        "SD-05"
-      ],
-      "sub_domains": [
-        "SD-03.03",
-        "SD-05.01"
       ]
     },
     "exact_match_keys": 1
@@ -3561,9 +2725,9 @@
   {
     "id": "EQG-SD-05.01-084",
     "members": [
-      "STG-AMANI-0382",
-      "STG-AMANI-0704",
-      "STG-CURATED-0617"
+      "STG-CURATED-0617",
+      "STG-LEGACY-0382",
+      "STG-LEGACY-0704"
     ],
     "canonical": "STG-CURATED-0617",
     "decision": "CANONICALIZE",
@@ -3581,14 +2745,32 @@
       "abstraction_levels": [
         "ABS-CTR",
         "ABS-GOV"
-      ],
+      ]
+    },
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-A9AF62658C7D3B13",
+    "members": [
+      "STG-LEGACY-0321",
+      "STG-LEGACY-0643"
+    ],
+    "canonical": "STG-LEGACY-0643",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-05.02",
+    "classification_conflicts": {
       "primary_domains": [
-        "SD-02",
+        "SD-04",
         "SD-05"
       ],
       "sub_domains": [
-        "SD-02.04",
-        "SD-05.01"
+        "SD-04.02",
+        "SD-05.02"
       ]
     },
     "exact_match_keys": 1
@@ -3628,6 +2810,84 @@
     "exact_match_keys": 0
   },
   {
+    "id": "EQG-EXACT-386AB0BD09617E8F",
+    "members": [
+      "STG-LEGACY-0317",
+      "STG-LEGACY-0639"
+    ],
+    "canonical": "STG-LEGACY-0317",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-05.03",
+    "classification_conflicts": {
+      "primary_domains": [
+        "SD-05",
+        "SD-07"
+      ],
+      "sub_domains": [
+        "SD-05.03",
+        "SD-07.01"
+      ]
+    },
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-5951ED7DE5071E2F",
+    "members": [
+      "STG-LEGACY-0327",
+      "STG-LEGACY-0649"
+    ],
+    "canonical": "STG-LEGACY-0327",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-05.03",
+    "classification_conflicts": {
+      "primary_domains": [
+        "SD-03",
+        "SD-05"
+      ],
+      "sub_domains": [
+        "SD-03.04",
+        "SD-05.03"
+      ]
+    },
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-AEB14CFA7F471D8B",
+    "members": [
+      "STG-LEGACY-0380",
+      "STG-LEGACY-0702"
+    ],
+    "canonical": "STG-LEGACY-0380",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-05.03",
+    "classification_conflicts": {
+      "primary_domains": [
+        "SD-04",
+        "SD-05"
+      ],
+      "sub_domains": [
+        "SD-04.02",
+        "SD-05.03"
+      ]
+    },
+    "exact_match_keys": 1
+  },
+  {
     "id": "EQG-SD-05.03-087",
     "members": [
       "STG-CURATED-0678",
@@ -3643,6 +2903,47 @@
     "sub_domain": "SD-05.03",
     "classification_conflicts": {},
     "exact_match_keys": 0
+  },
+  {
+    "id": "EQG-CROSS-CIS-AUDIT-LOG-PROCESS",
+    "members": [
+      "STG-CURATED-0131",
+      "STG-CURATED-0417",
+      "STG-LEGACY-0199",
+      "STG-LEGACY-0621"
+    ],
+    "canonical": "STG-CURATED-0417",
+    "decision": "CANONICALIZE",
+    "decision_method": "CURATION_REVIEW",
+    "decision_confidence": 0.96,
+    "rationale": "Both source rows establish the same enterprise audit-log management process; collection, retention, and review are elaborations of that process.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-06.01",
+    "classification_conflicts": {
+      "types": [
+        "ART-PRC",
+        "ART-PRO"
+      ]
+    },
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-EE5BDD3F713EAB48",
+    "members": [
+      "STG-LEGACY-0200",
+      "STG-LEGACY-0622"
+    ],
+    "canonical": "STG-LEGACY-0622",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-06.01",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
   },
   {
     "id": "EQG-SD-06.01-088",
@@ -3664,8 +2965,8 @@
   {
     "id": "EQG-SD-06.01-089",
     "members": [
-      "STG-AMANI-0294",
-      "STG-CURATED-0060"
+      "STG-CURATED-0060",
+      "STG-LEGACY-0294"
     ],
     "canonical": "STG-CURATED-0060",
     "decision": "CANONICALIZE",
@@ -3676,13 +2977,9 @@
     "requires_human_review": true,
     "sub_domain": "SD-06.01",
     "classification_conflicts": {
-      "types": [
-        "ART-CTR",
-        "ART-REQ"
-      ],
-      "abstraction_levels": [
-        "ABS-CTR",
-        "ABS-GOV"
+      "sub_domains": [
+        "SD-06.01",
+        "SD-06.02"
       ]
     },
     "exact_match_keys": 0
@@ -3698,23 +2995,6 @@
     "decision_method": "AI_CONSERVATIVE",
     "decision_confidence": null,
     "rationale": "Both require activating/enabling event logging specifically for the entity's critical information assets so security-relevant activity is captured.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-06.01",
-    "classification_conflicts": {},
-    "exact_match_keys": 0
-  },
-  {
-    "id": "EQG-SD-06.01-091",
-    "members": [
-      "STG-CURATED-0131",
-      "STG-CURATED-0417"
-    ],
-    "canonical": "STG-CURATED-0417",
-    "decision": "CANONICALIZE",
-    "decision_method": "AI_CONSERVATIVE",
-    "decision_confidence": null,
-    "rationale": "Both establish and maintain an enterprise audit log management process defining logging requirements (CIS 8.1).",
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
     "sub_domain": "SD-06.01",
@@ -3756,20 +3036,44 @@
     "exact_match_keys": 0
   },
   {
-    "id": "EQG-SD-06.02-094",
+    "id": "EQG-EXACT-16D3A8346A1400C2",
     "members": [
-      "STG-CURATED-0140",
-      "STG-CURATED-0418"
+      "STG-CURATED-0146",
+      "STG-LEGACY-0207",
+      "STG-LEGACY-0629"
     ],
-    "canonical": "STG-CURATED-0140",
+    "canonical": "STG-CURATED-0146",
     "decision": "CANONICALIZE",
-    "decision_method": "AI_CONSERVATIVE",
-    "decision_confidence": null,
-    "rationale": "Both describe reviewing audit logs for anomalies via automated mechanisms to enable timely detection of security incidents, in near-identical wording.",
+    "decision_method": "CURATION_REVIEW+EXACT_MATCH",
+    "decision_confidence": 0.97,
+    "rationale": "All three rows define centralized security-event alerting for correlation and analysis, with SIEM usage as implementation guidance rather than a distinct outcome.",
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
     "sub_domain": "SD-06.02",
     "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-SD-06.02-094",
+    "members": [
+      "STG-CURATED-0140",
+      "STG-CURATED-0418",
+      "STG-LEGACY-0433"
+    ],
+    "canonical": "STG-CURATED-0140",
+    "decision": "CANONICALIZE",
+    "decision_method": "AI_CONSERVATIVE",
+    "decision_confidence": 0.97,
+    "rationale": "All three rows describe automated audit-log review for anomalies or suspicious activity to enable timely incident detection.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-06.02",
+    "classification_conflicts": {
+      "sub_domains": [
+        "SD-06.01",
+        "SD-06.02"
+      ]
+    },
     "exact_match_keys": 0
   },
   {
@@ -3788,6 +3092,92 @@
     "sub_domain": "SD-06.02",
     "classification_conflicts": {},
     "exact_match_keys": 0
+  },
+  {
+    "id": "EQG-EXACT-90804FE9FEF2BF96",
+    "members": [
+      "STG-LEGACY-0187",
+      "STG-LEGACY-0609"
+    ],
+    "canonical": "STG-LEGACY-0609",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-06.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-C68FC77F96825233",
+    "members": [
+      "STG-LEGACY-0358",
+      "STG-LEGACY-0680"
+    ],
+    "canonical": "STG-LEGACY-0680",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-06.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-D9AB0441D4ADBF00",
+    "members": [
+      "STG-LEGACY-0198",
+      "STG-LEGACY-0620"
+    ],
+    "canonical": "STG-LEGACY-0198",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-06.03",
+    "classification_conflicts": {
+      "types": [
+        "ART-CTR",
+        "ART-PRC"
+      ],
+      "abstraction_levels": [
+        "ABS-CTR",
+        "ABS-PRO"
+      ]
+    },
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-SD-04.03-076",
+    "members": [
+      "STG-LEGACY-0353",
+      "STG-LEGACY-0675"
+    ],
+    "canonical": "STG-LEGACY-0353",
+    "decision": "CANONICALIZE",
+    "decision_method": "AI_CONSERVATIVE",
+    "decision_confidence": null,
+    "rationale": "Identical NIST CSF ID.RA-03 subcategory text; one is the enterprise-labeled duplicate.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-06.03",
+    "classification_conflicts": {
+      "primary_domains": [
+        "SD-04",
+        "SD-06"
+      ],
+      "sub_domains": [
+        "SD-04.02",
+        "SD-06.03"
+      ]
+    },
+    "exact_match_keys": 1
   },
   {
     "id": "EQG-SD-06.03-096",
@@ -3923,6 +3313,40 @@
     "exact_match_keys": 0
   },
   {
+    "id": "EQG-EXACT-177895A52F105F16",
+    "members": [
+      "STG-LEGACY-0362",
+      "STG-LEGACY-0684"
+    ],
+    "canonical": "STG-LEGACY-0362",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-06.04",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-929B2F67E4AA83CA",
+    "members": [
+      "STG-LEGACY-0212",
+      "STG-LEGACY-0634"
+    ],
+    "canonical": "STG-LEGACY-0634",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-06.04",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
     "id": "EQG-SD-06.04-103",
     "members": [
       "STG-CURATED-0151",
@@ -3957,6 +3381,23 @@
     "exact_match_keys": 0
   },
   {
+    "id": "EQG-EXACT-B566715F65DA47E4",
+    "members": [
+      "STG-LEGACY-0352",
+      "STG-LEGACY-0674"
+    ],
+    "canonical": "STG-LEGACY-0352",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-06.05",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
     "id": "EQG-SD-06.05-105",
     "members": [
       "STG-CURATED-0530",
@@ -3972,6 +3413,23 @@
     "sub_domain": "SD-06.05",
     "classification_conflicts": {},
     "exact_match_keys": 0
+  },
+  {
+    "id": "EQG-EXACT-A70889BAB25B21E1",
+    "members": [
+      "STG-LEGACY-0364",
+      "STG-LEGACY-0686"
+    ],
+    "canonical": "STG-LEGACY-0686",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-07.01",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
   },
   {
     "id": "EQG-SD-07.01-106",
@@ -4082,6 +3540,57 @@
     "exact_match_keys": 0
   },
   {
+    "id": "EQG-EXACT-8B9D3BD20EE56910",
+    "members": [
+      "STG-LEGACY-0376",
+      "STG-LEGACY-0698"
+    ],
+    "canonical": "STG-LEGACY-0376",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-07.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-BFF805E892616456",
+    "members": [
+      "STG-LEGACY-0211",
+      "STG-LEGACY-0633"
+    ],
+    "canonical": "STG-LEGACY-0211",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-07.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-EBF0285F4027E058",
+    "members": [
+      "STG-LEGACY-0122",
+      "STG-LEGACY-0123"
+    ],
+    "canonical": "STG-LEGACY-0123",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 1 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-07.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
     "id": "EQG-SD-07.03-111",
     "members": [
       "STG-CURATED-0114",
@@ -4099,12 +3608,12 @@
     "exact_match_keys": 0
   },
   {
-    "id": "EQG-EXACT-10F6994E26FCE405",
+    "id": "EQG-EXACT-5AF7910E2123CC9B",
     "members": [
-      "STG-AMANI-0201",
-      "STG-AMANI-0623"
+      "STG-LEGACY-0205",
+      "STG-LEGACY-0627"
     ],
-    "canonical": "STG-AMANI-0623",
+    "canonical": "STG-LEGACY-0205",
     "decision": "CANONICALIZE",
     "decision_method": "EXACT_MATCH",
     "decision_confidence": 0.95,
@@ -4112,207 +3621,16 @@
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
     "sub_domain": "SD-07.04",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-01",
-        "SD-07"
-      ],
-      "sub_domains": [
-        "SD-01.01",
-        "SD-07.04"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-177895A52F105F16",
-    "members": [
-      "STG-AMANI-0362",
-      "STG-AMANI-0684"
-    ],
-    "canonical": "STG-AMANI-0362",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-07.04",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-02",
-        "SD-07"
-      ],
-      "sub_domains": [
-        "SD-02.04",
-        "SD-07.04"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-207C562767C28696",
-    "members": [
-      "STG-AMANI-0316",
-      "STG-AMANI-0638"
-    ],
-    "canonical": "STG-AMANI-0316",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-07.04",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-03",
-        "SD-07"
-      ],
-      "sub_domains": [
-        "SD-03.03",
-        "SD-07.04"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-69F6BE4A31A8B8C8",
-    "members": [
-      "STG-AMANI-0315",
-      "STG-AMANI-0637"
-    ],
-    "canonical": "STG-AMANI-0315",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-07.04",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-05",
-        "SD-07"
-      ],
-      "sub_domains": [
-        "SD-05.01",
-        "SD-07.04"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-6BBBF030B5E5D8BF",
-    "members": [
-      "STG-AMANI-0370",
-      "STG-AMANI-0692"
-    ],
-    "canonical": "STG-AMANI-0370",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-07.04",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-04",
-        "SD-07"
-      ],
-      "sub_domains": [
-        "SD-04.03",
-        "SD-07.04"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-75F82BC19D391C30",
-    "members": [
-      "STG-AMANI-0357",
-      "STG-AMANI-0679"
-    ],
-    "canonical": "STG-AMANI-0679",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-07.04",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-06",
-        "SD-07"
-      ],
-      "sub_domains": [
-        "SD-06.01",
-        "SD-07.04"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-7DFE9C92DB0EBCB8",
-    "members": [
-      "STG-AMANI-0373",
-      "STG-AMANI-0695"
-    ],
-    "canonical": "STG-AMANI-0695",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-07.04",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-04",
-        "SD-07"
-      ],
-      "sub_domains": [
-        "SD-04.03",
-        "SD-07.04"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-8540D89698798E64",
-    "members": [
-      "STG-AMANI-0206",
-      "STG-AMANI-0628"
-    ],
-    "canonical": "STG-AMANI-0628",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-07.04",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-06",
-        "SD-07"
-      ],
-      "sub_domains": [
-        "SD-06.01",
-        "SD-07.04"
-      ]
-    },
+    "classification_conflicts": {},
     "exact_match_keys": 1
   },
   {
     "id": "EQG-EXACT-8F91B7E5FB52C5EA",
     "members": [
-      "STG-AMANI-0349",
-      "STG-AMANI-0671"
+      "STG-LEGACY-0349",
+      "STG-LEGACY-0671"
     ],
-    "canonical": "STG-AMANI-0671",
+    "canonical": "STG-LEGACY-0671",
     "decision": "CANONICALIZE",
     "decision_method": "EXACT_MATCH",
     "decision_confidence": 0.95,
@@ -4326,33 +3644,7 @@
         "SD-07"
       ],
       "sub_domains": [
-        "SD-06.01",
-        "SD-07.04"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-929B2F67E4AA83CA",
-    "members": [
-      "STG-AMANI-0212",
-      "STG-AMANI-0634"
-    ],
-    "canonical": "STG-AMANI-0634",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-07.04",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-01",
-        "SD-07"
-      ],
-      "sub_domains": [
-        "SD-01.01",
+        "SD-06.05",
         "SD-07.04"
       ]
     },
@@ -4361,10 +3653,10 @@
   {
     "id": "EQG-EXACT-B6594FD326F43D2D",
     "members": [
-      "STG-AMANI-0363",
-      "STG-AMANI-0685"
+      "STG-LEGACY-0363",
+      "STG-LEGACY-0685"
     ],
-    "canonical": "STG-AMANI-0363",
+    "canonical": "STG-LEGACY-0363",
     "decision": "CANONICALIZE",
     "decision_method": "EXACT_MATCH",
     "decision_confidence": 0.95,
@@ -4378,59 +3670,7 @@
         "SD-07"
       ],
       "sub_domains": [
-        "SD-04.03",
-        "SD-07.04"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-CADD95B6DCB52BE5",
-    "members": [
-      "STG-AMANI-0184",
-      "STG-AMANI-0606"
-    ],
-    "canonical": "STG-AMANI-0184",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-07.04",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-04",
-        "SD-07"
-      ],
-      "sub_domains": [
-        "SD-04.03",
-        "SD-07.04"
-      ]
-    },
-    "exact_match_keys": 1
-  },
-  {
-    "id": "EQG-EXACT-D6D8667A3DBCD4C0",
-    "members": [
-      "STG-AMANI-0340",
-      "STG-AMANI-0662"
-    ],
-    "canonical": "STG-AMANI-0662",
-    "decision": "CANONICALIZE",
-    "decision_method": "EXACT_MATCH",
-    "decision_confidence": 0.95,
-    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
-    "ai_review_status": "AIR-HUMAN-REVIEW",
-    "requires_human_review": true,
-    "sub_domain": "SD-07.04",
-    "classification_conflicts": {
-      "primary_domains": [
-        "SD-01",
-        "SD-07"
-      ],
-      "sub_domains": [
-        "SD-01.01",
+        "SD-04.02",
         "SD-07.04"
       ]
     },
@@ -4439,8 +3679,8 @@
   {
     "id": "EQG-SD-07.04-112",
     "members": [
-      "STG-AMANI-0281",
-      "STG-CURATED-0102"
+      "STG-CURATED-0102",
+      "STG-LEGACY-0281"
     ],
     "canonical": "STG-CURATED-0102",
     "decision": "CANONICALIZE",
@@ -4451,13 +3691,9 @@
     "requires_human_review": true,
     "sub_domain": "SD-07.04",
     "classification_conflicts": {
-      "types": [
-        "ART-CTR",
-        "ART-REQ"
-      ],
-      "abstraction_levels": [
-        "ABS-CTR",
-        "ABS-GOV"
+      "sub_domains": [
+        "SD-07.03",
+        "SD-07.04"
       ]
     },
     "exact_match_keys": 0
@@ -4465,8 +3701,8 @@
   {
     "id": "EQG-SD-07.04-113",
     "members": [
-      "STG-AMANI-0284",
-      "STG-CURATED-0105"
+      "STG-CURATED-0105",
+      "STG-LEGACY-0284"
     ],
     "canonical": "STG-CURATED-0105",
     "decision": "CANONICALIZE",
@@ -4476,15 +3712,28 @@
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
     "sub_domain": "SD-07.04",
-    "classification_conflicts": {},
+    "classification_conflicts": {
+      "types": [
+        "ART-CTR",
+        "ART-REQ"
+      ],
+      "abstraction_levels": [
+        "ABS-CTR",
+        "ABS-GOV"
+      ],
+      "sub_domains": [
+        "SD-07.03",
+        "SD-07.04"
+      ]
+    },
     "exact_match_keys": 0
   },
   {
     "id": "EQG-SD-07.04-114",
     "members": [
-      "STG-AMANI-0283",
       "STG-CURATED-0104",
-      "STG-CURATED-0196"
+      "STG-CURATED-0196",
+      "STG-LEGACY-0283"
     ],
     "canonical": "STG-CURATED-0104",
     "decision": "CANONICALIZE",
@@ -4494,24 +3743,15 @@
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
     "sub_domain": "SD-07.04",
-    "classification_conflicts": {
-      "types": [
-        "ART-CTR",
-        "ART-REQ"
-      ],
-      "abstraction_levels": [
-        "ABS-CTR",
-        "ABS-GOV"
-      ]
-    },
+    "classification_conflicts": {},
     "exact_match_keys": 0
   },
   {
     "id": "EQG-SD-07.04-115",
     "members": [
-      "STG-AMANI-0204",
-      "STG-AMANI-0626",
-      "STG-CURATED-0141"
+      "STG-CURATED-0141",
+      "STG-LEGACY-0204",
+      "STG-LEGACY-0626"
     ],
     "canonical": "STG-CURATED-0141",
     "decision": "CANONICALIZE",
@@ -4521,24 +3761,7 @@
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
     "sub_domain": "SD-07.04",
-    "classification_conflicts": {
-      "types": [
-        "ART-CTR",
-        "ART-PRC"
-      ],
-      "abstraction_levels": [
-        "ABS-CTR",
-        "ABS-PRO"
-      ],
-      "primary_domains": [
-        "SD-02",
-        "SD-07"
-      ],
-      "sub_domains": [
-        "SD-02.04",
-        "SD-07.04"
-      ]
-    },
+    "classification_conflicts": {},
     "exact_match_keys": 1
   },
   {
@@ -4559,20 +3782,29 @@
     "exact_match_keys": 0
   },
   {
-    "id": "EQG-SD-07.04-117",
+    "id": "EQG-EXACT-207C562767C28696",
     "members": [
-      "STG-AMANI-0365",
-      "STG-AMANI-0687"
+      "STG-LEGACY-0316",
+      "STG-LEGACY-0638"
     ],
-    "canonical": "STG-AMANI-0365",
+    "canonical": "STG-LEGACY-0316",
     "decision": "CANONICALIZE",
-    "decision_method": "AI_CONSERVATIVE",
-    "decision_confidence": null,
-    "rationale": "Identical PR.AA-01 requirement to manage identities and credentials for authorized users, services, and hardware.",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
     "ai_review_status": "AIR-HUMAN-REVIEW",
     "requires_human_review": true,
-    "sub_domain": "SD-07.04",
-    "classification_conflicts": {},
+    "sub_domain": "SD-07.05",
+    "classification_conflicts": {
+      "primary_domains": [
+        "SD-03",
+        "SD-07"
+      ],
+      "sub_domains": [
+        "SD-03.01",
+        "SD-07.05"
+      ]
+    },
     "exact_match_keys": 1
   },
   {
@@ -4591,6 +3823,23 @@
     "sub_domain": "SD-07.05",
     "classification_conflicts": {},
     "exact_match_keys": 0
+  },
+  {
+    "id": "EQG-EXACT-8AF0E4A2F3C64A96",
+    "members": [
+      "STG-LEGACY-0208",
+      "STG-LEGACY-0630"
+    ],
+    "canonical": "STG-LEGACY-0630",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-08.01",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
   },
   {
     "id": "EQG-SD-08.01-119",
@@ -4666,6 +3915,23 @@
     "exact_match_keys": 0
   },
   {
+    "id": "EQG-EXACT-6FBE2F3F99A28AAC",
+    "members": [
+      "STG-LEGACY-0328",
+      "STG-LEGACY-0650"
+    ],
+    "canonical": "STG-LEGACY-0328",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-08.02",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
     "id": "EQG-SD-08.02-123",
     "members": [
       "STG-CURATED-0034",
@@ -4698,6 +3964,142 @@
     "sub_domain": "SD-08.02",
     "classification_conflicts": {},
     "exact_match_keys": 0
+  },
+  {
+    "id": "EQG-EXACT-06F21E04F799BD00",
+    "members": [
+      "STG-LEGACY-0341",
+      "STG-LEGACY-0663"
+    ],
+    "canonical": "STG-LEGACY-0663",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-08.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-17680FC54A015AD6",
+    "members": [
+      "STG-LEGACY-0337",
+      "STG-LEGACY-0659"
+    ],
+    "canonical": "STG-LEGACY-0659",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-08.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-1A0B5A17880500A3",
+    "members": [
+      "STG-LEGACY-0322",
+      "STG-LEGACY-0644"
+    ],
+    "canonical": "STG-LEGACY-0322",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-08.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-7CC70A8DA88262ED",
+    "members": [
+      "STG-LEGACY-0347",
+      "STG-LEGACY-0669"
+    ],
+    "canonical": "STG-LEGACY-0347",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-08.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-D6D8667A3DBCD4C0",
+    "members": [
+      "STG-LEGACY-0340",
+      "STG-LEGACY-0662"
+    ],
+    "canonical": "STG-LEGACY-0662",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-08.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-D8A9C5ABC88B50ED",
+    "members": [
+      "STG-LEGACY-0339",
+      "STG-LEGACY-0661"
+    ],
+    "canonical": "STG-LEGACY-0661",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-08.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-EXACT-DE3B58941E23CBA3",
+    "members": [
+      "STG-LEGACY-0338",
+      "STG-LEGACY-0660"
+    ],
+    "canonical": "STG-LEGACY-0338",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-08.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
+  },
+  {
+    "id": "EQG-SD-04.03-077",
+    "members": [
+      "STG-LEGACY-0360",
+      "STG-LEGACY-0682"
+    ],
+    "canonical": "STG-LEGACY-0360",
+    "decision": "CANONICALIZE",
+    "decision_method": "AI_CONSERVATIVE",
+    "decision_confidence": null,
+    "rationale": "Identical NIST CSF ID.RA-10 subcategory text; one is the enterprise-labeled duplicate.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-08.03",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
   },
   {
     "id": "EQG-SD-08.03-125",
@@ -4776,6 +4178,23 @@
     "sub_domain": "SD-08.03",
     "classification_conflicts": {},
     "exact_match_keys": 0
+  },
+  {
+    "id": "EQG-EXACT-6BBBF030B5E5D8BF",
+    "members": [
+      "STG-LEGACY-0370",
+      "STG-LEGACY-0692"
+    ],
+    "canonical": "STG-LEGACY-0370",
+    "decision": "CANONICALIZE",
+    "decision_method": "EXACT_MATCH",
+    "decision_confidence": 0.95,
+    "rationale": "Global exact-match consolidation: 2 source rows share an identical normalized short definition across 2 proposed SDT sub-domain(s). The canonical is provisional pending human review.",
+    "ai_review_status": "AIR-HUMAN-REVIEW",
+    "requires_human_review": true,
+    "sub_domain": "SD-08.04",
+    "classification_conflicts": {},
+    "exact_match_keys": 1
   },
   {
     "id": "EQG-SD-08.04-129",

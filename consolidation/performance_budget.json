@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 2,
+  "qualificationMinimumArtifacts": 1000,
+  "warmupIterations": 5,
+  "sampleIterations": 30,
+  "thresholdsMs": {
+    "catalogSearchP95": 250,
+    "profileDashboardP95": 500,
+    "htmlReportP95": 1500
+  },
+  "migrationBaselineDatabase": "catalog.db",
+  "targetProfile": {
+    "id": "WINDOWS-HOST-SQLITE-QUALIFICATION-V1",
+    "kind": "host-regression",
+    "operatingSystem": "Windows 11",
+    "runtime": "CPython 3.12 + bundled sqlite3",
+    "storage": "local workspace filesystem",
+    "note": "Reproducible host qualification profile; physical Android/iOS rendering remains a separate device acceptance activity."
+  },
+  "baseline": {
+    "id": "WINDOWS-HOST-BASELINE-2026-08-13-RC1",
+    "candidateSha256": "51e940debba2c7c664e779dd27f9b478b253068b784b553bc8d31deedf05be35",
+    "reportSha256": "012e7c7b0fe26b8a129074d78599fc8a724ba48ed056ca8f73b1a40c836765af",
+    "catalogSearchP95Ms": 67.251,
+    "profileDashboardP95Ms": 439.803,
+    "htmlReportP95Ms": 509.737,
+    "startupP95Ms": 39.496,
+    "databaseSizeBytes": 10563584,
+    "memoryPeakBytes": 4330599,
+    "catalogUpgradeDurationMs": 9124.935,
+    "integrityDurationMs": 665.277
+  },
+  "notes": [
+    "These are host-side SQLite regression budgets, not mobile frame-rendering SLAs.",
+    "Qualification requires the governed release catalog itself; duplicated synthetic catalog rows are prohibited.",
+    "The 1000-artifact floor is provisional until the owner declares the complete governed release population.",
+    "Startup, size, memory, catalog-upgrade duration, integrity duration, and baseline deltas are evidence-only until owner-approved thresholds exist."
+  ]
+}
