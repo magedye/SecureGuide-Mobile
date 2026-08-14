@@ -44,6 +44,11 @@ desktop.ini
 *.orig
 *~
 
+# ── Local release signing config (secrets must never be committed) ──
+local-release-signing.env
+*.keystore
+*.jks
+
 # ── Regenerable promotion plan outputs (a stable sample is kept at docs/sample_promotion_plan.json) ──
 consolidation/promotion/
 
