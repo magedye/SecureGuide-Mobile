@@ -87,13 +87,25 @@ class CatalogUpgradeTests(unittest.TestCase):
 
     def test_upgrade_preserves_profiles_assessments_evidence_and_exceptions(self) -> None:
         before = self._snapshot()
+        candidate = sqlite3.connect(self.candidate)
+        try:
+            expected_candidate_count = candidate.execute(
+                "SELECT COUNT(*) FROM security_artifacts"
+            ).fetchone()[0]
+            expected_raw_count = candidate.execute(
+                "SELECT COUNT(*) FROM raw_artifacts"
+            ).fetchone()[0]
+        finally:
+            candidate.close()
         result = upgrade_catalog(self.installed, self.candidate, actor="qualification")
         after = self._snapshot()
         self.assertEqual(before, after)
         self.assertEqual(result["operationalSnapshotBefore"], before)
         self.assertEqual(result["operationalSnapshotAfter"], after)
         self.assertEqual(result["oldArtifactCount"], 4)
-        self.assertEqual(result["newArtifactCount"], 1218)
+        # The upgrade contract applies the exact candidate under qualification;
+        # it must not encode a historical catalog population as an invariant.
+        self.assertEqual(result["newArtifactCount"], expected_candidate_count)
         conn = sqlite3.connect(self.installed)
         try:
             self.assertEqual(conn.execute("SELECT COUNT(*) FROM enterprise_profiles").fetchone()[0], 2)
@@ -107,7 +119,7 @@ class CatalogUpgradeTests(unittest.TestCase):
                 ).fetchone()[0],
                 "P2",
             )
-            self.assertEqual(conn.execute("SELECT COUNT(*) FROM raw_artifacts").fetchone()[0], 4265)
+            self.assertEqual(conn.execute("SELECT COUNT(*) FROM raw_artifacts").fetchone()[0], expected_raw_count)
             self.assertEqual(conn.execute("SELECT COUNT(*) FROM staging_artifacts").fetchone()[0], 0)
             self.assertEqual(conn.execute("PRAGMA integrity_check").fetchone()[0], "ok")
             self.assertEqual(conn.execute("PRAGMA foreign_key_check").fetchall(), [])
