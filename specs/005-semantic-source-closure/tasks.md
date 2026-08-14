@@ -58,7 +58,7 @@ description: "Implementation tasks for SecureGuide semantic and source-coverage 
 
 **Independent Test**: Run required regression cases and an individual NIST CSF audit, then validate all type-specific and SDT constraints on an isolated candidate.
 
-- [ ] T016 [P] [US2] Add required semantic regression fixtures for policy, plan, review/audit, process, outcome, PCI PAN, vulnerability management, and MITRE cases in `tests/test_semantic_classification.py`
+- [x] T016 [P] [US2] Add required semantic regression fixtures for policy, plan, review/audit, process, outcome, PCI PAN, vulnerability management, and MITRE cases in `tests/test_semantic_classification.py`
 - [ ] T017 [P] [US2] Add NIST CSF individual-audit and source-wide no-blind-conversion tests in `tests/test_semantic_classification.py` and `tests/test_complete_catalog_curation.py`
 - [ ] T018 [US2] Correct classifier ordering, source-aware CSF outcome handling, stable CSF identifier recognition, and safe domain fallback behavior in `secureguide/semantic_classification.py`
 - [ ] T019 [US2] Add a pinned canonical semantic-correction input with independent type, level, domain, sub-domain, confidence, and rationale decisions in `config/canonical_semantic_corrections.json`

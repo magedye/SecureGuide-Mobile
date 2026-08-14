@@ -14,7 +14,7 @@ from collections.abc import Iterable
 from typing import Any
 
 
-CLASSIFIER_VERSION = "secureguide-semantic-rules-1.1.0"
+CLASSIFIER_VERSION = "secureguide-semantic-rules-1.2.0"
 
 MARKDOWN_LINK = re.compile(r"\[([^\]]+)\]\((https?://[^)]+)\)", re.IGNORECASE)
 CITATION = re.compile(r"\s*\(Citation:[^)]+\)", re.IGNORECASE)
@@ -166,6 +166,7 @@ def _contains(text: str, phrases: Iterable[str]) -> bool:
 def _classify_type(title: str, description: str) -> tuple[str, float, str, list[str]]:
     text = normalize_text(f"{title} {description}")
     title_text = normalize_text(title)
+    raw_title = unicodedata.normalize("NFKC", title or "").strip()
     if re.match(r"^t\d{4}(?:\s\d{3})?\b", title_text) or text.startswith(
         ("adversaries ", "an adversary ", "attackers ")
     ):
@@ -174,8 +175,21 @@ def _classify_type(title: str, description: str) -> tuple[str, float, str, list[
         return "ART-MET", 0.82, "The item itself is a measurable security metric or KPI.", ["ART-CTR"]
     if _contains(text, ("vulnerability is", "vulnerability that", "weakness allows", "weakness in")) and not _contains(text, ("scan", "assess", "manage", "remediate")):
         return "ART-VUL", 0.82, "The item describes a vulnerability or weakness itself.", ["ART-THR", "ART-CTR"]
-    if re.match(r"^(gv|id|pr|de|rs|rc)\.[a-z]{2}\s*\d+", title_text):
+    if re.match(r"^(GV|ID|PR|DE|RS|RC)\.[A-Z]{2}-\d+\b", raw_title, re.IGNORECASE):
         return "ART-OBJ", 0.78, "The statement is a framework outcome rather than an implementation mechanism.", ["ART-REQ", "ART-CTR"]
+    if "render stored pan unreadable" in title_text:
+        return "ART-REQ", 0.84, "The statement requires a data-protection outcome rather than describing a process artifact.", ["ART-CTR", "ART-PRO"]
+    has_requirement_language = (
+        description.strip().lower().startswith("verify that")
+        or bool(re.search(r"\b(shall|must|required)\b", text))
+    )
+    named_artifact = bool(re.search(
+        r"\b(policy|standard|program|plan|process|procedure|playbook)\s*$",
+        raw_title,
+        re.IGNORECASE,
+    ))
+    if has_requirement_language and not named_artifact:
+        return "ART-REQ", 0.84, "The statement requires an outcome; referenced artifact nouns do not change its type.", ["ART-CTR", "ART-POL", "ART-PLN", "ART-PRO"]
     if "policy" in text and _contains(text, ("policy shall", "policy must", "policy is", "policy be identified", "policy be established", "policy be defined", "develop a policy", "establish a policy")):
         return "ART-POL", 0.86, "The item is the governing policy artifact or requires that policy artifact to exist.", ["ART-REQ"]
     if _contains(text, ("security standard", "configuration standard", "standard shall", "standard must", "establish a standard", "define a standard", "security baseline")):
@@ -197,8 +211,6 @@ def _classify_type(title: str, description: str) -> tuple[str, float, str, list[
     )
     if title_text.startswith(configuration_signals) or description.strip().lower().startswith(configuration_signals) or _contains(text, ("tls 1 2", "tls 1 3", "ssl v", "configuration value")):
         return "ART-CFG", 0.84, "The item specifies a concrete technical setting or hardening value.", ["ART-CTR"]
-    if description.strip().lower().startswith("verify that"):
-        return "ART-REQ", 0.84, "The item is a verification-standard requirement stated as a required outcome.", ["ART-CTR"]
     if _contains(text, (" shall ", " must ", " is required to ", " are required to ", "requirements for")):
         return "ART-REQ", 0.79, "The statement imposes a required outcome or obligation.", ["ART-CTR"]
     if _contains(text, ("responsible and accountable", "roles and responsibilities")) and not _contains(text, ("assign", "document", "approve")):

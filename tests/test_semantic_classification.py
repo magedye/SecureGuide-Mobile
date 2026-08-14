@@ -118,6 +118,70 @@ class SemanticClassificationTests(unittest.TestCase):
             "url": "https://attack.example/T1040",
         }])
 
+    def test_requirement_mentions_do_not_become_named_artifacts(self) -> None:
+        cases = (
+            (
+                record(
+                    "V12.1.1 - Configuration Verification",
+                    "Verify that application configuration prevents unsafe default settings.",
+                    "APP-WEB",
+                ),
+                "ART-REQ",
+            ),
+            (
+                record(
+                    "Independent Review Requirement",
+                    "The principle of independent review and audit shall be applied periodically.",
+                    "GRC-COMP",
+                ),
+                "ART-REQ",
+            ),
+            (
+                record(
+                    "Execute Remediation Activities",
+                    "The approved action plan shall be executed and its results verified.",
+                    "IPS-VULN",
+                ),
+                "ART-REQ",
+            ),
+            (
+                record(
+                    "Vulnerability Management Requirement",
+                    "A vulnerability management process shall identify, assess, and remediate weaknesses.",
+                    "IPS-VULN",
+                ),
+                "ART-REQ",
+            ),
+            (
+                record(
+                    "Render Stored PAN Unreadable",
+                    "Render stored primary account numbers unreadable wherever they are stored.",
+                    "DPP-CRYPTO",
+                ),
+                "ART-REQ",
+            ),
+        )
+        for source, expected in cases:
+            with self.subTest(title=source["extracted_elements"]["title_draft"]):
+                self.assertEqual(classify_record(source)["proposed_type"], expected)
+
+    def test_csf_outcomes_are_objectives_even_when_they_mention_plans_or_policy(self) -> None:
+        cases = (
+            record(
+                "GV.OC-01 - Organizational Context",
+                "The organizational mission is understood and informs cybersecurity risk management.",
+                "Subcategory GV.OC-01",
+            ),
+            record(
+                "RS.MA-01 - Incident Management",
+                "Incident response plans are executed with relevant stakeholders.",
+                "Subcategory RS.MA-01",
+            ),
+        )
+        for source in cases:
+            with self.subTest(title=source["extracted_elements"]["title_draft"]):
+                self.assertEqual(classify_record(source)["proposed_type"], "ART-OBJ")
+
 
 if __name__ == "__main__":
     unittest.main()
