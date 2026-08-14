@@ -34,10 +34,81 @@ DEFAULT_CURATED_RAW = ROOT / "SecureGuide_Mobile_Docs" / "Raw_Catalogs" / "secur
 DEFAULT_LEGACY_CLASSIFICATIONS = ROOT / "consolidation" / "curated" / "legacy_classifications.json"
 DEFAULT_TEXT_CORRECTIONS = ROOT / "config" / "catalog_text_corrections.json"
 DEFAULT_LEGACY_RAW = ROOT / "SecureGuide_Mobile_Docs" / "Raw_Catalogs" / "legacy_catalog_v4_recovered.json"
+DEFAULT_RECONCILIATION_LEDGER = ROOT / "config" / "semantic_reconciliation_ledger.json"
+
+RECONCILIATION_DISPOSITIONS = frozenset({
+    "SUPPORTS_CANONICAL", "SPLIT", "DUPLICATE", "CROSSWALK_ONLY",
+    "RELATION_ONLY", "REJECTED", "DEFERRED",
+})
+DEFERRED_REASON_CODES = frozenset({
+    "INSUFFICIENT_AUTHORITATIVE_CONTEXT", "ATOMICITY_AMBIGUITY",
+    "AUTHORITATIVE_CONFLICT", "UNRESOLVED_SEMANTIC_BOUNDARY",
+    "MISSING_SOURCE_METADATA",
+})
+GENERIC_DEFERRED_RATIONALE = (
+    "No defensible globally reconciled canonical was selected from the current tracked classification evidence."
+)
 
 
 class CurationInputError(ValueError):
     """A pinned curation input is missing, stale, or internally inconsistent."""
+
+
+def load_semantic_reconciliation_ledger(
+    path: str | Path = DEFAULT_RECONCILIATION_LEDGER,
+) -> dict[str, dict[str, Any]]:
+    """Load a source-hash-bound, record-specific reconciliation decision ledger."""
+
+    material = json.loads(Path(path).read_text(encoding="utf-8"))
+    if material.get("schema_version") != 1 or not isinstance(material.get("decisions"), list):
+        raise CurationInputError("unsupported semantic reconciliation ledger")
+    expected = material.get("ledger_sha256")
+    hashed = dict(material)
+    hashed["ledger_sha256"] = None
+    if expected != canonical_hash(hashed):
+        raise CurationInputError("semantic reconciliation ledger hash mismatch")
+    decisions: dict[str, dict[str, Any]] = {}
+    for item in material["decisions"]:
+        raw_id = str(item.get("raw_id") or "")
+        disposition = item.get("disposition")
+        rationale = str(item.get("rationale") or "").strip()
+        if not raw_id or raw_id in decisions:
+            raise CurationInputError(f"duplicate or missing reconciliation raw ID: {raw_id!r}")
+        if disposition not in RECONCILIATION_DISPOSITIONS:
+            raise CurationInputError(f"invalid reconciliation disposition for {raw_id}")
+        if not item.get("source_content_sha256") or not item.get("decision_method") or not rationale:
+            raise CurationInputError(f"incomplete reconciliation decision for {raw_id}")
+        if disposition == "DEFERRED":
+            if rationale == GENERIC_DEFERRED_RATIONALE:
+                raise CurationInputError(f"generic deferred rationale for {raw_id}")
+            if item.get("deferred_reason_code") not in DEFERRED_REASON_CODES:
+                raise CurationInputError(f"missing deferred reason code for {raw_id}")
+        decisions[raw_id] = item
+    return decisions
+
+
+def validate_semantic_reconciliation_ledger(
+    conn: sqlite3.Connection, ledger: dict[str, dict[str, Any]]
+) -> dict[str, Any]:
+    """Ensure ledger coverage and hashes bind exactly to the current raw corpus."""
+
+    raw_hashes = {
+        row[0]: row[1] for row in conn.execute("SELECT id,content_hash FROM raw_artifacts")
+    }
+    missing = sorted(set(raw_hashes) - set(ledger))
+    unknown = sorted(set(ledger) - set(raw_hashes))
+    stale = sorted(
+        raw_id for raw_id in set(raw_hashes) & set(ledger)
+        if ledger[raw_id]["source_content_sha256"] != raw_hashes[raw_id]
+    )
+    return {
+        "valid": not (missing or unknown or stale),
+        "rawTotal": len(raw_hashes),
+        "decisionTotal": len(ledger),
+        "missingRawIds": missing,
+        "unknownRawIds": unknown,
+        "staleRawIds": stale,
+    }
 
 
 def load_source_manifest(path: str | Path = DEFAULT_SOURCE_MANIFEST) -> dict[str, Any]:

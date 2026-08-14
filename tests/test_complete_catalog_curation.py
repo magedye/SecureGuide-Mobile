@@ -16,7 +16,9 @@ from secureguide.catalog_curation import (
     build_projection,
     curate_complete_catalog,
     load_curation_candidates,
+    load_semantic_reconciliation_ledger,
     prepare_curation_database,
+    validate_semantic_reconciliation_ledger,
 )
 from secureguide.catalog_validation import canonical_hash, validate_catalog
 from secureguide.database import apply_migrations
@@ -134,6 +136,41 @@ class ProvenanceBackfillTests(unittest.TestCase):
 
 
 class CompleteProjectionTests(unittest.TestCase):
+    def test_semantic_ledger_is_hash_bound_and_requires_exact_raw_coverage(self) -> None:
+        with tempfile.TemporaryDirectory() as folder:
+            database = Path(folder) / "ledger.db"
+            apply_migrations(database)
+            conn = sqlite3.connect(database)
+            try:
+                conn.execute(
+                    "INSERT INTO source_catalogs(id,name,source_type,version) VALUES('SRC','Source','STANDARD','1')"
+                )
+                conn.execute(
+                    """INSERT INTO raw_artifacts(
+                           id,source_catalog_id,source_document,source_version,raw_json,
+                           source_file,content_hash
+                       ) VALUES('RAW','SRC','Source','1','{}','source.json',?)""",
+                    ("a" * 64,),
+                )
+                entry = {
+                    "raw_id": "RAW", "source_content_sha256": "a" * 64,
+                    "disposition": "DEFERRED", "decision_method": "TEST_V1",
+                    "rationale": "The source lacks authoritative scope required to select a canonical.",
+                    "deferred_reason_code": "MISSING_SOURCE_METADATA",
+                }
+                document = {"schema_version": 1, "ledger_sha256": None, "decisions": [entry]}
+                document["ledger_sha256"] = canonical_hash(document)
+                path = Path(folder) / "ledger.json"
+                path.write_text(json.dumps(document), encoding="utf-8")
+                ledger = load_semantic_reconciliation_ledger(path)
+                self.assertTrue(validate_semantic_reconciliation_ledger(conn, ledger)["valid"])
+                conn.execute("UPDATE raw_artifacts SET content_hash=? WHERE id='RAW'", ("b" * 64,))
+                self.assertEqual(
+                    validate_semantic_reconciliation_ledger(conn, ledger)["staleRawIds"], ["RAW"]
+                )
+            finally:
+                conn.close()
+
     def test_projection_is_deterministic_and_globally_accounts_for_candidates(self) -> None:
         candidates = load_curation_candidates()
         first = build_projection(candidates)
