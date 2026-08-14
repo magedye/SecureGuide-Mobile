@@ -43,8 +43,8 @@ SUBDOMAIN_RULES: tuple[tuple[str, tuple[str, ...]], ...] = (
     ("SD-01.02", ("security policy", "cybersecurity policy", "security standard", "exception", "waiver")),
     ("SD-01.03", ("risk assessment", "risk management", "risk appetite", "risk register", "risk treatment")),
     ("SD-01.04", ("compliance", "regulatory", "audit", "assurance", "independent review")),
-    ("SD-01.05", ("security program", "cybersecurity program", "metric", "kpi", "performance measure")),
-    ("SD-02.01", ("asset inventory", "enterprise asset", "hardware inventory", "asset owner", "asset lifecycle")),
+    ("SD-01.05", ("security program", "cybersecurity program", "cybersecurity management", "cybersecurity department", "metric", "kpi", "performance measure")),
+    ("SD-02.01", ("asset inventory", "enterprise asset", "hardware inventory", "asset owner", "asset lifecycle", "unauthorized asset")),
     ("SD-02.02", ("software inventory", "software license", "unsupported software", "software lifecycle")),
     ("SD-02.03", ("data classification", "information classification", "data owner", "data inventory")),
     ("SD-02.04", ("encryption", "cryptographic", "data at rest", "data in transit", "data in use", "key management")),
@@ -54,7 +54,7 @@ SUBDOMAIN_RULES: tuple[tuple[str, tuple[str, ...]], ...] = (
     ("SD-03.03", ("authorization", "access control", "permissions", "least privilege", "logical access", "account access")),
     ("SD-03.04", ("privileged access", "administrator account", "admin account", "pam", "elevated privilege", "root account")),
     ("SD-03.05", ("remote access", "external access", "vpn", "remote desktop", "third party access")),
-    ("SD-04.01", ("network security", "network traffic", "firewall", "wireless", "wi fi", "wifi", "router", "dns", "network segmentation")),
+    ("SD-04.01", ("network security", "network traffic", "inbound traffic", "firewall", "wireless", "wi fi", "wifi", "router", "dns", "network segmentation")),
     ("SD-04.02", ("endpoint", "server", "operating system", "workstation", "mobile device", "device hardening", "anti malware", "malware protection")),
     ("SD-04.03", ("secure configuration", "configuration baseline", "hardening", "default setting", "security setting", "configuration management")),
     ("SD-04.04", ("cloud", "virtual machine", "container", "kubernetes", "virtualization", "cloud workload")),
@@ -75,7 +75,7 @@ SUBDOMAIN_RULES: tuple[tuple[str, tuple[str, ...]], ...] = (
     ("SD-07.04", ("business continuity", "disaster recovery", "resilience", "availability plan", "recovery objective")),
     ("SD-07.05", ("crisis management", "crisis communication", "public communication", "stakeholder communication")),
     ("SD-08.01", ("security awareness", "cybersecurity awareness", "security training", "phishing awareness", "security culture")),
-    ("SD-08.02", ("human resources", "employee lifecycle", "background check", "personnel security", "staff termination")),
+    ("SD-08.02", ("human resources", "cybersecurity positions", "employee lifecycle", "background check", "personnel security", "staff termination")),
     ("SD-08.03", ("supplier", "third party", "vendor", "outsourcing", "supply relationship")),
     ("SD-08.04", ("physical security", "physical access", "environmental", "secure area", "visitor", "document security")),
     ("SD-08.05", ("acceptable use", "professional conduct", "user behavior", "personal device use")),
@@ -138,6 +138,18 @@ NIST_800_53_FAMILY_DOMAINS = {
     "MA": "SD-04.02", "MP": "SD-02.05", "PE": "SD-08.04", "PL": "SD-01.01",
     "PM": "SD-01.05", "PS": "SD-08.02", "RA": "SD-01.03", "SA": "SD-05.03",
     "SC": "SD-04.01", "SI": "SD-06.03", "SR": "SD-08.03",
+}
+CIS_V8_SAFEGUARD_DOMAINS = {
+    "1": "SD-02.01", "2": "SD-02.02", "3": "SD-02.03", "4": "SD-02.04",
+    "5": "SD-03.01", "6": "SD-03.02", "7": "SD-08.01", "8": "SD-06.01",
+    "9": "SD-06.03", "10": "SD-04.02", "11": "SD-04.03", "12": "SD-04.01",
+    "13": "SD-06.01", "14": "SD-08.01", "15": "SD-08.03", "16": "SD-05.01",
+    "17": "SD-07.01", "18": "SD-06.04",
+}
+PCI_REQUIREMENT_DOMAINS = {
+    "1": "SD-04.01", "2": "SD-04.03", "3": "SD-02.04", "4": "SD-02.04",
+    "5": "SD-04.02", "6": "SD-05.01", "7": "SD-03.03", "8": "SD-03.02",
+    "9": "SD-08.04", "10": "SD-06.01", "11": "SD-06.04", "12": "SD-01.02",
 }
 
 
@@ -255,10 +267,35 @@ def _source_domain_fallback(
         code = NIST_800_53_FAMILY_DOMAINS.get(family.group(1).upper()) if family else None
         if code:
             return code[:5], code, 0.73
+        if re.match(r"\s*PT-\d+", title, re.IGNORECASE):
+            return "SD-02", "SD-02.05", 0.73
+    if "cis_controls_v8" in catalog:
+        section_prefix = re.match(r"\s*(\d+)\.", section or title)
+        code = CIS_V8_SAFEGUARD_DOMAINS.get(section_prefix.group(1)) if section_prefix else None
+        if code:
+            return code[:5], code, 0.72
+    if "pci_dss" in catalog:
+        section_prefix = re.match(r"\s*(\d+)\.", section or title)
+        code = PCI_REQUIREMENT_DOMAINS.get(section_prefix.group(1)) if section_prefix else None
+        if code:
+            return code[:5], code, 0.72
     if "mitre" in catalog:
         return "SD-06", "SD-06.05", 0.76
     if "verification_standard" in catalog or "owasp_asvs" in catalog:
         return "SD-05", "SD-05.02", 0.76
+    if "owasp_top_10_llms" in catalog:
+        return "SD-05", "SD-05.02", 0.72
+    if "nist_ai_rmf" in catalog:
+        return "SD-01", "SD-01.03", 0.71
+    if "iso_27002" in catalog:
+        iso = (section or "").split(".", 1)[0]
+        code = {"5": "SD-01.02", "6": "SD-08.02", "7": "SD-08.04", "8": "SD-04.03"}.get(iso)
+        if code:
+            return code[:5], code, 0.71
+    if "cis_linux" in catalog or "microsoft_security_best" in catalog:
+        return "SD-04", "SD-04.03", 0.71
+    if "sans_security_policy" in catalog:
+        return "SD-08", "SD-08.04", 0.71
     return None
 
 

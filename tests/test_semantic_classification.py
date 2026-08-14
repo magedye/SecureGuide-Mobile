@@ -191,6 +191,16 @@ class SemanticClassificationTests(unittest.TestCase):
         self.assertEqual(classify_record(csf)["proposed_sub_domain"], "SD-01.01")
         self.assertEqual(classify_record(mitre)["proposed_sub_domain"], "SD-06.05")
 
+    def test_authoritative_source_taxonomy_handles_ambiguous_control_identifiers(self) -> None:
+        cis = record("1.2", "Ensure that a process exists to address unauthorized assets.", "1.2")
+        cis["source_metadata"]["source_catalog_id"] = "cis_controls_v8"
+        privacy = record("PT-2: Authority to Process PII", "a.", "Control PT-2")
+        privacy["source_metadata"]["source_catalog_id"] = (
+            "nist_sp_800_53_rev_5_security_and_privacy_controls_for_information_systems_and_organizations"
+        )
+        self.assertEqual(classify_record(cis)["proposed_sub_domain"], "SD-02.01")
+        self.assertEqual(classify_record(privacy)["proposed_sub_domain"], "SD-02.05")
+
     def test_csf_audit_classifies_every_pinned_record_as_an_outcome(self) -> None:
         audit = build_csf_audit()
         self.assertEqual(audit["totalRecords"], 134)
