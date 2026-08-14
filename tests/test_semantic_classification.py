@@ -182,6 +182,14 @@ class SemanticClassificationTests(unittest.TestCase):
             with self.subTest(title=source["extracted_elements"]["title_draft"]):
                 self.assertEqual(classify_record(source)["proposed_type"], "ART-OBJ")
 
+    def test_explicit_source_taxonomy_fallback_is_narrow_and_reviewable(self) -> None:
+        csf = record("GV.OC-01 - Organizational Context", "Mission context.", "Subcategory GV.OC-01")
+        csf["source_metadata"]["source_document"] = "The NIST Cybersecurity Framework (CSF) 2.0"
+        mitre = record("T1059 - Command and Scripting Interpreter", "A technique.", "Technique T1059")
+        mitre["source_metadata"]["source_document"] = "MITRE ATT&CK Enterprise"
+        self.assertEqual(classify_record(csf)["proposed_sub_domain"], "SD-01.01")
+        self.assertEqual(classify_record(mitre)["proposed_sub_domain"], "SD-06.05")
+
 
 if __name__ == "__main__":
     unittest.main()

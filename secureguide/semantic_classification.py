@@ -14,7 +14,7 @@ from collections.abc import Iterable
 from typing import Any
 
 
-CLASSIFIER_VERSION = "secureguide-semantic-rules-1.2.0"
+CLASSIFIER_VERSION = "secureguide-semantic-rules-1.3.0"
 
 MARKDOWN_LINK = re.compile(r"\[([^\]]+)\]\((https?://[^)]+)\)", re.IGNORECASE)
 CITATION = re.compile(r"\s*\(Citation:[^)]+\)", re.IGNORECASE)
@@ -118,6 +118,28 @@ PREFIX_FALLBACKS = {
     "RCR-RANSOM": "SD-07.01",
 }
 
+# These rules are explicit source-taxonomy crosswalks, used only when the
+# item's own language has no sufficiently specific SDT signal.  They prevent a
+# source-family default from being hidden inside a generic fallback while still
+# allowing authoritative frameworks to be classified record by record.
+CSF_CATEGORY_DOMAINS = {
+    "GV.OC": "SD-01.01", "GV.OV": "SD-01.01", "GV.PO": "SD-01.02",
+    "GV.RM": "SD-01.03", "GV.RR": "SD-01.01", "GV.SC": "SD-08.03",
+    "ID.AM": "SD-02.01", "ID.RA": "SD-01.03", "ID.IM": "SD-01.04",
+    "PR.AA": "SD-03.03", "PR.AT": "SD-08.01", "PR.DS": "SD-02.04",
+    "PR.IR": "SD-05.03", "PR.PS": "SD-04.02", "PR.PT": "SD-04.03",
+    "DE.CM": "SD-06.01", "DE.AE": "SD-06.02", "DE.DP": "SD-06.02",
+    "RS.MA": "SD-07.01", "RS.AN": "SD-07.01", "RS.CO": "SD-07.05",
+    "RS.MI": "SD-07.01", "RC.RP": "SD-07.04", "RC.CO": "SD-07.05",
+}
+NIST_800_53_FAMILY_DOMAINS = {
+    "AC": "SD-03.03", "AT": "SD-08.01", "AU": "SD-06.01", "CA": "SD-06.04",
+    "CM": "SD-04.03", "CP": "SD-07.04", "IA": "SD-03.02", "IR": "SD-07.01",
+    "MA": "SD-04.02", "MP": "SD-02.05", "PE": "SD-08.04", "PL": "SD-01.01",
+    "PM": "SD-01.05", "PS": "SD-08.02", "RA": "SD-01.03", "SA": "SD-05.03",
+    "SC": "SD-04.01", "SI": "SD-06.03", "SR": "SD-08.03",
+}
+
 
 def normalize_text(value: str | None) -> str:
     value = unicodedata.normalize("NFKC", value or "").lower()
@@ -218,7 +240,32 @@ def _classify_type(title: str, description: str) -> tuple[str, float, str, list[
     return "ART-CTR", 0.74, "The imperative or safeguard statement reduces security risk without defining another artifact kind.", ["ART-REQ", "ART-CFG"]
 
 
-def _domain_from_semantics(title: str, description: str, section: str | None) -> tuple[str, str, float]:
+def _source_domain_fallback(
+    title: str, source_catalog_id: str | None, section: str | None, source_document: str | None = None,
+) -> tuple[str, str, float] | None:
+    catalog = f"{source_catalog_id or ''} {source_document or ''}".lower()
+    raw = f"{title} {section or ''}"
+    csf = re.search(r"\b(GV|ID|PR|DE|RS|RC)\.([A-Z]{2})-\d+\b", raw, re.IGNORECASE)
+    if csf and "csf" in catalog:
+        code = CSF_CATEGORY_DOMAINS.get(f"{csf.group(1).upper()}.{csf.group(2).upper()}")
+        if code:
+            return code[:5], code, 0.74
+    if "nist_sp_800_53" in catalog:
+        family = re.match(r"\s*([A-Z]{2})-\d+", title, re.IGNORECASE)
+        code = NIST_800_53_FAMILY_DOMAINS.get(family.group(1).upper()) if family else None
+        if code:
+            return code[:5], code, 0.73
+    if "mitre" in catalog:
+        return "SD-06", "SD-06.05", 0.76
+    if "verification_standard" in catalog or "owasp_asvs" in catalog:
+        return "SD-05", "SD-05.02", 0.76
+    return None
+
+
+def _domain_from_semantics(
+    title: str, description: str, section: str | None, source_catalog_id: str | None = None,
+    source_document: str | None = None,
+) -> tuple[str, str, float]:
     text = normalize_text(f"{title} {description}")
     scored: list[tuple[int, int, str, str]] = []
     for order, (code, phrases) in enumerate(SUBDOMAIN_RULES):
@@ -237,6 +284,9 @@ def _domain_from_semantics(title: str, description: str, section: str | None) ->
         if section_upper.startswith(prefix):
             code = PREFIX_FALLBACKS[prefix]
             return code[:5], code, 0.62
+    source_fallback = _source_domain_fallback(title, source_catalog_id, section, source_document)
+    if source_fallback:
+        return source_fallback
     # Every recovered row has a meaningful section.  Reaching this branch is a
     # deliberate fail-loud condition rather than a universal domain default.
     raise ValueError(f"no defensible SDT signal for section {section!r}")
@@ -315,7 +365,10 @@ def classify_record(
     source_refs = original.get("source_refs") or []
 
     artifact_type, type_confidence, type_reason, alternatives = _classify_type(title, description)
-    primary_domain, sub_domain, domain_confidence = _domain_from_semantics(title, description, section)
+    primary_domain, sub_domain, domain_confidence = _domain_from_semantics(
+        title, description, section, (record.get("source_metadata") or {}).get("source_catalog_id"),
+        (record.get("source_metadata") or {}).get("source_document"),
+    )
 
     match_score, match = _reference_match(title, description, reference)
     safe_reference_types = {
