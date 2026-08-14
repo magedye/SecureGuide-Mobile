@@ -161,7 +161,7 @@ void main() {
       database
           .select('SELECT COUNT(*) AS n FROM security_artifacts')
           .single['n'],
-      1227,
+      1218,
     );
 
     const requiredViews = {
