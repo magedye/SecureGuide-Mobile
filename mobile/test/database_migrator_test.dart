@@ -144,8 +144,23 @@ void main() {
     }
   });
 
-  test('bundled catalog is current and passes SQLite integrity gates', () {
-    final database = sqlite3.open(p.join('assets', 'catalog.db'));
+  test('bundled catalog migrates to current and passes SQLite integrity gates',
+      () async {
+    final bundledPath = p.join('assets', 'catalog.db');
+    final bundled = sqlite3.open(bundledPath);
+    addTearDown(bundled.close);
+
+    // The production asset is replaced only after a separately qualified
+    // candidate passes release gates. A shipped install must therefore prove
+    // it can apply every embedded forward migration before it is opened.
+    expect(bundled.userVersion, lessThanOrEqualTo(DatabaseMigrator.latestVersion));
+    expect(bundled.select('PRAGMA integrity_check').single.values.first, 'ok');
+    expect(bundled.select('PRAGMA foreign_key_check'), isEmpty);
+
+    final upgradedPath = p.join(tempDirectory.path, 'bundled-catalog.db');
+    await File(bundledPath).copy(upgradedPath);
+    await DatabaseMigrator.migrate(upgradedPath);
+    final database = sqlite3.open(upgradedPath);
     addTearDown(database.close);
 
     expect(database.userVersion, DatabaseMigrator.latestVersion);
