@@ -5,6 +5,7 @@ from __future__ import annotations
 import unittest
 
 from secureguide.semantic_classification import classify_record
+from scripts.rebuild_semantic_reconciliation import build_csf_audit
 
 
 def record(title: str, description: str, section: str = "GRC-GOV") -> dict:
@@ -189,6 +190,15 @@ class SemanticClassificationTests(unittest.TestCase):
         mitre["source_metadata"]["source_document"] = "MITRE ATT&CK Enterprise"
         self.assertEqual(classify_record(csf)["proposed_sub_domain"], "SD-01.01")
         self.assertEqual(classify_record(mitre)["proposed_sub_domain"], "SD-06.05")
+
+    def test_csf_audit_classifies_every_pinned_record_as_an_outcome(self) -> None:
+        audit = build_csf_audit()
+        self.assertEqual(audit["totalRecords"], 134)
+        self.assertEqual(audit["resolvedRecords"], 134)
+        self.assertEqual(audit["unresolvedRecords"], 0, audit["unresolved"])
+        self.assertEqual(audit["typeDistributionAfter"], {"ART-OBJ": 134})
+        self.assertTrue(all(record["rawHash"] for record in audit["records"]))
+        self.assertTrue(all(record["abstractionLevel"] == "ABS-GOV" for record in audit["records"]))
 
 
 if __name__ == "__main__":
