@@ -144,50 +144,61 @@ void main() {
     }
   });
 
-  test('bundled catalog migrates to current and passes SQLite integrity gates',
-      () async {
-    final bundledPath = p.join('assets', 'catalog.db');
-    final bundled = sqlite3.open(bundledPath);
-    addTearDown(bundled.close);
+  test(
+    'bundled catalog migrates to current and passes SQLite integrity gates',
+    () async {
+      final bundledPath = p.join('assets', 'catalog.db');
+      final bundled = sqlite3.open(bundledPath);
+      addTearDown(bundled.close);
 
-    // The production asset is replaced only after a separately qualified
-    // candidate passes release gates. A shipped install must therefore prove
-    // it can apply every embedded forward migration before it is opened.
-    expect(bundled.userVersion, lessThanOrEqualTo(DatabaseMigrator.latestVersion));
-    expect(bundled.select('PRAGMA integrity_check').single.values.first, 'ok');
-    expect(bundled.select('PRAGMA foreign_key_check'), isEmpty);
+      // The production asset is replaced only after a separately qualified
+      // candidate passes release gates. A shipped install must therefore prove
+      // it can apply every embedded forward migration before it is opened.
+      expect(
+        bundled.userVersion,
+        lessThanOrEqualTo(DatabaseMigrator.latestVersion),
+      );
+      expect(
+        bundled.select('PRAGMA integrity_check').single.values.first,
+        'ok',
+      );
+      expect(bundled.select('PRAGMA foreign_key_check'), isEmpty);
 
-    final upgradedPath = p.join(tempDirectory.path, 'bundled-catalog.db');
-    await File(bundledPath).copy(upgradedPath);
-    await DatabaseMigrator.migrate(upgradedPath);
-    final database = sqlite3.open(upgradedPath);
-    addTearDown(database.close);
+      final upgradedPath = p.join(tempDirectory.path, 'bundled-catalog.db');
+      await File(bundledPath).copy(upgradedPath);
+      await DatabaseMigrator.migrate(upgradedPath);
+      final database = sqlite3.open(upgradedPath);
+      addTearDown(database.close);
 
-    expect(database.userVersion, DatabaseMigrator.latestVersion);
-    expect(
-      database
-          .select('SELECT MAX(version) AS version FROM schema_migrations')
-          .single['version'],
-      embeddedMigrations.last.version,
-    );
-    expect(database.select('PRAGMA integrity_check').single.values.first, 'ok');
-    expect(database.select('PRAGMA foreign_key_check'), isEmpty);
-    expect(
-      database
-          .select('SELECT COUNT(*) AS n FROM security_artifacts')
-          .single['n'],
-      1218,
-    );
+      expect(database.userVersion, DatabaseMigrator.latestVersion);
+      expect(
+        database
+            .select('SELECT MAX(version) AS version FROM schema_migrations')
+            .single['version'],
+        embeddedMigrations.last.version,
+      );
+      expect(
+        database.select('PRAGMA integrity_check').single.values.first,
+        'ok',
+      );
+      expect(database.select('PRAGMA foreign_key_check'), isEmpty);
+      expect(
+        database
+            .select('SELECT COUNT(*) AS n FROM security_artifacts')
+            .single['n'],
+        1218,
+      );
 
-    const requiredViews = {
-      'v_profile_dashboard',
-      'v_profile_operational_items',
-      'v_blueprint_pattern_enrichments',
-    };
-    final views = database
-        .select("SELECT name FROM sqlite_master WHERE type = 'view'")
-        .map((row) => row['name'])
-        .toSet();
-    expect(views, containsAll(requiredViews));
-  });
+      const requiredViews = {
+        'v_profile_dashboard',
+        'v_profile_operational_items',
+        'v_blueprint_pattern_enrichments',
+      };
+      final views = database
+          .select("SELECT name FROM sqlite_master WHERE type = 'view'")
+          .map((row) => row['name'])
+          .toSet();
+      expect(views, containsAll(requiredViews));
+    },
+  );
 }
