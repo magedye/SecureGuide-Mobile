@@ -163,6 +163,11 @@ void main() {
         'ok',
       );
       expect(bundled.select('PRAGMA foreign_key_check'), isEmpty);
+      final bundledArtifactCount =
+          bundled
+                  .select('SELECT COUNT(*) AS n FROM security_artifacts')
+                  .single['n']
+              as int;
 
       final upgradedPath = p.join(tempDirectory.path, 'bundled-catalog.db');
       await File(bundledPath).copy(upgradedPath);
@@ -186,7 +191,9 @@ void main() {
         database
             .select('SELECT COUNT(*) AS n FROM security_artifacts')
             .single['n'],
-        1218,
+        // Forward migration preserves the exact bundled catalog, regardless
+        // of the currently governed release population.
+        bundledArtifactCount,
       );
 
       const requiredViews = {

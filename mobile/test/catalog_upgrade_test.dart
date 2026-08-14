@@ -33,17 +33,32 @@ void main() {
   test(
     'catalog upgrade preserves profiles, assessments, evidence, and exceptions',
     () async {
+      final candidate = sqlite3.open(candidatePath, mode: OpenMode.readOnly);
+      late final int expectedCandidateArtifactCount;
+      try {
+        expectedCandidateArtifactCount = _count(
+          candidate,
+          'security_artifacts',
+        );
+      } finally {
+        candidate.close();
+      }
       final result = await CatalogContentUpgrader.upgrade(
         installedPath,
         candidatePath,
       );
       expect(result.applied, isTrue);
       expect(result.oldArtifactCount, 4);
-      expect(result.newArtifactCount, 1218);
+      // The upgrade contract applies the exact bundled candidate under test;
+      // it must not encode a historical catalog population as an invariant.
+      expect(result.newArtifactCount, expectedCandidateArtifactCount);
       expect(result.operationalSnapshotAfter, result.operationalSnapshotBefore);
 
       final database = sqlite3.open(installedPath, mode: OpenMode.readOnly);
-      final candidate = sqlite3.open(candidatePath, mode: OpenMode.readOnly);
+      final upgradedCandidate = sqlite3.open(
+        candidatePath,
+        mode: OpenMode.readOnly,
+      );
       try {
         expect(_count(database, 'enterprise_profiles'), 2);
         expect(_count(database, 'profile_artifacts'), 3);
@@ -63,7 +78,7 @@ void main() {
         expect(_count(database, 'staging_artifacts'), 0);
         expect(
           _count(database, 'external_references'),
-          _count(candidate, 'external_references'),
+          _count(upgradedCandidate, 'external_references'),
         );
         expect(
           database.select('PRAGMA integrity_check').single.values.first,
@@ -71,7 +86,7 @@ void main() {
         );
         expect(database.select('PRAGMA foreign_key_check'), isEmpty);
       } finally {
-        candidate.close();
+        upgradedCandidate.close();
         database.close();
       }
     },
