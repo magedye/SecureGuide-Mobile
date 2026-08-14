@@ -148,15 +148,18 @@ class CuratedReleaseBuildTests(unittest.TestCase):
             _canonical_manifest_hash(self.first_manifest),
         )
 
-    def test_exact_candidates_pass_v1_through_v4_release_validation(self) -> None:
+    def test_legacy_curated_candidates_are_rejected_until_semantic_closure_exists(self) -> None:
         from scripts.validate_catalog_release import validate_release
 
         report = validate_release(
             self.first,
             comparison_database=self.second,
         )
-        self.assertTrue(report["valid"], report)
-        self.assertTrue(all(report[level]["valid"] for level in ("V1", "V2", "V3", "V4")))
+        self.assertFalse(report["valid"], report)
+        self.assertFalse(report["V1"]["valid"], report)
+        self.assertEqual(report["V1"]["closure"]["genericDeferredRationales"], 2792)
+        self.assertEqual(report["V1"]["closure"]["deferredWithoutReasonCode"], 2792)
+        self.assertTrue(all(report[level]["valid"] for level in ("V2", "V3", "V4")))
         self.assertEqual(report["V4"]["bindingErrors"], {})
 
     def test_curated_release_has_closed_minimum_catalog_and_no_unlicensed_payload(self) -> None:
