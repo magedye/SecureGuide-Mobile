@@ -186,7 +186,9 @@ void main() {
     // 5. Execute Assessment
     // Change Implementation Status to "STS-FULL"
     // Tap the dropdown field
-    await tester.tap(find.byKey(const Key('implementationStatus')));
+    final implementationStatus = find.byKey(const Key('implementationStatus'));
+    await tester.ensureVisible(implementationStatus);
+    await tester.tap(implementationStatus);
     await tester.pumpAndSettle();
 
     // Wait for dropdown to open
