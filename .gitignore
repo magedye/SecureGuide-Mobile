@@ -12,6 +12,10 @@
 dist/
 outputs/
 
+# ── Working scratch and archived legacy duplicates (regenerable / superseded) ──
+scratch/
+old/
+
 # ── Python bytecode / caches ──
 __pycache__/
 *.py[cod]
