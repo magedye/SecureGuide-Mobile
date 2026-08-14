@@ -39,6 +39,8 @@ class CatalogClosureSchemaTests(unittest.TestCase):
                 "source_rights_versions",
                 "raw_artifact_dispositions",
                 "artifact_source_lineage",
+                "raw_artifact_reconciliation_links",
+                "raw_artifact_deferred_reasons",
             }.issubset(tables)
         )
         columns = {
@@ -119,6 +121,45 @@ class CatalogClosureSchemaTests(unittest.TestCase):
         with self.assertRaises(sqlite3.IntegrityError):
             self.conn.execute(
                 "DELETE FROM artifact_source_lineage WHERE artifact_id='SG-REQ-1'"
+            )
+
+    def test_reconciliation_links_and_deferred_reasons_are_normalized(self) -> None:
+        self._seed_reference_rows()
+        self.conn.execute(
+            """INSERT INTO raw_artifact_dispositions(
+                   raw_artifact_id,disposition,rationale,decision_method,
+                   requires_human_review,decided_by
+               ) VALUES(?,?,?,?,?,?)""",
+            ("RAW-1", "DEFERRED", "Source statement has an unresolved atomicity conflict.",
+             "SEMANTIC_RECONCILIATION_V1", 1, "test"),
+        )
+        self.conn.execute(
+            """INSERT INTO raw_artifact_deferred_reasons(
+                   raw_artifact_id,reason_code
+               ) VALUES(?,?)""",
+            ("RAW-1", "ATOMICITY_AMBIGUITY"),
+        )
+        self.conn.execute(
+            """INSERT INTO raw_artifact_reconciliation_links(
+                   raw_artifact_id,link_index,disposition,target_artifact_id,
+                   target_raw_artifact_id,mapping_strength,rationale,evidence_method
+               ) VALUES(?,?,?,?,?,?,?,?)""",
+            ("RAW-1", 0, "RELATION_ONLY", "SG-REQ-1", None, "INFORMATIVE",
+             "The source provides context but is not equivalent.", "TEST"),
+        )
+        with self.assertRaises(sqlite3.IntegrityError):
+            self.conn.execute(
+                """INSERT INTO raw_artifact_reconciliation_links(
+                       raw_artifact_id,link_index,disposition,target_artifact_id,
+                       target_raw_artifact_id,mapping_strength,rationale,evidence_method
+                   ) VALUES(?,?,?,?,?,?,?,?)""",
+                ("RAW-1", 1, "RELATION_ONLY", "SG-REQ-1", "RAW-1", "DIRECT",
+                 "Both target kinds are invalid.", "TEST"),
+            )
+        with self.assertRaises(sqlite3.IntegrityError):
+            self.conn.execute(
+                "INSERT INTO raw_artifact_deferred_reasons(raw_artifact_id,reason_code) VALUES(?,?)",
+                ("RAW-1", "GENERIC_NO_CLASSIFIER_EVIDENCE"),
             )
 
     def test_migration_preserves_existing_profile_rows(self) -> None:

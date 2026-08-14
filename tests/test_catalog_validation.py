@@ -210,6 +210,36 @@ class CatalogValidationTests(unittest.TestCase):
         self.assertFalse(report["closure"]["valid"])
         self.assertEqual(report["integrity"]["foreignKeyViolations"], 0)
 
+    def test_closure_rejects_generic_deferred_and_requires_reason_category(self) -> None:
+        self.conn.execute(
+            """INSERT INTO raw_artifact_dispositions(
+                   raw_artifact_id,disposition,rationale,decision_method,
+                   decision_confidence,requires_human_review,decided_by
+               ) VALUES('RAW','DEFERRED',?,?,0.0,1,'test')""",
+            (
+                "No defensible globally reconciled canonical was selected from the current tracked classification evidence.",
+                "DETERMINISTIC_GLOBAL_RECONCILIATION",
+            ),
+        )
+        self.conn.commit()
+        first = validate_catalog(self.path)["closure"]
+        self.assertFalse(first["valid"])
+        self.assertEqual(first["genericDeferredRationales"], 1)
+        self.assertEqual(first["deferredWithoutReasonCode"], 1)
+        self.conn.execute(
+            "UPDATE raw_artifact_dispositions SET rationale=?,decision_method=? WHERE raw_artifact_id='RAW'",
+            (
+                "The source statement combines two outcomes and authoritative text does not define an atomic split.",
+                "SEMANTIC_RECONCILIATION_V1",
+            ),
+        )
+        self.conn.execute(
+            "INSERT INTO raw_artifact_deferred_reasons(raw_artifact_id,reason_code) VALUES('RAW','ATOMICITY_AMBIGUITY')"
+        )
+        self.conn.commit()
+        second = validate_catalog(self.path)["closure"]
+        self.assertTrue(second["valid"])
+
     def test_unresolved_type_is_deferred_without_art_ctr_default(self) -> None:
         raw = {
             "usacm_type_assigned": None,

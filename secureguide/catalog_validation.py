@@ -284,8 +284,8 @@ def enriched_result(
 
 
 def _closure(conn: sqlite3.Connection, contract: dict[str, Any]) -> dict[str, Any]:
-    def count(sql: str) -> int:
-        return int(conn.execute(sql).fetchone()[0])
+    def count(sql: str, parameters: tuple[Any, ...] = ()) -> int:
+        return int(conn.execute(sql, parameters).fetchone()[0])
 
     raw_total = count("SELECT COUNT(*) FROM raw_artifacts")
     raw_disposed = count("SELECT COUNT(*) FROM raw_artifact_dispositions")
@@ -326,6 +326,30 @@ def _closure(conn: sqlite3.Connection, contract: dict[str, Any]) -> dict[str, An
             tuple(contract["raw_dispositions"]),
         ).fetchone()[0]
     )
+    tables = {
+        row[0] for row in conn.execute("SELECT name FROM sqlite_master WHERE type='table'")
+    }
+    generic_deferred_rationales = count(
+        """SELECT COUNT(*) FROM raw_artifact_dispositions
+             WHERE disposition='DEFERRED' AND (
+                 trim(rationale)=?
+                 OR decision_method='DETERMINISTIC_GLOBAL_RECONCILIATION'
+             )""",
+        (
+            "No defensible globally reconciled canonical was selected from the current tracked classification evidence.",
+        ),
+    )
+    deferred_without_reason_code = (
+        count(
+            """SELECT COUNT(*) FROM raw_artifact_dispositions d
+                 WHERE d.disposition='DEFERRED' AND NOT EXISTS(
+                     SELECT 1 FROM raw_artifact_deferred_reasons r
+                      WHERE r.raw_artifact_id=d.raw_artifact_id
+                 )"""
+        )
+        if "raw_artifact_deferred_reasons" in tables
+        else count("SELECT COUNT(*) FROM raw_artifact_dispositions WHERE disposition='DEFERRED'")
+    )
     issues = {
         "missingDispositions": missing_dispositions,
         "missingCanonicalLineage": missing_canonical_lineage,
@@ -333,6 +357,8 @@ def _closure(conn: sqlite3.Connection, contract: dict[str, Any]) -> dict[str, An
         "missingSourceManifests": missing_manifests,
         "missingSourceRights": missing_rights,
         "invalidDispositions": invalid_dispositions,
+        "genericDeferredRationales": generic_deferred_rationales,
+        "deferredWithoutReasonCode": deferred_without_reason_code,
     }
     return {
         "valid": all(value == 0 for value in issues.values()),
