@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import sqlite3
 import uuid
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -31,28 +31,33 @@ CORE_SHEETS = (
     "00_Manifest", "01_Artifacts", "02_Source_Lineage",
     "03_Framework_Mappings", "04_Relationships", "05_Tags",
     "06_Type_Specific", "07_Reference_Lists", "08_Validation_Errors",
+    "09_Raw_Dispositions",
 )
 DETAIL_TABLE_SHEETS = {
-    "09_Applicability": "artifact_applicability_scope",
-    "10_Reference_Assessments": "artifact_self_assessments",
-    "11_Technical_Dependencies": "technical_dependencies",
-    "12_Verification_Tools": "verification_tools",
-    "13_Stakeholders": "stakeholders",
-    "14_Remediation_Actions": "remediation_actions",
-    "15_External_References": "external_references",
-    "16_Localizations": "artifact_localizations",
-    "17_Actions": "artifact_actions",
-    "18_Variants": "artifact_variants",
-    "19_Security_Objectives": "artifact_security_objectives",
-    "20_CSF_Functions": "artifact_csf_functions",
-    "21_Control_Purposes": "artifact_control_purposes",
-    "22_Implementation_Types": "artifact_implementation_types",
-    "23_Maturity_Requirements": "artifact_maturity_requirements",
-    "24_Verification_Evidence": "artifact_verification_evidence_types",
-    "25_Threats": "artifact_threats",
-    "26_Platforms": "artifact_platforms",
-    "27_Amani_Assets": "catalog_amani_assets",
-    "28_Amani_Provenance": "catalog_amani_provenance",
+    "10_Applicability": "artifact_applicability_scope",
+    "11_Reference_Assessments": "artifact_self_assessments",
+    "12_Technical_Dependencies": "technical_dependencies",
+    "13_Verification_Tools": "verification_tools",
+    "14_Stakeholders": "stakeholders",
+    "15_Remediation_Actions": "remediation_actions",
+    "16_External_References": "external_references",
+    "17_Localizations": "artifact_localizations",
+    "18_Actions": "artifact_actions",
+    "19_Variants": "artifact_variants",
+    "20_Security_Objectives": "artifact_security_objectives",
+    "21_CSF_Functions": "artifact_csf_functions",
+    "22_Control_Purposes": "artifact_control_purposes",
+    "23_Implementation_Types": "artifact_implementation_types",
+    "24_Maturity_Requirements": "artifact_maturity_requirements",
+    "25_Verification_Evidence": "artifact_verification_evidence_types",
+    "26_Threats": "artifact_threats",
+    "27_Platforms": "artifact_platforms",
+    "28_Legacy_Assets": "catalog_legacy_assets",
+    "29_Legacy_Provenance": "catalog_legacy_provenance",
+    "30_Artifact_ID_Aliases": "catalog_artifact_id_aliases",
+    "31_Source_Catalogs": "source_catalogs",
+    "32_Source_Manifests": "source_import_manifests",
+    "33_Source_Rights": "source_rights_versions",
 }
 SHEETS = (*CORE_SHEETS, *DETAIL_TABLE_SHEETS)
 ACTION_VALUES = ("NO_CHANGE", "UPSERT", "DEPRECATE")
@@ -62,12 +67,14 @@ TABLE_SHEETS = {
     "03_Framework_Mappings": "framework_mappings",
     "04_Relationships": "artifact_relationships",
     "05_Tags": "artifact_tags",
+    "09_Raw_Dispositions": "raw_artifact_dispositions",
     **DETAIL_TABLE_SHEETS,
 }
 EDITABLE_SHEETS = (
     "01_Artifacts", "02_Source_Lineage", "03_Framework_Mappings",
     "04_Relationships", "05_Tags", "06_Type_Specific",
-    *DETAIL_TABLE_SHEETS,
+    "09_Raw_Dispositions",
+    *tuple(sheet for sheet in DETAIL_TABLE_SHEETS if not sheet.startswith(("30_", "31_", "32_", "33_"))),
 )
 PRIMARY_KEYS = {
     "01_Artifacts": ("id",),
@@ -76,26 +83,31 @@ PRIMARY_KEYS = {
     "04_Relationships": ("id",),
     "05_Tags": ("artifact_id", "tag_type", "tag_value"),
     "06_Type_Specific": ("artifact_id",),
-    "09_Applicability": ("id",),
-    "10_Reference_Assessments": ("id",),
-    "11_Technical_Dependencies": ("id",),
-    "12_Verification_Tools": ("id",),
-    "13_Stakeholders": ("id",),
-    "14_Remediation_Actions": ("id",),
-    "15_External_References": ("id",),
-    "16_Localizations": ("artifact_id", "locale"),
-    "17_Actions": ("id",),
-    "18_Variants": ("id",),
-    "19_Security_Objectives": ("artifact_id", "objective_code"),
-    "20_CSF_Functions": ("artifact_id", "csf_code"),
-    "21_Control_Purposes": ("artifact_id", "purpose_code"),
-    "22_Implementation_Types": ("artifact_id", "impl_type_code"),
-    "23_Maturity_Requirements": ("id",),
-    "24_Verification_Evidence": ("artifact_id", "evidence_type"),
-    "25_Threats": ("artifact_id", "threat_code"),
-    "26_Platforms": ("artifact_id", "platform_code"),
-    "27_Amani_Assets": ("artifact_id", "asset_ref"),
-    "28_Amani_Provenance": ("artifact_id",),
+    "09_Raw_Dispositions": ("raw_artifact_id",),
+    "10_Applicability": ("id",),
+    "11_Reference_Assessments": ("id",),
+    "12_Technical_Dependencies": ("id",),
+    "13_Verification_Tools": ("id",),
+    "14_Stakeholders": ("id",),
+    "15_Remediation_Actions": ("id",),
+    "16_External_References": ("id",),
+    "17_Localizations": ("artifact_id", "locale"),
+    "18_Actions": ("id",),
+    "19_Variants": ("id",),
+    "20_Security_Objectives": ("artifact_id", "objective_code"),
+    "21_CSF_Functions": ("artifact_id", "csf_code"),
+    "22_Control_Purposes": ("artifact_id", "purpose_code"),
+    "23_Implementation_Types": ("artifact_id", "impl_type_code"),
+    "24_Maturity_Requirements": ("id",),
+    "25_Verification_Evidence": ("artifact_id", "evidence_type"),
+    "26_Threats": ("artifact_id", "threat_code"),
+    "27_Platforms": ("artifact_id", "platform_code"),
+    "28_Legacy_Assets": ("artifact_id", "asset_ref"),
+    "29_Legacy_Provenance": ("artifact_id",),
+    "30_Artifact_ID_Aliases": ("old_artifact_id",),
+    "31_Source_Catalogs": ("id",),
+    "32_Source_Manifests": ("id",),
+    "33_Source_Rights": ("id",),
 }
 TYPE_FIELDS = (
     "artifact_id", "type", "requirement_type", "control_nature",
@@ -147,9 +159,10 @@ STATIC_LISTS = {
         "DOCUMENT", "SCREENSHOT", "LOG", "REPORT", "CONFIG",
         "ATTESTATION", "LINK", "OTHER",
     ),
+    "raw_disposition": tuple(load_contract()["raw_dispositions"]),
 }
 CUSTOM_LIST_QUERIES = {
-    "amani_domain": "SELECT amani_key FROM amani_domain_alias ORDER BY amani_key",
+    "legacy_domain": "SELECT legacy_key FROM legacy_domain_alias ORDER BY legacy_key",
 }
 GLOBAL_FIELD_LISTS = {
     "type": "type", "primary_domain": "primary_domain", "sub_domain": "sub_domain",
@@ -171,32 +184,33 @@ SHEET_FIELD_LISTS = {
     "04_Relationships": {
         "relation_type": "relation_type", "resolution_status": "resolution_status",
     },
-    "09_Applicability": {"scope_type": "applicability_scope_type"},
-    "10_Reference_Assessments": {"status": "self_assessment_status"},
-    "11_Technical_Dependencies": {
+    "09_Raw_Dispositions": {"disposition": "raw_disposition"},
+    "10_Applicability": {"scope_type": "applicability_scope_type"},
+    "11_Reference_Assessments": {"status": "self_assessment_status"},
+    "12_Technical_Dependencies": {
         "dependency_type": "dependency_type", "dependency_status": "dependency_status",
     },
-    "12_Verification_Tools": {
+    "13_Verification_Tools": {
         "tool_type": "verification_tool_type", "verification_method": "verification_method",
     },
-    "13_Stakeholders": {"responsibility": "stakeholder_responsibility"},
-    "15_External_References": {"type": "external_reference_type"},
-    "16_Localizations": {
+    "14_Stakeholders": {"responsibility": "stakeholder_responsibility"},
+    "16_External_References": {"type": "external_reference_type"},
+    "17_Localizations": {
         "content_maturity": "content_maturity",
         "content_review_status": "content_review_status",
     },
-    "17_Actions": {"kind": "action_kind"},
-    "19_Security_Objectives": {
+    "18_Actions": {"kind": "action_kind"},
+    "20_Security_Objectives": {
         "objective_code": "objective_code", "strength": "objective_strength",
     },
-    "20_CSF_Functions": {"csf_code": "csf_code", "strength": "csf_strength"},
-    "21_Control_Purposes": {"purpose_code": "purpose_code"},
-    "22_Implementation_Types": {"impl_type_code": "impl_type_code"},
-    "23_Maturity_Requirements": {"tier_code": "tier_code"},
-    "24_Verification_Evidence": {"evidence_type": "verification_evidence_type"},
-    "25_Threats": {"threat_code": "threat_code"},
-    "26_Platforms": {"platform_code": "platform_code"},
-    "28_Amani_Provenance": {"amani_domain": "amani_domain"},
+    "21_CSF_Functions": {"csf_code": "csf_code", "strength": "csf_strength"},
+    "22_Control_Purposes": {"purpose_code": "purpose_code"},
+    "23_Implementation_Types": {"impl_type_code": "impl_type_code"},
+    "24_Maturity_Requirements": {"tier_code": "tier_code"},
+    "25_Verification_Evidence": {"evidence_type": "verification_evidence_type"},
+    "26_Threats": {"threat_code": "threat_code"},
+    "27_Platforms": {"platform_code": "platform_code"},
+    "29_Legacy_Provenance": {"legacy_domain": "legacy_domain"},
 }
 META_COLUMNS = ("_action", "_baseline_key", "_baseline_hash")
 
@@ -261,6 +275,133 @@ def _table_rows(conn: sqlite3.Connection, table: str) -> list[dict[str, Any]]:
     ]
 
 
+def _selected_artifacts(
+    conn: sqlite3.Connection, filters: dict[str, Any]
+) -> list[dict[str, Any]]:
+    clauses: list[str] = []
+    parameters: list[Any] = []
+    exact_columns = {
+        "artifact_type": "a.type", "primary_domain": "a.primary_domain",
+        "sub_domain": "a.sub_domain", "publication_status": "a.publication_status",
+        "ai_review_status": "a.ai_review_status",
+    }
+    for key, column in exact_columns.items():
+        if filters.get(key) not in (None, ""):
+            clauses.append(f"{column}=?")
+            parameters.append(filters[key])
+    if filters.get("requires_human_review") is not None:
+        clauses.append("a.requires_human_review=?")
+        parameters.append(int(bool(filters["requires_human_review"])))
+    if filters.get("min_confidence") is not None:
+        clauses.append("a.classification_confidence>=?")
+        parameters.append(float(filters["min_confidence"]))
+    if filters.get("max_confidence") is not None:
+        clauses.append("a.classification_confidence<=?")
+        parameters.append(float(filters["max_confidence"]))
+    if filters.get("source") not in (None, ""):
+        clauses.append(
+            "(lower(a.source_catalog_id)=lower(?) OR lower(a.source)=lower(?) "
+            "OR lower(a.source_document)=lower(?) OR EXISTS("
+            "SELECT 1 FROM framework_mappings fm WHERE fm.artifact_id=a.id "
+            "AND lower(fm.framework)=lower(?)))"
+        )
+        parameters.extend([filters["source"]] * 4)
+    where = " WHERE " + " AND ".join(clauses) if clauses else ""
+    columns = _table_columns(conn, "security_artifacts")
+    rows = [
+        _row_dict(row, columns)
+        for row in conn.execute(
+            f"SELECT a.* FROM security_artifacts a{where} ORDER BY a.id", parameters
+        )
+    ]
+    quality = filters.get("quality_profile")
+    if quality:
+        from secureguide.catalog_validation import enriched_result, strict_result
+
+        contract = load_contract()
+        filtered: list[dict[str, Any]] = []
+        for values in rows:
+            row = conn.execute(
+                "SELECT * FROM security_artifacts WHERE id=?", (values["id"],)
+            ).fetchone()
+            valid = {
+                "MINIMUM_VALID": minimum_result(conn, row, contract)["valid"],
+                "STRICT_USACM": strict_result(conn, row)["valid"],
+                "ENRICHED": enriched_result(conn, row, contract)["valid"],
+            }.get(str(quality))
+            if valid is None:
+                raise WorkbookError(f"unsupported quality profile filter: {quality}")
+            if valid:
+                filtered.append(values)
+        rows = filtered
+    return rows
+
+
+def _rows_for_ids(
+    conn: sqlite3.Connection,
+    table: str,
+    column: str,
+    identifiers: set[str],
+) -> list[dict[str, Any]]:
+    if not identifiers:
+        return []
+    columns = _table_columns(conn, table)
+    order = ",".join(
+        row[1] for row in conn.execute(f"PRAGMA table_info({table})") if row[5]
+    ) or ",".join(columns)
+    placeholders = ",".join("?" for _ in identifiers)
+    return [
+        _row_dict(row, columns)
+        for row in conn.execute(
+            f'SELECT * FROM "{table}" WHERE "{column}" IN ({placeholders}) ORDER BY {order}',
+            tuple(sorted(identifiers)),
+        )
+    ]
+
+
+def _scoped_table_rows(
+    conn: sqlite3.Connection,
+    artifacts: list[dict[str, Any]],
+    *,
+    complete: bool,
+) -> dict[str, list[dict[str, Any]]]:
+    if complete:
+        return {sheet: _table_rows(conn, table) for sheet, table in TABLE_SHEETS.items()}
+    artifact_ids = {str(row["id"]) for row in artifacts}
+    source_ids = {
+        str(row["source_catalog_id"])
+        for row in artifacts
+        if row.get("source_catalog_id") not in (None, "")
+    }
+    result: dict[str, list[dict[str, Any]]] = {"01_Artifacts": artifacts}
+    lineage = _rows_for_ids(
+        conn, "artifact_source_lineage", "artifact_id", artifact_ids
+    )
+    raw_ids = {str(row["raw_artifact_id"]) for row in lineage}
+    result["02_Source_Lineage"] = lineage
+    for sheet, table in TABLE_SHEETS.items():
+        if sheet in result:
+            continue
+        if sheet == "09_Raw_Dispositions":
+            result[sheet] = _rows_for_ids(
+                conn, table, "raw_artifact_id", raw_ids
+            )
+        elif sheet == "04_Relationships":
+            source_rows = _rows_for_ids(conn, table, "source_id", artifact_ids)
+            target_rows = _rows_for_ids(conn, table, "target_id", artifact_ids)
+            by_id = {str(row["id"]): row for row in (*source_rows, *target_rows)}
+            result[sheet] = [by_id[key] for key in sorted(by_id)]
+        elif sheet in {"31_Source_Catalogs", "32_Source_Manifests", "33_Source_Rights"}:
+            column = "id" if sheet == "31_Source_Catalogs" else "source_catalog_id"
+            result[sheet] = _rows_for_ids(conn, table, column, source_ids)
+        else:
+            columns = _table_columns(conn, table)
+            if "artifact_id" not in columns:
+                raise WorkbookError(f"no scoped artifact key for {sheet}")
+            result[sheet] = _rows_for_ids(conn, table, "artifact_id", artifact_ids)
+    return result
+
+
 def catalog_state_hash(conn: sqlite3.Connection) -> str:
     """Logical hash excluding workbook audit rows and SQLite byte layout."""
     payload = {table: _table_rows(conn, table) for table in TABLE_SHEETS.values()}
@@ -314,28 +455,53 @@ def _field_lists_for_sheet(sheet: str, columns: Iterable[str]) -> dict[str, str]
     return result
 
 
-def export_workbook(database: str | Path, output: str | Path, *, actor: str = "codex") -> dict[str, Any]:
+def export_workbook(
+    database: str | Path,
+    output: str | Path,
+    *,
+    actor: str = "codex",
+    filters: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     database = Path(database).resolve()
     output = Path(output).resolve()
     conn = connect(database)
     try:
+        filters = {
+            key: value for key, value in (filters or {}).items()
+            if value is not None and value != ""
+        }
+        complete = not filters
         baseline = catalog_state_hash(conn)
         schema = conn.execute("SELECT MAX(CAST(version AS INTEGER)) FROM schema_migrations").fetchone()[0]
-        table_rows = {
-            sheet: _table_rows(conn, table) for sheet, table in TABLE_SHEETS.items()
-        }
+        artifacts = _selected_artifacts(conn, filters)
+        table_rows = _scoped_table_rows(conn, artifacts, complete=complete)
         wb = Workbook()
         wb.remove(wb.active)
         manifest_ws = wb.create_sheet(SHEETS[0])
         manifest_ws.append(["key", "value"])
         manifest = {
-            "workbook_contract": "secureguide-catalog-workbook-v2",
+            "workbook_contract": "secureguide-catalog-workbook-v3",
             "schema_version": int(schema or 0),
             "baseline_db_sha256": baseline,
+            "baseline_catalog_state_sha256": baseline,
             "database_name": database.name,
             "database_path": _portable_path(database),
-            "export_scope": "ALL_CATALOG_ARTIFACTS",
+            "exported_at_utc": datetime.now(timezone.utc).isoformat(),
+            "exported_by": actor,
+            "export_mode": "COMPLETE" if complete else "FILTERED",
+            "export_scope": "ALL_CATALOG_ARTIFACTS" if complete else "DECLARED_FILTER_SCOPE",
+            "filter_json": json.dumps(filters, ensure_ascii=False, sort_keys=True, separators=(",", ":")),
+            "quality_profile": filters.get("quality_profile") or "MINIMUM_VALID",
+            "minimum_contract_sha256": file_hash(ROOT / "config" / "catalog_minimum_fields.yaml"),
+            "source_manifest_sha256": file_hash(ROOT / "config" / "source_manifest.json"),
+            "source_rights_sha256": file_hash(ROOT / "config" / "source_rights.yaml"),
             "artifact_count": len(table_rows["01_Artifacts"]),
+            "canonical_total": conn.execute("SELECT COUNT(*) FROM security_artifacts").fetchone()[0],
+            "raw_total": conn.execute("SELECT COUNT(*) FROM raw_artifacts").fetchone()[0],
+            "disposition_total": conn.execute("SELECT COUNT(*) FROM raw_artifact_dispositions").fetchone()[0],
+            "lineage_total": conn.execute("SELECT COUNT(*) FROM artifact_source_lineage").fetchone()[0],
+            "scoped_disposition_count": len(table_rows["09_Raw_Dispositions"]),
+            "scoped_lineage_count": len(table_rows["02_Source_Lineage"]),
             "excluded_data": "PROFILE_OPERATIONAL|RAW_PAYLOAD|DERIVED_EMBEDDINGS|WORKFLOW_BLUEPRINTS",
             "row_omission_semantics": "NO_CHANGE",
             "allowed_actions": "|".join(ACTION_VALUES),
@@ -356,11 +522,23 @@ def export_workbook(database: str | Path, output: str | Path, *, actor: str = "c
 
         type_ws = wb.create_sheet("06_Type_Specific")
         type_rows = []
+        artifact_ids = [row["id"] for row in table_rows["01_Artifacts"]]
+        type_where = ""
+        type_parameters: tuple[Any, ...] = ()
+        if not complete:
+            placeholders = ",".join("?" for _ in artifact_ids)
+            type_where = (
+                f" WHERE id IN ({placeholders})" if artifact_ids else " WHERE 0"
+            )
+            type_parameters = tuple(artifact_ids)
         for row in conn.execute(
             """SELECT id AS artifact_id,type,requirement_type,control_nature,
                       control_function,testability,asset_type,asset_criticality,
                       exception_approval_date,exception_expiry_date,effective_date
-                 FROM security_artifacts ORDER BY id"""
+                 FROM security_artifacts"""
+            + type_where
+            + " ORDER BY id",
+            type_parameters,
         ):
             type_rows.append(_row_dict(row, TYPE_FIELDS))
         _append_table(type_ws, list(TYPE_FIELDS), type_rows)
@@ -377,6 +555,13 @@ def export_workbook(database: str | Path, output: str | Path, *, actor: str = "c
 
         errors_ws = wb.create_sheet("08_Validation_Errors")
         errors_ws.append(["sheet", "row", "field", "code", "message"])
+
+        disposition_ws = wb.create_sheet("09_Raw_Dispositions")
+        _append_table(
+            disposition_ws,
+            _table_columns(conn, "raw_artifact_dispositions"),
+            table_rows["09_Raw_Dispositions"],
+        )
 
         for sheet, table in DETAIL_TABLE_SHEETS.items():
             ws = wb.create_sheet(sheet)
@@ -417,6 +602,8 @@ def export_workbook(database: str | Path, output: str | Path, *, actor: str = "c
             "path": _portable_path(output), "sheetCount": len(wb.sheetnames),
             "sheets": wb.sheetnames, "baselineDbSha256": baseline,
             "workbookSha256": file_hash(output),
+            "exportMode": manifest["export_mode"],
+            "filters": filters,
         }
     finally:
         conn.close()
@@ -511,10 +698,10 @@ def validate_workbook(workbook: str | Path, database: str | Path) -> dict[str, A
                     errors.append({"sheet": ws.title, "row": cell.row, "field": cell.coordinate, "code": "FORMULA", "message": "Formulas are forbidden in curation workbooks."})
 
     manifest = _manifest(wb)
-    if manifest.get("workbook_contract") != "secureguide-catalog-workbook-v2":
+    if manifest.get("workbook_contract") != "secureguide-catalog-workbook-v3":
         errors.append({
             "sheet": "00_Manifest", "row": 2, "field": "workbook_contract",
-            "code": "CONTRACT", "message": "Workbook contract must be secureguide-catalog-workbook-v2.",
+            "code": "CONTRACT", "message": "Workbook contract must be secureguide-catalog-workbook-v3.",
         })
     conn = connect(database)
     try:
@@ -522,6 +709,26 @@ def validate_workbook(workbook: str | Path, database: str | Path) -> dict[str, A
         refs = _reference_lists(conn)
         table_columns = {sheet: _table_columns(conn, table) for sheet, table in TABLE_SHEETS.items()}
         table_columns["06_Type_Specific"] = list(TYPE_FIELDS)
+        for sheet, columns in table_columns.items():
+            expected_headers = [*META_COLUMNS, *columns]
+            if _headers(wb[sheet]) != expected_headers:
+                errors.append({"sheet": sheet, "row": 1, "field": "headers", "code": "HEADERS", "message": "Columns differ from the exported contract."})
+            expected_count = manifest.get(f"row_count.{sheet}")
+            actual_count = len(_workbook_rows(wb[sheet]))
+            # Editable sheets intentionally permit row omission (NO_CHANGE) and
+            # additions (UPSERT).  Their manifest counts describe the exported
+            # baseline; export-only sheets must remain byte-for-byte complete.
+            if expected_count is None or (
+                sheet not in EDITABLE_SHEETS and int(expected_count) != actual_count
+            ):
+                errors.append({"sheet": sheet, "row": 0, "field": "row_count", "code": "ROW_COUNT", "message": "Manifest row count does not match the sheet."})
+        if manifest.get("export_mode") == "COMPLETE":
+            raw_total = conn.execute("SELECT COUNT(*) FROM raw_artifacts").fetchone()[0]
+            disposition_count = len(_workbook_rows(wb["09_Raw_Dispositions"]))
+            if disposition_count != raw_total:
+                errors.append({"sheet": "09_Raw_Dispositions", "row": 0, "field": "raw_artifact_id", "code": "RAW_CLOSURE", "message": "Complete exports must contain exactly one disposition for every raw record."})
+        elif manifest.get("export_mode") != "FILTERED":
+            errors.append({"sheet": "00_Manifest", "row": 0, "field": "export_mode", "code": "EXPORT_MODE", "message": "Export mode must be COMPLETE or FILTERED."})
         for sheet in EDITABLE_SHEETS:
             ws = wb[sheet]
             expected_headers = [*META_COLUMNS, *table_columns[sheet]]
@@ -637,7 +844,7 @@ def plan_workbook(
                     "values": values, "resolution": resolution,
                 })
         plan = {
-            "contract": "secureguide-catalog-workbook-plan-v2",
+            "contract": "secureguide-catalog-workbook-plan-v3",
             "database": _portable_path(database),
             "workbook": _portable_path(workbook),
             "baselineDbSha256": validation["baselineDbSha256"],
@@ -724,7 +931,7 @@ def apply_workbook_plan(plan: dict[str, Any], *, actor: str = "codex") -> dict[s
     database = Path(plan["database"]).resolve()
     if database == RELEASE_ASSET:
         raise WorkbookError("direct curation of mobile/assets/catalog.db is forbidden")
-    if plan.get("contract") != "secureguide-catalog-workbook-plan-v2":
+    if plan.get("contract") != "secureguide-catalog-workbook-plan-v3":
         raise WorkbookError("unsupported workbook plan contract")
     if canonical_hash({k: v for k, v in plan.items() if k != "planSha256"}) != plan.get("planSha256"):
         raise WorkbookError("plan hash mismatch")
@@ -778,6 +985,23 @@ def apply_workbook_plan(plan: dict[str, Any], *, actor: str = "codex") -> dict[s
                     invalid.append({"id": artifact_id, **result})
         if invalid:
             raise WorkbookError(f"post-apply minimum validation failed: {invalid[:3]}")
+        missing_dispositions = conn.execute(
+            """SELECT COUNT(*) FROM raw_artifacts r WHERE NOT EXISTS(
+                   SELECT 1 FROM raw_artifact_dispositions d
+                    WHERE d.raw_artifact_id=r.id)"""
+        ).fetchone()[0]
+        inconsistent_lineage = conn.execute(
+            """SELECT COUNT(*) FROM raw_artifact_dispositions d
+                 WHERE d.disposition IN ('SUPPORTS_CANONICAL','SPLIT') AND NOT EXISTS(
+                   SELECT 1 FROM artifact_source_lineage l
+                    WHERE l.raw_artifact_id=d.raw_artifact_id
+                      AND l.lineage_role=d.disposition)"""
+        ).fetchone()[0]
+        if missing_dispositions or inconsistent_lineage:
+            raise WorkbookError(
+                "post-apply raw disposition closure failed: "
+                f"missing={missing_dispositions}, inconsistent={inconsistent_lineage}"
+            )
         summary = {"entries": len(plan["entries"]), "affectedArtifacts": len(affected)}
         conn.execute(
             "UPDATE catalog_workbook_runs SET status='APPLIED',summary_json=?,completed_at=datetime('now') WHERE id=?",

@@ -7,10 +7,10 @@ effectiveness, and exception governance are reported independently rather than
 being collapsed into the implementation score.
 
 Pure core `score(controls, settings, policy)` mirrors the Dart 1:1; loaders adapt
-either amani JSON or catalog.db into the normalized control shape.
+either a legacy catalog JSON export or catalog.db into the normalized shape.
 
 CLI:
-    python scripts/scoring.py --input amani_content_v4.json [--states states.json]
+    python scripts/scoring.py --input legacy_catalog.json [--states states.json]
         [--view-tier full] [--platforms all] [--json] [--top 10]
     python scripts/scoring.py --db catalog.db --profile PRF-X [--json]
 """
@@ -87,7 +87,7 @@ def is_included(c, settings):
     if view == 'full':
         return True
     return TIER_RANK.get(c.get('tier'), 0) <= TIER_RANK.get(view, 0)
-    # (profile escalations are a no-op in amani's current engine)
+    # (profile escalations are a no-op for the legacy JSON adapter)
 
 
 def score(controls, settings, policy):
@@ -232,7 +232,7 @@ def load_policy(conn):
             'accepted_risk_lifts_cap': pol[2], 'bands': [(b[0], b[1]) for b in bands]}
 
 
-def controls_from_amani(data, states=None):
+def controls_from_legacy_catalog(data, states=None):
     states = states or {}
     out = []
     for c in data.get('controls', []):
@@ -290,7 +290,7 @@ def controls_from_catalog(conn, profile=None, states=None):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--input', help='amani_content_v4.json')
+    ap.add_argument('--input', help='legacy catalog JSON export')
     ap.add_argument('--db', help='catalog.db')
     ap.add_argument('--profile')
     ap.add_argument('--states', help='JSON map {control_id: status}')
@@ -306,7 +306,7 @@ def main():
 
     if args.input:
         data = json.load(io.open(args.input, encoding='utf-8'))
-        controls = controls_from_amani(data, states)
+        controls = controls_from_legacy_catalog(data, states)
         policy = dict(DEFAULT_POLICY)
     elif args.db:
         conn = sqlite3.connect(args.db)
@@ -316,7 +316,7 @@ def main():
         except ValueError as exc:
             print(str(exc)); sys.exit(1)
     else:
-        print("provide --input <amani.json> or --db <catalog.db>"); sys.exit(1)
+        print("provide --input <legacy-catalog.json> or --db <catalog.db>"); sys.exit(1)
 
     rs = score(controls, settings, policy)
     recs = recommend(controls, settings, policy)[:args.top]

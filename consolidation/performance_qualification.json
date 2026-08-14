@@ -4,17 +4,17 @@
   "mode": "qualification",
   "source": {
     "path": "mobile/assets/catalog.db",
-    "sha256": "51e940debba2c7c664e779dd27f9b478b253068b784b553bc8d31deedf05be35",
-    "schemaVersion": 33,
-    "approvedActiveArtifacts": 1227,
+    "sha256": "39d8fd8edbae91799a7879e820d27e05e0f74119a90d76bd43b8e696f5a7668f",
+    "schemaVersion": 34,
+    "approvedActiveArtifacts": 1218,
     "rawArtifacts": 4265
   },
   "population": {
     "requiredArtifacts": 1000,
-    "actualArtifacts": 1227,
+    "actualArtifacts": 1218,
     "sufficient": true,
     "catalogRowsDuplicated": 0,
-    "temporaryProfileSelections": 1227
+    "temporaryProfileSelections": 1218
   },
   "environment": {
     "python": "3.12.10",
@@ -46,50 +46,50 @@
   "measurements": {
     "catalogSearch": {
       "samples": 30,
-      "minMs": 24.956,
-      "p50Ms": 29.809,
-      "p95Ms": 37.4,
-      "maxMs": 38.738
+      "minMs": 53.272,
+      "p50Ms": 81.238,
+      "p95Ms": 121.286,
+      "maxMs": 183.623
     },
     "profileDashboard": {
       "samples": 30,
-      "minMs": 98.76,
-      "p50Ms": 110.455,
-      "p95Ms": 129.628,
-      "maxMs": 248.943
+      "minMs": 203.29,
+      "p50Ms": 304.513,
+      "p95Ms": 408.282,
+      "maxMs": 680.057
     },
     "htmlReport": {
       "samples": 30,
-      "minMs": 177.467,
-      "p50Ms": 215.396,
-      "p95Ms": 428.324,
-      "maxMs": 441.185
+      "minMs": 327.181,
+      "p50Ms": 440.533,
+      "p95Ms": 838.091,
+      "maxMs": 896.029
     }
   },
   "startup": {
     "samples": 30,
-    "minMs": 12.125,
-    "p50Ms": 14.093,
-    "p95Ms": 19.91,
-    "maxMs": 20.866
+    "minMs": 27.745,
+    "p50Ms": 35.215,
+    "p95Ms": 89.766,
+    "maxMs": 90.292
   },
   "databaseSize": {
-    "bytes": 10563584,
+    "bytes": 10973184,
     "baselineBytes": 10563584
   },
   "memory": {
-    "currentBytes": 21020,
-    "peakBytes": 4330599
+    "currentBytes": 21332,
+    "peakBytes": 4287970
   },
   "migration": {
     "status": "MEASURED",
-    "durationMs": 6743.899,
+    "durationMs": 16711.869,
     "oldArtifactCount": 4,
-    "newArtifactCount": 1227,
+    "newArtifactCount": 1218,
     "operationalSnapshotPreserved": true
   },
   "integrityValidation": {
-    "durationMs": 696.645,
+    "durationMs": 1392.764,
     "integrityCheck": "ok",
     "foreignKeyViolations": 0
   },
@@ -138,45 +138,45 @@
     "comparisons": {
       "catalogSearchP95Ms": {
         "baseline": 67.251,
-        "observed": 37.4,
-        "deltaPercent": -44.387
+        "observed": 121.286,
+        "deltaPercent": 80.348
       },
       "profileDashboardP95Ms": {
         "baseline": 439.803,
-        "observed": 129.628,
-        "deltaPercent": -70.526
+        "observed": 408.282,
+        "deltaPercent": -7.167
       },
       "htmlReportP95Ms": {
         "baseline": 509.737,
-        "observed": 428.324,
-        "deltaPercent": -15.972
+        "observed": 838.091,
+        "deltaPercent": 64.416
       },
       "startupP95Ms": {
         "baseline": 39.496,
-        "observed": 19.91,
-        "deltaPercent": -49.59
+        "observed": 89.766,
+        "deltaPercent": 127.279
       },
       "databaseSizeBytes": {
         "baseline": 10563584,
-        "observed": 10563584,
-        "deltaPercent": 0.0
+        "observed": 10973184,
+        "deltaPercent": 3.877
       },
       "memoryPeakBytes": {
         "baseline": 4330599,
-        "observed": 4330599,
-        "deltaPercent": 0.0
+        "observed": 4287970,
+        "deltaPercent": -0.984
       },
       "catalogUpgradeDurationMs": {
         "baseline": 9124.935,
-        "observed": 6743.899,
-        "deltaPercent": -26.094
+        "observed": 16711.869,
+        "deltaPercent": 83.145
       },
       "integrityDurationMs": {
         "baseline": 665.277,
-        "observed": 696.645,
-        "deltaPercent": 4.715
+        "observed": 1392.764,
+        "deltaPercent": 109.351
       }
     }
   },
-  "reportSha256": "9e573569e7e5d42911f4c94ab4cf0928ab151e2bf80fe1efa405fd3d9331c79b"
+  "reportSha256": "f161315260f58f739dff98365e0ef52c758aaf164e599e21cd1405f7a9390007"
 }

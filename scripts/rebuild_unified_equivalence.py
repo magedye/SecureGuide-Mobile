@@ -12,14 +12,16 @@ import io
 import json
 import os
 import re
-import sqlite3
+import sys
 import tempfile
 from collections import defaultdict
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-DEFAULT_DB = os.path.join(ROOT, 'catalog_work.db')
+sys.path.insert(0, ROOT)
+
+from secureguide.catalog_curation import load_curation_candidates
+
 DEFAULT_EQUIVALENCE = os.path.join(ROOT, 'consolidation', 'unified', 'equivalence.json')
-BATCHES = ('AMANI-IMPORT', 'CURATED-IMPORT')
 
 
 def normalize_text(value):
@@ -47,14 +49,14 @@ def legacy_group_id(group, index):
 
 
 def canonical_rank(row):
-    title = (row['title_en'] or '').strip()
+    title = (row.get('title_en') or '').strip()
     title_quality = 0 if re.fullmatch(r'[\d.\- ]+(?:\([^)]*\))?', title) else 1
     return (
-        1 if row['batch_id'] == 'CURATED-IMPORT' else 0,
+        1 if row.get('source_catalog_id') == 'securekit_curated_controls' else 0,
         title_quality,
-        len((row['definition_full_en'] or '').strip()),
-        row['classification_confidence'] if row['classification_confidence'] is not None else -1,
-        row['id'],
+        len((row.get('definition_full_en') or '').strip()),
+        row.get('classification_confidence') if row.get('classification_confidence') is not None else -1,
+        row['candidate_id'],
     )
 
 
@@ -65,8 +67,8 @@ def choose_canonical(component, rows, old_groups):
 
 
 def conflict_values(component, rows, field):
-    values = sorted({rows[artifact_id][field] for artifact_id in component
-                     if rows[artifact_id][field]})
+    values = sorted({rows[artifact_id].get(field) for artifact_id in component
+                     if rows[artifact_id].get(field)})
     return values if len(values) > 1 else []
 
 
@@ -75,15 +77,15 @@ def stable_exact_id(component):
     return f'EQG-EXACT-{digest}'
 
 
-def rebuild(db_path, input_path):
-    conn = sqlite3.connect(db_path)
-    conn.row_factory = sqlite3.Row
-    staged_rows = conn.execute(
-        "SELECT id,batch_id,title_en,definition_short_en,definition_full_en,"
-        "classification_confidence,proposed_type,proposed_abstraction_level,"
-        "proposed_primary_domain,proposed_sub_domain FROM staging_artifacts "
-        "WHERE batch_id IN (?,?) ORDER BY id", BATCHES).fetchall()
-    rows = {row['id']: row for row in staged_rows}
+def rebuild(input_path):
+    """Discover exact duplicate candidates across every pinned source.
+
+    Detection consumes the same all-source candidate loader as the release
+    build.  The decision file remains authoritative for actual merges; this
+    function never merges based on similarity alone.
+    """
+    rows = load_curation_candidates()
+    staged_rows = [rows[key] for key in sorted(rows)]
     if not rows:
         raise SystemExit('No unified staging rows found.')
 
@@ -113,9 +115,9 @@ def rebuild(db_path, input_path):
 
     exact_sets = defaultdict(list)
     for row in staged_rows:
-        key = normalize_text(row['definition_short_en'])
+        key = normalize_text(row.get('definition_short_en'))
         if len(key) >= 30:
-            exact_sets[key].append(row['id'])
+            exact_sets[key].append(row['candidate_id'])
     exact_sets = {key: members for key, members in exact_sets.items() if len(members) > 1}
     for members in exact_sets.values():
         for member in members[1:]:
@@ -165,10 +167,10 @@ def rebuild(db_path, input_path):
 
         conflicts = {}
         for label, field in (
-                ('types', 'proposed_type'),
-                ('abstraction_levels', 'proposed_abstraction_level'),
-                ('primary_domains', 'proposed_primary_domain'),
-                ('sub_domains', 'proposed_sub_domain')):
+                ('types', 'type'),
+                ('abstraction_levels', 'abstraction_level'),
+                ('primary_domains', 'primary_domain'),
+                ('sub_domains', 'sub_domain')):
             values = conflict_values(component, rows, field)
             if values:
                 conflicts[label] = values
@@ -183,7 +185,7 @@ def rebuild(db_path, input_path):
             'rationale': rationale,
             'ai_review_status': 'AIR-HUMAN-REVIEW',
             'requires_human_review': True,
-            'sub_domain': rows[canonical]['proposed_sub_domain'],
+            'sub_domain': rows[canonical]['sub_domain'],
             'classification_conflicts': conflicts,
             'exact_match_keys': len(exact_keys),
         })
@@ -191,7 +193,7 @@ def rebuild(db_path, input_path):
     rebuilt.sort(key=lambda group: (group['sub_domain'] or '', group['id']))
     duplicate_count = sum(len(group['members']) - 1 for group in rebuilt)
     cross_source = sum(1 for group in rebuilt
-                       if len({rows[m]['batch_id'] for m in group['members']}) > 1)
+                       if len({rows[m]['source_catalog_id'] for m in group['members']}) > 1)
     stats = {
         'groups': len(rebuilt),
         'duplicates': duplicate_count,
@@ -219,13 +221,12 @@ def atomic_write(path, payload):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--db', default=DEFAULT_DB)
     parser.add_argument('--input', default=DEFAULT_EQUIVALENCE)
     parser.add_argument('--output', default=DEFAULT_EQUIVALENCE)
     parser.add_argument('--write', action='store_true')
     args = parser.parse_args()
 
-    groups, stats = rebuild(args.db, args.input)
+    groups, stats = rebuild(args.input)
     print(json.dumps(stats, ensure_ascii=False, sort_keys=True))
     if args.write:
         atomic_write(args.output, groups)

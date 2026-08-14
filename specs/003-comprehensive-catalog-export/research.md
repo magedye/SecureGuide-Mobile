@@ -21,7 +21,7 @@
 **Alternatives considered**:
 
 - Export every database table: rejected because it would mix catalog and operational state and expose governed raw payloads.
-- Export only the ten normative USACM child tables: rejected because project-specific localizations, actions, threats, platforms, and Amani provenance are real catalog details the user asked to retain.
+- Export only the ten normative USACM child tables: rejected because project-specific localizations, actions, threats, platforms, and legacy provenance are real catalog details the user asked to retain.
 
 ## Decision 3: Round-trip behavior
 

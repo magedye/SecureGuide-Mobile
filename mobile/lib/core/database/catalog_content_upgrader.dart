@@ -46,10 +46,12 @@ final class CatalogContentUpgrader {
     'raw_artifact_dispositions',
     'artifact_platforms',
     'artifact_threats',
-    'catalog_amani_provenance',
-    'catalog_amani_assets',
+    'catalog_legacy_provenance',
+    'catalog_legacy_assets',
+    'catalog_artifact_id_aliases',
     'artifact_actions',
     'artifact_tags',
+    'external_references',
     'templates',
     'template_items',
   ];
@@ -78,7 +80,10 @@ final class CatalogContentUpgrader {
         .toList(growable: false);
   }
 
-  static String _operationalSnapshot(Database database) {
+  static String _operationalSnapshot(
+    Database database, [
+    Map<String, String> aliases = const {},
+  ]) {
     final names = database
         .select(
           "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name",
@@ -102,11 +107,16 @@ final class CatalogContentUpgrader {
             'SELECT * FROM "$table" ORDER BY '
             '${order.map((column) => '"$column"').join(',')}',
           )
-          .map(
-            (row) => <String, Object?>{
+          .map((row) {
+            final values = <String, Object?>{
               for (final column in columns) column: row[column],
-            },
-          )
+            };
+            final artifactId = values['artifact_id'];
+            if (artifactId is String && aliases.containsKey(artifactId)) {
+              values['artifact_id'] = aliases[artifactId];
+            }
+            return values;
+          })
           .toList(growable: false);
     }
     return sha256.convert(utf8.encode(jsonEncode(payload))).toString();
@@ -231,6 +241,213 @@ final class CatalogContentUpgrader {
     return rows.length;
   }
 
+  static List<(String, String)> _artifactReferenceColumns(Database database) {
+    final result = <(String, String)>[];
+    for (final row in database.select(
+      "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name",
+    )) {
+      final table = row['name'] as String;
+      final operational =
+          table == 'template_items' ||
+          table.startsWith('profile_') ||
+          table.startsWith('approved_blueprint') ||
+          table.startsWith('blueprint_');
+      if (!operational) continue;
+      for (final foreignKey in database.select(
+        'PRAGMA foreign_key_list("$table")',
+      )) {
+        if (foreignKey['table'] == 'security_artifacts' &&
+            foreignKey['to'] == 'id') {
+          result.add((table, foreignKey['from'] as String));
+        }
+      }
+    }
+    return result;
+  }
+
+  static void _remapCatalogIdentityReferences(
+    Database database,
+    Map<String, String> aliases,
+  ) {
+    database
+      ..execute('DROP TABLE IF EXISTS temp.catalog_alias_map')
+      ..execute(
+        'CREATE TEMP TABLE catalog_alias_map('
+        'old_id TEXT PRIMARY KEY,new_id TEXT NOT NULL)',
+      );
+    for (final entry in aliases.entries) {
+      database.execute(
+        'INSERT INTO temp.catalog_alias_map(old_id,new_id) VALUES(?,?)',
+        [entry.key, entry.value],
+      );
+    }
+    try {
+      for (final (table, column) in _artifactReferenceColumns(database)) {
+        database.execute(
+          'UPDATE "$table" SET "$column"='
+          '(SELECT new_id FROM temp.catalog_alias_map m '
+          'WHERE m.old_id="$table"."$column") '
+          'WHERE "$column" IN (SELECT old_id FROM temp.catalog_alias_map)',
+        );
+      }
+      database
+        ..execute(
+          'UPDATE artifact_source_lineage SET is_primary=0 '
+          'WHERE artifact_id IN (SELECT old_id FROM temp.catalog_alias_map)',
+        )
+        ..execute(
+          'UPDATE artifact_source_lineage SET artifact_id='
+          '(SELECT new_id FROM temp.catalog_alias_map m '
+          'WHERE m.old_id=artifact_source_lineage.artifact_id) '
+          'WHERE artifact_id IN (SELECT old_id FROM temp.catalog_alias_map)',
+        )
+        ..execute(
+          'UPDATE raw_artifacts SET promoted_artifact_id='
+          '(SELECT new_id FROM temp.catalog_alias_map m '
+          'WHERE m.old_id=raw_artifacts.promoted_artifact_id) '
+          'WHERE promoted_artifact_id IN '
+          '(SELECT old_id FROM temp.catalog_alias_map)',
+        )
+        ..execute(
+          'UPDATE artifact_relationships SET source_id='
+          '(SELECT new_id FROM temp.catalog_alias_map m '
+          'WHERE m.old_id=artifact_relationships.source_id) '
+          'WHERE source_id IN (SELECT old_id FROM temp.catalog_alias_map)',
+        )
+        ..execute(
+          'UPDATE artifact_relationships SET target_id='
+          '(SELECT new_id FROM temp.catalog_alias_map m '
+          'WHERE m.old_id=artifact_relationships.target_id) '
+          'WHERE target_id IN (SELECT old_id FROM temp.catalog_alias_map)',
+        );
+    } finally {
+      database.execute('DROP TABLE IF EXISTS temp.catalog_alias_map');
+    }
+  }
+
+  static Map<String, (String, String)> _rawIdentityAliases(
+    Database installed,
+    Database candidate,
+  ) {
+    final existingIds = installed
+        .select('SELECT id FROM raw_artifacts')
+        .map((row) => row['id'] as String)
+        .toSet();
+    final evidence = <String, List<String>>{};
+    for (final row in installed.select(
+      'SELECT id,external_raw_id,content_hash FROM raw_artifacts',
+    )) {
+      final externalId = row['external_raw_id'];
+      final contentHash = row['content_hash'];
+      if (externalId is String && contentHash is String) {
+        final key = '$externalId\u0000$contentHash';
+        evidence.putIfAbsent(key, () => <String>[]).add(row['id'] as String);
+      }
+    }
+    final aliases = <String, (String, String)>{};
+    for (final row in candidate.select(
+      'SELECT id,source_catalog_id,external_raw_id,content_hash FROM raw_artifacts',
+    )) {
+      final id = row['id'] as String;
+      final externalId = row['external_raw_id'];
+      final contentHash = row['content_hash'];
+      if (existingIds.contains(id) ||
+          externalId is! String ||
+          contentHash is! String) {
+        continue;
+      }
+      final matches =
+          (evidence['$externalId\u0000$contentHash'] ?? const <String>[])
+              .where((value) => value != id)
+              .toList();
+      if (matches.length > 1) {
+        throw CatalogContentUpgradeException(
+          'ambiguous raw identity migration for candidate $id',
+        );
+      }
+      if (matches.length == 1) {
+        final prior = aliases[matches.single];
+        if (prior != null && prior.$1 != id) {
+          throw CatalogContentUpgradeException(
+            'multiple candidate raw identities match installed row ${matches.single}',
+          );
+        }
+        aliases[matches.single] = (id, row['source_catalog_id'] as String);
+      }
+    }
+    return aliases;
+  }
+
+  static void _remapRawIdentities(
+    Database database,
+    Map<String, (String, String)> aliases,
+  ) {
+    for (final entry in aliases.entries) {
+      final (rawId, sourceCatalogId) = entry.value;
+      for (final table in const [
+        'artifact_source_lineage',
+        'raw_artifact_dispositions',
+      ]) {
+        database.execute(
+          'UPDATE "$table" SET raw_artifact_id=? WHERE raw_artifact_id=?',
+          [rawId, entry.key],
+        );
+      }
+      database.execute(
+        'UPDATE raw_artifacts SET id=?,source_catalog_id=? WHERE id=?',
+        [rawId, sourceCatalogId, entry.key],
+      );
+    }
+  }
+
+  static void _deleteRowsMissingFromCandidate(
+    Database installed,
+    Database candidate,
+    String table, {
+    String extraWhere = '',
+  }) {
+    final candidateIds = candidate
+        .select('SELECT id FROM "$table"')
+        .map((row) => row['id'] as String)
+        .toSet();
+    final stale = installed
+        .select('SELECT id FROM "$table" $extraWhere')
+        .map((row) => row['id'] as String)
+        .where((id) => !candidateIds.contains(id));
+    for (final id in stale.toList()) {
+      installed.execute('DELETE FROM "$table" WHERE id=?', [id]);
+    }
+  }
+
+  static void _removeStaleArtifactDependents(
+    Database installed,
+    Database candidate,
+  ) {
+    final candidateIds = candidate
+        .select('SELECT id FROM security_artifacts')
+        .map((row) => row['id'] as String)
+        .toSet();
+    final staleIds = installed
+        .select(
+          'SELECT id FROM security_artifacts WHERE is_custom=0 ORDER BY id',
+        )
+        .map((row) => row['id'] as String)
+        .where((id) => !candidateIds.contains(id))
+        .toList(growable: false);
+    for (final artifactId in staleIds) {
+      installed
+        ..execute(
+          'DELETE FROM artifact_relationships WHERE source_id=? OR target_id=?',
+          [artifactId, artifactId],
+        )
+        ..execute(
+          'UPDATE raw_artifacts SET promoted_artifact_id=NULL '
+          'WHERE promoted_artifact_id=?',
+          [artifactId],
+        );
+    }
+  }
+
   static CatalogContentUpgradeResult _upgradeSync(
     String installedPath,
     String candidatePath,
@@ -277,15 +494,23 @@ final class CatalogContentUpgrader {
         ))
           row['id'] as String: row['type'] as String,
       };
+      final aliases = <String, String>{
+        for (final row in candidate.select(
+          'SELECT old_artifact_id,artifact_id FROM catalog_artifact_id_aliases',
+        ))
+          row['old_artifact_id'] as String: row['artifact_id'] as String,
+      };
+      final rawAliases = _rawIdentityAliases(installed, candidate);
       final missing = <String>[];
       final changed = <String>[];
       for (final row in installed.select(
         'SELECT id,type FROM security_artifacts WHERE is_custom=0 ORDER BY id',
       )) {
         final id = row['id'] as String;
-        if (!candidateTypes.containsKey(id)) {
+        if (!candidateTypes.containsKey(id) && !aliases.containsKey(id)) {
           missing.add(id);
-        } else if (candidateTypes[id] != row['type']) {
+        } else if (candidateTypes.containsKey(id) &&
+            candidateTypes[id] != row['type']) {
           changed.add(id);
         }
       }
@@ -296,18 +521,51 @@ final class CatalogContentUpgrader {
         );
       }
 
+      final normalizedBefore = _operationalSnapshot(installed, aliases);
       installed.execute('BEGIN IMMEDIATE');
       try {
+        installed.execute('PRAGMA defer_foreign_keys=ON');
+        for (final table in const ['source_catalogs', 'security_artifacts']) {
+          _upsertStableTable(installed, candidate, table);
+        }
+        _remapCatalogIdentityReferences(installed, aliases);
+        _remapRawIdentities(installed, rawAliases);
         for (final table in _stableTables) {
+          if (table == 'source_catalogs' || table == 'security_artifacts') {
+            continue;
+          }
           _upsertStableTable(installed, candidate, table);
         }
         _mergeFrameworkMappings(installed, candidate);
         _mergeRemediationActions(installed, candidate);
+        _removeStaleArtifactDependents(installed, candidate);
+        _deleteRowsMissingFromCandidate(
+          installed,
+          candidate,
+          'security_artifacts',
+          extraWhere: 'WHERE is_custom=0',
+        );
+        _deleteRowsMissingFromCandidate(installed, candidate, 'raw_artifacts');
+        _deleteRowsMissingFromCandidate(
+          installed,
+          candidate,
+          'source_import_manifests',
+        );
+        _deleteRowsMissingFromCandidate(
+          installed,
+          candidate,
+          'source_rights_versions',
+        );
+        _deleteRowsMissingFromCandidate(
+          installed,
+          candidate,
+          'source_catalogs',
+        );
         installed
           ..execute('DELETE FROM promotion_batch_items')
           ..execute('DELETE FROM staging_artifacts');
         final after = _operationalSnapshot(installed);
-        if (after != before) {
+        if (after != normalizedBefore) {
           throw const CatalogContentUpgradeException(
             'operational/profile snapshot changed during catalog upgrade',
           );
@@ -343,7 +601,7 @@ final class CatalogContentUpgrader {
             'CUG-${DateTime.now().toUtc().microsecondsSinceEpoch}',
             candidateSha,
             installedShaBefore,
-            before,
+            normalizedBefore,
             after,
             oldCount,
             newCount,
@@ -355,7 +613,7 @@ final class CatalogContentUpgrader {
           candidateSha256: candidateSha,
           oldArtifactCount: oldCount,
           newArtifactCount: newCount,
-          operationalSnapshotBefore: before,
+          operationalSnapshotBefore: normalizedBefore,
           operationalSnapshotAfter: after,
         );
       } catch (_) {

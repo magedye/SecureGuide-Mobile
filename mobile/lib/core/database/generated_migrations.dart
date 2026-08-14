@@ -1,5 +1,6 @@
 // GENERATED CODE - DO NOT EDIT.
 // Run: python -m scripts.generate_mobile_migrations
+// dart format off
 
 final class EmbeddedMigration {
   const EmbeddedMigration({
@@ -2401,7 +2402,8 @@ SELECT
     version: '032',
     filename: '032_catalog_workbook_audit.sql',
     sha256: '21cb5368fd761c31feaf48914dbb31fb21cdf1880cb6ee20769053ca6bc8cc70',
-    sql: r'''-- SecureGuide migration 032: audited Excel catalog curation runs.
+    sql:
+        r'''-- SecureGuide migration 032: audited Excel catalog curation runs.
 PRAGMA foreign_keys = ON;
 
 INSERT OR IGNORE INTO schema_migrations(version, description)
@@ -2451,7 +2453,8 @@ CREATE INDEX idx_workbook_audit_run ON catalog_workbook_row_audit(run_id, sheet_
     version: '033',
     filename: '033_catalog_upgrade_audit.sql',
     sha256: '3755ab865562f4be12f2d8979c694542a92d6a06993442aba83a5b8b236c7039',
-    sql: r'''-- SecureGuide migration 033: audited catalog-content upgrades.
+    sql:
+        r'''-- SecureGuide migration 033: audited catalog-content upgrades.
 PRAGMA foreign_keys = ON;
 
 INSERT OR IGNORE INTO schema_migrations(version, description)
@@ -2481,4 +2484,53 @@ CREATE TABLE catalog_upgrade_runs (
 CREATE INDEX idx_catalog_upgrade_status ON catalog_upgrade_runs(status, started_at);
 ''',
   ),
+  EmbeddedMigration(
+    version: '034',
+    filename: '034_neutral_catalog_identity.sql',
+    sha256: 'aa7243324a6e3b508571004fad1299b62a6564fbec7f4fba2868e753a6d6fccd',
+    sql:
+        r'''-- ============================================================================
+-- SecureGuide - Migration 034: Neutral catalog identity and durable aliases
+-- ----------------------------------------------------------------------------
+-- Historical migrations retain their original names as immutable evidence.
+-- This forward migration removes the former product identity from the active
+-- schema while preserving every row and adds explicit old-to-current IDs for
+-- transactional installed-catalog upgrades.
+-- ============================================================================
+
+PRAGMA foreign_keys = ON;
+
+ALTER TABLE amani_domain_alias RENAME TO legacy_domain_alias;
+ALTER TABLE legacy_domain_alias RENAME COLUMN amani_key TO legacy_key;
+
+ALTER TABLE amani_threat_alias RENAME TO legacy_threat_alias;
+ALTER TABLE legacy_threat_alias RENAME COLUMN amani_key TO legacy_key;
+
+DROP INDEX IF EXISTS idx_amani_prov_amaniid;
+ALTER TABLE catalog_amani_provenance RENAME TO catalog_legacy_provenance;
+ALTER TABLE catalog_legacy_provenance RENAME COLUMN amani_id TO legacy_id;
+ALTER TABLE catalog_legacy_provenance RENAME COLUMN amani_domain TO legacy_domain;
+ALTER TABLE catalog_legacy_provenance RENAME COLUMN amani_sub TO legacy_sub;
+CREATE INDEX IF NOT EXISTS idx_legacy_prov_legacy_id
+    ON catalog_legacy_provenance(legacy_id);
+
+ALTER TABLE catalog_amani_assets RENAME TO catalog_legacy_assets;
+ALTER TABLE staging_artifacts
+    RENAME COLUMN proposed_amani_provenance_json TO proposed_legacy_provenance_json;
+
+CREATE TABLE IF NOT EXISTS catalog_artifact_id_aliases (
+    old_artifact_id TEXT PRIMARY KEY,
+    artifact_id     TEXT NOT NULL REFERENCES security_artifacts(id) ON DELETE CASCADE,
+    reason          TEXT NOT NULL CHECK (length(trim(reason)) > 0),
+    created_at      TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CHECK (old_artifact_id <> artifact_id)
+);
+CREATE INDEX IF NOT EXISTS idx_catalog_artifact_alias_target
+    ON catalog_artifact_id_aliases(artifact_id);
+
+INSERT OR IGNORE INTO schema_migrations(version, description)
+VALUES ('034', 'Neutral active catalog identity and durable artifact ID aliases');
+''',
+  ),
 ];
+// dart format on

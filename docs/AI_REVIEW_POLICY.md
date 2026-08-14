@@ -15,4 +15,10 @@
      - يجب ضبط `ai_review_status = AIR-HUMAN-REVIEW`.
    - يمنع النشر التلقائي (Auto-publish) لأي عنصر ذي ثقة منخفضة.
 
+3. **استقلال الجودة عن الحد الأدنى:** حالة المراجعة البشرية والثقة بعدان للجودة
+   ولا يمنعان وحدهما اجتياز `MINIMUM_CATALOG_VALIDATION`. يجوز إدخال عنصر
+   مكتمل بنيوياً إلى الكتالوج بحالة `APPROVED` للمراجعة مع إبقاء
+   `AIR-HUMAN-REVIEW` و`requires_human_review=1` ظاهرين. ولا يجوز تحويله آلياً
+   إلى `PUBLISHED` أو الادعاء باجتياز `STRICT_USACM_CONFORMANCE` قبل وجود الدليل.
+
 3. **قيم `ai_review_status` المعتمدة (USACM):** `AIR-AUTO-ACCEPTED`، `AIR-HUMAN-REVIEW`، `AIR-HUMAN-APPROVED`، `AIR-HUMAN-REJECTED`.

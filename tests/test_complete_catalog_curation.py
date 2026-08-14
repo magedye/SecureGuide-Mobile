@@ -139,8 +139,8 @@ class CompleteProjectionTests(unittest.TestCase):
         first = build_projection(candidates)
         second = build_projection(candidates)
         self.assertEqual(len(candidates), 1467)
-        self.assertEqual(len(first["groups"]), 220)
-        self.assertEqual(len(first["selected"]), 1223)
+        self.assertEqual(len(first["groups"]), 215)
+        self.assertEqual(len(first["selected"]), 1214)
         self.assertEqual(len(first["rawToCandidate"]), 1467)
         self.assertEqual(canonical_hash(first), canonical_hash(second))
         self.assertEqual(first["selectionOverrides"][0]["selectedCanonical"], "STG-CURATED-0641")
@@ -165,6 +165,17 @@ class CompleteProjectionTests(unittest.TestCase):
             self.assertEqual(validation["summary"]["minimumValid"], result["canonicalTotal"])
             self.assertTrue(validation["closure"]["valid"])
             self.assertTrue(validation["integrity"]["valid"])
+            self.assertEqual(result["normalized"]["artifactIdAliases"], 959)
+            verified = sqlite3.connect(database)
+            try:
+                alias_target = verified.execute(
+                    """SELECT artifact_id FROM catalog_artifact_id_aliases
+                        WHERE old_artifact_id='SG-CTR-CURATED-0138'"""
+                ).fetchone()[0]
+            finally:
+                verified.close()
+            self.assertEqual(alias_target, "SG-CFG-CAT-0203")
+            self.assertGreaterEqual(validation["summary"]["canonicalTotal"], 1000)
 
 
 if __name__ == "__main__":

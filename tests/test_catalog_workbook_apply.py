@@ -115,6 +115,34 @@ class WorkbookApplyTests(unittest.TestCase):
         finally:
             conn.close()
 
+    def test_raw_disposition_round_trip_is_transactional_and_audited(self) -> None:
+        export_workbook(self.db, self.workbook)
+        edit_detail(
+            self.workbook,
+            "09_Raw_Dispositions",
+            "rationale",
+            "Reviewed primary source disposition.",
+        )
+        plan = plan_workbook(self.workbook, self.db)
+        result = apply_workbook_plan(plan, actor="reviewer")
+        conn = sqlite3.connect(self.db)
+        try:
+            self.assertEqual(result["status"], "APPLIED")
+            self.assertEqual(
+                conn.execute(
+                    "SELECT rationale FROM raw_artifact_dispositions WHERE raw_artifact_id='RAW'"
+                ).fetchone()[0],
+                "Reviewed primary source disposition.",
+            )
+            self.assertEqual(
+                conn.execute(
+                    "SELECT sheet_name FROM catalog_workbook_row_audit"
+                ).fetchone()[0],
+                "09_Raw_Dispositions",
+            )
+        finally:
+            conn.close()
+
     def test_comprehensive_detail_edit_round_trip_is_audited(self) -> None:
         conn = sqlite3.connect(self.db)
         conn.execute(
@@ -127,12 +155,12 @@ class WorkbookApplyTests(unittest.TestCase):
         export_workbook(self.db, self.workbook)
         edit_detail(
             self.workbook,
-            "11_Technical_Dependencies",
+            "12_Technical_Dependencies",
             "dependency_status",
             "PLANNED",
         )
         plan = plan_workbook(self.workbook, self.db)
-        self.assertEqual(plan["contract"], "secureguide-catalog-workbook-plan-v2")
+        self.assertEqual(plan["contract"], "secureguide-catalog-workbook-plan-v3")
         self.assertEqual(plan["conflicts"], [])
         result = apply_workbook_plan(plan, actor="tester")
         conn = sqlite3.connect(self.db)
@@ -149,7 +177,7 @@ class WorkbookApplyTests(unittest.TestCase):
                 conn.execute(
                     "SELECT sheet_name FROM catalog_workbook_row_audit"
                 ).fetchone()[0],
-                "11_Technical_Dependencies",
+                "12_Technical_Dependencies",
             )
         finally:
             conn.close()
@@ -166,7 +194,7 @@ class WorkbookApplyTests(unittest.TestCase):
         export_workbook(self.db, self.workbook)
         edit_detail(
             self.workbook,
-            "11_Technical_Dependencies",
+            "12_Technical_Dependencies",
             "dependency_status",
             "AVAILABLE",
             action="DEPRECATE",

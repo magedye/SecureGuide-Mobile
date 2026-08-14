@@ -39,10 +39,11 @@ void main() {
       );
       expect(result.applied, isTrue);
       expect(result.oldArtifactCount, 4);
-      expect(result.newArtifactCount, 1227);
+      expect(result.newArtifactCount, 1218);
       expect(result.operationalSnapshotAfter, result.operationalSnapshotBefore);
 
       final database = sqlite3.open(installedPath, mode: OpenMode.readOnly);
+      final candidate = sqlite3.open(candidatePath, mode: OpenMode.readOnly);
       try {
         expect(_count(database, 'enterprise_profiles'), 2);
         expect(_count(database, 'profile_artifacts'), 3);
@@ -61,11 +62,16 @@ void main() {
         expect(_count(database, 'raw_artifacts'), 4265);
         expect(_count(database, 'staging_artifacts'), 0);
         expect(
+          _count(database, 'external_references'),
+          _count(candidate, 'external_references'),
+        );
+        expect(
           database.select('PRAGMA integrity_check').single.values.first,
           'ok',
         );
         expect(database.select('PRAGMA foreign_key_check'), isEmpty);
       } finally {
+        candidate.close();
         database.close();
       }
     },
@@ -102,6 +108,73 @@ void main() {
       }
     },
   );
+
+  test('historical artifact alias remaps an installed profile reference', () async {
+    final candidate = sqlite3.open(candidatePath, mode: OpenMode.readOnly);
+    late final String oldId;
+    late final String currentId;
+    try {
+      final alias = candidate
+          .select(
+            'SELECT old_artifact_id,artifact_id FROM catalog_artifact_id_aliases '
+            "WHERE artifact_id NOT IN ('SG-CTR-AI-02','SG-CTR-AI-05','SG-REQ-AI-06') "
+            'ORDER BY old_artifact_id LIMIT 1',
+          )
+          .single;
+      oldId = alias['old_artifact_id'] as String;
+      currentId = alias['artifact_id'] as String;
+    } finally {
+      candidate.close();
+    }
+
+    final installed = sqlite3.open(installedPath);
+    try {
+      final columns = installed
+          .select('PRAGMA table_info(security_artifacts)')
+          .map((row) => row['name'] as String)
+          .toList();
+      final insertColumns = columns.map((column) => '"$column"').join(',');
+      final selectColumns = columns
+          .map((column) => column == 'id' ? '?' : '"$column"')
+          .join(',');
+      installed.execute(
+        'INSERT INTO security_artifacts($insertColumns) '
+        'SELECT $selectColumns FROM security_artifacts WHERE id=?',
+        [oldId, 'SG-CTR-AI-02'],
+      );
+      installed.execute(
+        'INSERT INTO profile_artifacts(id,profile_id,artifact_id) VALUES(?,?,?)',
+        ['PA-ALIAS', 'P2', oldId],
+      );
+    } finally {
+      installed.close();
+    }
+
+    final result = await CatalogContentUpgrader.upgrade(
+      installedPath,
+      candidatePath,
+    );
+    expect(result.applied, isTrue);
+    expect(result.operationalSnapshotAfter, result.operationalSnapshotBefore);
+    final verified = sqlite3.open(installedPath, mode: OpenMode.readOnly);
+    try {
+      expect(
+        verified
+            .select(
+              "SELECT artifact_id FROM profile_artifacts WHERE id='PA-ALIAS'",
+            )
+            .single['artifact_id'],
+        currentId,
+      );
+      expect(
+        verified.select('SELECT 1 FROM security_artifacts WHERE id=?', [oldId]),
+        isEmpty,
+      );
+      expect(verified.select('PRAGMA foreign_key_check'), isEmpty);
+    } finally {
+      verified.close();
+    }
+  });
 }
 
 int _count(Database database, String table) =>

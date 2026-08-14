@@ -34,6 +34,20 @@ def main(argv: list[str] | None = None) -> int:
     export.add_argument("--db", type=Path, required=True)
     export.add_argument("--workbook", type=Path, required=True)
     export.add_argument("--actor", default="codex")
+    export.add_argument("--artifact-type")
+    export.add_argument("--primary-domain")
+    export.add_argument("--sub-domain")
+    export.add_argument("--source")
+    export.add_argument(
+        "--quality-profile", choices=("MINIMUM_VALID", "STRICT_USACM", "ENRICHED")
+    )
+    export.add_argument("--ai-review-status")
+    export.add_argument(
+        "--requires-human-review", action=argparse.BooleanOptionalAction, default=None
+    )
+    export.add_argument("--min-confidence", type=float)
+    export.add_argument("--max-confidence", type=float)
+    export.add_argument("--publication-status")
     validate = sub.add_parser("validate")
     validate.add_argument("--db", type=Path, required=True)
     validate.add_argument("--workbook", type=Path, required=True)
@@ -50,7 +64,24 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     try:
         if args.command == "export":
-            _write(export_workbook(args.db, args.workbook, actor=args.actor), None)
+            filters = {
+                "artifact_type": args.artifact_type,
+                "primary_domain": args.primary_domain,
+                "sub_domain": args.sub_domain,
+                "source": args.source,
+                "quality_profile": args.quality_profile,
+                "ai_review_status": args.ai_review_status,
+                "requires_human_review": args.requires_human_review,
+                "min_confidence": args.min_confidence,
+                "max_confidence": args.max_confidence,
+                "publication_status": args.publication_status,
+            }
+            _write(
+                export_workbook(
+                    args.db, args.workbook, actor=args.actor, filters=filters
+                ),
+                None,
+            )
         elif args.command == "validate":
             result = validate_workbook(args.workbook, args.db)
             if args.annotated_workbook:

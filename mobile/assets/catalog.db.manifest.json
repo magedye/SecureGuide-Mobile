@@ -3,13 +3,13 @@
   "builtWith": "scripts.build_release_db",
   "mode": "curated",
   "generatedAt": "2026-07-01T00:00:00Z",
-  "schemaVersion": "033",
+  "schemaVersion": "034",
   "appliedMigrations": [],
   "publicationStatus": {
-    "APPROVED": 1227
+    "APPROVED": 1218
   },
   "counts": {
-    "security_artifacts": 1227,
+    "security_artifacts": 1218,
     "staging_artifacts": 0,
     "enterprise_profiles": 0,
     "profile_artifacts": 0,
@@ -34,23 +34,23 @@
     "usable_templates"
   ],
   "releaseCounts": {
-    "artifacts": 1227,
+    "artifacts": 1218,
     "rawArtifacts": 4265,
     "templates": 1,
     "templateItems": 4,
     "quality": {
-      "minimumValid": 1227,
-      "strictConformant": 1227,
-      "requiresHumanReview": 719,
+      "minimumValid": 1218,
+      "strictConformant": 1218,
+      "requiresHumanReview": 529,
       "humanApproved": 4
     },
     "closure": {
       "rawDisposed": 4265,
-      "canonicalsWithLineage": 1227
+      "canonicalsWithLineage": 1218
     }
   },
   "sourceSha256": "3dcce6f5a3963f1b01ce89bfc3c094d4b34849146873d27f574fe6406ae8bc73",
-  "sourceManifestSha256": "c2f17de0e577aa14d1d1ed248b65c4d469f5b9dfe9795cd64ddbf9d248002722",
+  "sourceManifestSha256": "da637eaa7739b86954207c33a5c7d1a1b873f27d17d9899e494471f5340687fe",
   "rights": {
     "rawRecordsTotal": 4265,
     "rawPayloadsIncluded": 0,
@@ -58,30 +58,32 @@
   },
   "curation": {
     "candidateCount": 1467,
-    "equivalenceGroupCount": 220,
-    "selectedProjectionCount": 1223,
-    "canonicalTotal": 1227,
+    "equivalenceGroupCount": 215,
+    "selectedProjectionCount": 1214,
+    "canonicalTotal": 1218,
     "rawTotal": 4265,
     "lineageRows": 1473,
     "normalized": {
-      "frameworkMappings": 855,
+      "frameworkMappings": 841,
       "actions": 1024,
       "tags": 0,
-      "relationships": 0
+      "relationships": 0,
+      "externalReferences": 8,
+      "artifactIdAliases": 959
     },
     "dispositions": {
       "DEFERRED": 2792,
       "SUPPORTS_CANONICAL": 1473
     },
     "domains": {
-      "SD-01": 78,
-      "SD-02": 124,
-      "SD-03": 247,
-      "SD-04": 295,
-      "SD-05": 131,
-      "SD-06": 172,
-      "SD-07": 97,
-      "SD-08": 83
+      "SD-01": 84,
+      "SD-02": 160,
+      "SD-03": 251,
+      "SD-04": 236,
+      "SD-05": 137,
+      "SD-06": 169,
+      "SD-07": 77,
+      "SD-08": 104
     },
     "selectionOverrides": [
       {
@@ -91,10 +93,16 @@
         "reason": "Declared canonical lacks type-required minimum fields; selected a structurally valid equivalent member."
       }
     ],
-    "equivalenceSha256": "518fa13e2d89923bca020f85b5c1d9d7a624186caf5015053519fd6a6b30cf32"
+    "equivalenceSha256": "ccaa4c62e91425fb69168e7e6cb2d42c64d6dbe4944777bc3a52bcdef0cd7ff9"
   },
   "reproducibleBuildTimestampUtc": "2026-07-01T00:00:00Z",
-  "sizeBytes": 10563584,
-  "sha256": "51e940debba2c7c664e779dd27f9b478b253068b784b553bc8d31deedf05be35",
-  "manifestSha256": "c2eb4321f5f7684d0160417168013864337fc0429a8c13c2152312ba15a8af18"
+  "minimumContractSha256": "7f650fc841ac79318d2598232922f657bd24dbfd401262c7d9186c802509dbcc",
+  "sourceRightsSha256": "7153038ac0efc15cb6e803733f547013e6ef86fed104454c6c157a5b8628d0b7",
+  "curatedClassificationsSha256": "86bbab78b0d4a37ce524e20035092048af46e44afe41f9eff623a26399c7413a",
+  "legacyClassificationsSha256": "1b04d3a87995c9050a7f0591d0b82cbbb81717eb0f787b84db35105c8002f3a6",
+  "equivalenceDecisionsSha256": "ccaa4c62e91425fb69168e7e6cb2d42c64d6dbe4944777bc3a52bcdef0cd7ff9",
+  "catalogContentSha256": "9c073b45a15d4e7cfce5287200d99e8bf64f90e78f4f910722db7341fb41ad9e",
+  "sizeBytes": 10973184,
+  "sha256": "39d8fd8edbae91799a7879e820d27e05e0f74119a90d76bd43b8e696f5a7668f",
+  "manifestSha256": "19ab36c4fa15b0042eadf4616c65facd03ac3eef520b4b962ebd2d46ac3b6bc1"
 }

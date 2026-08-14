@@ -45,7 +45,7 @@ As a human curator, I can validate, plan, and apply edits made to any exported M
 ### Functional Requirements
 
 - **FR-001**: Export MUST include 100 percent of rows and columns from `security_artifacts` by default, with no artifact-type or human-review filter.
-- **FR-002**: Export MUST include dedicated normalized worksheets for source lineage, mappings, relationships, tags, applicability, reference self-assessments, dependencies, verification tools, stakeholders, remediation actions, external references, localizations, actions, variants, security objectives, CSF functions, control purposes, implementation types, maturity requirements, verification-evidence types, threats, platforms, and Amani catalog enrichment.
+- **FR-002**: Export MUST include dedicated normalized worksheets for source lineage, mappings, relationships, tags, applicability, reference self-assessments, dependencies, verification tools, stakeholders, remediation actions, external references, localizations, actions, variants, security objectives, CSF functions, control purposes, implementation types, maturity requirements, verification-evidence types, threats, platforms, and neutral legacy catalog enrichment.
 - **FR-003**: Each supported detail worksheet MUST expose every column in its authoritative SQLite table and MUST preserve composite row identities.
 - **FR-004**: The workbook manifest MUST declare the contract version, relative source database path, artifact count, per-sheet row counts, and the export/exclusion boundary.
 - **FR-005**: Operational/profile tables, raw source payload text, and derived embedding vectors MUST remain outside the Master Catalog curation workbook.

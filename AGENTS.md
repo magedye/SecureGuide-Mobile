@@ -68,6 +68,10 @@ If a USACM baseline table contains operational fields in `security_artifacts`, t
 
 ### 2. Do Not Treat All Items As Controls
 
+In Arabic user-facing conversation, **الضوابط** is the agreed umbrella term for
+all catalog artifacts. It does not change the stored USACM `type`: only
+`ART-CTR` is a Security Control in the classification model.
+
 Every imported item must be classified by `type`.
 
 Use the USACM artifact types exactly:

@@ -1,12 +1,25 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "contract_id": "secureguide-catalog-minimum-valid",
-  "contract_version": "1.0.0",
+  "contract_version": "2.0.0",
   "result_names": {
     "minimum": "MINIMUM_CATALOG_VALIDATION",
-    "strict": "STRICT_USACM_CONFORMANCE"
+    "strict": "STRICT_USACM_CONFORMANCE",
+    "enriched": "ENRICHED_CATALOG_VALIDATION"
   },
   "lifecycle": ["RAW", "MINIMUM_VALID", "ENRICHED"],
+  "quality_profiles": {
+    "MINIMUM_VALID": {
+      "requires": ["core_required", "type_required", "conditional_required", "relational_required", "controlled_values", "sdt_parentage"],
+      "does_not_require": ["human_approval", "confidence_above_threshold", "arabic_localization", "enrichment_only"]
+    },
+    "STRICT_USACM": {
+      "requires": ["MINIMUM_VALID", "strict_controlled_values", "accountable_ai_review", "strict_relationships", "strict_mappings"]
+    },
+    "ENRICHED": {
+      "requires": ["STRICT_USACM", "enrichment_only"]
+    }
+  },
   "core_required": [
     "id",
     "type",
@@ -74,6 +87,12 @@
     "low_confidence_requires": {
       "requires_human_review": 1,
       "ai_review_status": "AIR-HUMAN-REVIEW"
+    },
+    "zero_confidence_semantics": {
+      "allowed_meaning": "EXPLICIT_UNKNOWN_OR_UNASSESSED",
+      "requires_human_review": 1,
+      "ai_review_status": "AIR-HUMAN-REVIEW",
+      "rationale_marker": "CONFIDENCE_UNASSESSED"
     },
     "default_uncertain_type": null,
     "indefensible_type_disposition": "DEFERRED"

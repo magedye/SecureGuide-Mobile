@@ -48,7 +48,7 @@ def load_contract(path: str | Path = DEFAULT_CONTRACT) -> dict[str, Any]:
     """Load the JSON-compatible YAML contract without an extra YAML runtime."""
 
     contract = json.loads(Path(path).read_text(encoding="utf-8"))
-    if contract.get("schema_version") != 1:
+    if contract.get("schema_version") not in {1, 2}:
         raise ValueError("unsupported minimum catalog contract schema")
     required = {
         "core_required",
@@ -109,6 +109,21 @@ def minimum_result(
         missing.append("artifact_source_lineage")
     if row["type"] == "ART-RSK" and not _has_risk_remediation(conn, row["id"]):
         missing.append("risk_remediation")
+    confidence = row["classification_confidence"]
+    if confidence == 0.0:
+        zero_policy = contract["review_policy"].get("zero_confidence_semantics", {})
+        marker = str(zero_policy.get("rationale_marker") or "")
+        rationale = str(row["classification_rationale"] or "")
+        if not marker or marker not in rationale:
+            missing.append("classification_confidence_semantics")
+        if row["requires_human_review"] != int(
+            zero_policy.get("requires_human_review", 1)
+        ):
+            missing.append("requires_human_review")
+        if row["ai_review_status"] != zero_policy.get(
+            "ai_review_status", "AIR-HUMAN-REVIEW"
+        ):
+            missing.append("ai_review_status")
     missing = sorted(set(missing))
     return {"valid": not missing, "missing": missing, "lineageRows": lineage_count}
 
@@ -223,6 +238,41 @@ def strict_result(conn: sqlite3.Connection, row: sqlite3.Row) -> dict[str, Any]:
     return {"valid": not errors, "errors": errors}
 
 
+def enriched_result(
+    conn: sqlite3.Connection, row: sqlite3.Row, contract: dict[str, Any]
+) -> dict[str, Any]:
+    """Report full enrichment independently from minimum and strict validity."""
+
+    strict = strict_result(conn, row)
+    missing: list[str] = []
+    child_tables = {
+        "framework_mappings": ("framework_mappings", "artifact_id"),
+        "artifact_tags": ("artifact_tags", "artifact_id"),
+        "artifact_relationships": ("artifact_relationships", "source_id"),
+        "artifact_platforms": ("artifact_platforms", "artifact_id"),
+        "artifact_threats": ("artifact_threats", "artifact_id"),
+        "stakeholders": ("stakeholders", "artifact_id"),
+    }
+    tables = {
+        item[0]
+        for item in conn.execute("SELECT name FROM sqlite_master WHERE type='table'")
+    }
+    for field in contract.get("enrichment_only", []):
+        if field in child_tables:
+            table, artifact_column = child_tables[field]
+            if table not in tables or not conn.execute(
+                f"SELECT 1 FROM {table} WHERE {artifact_column}=? LIMIT 1", (row["id"],)
+            ).fetchone():
+                missing.append(field)
+        elif field in row.keys() and row[field] in (None, ""):
+            missing.append(field)
+    return {
+        "valid": strict["valid"] and not missing,
+        "missing": sorted(set(missing)),
+        "strictErrors": strict["errors"],
+    }
+
+
 def _closure(conn: sqlite3.Connection, contract: dict[str, Any]) -> dict[str, Any]:
     def count(sql: str) -> int:
         return int(conn.execute(sql).fetchone()[0])
@@ -294,6 +344,9 @@ def validate_catalog(
     try:
         artifacts: list[dict[str, Any]] = []
         for row in conn.execute("SELECT * FROM security_artifacts ORDER BY id"):
+            enriched_name = contract["result_names"].get(
+                "enriched", "ENRICHED_CATALOG_VALIDATION"
+            )
             artifacts.append(
                 {
                     "id": row["id"],
@@ -301,6 +354,7 @@ def validate_catalog(
                     "primaryDomain": row["primary_domain"],
                     contract["result_names"]["minimum"]: minimum_result(conn, row, contract),
                     contract["result_names"]["strict"]: strict_result(conn, row),
+                    enriched_name: enriched_result(conn, row, contract),
                     "review": {
                         "aiReviewStatus": row["ai_review_status"],
                         "requiresHumanReview": bool(row["requires_human_review"]),
@@ -318,6 +372,9 @@ def validate_catalog(
         conn.close()
     minimum_name = contract["result_names"]["minimum"]
     strict_name = contract["result_names"]["strict"]
+    enriched_name = contract["result_names"].get(
+        "enriched", "ENRICHED_CATALOG_VALIDATION"
+    )
     report: dict[str, Any] = {
         "schemaVersion": schema_version,
         "databaseSha256": file_hash(database),
@@ -331,6 +388,7 @@ def validate_catalog(
             "canonicalTotal": len(artifacts),
             "minimumValid": sum(a[minimum_name]["valid"] for a in artifacts),
             "strictConformant": sum(a[strict_name]["valid"] for a in artifacts),
+            "enrichedValid": sum(a[enriched_name]["valid"] for a in artifacts),
         },
         "reviewSummary": {
             "requiresHumanReview": sum(a["review"]["requiresHumanReview"] for a in artifacts),

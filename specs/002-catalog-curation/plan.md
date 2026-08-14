@@ -26,7 +26,7 @@ Turn the preserved SecureGuide source corpus into a reproducible minimum-valid c
 
 **Constraints**: No direct curation writes to `mobile/assets/catalog.db`; no physical deletion by workbook omission; no invented provenance; controlled USACM/SDT values; profile data preserved; deterministic release construction
 
-**Scale/Scope**: 4,265 preserved raw records currently in `catalog_work.db`; 1,467 staged curated/Amani candidates; existing unified projection of 1,223 candidate canonicals; all eight SDT domains
+**Scale/Scope**: 4,265 preserved raw records currently in `catalog_work.db`; 1,467 staged curated/legacy candidates; existing unified projection of 1,223 candidate canonicals; all eight SDT domains
 
 ## Constitution Check
 

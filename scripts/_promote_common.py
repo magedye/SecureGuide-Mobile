@@ -58,7 +58,7 @@ HASH_FIELDS = [
     'proposed_maturity_requirements_json', 'proposed_verification_json',
     # --- SADP v1.0 (threat dimension, platforms, baseline priority, provenance) ---
     'proposed_threats_json', 'proposed_platforms_json', 'proposed_priority',
-    'proposed_amani_provenance_json',
+    'proposed_legacy_provenance_json',
 ]
 
 

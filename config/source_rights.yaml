@@ -10,8 +10,8 @@ policy:
   default_ship_raw_text: false
   rule: Raw source text may ship only when an explicit, versioned ALLOWED decision is supported by recorded rights evidence.
 rights:
-  - id: srv-amani_v4-v1
-    source_catalog_id: amani_v4
+  - id: srv-legacy_catalog_v4-v1
+    source_catalog_id: legacy_catalog_v4
     source_version: "4.1.0"
     rights_version: "1"
     redistribution_status: UNKNOWN

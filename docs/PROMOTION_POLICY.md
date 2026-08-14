@@ -3,16 +3,16 @@
 > العقد الحاكم لنقل العناصر من `staging_artifacts` إلى الكتالوج المرجعي `security_artifacts`.
 > تنفّذها [`scripts/promote.py`](../scripts/promote.py) وتتحقق منها [`scripts/validate_promotion.py`](../scripts/validate_promotion.py).
 >
-> **تخضع الترقية لـ [`SADP_v1.0.md`](SADP_v1.0.md):** البوابة ترفض التصنيفات الإلزامية الناقصة، وترفض `UNKNOWN/MULTI` قبل إنشاء خطة الترقية. القيم الشرطية غير المنطبقة تستخدم `NULL` البنيوي حيث يفرضه USACM، والتعدد الحقيقي يُطبّع في جداول فرعية. السياسة الآلية موجودة في `classification_fallback_policy` ومطابقتها موثّقة في [`SADP_CONFORMANCE.md`](SADP_CONFORMANCE.md).
+> عقد الحد الأدنى المعياري هو [`config/catalog_minimum_fields.yaml`](../config/catalog_minimum_fields.yaml). نتيجة `MINIMUM_CATALOG_VALIDATION` مستقلة عن نتيجة `STRICT_USACM_CONFORMANCE` وعن حالة المراجعة البشرية.
 
 ## القاعدة الذهبية
 > **إما أن تُكتب جميع مكونات العنصر (السجل + mappings + tags + relationships) بنجاح داخل transaction واحدة، أو لا يُكتب شيء.**
 لا يوجد كتابة جزئية. أي فشل في أي جزء يُرجِع الدفعة كاملة (ROLLBACK) ولا يترك أثراً في الكتالوج.
 
 ## 1. شروط الانتقال من staging إلى catalog
-لا يُرقّى عنصر إلا إذا استوفى **كل** ما يلي (يفحصها `promotion_blockers`):
-- `ready_for_promotion = 1` و`final_review_status ∈ {APPROVED, SPLIT_AND_APPROVED}`.
-- `requires_human_review = 0` و`classification_confidence > 0.70`.
+لا يدخل عنصر الكتالوج إلا إذا استوفى **كل** ما يلي (يفحصها `minimum_promotion_blockers`):
+- `ready_for_promotion = 1`، وألا تكون `curation_status=REJECTED`.
+- حالة المراجعة والثقة لا تمنعان الحد الأدنى وحدهما، لكن يجب تسجيلهما بمساءلة كاملة، ويمنعان النشر التلقائي عند انخفاض الثقة.
 - لا `promotion_blockers` مفتوحة.
 - فكرة أمنية **ذرّية واحدة** (لا يتجاوز التعريف المختصر فعلين إلزاميين).
 - صياغة إنجليزية مكتملة (`title_en` + `definition_short_en`).
@@ -22,14 +22,12 @@
 - الحقول الإلزامية حسب النوع موجودة وصالحة (القسم 3).
 - `lineage` مكتمل: `proposed_mappings_json` غير فارغ، كل مصدر له `raw_id` و`source_document` و`mapping_strength` صالح؛ وأي ربط غير `DIRECT` له `rationale`.
 
-## 2. الحالات المقبولة والمرفوضة
-| مقبول للترقية | مرفوض |
+## 2. النتائج المستقلة
+| `MINIMUM_CATALOG_VALIDATION` | `STRICT_USACM_CONFORMANCE` |
 |---|---|
-| `APPROVED` جاهز بلا blockers | `REJECTED` (مثل AI-03) |
-| `SPLIT_AND_APPROVED` (العناصر الناتجة المستقلة فقط) | `DEFERRED` |
-| — | أي `NEEDS_REVIEW` / `requires_human_review=1` |
-| — | ثقة ≤ 0.70 |
-| — | canonical متعدد الأفكار |
+| يقبل المكتمل بنيوياً حتى مع `NOT_REVIEWED` أو ثقة منخفضة ظاهرة | يتطلب مراجعة/اعتماداً موثقاً وثقة متوافقة |
+| يرفض `REJECTED` والبنية أو النسب أو النوع غير المكتمل | لا يغيّر نتيجة الحد الأدنى إلا إذا كشف مخالفة بنيوية مشتركة |
+| يسمح بإثراء ناقص | يقيس المطابقة الصارمة دون إعادة تعريف USACM |
 
 **منع الترقية الجزئية:** لا يُرقّى عنصر مركّب (مثل AI-04) — يجب تقسيمه أولاً إلى عناصر staging مستقلة، ثم تُرقّى المستقلة فقط.
 
@@ -47,9 +45,10 @@
 مثال: `STG-CANON-AI-02` (ART-CTR) → **`SG-CTR-AI-02`**. المعرّف ثابت للعنصر نفسه ⇒ يدعم idempotency ويكشف التعارض.
 
 ## 5. حفظ النسب (lineage)
-- تُطبَّع مصادر `proposed_mappings_json` إلى صفوف `framework_mappings` (`framework`=source_document، `version`=source_version، `reference`=source_section، `mapping_strength`، `rationale`).
-- `staging_artifacts.promoted_artifact_id` يُضبط على المعرّف النهائي (رابط staging↔catalog).
-- `raw_artifacts` **لا يُلمس** إطلاقاً؛ النسب يبقى: raw → (staging) → framework_mappings.
+- تُطبَّع مصادر `proposed_mappings_json` إلى صفوف `framework_mappings`.
+- يُسجّل النسب النهائي مباشرة في `artifact_source_lineage`، ويكون لكل canonical صف صالح واحد على الأقل.
+- يظل `staging_artifacts.promoted_artifact_id` رابط توافق فقط، وليس حد النسب النهائي.
+- لكل خام إقرار واحد في `raw_artifact_dispositions`، ولا يُحذف `raw_artifacts` بسبب الدمج.
 
 ## 6. mappings والعلاقات والوسوم
 - **mappings:** من `proposed_mappings_json` (كما أعلاه).

@@ -171,6 +171,29 @@ class CatalogValidationTests(unittest.TestCase):
         self.assertTrue(artifact["MINIMUM_CATALOG_VALIDATION"]["valid"])
         self.assertFalse(artifact["STRICT_USACM_CONFORMANCE"]["valid"])
 
+    def test_zero_confidence_requires_explicit_unknown_semantics(self) -> None:
+        self._insert_artifact(
+            classification_confidence=0.0,
+            classification_rationale="Unscored legacy evidence.",
+        )
+        first = validate_catalog(self.path)["artifacts"][0][
+            "MINIMUM_CATALOG_VALIDATION"
+        ]
+        self.assertFalse(first["valid"])
+        self.assertIn("classification_confidence_semantics", first["missing"])
+        self.conn.execute(
+            "UPDATE security_artifacts SET classification_rationale=? WHERE id='SG-CTR-1'",
+            (
+                "CONFIDENCE_UNASSESSED: no numeric score was available; "
+                "0.0 is the explicit unknown sentinel.",
+            ),
+        )
+        self.conn.commit()
+        second = validate_catalog(self.path)["artifacts"][0][
+            "MINIMUM_CATALOG_VALIDATION"
+        ]
+        self.assertTrue(second["valid"])
+
     def test_closure_reports_missing_dispositions_and_dangling_are_zero(self) -> None:
         self._insert_artifact()
         self.conn.execute(

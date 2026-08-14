@@ -195,7 +195,7 @@ The primary key is `(artifact_id, raw_artifact_id)`. Both identifiers are foreig
 
 ## 10. Comprehensive Excel round trip
 
-Excel is the primary human bulk-curation interface. SQLite remains authoritative. Contract v2 preserves the original nine core sheets and appends one normalized sheet for every supported Master Catalog detail table. The stable order is:
+Excel is the primary human bulk-curation interface. SQLite remains authoritative. Contract v3 exports the complete governed catalog plus raw dispositions and supports lossless filtered scopes. The stable order is:
 
 | Sheet | Semantics |
 |---|---|
@@ -208,28 +208,33 @@ Excel is the primary human bulk-curation interface. SQLite remains authoritative
 | `06_Type_Specific` | Type-specific fields and relational requirements such as risk remediation |
 | `07_Reference_Lists` | Controlled values and named ranges used for spreadsheet dropdown validation |
 | `08_Validation_Errors` | Actionable severity, code, sheet, row, key, field, message, and current database hash |
-| `09_Applicability` | Normalized applicability scopes |
-| `10_Reference_Assessments` | USACM reference self-assessments, distinct from profile assessments |
-| `11_Technical_Dependencies` | Reference system, platform, vendor, skill, and budget dependencies |
-| `12_Verification_Tools` | Reference verification tools and methods |
-| `13_Stakeholders` | Reference roles and responsibilities |
-| `14_Remediation_Actions` | Reference remediation actions linked to catalog artifacts |
-| `15_External_References` | Normalized external catalog references |
-| `16_Localizations` | Complete localized content and content-review metadata |
-| `17_Actions` | Ordered implementation and verification actions |
-| `18_Variants` | Platform or context variants |
-| `19_Security_Objectives` | Security objectives and strengths |
-| `20_CSF_Functions` | CSF functions and strengths |
-| `21_Control_Purposes` | Controlled security purposes |
-| `22_Implementation_Types` | Controlled implementation types |
-| `23_Maturity_Requirements` | Tier-specific maturity requirements |
-| `24_Verification_Evidence` | Accepted reference evidence types |
-| `25_Threats` | Normalized threat associations |
-| `26_Platforms` | Normalized platform associations |
-| `27_Amani_Assets` | Amani asset references |
-| `28_Amani_Provenance` | Amani source classification provenance |
+| `09_Raw_Dispositions` | Exactly one explicit disposition for each raw row in a complete export |
+| `10_Applicability` | Normalized applicability scopes |
+| `11_Reference_Assessments` | USACM reference self-assessments, distinct from profile assessments |
+| `12_Technical_Dependencies` | Reference system, platform, vendor, skill, and budget dependencies |
+| `13_Verification_Tools` | Reference verification tools and methods |
+| `14_Stakeholders` | Reference roles and responsibilities |
+| `15_Remediation_Actions` | Reference remediation actions linked to catalog artifacts |
+| `16_External_References` | Normalized external catalog references |
+| `17_Localizations` | Complete localized content and content-review metadata |
+| `18_Actions` | Ordered implementation and verification actions |
+| `19_Variants` | Platform or context variants |
+| `20_Security_Objectives` | Security objectives and strengths |
+| `21_CSF_Functions` | CSF functions and strengths |
+| `22_Control_Purposes` | Controlled security purposes |
+| `23_Implementation_Types` | Controlled implementation types |
+| `24_Maturity_Requirements` | Tier-specific maturity requirements |
+| `25_Verification_Evidence` | Accepted reference evidence types |
+| `26_Threats` | Normalized threat associations |
+| `27_Platforms` | Normalized platform associations |
+| `28_Legacy_Assets` | Neutral legacy-source asset references |
+| `29_Legacy_Provenance` | Neutral legacy-source classification provenance |
+| `30_Artifact_ID_Aliases` | Export-only old-ID to current-ID compatibility map |
+| `31_Source_Catalogs` | Export-only catalog-source metadata |
+| `32_Source_Manifests` | Export-only pinned import manifests |
+| `33_Source_Rights` | Export-only versioned redistribution decisions |
 
-The manifest uses `secureguide-catalog-workbook-v2`, records the repository-relative database path when applicable, declares the `ALL_CATALOG_ARTIFACTS` scope, and records the artifact count plus one row count for every editable sheet. Export is unfiltered by artifact type or human-review state.
+The manifest uses `secureguide-catalog-workbook-v3`, records only a repository-relative database path when applicable, and binds the database logical-state hash, minimum-contract version/hash, source manifest and rights hashes, global counts, scoped counts, filters, actor, and export time. Complete export contains all 4,265 raw dispositions. Filtered export supports USACM type, SDT domain/subdomain, source/framework, quality profile, review state, confidence range, and publication state; every dependent sheet is restricted to the same artifact/raw scope.
 
 The comprehensive catalog boundary intentionally excludes profile/operational tables, raw source payload text, derived embedding vectors, and workflow blueprints. Those exclusions preserve catalog/profile separation, source-rights controls, and a human-readable curation surface.
 

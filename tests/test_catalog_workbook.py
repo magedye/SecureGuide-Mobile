@@ -22,36 +22,41 @@ EXPECTED_SHEETS = [
     "00_Manifest", "01_Artifacts", "02_Source_Lineage",
     "03_Framework_Mappings", "04_Relationships", "05_Tags",
     "06_Type_Specific", "07_Reference_Lists", "08_Validation_Errors",
-    "09_Applicability", "10_Reference_Assessments", "11_Technical_Dependencies",
-    "12_Verification_Tools", "13_Stakeholders", "14_Remediation_Actions",
-    "15_External_References", "16_Localizations", "17_Actions",
-    "18_Variants", "19_Security_Objectives", "20_CSF_Functions",
-    "21_Control_Purposes", "22_Implementation_Types", "23_Maturity_Requirements",
-    "24_Verification_Evidence", "25_Threats", "26_Platforms",
-    "27_Amani_Assets", "28_Amani_Provenance",
+    "09_Raw_Dispositions", "10_Applicability", "11_Reference_Assessments",
+    "12_Technical_Dependencies", "13_Verification_Tools", "14_Stakeholders",
+    "15_Remediation_Actions", "16_External_References", "17_Localizations",
+    "18_Actions", "19_Variants", "20_Security_Objectives", "21_CSF_Functions",
+    "22_Control_Purposes", "23_Implementation_Types", "24_Maturity_Requirements",
+    "25_Verification_Evidence", "26_Threats", "27_Platforms",
+    "28_Legacy_Assets", "29_Legacy_Provenance", "30_Artifact_ID_Aliases",
+    "31_Source_Catalogs", "32_Source_Manifests", "33_Source_Rights",
 ]
 
 EXPECTED_DETAIL_TABLES = {
-    "09_Applicability": "artifact_applicability_scope",
-    "10_Reference_Assessments": "artifact_self_assessments",
-    "11_Technical_Dependencies": "technical_dependencies",
-    "12_Verification_Tools": "verification_tools",
-    "13_Stakeholders": "stakeholders",
-    "14_Remediation_Actions": "remediation_actions",
-    "15_External_References": "external_references",
-    "16_Localizations": "artifact_localizations",
-    "17_Actions": "artifact_actions",
-    "18_Variants": "artifact_variants",
-    "19_Security_Objectives": "artifact_security_objectives",
-    "20_CSF_Functions": "artifact_csf_functions",
-    "21_Control_Purposes": "artifact_control_purposes",
-    "22_Implementation_Types": "artifact_implementation_types",
-    "23_Maturity_Requirements": "artifact_maturity_requirements",
-    "24_Verification_Evidence": "artifact_verification_evidence_types",
-    "25_Threats": "artifact_threats",
-    "26_Platforms": "artifact_platforms",
-    "27_Amani_Assets": "catalog_amani_assets",
-    "28_Amani_Provenance": "catalog_amani_provenance",
+    "10_Applicability": "artifact_applicability_scope",
+    "11_Reference_Assessments": "artifact_self_assessments",
+    "12_Technical_Dependencies": "technical_dependencies",
+    "13_Verification_Tools": "verification_tools",
+    "14_Stakeholders": "stakeholders",
+    "15_Remediation_Actions": "remediation_actions",
+    "16_External_References": "external_references",
+    "17_Localizations": "artifact_localizations",
+    "18_Actions": "artifact_actions",
+    "19_Variants": "artifact_variants",
+    "20_Security_Objectives": "artifact_security_objectives",
+    "21_CSF_Functions": "artifact_csf_functions",
+    "22_Control_Purposes": "artifact_control_purposes",
+    "23_Implementation_Types": "artifact_implementation_types",
+    "24_Maturity_Requirements": "artifact_maturity_requirements",
+    "25_Verification_Evidence": "artifact_verification_evidence_types",
+    "26_Threats": "artifact_threats",
+    "27_Platforms": "artifact_platforms",
+    "28_Legacy_Assets": "catalog_legacy_assets",
+    "29_Legacy_Provenance": "catalog_legacy_provenance",
+    "30_Artifact_ID_Aliases": "catalog_artifact_id_aliases",
+    "31_Source_Catalogs": "source_catalogs",
+    "32_Source_Manifests": "source_import_manifests",
+    "33_Source_Rights": "source_rights_versions",
 }
 
 
@@ -183,11 +188,11 @@ class WorkbookSchemaTests(unittest.TestCase):
                 SELECT 'SG-CTR-1',code FROM lk_threat ORDER BY sort_order,code LIMIT 1;
                 INSERT INTO artifact_platforms(artifact_id,platform_code)
                 SELECT 'SG-CTR-1',code FROM lk_platform ORDER BY sort_order,code LIMIT 1;
-                INSERT INTO catalog_amani_assets(artifact_id,asset_ref)
+                INSERT INTO catalog_legacy_assets(artifact_id,asset_ref)
                 VALUES('SG-CTR-1','ASSET-001');
-                INSERT INTO catalog_amani_provenance(artifact_id,amani_id,amani_domain,amani_sub)
-                SELECT 'SG-CTR-1','AMANI-001',amani_key,'Sub' FROM amani_domain_alias
-                ORDER BY amani_key LIMIT 1;
+                INSERT INTO catalog_legacy_provenance(artifact_id,legacy_id,legacy_domain,legacy_sub)
+                SELECT 'SG-CTR-1','LEGACY-001',legacy_key,'Sub' FROM legacy_domain_alias
+                ORDER BY legacy_key LIMIT 1;
                 """
             )
             conn.commit()
@@ -233,16 +238,16 @@ class WorkbookSchemaTests(unittest.TestCase):
         self.assertIn("REF_TYPE", wb.defined_names)
         self.assertIn("REF_EXTERNAL_REFERENCE_TYPE", wb.defined_names)
         self.assertGreater(len(wb["01_Artifacts"].data_validations.dataValidation), 1)
-        self.assertGreater(len(wb["15_External_References"].data_validations.dataValidation), 0)
+        self.assertGreater(len(wb["16_External_References"].data_validations.dataValidation), 0)
         manifest = {
             row[0].value: row[1].value
             for row in wb["00_Manifest"].iter_rows(min_row=2)
             if row[0].value
         }
-        self.assertEqual(manifest["workbook_contract"], "secureguide-catalog-workbook-v2")
+        self.assertEqual(manifest["workbook_contract"], "secureguide-catalog-workbook-v3")
         self.assertTrue(str(manifest["database_path"]).endswith(self.db.name))
         self.assertEqual(manifest["artifact_count"], 1)
-        self.assertEqual(manifest["row_count.16_Localizations"], 2)
+        self.assertEqual(manifest["row_count.17_Localizations"], 2)
         self.assertEqual(manifest["export_scope"], "ALL_CATALOG_ARTIFACTS")
         validation = validate_workbook(workbook, self.db)
         self.assertTrue(validation["valid"], validation["errors"][:3])
@@ -274,6 +279,64 @@ class WorkbookSchemaTests(unittest.TestCase):
             {row[3] for row in error_rows},
             {error["code"] for error in result["errors"]},
         )
+
+    def test_filtered_export_is_lossless_for_artifact_and_raw_scope(self) -> None:
+        self._seed_catalog()
+        conn = sqlite3.connect(self.db)
+        conn.execute("PRAGMA foreign_keys=ON")
+        try:
+            conn.execute(
+                """INSERT INTO raw_artifacts(
+                       id,source_catalog_id,source_document,source_type,source_version,
+                       source_section,raw_text_en,raw_json,source_file,content_hash,source_manifest_id)
+                   VALUES('RAW-2','SRC','Source','STANDARD','1','2','raw two','{}','source.json',?,'MAN')""",
+                ("d" * 64,),
+            )
+            conn.execute(
+                """INSERT INTO security_artifacts(
+                       id,source_catalog_id,type,title_en,definition_short_en,
+                       primary_domain,sub_domain,abstraction_level,source,source_type,
+                       obligation_level,granularity_level,requirement_type,
+                       classification_confidence,classification_rationale,
+                       ai_review_status,requires_human_review,publication_status,source_document)
+                   VALUES('SG-REQ-2','SRC','ART-REQ','Govern access','Access shall be governed.',
+                          'SD-03','SD-03.01','ABS-GOV','SRC-STD','STANDARD','OBL-MND',
+                          'GRN-HIGH','RQT-STD',.91,'Security outcome.','AIR-AUTO-ACCEPTED',0,
+                          'APPROVED','Source')"""
+            )
+            conn.execute(
+                "INSERT INTO artifact_source_lineage(artifact_id,raw_artifact_id,lineage_role,mapping_strength,is_primary) VALUES('SG-REQ-2','RAW-2','SUPPORTS_CANONICAL','DIRECT',1)"
+            )
+            conn.execute(
+                "INSERT INTO raw_artifact_dispositions(raw_artifact_id,disposition,rationale,decision_method,decision_confidence,requires_human_review,decided_by) VALUES('RAW-2','SUPPORTS_CANONICAL','Primary source','TEST',.91,0,'test')"
+            )
+            conn.commit()
+        finally:
+            conn.close()
+
+        workbook = Path(self.temp.name) / "requirements.xlsx"
+        result = export_workbook(
+            self.db, workbook, filters={"artifact_type": "ART-REQ"}
+        )
+        self.assertEqual(result["exportMode"], "FILTERED")
+        wb = load_workbook(workbook, data_only=True)
+        self.assertEqual(wb["01_Artifacts"].max_row - 1, 1)
+        self.assertEqual(wb["02_Source_Lineage"].max_row - 1, 1)
+        self.assertEqual(wb["09_Raw_Dispositions"].max_row - 1, 1)
+        artifact_headers = [cell.value for cell in wb["01_Artifacts"][1]]
+        raw_headers = [cell.value for cell in wb["09_Raw_Dispositions"][1]]
+        self.assertEqual(
+            wb["01_Artifacts"].cell(2, artifact_headers.index("id") + 1).value,
+            "SG-REQ-2",
+        )
+        self.assertEqual(
+            wb["09_Raw_Dispositions"].cell(
+                2, raw_headers.index("raw_artifact_id") + 1
+            ).value,
+            "RAW-2",
+        )
+        validation = validate_workbook(workbook, self.db)
+        self.assertTrue(validation["valid"], validation["errors"][:3])
 
     def test_duplicate_editable_row_identity_is_rejected(self) -> None:
         self._seed_catalog()

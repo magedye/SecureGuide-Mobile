@@ -15,7 +15,7 @@ Core tables: `security_artifacts`, `artifact_source_lineage`, `framework_mapping
 
 Normative reference details: `artifact_applicability_scope`, `artifact_self_assessments`, `technical_dependencies`, `verification_tools`, `stakeholders`, `remediation_actions`, and `external_references`.
 
-Project catalog enrichment: `artifact_localizations`, `artifact_actions`, `artifact_variants`, `artifact_security_objectives`, `artifact_csf_functions`, `artifact_control_purposes`, `artifact_implementation_types`, `artifact_maturity_requirements`, `artifact_verification_evidence_types`, `artifact_threats`, `artifact_platforms`, `catalog_amani_assets`, and `catalog_amani_provenance`.
+Project catalog enrichment: `artifact_localizations`, `artifact_actions`, `artifact_variants`, `artifact_security_objectives`, `artifact_csf_functions`, `artifact_control_purposes`, `artifact_implementation_types`, `artifact_maturity_requirements`, `artifact_verification_evidence_types`, `artifact_threats`, `artifact_platforms`, `catalog_legacy_assets`, and `catalog_legacy_provenance`.
 
 `06_Type_Specific` remains a governed view over type-dependent columns in `security_artifacts`.
 

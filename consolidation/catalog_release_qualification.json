@@ -1,0 +1,98 @@
+{
+  "contract": "secureguide-catalog-release-validation-v1",
+  "database": "secureguide-catalog-release-a.db",
+  "sha256": "39d8fd8edbae91799a7879e820d27e05e0f74119a90d76bd43b8e696f5a7668f",
+  "schemaVersion": "034",
+  "V1": {
+    "valid": true,
+    "integrity": "ok",
+    "foreignKeyViolations": 0,
+    "minimum": {
+      "valid": true,
+      "canonicalTotal": 1218,
+      "minimumValid": 1218,
+      "strictConformant": 1218,
+      "enrichedValid": 0
+    },
+    "strict": {
+      "valid": true,
+      "strictConformant": 1218
+    },
+    "closure": {
+      "valid": true,
+      "rawTotal": 4265,
+      "rawDisposed": 4265,
+      "canonicalTotal": 1218,
+      "canonicalsWithLineage": 1218,
+      "missingDispositions": 0,
+      "missingCanonicalLineage": 0,
+      "supportingWithoutLineage": 0,
+      "missingSourceManifests": 0,
+      "missingSourceRights": 0,
+      "invalidDispositions": 0
+    }
+  },
+  "V2": {
+    "valid": true,
+    "sourceCatalogs": 23,
+    "sourceManifests": 23,
+    "currentRights": 23,
+    "shippedRestrictedRawPayloads": 0
+  },
+  "V3": {
+    "valid": true,
+    "danglingMappings": 0,
+    "danglingRelationships": 0,
+    "activeRetiredIdentityRows": 0,
+    "activeRetiredIdentityTables": 0,
+    "equivalence": {
+      "groups": 215,
+      "duplicates": 253,
+      "unified_size": 1214,
+      "cross_source_groups": 24,
+      "exact_text_sets": 107
+    },
+    "typeDistribution": {
+      "ART-CFG": 48,
+      "ART-CTR": 583,
+      "ART-MET": 1,
+      "ART-OBJ": 5,
+      "ART-OWN": 4,
+      "ART-PLN": 15,
+      "ART-POL": 25,
+      "ART-PRC": 39,
+      "ART-PRG": 17,
+      "ART-PRI": 6,
+      "ART-PRO": 9,
+      "ART-REQ": 232,
+      "ART-RSK": 1,
+      "ART-STD": 5,
+      "ART-THR": 226,
+      "ART-TSK": 1,
+      "ART-VUL": 1
+    },
+    "domainDistribution": {
+      "SD-01": 84,
+      "SD-02": 160,
+      "SD-03": 251,
+      "SD-04": 236,
+      "SD-05": 137,
+      "SD-06": 169,
+      "SD-07": 77,
+      "SD-08": 104
+    }
+  },
+  "V4": {
+    "valid": true,
+    "manifestHashValid": true,
+    "bindingErrors": {},
+    "byteReproducible": true,
+    "sizeBytes": 10973184
+  },
+  "performance": {
+    "catalogQueryMeanMs": 1.122,
+    "integrityCheckMs": 305.438,
+    "totalValidationMs": 13043.803
+  },
+  "valid": true
+}

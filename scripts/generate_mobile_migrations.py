@@ -30,6 +30,7 @@ def generate() -> None:
     output = [
         "// GENERATED CODE - DO NOT EDIT.",
         "// Run: python -m scripts.generate_mobile_migrations",
+        "// dart format off",
         "",
         "final class EmbeddedMigration {",
         "  const EmbeddedMigration({",
@@ -63,7 +64,7 @@ def generate() -> None:
             ]
         )
 
-    output.extend(["];"])
+    output.extend(["];", "// dart format on"])
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text("\n".join(output) + "\n", encoding="utf-8", newline="\n")
 

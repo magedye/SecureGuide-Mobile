@@ -34,7 +34,7 @@
 
 ## Decision 5: Use a deterministic global projection over defensible candidates
 
-**Decision**: Use the existing 1,467 curated/Amani staging candidates plus `consolidation/unified/equivalence.json`. Select each declared group canonical and standalone candidates, apply the minimum contract, and disposition every other raw row explicitly. No type is fabricated for rows lacking defensible evidence.
+**Decision**: Use the existing 1,467 curated/legacy staging candidates plus `consolidation/unified/equivalence.json`. Select each declared group canonical and standalone candidates, apply the minimum contract, and disposition every other raw row explicitly. No type is fabricated for rows lacking defensible evidence.
 
 **Rationale**: The existing projection yields 1,223 candidates. A live contract simulation found 1,068 minimum-valid canonicals after excluding 153 missing-confidence candidates, one invalid `ART-AST`, and one `ART-RSK` without remediation evidence. This clears the existing provisional performance population without synthetic duplication.
 

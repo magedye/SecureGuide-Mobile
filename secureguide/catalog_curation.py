@@ -18,6 +18,7 @@ import yaml
 from secureguide.catalog_validation import canonical_hash, file_hash
 from secureguide.catalog_validation import validate_catalog
 from secureguide.database import apply_migrations, connect
+from secureguide.semantic_classification import canonical_text, external_references
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -26,7 +27,9 @@ DEFAULT_SOURCE_RIGHTS = ROOT / "config" / "source_rights.yaml"
 DEFAULT_EQUIVALENCE = ROOT / "consolidation" / "unified" / "equivalence.json"
 DEFAULT_CURATED_CLASSIFICATIONS = ROOT / "consolidation" / "curated" / "classifications.json"
 DEFAULT_CURATED_RAW = ROOT / "SecureGuide_Mobile_Docs" / "Raw_Catalogs" / "securekit_curated_controls.json"
-DEFAULT_AMANI_RAW = ROOT / "SecureGuide_Mobile_Docs" / "Raw_Catalogs" / "amani_v4_recovered.json"
+DEFAULT_LEGACY_CLASSIFICATIONS = ROOT / "consolidation" / "curated" / "legacy_classifications.json"
+DEFAULT_TEXT_CORRECTIONS = ROOT / "config" / "catalog_text_corrections.json"
+DEFAULT_LEGACY_RAW = ROOT / "SecureGuide_Mobile_Docs" / "Raw_Catalogs" / "legacy_catalog_v4_recovered.json"
 
 
 class CurationInputError(ValueError):
@@ -233,21 +236,37 @@ def _decoded(value: Any, default: Any) -> Any:
 def load_curation_candidates(
     curated_classifications: str | Path = DEFAULT_CURATED_CLASSIFICATIONS,
     curated_raw: str | Path = DEFAULT_CURATED_RAW,
-    amani_raw: str | Path = DEFAULT_AMANI_RAW,
+    legacy_classifications: str | Path = DEFAULT_LEGACY_CLASSIFICATIONS,
+    text_corrections: str | Path = DEFAULT_TEXT_CORRECTIONS,
+    legacy_raw: str | Path = DEFAULT_LEGACY_RAW,
 ) -> dict[str, dict[str, Any]]:
-    """Load the tracked 761 curated and 706 recovered amani candidates."""
+    """Load the tracked 761 curated and 706 pinned recovered candidates."""
 
     classified = json.loads(Path(curated_classifications).read_text(encoding="utf-8"))
     curated_envelope = json.loads(Path(curated_raw).read_text(encoding="utf-8"))
-    amani_envelope = json.loads(Path(amani_raw).read_text(encoding="utf-8"))
+    legacy_pinned = json.loads(Path(legacy_classifications).read_text(encoding="utf-8"))
+    legacy_envelope = json.loads(Path(legacy_raw).read_text(encoding="utf-8"))
     if len(classified) != len(curated_envelope["artifacts"]):
         raise CurationInputError("curated classifications do not cover the curated raw source")
+    pinned_hash = legacy_pinned.get("semantic_sha256")
+    pinned_material = dict(legacy_pinned)
+    pinned_material.pop("semantic_sha256", None)
+    if pinned_hash != canonical_hash(pinned_material):
+        raise CurationInputError("legacy classification semantic hash mismatch")
+    if legacy_pinned.get("input_sha256") != file_hash(legacy_raw):
+        raise CurationInputError("legacy classifications are stale for the recovered source")
+    if legacy_pinned.get("reference_sha256") != file_hash(curated_classifications):
+        raise CurationInputError("legacy classifications are stale for the curated reference")
+    legacy_items = legacy_pinned.get("items") or []
+    if legacy_pinned.get("item_count") != len(legacy_items) or len(legacy_items) != len(legacy_envelope["artifacts"]):
+        raise CurationInputError("legacy classifications do not cover the recovered source")
     candidates: dict[str, dict[str, Any]] = {}
     for index, (classification, raw) in enumerate(zip(classified, curated_envelope["artifacts"])):
         raw_id = f"securekit_curated_controls::{index:04d}"
         if classification["raw_id"] != raw_id:
             raise CurationInputError(f"curated classification order mismatch at {raw_id}")
         source = raw.get("source_metadata") or {}
+        full_text = (raw.get("original_content") or {}).get("raw_text_en") or ""
         candidates[f"STG-CURATED-{index:04d}"] = {
             "candidate_id": f"STG-CURATED-{index:04d}", "source_key": "CURATED",
             "raw_id": raw_id, "external_raw_id": raw.get("raw_artifact_id"),
@@ -258,7 +277,7 @@ def load_curation_candidates(
             "source_section": source.get("source_section"),
             "title_en": classification.get("title_en"),
             "definition_short_en": classification.get("definition_short_en"),
-            "definition_full_en": (raw.get("original_content") or {}).get("raw_text_en"),
+            "definition_full_en": canonical_text(full_text) or None,
             "type": classification.get("proposed_type"),
             "abstraction_level": classification.get("proposed_abstraction_level"),
             "primary_domain": classification.get("proposed_primary_domain"),
@@ -276,56 +295,99 @@ def load_curation_candidates(
             "requires_human_review": bool(classification.get("needs_split")),
             "threats": classification.get("proposed_threats") or [],
             "platforms": [], "mappings": [], "tags": [], "relationships": [],
-            "actions": [], "amani_provenance": None,
+            "actions": [], "external_references": external_references(full_text),
+            "legacy_provenance": None,
         }
 
-    for index, raw in enumerate(amani_envelope["artifacts"]):
+    for index, (classification, raw) in enumerate(zip(legacy_items, legacy_envelope["artifacts"])):
         recovery = raw.get("recovery_provenance") or {}
         evidence = recovery.get("staging_evidence") or {}
-        candidate_id = f"STG-AMANI-{index:04d}"
-        if recovery.get("staging_id") != candidate_id:
-            raise CurationInputError(f"amani staging evidence mismatch at {candidate_id}")
+        candidate_id = f"STG-LEGACY-{index:04d}"
+        expected_raw_id = f"legacy_catalog_v4::{index:04d}"
+        if classification.get("raw_id") != expected_raw_id:
+            raise CurationInputError(f"legacy classification order mismatch at {expected_raw_id}")
         source = raw.get("source_metadata") or {}
         original = recovery.get("original_raw_record") or {}
+        full_text = evidence.get("definition_full_en") or (raw.get("original_content") or {}).get("raw_text_en") or ""
         candidates[candidate_id] = {
-            "candidate_id": candidate_id, "source_key": "AMANI",
-            "raw_id": f"amani_v4::{index:04d}",
+            "candidate_id": candidate_id, "source_key": "CAT",
+            "raw_id": expected_raw_id,
             "external_raw_id": raw.get("raw_artifact_id"),
-            "source_catalog_id": "amani_v4",
-            "source_document": source.get("source_document") or "amani SecureGuide v4",
+            "legacy_artifact_id": (
+                str(recovery.get("staging_id") or "").replace(
+                    "STG-", f"SG-{str(evidence.get('proposed_type') or 'ART-CTR')[4:]}-", 1
+                )
+                or None
+            ),
+            "source_catalog_id": "legacy_catalog_v4",
+            "source_document": "SecureGuide Legacy Catalog v4",
             "source_type_raw": source.get("source_type") or "GUIDELINE",
             "source_version": source.get("source_version") or "4.1.0",
             "source_section": source.get("source_section"),
-            "title_en": evidence.get("title_en") or (raw.get("extracted_elements") or {}).get("title_draft"),
-            "definition_short_en": evidence.get("definition_short_en") or (raw.get("extracted_elements") or {}).get("description_draft"),
-            "definition_full_en": evidence.get("definition_full_en") or (raw.get("original_content") or {}).get("raw_text_en"),
-            "type": evidence.get("proposed_type"),
-            "abstraction_level": evidence.get("proposed_abstraction_level"),
-            "primary_domain": evidence.get("proposed_primary_domain"),
-            "sub_domain": evidence.get("proposed_sub_domain"),
-            "obligation_level": evidence.get("proposed_obligation_level"),
-            "requirement_type": evidence.get("proposed_requirement_type"),
-            "control_nature": evidence.get("proposed_control_nature"),
-            "control_function": evidence.get("proposed_control_function"),
-            "testability": evidence.get("proposed_testability"),
-            "asset_type": evidence.get("proposed_asset_type"),
-            "asset_criticality": evidence.get("proposed_asset_criticality"),
-            "priority": evidence.get("proposed_priority") or "PRI-MEDIUM",
-            "classification_confidence": evidence.get("classification_confidence"),
-            "classification_rationale": evidence.get("classification_rationale"),
-            "requires_human_review": bool(evidence.get("requires_human_review")),
+            "title_en": classification.get("title_en"),
+            "definition_short_en": classification.get("definition_short_en"),
+            "definition_full_en": canonical_text(full_text) or None,
+            "type": classification.get("proposed_type"),
+            "abstraction_level": classification.get("proposed_abstraction_level"),
+            "primary_domain": classification.get("proposed_primary_domain"),
+            "sub_domain": classification.get("proposed_sub_domain"),
+            "obligation_level": classification.get("proposed_obligation_level"),
+            "requirement_type": classification.get("proposed_requirement_type"),
+            "control_nature": classification.get("proposed_control_nature"),
+            "control_function": classification.get("proposed_control_function"),
+            "testability": classification.get("proposed_testability"),
+            "asset_type": classification.get("proposed_asset_type"),
+            "asset_criticality": classification.get("proposed_asset_criticality"),
+            "priority": classification.get("proposed_priority") or "PRI-MEDIUM",
+            "classification_confidence": classification.get("classification_confidence"),
+            "classification_rationale": classification.get("classification_rationale"),
+            "requires_human_review": bool(classification.get("requires_human_review")),
             "threats": _decoded(evidence.get("proposed_threats_json"), []),
             "platforms": _decoded(evidence.get("proposed_platforms_json"), []),
             "mappings": _decoded(evidence.get("proposed_mappings_json"), []),
             "tags": _decoded(evidence.get("proposed_tags_json"), []),
             "relationships": _decoded(evidence.get("proposed_relationships_json"), []),
             "actions": _decoded(evidence.get("proposed_actions_json"), []),
-            "amani_provenance": _decoded(evidence.get("proposed_amani_provenance_json"), None) or {
-                "amani_id": original.get("id") or raw.get("raw_artifact_id"),
-                "amani_domain": original.get("domain"), "amani_sub": original.get("sub_domain"),
+            "external_references": [
+                *(classification.get("external_references") or []),
+                *external_references(full_text),
+            ],
+            "legacy_provenance": _decoded(next((
+                value for key, value in evidence.items()
+                if key.startswith("proposed_") and key.endswith("_provenance_json")
+            ), None), None) or {
+                "legacy_id": original.get("id") or raw.get("raw_artifact_id"),
+                "legacy_domain": original.get("domain"), "legacy_sub": original.get("sub_domain"),
                 "assets": original.get("asset_ids") or [],
             },
         }
+        provenance = candidates[candidate_id]["legacy_provenance"]
+        if "legacy_id" not in provenance:
+            def legacy_value(suffix: str) -> Any:
+                return next(
+                    (value for key, value in provenance.items() if key.endswith(f"_{suffix}")),
+                    None,
+                )
+            provenance = {
+                "legacy_id": legacy_value("id"),
+                "legacy_domain": legacy_value("domain"),
+                "legacy_sub": legacy_value("sub"),
+                "assets": provenance.get("assets") or [],
+            }
+            candidates[candidate_id]["legacy_provenance"] = provenance
+    correction_envelope = json.loads(Path(text_corrections).read_text(encoding="utf-8"))
+    if correction_envelope.get("schema_version") != 1:
+        raise CurationInputError("unsupported catalog text-correction schema")
+    for candidate_id, correction in correction_envelope.get("corrections", {}).items():
+        if candidate_id not in candidates:
+            raise CurationInputError(f"text correction references unknown candidate {candidate_id}")
+        for field in ("title_en", "definition_short_en"):
+            if correction.get(field):
+                candidates[candidate_id][field] = correction[field]
+        candidates[candidate_id]["classification_rationale"] = (
+            candidates[candidate_id].get("classification_rationale", "")
+            + " Canonical text correction: " + str(correction.get("reason") or "governed correction")
+        ).strip()
     if len(candidates) != 1467:
         raise CurationInputError(f"expected 1467 curation candidates, found {len(candidates)}")
     return candidates
@@ -428,7 +490,11 @@ def _insert_candidate(conn: sqlite3.Connection, candidate: dict[str, Any], group
     rationale = (candidate.get("classification_rationale") or "").strip()
     if confidence is None:
         confidence = 0.0
-        rationale += " No numeric confidence was recorded in the curated evidence; a conservative 0.0 is stored and human review is required."
+        rationale += (
+            " CONFIDENCE_UNASSESSED: no numeric confidence was recorded in the "
+            "pinned evidence; 0.0 is an explicit unknown sentinel and human review "
+            "is required."
+        )
     requires_review = bool(candidate.get("requires_human_review")) or confidence <= 0.70 or bool(group)
     priority = candidate.get("priority") or "PRI-MEDIUM"
     weight = {"PRI-CRITICAL": 10, "PRI-HIGH": 7, "PRI-MEDIUM": 4, "PRI-LOW": 1}[priority]
@@ -568,6 +634,35 @@ def curate_complete_catalog(
             raw_id: candidate_to_final[candidate_id]
             for raw_id, candidate_id in projection["rawToCandidate"].items()
         }
+        aliases_written: set[str] = set()
+
+        def write_alias(old_id: str | None, target_id: str, reason: str) -> None:
+            if not old_id or old_id == target_id:
+                return
+            conn.execute(
+                """INSERT INTO catalog_artifact_id_aliases(
+                       old_artifact_id,artifact_id,reason
+                   ) VALUES(?,?,?)
+                   ON CONFLICT(old_artifact_id) DO UPDATE SET
+                     artifact_id=excluded.artifact_id,reason=excluded.reason""",
+                (old_id, target_id, reason),
+            )
+            aliases_written.add(old_id)
+
+        for candidate in candidates.values():
+            selected_candidate = projection["rawToCandidate"][candidate["raw_id"]]
+            target_id = candidate_to_final[selected_candidate]
+            write_alias(
+                candidate.get("legacy_artifact_id"),
+                target_id,
+                "Forward neutral-identity migration from the historical canonical ID.",
+            )
+            write_alias(
+                final_artifact_id(candidate),
+                target_id,
+                "Forward canonical migration for an artifact consolidated by global equivalence.",
+            )
+        alias_count = len(aliases_written)
         for artifact_id, mappings in legacy.items():
             for mapping in mappings:
                 raw_id = mapping.get("raw_id")
@@ -628,8 +723,8 @@ def curate_complete_catalog(
 
         valid_threats = {row[0] for row in conn.execute("SELECT code FROM lk_threat")}
         valid_platforms = {row[0] for row in conn.execute("SELECT code FROM lk_platform")}
-        valid_aliases = {row[0] for row in conn.execute("SELECT amani_key FROM amani_domain_alias")}
-        mapping_count = action_count = tag_count = relationship_count = 0
+        valid_aliases = {row[0] for row in conn.execute("SELECT legacy_key FROM legacy_domain_alias")}
+        mapping_count = action_count = tag_count = relationship_count = external_reference_count = 0
         for candidate_id, artifact_id in candidate_to_final.items():
             candidate = candidates[candidate_id]
             seen_mappings: set[tuple[str, str, str]] = set()
@@ -681,6 +776,22 @@ def curate_complete_catalog(
                     (artifact_id, tag_type, tag_value),
                 )
                 tag_count += 1
+            seen_external_references: set[tuple[str, str | None]] = set()
+            for reference in candidate.get("external_references") or []:
+                if reference.get("type") not in {"STANDARD", "GUIDE", "ARTICLE", "TOOL", "OTHER"} or not reference.get("title"):
+                    raise CurationInputError(f"invalid external reference on {candidate_id}")
+                signature = (str(reference["title"]), reference.get("url"))
+                if signature in seen_external_references:
+                    continue
+                seen_external_references.add(signature)
+                conn.execute(
+                    """INSERT INTO external_references(
+                           artifact_id,type,title,url,description
+                       ) VALUES(?,?,?,?,?)""",
+                    (artifact_id, reference["type"], reference["title"],
+                     reference.get("url"), reference.get("description")),
+                )
+                external_reference_count += 1
             # Only final canonical IDs may be persisted as relationship targets.
             for relationship in candidate.get("relationships") or []:
                 target_candidate = relationship.get("target_id")
@@ -720,19 +831,19 @@ def curate_complete_catalog(
                         "INSERT OR IGNORE INTO artifact_platforms(artifact_id,platform_code) VALUES(?,?)",
                         (artifact_id, code),
                     )
-            provenance = candidate.get("amani_provenance")
-            if provenance and provenance.get("amani_id") and provenance.get("amani_domain") in valid_aliases:
+            provenance = candidate.get("legacy_provenance")
+            if provenance and provenance.get("legacy_id") and provenance.get("legacy_domain") in valid_aliases:
                 conn.execute(
-                    """INSERT INTO catalog_amani_provenance(
-                           artifact_id,amani_id,amani_domain,amani_sub
+                    """INSERT INTO catalog_legacy_provenance(
+                           artifact_id,legacy_id,legacy_domain,legacy_sub
                        ) VALUES(?,?,?,?) ON CONFLICT(artifact_id) DO UPDATE SET
-                         amani_id=excluded.amani_id,amani_domain=excluded.amani_domain,
-                         amani_sub=excluded.amani_sub""",
-                    (artifact_id, provenance["amani_id"], provenance["amani_domain"], provenance.get("amani_sub")),
+                         legacy_id=excluded.legacy_id,legacy_domain=excluded.legacy_domain,
+                         legacy_sub=excluded.legacy_sub""",
+                    (artifact_id, provenance["legacy_id"], provenance["legacy_domain"], provenance.get("legacy_sub")),
                 )
                 for asset in sorted(set(provenance.get("assets") or [])):
                     conn.execute(
-                        "INSERT OR IGNORE INTO catalog_amani_assets(artifact_id,asset_ref) VALUES(?,?)",
+                        "INSERT OR IGNORE INTO catalog_legacy_assets(artifact_id,asset_ref) VALUES(?,?)",
                         (artifact_id, asset),
                     )
             if candidate["type"] == "ART-RSK":
@@ -769,6 +880,8 @@ def curate_complete_catalog(
             "actions": action_count,
             "tags": tag_count,
             "relationships": relationship_count,
+            "externalReferences": external_reference_count,
+            "artifactIdAliases": alias_count,
         },
         "dispositions": dispositions, "domains": domains,
         "selectionOverrides": projection["selectionOverrides"],

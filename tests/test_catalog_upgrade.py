@@ -93,7 +93,7 @@ class CatalogUpgradeTests(unittest.TestCase):
         self.assertEqual(result["operationalSnapshotBefore"], before)
         self.assertEqual(result["operationalSnapshotAfter"], after)
         self.assertEqual(result["oldArtifactCount"], 4)
-        self.assertEqual(result["newArtifactCount"], 1227)
+        self.assertEqual(result["newArtifactCount"], 1218)
         conn = sqlite3.connect(self.installed)
         try:
             self.assertEqual(conn.execute("SELECT COUNT(*) FROM enterprise_profiles").fetchone()[0], 2)
@@ -144,8 +144,69 @@ class CatalogUpgradeTests(unittest.TestCase):
             conn.execute("SELECT COUNT(*) FROM framework_mappings").fetchone()[0],
             candidate.execute("SELECT COUNT(*) FROM framework_mappings").fetchone()[0],
         )
+        self.assertEqual(
+            conn.execute("SELECT COUNT(*) FROM external_references").fetchone()[0],
+            candidate.execute("SELECT COUNT(*) FROM external_references").fetchone()[0],
+        )
         candidate.close()
         conn.close()
+
+    def test_historical_artifact_alias_remaps_profile_reference(self) -> None:
+        candidate = sqlite3.connect(self.candidate)
+        old_id, target_id = candidate.execute(
+            """SELECT old_artifact_id,artifact_id
+                 FROM catalog_artifact_id_aliases
+                ORDER BY old_artifact_id LIMIT 1"""
+        ).fetchone()
+        candidate.close()
+        conn = sqlite3.connect(self.installed)
+        conn.execute("PRAGMA foreign_keys=ON")
+        conn.execute(
+            """INSERT INTO security_artifacts(
+                   id,type,title_en,definition_short_en,primary_domain,sub_domain,
+                   abstraction_level,source,source_type,obligation_level,
+                   granularity_level,control_nature,control_function,testability,
+                   priority,priority_weight,classification_confidence,
+                   classification_rationale,ai_review_status,requires_human_review,
+                   publication_status,source_document
+               ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+            (
+                old_id, "ART-CTR", "Historical catalog control",
+                "A historical control retained for upgrade qualification.",
+                "SD-01", "SD-01.01", "ABS-CTR", "SRC-INT", "DOCUMENT",
+                "OBL-REC", "GRN-MEDIUM", "NAT-ORG", "FUN-PRE", "TST-MAN",
+                "PRI-MEDIUM", 4, 0.5, "Historical pre-neutral classification.",
+                "AIR-HUMAN-REVIEW", 1, "APPROVED", "Historical source",
+            ),
+        )
+        conn.execute(
+            "INSERT INTO enterprise_profiles(id,name,profile_kind) VALUES('P3','Alias Test','system')"
+        )
+        conn.execute(
+            "INSERT INTO profile_artifacts(id,profile_id,artifact_id) VALUES('PA-OLD','P3',?)",
+            (old_id,),
+        )
+        conn.commit()
+        conn.close()
+
+        result = upgrade_catalog(self.installed, self.candidate)
+        self.assertEqual(result["operationalSnapshotBefore"], result["operationalSnapshotAfter"])
+        conn = sqlite3.connect(self.installed)
+        try:
+            self.assertEqual(
+                conn.execute(
+                    "SELECT artifact_id FROM profile_artifacts WHERE id='PA-OLD'"
+                ).fetchone()[0],
+                target_id,
+            )
+            self.assertIsNone(
+                conn.execute(
+                    "SELECT id FROM security_artifacts WHERE id=?", (old_id,)
+                ).fetchone()
+            )
+            self.assertEqual(conn.execute("PRAGMA foreign_key_check").fetchall(), [])
+        finally:
+            conn.close()
 
 
 if __name__ == "__main__":

@@ -148,11 +148,22 @@ class CuratedReleaseBuildTests(unittest.TestCase):
             _canonical_manifest_hash(self.first_manifest),
         )
 
+    def test_exact_candidates_pass_v1_through_v4_release_validation(self) -> None:
+        from scripts.validate_catalog_release import validate_release
+
+        report = validate_release(
+            self.first,
+            comparison_database=self.second,
+        )
+        self.assertTrue(report["valid"], report)
+        self.assertTrue(all(report[level]["valid"] for level in ("V1", "V2", "V3", "V4")))
+        self.assertEqual(report["V4"]["bindingErrors"], {})
+
     def test_curated_release_has_closed_minimum_catalog_and_no_unlicensed_payload(self) -> None:
         manifest = self.first_manifest
-        self.assertEqual(manifest["releaseCounts"]["artifacts"], 1227)
+        self.assertEqual(manifest["releaseCounts"]["artifacts"], 1218)
         self.assertEqual(manifest["releaseCounts"]["rawArtifacts"], 4265)
-        self.assertEqual(manifest["releaseCounts"]["quality"]["minimumValid"], 1227)
+        self.assertEqual(manifest["releaseCounts"]["quality"]["minimumValid"], 1218)
         self.assertEqual(manifest["releaseCounts"]["closure"]["rawDisposed"], 4265)
         self.assertEqual(manifest["rights"]["rawPayloadsIncluded"], 0)
         self.assertEqual(manifest["rights"]["rawPayloadsExcluded"], 4265)
@@ -165,6 +176,33 @@ class CuratedReleaseBuildTests(unittest.TestCase):
                         OR description_draft IS NOT NULL"""
             ).fetchone()[0], 0)
             self.assertEqual(conn.execute("SELECT COUNT(*) FROM staging_artifacts").fetchone()[0], 0)
+            self.assertEqual(conn.execute(
+                """SELECT COUNT(*) FROM security_artifacts
+                     WHERE trim(title_en) GLOB '[0-9.]*'
+                       AND trim(title_en) NOT GLOB '*[A-Za-z]*'"""
+            ).fetchone()[0], 0)
+            self.assertEqual(conn.execute(
+                """SELECT COUNT(*) FROM security_artifacts
+                     WHERE definition_short_en LIKE '%](http%'
+                        OR definition_short_en LIKE '%<code>%'
+                        OR definition_short_en LIKE '%(Citation:%'
+                        OR definition_full_en LIKE '%](http%'
+                        OR definition_full_en LIKE '%<code>%'
+                        OR definition_full_en LIKE '%(Citation:%'"""
+            ).fetchone()[0], 0)
+            self.assertEqual(conn.execute(
+                """SELECT COUNT(*) FROM security_artifacts
+                     WHERE title_en GLOB 'T[0-9][0-9][0-9][0-9]*'
+                       AND type<>'ART-THR'"""
+            ).fetchone()[0], 0)
+            self.assertEqual(conn.execute(
+                """SELECT COUNT(*) FROM (
+                       SELECT lower(trim(title_en)) FROM security_artifacts
+                       GROUP BY lower(trim(title_en)) HAVING COUNT(*)>1)"""
+            ).fetchone()[0], 0)
+            self.assertGreater(conn.execute(
+                "SELECT COUNT(*) FROM external_references"
+            ).fetchone()[0], 0)
             self.assertEqual(conn.execute("PRAGMA integrity_check").fetchone()[0], "ok")
             self.assertEqual(conn.execute("PRAGMA foreign_key_check").fetchall(), [])
         finally:

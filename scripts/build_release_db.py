@@ -41,10 +41,12 @@ from secureguide.catalog_curation import (
 )
 from secureguide.catalog_validation import (
     canonical_hash,
+    file_hash,
     load_contract,
     minimum_result,
     strict_result,
 )
+from secureguide.catalog_workbook import catalog_state_hash
 from secureguide.database import connect
 from scripts.dump_read_model_contract import build_read_model_dataset
 from tests.test_profile_workflow import seed_catalog
@@ -456,25 +458,26 @@ def build(
                     ("source_import_manifests", "created_at"),
                     ("artifact_source_lineage", "created_at"),
                     ("raw_artifact_dispositions", "decided_at"),
+                    ("catalog_artifact_id_aliases", "created_at"),
                 ):
                     conn.execute(f"UPDATE {table} SET {column}=?", (sqlite_timestamp,))
                 if mode == "curated":
                     conn.execute(
-                        "UPDATE source_catalogs SET imported_at=? WHERE id IN ('amani_v4','securekit_curated_controls')",
+                        "UPDATE source_catalogs SET imported_at=? WHERE id IN ('legacy_catalog_v4','securekit_curated_controls')",
                         (sqlite_timestamp,),
                     )
                     conn.execute(
-                        "UPDATE raw_artifacts SET imported_at=? WHERE source_catalog_id IN ('amani_v4','securekit_curated_controls')",
+                        "UPDATE raw_artifacts SET imported_at=? WHERE source_catalog_id IN ('legacy_catalog_v4','securekit_curated_controls')",
                         (sqlite_timestamp,),
                     )
                     conn.execute(
                         "UPDATE security_artifacts SET created_at=?,updated_at=? "
-                        "WHERE id GLOB 'SG-*-AMANI-*' OR id GLOB 'SG-*-CURATED-*'",
+                        "WHERE id GLOB 'SG-*-CAT-*' OR id GLOB 'SG-*-CURATED-*'",
                         (sqlite_timestamp, sqlite_timestamp),
                     )
                     conn.execute(
                         "UPDATE artifact_localizations SET created_at=?,updated_at=? "
-                        "WHERE artifact_id GLOB 'SG-*-AMANI-*' OR artifact_id GLOB 'SG-*-CURATED-*'",
+                        "WHERE artifact_id GLOB 'SG-*-CAT-*' OR artifact_id GLOB 'SG-*-CURATED-*'",
                         (sqlite_timestamp, sqlite_timestamp),
                     )
                 conn.execute("COMMIT")
@@ -515,6 +518,22 @@ def build(
                 manifest["rights"] = rights_summary
                 manifest["curation"] = curation
                 manifest["reproducibleBuildTimestampUtc"] = reproducible_timestamp
+                manifest["minimumContractSha256"] = file_hash(
+                    ROOT / "config" / "catalog_minimum_fields.yaml"
+                )
+                manifest["sourceRightsSha256"] = file_hash(
+                    ROOT / "config" / "source_rights.yaml"
+                )
+                manifest["curatedClassificationsSha256"] = file_hash(
+                    ROOT / "consolidation" / "curated" / "classifications.json"
+                )
+                manifest["legacyClassificationsSha256"] = file_hash(
+                    ROOT / "consolidation" / "curated" / "legacy_classifications.json"
+                )
+                manifest["equivalenceDecisionsSha256"] = file_hash(
+                    ROOT / "consolidation" / "unified" / "equivalence.json"
+                )
+                manifest["catalogContentSha256"] = catalog_state_hash(conn)
                 manifest["gatesPassed"].extend(
                     ["minimum_catalog_validation", "raw_disposition_closure",
                      "raw_source_lineage", "source_rights", "usable_templates"]
