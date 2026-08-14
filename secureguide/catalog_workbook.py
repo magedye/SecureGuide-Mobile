@@ -243,14 +243,16 @@ def _row_dict(row: sqlite3.Row, columns: Iterable[str] | None = None) -> dict[st
 
 
 def row_hash(values: dict[str, Any]) -> str:
-    # Excel stores integral floating-point values such as 0.0 as numeric 0.
-    # Treat those JSON number spellings as the same semantic value while
-    # retaining booleans and non-integral floats exactly.
+    # Excel stores integral floating-point values such as 0.0 as numeric 0
+    # and serializes an empty-string cell as a blank cell (None).  Treat both
+    # representations as semantically equal so an untouched export can always
+    # pass the no-op validation gate.  A deliberate UPSERT of a blank value
+    # still carries the workbook's None to the database layer.
     normalized = {
         key: (
             int(values[key])
             if isinstance(values[key], float) and values[key].is_integer()
-            else values[key]
+            else None if values[key] == "" else values[key]
         )
         for key in sorted(values)
     }

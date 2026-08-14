@@ -280,6 +280,24 @@ class WorkbookSchemaTests(unittest.TestCase):
             {error["code"] for error in result["errors"]},
         )
 
+    def test_empty_string_detail_round_trips_as_untouched_blank_cell(self) -> None:
+        """XLSX reloads a stored empty string as None, without an edit."""
+        self._seed_catalog()
+        conn = sqlite3.connect(self.db)
+        try:
+            conn.execute(
+                """INSERT INTO framework_mappings(
+                       artifact_id,framework,version,reference,mapping_strength,rationale
+                   ) VALUES('SG-CTR-1','SecureGuide Curated Controls v1','1','1','DIRECT','')"""
+            )
+            conn.commit()
+        finally:
+            conn.close()
+        workbook = Path(self.temp.name) / "empty-string-detail.xlsx"
+        export_workbook(self.db, workbook)
+        result = validate_workbook(workbook, self.db)
+        self.assertTrue(result["valid"], result["errors"])
+
     def test_filtered_export_is_lossless_for_artifact_and_raw_scope(self) -> None:
         self._seed_catalog()
         conn = sqlite3.connect(self.db)

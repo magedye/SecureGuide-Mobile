@@ -112,6 +112,13 @@ def validate_release(
         "equivalenceDecisionsSha256": file_hash(ROOT / "consolidation" / "unified" / "equivalence.json"),
         "catalogContentSha256": logical_hash,
     }
+    if manifest.get("mode") == "curated":
+        expected_bindings.update({
+            "semanticLedgerSha256": file_hash(ROOT / "config" / "semantic_reconciliation_ledger.json"),
+            "globalReconciliationSha256": file_hash(
+                ROOT / "consolidation" / "global_semantic_reconciliation.json"
+            ),
+        })
     binding_errors = {
         key: {"expected": value, "actual": manifest.get(key)}
         for key, value in expected_bindings.items()

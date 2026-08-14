@@ -550,6 +550,13 @@ def build(
                 manifest["equivalenceDecisionsSha256"] = file_hash(
                     ROOT / "consolidation" / "unified" / "equivalence.json"
                 )
+                if mode == "curated":
+                    manifest["semanticLedgerSha256"] = file_hash(
+                        ROOT / "config" / "semantic_reconciliation_ledger.json"
+                    )
+                    manifest["globalReconciliationSha256"] = file_hash(
+                        ROOT / "consolidation" / "global_semantic_reconciliation.json"
+                    )
                 manifest["catalogContentSha256"] = catalog_state_hash(conn)
                 manifest["gatesPassed"].extend(
                     ["minimum_catalog_validation", "raw_disposition_closure",
